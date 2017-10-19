@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <MizuWaterAmount>Water Amount</MizuWaterAmount>
+  <MizuConsumeWater>drink {0}</MizuConsumeWater>
+  <MizuNoWater>no water</MizuNoWater>
+  
+  <MizuLowWater>Low water</MizuLowWater>
+  <MizuLowWaterDesc>You are dangerously low on water.\n\n    Full bars worth of water in storage: {0}\n    Colonists and prisoners getting water: {1}\n    Days worth of water in storage: {2}\n\nDraw, buy or find some water.</MizuLowWaterDesc>
+  <MizuDehydration>Dehydration</MizuDehydration>
+  <MizuDehydrationDesc>These colonists are dehydrating:\n\n{0}\nGet them some water.</MizuDehydrationDesc>
+
+</LanguageData>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<JobDefs>
+
+  <JobDef>
+    <defName>Mizu_DrinkWater</defName>
+    <driverClass>MizuMod.JobDriver_DrinkWater</driverClass>
+    <reportString>drinking TargetA.</reportString>
+  </JobDef>
+
+  <JobDef>
+    <defName>Mizu_FeedWaterPatient</defName>
+    <driverClass>MizuMod.JobDriver_WaterFeedPatient</driverClass>
+    <reportString>feeding TargetA to TargetB.</reportString>
+  </JobDef>
+
+  <JobDef>
+    <defName>Mizu_DeliverWater</defName>
+    <driverClass>MizuMod.JobDriver_WaterDeliver</driverClass>
+    <reportString>feeding TargetA to TargetB.</reportString>
+  </JobDef>
+</JobDefs>

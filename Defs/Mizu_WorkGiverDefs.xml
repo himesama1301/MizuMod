@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<WorkGivers>
+
+  <WorkGiverDef>
+    <defName>Mizu_DoDrawingWater</defName>
+    <label>drawing water at spot</label>
+    <giverClass>WorkGiver_DoBill</giverClass>
+    <workType>Mizu_Drawing</workType>
+    <priorityInType>100</priorityInType>
+    <fixedBillGiverDefs>
+      <li>Mizu_DrawingWaterSpot</li>
+    </fixedBillGiverDefs>
+    <verb>draw</verb>
+    <gerund>drawing at</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>Mizu_DoctorFeedWaterHumanlikes</defName>
+    <label>feed patients</label>
+    <giverClass>MizuMod.WorkGiver_FeedWaterPatient</giverClass>
+    <workType>Doctor</workType>
+    <verb>feed</verb>
+    <gerund>feeding</gerund>
+    <priorityInType>59</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <prioritizeSustains>true</prioritizeSustains>
+    <feedHumanlikesOnly>true</feedHumanlikesOnly>
+  </WorkGiverDef>
+  
+  <WorkGiverDef>
+    <defName>Mizu_DoctorFeedWaterAnimals</defName>
+    <label>feed animals</label>
+    <giverClass>MizuMod.WorkGiver_FeedWaterPatient</giverClass>
+    <workType>Doctor</workType>
+    <verb>feed</verb>
+    <gerund>feeding</gerund>
+    <priorityInType>29</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <prioritizeSustains>true</prioritizeSustains>
+    <feedAnimalsOnly>true</feedAnimalsOnly>
+  </WorkGiverDef>
+  
+  <WorkGiverDef>
+    <defName>Mizu_DeliverWaterToPrisoner</defName>
+    <label>deliver water to prisoners</label>
+    <giverClass>MizuMod.WorkGiver_Warden_DeliverWater</giverClass>
+    <workType>Warden</workType>
+    <verb>deliver water for</verb>
+    <gerund>delivering water for</gerund>
+    <priorityInType>69</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+  
+</WorkGivers>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingCategoryDefs>
+
+  <ThingCategoryDef>
+    <defName>Mizu_Waters</defName>
+    <label>Waters</label>
+    <parent>Foods</parent>
+    <resourceReadoutRoot>true</resourceReadoutRoot>
+    <iconPath>UI/Icons/ThingCategories/Waters</iconPath>
+  </ThingCategoryDef>
+
+</ThingCategoryDefs>

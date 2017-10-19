@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+  <ThingDef>
+    <defName>Mizu_DrawingWaterSpot</defName>
+    <label>Drawing water spot</label>
+    <Description>A place for drawing water. This can be built on water or marsh.</Description>
+    <category>Building</category>
+    <ThingClass>Building_WorkTable</ThingClass>
+    <graphicData>
+      <texPath>Things/Building/Production/CraftingSpot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+    </graphicData>
+    <AltitudeLayer>FloorEmplacement</AltitudeLayer>
+    <statBases>
+      <WorkToBuild>0</WorkToBuild>
+      <SellPriceFactor>0.70</SellPriceFactor>
+    </statBases>
+    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <selectable>true</selectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <repairEffect>Repair</repairEffect>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <useHitPoints>False</useHitPoints>
+    <Size>(1,1)</Size>
+    <DesignationCategory>Mizu</DesignationCategory>
+    <Passability>Standable</Passability>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <surfaceType>Item</surfaceType>
+    <inspectorTabs>
+      <li>ITab_Bills</li>
+    </inspectorTabs>
+    <building>
+      <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+      <sowTag>SupportPlantsOnly</sowTag>
+      <canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+    </comps>
+    <terrainAffordanceNeeded>Undefined</terrainAffordanceNeeded>
+    <placeWorkers>
+      <li>MizuMod.PlaceWorker_WaterWorker</li>
+    </placeWorkers>
+    <recipes>
+      <li>Mizu_DrawWater</li>
+    </recipes>
+  </ThingDef>
+
+</ThingDefs>

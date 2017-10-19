@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <Mizu_DrawWater.label>水を汲む</Mizu_DrawWater.label>
+  <Mizu_DrawWater.description>飲用水をひとつ汲みます。</Mizu_DrawWater.description>
+  <Mizu_DrawWater.jobString>水を汲んでいる</Mizu_DrawWater.jobString>
+
+</LanguageData>

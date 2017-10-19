@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <Mizu_Drawing.labelShort>水汲み</Mizu_Drawing.labelShort>
+  <Mizu_Drawing.pawnLabel>水汲み</Mizu_Drawing.pawnLabel>
+  <Mizu_Drawing.gerundLabel>水汲み</Mizu_Drawing.gerundLabel>
+  <Mizu_Drawing.description>飲むための水を得ます。</Mizu_Drawing.description>
+  <Mizu_Drawing.verb>水汲み</Mizu_Drawing.verb>
+
+</LanguageData>

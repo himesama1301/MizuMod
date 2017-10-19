@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<WorkTypeDefs>
+
+  <WorkTypeDef>
+    <defName>Mizu_Drawing</defName>
+    <labelShort>Draw</labelShort>
+    <pawnLabel>Drawer</pawnLabel>
+    <gerundLabel>Drawing</gerundLabel>
+    <description>Drawing water for drinking</description>
+    <verb>Draw</verb>
+    <naturalPriority>990</naturalPriority>
+    <requireCapableColonist>true</requireCapableColonist>
+    <workTags>
+      <li>ManualDumb</li>
+    </workTags>
+  </WorkTypeDef>
+
+</WorkTypeDefs>

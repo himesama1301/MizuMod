@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <StatCategoryDef>
+    <defName>Mizu_WaterCategory</defName>
+    <label>Water</label>
+    <displayOrder>1000</displayOrder>
+  </StatCategoryDef>
+
+</Defs>

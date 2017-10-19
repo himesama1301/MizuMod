@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <Mizu_DoDrawingWater.label>水を汲む</Mizu_DoDrawingWater.label>
+  <Mizu_DoDrawingWater.verb>を汲む</Mizu_DoDrawingWater.verb>
+  <Mizu_DoDrawingWater.gerund>を汲む</Mizu_DoDrawingWater.gerund>
+
+  <Mizu_DoctorFeedWaterHumanlikes.label>水を与える</Mizu_DoctorFeedWaterHumanlikes.label>
+  <Mizu_DoctorFeedWaterHumanlikes.verb>に水を与える</Mizu_DoctorFeedWaterHumanlikes.verb>
+  <Mizu_DoctorFeedWaterHumanlikes.gerund>に水を与える</Mizu_DoctorFeedWaterHumanlikes.gerund>
+
+  <Mizu_DoctorFeedWaterAnimals.label>水を与える</Mizu_DoctorFeedWaterAnimals.label>
+  <Mizu_DoctorFeedWaterAnimals.verb>に水を与える</Mizu_DoctorFeedWaterAnimals.verb>
+  <Mizu_DoctorFeedWaterAnimals.gerund>に水を与える</Mizu_DoctorFeedWaterAnimals.gerund>
+
+  <Mizu_DeliverWaterToPrisoner.label>水を与える</Mizu_DeliverWaterToPrisoner.label>
+  <Mizu_DeliverWaterToPrisoner.verb>に水を与える</Mizu_DeliverWaterToPrisoner.verb>
+  <Mizu_DeliverWaterToPrisoner.gerund>に水を与える</Mizu_DeliverWaterToPrisoner.gerund>
+
+</LanguageData>

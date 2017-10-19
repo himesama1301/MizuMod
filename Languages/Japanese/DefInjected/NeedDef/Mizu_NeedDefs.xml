@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <Mizu_Water.label>水分</Mizu_Water.label>
+  <Mizu_Water.description>その生き物が直近に飲んだ水分の量です。 ゼロになると脱水症状になります。</Mizu_Water.description>
+
+</LanguageData>

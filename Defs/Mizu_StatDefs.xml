@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<StatDefs>
+
+  <StatDef>
+    <defName>Mizu_DrawingSpeed</defName>
+    <label>Drawing water speed</label>
+    <description>Speed at which this person drawing water.</description>
+    <category>PawnWork</category>
+    <defaultBaseValue>1</defaultBaseValue>
+    <toStringStyle>PercentZero</toStringStyle>
+    <statFactors>
+      <li>WorkSpeedGlobal</li>
+    </statFactors>
+    <capacityFactors>
+      <li>
+        <capacity>Manipulation</capacity>
+        <weight>1</weight>
+      </li>
+    </capacityFactors>
+  </StatDef>
+
+</StatDefs>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThoughtDef>
+    <defName>NeedWater</defName>
+    <workerClass>MizuMod.ThoughtWorker_NeedWater</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>thirsty</label>
+        <description>I'm really thirsty.</description>
+        <baseMoodEffect>-8</baseMoodEffect>
+      </li>
+      <li>
+        <label>urgently thirsty</label>
+        <description>These thirst pangs are hard to ignore.</description>
+        <baseMoodEffect>-14</baseMoodEffect>
+      </li>
+      <li>
+        <label>dehydrating (trivial)</label>
+        <description>It's been so long since I drank.</description>
+        <baseMoodEffect>-22</baseMoodEffect>
+      </li>
+      <li>
+        <label>dehydrating (minor)</label>
+        <description>I can feel my body wasting away.</description>
+        <baseMoodEffect>-29</baseMoodEffect>
+      </li>
+      <li>
+        <label>dehydrating (moderate)</label>
+        <description>I can barely think about anything but water.</description>
+        <baseMoodEffect>-36</baseMoodEffect>
+      </li>
+      <li>
+        <label>dehydrating (severe)</label>
+        <description>I can barely move or think about anything but water.</description>
+        <baseMoodEffect>-42</baseMoodEffect>
+      </li>
+      <li>
+        <label>dehydrating (extreme)</label>
+        <description>Water... water... just a shot to drink... anything... please...</description>
+        <baseMoodEffect>-50</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Mizu_DrankWaterDirectly</defName>
+    <durationDays>0.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>drank water from ground directly</label>
+        <description>I have no choice but to drink water from ground directly.</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+</Defs>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <NeedDef>
+    <DefName>Mizu_Water</DefName>
+    <needClass>MizuMod.Need_Water</needClass>
+    <label>Water</label>
+    <description>Water is the amount of water a creature has consumed recently. If it is at zero, a creature will become increasingly dehydrated and eventually die.</description>
+    <listPriority>700</listPriority>
+    <major>true</major>
+    <showForCaravanMembers>true</showForCaravanMembers>
+  </NeedDef>
+
+</Defs>

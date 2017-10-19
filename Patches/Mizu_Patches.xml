@@ -1,0 +1,889 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- コロニストの思考ツリーに飲み水が欲しいを追加する -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>/ThinkTrees/ThinkTreeDef[defName = "MainColonistBehaviorCore"]/thinkRoot/subNodes/li/subNodes</xpath>
+    <value>
+      <li Class="MizuMod.JobGiver_GetWater"/>
+    </value>
+  </Operation>
+
+  <!-- 囚人の思考ツリーに飲み水が欲しいを追加する -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/ThinkTreeDef[defName = "Humanlike"]/thinkRoot/subNodes/li[@Class = "ThinkNode_ConditionalPrisoner"]/subNodes/li[tagToGive = "SatisfyingNeeds"]/subNodes/li/subNodes</xpath>
+    <value>
+      <li Class="MizuMod.JobGiver_GetWater"/>
+    </value>
+  </Operation>
+
+  <!-- 動物の思考ツリーに飲み水が欲しいを追加する -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>/ThinkTrees/ThinkTreeDef[defName = "SatisfyBasicNeeds"]/thinkRoot/subNodes/li/subNodes</xpath>
+    <value>
+      <li Class="MizuMod.JobGiver_GetWater"/>
+    </value>
+  </Operation>
+
+  <!-- コロニストの思考ツリーに携帯飲料を取得するを追加する -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>/ThinkTrees/ThinkTreeDef[defName = "Humanlike"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalColonist"][2]/subNodes</xpath>
+    <value>
+      <li Class="ThinkNode_ConditionalNeedPercentageAbove">
+        <need>Mizu_Water</need>
+        <threshold>0.6</threshold>
+        <subNodes>
+          <li Class="MizuMod.JobGiver_PackWater">
+            <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
+          </li>
+        </subNodes>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- 水地形にaffordancesが無い場合、空のaffordancesを追加 -->
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>/TerrainDefs/TerrainDef[defName = "WaterDeep"]/affordances</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/TerrainDefs/TerrainDef[defName = "WaterDeep"]</xpath>
+        <value>
+          <affordances/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>/TerrainDefs/TerrainDef[defName = "WaterMovingDeep"]/affordances</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/TerrainDefs/TerrainDef[defName = "WaterMovingDeep"]</xpath>
+        <value>
+          <affordances/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>/TerrainDefs/TerrainDef[defName = "WaterOceanDeep"]/affordances</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/TerrainDefs/TerrainDef[defName = "WaterOceanDeep"]</xpath>
+        <value>
+          <affordances/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>/TerrainDefs/TerrainDef[defName = "WaterShallow"]/affordances</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/TerrainDefs/TerrainDef[defName = "WaterShallow"]</xpath>
+        <value>
+          <affordances/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>/TerrainDefs/TerrainDef[defName = "WaterMovingShallow"]/affordances</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/TerrainDefs/TerrainDef[defName = "WaterMovingShallow"]</xpath>
+        <value>
+          <affordances/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>/TerrainDefs/TerrainDef[defName = "WaterOceanShallow"]/affordances</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/TerrainDefs/TerrainDef[defName = "WaterOceanShallow"]</xpath>
+        <value>
+          <affordances/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>/TerrainDefs/TerrainDef[defName = "Marsh"]/affordances</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/TerrainDefs/TerrainDef[defName = "Marsh"]</xpath>
+        <value>
+          <affordances/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>/TerrainDefs/TerrainDef[defName = "Mud"]/affordances</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/TerrainDefs/TerrainDef[defName = "Mud"]</xpath>
+        <value>
+          <affordances/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+
+  <!-- 水地形のTerrainAffordanceにUndefinedを追加 -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>/TerrainDefs/TerrainDef[defName = "WaterDeep"]/affordances</xpath>
+    <value>
+      <li>Undefined</li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/TerrainDefs/TerrainDef[defName = "WaterMovingDeep"]/affordances</xpath>
+    <value>
+      <li>Undefined</li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/TerrainDefs/TerrainDef[defName = "WaterOceanDeep"]/affordances</xpath>
+    <value>
+      <li>Undefined</li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/TerrainDefs/TerrainDef[defName = "WaterShallow"]/affordances</xpath>
+    <value>
+      <li>Undefined</li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/TerrainDefs/TerrainDef[defName = "WaterMovingShallow"]/affordances</xpath>
+    <value>
+      <li>Undefined</li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/TerrainDefs/TerrainDef[defName = "WaterOceanShallow"]/affordances</xpath>
+    <value>
+      <li>Undefined</li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/TerrainDefs/TerrainDef[defName = "Marsh"]/affordances</xpath>
+    <value>
+      <li>Undefined</li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/TerrainDefs/TerrainDef[defName = "Mud"]/affordances</xpath>
+    <value>
+      <li>Undefined</li>
+    </value>
+  </Operation>
+
+  <!-- 各種ポーンの初期所持品に水を追加する -->
+  <!-- 原住民 -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>/PawnKindDefs/PawnKindDef[@Name = "TribalBase"]</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsChooseOne>
+          <li>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+        </subOptionsChooseOne>
+      </inventoryOptions>
+    </value>
+  </Operation>
+  
+  <!-- 異国人 -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>/PawnKindDefs/PawnKindDef[@Name = "OutlanderBase"]</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsChooseOne>
+          <li>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+        </subOptionsChooseOne>
+      </inventoryOptions>
+    </value>
+  </Operation>
+  
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[defName = "Villager"]/inventoryOptions</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsTakeAll>
+          <li>
+            <skipChance>0</skipChance>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+          <li>
+            <skipChance>0.75</skipChance>
+            <subOptionsChooseOne>
+              <li>
+                <choiceChance>90</choiceChance>
+                <thingDef>Silver</thingDef>
+                <countRange>
+                  <min>25</min>
+                  <max>70</max>
+                </countRange>
+              </li>
+              <li>
+                <choiceChance>10</choiceChance>
+                <thingDef>Silver</thingDef>
+                <countRange>
+                  <min>700</min>
+                  <max>1000</max>
+                </countRange>
+              </li>
+            </subOptionsChooseOne>
+          </li>
+        </subOptionsTakeAll>
+      </inventoryOptions>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[defName = "TownGuard"]/inventoryOptions</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsTakeAll>
+          <li>
+            <skipChance>0</skipChance>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+          <li>
+            <skipChance>0.95</skipChance>
+            <subOptionsChooseOne>
+              <li>
+                <thingDef>Silver</thingDef>
+                <countRange>
+                  <min>30</min>
+                  <max>100</max>
+                </countRange>
+              </li>
+            </subOptionsChooseOne>
+          </li>
+        </subOptionsTakeAll>
+      </inventoryOptions>
+    </value>
+  </Operation>
+
+  <!-- 傭兵 -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>/PawnKindDefs/PawnKindDef[@Name = "MercenaryBase"]</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsChooseOne>
+          <li>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+        </subOptionsChooseOne>
+      </inventoryOptions>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[@Name = "GrenadierBase"]/inventoryOptions</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsTakeAll>
+          <li>
+            <skipChance>0</skipChance>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+          <li>
+      			<skipChance>0.9</skipChance>
+      			<subOptionsChooseOne>
+      				<li>
+      					<thingDef>Silver</thingDef>
+      					<countRange>
+      						<min>50</min>
+      						<max>200</max>
+      					</countRange>
+      				</li>
+      				<li>
+      					<thingDef>Medicine</thingDef>
+      					<countRange>
+      						<min>1</min>
+      						<max>1</max>
+      					</countRange>
+      				</li>
+      			</subOptionsChooseOne>
+          </li>
+        </subOptionsTakeAll>
+      </inventoryOptions>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[defName = "MercenaryGunner"]/inventoryOptions</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsTakeAll>
+          <li>
+            <skipChance>0</skipChance>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+          <li>
+            <skipChance>0.8</skipChance>
+            <subOptionsChooseOne>
+              <li>
+                <thingDef>Silver</thingDef>
+                <countRange>
+                  <min>50</min>
+                  <max>200</max>
+                </countRange>
+              </li>
+              <li>
+                <thingDef>Medicine</thingDef>
+                <countRange>
+                  <min>1</min>
+                  <max>1</max>
+                </countRange>
+              </li>
+            </subOptionsChooseOne>
+          </li>
+        </subOptionsTakeAll>
+      </inventoryOptions>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[defName = "MercenarySniper"]/inventoryOptions</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsTakeAll>
+          <li>
+            <skipChance>0</skipChance>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+          <li>
+            <skipChance>0.8</skipChance>
+            <subOptionsChooseOne>
+              <li>
+                <thingDef>Silver</thingDef>
+                <countRange>
+                  <min>50</min>
+                  <max>200</max>
+                </countRange>
+              </li>
+              <li>
+                <thingDef>Medicine</thingDef>
+                <countRange>
+                  <min>1</min>
+                  <max>1</max>
+                </countRange>
+              </li>
+            </subOptionsChooseOne>
+          </li>
+        </subOptionsTakeAll>
+      </inventoryOptions>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[defName = "MercenarySlasher"]/inventoryOptions</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsTakeAll>
+          <li>
+            <skipChance>0</skipChance>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+          <li>
+            <skipChance>0.8</skipChance>
+            <subOptionsChooseOne>
+              <li>
+                <thingDef>Silver</thingDef>
+                <countRange>
+                  <min>180</min>
+                  <max>400</max>
+                </countRange>
+              </li>
+              <li>
+                <thingDef>Medicine</thingDef>
+                <countRange>
+                  <min>1</min>
+                  <max>2</max>
+                </countRange>
+              </li>
+            </subOptionsChooseOne>
+          </li>
+        </subOptionsTakeAll>
+      </inventoryOptions>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[@Name = "EliteBase"]/inventoryOptions</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsTakeAll>
+          <li>
+            <skipChance>0</skipChance>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+          <li>
+            <skipChance>0.8</skipChance>
+            <subOptionsChooseOne>
+              <li>
+                <thingDef>Silver</thingDef>
+                <countRange>
+                  <min>120</min>
+                  <max>480</max>
+                </countRange>
+              </li>
+              <li>
+                <thingDef>Medicine</thingDef>
+                <countRange>
+                  <min>1</min>
+                  <max>2</max>
+                </countRange>
+              </li>
+            </subOptionsChooseOne>
+          </li>
+        </subOptionsTakeAll>
+      </inventoryOptions>
+    </value>
+  </Operation>
+
+  <!-- 宙族 -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>/PawnKindDefs/PawnKindDef[@Name = "PirateBase"]</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsChooseOne>
+          <li>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+        </subOptionsChooseOne>
+      </inventoryOptions>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[defName = "Drifter"]/inventoryOptions</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsTakeAll>
+          <li>
+            <skipChance>0</skipChance>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+          <li>
+            <skipChance>0.9</skipChance>
+            <subOptionsChooseOne>
+              <li>
+                <thingDef>Silver</thingDef>
+                <countRange>
+                  <min>30</min>
+                  <max>70</max>
+                </countRange>
+              </li>
+              <li>
+                <thingDef>Medicine</thingDef>
+                <countRange>
+                  <min>1</min>
+                  <max>1</max>
+                </countRange>
+              </li>
+            </subOptionsChooseOne>
+          </li>
+        </subOptionsTakeAll>
+      </inventoryOptions>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[defName = "Scavenger"]/inventoryOptions</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsTakeAll>
+          <li>
+            <skipChance>0</skipChance>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+          <li>
+            <skipChance>0.9</skipChance>
+            <subOptionsChooseOne>
+              <li>
+                <thingDef>Silver</thingDef>
+                <countRange>
+                  <min>25</min>
+                  <max>50</max>
+                </countRange>
+              </li>
+              <li>
+                <thingDef>Medicine</thingDef>
+                <countRange>
+                  <min>1</min>
+                  <max>1</max>
+                </countRange>
+              </li>
+            </subOptionsChooseOne>
+          </li>
+        </subOptionsTakeAll>
+      </inventoryOptions>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[defName = "TownGuard"]/inventoryOptions</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsTakeAll>
+          <li>
+            <skipChance>0</skipChance>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+          <li>
+          </li>
+        </subOptionsTakeAll>
+      </inventoryOptions>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[defName = "Thrasher"]/inventoryOptions</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsTakeAll>
+          <li>
+            <skipChance>0</skipChance>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+          <li>
+            <skipChance>0.9</skipChance>
+            <subOptionsChooseOne>
+              <li>
+                <thingDef>Silver</thingDef>
+                <countRange>
+                  <min>25</min>
+                  <max>50</max>
+                </countRange>
+              </li>
+              <li>
+                <thingDef>Medicine</thingDef>
+                <countRange>
+                  <min>1</min>
+                  <max>1</max>
+                </countRange>
+              </li>
+            </subOptionsChooseOne>
+          </li>
+        </subOptionsTakeAll>
+      </inventoryOptions>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>/PawnKindDefs/PawnKindDef[defName = "Pirate"]/inventoryOptions</xpath>
+    <value>
+      <inventoryOptions>
+        <skipChance>0</skipChance>
+        <subOptionsTakeAll>
+          <li>
+            <skipChance>0</skipChance>
+            <choiceChance>100</choiceChance>
+            <thingDef>Mizu_WaterItemOne</thingDef>
+            <countRange>
+              <min>2</min>
+              <max>3</max>
+            </countRange>
+          </li>
+          <li>
+            <skipChance>0.8</skipChance>
+            <subOptionsChooseOne>
+              <li>
+                <thingDef>Silver</thingDef>
+                <countRange>
+                  <min>40</min>
+                  <max>80</max>
+                </countRange>
+              </li>
+              <li>
+                <thingDef>Medicine</thingDef>
+                <countRange>
+                  <min>1</min>
+                  <max>1</max>
+                </countRange>
+              </li>
+            </subOptionsChooseOne>
+          </li>
+        </subOptionsTakeAll>
+      </inventoryOptions>
+    </value>
+  </Operation>
+
+  <!-- トレーダーの商品に水を追加する -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TraderKindDef[defName = "Base_Outlander_Standard"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Mizu_Waters</categoryDef>
+        <thingDefCountRange>
+          <min>3</min>
+          <max>3</max>
+        </thingDefCountRange>
+        <totalPriceRange>
+          <min>150</min>
+          <max>600</max>
+        </totalPriceRange>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TraderKindDef[defName = "Caravan_Outlander_BulkGoods"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Mizu_Waters</categoryDef>
+        <thingDefCountRange>
+          <min>3</min>
+          <max>3</max>
+        </thingDefCountRange>
+        <totalPriceRange>
+          <min>150</min>
+          <max>600</max>
+        </totalPriceRange>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TraderKindDef[defName = "Visitor_Outlander_Standard"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Mizu_Waters</categoryDef>
+        <thingDefCountRange>
+          <min>3</min>
+          <max>3</max>
+        </thingDefCountRange>
+        <totalPriceRange>
+          <min>150</min>
+          <max>600</max>
+        </totalPriceRange>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TraderKindDef[defName = "Base_Neolithic_Standard"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Mizu_Waters</categoryDef>
+        <thingDefCountRange>
+          <min>3</min>
+          <max>3</max>
+        </thingDefCountRange>
+        <totalPriceRange>
+          <min>150</min>
+          <max>600</max>
+        </totalPriceRange>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TraderKindDef[defName = "Caravan_Neolithic_BulkGoods"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Mizu_Waters</categoryDef>
+        <thingDefCountRange>
+          <min>3</min>
+          <max>3</max>
+        </thingDefCountRange>
+        <totalPriceRange>
+          <min>150</min>
+          <max>600</max>
+        </totalPriceRange>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TraderKindDef[defName = "Visitor_Neolithic_Standard"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Mizu_Waters</categoryDef>
+        <thingDefCountRange>
+          <min>3</min>
+          <max>3</max>
+        </thingDefCountRange>
+        <totalPriceRange>
+          <min>150</min>
+          <max>600</max>
+        </totalPriceRange>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TraderKindDef[defName = "Orbital_BulkGoods"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Mizu_Waters</categoryDef>
+        <thingDefCountRange>
+          <min>3</min>
+          <max>3</max>
+        </thingDefCountRange>
+        <totalPriceRange>
+          <min>150</min>
+          <max>600</max>
+        </totalPriceRange>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- シナリオに水を加える -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/ScenarioDef[defName = "Crashlanded"]/scenario/parts</xpath>
+    <value>
+      <li Class="ScenPart_StartingThing_Defined">
+        <def>StartingThing_Defined</def>
+        <thingDef>Mizu_WaterItemOne</thingDef>
+        <count>50</count>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/ScenarioDef[defName = "LostTribe"]/scenario/parts</xpath>
+    <value>
+      <li Class="ScenPart_StartingThing_Defined">
+        <def>StartingThing_Defined</def>
+        <thingDef>Mizu_WaterItemOne</thingDef>
+        <count>50</count>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/ScenarioDef[defName = "TheRichExplorer"]/scenario/parts</xpath>
+    <value>
+      <li Class="ScenPart_StartingThing_Defined">
+        <def>StartingThing_Defined</def>
+        <thingDef>Mizu_WaterItemOne</thingDef>
+        <count>50</count>
+      </li>
+    </value>
+  </Operation>
+
+</Patch>

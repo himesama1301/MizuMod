@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef Name="Mizu_WaterItemBase" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Beauty>-4</Beauty>
+      <Mass>0.44</Mass>
+    </statBases>
+    <altitudeLayer>Item</altitudeLayer>
+    <stackLimit>75</stackLimit>
+    <tickerType>Rare</tickerType>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <thingCategories>
+      <li>Mizu_Waters</li>
+    </thingCategories>
+    <alwaysHaulable>true</alwaysHaulable>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+    </comps>
+    <pathCost>15</pathCost>
+    <resourceReadoutPriority>Last</resourceReadoutPriority>
+    <drawGUIOverlay>true</drawGUIOverlay>
+  </ThingDef>
+  
+  <ThingDef ParentName="Mizu_WaterItemBase">
+    <defName>Mizu_WaterItemOne</defName>
+    <label>Water</label>
+    <description>Water for drinking</description>
+    <graphicData>
+      <texPath>Things/Item/Drug/Beer</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1</MarketValue>
+      <WorkToMake>300</WorkToMake>
+    </statBases>
+    <comps>
+      <li Class="MizuMod.CompProperties_Water">
+        <waterAmount>0.8</waterAmount>
+        <waterPreferability>WaterSimple</waterPreferability>
+        <getSound>Ingest_Beer</getSound>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+<!--
+        <chairSearchRadius>25.0</chairSearchRadius>
+-->
+      </li>
+    </comps>
+  </ThingDef>
+
+</Defs>
