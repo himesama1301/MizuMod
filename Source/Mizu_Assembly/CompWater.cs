@@ -70,7 +70,7 @@ namespace MizuMod
         {
             FloatMenuOption[] extraOptions = new FloatMenuOption[]
             {
-                new FloatMenuOption(MizuStrings.FloatMenuGetWater, ()=>{
+                new FloatMenuOption(string.Format(MizuStrings.FloatMenuGetWater, this.parent.Label), ()=>{
                     Job job = new Job(MizuDef.Job_DrinkWater, this.parent)
                     {
                         count = MizuUtility.WillGetStackCountOf(selPawn, this.parent)
