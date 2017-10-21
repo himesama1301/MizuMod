@@ -1,5 +1,5 @@
 # MizuMod
-RimWorld MOD
+RimWorld MOD A17b向け
 
 ポーンの欲求に水分を追加します。食事と似たような扱いになります。
 
