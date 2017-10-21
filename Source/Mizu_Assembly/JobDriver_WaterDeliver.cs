@@ -86,9 +86,19 @@ namespace MizuMod
                         return;
                     }
                     Thing thing = null;
-                    if (!actor.carryTracker.TryDropCarriedThing(this.TargetC.Cell, ThingPlaceMode.Direct, out thing))
+                    bool isDropSuccess = actor.carryTracker.TryDropCarriedThing(this.TargetC.Cell, ThingPlaceMode.Direct, out thing);
+                    if (!isDropSuccess)
                     {
-                        actor.carryTracker.TryDropCarriedThing(this.TargetC.Cell, ThingPlaceMode.Near, out thing);
+                        isDropSuccess = actor.carryTracker.TryDropCarriedThing(this.TargetC.Cell, ThingPlaceMode.Near, out thing);
+                    }
+
+                    if (isDropSuccess)
+                    {
+                        if (pawn.Map.reservationManager.ReservedBy(thing, pawn))
+                        {
+                            pawn.Map.reservationManager.Release(thing, pawn);
+                        }
+                        ReservationUtility.Reserve((Pawn)this.TargetB.Thing, thing);
                     }
                     
                 };

@@ -14,11 +14,13 @@ namespace MizuMod
 
         public const float NeedBorder = 0.3f;
 
-        private const float DehydrationSeverityPerDay = 0.17f;
+        private const float DehydrationSeverityPerDay = 0.10f;
 
         private const float DehydrationSeverityPerInterval = DehydrationSeverityPerDay / 150;
 
-        private const float BaseFallPerTick = 2.0E-05f;
+        private const float BaseFallPerTick = 1.33E-05f;
+
+        public IntVec3 lastDrinkTerrainPos;
 
         public ThirstCategory CurCategory
         {
@@ -72,6 +74,14 @@ namespace MizuMod
             }
         }
 
+        public float WaterFallPerTick
+        {
+            get
+            {
+                return this.WaterFallPerTickAssumingCategory(this.CurCategory);
+            }
+        }
+
         public override int GUIChangeArrow
         {
             get
@@ -87,9 +97,27 @@ namespace MizuMod
             this.threshPercents.Add(this.PercentageThreshThirsty);
         }
 
+        private float WaterFallPerTickAssumingCategory(ThirstCategory cat)
+        {
+            switch (cat)
+            {
+                case ThirstCategory.Healthy:
+                    return BaseFallPerTick;
+                case ThirstCategory.Thirsty:
+                    return BaseFallPerTick * 0.5f;
+                case ThirstCategory.UrgentlyThirsty:
+                    return BaseFallPerTick * 0.25f;
+                case ThirstCategory.Dehydration:
+                    return BaseFallPerTick * 0.15f;
+                default:
+                    return 999f;
+            }
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
+            Scribe_Values.Look<IntVec3>(ref this.lastDrinkTerrainPos, "lastDrinkTerrainPos", IntVec3.Invalid, false);
         }
 
         public override void SetInitialLevel()
@@ -105,7 +133,7 @@ namespace MizuMod
             }
             if (!base.IsFrozen)
             {
-                this.CurLevel -= BaseFallPerTick * 150f * HighSpeedFactorForDebug;
+                this.CurLevel -= WaterFallPerTick * 150f * HighSpeedFactorForDebug;
             }
             if (!base.IsFrozen)
             {

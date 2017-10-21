@@ -40,21 +40,56 @@ namespace MizuMod
                 // 心情ステータスなし or 心情ステータスあり＋脱水症状まで進んでいる → 地面から直接水をすする
                 if (pawn.needs.mood == null || (need_water.CurCategory == ThirstCategory.Dehydration))
                 {
+                    // 前回使ったことがある水タイルを探す
+                    // 前回使ったタイルより近い範囲を新たに探索して、見つからなかったら前回と同じタイルを使う
+                    int maxDistance = 500;
+                    IntVec3 lastDirtyWaterVec = IntVec3.Invalid;
+                    if (need_water.lastDrinkTerrainPos != IntVec3.Invalid)
+                    {
+                        // 地形変化で前回のタイルが水タイルでなくなっていないか確認
+                        TerrainDef terrain = pawn.Map.terrainGrid.TerrainAt(need_water.lastDrinkTerrainPos);
+                        if (terrain.defName.Contains("Water") || terrain.defName.Contains("Marsh"))
+                        {
+                            maxDistance = (int)(need_water.lastDrinkTerrainPos - pawn.Position).LengthHorizontal;
+                            lastDirtyWaterVec = need_water.lastDrinkTerrainPos;
+                        }
+                        else
+                        {
+                            need_water.lastDrinkTerrainPos = IntVec3.Invalid;
+                        }
+                    }
+
                     // どの水地形を利用するか決める
                     Predicate<IntVec3> validator = (vec) =>
                     {
                         TerrainDef terrain = pawn.Map.terrainGrid.TerrainAt(vec);
                         return !vec.IsForbidden(pawn) && terrain.passability == Traversability.Standable && (terrain.defName.Contains("Water") || terrain.defName.Contains("Marsh"));
                     };
-                    for (int i = 10; i < 500; i += 10)
+                    for (int i = 10; i < maxDistance; i += 10)
                     {
-                        IntVec3 dirtyWaterVec = IntVec3.Invalid;
-                        bool isTerrainFound = CellFinder.TryRandomClosewalkCellNear(pawn.Position, pawn.Map, i, out dirtyWaterVec, validator);
-
-                        if (isTerrainFound)
+                        // 近場は試行回数を増やす
+                        int maxTrial = 1;
+                        if (i < 50)
                         {
-                            return new Job(MizuDef.Job_DrinkWater, dirtyWaterVec);
+                            maxTrial = 5;
                         }
+                        for (int j = 0; j < maxTrial; j++)
+                        {
+                            IntVec3 dirtyWaterVec = IntVec3.Invalid;
+                            bool isTerrainFound = CellFinder.TryRandomClosewalkCellNear(pawn.Position, pawn.Map, i, out dirtyWaterVec, validator);
+
+                            if (isTerrainFound)
+                            {
+                                need_water.lastDrinkTerrainPos = dirtyWaterVec;
+                                return new Job(MizuDef.Job_DrinkWater, dirtyWaterVec);
+                            }
+                        }
+                    }
+
+                    // 見つからなかったので前回のタイルを使用
+                    if (lastDirtyWaterVec != IntVec3.Invalid)
+                    {
+                        return new Job(MizuDef.Job_DrinkWater, lastDirtyWaterVec);
                     }
                 }
                 return null;
