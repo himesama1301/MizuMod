@@ -16,5 +16,6 @@ namespace MizuMod
         public static readonly string AlertLowWaterDesc = "MizuLowWaterDesc".Translate();
         public static readonly string AlertDehydration = "MizuDehydration".Translate();
         public static readonly string AlertDehydrationDesc = "MizuDehydrationDesc".Translate();
+        public static readonly string MessageCaravanRunOutOfWater = "MizuMessageCaravanRunOutOfWater";
     }
 }

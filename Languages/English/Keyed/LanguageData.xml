@@ -10,4 +10,6 @@
   <MizuDehydration>Dehydration</MizuDehydration>
   <MizuDehydrationDesc>These colonists are dehydrating:\n\n{0}\nGet them some water.</MizuDehydrationDesc>
 
+  <MizuMessageCaravanRunOutOfWater>{0} has run out of water ({1}).</MizuMessageCaravanRunOutOfWater>
+  
 </LanguageData>

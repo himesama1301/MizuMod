@@ -10,4 +10,5 @@
   <MizuDehydration>飲み水がない</MizuDehydration>
   <MizuDehydrationDesc>次の入植者は 喉の渇きを うったえています：\n\n{0}\nいますぐ 水が 必要です。</MizuDehydrationDesc>
 
+  <MizuMessageCaravanRunOutOfWater>{0}の飲用水が尽きました({1})。</MizuMessageCaravanRunOutOfWater>
 </LanguageData>

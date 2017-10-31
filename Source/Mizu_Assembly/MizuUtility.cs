@@ -4,6 +4,7 @@ using System.Collections.Generic;
 //using System.Text;
 
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 using Verse.AI;
 
@@ -334,6 +335,30 @@ namespace MizuMod
                 return 0;
             }
             return Math.Max((int)Math.Round(water / comp.WaterAmount), 1);
+        }
+
+        public static bool CanDrinkTerrain(Pawn pawn)
+        {
+            Need_Water need_water = pawn.needs.water();
+
+            if (need_water == null)
+            {
+                // 水分要求なし = そもそも水を必要としていない
+                return false;
+            }
+            else if (pawn.needs.mood == null)
+            {
+                // 心情無し = 地面から水をすすることに抵抗なし
+                return true;
+            }
+            else if (need_water.CurCategory == ThirstCategory.Dehydration)
+            {
+                // 心情有り、水分要求あり、状態が脱水症状 = (心情悪化するけど)地形から水を摂取する
+                return true;
+            }
+
+            // 心情あり、水分要求あり、状態はまだ大丈夫 = 地形から水を摂取しない
+            return false;
         }
     }
 }

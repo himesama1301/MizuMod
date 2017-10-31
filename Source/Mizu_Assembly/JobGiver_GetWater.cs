@@ -38,7 +38,7 @@ namespace MizuMod
             if (!MizuUtility.TryFindBestWaterSourceFor(pawn, pawn, out thing, out def, true, false, false))
             {
                 // 心情ステータスなし or 心情ステータスあり＋脱水症状まで進んでいる → 地面から直接水をすする
-                if (pawn.needs.mood == null || (need_water.CurCategory == ThirstCategory.Dehydration))
+                if (MizuUtility.CanDrinkTerrain(pawn) == true)
                 {
                     // 前回使ったことがある水タイルを探す
                     // 前回使ったタイルより近い範囲を新たに探索して、見つからなかったら前回と同じタイルを使う
