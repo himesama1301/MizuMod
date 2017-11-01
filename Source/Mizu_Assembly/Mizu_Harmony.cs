@@ -7,6 +7,9 @@ using System.Reflection;
 using Verse;
 using RimWorld;
 using RimWorld.Planet;
+using UnityEngine;
+using Verse.Sound;
+using Verse.AI;
 
 namespace MizuMod
 {
@@ -25,8 +28,7 @@ namespace MizuMod
     [HarmonyPatch(new Type[] { typeof(Pawn), typeof(Caravan) })]
     class CaravanPawnsNeedsUtility_TrySatisfyPawnNeeds_Patch
     {
-        [HarmonyPostfix]
-        static void CaravanPawnsNeedsUtility_AddSatisfyNeedWater(Pawn pawn, Caravan caravan)
+        static void Postfix(Pawn pawn, Caravan caravan)
         {
             Need_Water need_water = pawn.needs.water();
             if (need_water != null)
@@ -70,4 +72,51 @@ namespace MizuMod
         }
     }
 
+    [HarmonyPatch(typeof(ITab_Pawn_Gear))]
+    [HarmonyPatch("DrawThingRow")]
+    //[HarmonyPatch(new Type[] { typeof(float), typeof(float), typeof(Thing), typeof(bool) })]
+    class ITab_Pawn_Gear_DrawThingRow
+    {
+        static void Postfix(ref float y, float width, Thing thing, bool showDropButtonIfPrisoner = false)
+        //static bool Prefix(ref float y, ref float width, Thing thing, bool showDropButtonIfPrisoner)
+        {
+            float width2 = width - 72f;
+            float y2 = y - 28f;
+
+            Pawn selPawn = Find.Selector.SingleSelectedThing as Pawn;
+            Corpse selCorpse = Find.Selector.SingleSelectedThing as Corpse;
+            if (selPawn == null && selCorpse != null)
+            {
+                selPawn = selCorpse.InnerPawn;
+            }
+            if (selPawn == null)
+            {
+                return;
+            }
+
+            if (!selPawn.IsColonistPlayerControlled || selPawn.Downed)
+            {
+                return;
+            }
+            if (thing.CanGetWater() && thing.CanDrinkWaterNow())
+            {
+                Rect rect3 = new Rect(width2 - 24f, y2, 24f, 24f);
+                //TooltipHandler.TipRegion(rect3, "ConsumeThing".Translate(new object[]
+                //{
+                //        thing.LabelNoCount
+                //}));
+                TooltipHandler.TipRegion(rect3, string.Format(MizuStrings.FloatMenuGetWater, thing.LabelNoCount));
+                if (Widgets.ButtonImage(rect3, ContentFinder<Texture2D>.Get("UI/Buttons/Ingest", true)))
+                {
+                    SoundDefOf.TickHigh.PlayOneShotOnCamera(null);
+                    //this.InterfaceIngest(thing);
+                    Job job = new Job(MizuDef.Job_DrinkWater, thing);
+                    //job.count = Mathf.Min(thing.stackCount, thing.def.ingestible.maxNumToIngestAtOnce);
+                    job.count = Mathf.Min(thing.stackCount, 1);
+                    selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                }
+            }
+        //    return true;
+        }
+    }
 }
