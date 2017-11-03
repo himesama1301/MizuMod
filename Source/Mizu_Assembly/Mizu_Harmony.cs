@@ -132,19 +132,16 @@ namespace MizuMod
                 //{
                 //    Log.Message(string.Format("{0}", codes[i].opcode.ToString()));
                 //}
-                if (codes[i].opcode == OpCodes.Call)
+                if (codes[i].opcode == OpCodes.Call && codes[i].operand.ToString().Contains("DrawDaysWorthOfFoodInfo"))
                 {
-                    if (codes[i].operand.ToString().Contains("DrawDaysWorthOfFoodInfo"))
-                    {
-                        insert_index = i;
-                        //Log.Message("type  = " + codes[i].operand.GetType().ToString());
-                        //Log.Message("val   = " + codes[i].operand.ToString());
-                        //Log.Message("count = " + codes[i].labels.Count.ToString());
-                        //for (int j = 0; j < codes[i].labels.Count; j++)
-                        //{
-                        //    Log.Message(string.Format("label[{0}] = {1}", j, codes[i].labels[j].ToString()));
-                        //}
-                    }
+                    insert_index = i;
+                    //Log.Message("type  = " + codes[i].operand.GetType().ToString());
+                    //Log.Message("val   = " + codes[i].operand.ToString());
+                    //Log.Message("count = " + codes[i].labels.Count.ToString());
+                    //for (int j = 0; j < codes[i].labels.Count; j++)
+                    //{
+                    //    Log.Message(string.Format("label[{0}] = {1}", j, codes[i].labels[j].ToString()));
+                    //}
                 }
             }
 
@@ -184,4 +181,50 @@ namespace MizuMod
         }
     }
 
+    [HarmonyPatch(typeof(Caravan))]
+    [HarmonyPatch("GetInspectString")]
+    class Caravan_GetInspectString
+    {
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            bool found_caravanDaysOfFood = false;
+            int foundNum_Pop = 0;
+            int insert_index = -1;
+            var codes = new List<CodeInstruction>(instructions);
+            for (int i = 0; i < codes.Count; i++)
+            {
+                if (found_caravanDaysOfFood == false)
+                {
+                    if (codes[i].opcode == OpCodes.Ldstr && !codes[i].operand.ToString().Contains("CaravanDaysOfFoodRot") && codes[i].operand.ToString().Contains("CaravanDaysOfFood"))
+                    {
+                        found_caravanDaysOfFood = true;
+                        foundNum_Pop = 0;
+                    }
+                }
+                else if (foundNum_Pop < 1)
+                {
+                    if (codes[i].opcode == OpCodes.Pop)
+                    {
+                        foundNum_Pop++;
+                    }
+                }
+                else
+                {
+                    insert_index = i;
+                    break;
+                }
+            }
+
+            if (insert_index > -1)
+            {
+                List<CodeInstruction> new_codes = new List<CodeInstruction>();
+                new_codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldloc_0));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.AppendWaterWorthToCaravanInspectString))));
+
+                codes.InsertRange(insert_index, new_codes);
+            }
+            return codes.AsEnumerable();
+        }
+    }
 }

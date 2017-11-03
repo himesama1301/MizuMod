@@ -20,6 +20,7 @@ namespace MizuMod
         public static readonly string LabelInfiniteDaysWorthOfWaterInfo = "MizuInfiniteDaysWorthOfWaterInfo".Translate();
         public static readonly string LabelDaysWorthOfWaterInfo = "MizuDaysWorthOfWaterInfo".Translate();
         public static readonly string LabelDaysWorthOfWaterTooltip = "MizuDaysWorthOfWaterTooltip".Translate();
-
+        public static readonly string InspectCaravanOutOfWater = "MizuCaravanOutOfWater".Translate();
+        public static readonly string InspectCaravanDaysOfFood = "MizuCaravanDaysOfWater".Translate();
     }
 }

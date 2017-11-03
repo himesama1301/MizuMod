@@ -144,5 +144,76 @@ namespace MizuMod
             // GUIのカラーを戻す
             GUI.color = Color.white;
         }
+
+        public static void AppendWaterWorthToCaravanInspectString(Caravan c, StringBuilder stringBuilder)
+        {
+            float daysWorthOfWater = DaysWorthOfWaterCalculator.ApproxDaysWorthOfWater(c);
+            string text;
+            if (AnyPawnOutOfWater(c, out text))
+            {
+                stringBuilder.AppendLine();
+                stringBuilder.Append(MizuStrings.InspectCaravanOutOfWater);
+                if (!text.NullOrEmpty())
+                {
+                    stringBuilder.Append(" ");
+                    stringBuilder.Append(text);
+                    stringBuilder.Append(".");
+                }
+            }
+            else if (daysWorthOfWater < 1000f)
+            {
+                stringBuilder.AppendLine();
+                stringBuilder.Append(string.Format(MizuStrings.InspectCaravanDaysOfFood, daysWorthOfWater.ToString("0.#")));
+            }
+        }
+
+        public static bool AnyPawnOutOfWater(Caravan c, out string dehydrationHediff)
+        {
+            List<Thing> tmpInvWater = new List<Thing>();
+            List<Thing> list = CaravanInventoryUtility.AllInventoryItems(c);
+            tmpInvWater.Clear();
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].CanGetWater())
+                {
+                    tmpInvWater.Add(list[i]);
+                }
+            }
+            List<Pawn> pawnsListForReading = c.PawnsListForReading;
+            for (int j = 0; j < pawnsListForReading.Count; j++)
+            {
+                Pawn pawn = pawnsListForReading[j];
+                if (pawn.needs.mood != null && pawn.needs.water() != null)
+                {
+                    bool flag = false;
+                    for (int k = 0; k < tmpInvWater.Count; k++)
+                    {
+                        if (MizuCaravanUtility.CanEverGetWater(tmpInvWater[k].def, pawn))
+                        {
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if (!flag)
+                    {
+                        int num = -1;
+                        string text = null;
+                        for (int l = 0; l < pawnsListForReading.Count; l++)
+                        {
+                            Hediff firstHediffOfDef = pawnsListForReading[l].health.hediffSet.GetFirstHediffOfDef(MizuDef.Hediff_Dehydration, false);
+                            if (firstHediffOfDef != null && (text == null || firstHediffOfDef.CurStageIndex > num))
+                            {
+                                num = firstHediffOfDef.CurStageIndex;
+                                text = firstHediffOfDef.LabelCap;
+                            }
+                        }
+                        dehydrationHediff = text;
+                        return true;
+                    }
+                }
+            }
+            dehydrationHediff = null;
+            return false;
+        }
     }
 }

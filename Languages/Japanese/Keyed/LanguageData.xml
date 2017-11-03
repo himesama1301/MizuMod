@@ -15,4 +15,8 @@
   <MizuDaysWorthOfWaterInfo>飲用水 {0}日分</MizuDaysWorthOfWaterInfo>
   <MizuInfiniteDaysWorthOfWaterInfo>水不足にはならないでしょう。</MizuInfiniteDaysWorthOfWaterInfo>
   <MizuDaysWorthOfWaterTooltip>キャラバン隊の飲用水が尽きてしまう概算の日数を表します。</MizuDaysWorthOfWaterTooltip>
+
+  <MizuCaravanOutOfWater>飲用水切れ</MizuCaravanOutOfWater>
+  <MizuCaravanDaysOfWater>飲用水: {0} 日分</MizuCaravanDaysOfWater>
+
 </LanguageData>

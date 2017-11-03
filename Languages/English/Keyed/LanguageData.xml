@@ -16,4 +16,6 @@
   <MizuInfiniteDaysWorthOfFoodInfo>Will never run out of water</MizuInfiniteDaysWorthOfFoodInfo>
   <MizuDaysWorthOfFoodTooltip>An approximate number of days before the caravan runs out of water.</MizuDaysWorthOfFoodTooltip>
 
+  <MizuCaravanOutOfWater>Out of water.</MizuCaravanOutOfWater>
+  <MizuCaravanDaysOfWater>Days of water: {0}</MizuCaravanDaysOfWater>
 </LanguageData>
