@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using UnityEngine;
 using RimWorld;
 using Verse;
 
@@ -79,6 +80,22 @@ namespace MizuMod
             get
             {
                 return this.WaterFallPerTickAssumingCategory(this.CurCategory);
+            }
+        }
+
+        public float WaterAmountBetweenThirstyAndHealthy
+        {
+            get
+            {
+                return (1f - this.PercentageThreshThirsty) * this.MaxLevel;
+            }
+        }
+
+        public int TicksUntilThirstyWhenHealthy
+        {
+            get
+            {
+                return Mathf.CeilToInt(this.WaterAmountBetweenThirstyAndHealthy / this.WaterFallPerTick);
             }
         }
 

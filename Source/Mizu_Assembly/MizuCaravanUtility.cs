@@ -51,9 +51,98 @@ namespace MizuMod
             return water.CanGetWater() && (water.GetWaterPreferability() > WaterPreferability.NeverDrink);
         }
 
+        public static bool CanEverGetWater(ThingDef water, Pawn pawn)
+        {
+            bool canGetWater = false;
+            CompProperties_Water compprop_water = null;
+            for (int i = 0; i < water.comps.Count; i++)
+            {
+                compprop_water = water.comps[i] as CompProperties_Water;
+                if (compprop_water != null && compprop_water.waterAmount > 0.0f)
+                {
+                    canGetWater = true;
+                }
+            }
+            return canGetWater && (compprop_water.waterPreferability > WaterPreferability.NeverDrink);
+        }
+
         public static float GetWaterScore(Thing water, Pawn pawn)
         {
             return (float)water.GetWaterPreferability();
+        }
+
+        public static float GetWaterScore(ThingDef water, Pawn pawn)
+        {
+            CompProperties_Water compprop_water = null;
+            for (int i = 0; i < water.comps.Count; i++)
+            {
+                compprop_water = water.comps[i] as CompProperties_Water;
+                if (compprop_water != null)
+                {
+                    return (float)compprop_water.waterPreferability;
+                }
+            }
+            return 0.0f;
+        }
+
+        public static bool daysWorthOfWaterDirty = true;
+        private static float cachedDaysWorthOfWater;
+        public static float DaysWorthOfWater(Dialog_FormCaravan dialog)
+        {
+            if (MizuCaravanUtility.daysWorthOfWaterDirty)
+            {
+                MizuCaravanUtility.daysWorthOfWaterDirty = false;
+                MizuCaravanUtility.cachedDaysWorthOfWater = DaysWorthOfWaterCalculator.ApproxDaysWorthOfWater(dialog.transferables, IgnorePawnsInventoryMode.IgnoreIfAssignedToUnload);
+            }
+            return MizuCaravanUtility.cachedDaysWorthOfWater;
+        }
+
+        public static void DrawDaysWorthOfWaterInfo(Rect rect, float daysWorthOfWater, bool alignRight = false, float truncToWidth = float.MaxValue)
+        {
+            GUI.color = Color.gray;
+            string text;
+            if (daysWorthOfWater >= 1000f)
+            {
+                // 大量にある
+                text = MizuStrings.LabelInfiniteDaysWorthOfWaterInfo;
+            }
+            else
+            {
+                // 大量には無い
+                text = string.Format(MizuStrings.LabelDaysWorthOfWaterInfo, daysWorthOfWater.ToString("0.#"));
+            }
+            string text2 = text;
+            if (truncToWidth != float.MaxValue)
+            {
+                // 表示幅指定がある場合、幅をオーバーしていたら「...」で省略する
+                text2 = text.Truncate(truncToWidth, null);
+            }
+            Vector2 vector = Text.CalcSize(text2);
+            Rect rect2;
+            if (alignRight)
+            {
+                // 描画領域指定(右寄せ)
+                rect2 = new Rect(rect.xMax - vector.x, rect.y, vector.x, vector.y);
+            }
+            else
+            {
+                // 描画領域指定(左寄せ)
+                rect2 = new Rect(rect.x, rect.y, vector.x, vector.y);
+            }
+            // ラベル生成
+            Widgets.Label(rect2, text2);
+            string text3 = string.Empty;
+            if (truncToWidth != float.MaxValue && Text.CalcSize(text).x > truncToWidth)
+            {
+                // 省略が発生している場合は、全文を追加
+                text3 = text3 + text + "\n\n";
+            }
+            // ツールチップのテキストを追加
+            text3 = text3 + MizuStrings.LabelDaysWorthOfWaterTooltip + "\n\n";
+            // ラベルの領域にツールチップを設定
+            TooltipHandler.TipRegion(rect2, text3);
+            // GUIのカラーを戻す
+            GUI.color = Color.white;
         }
     }
 }

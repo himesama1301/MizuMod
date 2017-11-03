@@ -12,4 +12,8 @@
 
   <MizuMessageCaravanRunOutOfWater>{0} has run out of water ({1}).</MizuMessageCaravanRunOutOfWater>
   
+  <MizuDaysWorthOfFoodInfo>{0} days worth of water</MizuDaysWorthOfFoodInfo>
+  <MizuInfiniteDaysWorthOfFoodInfo>Will never run out of water</MizuInfiniteDaysWorthOfFoodInfo>
+  <MizuDaysWorthOfFoodTooltip>An approximate number of days before the caravan runs out of water.</MizuDaysWorthOfFoodTooltip>
+
 </LanguageData>

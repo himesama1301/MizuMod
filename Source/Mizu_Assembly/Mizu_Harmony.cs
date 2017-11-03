@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Harmony;
 using System.Reflection;
 using Verse;
@@ -10,6 +9,7 @@ using RimWorld.Planet;
 using UnityEngine;
 using Verse.Sound;
 using Verse.AI;
+using System.Reflection.Emit;
 
 namespace MizuMod
 {
@@ -60,11 +60,7 @@ namespace MizuMod
                         }
                         if (!MizuCaravanUtility.TryGetBestWater(caravan, pawn, out thing, out pawn2))
                         {
-                            Messages.Message(MizuStrings.MessageCaravanRunOutOfWater.Translate(new object[]
-                            {
-                                caravan.LabelCap,
-                                pawn.Label
-                            }), caravan, MessageSound.SeriousAlert);
+                            Messages.Message(string.Format(MizuStrings.MessageCaravanRunOutOfWater, caravan.LabelCap, pawn.Label), caravan, MessageSound.SeriousAlert);
                         }
                     }
                 }
@@ -74,11 +70,9 @@ namespace MizuMod
 
     [HarmonyPatch(typeof(ITab_Pawn_Gear))]
     [HarmonyPatch("DrawThingRow")]
-    //[HarmonyPatch(new Type[] { typeof(float), typeof(float), typeof(Thing), typeof(bool) })]
     class ITab_Pawn_Gear_DrawThingRow
     {
         static void Postfix(ref float y, float width, Thing thing, bool showDropButtonIfPrisoner = false)
-        //static bool Prefix(ref float y, ref float width, Thing thing, bool showDropButtonIfPrisoner)
         {
             float width2 = width - 72f;
             float y2 = y - 28f;
@@ -116,7 +110,78 @@ namespace MizuMod
                     selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                 }
             }
-        //    return true;
+            //    return true;
         }
     }
+
+    [HarmonyPatch(typeof(Dialog_FormCaravan))]
+    [HarmonyPatch("DoWindowContents")]
+    class Dialog_FormCaravan_DoWindowContents
+    {
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            int insert_index = -1;
+            var codes = new List<CodeInstruction>(instructions);
+            for (int i = 0; i < codes.Count; i++)
+            {
+                //if (codes[i].operand != null)
+                //{
+                //    Log.Message(string.Format("{0}, {1}, {2}", codes[i].opcode.ToString(), codes[i].operand.GetType().ToString(), codes[i].operand.ToString()));
+                //}
+                //else
+                //{
+                //    Log.Message(string.Format("{0}", codes[i].opcode.ToString()));
+                //}
+                if (codes[i].opcode == OpCodes.Call)
+                {
+                    if (codes[i].operand.ToString().Contains("DrawDaysWorthOfFoodInfo"))
+                    {
+                        insert_index = i;
+                        //Log.Message("type  = " + codes[i].operand.GetType().ToString());
+                        //Log.Message("val   = " + codes[i].operand.ToString());
+                        //Log.Message("count = " + codes[i].labels.Count.ToString());
+                        //for (int j = 0; j < codes[i].labels.Count; j++)
+                        //{
+                        //    Log.Message(string.Format("label[{0}] = {1}", j, codes[i].labels[j].ToString()));
+                        //}
+                    }
+                }
+            }
+
+            if (insert_index > -1)
+            {
+                List<CodeInstruction> new_codes = new List<CodeInstruction>();
+                new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 2));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_x")));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 2));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_y")));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldc_R4, 38.0f));
+                new_codes.Add(new CodeInstruction(OpCodes.Add));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 2));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_width")));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 2));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_height")));
+                new_codes.Add(new CodeInstruction(OpCodes.Newobj, AccessTools.Constructor(typeof(Rect), new Type[] { typeof(float), typeof(float), typeof(float), typeof(float) })));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DaysWorthOfWater))));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldc_I4_1));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldc_R4, float.MaxValue));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DrawDaysWorthOfWaterInfo))));
+
+                codes.InsertRange(insert_index + 1, new_codes);
+            }
+            return codes.AsEnumerable();
+        }
+    }
+
+    [HarmonyPatch(typeof(Dialog_FormCaravan))]
+    [HarmonyPatch("CountToTransferChanged")]
+    class Dialog_FormCaravan_CountToTransferChanged
+    {
+        static void Postfix()
+        {
+            MizuCaravanUtility.daysWorthOfWaterDirty = true;
+        }
+    }
+
 }

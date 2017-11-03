@@ -54,6 +54,7 @@
     <Compile Include="Alert_DehydrationColonists.cs" />
     <Compile Include="Alert_LowWater.cs" />
     <Compile Include="CompWater.cs" />
+    <Compile Include="DaysWorthOfWaterCalculator.cs" />
     <Compile Include="JobDriver_DrinkWater.cs" />
     <Compile Include="JobDriver_WaterDeliver.cs" />
     <Compile Include="JobDriver_WaterFeedPatient.cs" />
