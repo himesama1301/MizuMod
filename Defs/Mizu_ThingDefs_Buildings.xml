@@ -50,4 +50,63 @@
     </recipes>
   </ThingDef>
 
+  <ThingDef>
+    <defName>Mizu_Well</defName>
+    <label>Well</label>
+    <Description>Well!!! (need fertility = 50%)</Description>
+    <category>Building</category>
+    <ThingClass>Building_WorkTable</ThingClass>
+    <graphicData>
+      <texPath>Things/Building/Production/Mizu_Well</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(2.33,2.33)</drawSize>
+    </graphicData>
+    <AltitudeLayer>Building</AltitudeLayer>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>12</costStuffCount>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+      <WorkToBuild>2500</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <SellPriceFactor>0.70</SellPriceFactor>
+      <WorkTableWorkSpeedFactor>0.5</WorkTableWorkSpeedFactor>
+    </statBases>
+    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <selectable>true</selectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <repairEffect>Repair</repairEffect>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <useHitPoints>False</useHitPoints>
+    <Size>(2,2)</Size>
+    <DesignationCategory>Mizu</DesignationCategory>
+    <passability>PassThroughOnly</passability>
+    <pathCost>70</pathCost>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <surfaceType>Item</surfaceType>
+    <inspectorTabs>
+      <li>ITab_Bills</li>
+    </inspectorTabs>
+    <building>
+      <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+      <sowTag>SupportPlantsOnly</sowTag>
+      <canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+    </comps>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <placeWorkers>
+      <li>MizuMod.PlaceWorker_Well</li>
+    </placeWorkers>
+    <recipes>
+      <li>Mizu_DrawWater</li>
+    </recipes>
+  </ThingDef>
+
 </ThingDefs>

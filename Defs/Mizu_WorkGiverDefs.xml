@@ -9,6 +9,7 @@
     <priorityInType>100</priorityInType>
     <fixedBillGiverDefs>
       <li>Mizu_DrawingWaterSpot</li>
+      <li>Mizu_Well</li>
     </fixedBillGiverDefs>
     <verb>draw</verb>
     <gerund>drawing at</gerund>
