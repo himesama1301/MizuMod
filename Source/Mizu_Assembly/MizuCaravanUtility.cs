@@ -215,5 +215,28 @@ namespace MizuMod
             dehydrationHediff = null;
             return false;
         }
+
+        public static string AddWaterWarningString(Dialog_FormCaravan dialog, string text)
+        {
+            float daysWorthOfWater = DaysWorthOfWater(dialog);
+            if (daysWorthOfWater < 5f)
+            {
+                if (string.IsNullOrEmpty(text) == false)
+                {
+                    text += "\n\n";
+                }
+
+                if (daysWorthOfWater >= 0.1f)
+                {
+                    text += string.Format(MizuStrings.LabelDaysWorthOfFoodWarningDialog, daysWorthOfWater.ToString("0.#"));
+                }
+                else
+                {
+                    text += MizuStrings.LabelDaysWorthOfFoodWarningDialog_NoFood;
+                }
+            }
+
+            return text;
+        }
     }
 }

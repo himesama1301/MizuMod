@@ -172,6 +172,68 @@ namespace MizuMod
     }
 
     [HarmonyPatch(typeof(Dialog_FormCaravan))]
+    [HarmonyPatch("DoBottomButtons")]
+    class Dialog_FormCaravan_DoBottomButtons
+    {
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            int replace_index = -1;
+            int insert_index = -1;
+            int found_ldnull = 0;
+            var codes = new List<CodeInstruction>(instructions);
+            for (int i = 0; i < codes.Count; i++)
+            {
+                if (found_ldnull < 2 && codes[i].opcode == OpCodes.Ldnull)
+                {
+                    replace_index = i;
+                    found_ldnull++;
+                }
+                if (found_ldnull >= 2 && codes[i].opcode == OpCodes.Call && codes[i].operand.ToString().Contains("NullOrEmpty"))
+                {
+                    insert_index = i;
+                }
+            }
+            if (replace_index > -1 && insert_index > -1)
+            {
+                List<CodeInstruction> replace_codes = new List<CodeInstruction>();
+                replace_codes.Add(new CodeInstruction(OpCodes.Ldstr, string.Empty));
+                codes[replace_index].opcode = OpCodes.Nop;
+                codes.InsertRange(replace_index + 1, replace_codes);
+                insert_index += replace_codes.Count;
+
+                List<CodeInstruction> insert_codes = new List<CodeInstruction>();
+                codes[insert_index - 1].opcode = OpCodes.Nop;
+                //insert_codes.Add(new CodeInstruction(OpCodes.Ldstr, "{0}{1}"));
+
+                //insert_codes.Add(new CodeInstruction(OpCodes.Ldc_I4_2));
+                //insert_codes.Add(new CodeInstruction(OpCodes.Newarr, typeof(object)));
+
+                //insert_codes.Add(new CodeInstruction(OpCodes.Dup));
+                //insert_codes.Add(new CodeInstruction(OpCodes.Ldc_I4_0));
+                //insert_codes.Add(new CodeInstruction(OpCodes.Ldloc_1));
+                //insert_codes.Add(new CodeInstruction(OpCodes.Stelem_Ref));
+
+                //insert_codes.Add(new CodeInstruction(OpCodes.Dup));
+                //insert_codes.Add(new CodeInstruction(OpCodes.Ldc_I4_1));
+                //insert_codes.Add(new CodeInstruction(OpCodes.Ldstr, "\n\n uhawww okwww"));
+                //insert_codes.Add(new CodeInstruction(OpCodes.Stelem_Ref));
+
+                //insert_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(string), nameof(string.Format), new Type[] { typeof(string), typeof(object[]) })));
+                //insert_codes.Add(new CodeInstruction(OpCodes.Stloc_1));
+
+                insert_codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
+                insert_codes.Add(new CodeInstruction(OpCodes.Ldloc_1));
+                insert_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.AddWaterWarningString), new Type[] { typeof(Dialog_FormCaravan), typeof(string) })));
+                insert_codes.Add(new CodeInstruction(OpCodes.Stloc_1));
+
+                insert_codes.Add(new CodeInstruction(OpCodes.Ldloc_1));
+                codes.InsertRange(insert_index, insert_codes);
+            }
+            return codes.AsEnumerable();
+        }
+    }
+
+    [HarmonyPatch(typeof(Dialog_FormCaravan))]
     [HarmonyPatch("CountToTransferChanged")]
     class Dialog_FormCaravan_CountToTransferChanged
     {

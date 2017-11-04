@@ -18,4 +18,8 @@
 
   <MizuCaravanOutOfWater>Out of water.</MizuCaravanOutOfWater>
   <MizuCaravanDaysOfWater>Days of water: {0}</MizuCaravanDaysOfWater>
+
+  <MizuDaysWorthOfWaterWarningDialog>Your caravan only has {0} days worth of water and will become thirsty very quickly.\n\nAre you sure you want to form this caravan?</MizuDaysWorthOfWaterWarningDialog>
+  <MizuDaysWorthOfWaterWarningDialog_NoWater>Your caravan has no water and will become thirsty very quickly.\n\nAre you sure you want to form this caravan?</MizuDaysWorthOfWaterWarningDialog_NoWater>
+
 </LanguageData>
