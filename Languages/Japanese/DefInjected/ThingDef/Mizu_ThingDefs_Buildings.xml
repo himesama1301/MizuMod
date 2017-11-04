@@ -4,4 +4,7 @@
   <Mizu_DrawingWaterSpot.label>水汲み場</Mizu_DrawingWaterSpot.label>
   <Mizu_DrawingWaterSpot.description>飲用水を汲む場所です。水か沼に設置できます。</Mizu_DrawingWaterSpot.description>
 
+  <Mizu_Well.label>井戸</Mizu_Well.label>
+  <Mizu_Well.description>水を汲むことができる設備です。土地の肥沃度が50%以上、他の井戸から20マス以上離れている場所に建造できます。</Mizu_Well.description>
+
 </LanguageData>
