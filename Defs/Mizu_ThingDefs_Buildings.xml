@@ -53,7 +53,7 @@
   <ThingDef>
     <defName>Mizu_Well</defName>
     <label>Well</label>
-    <Description>Well!!! (need fertility = 50%)</Description>
+    <Description>A building for drawing water. The condition you need to build a well is [fertility >= 50% and distance of each other well]</Description>
     <category>Building</category>
     <ThingClass>Building_WorkTable</ThingClass>
     <graphicData>
@@ -67,7 +67,7 @@
       <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
-    <costStuffCount>12</costStuffCount>
+    <costStuffCount>100</costStuffCount>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
       <WorkToBuild>2500</WorkToBuild>
