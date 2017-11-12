@@ -110,8 +110,6 @@
   </ThingDef>
 
   <ThingDef Name="Mizu_WaterPipeBase" Abstract="True">
-    <label>pipe</label>
-    <description>Plumbing for connecting a Water Treatment system to washing and toilet facilities.</description>
     <thingClass>Building</thingClass>
     <category>Building</category>
     <graphicData>
@@ -140,6 +138,7 @@
       <MaxHitPoints>80</MaxHitPoints>
       <WorkToBuild>35</WorkToBuild>
       <Flammability>1.0</Flammability>
+      <Beauty>-2</Beauty>
     </statBases>
     <placingDraggableDimensions>1</placingDraggableDimensions>
     <rotatable>false</rotatable>
@@ -164,20 +163,20 @@
 
   <ThingDef ParentName="Mizu_WaterPipeBase">
     <defName>Mizu_WaterPipeStuff</defName>
-    <label>(mizu) WaterPipe</label>
+    <label>Water pipe</label>
+    <description>A building for connecting water network tools (pump, tank, faucet ...)</description>
     <uiIconPath>UI/Icons/Buildings/Mizu_WaterPipe_Icon</uiIconPath>
     <stuffCategories>
       <li>Metallic</li>
-      <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
     <costStuffCount>1</costStuffCount>
   </ThingDef>
   
   <ThingDef>
-    <defName>Mizu_WaterPump</defName>
-    <label>(mizu) water pump</label>
-    <description>pump description</description>
+    <defName>Mizu_GroundWaterPump</defName>
+    <label>Ground water pump</label>
+    <description>A building for pumping water for underground. Need electrical power.</description>
     <thingClass>Building</thingClass>
     <category>Building</category>
     <graphicData>
@@ -195,13 +194,14 @@
     <Size>(1,1)</Size>
     <tickerType>Normal</tickerType>
     <costList>
-      <Steel>10</Steel>
+      <Steel>50</Steel>
+      <Component>2</Component>
     </costList>
     <statBases>
-      <MaxHitPoints>80</MaxHitPoints>
-      <WorkToBuild>35</WorkToBuild>
+      <MaxHitPoints>140</MaxHitPoints>
+      <WorkToBuild>5000</WorkToBuild>
       <Flammability>1.0</Flammability>
-      <Beauty>-12</Beauty>
+      <Beauty>-25</Beauty>
     </statBases>
     <rotatable>false</rotatable>
     <selectable>true</selectable>
@@ -216,11 +216,11 @@
     <comps>
       <li Class="MizuMod.CompProperties_WaterNet">
         <compClass>MizuMod.CompWaterNetPump</compClass>
-        <baseWaterFlow>4000</baseWaterFlow>
+        <baseWaterFlow>1000</baseWaterFlow>
       </li>
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
-        <basePowerConsumption>5</basePowerConsumption>
+        <basePowerConsumption>150</basePowerConsumption>
       </li>
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_Breakdownable"/>
@@ -229,8 +229,8 @@
   
   <ThingDef>
     <defName>Mizu_WaterTank</defName>
-    <label>(mizu) water tank</label>
-    <description>pump description</description>
+    <label>Water tank</label>
+    <description>A building for storing water.</description>
     <thingClass>Building</thingClass>
     <category>Building</category>
     <graphicData>
@@ -250,13 +250,14 @@
     <pathCost>8</pathCost>
     <tickerType>Normal</tickerType>
     <costList>
-      <Steel>10</Steel>
+      <Steel>50</Steel>
     </costList>
     <statBases>
-      <MaxHitPoints>80</MaxHitPoints>
-      <WorkToBuild>35</WorkToBuild>
+      <MaxHitPoints>100</MaxHitPoints>
+      <WorkToBuild>800</WorkToBuild>
+      <Mass>200</Mass>
       <Flammability>1.0</Flammability>
-      <Beauty>-12</Beauty>
+      <Beauty>-6</Beauty>
     </statBases>
     <rotatable>false</rotatable>
     <selectable>true</selectable>
@@ -277,8 +278,8 @@
   
   <ThingDef>
     <defName>Mizu_WaterFaucet</defName>
-    <label>(mizu) water faucet</label>
-    <description>faucet description</description>
+    <label>Faucet</label>
+    <description>In use this tool, you take water for drinking from water tank.</description>
     <thingClass>Building_WorkTable</thingClass>
     <category>Building</category>
     <graphicData>
@@ -298,13 +299,13 @@
     <pathCost>8</pathCost>
     <tickerType>Normal</tickerType>
     <costList>
-      <Steel>10</Steel>
+      <Steel>2</Steel>
     </costList>
     <statBases>
-      <MaxHitPoints>80</MaxHitPoints>
-      <WorkToBuild>35</WorkToBuild>
-      <Flammability>1.0</Flammability>
-      <Beauty>-12</Beauty>
+      <MaxHitPoints>120</MaxHitPoints>
+      <WorkToBuild>200</WorkToBuild>
+      <Flammability>0.4</Flammability>
+      <Beauty>-2</Beauty>
     </statBases>
     <inspectorTabs>
       <li>ITab_Bills</li>
@@ -325,6 +326,7 @@
       <li Class="MizuMod.CompProperties_WaterNet">
         <compClass>MizuMod.CompWaterNetFaucet</compClass>
       </li>
+      <li Class="CompProperties_Forbiddable"/>
     </comps>
     <recipes>
       <li>Mizu_DrawWaterFromFaucet</li>

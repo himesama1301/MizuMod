@@ -64,10 +64,10 @@
   
   <WorkGiverDef>
     <defName>Mizu_GetWaterFromFaucet</defName>
-    <label>drawing water at spot</label>
+    <label>drawing water at faucet</label>
     <giverClass>MizuMod.WorkGiver_DoBillFaucet</giverClass>
     <workType>Mizu_Drawing</workType>
-    <priorityInType>99</priorityInType>
+    <priorityInType>101</priorityInType>
     <fixedBillGiverDefs>
       <li>Mizu_WaterFaucet</li>
     </fixedBillGiverDefs>
