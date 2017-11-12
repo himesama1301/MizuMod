@@ -156,9 +156,6 @@
         <compClass>MizuMod.CompWaterNetPipe</compClass>
       </li>
     </comps>
-    <placeWorkers>
-      <li>MizuMod.PlaceWorker_WaterNet</li>
-    </placeWorkers>
   </ThingDef>
 
   <ThingDef ParentName="Mizu_WaterPipeBase">

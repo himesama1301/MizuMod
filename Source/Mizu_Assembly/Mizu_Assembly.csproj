@@ -81,7 +81,6 @@
     <Compile Include="Mizu_Extensions.cs" />
     <Compile Include="Mizu_Harmony.cs" />
     <Compile Include="Need_Water.cs" />
-    <Compile Include="PlaceWorker_WaterNet.cs" />
     <Compile Include="PlaceWorker_WaterWorker.cs" />
     <Compile Include="PlaceWorker_Well.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
