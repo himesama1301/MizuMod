@@ -50,7 +50,7 @@ namespace MizuMod
         public override string CompInspectStringExtra()
         {
             string str;
-            str = MizuStrings.InspectWaterFlowOutput + ": " + this.WaterFlow.ToString("#####0") + " WaterVolume";
+            str = MizuStrings.InspectWaterFlowOutput + ": " + this.WaterFlow.ToString("#####0") + " WaterVolume/day";
 
             string baseStr = base.CompInspectStringExtra();
             if (!string.IsNullOrEmpty(baseStr))
