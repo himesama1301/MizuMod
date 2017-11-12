@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <RecipeDefs>
 
-  <RecipeDef Name="Mizu_DrawWater">
+  <RecipeDef>
     <defName>Mizu_DrawWater</defName>
     <label>draw water</label>
     <description>Draws water for drinking</description>
@@ -14,5 +14,20 @@
       <Mizu_WaterItemOne>1</Mizu_WaterItemOne>
     </products>
   </RecipeDef>
+
+  <MizuMod.FaucetRecipeDef>
+    <defName>Mizu_DrawWaterFromFaucet</defName>
+    <label>draw water from faucet</label>
+    <description>Draws water from faucet for drinking</description>
+    <jobString>Drawing water from faucet.</jobString>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <needWaterVolume>50</needWaterVolume>
+    <products>
+      <Mizu_WaterItemOne>1</Mizu_WaterItemOne>
+    </products>
+  </MizuMod.FaucetRecipeDef>
 
 </RecipeDefs>

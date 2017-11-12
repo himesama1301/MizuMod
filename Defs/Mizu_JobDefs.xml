@@ -18,4 +18,12 @@
     <driverClass>MizuMod.JobDriver_WaterDeliver</driverClass>
     <reportString>feeding TargetA to TargetB.</reportString>
   </JobDef>
+
+  <JobDef>
+    <defName>Mizu_DoBillFaucet</defName>
+    <driverClass>MizuMod.JobDriver_DoBillFaucet</driverClass>
+    <reportString>doing bill at TargetA.</reportString>
+    <suspendable>false</suspendable>
+  </JobDef>
+  
 </JobDefs>

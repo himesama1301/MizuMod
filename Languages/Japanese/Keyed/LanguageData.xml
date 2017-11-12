@@ -22,4 +22,7 @@
   <MizuDaysWorthOfWaterWarningDialog>キャラバン隊は {0}日分の飲用水しかないので、あっという間に水不足が始まります。\n\n本当に良いのですか？</MizuDaysWorthOfWaterWarningDialog>
   <MizuDaysWorthOfWaterWarningDialog_NoWater>キャラバン隊は 飲用水がないので、あっという間に水不足が始まります。\n\n本当に良いのですか？</MizuDaysWorthOfWaterWarningDialog_NoWater>
 
+  <MizuWaterFlowOutput>供給水量</MizuWaterFlowOutput>
+  <MizuWaterTankStored>貯水量</MizuWaterTankStored>
+  
 </LanguageData>
