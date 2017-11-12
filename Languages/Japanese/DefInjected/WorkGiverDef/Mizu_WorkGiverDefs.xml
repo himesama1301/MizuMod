@@ -17,4 +17,8 @@
   <Mizu_DeliverWaterToPrisoner.verb>に水を与える</Mizu_DeliverWaterToPrisoner.verb>
   <Mizu_DeliverWaterToPrisoner.gerund>に水を与える</Mizu_DeliverWaterToPrisoner.gerund>
 
+  <Mizu_GetWaterFromFaucet.label>水を汲む</Mizu_GetWaterFromFaucet.label>
+  <Mizu_GetWaterFromFaucet.verb>を汲む</Mizu_GetWaterFromFaucet.verb>
+  <Mizu_GetWaterFromFaucet.gerund>を汲む</Mizu_GetWaterFromFaucet.gerund>
+
 </LanguageData>

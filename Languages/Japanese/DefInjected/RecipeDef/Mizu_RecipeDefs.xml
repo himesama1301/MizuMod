@@ -5,4 +5,8 @@
   <Mizu_DrawWater.description>飲用水をひとつ汲みます。</Mizu_DrawWater.description>
   <Mizu_DrawWater.jobString>水を汲んでいる</Mizu_DrawWater.jobString>
 
+  <Mizu_DrawWaterFromFaucet.label>水を汲む</Mizu_DrawWaterFromFaucet.label>
+  <Mizu_DrawWaterFromFaucet.description>飲用水をひとつ汲みます。</Mizu_DrawWaterFromFaucet.description>
+  <Mizu_DrawWaterFromFaucet.jobString>水を汲んでいる</Mizu_DrawWaterFromFaucet.jobString>
+  
 </LanguageData>
