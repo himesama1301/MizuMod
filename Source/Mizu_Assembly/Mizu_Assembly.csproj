@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Alert_DehydrationColonists.cs" />
     <Compile Include="Alert_LowWater.cs" />
+    <Compile Include="Building_Pipe.cs" />
     <Compile Include="Building_Valve.cs" />
     <Compile Include="CompProperties_WaterTank.cs" />
     <Compile Include="CompWaterNetBase.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="DaysWorthOfWaterCalculator.cs" />
     <Compile Include="FaucetRecipeDef.cs" />
     <Compile Include="Graphic_LinkedWaterNet.cs" />
+    <Compile Include="Graphic_LinkedWaterNetOverlay.cs" />
     <Compile Include="JobDriver_DoBillFaucet.cs" />
     <Compile Include="JobDriver_DrinkWater.cs" />
     <Compile Include="JobDriver_WaterDeliver.cs" />

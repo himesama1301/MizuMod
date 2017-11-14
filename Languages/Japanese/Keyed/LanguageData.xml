@@ -25,4 +25,9 @@
   <MizuWaterFlowOutput>供給水量</MizuWaterFlowOutput>
   <MizuWaterTankStored>貯水量</MizuWaterTankStored>
   
+  <MizuCommandDesignateOpenCloseValveLabel>開/閉を指示</MizuCommandDesignateOpenCloseValveLabel>
+  <MizuCommandDesignateOpenCloseValveDesc>バルブの開閉を指示します。入植者は直ぐに作業に掛かります。</MizuCommandDesignateOpenCloseValveDesc>
+  
+  <MizuValveClosed>閉</MizuValveClosed>
+  
 </LanguageData>

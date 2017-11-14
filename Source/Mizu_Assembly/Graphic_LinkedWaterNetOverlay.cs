@@ -8,14 +8,14 @@ using Verse;
 
 namespace MizuMod
 {
-    public class Graphic_LinkedWaterNet : Graphic_Linked
+    public class Graphic_LinkedWaterNetOverlay : Graphic_Linked
     {
-        public Graphic_LinkedWaterNet() : base()
+        public Graphic_LinkedWaterNetOverlay() : base()
         {
             
         }
 
-        public Graphic_LinkedWaterNet(Graphic subGraphic) : base(subGraphic)
+        public Graphic_LinkedWaterNetOverlay(Graphic subGraphic) : base(subGraphic)
         {
 
         }

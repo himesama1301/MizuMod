@@ -25,4 +25,9 @@
   <MizuWaterFlowOutput>Water Flow Output</MizuWaterFlowOutput>
   <MizuWaterTankStored>Stured Water Volume</MizuWaterTankStored>
 
+  <MizuCommandDesignateOpenCloseValveLabel>Designate open/close</MizuCommandDesignateOpenCloseValveLabel>
+  <MizuCommandDesignateOpenCloseValveDesc>Designate this valve to be opened or closed. A colonist will come soon to perform the task.</MizuCommandDesignateOpenCloseValveDesc>
+
+  <MizuValveClosed>Closed</MizuValveClosed>
+
 </LanguageData>

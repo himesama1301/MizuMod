@@ -93,7 +93,7 @@ namespace MizuMod
 
         public virtual void PrintForGrid(SectionLayer sectionLayer)
         {
-            MizuGraphics.LinkedWaterNet.Print(sectionLayer, this.parent);
+            MizuGraphics.LinkedWaterNetOverlay.Print(sectionLayer, this.parent);
         }
     }
 }

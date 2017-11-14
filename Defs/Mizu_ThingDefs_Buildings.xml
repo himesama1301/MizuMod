@@ -109,7 +109,7 @@
   </ThingDef>
 
   <ThingDef Name="Mizu_WaterPipeBase" Abstract="True">
-    <thingClass>Building</thingClass>
+    <thingClass>MizuMod.Building_Pipe</thingClass>
     <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterPipe</texPath>
@@ -211,8 +211,8 @@
       </li>
       <li Class="CompProperties_Flickable">
         <commandTexture>Things/Building/Production/Mizu_WaterValve</commandTexture>
-        <commandLabelKey>CommandDesignateOpenCloseVentLabel</commandLabelKey>
-        <commandDescKey>CommandDesignateOpenCloseVentDesc</commandDescKey>
+        <commandLabelKey>MizuCommandDesignateOpenCloseValveLabel</commandLabelKey>
+        <commandDescKey>MizuCommandDesignateOpenCloseValveDesc</commandDescKey>
       </li>
     </comps>
     <placeWorkers>

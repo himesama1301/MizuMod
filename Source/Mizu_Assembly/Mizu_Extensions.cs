@@ -138,6 +138,17 @@ namespace MizuMod
 
         public static bool IsConnectedTo(this ThingWithComps t1, ThingWithComps t2)
         {
+            Building_Valve valve1 = t1 as Building_Valve;
+            if (valve1 != null && !valve1.IsOpen)
+            {
+                return false;
+            }
+            Building_Valve valve2 = t2 as Building_Valve;
+            if (valve2 != null && !valve2.IsOpen)
+            {
+                return false;
+            }
+
             bool t1_connected_to_t2 = false;
             foreach (var connectVec1 in t1.GetConnectVecs())
             {
