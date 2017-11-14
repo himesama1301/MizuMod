@@ -53,8 +53,11 @@
   <ItemGroup>
     <Compile Include="Alert_DehydrationColonists.cs" />
     <Compile Include="Alert_LowWater.cs" />
+    <Compile Include="Building_Valve.cs" />
     <Compile Include="CompProperties_WaterTank.cs" />
+    <Compile Include="CompWaterNetBase.cs" />
     <Compile Include="CompWaterNetFaucet.cs" />
+    <Compile Include="CompWaterNetValve.cs" />
     <Compile Include="CompWaterNetPipe.cs" />
     <Compile Include="CompProperties_WaterNet.cs" />
     <Compile Include="CompWater.cs" />
@@ -81,6 +84,7 @@
     <Compile Include="Mizu_Extensions.cs" />
     <Compile Include="Mizu_Harmony.cs" />
     <Compile Include="Need_Water.cs" />
+    <Compile Include="PlaceWorker_Valve.cs" />
     <Compile Include="PlaceWorker_WaterWorker.cs" />
     <Compile Include="PlaceWorker_Well.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

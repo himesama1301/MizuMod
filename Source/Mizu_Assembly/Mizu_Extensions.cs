@@ -85,5 +85,90 @@ namespace MizuMod
             return num;
         }
 
+        public static List<IntVec3> GetAdjacentCells(this Thing t)
+        {
+            List<IntVec3> adjacentCells = new List<IntVec3>();
+            CellRect adjacentRect = t.OccupiedRect().ExpandedBy(1);
+              
+            foreach (var cell in adjacentRect.EdgeCells)
+            {
+                if (cell.x == adjacentRect.minX && cell.z == adjacentRect.minZ)
+                {
+                    continue;
+                }
+                if (cell.x == adjacentRect.minX && cell.z == adjacentRect.maxZ)
+                {
+                    continue;
+                }
+                if (cell.x == adjacentRect.maxX && cell.z == adjacentRect.minZ)
+                {
+                    continue;
+                }
+                if (cell.x == adjacentRect.maxX && cell.z == adjacentRect.maxZ)
+                {
+                    continue;
+                }
+                adjacentCells.Add(cell);
+            }
+
+            return adjacentCells;
+        }
+
+        public static List<IntVec3> GetFrontBackCells(this Thing t)
+        {
+            List<IntVec3> frontBackCells = new List<IntVec3>();
+            frontBackCells.Add(t.Position + t.Rotation.FacingCell);
+            frontBackCells.Add(t.Position + t.Rotation.FacingCell * (-1));
+            return frontBackCells;
+        }
+
+
+        public static List<IntVec3> GetConnectVecs(this ThingWithComps t)
+        {
+            if (t.GetComp<CompWaterNet>() != null)
+            {
+                return t.GetAdjacentCells();
+            }
+            else if (t.GetComp<CompWaterNetValve>() != null)
+            {
+                return t.GetFrontBackCells();
+            }
+            return null;
+        }
+
+        public static bool IsConnectedTo(this ThingWithComps t1, ThingWithComps t2)
+        {
+            bool t1_connected_to_t2 = false;
+            foreach (var connectVec1 in t1.GetConnectVecs())
+            {
+                foreach (var occupiedVec2 in t2.OccupiedRect())
+                {
+                    if (connectVec1 == occupiedVec2)
+                    {
+                        t1_connected_to_t2 = true;
+                        goto T1toT2Checked;
+                    }
+                }
+            }
+
+            T1toT2Checked:
+
+            bool t2_connected_to_t1 = false;
+            foreach (var connectVec2 in t2.GetConnectVecs())
+            {
+                foreach (var occupiedVec1 in t1.OccupiedRect())
+                {
+                    if (connectVec2 == occupiedVec1)
+                    {
+                        t2_connected_to_t1 = true;
+                        goto T2toT1Checked;
+                    }
+                }
+            }
+
+            T2toT1Checked:
+
+            return t1_connected_to_t2 && t2_connected_to_t1;
+        }
     }
 }

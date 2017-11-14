@@ -169,6 +169,68 @@
     <costStuffCount>1</costStuffCount>
   </ThingDef>
   
+  <ThingDef Name="Mizu_WaterValveBase" Abstract="True">
+    <thingClass>MizuMod.Building_Valve</thingClass>
+    <category>Building</category>
+    <graphicData>
+      <texPath>Things/Building/Production/Mizu_WaterValve</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <damageData>
+        <rect>(0,0.35,1,0.3)</rect>
+      </damageData>
+    </graphicData>
+    <building>
+      <isInert>true</isInert>
+      <ignoreNeedsPower>true</ignoreNeedsPower>
+      <isEdifice>false</isEdifice>
+    </building>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Standable</passability>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <tickerType>Normal</tickerType>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <WorkToBuild>35</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>-2</Beauty>
+    </statBases>
+    <placingDraggableDimensions>1</placingDraggableDimensions>
+    <rotatable>true</rotatable>
+    <selectable>true</selectable>
+    <neverMultiSelect>true</neverMultiSelect>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <repairEffect>Repair</repairEffect>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Mizu</designationCategory>
+    <designationHotKey>Misc1</designationHotKey>
+    <filthLeaving>BuildingRubble</filthLeaving>
+    <comps>
+      <li Class="MizuMod.CompProperties_WaterNet">
+        <compClass>MizuMod.CompWaterNetValve</compClass>
+      </li>
+      <li Class="CompProperties_Flickable">
+        <commandTexture>Things/Building/Production/Mizu_WaterValve</commandTexture>
+        <commandLabelKey>CommandDesignateOpenCloseVentLabel</commandLabelKey>
+        <commandDescKey>CommandDesignateOpenCloseVentDesc</commandDescKey>
+      </li>
+    </comps>
+    <placeWorkers>
+      <li>MizuMod.PlaceWorker_Valve</li>
+    </placeWorkers>
+  </ThingDef>
+
+  <ThingDef ParentName="Mizu_WaterValveBase">
+    <defName>Mizu_WaterValveStuff</defName>
+    <label>Water valve</label>
+    <description>water valve description</description>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>1</costStuffCount>
+  </ThingDef>
+  
   <ThingDef>
     <defName>Mizu_GroundWaterPump</defName>
     <label>Ground water pump</label>

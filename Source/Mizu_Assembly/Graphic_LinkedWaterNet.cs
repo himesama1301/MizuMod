@@ -22,30 +22,55 @@ namespace MizuMod
 
         public override bool ShouldLinkWith(IntVec3 c, Thing parent)
         {
-            CompWaterNet comp = parent.TryGetComp<CompWaterNet>();
-            ThingWithComps linkThing = null;
+            ThingWithComps thing = parent as ThingWithComps;
+            CompWaterNetBase comp = thing.GetComp<CompWaterNetBase>();
 
+            Building_Valve valve = thing as Building_Valve;
+            if (valve != null)
+            {
+                if (!valve.IsOpen || !valve.GetConnectVecs().Contains(c))
+                {
+                    return false;
+                }
+            }
+
+            bool isFound = false;
             foreach (var net in comp.Manager.Nets)
             {
                 foreach (var t in net.Things)
                 {
-                    foreach (var occupiedVec in t.OccupiedRect())
+                    valve = t as Building_Valve;
+                    if (valve != null && !valve.IsOpen)
                     {
-                        if (occupiedVec == c)
+                        continue;
+                    }
+
+                    if (t == thing)
+                    {
+                        if (t.OccupiedRect().Contains(c))
                         {
-                            linkThing = t;
+                            isFound = true;
+                            goto LinkFound;
+                        }
+                    }
+                    else
+                    {
+                        if (t.OccupiedRect().Contains(c) && t.IsConnectedTo(thing))
+                        {
+                            isFound = true;
                             goto LinkFound;
                         }
                     }
                 }
             }
+
         LinkFound:
-            return GenGrid.InBounds(c, parent.Map) && (linkThing != null) && (linkThing.GetComp<CompWaterNet>() != null);
+            return GenGrid.InBounds(c, parent.Map) && isFound;
         }
 
         public override void Print(SectionLayer layer, Thing parent)
         {
-            foreach (var current in GenAdj.OccupiedRect(parent))
+            foreach (var current in parent.OccupiedRect())
             {
                 Vector3 vector = current.ToVector3ShiftedWithAltitude(AltitudeLayer.WorldDataOverlay);
                 Printer_Plane.PrintPlane(layer, vector, Vector2.one, base.LinkedDrawMatFrom(parent, current), 0f, false, null, null, 0.01f);

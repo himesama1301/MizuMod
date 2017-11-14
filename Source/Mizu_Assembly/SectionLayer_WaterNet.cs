@@ -38,7 +38,7 @@ namespace MizuMod
             Building building = t as Building;
             if (building != null)
             {
-                CompWaterNet comp = building.GetComp<CompWaterNet>();
+                CompWaterNetBase comp = building.GetComp<CompWaterNetBase>();
                 if (comp == null)
                 {
                     return;

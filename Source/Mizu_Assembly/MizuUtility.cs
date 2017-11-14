@@ -360,6 +360,5 @@ namespace MizuMod
             // 心情あり、水分要求あり、状態はまだ大丈夫 = 地形から水を摂取しない
             return false;
         }
-
     }
 }

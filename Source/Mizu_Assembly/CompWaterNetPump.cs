@@ -20,15 +20,6 @@ namespace MizuMod
 
         public virtual float WaterFlow { get; set; }
 
-        public override void PostSpawnSetup(bool respawningAfterLoad)
-        {
-            base.PostSpawnSetup(respawningAfterLoad);
-
-            this.flickableComp = this.parent.GetComp<CompFlickable>();
-            this.breakdownableComp = this.parent.GetComp<CompBreakdownable>();
-            this.powerComp = this.parent.GetComp<CompPowerTrader>();
-        }
-
         public override void CompTick()
         {
             base.CompTick();

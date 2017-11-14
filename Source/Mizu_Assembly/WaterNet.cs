@@ -12,6 +12,11 @@ namespace MizuMod
     {
         private static int nextID = 1;
 
+        public static void ClearNextID()
+        {
+            nextID = 1;
+        }
+
         public int ID = 0;
 
         private List<ThingWithComps> things = new List<ThingWithComps>();
@@ -34,21 +39,21 @@ namespace MizuMod
 
         public void AddThing(ThingWithComps thing)
         {
-            CompWaterNet comp = thing.GetComp<CompWaterNet>();
+            CompWaterNetBase comp = thing.GetComp<CompWaterNetBase>();
             if (comp != null)
             {
                 comp.WaterNet = this;
             }
             else
             {
-                Log.Error("CompWaterNet is null");
+                Log.Error("CompWaterNetBase is null");
             }
             things.Add(thing);
         }
 
         public void RemoveThing(ThingWithComps thing)
         {
-            CompWaterNet comp = thing.GetComp<CompWaterNet>();
+            CompWaterNetBase comp = thing.GetComp<CompWaterNetBase>();
             if (comp != null)
             {
                 comp.WaterNet = null;

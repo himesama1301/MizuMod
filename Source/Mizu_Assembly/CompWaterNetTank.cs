@@ -100,30 +100,6 @@ namespace MizuMod
             return amount;
         }
 
-        //public void DrawPower(float amount)
-        //{
-        //    this.storedEnergy -= amount;
-        //    if (this.storedEnergy < 0f)
-        //    {
-        //        Log.Error("Drawing power we don't have from " + this.parent);
-        //        this.storedEnergy = 0f;
-        //    }
-        //}
-
-        //public void SetStoredEnergyPct(float pct)
-        //{
-        //    pct = Mathf.Clamp01(pct);
-        //    this.storedEnergy = this.Props.storedEnergyMax * pct;
-        //}
-
-        //public override void ReceiveCompSignal(string signal)
-        //{
-        //    if (signal == "Breakdown")
-        //    {
-        //        this.DrawPower(this.StoredEnergy);
-        //    }
-        //}
-
         public override string CompInspectStringExtra()
         {
             string text = string.Concat(new string[]
@@ -155,9 +131,6 @@ namespace MizuMod
             r.filledMat = CompWaterNetTank.WaterNetTankBarFilledMat;
             r.unfilledMat = CompWaterNetTank.WaterNetTankBarUnfilledMat;
             r.margin = 0.15f;
-            //Rot4 rotation = this.parent.Rotation;
-            //rotation.Rotate(RotationDirection.Clockwise);
-            //r.rotation = rotation;
             GenDraw.DrawFillableBar(r);
         }
     }
