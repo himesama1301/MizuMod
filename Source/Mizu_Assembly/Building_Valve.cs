@@ -65,7 +65,7 @@ namespace MizuMod
                 {
                     stringBuilder.AppendLine();
                 }
-                stringBuilder.Append("VentClosed".Translate());
+                stringBuilder.Append(MizuStrings.InspectValveClosed);
             }
             return stringBuilder.ToString();
         }
