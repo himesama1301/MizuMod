@@ -5,7 +5,10 @@ using System.Text;
 
 namespace MizuMod
 {
-    public class CompWaterNetFaucet : CompWaterNet
+    public class CompWaterNetFaucet : CompWaterNetTank
     {
+        public override void PostDraw()
+        {
+        }
     }
 }

@@ -329,6 +329,7 @@
     <filthLeaving>BuildingRubble</filthLeaving>
     <comps>
       <li Class="MizuMod.CompProperties_WaterTank">
+        <compClass>MizuMod.CompWaterNetTank</compClass>
         <storedWaterVolumeMax>1000</storedWaterVolumeMax>
       </li>
     </comps>
@@ -381,8 +382,9 @@
     <designationHotKey>Misc1</designationHotKey>
     <filthLeaving>BuildingRubble</filthLeaving>
     <comps>
-      <li Class="MizuMod.CompProperties_WaterNet">
+      <li Class="MizuMod.CompProperties_WaterTank">
         <compClass>MizuMod.CompWaterNetFaucet</compClass>
+        <storedWaterVolumeMax>50</storedWaterVolumeMax>
       </li>
       <li Class="CompProperties_Forbiddable"/>
     </comps>

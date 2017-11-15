@@ -23,7 +23,7 @@ namespace MizuMod
         public override bool ShouldLinkWith(IntVec3 c, Thing parent)
         {
             IBuilding_WaterNetBase thing_wnb = parent as IBuilding_WaterNetBase;
-            if (thing_wnb == null || !thing_wnb.IsActivatedForWaterNet || !thing_wnb.ConnectVecs.Contains(c))
+            if (thing_wnb == null || !thing_wnb.IsActivatedForWaterNet)
             {
                 return false;
             }
