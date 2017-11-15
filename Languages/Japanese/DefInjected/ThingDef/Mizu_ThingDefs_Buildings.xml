@@ -10,8 +10,8 @@
   <Mizu_WaterPipeStuff.label>水道管</Mizu_WaterPipeStuff.label>
   <Mizu_WaterPipeStuff.description>ポンプや貯水タンク、蛇口などをつなげるための設備です。</Mizu_WaterPipeStuff.description>
 
-  <Mizu_GroundWaterPump.label>地下水汲み上げポンプ</Mizu_GroundWaterPump.label>
-  <Mizu_GroundWaterPump.description>地下水を汲んで水道に流すための設備です。電力を必要とします。</Mizu_GroundWaterPump.description>
+  <Mizu_UndergroundWaterPump.label>地下水汲み上げポンプ</Mizu_UndergroundWaterPump.label>
+  <Mizu_UndergroundWaterPump.description>地下水を汲んで水道に流すための設備です。電力を必要とします。</Mizu_UndergroundWaterPump.description>
 
   <Mizu_WaterTank.label>貯水タンク</Mizu_WaterTank.label>
   <Mizu_WaterTank.description>ポンプで汲み上げた水を貯える設備です。</Mizu_WaterTank.description>

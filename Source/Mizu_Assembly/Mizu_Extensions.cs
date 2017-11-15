@@ -85,72 +85,22 @@ namespace MizuMod
             return num;
         }
 
-        public static List<IntVec3> GetAdjacentCells(this Thing t)
-        {
-            List<IntVec3> adjacentCells = new List<IntVec3>();
-            CellRect adjacentRect = t.OccupiedRect().ExpandedBy(1);
-              
-            foreach (var cell in adjacentRect.EdgeCells)
-            {
-                if (cell.x == adjacentRect.minX && cell.z == adjacentRect.minZ)
-                {
-                    continue;
-                }
-                if (cell.x == adjacentRect.minX && cell.z == adjacentRect.maxZ)
-                {
-                    continue;
-                }
-                if (cell.x == adjacentRect.maxX && cell.z == adjacentRect.minZ)
-                {
-                    continue;
-                }
-                if (cell.x == adjacentRect.maxX && cell.z == adjacentRect.maxZ)
-                {
-                    continue;
-                }
-                adjacentCells.Add(cell);
-            }
-
-            return adjacentCells;
-        }
-
-        public static List<IntVec3> GetFrontBackCells(this Thing t)
-        {
-            List<IntVec3> frontBackCells = new List<IntVec3>();
-            frontBackCells.Add(t.Position + t.Rotation.FacingCell);
-            frontBackCells.Add(t.Position + t.Rotation.FacingCell * (-1));
-            return frontBackCells;
-        }
-
-
-        public static List<IntVec3> GetConnectVecs(this ThingWithComps t)
-        {
-            if (t.GetComp<CompWaterNet>() != null)
-            {
-                return t.GetAdjacentCells();
-            }
-            else if (t.GetComp<CompWaterNetValve>() != null)
-            {
-                return t.GetFrontBackCells();
-            }
-            return null;
-        }
-
         public static bool IsConnectedTo(this ThingWithComps t1, ThingWithComps t2)
         {
-            Building_Valve valve1 = t1 as Building_Valve;
-            if (valve1 != null && !valve1.IsOpen)
+            IBuilding_WaterNetBase thing1 = t1 as IBuilding_WaterNetBase;
+            IBuilding_WaterNetBase thing2 = t2 as IBuilding_WaterNetBase;
+
+            if (thing1 == null || !thing1.IsActivatedForWaterNet)
             {
                 return false;
             }
-            Building_Valve valve2 = t2 as Building_Valve;
-            if (valve2 != null && !valve2.IsOpen)
+            if (thing2 == null || !thing2.IsActivatedForWaterNet)
             {
                 return false;
             }
 
             bool t1_connected_to_t2 = false;
-            foreach (var connectVec1 in t1.GetConnectVecs())
+            foreach (var connectVec1 in thing1.ConnectVecs)
             {
                 foreach (var occupiedVec2 in t2.OccupiedRect())
                 {
@@ -165,7 +115,7 @@ namespace MizuMod
             T1toT2Checked:
 
             bool t2_connected_to_t1 = false;
-            foreach (var connectVec2 in t2.GetConnectVecs())
+            foreach (var connectVec2 in thing2.ConnectVecs)
             {
                 foreach (var occupiedVec1 in t1.OccupiedRect())
                 {

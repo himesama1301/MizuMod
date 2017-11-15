@@ -232,10 +232,10 @@
   </ThingDef>
   
   <ThingDef>
-    <defName>Mizu_GroundWaterPump</defName>
-    <label>Ground water pump</label>
+    <defName>Mizu_UndergroundWaterPump</defName>
+    <label>Underground water pump</label>
     <description>A building for pumping water for underground. Need electrical power.</description>
-    <thingClass>Building</thingClass>
+    <thingClass>MizuMod.Building_WaterNetBase</thingClass>
     <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Production/DeepDrill</texPath>
@@ -289,7 +289,7 @@
     <defName>Mizu_WaterTank</defName>
     <label>Water tank</label>
     <description>A building for storing water.</description>
-    <thingClass>Building</thingClass>
+    <thingClass>MizuMod.Building_WaterNetBase</thingClass>
     <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterTank</texPath>
@@ -338,7 +338,7 @@
     <defName>Mizu_WaterFaucet</defName>
     <label>Faucet</label>
     <description>In use this tool, you take water for drinking from water tank.</description>
-    <thingClass>Building_WorkTable</thingClass>
+    <thingClass>MizuMod.Building_Faucet</thingClass>
     <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterFaucet</texPath>
@@ -389,6 +389,8 @@
     <recipes>
       <li>Mizu_DrawWaterFromFaucet</li>
     </recipes>
-  </ThingDef>
+    <placeWorkers>
+      <li>MizuMod.PlaceWorker_Faucet</li>
+    </placeWorkers>  </ThingDef>
   
 </ThingDefs>

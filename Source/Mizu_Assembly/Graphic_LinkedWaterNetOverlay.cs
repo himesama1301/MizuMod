@@ -22,25 +22,21 @@ namespace MizuMod
 
         public override bool ShouldLinkWith(IntVec3 c, Thing parent)
         {
-            ThingWithComps thing = parent as ThingWithComps;
-            CompWaterNetBase comp = thing.GetComp<CompWaterNetBase>();
-
-            Building_Valve valve = thing as Building_Valve;
-            if (valve != null)
+            IBuilding_WaterNetBase thing_wnb = parent as IBuilding_WaterNetBase;
+            if (thing_wnb == null || !thing_wnb.IsActivatedForWaterNet || !thing_wnb.ConnectVecs.Contains(c))
             {
-                if (!valve.IsOpen || !valve.GetConnectVecs().Contains(c))
-                {
-                    return false;
-                }
+                return false;
             }
 
+            ThingWithComps thing = parent as ThingWithComps;
+            CompWaterNetBase comp = thing.GetComp<CompWaterNetBase>();
             bool isFound = false;
             foreach (var net in comp.Manager.Nets)
             {
                 foreach (var t in net.Things)
                 {
-                    valve = t as Building_Valve;
-                    if (valve != null && !valve.IsOpen)
+                    IBuilding_WaterNetBase t_wnb = t as IBuilding_WaterNetBase;
+                    if (t_wnb == null || !t_wnb.IsActivatedForWaterNet)
                     {
                         continue;
                     }

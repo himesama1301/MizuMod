@@ -20,7 +20,7 @@ namespace MizuMod
 
         public override bool ShouldLinkWith(IntVec3 c, Thing parent)
         {
-            ThingWithComps thing = parent as ThingWithComps;
+            Building_WaterNetBase thing = parent as Building_WaterNetBase;
             CompWaterNetBase comp = thing.GetComp<CompWaterNetBase>();
 
             bool foundWaterNetBase = false;

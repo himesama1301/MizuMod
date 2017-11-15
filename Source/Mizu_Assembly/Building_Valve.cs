@@ -8,12 +8,31 @@ using Verse;
 
 namespace MizuMod
 {
-    public class Building_Valve : Building
+    public class Building_Valve : Building_WaterNetBase, IBuilding_WaterNetBase
     {
         private CompFlickable flickableComp;
         private CompWaterNetValve valveComp;
 
         private bool lastIsOpen = true;
+
+        public override List<IntVec3> ConnectVecs
+        {
+            get
+            {
+                List<IntVec3> vecs = new List<IntVec3>();
+                vecs.Add(this.Position + this.Rotation.FacingCell);
+                vecs.Add(this.Position + this.Rotation.FacingCell * (-1));
+                return vecs;
+            }
+        }
+
+        public override bool IsActivatedForWaterNet
+        {
+            get
+            {
+                return this.IsOpen;
+            }
+        }
 
         public bool IsOpen
         {

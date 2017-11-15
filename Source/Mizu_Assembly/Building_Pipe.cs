@@ -7,7 +7,7 @@ using Verse;
 
 namespace MizuMod
 {
-    public class Building_Pipe : Building
+    public class Building_Pipe : Building_WaterNetBase
     {
         public override Graphic Graphic
         {

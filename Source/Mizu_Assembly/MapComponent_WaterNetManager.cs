@@ -58,12 +58,12 @@ namespace MizuMod
             while (unNetQueue.Count > 0)
             {
                 ThingWithComps thing = unNetQueue.Dequeue();
+                IBuilding_WaterNetBase thing_wnb = thing as IBuilding_WaterNetBase;
                 List<WaterNet> connectNets = new List<WaterNet>();
 
-                Building_Valve valve = thing as Building_Valve;
-                if (valve != null && !valve.IsOpen)
+                if (!thing_wnb.IsActivatedForWaterNet)
                 {
-                    this.unNetThings.Add(valve);
+                    this.unNetThings.Add(thing);
                     continue;
                 }
 
@@ -126,11 +126,10 @@ namespace MizuMod
 
         public void RemoveThing(ThingWithComps thing)
         {
-            WaterNet curNet = thing.GetComp<CompWaterNet>().WaterNet;
+            WaterNet curNet = thing.GetComp<CompWaterNetBase>().WaterNet;
 
             // 対象の物を除去
             curNet.RemoveThing(thing);
-            thing.GetComp<CompWaterNet>().WaterNet = null;
 
             this.RefreshWaterNets();
         }
