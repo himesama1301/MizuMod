@@ -4,11 +4,27 @@
   <WorkGiverDef>
     <defName>Mizu_DoDrawingWater</defName>
     <label>drawing water at spot</label>
-    <giverClass>WorkGiver_DoBill</giverClass>
+    <giverClass>MizuMod.WorkGiver_DoBillDrawer</giverClass>
     <workType>Mizu_Drawing</workType>
     <priorityInType>100</priorityInType>
     <fixedBillGiverDefs>
       <li>Mizu_DrawingWaterSpot</li>
+    </fixedBillGiverDefs>
+    <verb>draw</verb>
+    <gerund>drawing at</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>Mizu_DoDrawingWaterFromWell</defName>
+    <label>drawing water at well</label>
+    <giverClass>WorkGiver_DoBill</giverClass>
+    <workType>Mizu_Drawing</workType>
+    <priorityInType>101</priorityInType>
+    <fixedBillGiverDefs>
       <li>Mizu_Well</li>
     </fixedBillGiverDefs>
     <verb>draw</verb>
@@ -67,7 +83,7 @@
     <label>drawing water at faucet</label>
     <giverClass>MizuMod.WorkGiver_DoBillFaucet</giverClass>
     <workType>Mizu_Drawing</workType>
-    <priorityInType>101</priorityInType>
+    <priorityInType>102</priorityInType>
     <fixedBillGiverDefs>
       <li>Mizu_WaterFaucet</li>
     </fixedBillGiverDefs>

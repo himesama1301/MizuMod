@@ -46,7 +46,7 @@
       <li>MizuMod.PlaceWorker_WaterWorker</li>
     </placeWorkers>
     <recipes>
-      <li>Mizu_DrawWater</li>
+      <li>Mizu_DrawNormalWater</li>
     </recipes>
   </ThingDef>
 
@@ -100,11 +100,8 @@
       <li Class="CompProperties_Forbiddable"/>
     </comps>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <placeWorkers>
-      <li>MizuMod.PlaceWorker_Well</li>
-    </placeWorkers>
     <recipes>
-      <li>Mizu_DrawWater</li>
+      <li>Mizu_DrawNormalWater</li>
     </recipes>
   </ThingDef>
 
@@ -455,7 +452,7 @@
       <li Class="CompProperties_Forbiddable"/>
     </comps>
     <recipes>
-      <li>Mizu_DrawWaterFromFaucet</li>
+      <li>Mizu_DrawNormalWaterFromFaucet</li>
     </recipes>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_Faucet</li>

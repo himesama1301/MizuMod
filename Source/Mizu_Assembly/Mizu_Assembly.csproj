@@ -68,6 +68,7 @@
     <Compile Include="CompWaterNetPump.cs" />
     <Compile Include="CompWaterNetTank.cs" />
     <Compile Include="DaysWorthOfWaterCalculator.cs" />
+    <Compile Include="DrawerRecipeDef.cs" />
     <Compile Include="FaucetRecipeDef.cs" />
     <Compile Include="Graphic_LinkedWaterNet.cs" />
     <Compile Include="Graphic_LinkedWaterNetOverlay.cs" />
@@ -98,6 +99,8 @@
     <Compile Include="ThirstCategory.cs" />
     <Compile Include="ThoughtWorker_NeedWater.cs" />
     <Compile Include="WaterNet.cs" />
+    <Compile Include="WaterTerrainType.cs" />
+    <Compile Include="WorkGiver_DoBillDrawer.cs" />
     <Compile Include="WorkGiver_DoBillFaucet.cs" />
     <Compile Include="WorkGiver_FeedWaterPatient.cs" />
     <Compile Include="WorkGiver_Warden_DeliverWater.cs" />

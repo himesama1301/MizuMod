@@ -20,7 +20,7 @@ namespace MizuMod
 
             bool cond_building = false;
             TerrainDef terrainLoc = this.Map.terrainGrid.TerrainAt(loc);
-            if (terrainLoc.defName.Contains("Water") || terrainLoc.defName.Equals("Marsh"))
+            if (terrainLoc.IsSea() || terrainLoc.IsRiver() || terrainLoc.IsLakeOrPond() || terrainLoc.IsMarsh())
             {
                 cond_building = true;
             }

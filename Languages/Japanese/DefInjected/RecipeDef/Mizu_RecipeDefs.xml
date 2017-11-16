@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-  <Mizu_DrawWater.label>水を汲む</Mizu_DrawWater.label>
-  <Mizu_DrawWater.description>飲用水をひとつ汲みます。</Mizu_DrawWater.description>
-  <Mizu_DrawWater.jobString>水を汲んでいる</Mizu_DrawWater.jobString>
+  <Mizu_DrawNormalWater.label>水を汲む</Mizu_DrawNormalWater.label>
+  <Mizu_DrawNormalWater.description>飲用水をひとつ汲みます。</Mizu_DrawNormalWater.description>
+  <Mizu_DrawNormalWater.jobString>水を汲んでいる</Mizu_DrawNormalWater.jobString>
 
-  <Mizu_DrawWaterFromFaucet.label>水を汲む</Mizu_DrawWaterFromFaucet.label>
-  <Mizu_DrawWaterFromFaucet.description>飲用水をひとつ汲みます。</Mizu_DrawWaterFromFaucet.description>
-  <Mizu_DrawWaterFromFaucet.jobString>水を汲んでいる</Mizu_DrawWaterFromFaucet.jobString>
+  <Mizu_DrawNormalWaterFromWell.label>水を汲む</Mizu_DrawNormalWaterFromWell.label>
+  <Mizu_DrawNormalWaterFromWell.description>飲用水をひとつ汲みます。</Mizu_DrawNormalWaterFromWell.description>
+  <Mizu_DrawNormalWaterFromWell.jobString>水を汲んでいる</Mizu_DrawNormalWaterFromWell.jobString>
+
+  <Mizu_DrawNormalWaterFromFaucet.label>水を汲む</Mizu_DrawNormalWaterFromFaucet.label>
+  <Mizu_DrawNormalWaterFromFaucet.description>飲用水をひとつ汲みます。</Mizu_DrawNormalWaterFromFaucet.description>
+  <Mizu_DrawNormalWaterFromFaucet.jobString>水を汲んでいる</Mizu_DrawNormalWaterFromFaucet.jobString>
   
 </LanguageData>

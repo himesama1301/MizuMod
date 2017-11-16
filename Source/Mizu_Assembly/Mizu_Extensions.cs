@@ -131,5 +131,51 @@ namespace MizuMod
 
             return t1_connected_to_t2 && t2_connected_to_t1;
         }
+
+        public static WaterTerrainType GetWaterTerrainType(this TerrainDef def)
+        {
+            if (def.IsSea())
+            {
+                return WaterTerrainType.SeaWater;
+            }
+            else if (def.IsRiver())
+            {
+                return WaterTerrainType.FreshWater;
+            }
+            else if (def.IsLakeOrPond())
+            {
+                return WaterTerrainType.FreshWater;
+            }
+            else if (def.IsMarsh())
+            {
+                return WaterTerrainType.MudWater;
+            }
+            return WaterTerrainType.NoWater;
+        }
+
+        public static bool IsSea(this TerrainDef def)
+        {
+            return def.defName.Contains("WaterOcean");
+        }
+
+        public static bool IsRiver(this TerrainDef def)
+        {
+            return def.defName.Contains("WaterMoving");
+        }
+
+        public static bool IsLakeOrPond(this TerrainDef def)
+        {
+            return !def.IsSea() && !def.IsRiver() && def.defName.Contains("Water");
+        }
+
+        public static bool IsMarsh(this TerrainDef def)
+        {
+            return def.defName.Contains("Marsh");
+        }
+
+        public static bool IsMud(this TerrainDef def)
+        {
+            return def.defName.Contains("Mud");
+        }
     }
 }
