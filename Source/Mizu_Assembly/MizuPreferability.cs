@@ -9,6 +9,11 @@ namespace MizuMod
     {
         Undefined = 0,
         NeverDrink = 1,
-        WaterSimple = 10,
+        TerrainWater = 2,
+        SeaWater = 3,
+        MudWater = 4,
+        RainWater = 5,
+        NormalWater = 6,
+        ClearWater = 7,
     }
 }

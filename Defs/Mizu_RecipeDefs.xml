@@ -11,7 +11,7 @@
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_CookMeal</soundWorking>
     <products>
-      <Mizu_WaterItemOne>1</Mizu_WaterItemOne>
+      <Mizu_NormalWater>1</Mizu_NormalWater>
     </products>
   </RecipeDef>
 
@@ -26,7 +26,7 @@
     <soundWorking>Recipe_CookMeal</soundWorking>
     <needWaterVolume>50</needWaterVolume>
     <products>
-      <Mizu_WaterItemOne>1</Mizu_WaterItemOne>
+      <Mizu_NormalWater>1</Mizu_NormalWater>
     </products>
   </MizuMod.FaucetRecipeDef>
 

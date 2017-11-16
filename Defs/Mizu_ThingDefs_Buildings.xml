@@ -158,10 +158,23 @@
   </ThingDef>
 
   <ThingDef ParentName="Mizu_WaterPipeBase">
-    <defName>Mizu_WaterPipeStuff</defName>
+    <defName>Mizu_WaterPipe</defName>
     <label>Water pipe</label>
     <description>A building for connecting water network tools (pump, tank, faucet ...)</description>
     <uiIconPath>UI/Icons/Buildings/Mizu_WaterPipe_Icon</uiIconPath>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>1</costStuffCount>
+  </ThingDef>
+  
+  <ThingDef ParentName="Mizu_WaterPipeBase">
+    <defName>Mizu_WaterPipeInWater</defName>
+    <label>Water pipe (in water)</label>
+    <description>A building for connecting water network tools (pump, tank, faucet ...)</description>
+    <uiIconPath>UI/Icons/Buildings/Mizu_WaterPipe_Icon</uiIconPath>
+    <terrainAffordanceNeeded>Undefined</terrainAffordanceNeeded>
     <stuffCategories>
       <li>Metallic</li>
       <li>Stony</li>
@@ -221,14 +234,67 @@
   </ThingDef>
 
   <ThingDef ParentName="Mizu_WaterValveBase">
-    <defName>Mizu_WaterValveStuff</defName>
+    <defName>Mizu_WaterValve</defName>
     <label>Water valve</label>
-    <description>water valve description</description>
+    <description>A building for connect water network. You can switch state (open/close).</description>
     <stuffCategories>
       <li>Metallic</li>
       <li>Stony</li>
     </stuffCategories>
     <costStuffCount>1</costStuffCount>
+  </ThingDef>
+  
+  <ThingDef>
+    <defName>Mizu_GroundWaterPump</defName>
+    <label>Ground water pump</label>
+    <description>A building for pumping water for river, lake, pond and sea. Need electrical power.</description>
+    <thingClass>MizuMod.Building_WaterNetBase</thingClass>
+    <category>Building</category>
+    <graphicData>
+      <texPath>Things/Building/Production/DeepDrill</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(2,2)</drawSize>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <blockWind>false</blockWind>
+    <castEdgeShadows>true</castEdgeShadows>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <pathCost>8</pathCost>
+    <Size>(1,1)</Size>
+    <tickerType>Normal</tickerType>
+    <costList>
+      <Steel>50</Steel>
+      <Component>2</Component>
+    </costList>
+    <statBases>
+      <MaxHitPoints>140</MaxHitPoints>
+      <WorkToBuild>5000</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>-25</Beauty>
+    </statBases>
+    <rotatable>true</rotatable>
+    <selectable>true</selectable>
+    <neverMultiSelect>true</neverMultiSelect>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <repairEffect>Repair</repairEffect>
+    <terrainAffordanceNeeded>Undefined</terrainAffordanceNeeded>
+    <designationCategory>Mizu</designationCategory>
+    <designationHotKey>Misc1</designationHotKey>
+    <filthLeaving>BuildingRubble</filthLeaving>
+    <comps>
+      <li Class="MizuMod.CompProperties_WaterNet">
+        <compClass>MizuMod.CompWaterNetPump</compClass>
+        <baseWaterFlow>1000</baseWaterFlow>
+      </li>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>150</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+    </comps>
   </ThingDef>
   
   <ThingDef>

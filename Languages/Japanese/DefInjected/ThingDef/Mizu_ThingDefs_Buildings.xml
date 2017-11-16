@@ -7,9 +7,15 @@
   <Mizu_Well.label>井戸</Mizu_Well.label>
   <Mizu_Well.description>水を汲むことができる設備です。土地の肥沃度が50%以上、他の井戸から20マス以上離れている場所に建造できます。</Mizu_Well.description>
 
-  <Mizu_WaterPipeStuff.label>水道管</Mizu_WaterPipeStuff.label>
-  <Mizu_WaterPipeStuff.description>ポンプや貯水タンク、蛇口などをつなげるための設備です。</Mizu_WaterPipeStuff.description>
+  <Mizu_WaterPipe.label>水道管</Mizu_WaterPipe.label>
+  <Mizu_WaterPipe.description>ポンプや貯水タンク、蛇口などをつなげるための設備です。</Mizu_WaterPipe.description>
 
+  <Mizu_WaterPipeInWater.label>水道管(水中)</Mizu_WaterPipeInWater.label>
+  <Mizu_WaterPipeInWater.description>ポンプや貯水タンク、蛇口などをつなげるための設備です。</Mizu_WaterPipeInWater.description>
+
+  <Mizu_GroundWaterPump.label>汲み上げポンプ</Mizu_GroundWaterPump.label>
+  <Mizu_GroundWaterPump.description>川、池、湖、海などから水を汲んで水道に流すための設備です。電力を必要とします。</Mizu_GroundWaterPump.description>
+  
   <Mizu_UndergroundWaterPump.label>地下水汲み上げポンプ</Mizu_UndergroundWaterPump.label>
   <Mizu_UndergroundWaterPump.description>地下水を汲んで水道に流すための設備です。電力を必要とします。</Mizu_UndergroundWaterPump.description>
 
@@ -17,6 +23,9 @@
   <Mizu_WaterTank.description>ポンプで汲み上げた水を貯える設備です。</Mizu_WaterTank.description>
 
   <Mizu_WaterFaucet.label>蛇口</Mizu_WaterFaucet.label>
-  <Mizu_WaterFaucet.description>これを使えば、貯水タンクから飲用水を得ることができます。</Mizu_WaterFaucet.description>
+  <Mizu_WaterFaucet.description>これを使えば、水道網から飲用水を得ることができます。</Mizu_WaterFaucet.description>
 
+  <Mizu_WaterValve.label>バルブ</Mizu_WaterValve.label>
+  <Mizu_WaterValve.description>水道網の接続に使用します。開/閉を切り替えることができます。</Mizu_WaterValve.description>
+  
 </LanguageData>

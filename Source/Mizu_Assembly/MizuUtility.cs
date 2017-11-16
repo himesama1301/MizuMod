@@ -24,7 +24,7 @@ namespace MizuMod
             {
                 if (getterCanManipulate)
                 {
-                    thing = MizuUtility.BestWaterInInventory(getter, null, WaterPreferability.WaterSimple, WaterPreferability.WaterSimple, 0f);
+                    thing = MizuUtility.BestWaterInInventory(getter, null, WaterPreferability.SeaWater, WaterPreferability.ClearWater, 0f);
                 }
                 if (thing != null)
                 {
@@ -41,12 +41,12 @@ namespace MizuMod
             }
 
             bool allowPlant = getter == eater;
-            Thing thing2 = MizuUtility.BestWaterSourceOnMap(getter, eater, WaterPreferability.WaterSimple, allowForbidden, allowSociallyImproper);
+            Thing thing2 = MizuUtility.BestWaterSourceOnMap(getter, eater, WaterPreferability.SeaWater, allowForbidden, allowSociallyImproper);
             if (thing == null && thing2 == null)
             {
                 if (canUseInventory && getterCanManipulate)
                 {
-                    thing = MizuUtility.BestWaterInInventory(getter, null, WaterPreferability.WaterSimple, WaterPreferability.WaterSimple, 0f);
+                    thing = MizuUtility.BestWaterInInventory(getter, null, WaterPreferability.SeaWater, WaterPreferability.ClearWater, 0f);
                     if (thing != null)
                     {
                         waterSource = thing;
@@ -84,7 +84,7 @@ namespace MizuMod
             return true;
         }
 
-        public static Thing BestWaterInInventory(Pawn holder, Pawn eater = null, WaterPreferability minWaterPref = WaterPreferability.WaterSimple, WaterPreferability maxWaterPref = WaterPreferability.WaterSimple, float minStackWaterAmount = 0.0f)
+        public static Thing BestWaterInInventory(Pawn holder, Pawn eater = null, WaterPreferability minWaterPref = WaterPreferability.SeaWater, WaterPreferability maxWaterPref = WaterPreferability.ClearWater, float minStackWaterAmount = 0.0f)
         {
             if (holder.inventory == null)
             {
@@ -113,7 +113,7 @@ namespace MizuMod
             return null;
         }
 
-        public static Thing BestWaterSourceOnMap(Pawn getter, Pawn eater, WaterPreferability maxPref = WaterPreferability.WaterSimple, bool allowForbidden = false, bool allowSociallyImproper = false)
+        public static Thing BestWaterSourceOnMap(Pawn getter, Pawn eater, WaterPreferability maxPref = WaterPreferability.ClearWater, bool allowForbidden = false, bool allowSociallyImproper = false)
         {
             bool getterCanManipulate = getter.RaceProps.ToolUser && getter.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation);
             if (!getterCanManipulate && getter != eater)
@@ -129,7 +129,7 @@ namespace MizuMod
                 }));
                 return null;
             }
-            WaterPreferability minPref = WaterPreferability.WaterSimple;
+            WaterPreferability minPref = WaterPreferability.SeaWater;
 
             Predicate<Thing> waterValidator = delegate (Thing t)
             {
@@ -183,7 +183,7 @@ namespace MizuMod
                     }
                 }
                 bool flag = !allowForbidden && ForbidUtility.CaresAboutForbidden(getter, true) && getter.playerSettings != null && getter.playerSettings.EffectiveAreaRestrictionInPawnCurrentMap != null;
-                Predicate<Thing> predicate = (Thing t) => waterValidator(t) && !MizuUtility.filtered.Contains(t) && t.GetWaterPreferability() > WaterPreferability.WaterSimple;
+                Predicate<Thing> predicate = (Thing t) => waterValidator(t) && !MizuUtility.filtered.Contains(t) && t.GetWaterPreferability() > WaterPreferability.SeaWater;
                 Predicate<Thing> validator = predicate;
                 bool ignoreEntirelyForbiddenRegions = flag;
                 thing = GenClosest.ClosestThingReachable(getter.Position, getter.Map, ThingRequest.ForGroup(ThingRequestGroup.HaulableEver), PathEndMode.ClosestTouch, TraverseParms.For(getter, Danger.Deadly, TraverseMode.ByPawn, false), 9999f, validator, null, 0, searchRegionsMax, false, RegionType.Set_Passable, ignoreEntirelyForbiddenRegions);

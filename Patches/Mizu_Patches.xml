@@ -223,7 +223,7 @@
         <subOptionsChooseOne>
           <li>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -243,7 +243,7 @@
         <subOptionsChooseOne>
           <li>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -263,7 +263,7 @@
           <li>
             <skipChance>0</skipChance>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -304,7 +304,7 @@
           <li>
             <skipChance>0</skipChance>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -336,7 +336,7 @@
         <subOptionsChooseOne>
           <li>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -356,7 +356,7 @@
           <li>
             <skipChance>0</skipChance>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -395,7 +395,7 @@
           <li>
             <skipChance>0</skipChance>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -434,7 +434,7 @@
           <li>
             <skipChance>0</skipChance>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -473,7 +473,7 @@
           <li>
             <skipChance>0</skipChance>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -512,7 +512,7 @@
           <li>
             <skipChance>0</skipChance>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -551,7 +551,7 @@
         <subOptionsChooseOne>
           <li>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -571,7 +571,7 @@
           <li>
             <skipChance>0</skipChance>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -610,7 +610,7 @@
           <li>
             <skipChance>0</skipChance>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -649,7 +649,7 @@
           <li>
             <skipChance>0</skipChance>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -671,7 +671,7 @@
           <li>
             <skipChance>0</skipChance>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -710,7 +710,7 @@
           <li>
             <skipChance>0</skipChance>
             <choiceChance>100</choiceChance>
-            <thingDef>Mizu_WaterItemOne</thingDef>
+            <thingDef>Mizu_NormalWater</thingDef>
             <countRange>
               <min>2</min>
               <max>3</max>
@@ -860,7 +860,7 @@
     <value>
       <li Class="ScenPart_StartingThing_Defined">
         <def>StartingThing_Defined</def>
-        <thingDef>Mizu_WaterItemOne</thingDef>
+        <thingDef>Mizu_NormalWater</thingDef>
         <count>50</count>
       </li>
     </value>
@@ -870,7 +870,7 @@
     <value>
       <li Class="ScenPart_StartingThing_Defined">
         <def>StartingThing_Defined</def>
-        <thingDef>Mizu_WaterItemOne</thingDef>
+        <thingDef>Mizu_NormalWater</thingDef>
         <count>50</count>
       </li>
     </value>
@@ -880,7 +880,7 @@
     <value>
       <li Class="ScenPart_StartingThing_Defined">
         <def>StartingThing_Defined</def>
-        <thingDef>Mizu_WaterItemOne</thingDef>
+        <thingDef>Mizu_NormalWater</thingDef>
         <count>50</count>
       </li>
     </value>

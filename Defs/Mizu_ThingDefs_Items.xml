@@ -28,7 +28,7 @@
   </ThingDef>
   
   <ThingDef ParentName="Mizu_WaterItemBase">
-    <defName>Mizu_WaterItemOne</defName>
+    <defName>Mizu_NormalWater</defName>
     <label>Water</label>
     <description>Water for drinking</description>
     <graphicData>
@@ -42,12 +42,9 @@
     <comps>
       <li Class="MizuMod.CompProperties_Water">
         <waterAmount>0.8</waterAmount>
-        <waterPreferability>WaterSimple</waterPreferability>
+        <waterPreferability>NormalWater</waterPreferability>
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
-<!--
-        <chairSearchRadius>25.0</chairSearchRadius>
--->
       </li>
     </comps>
   </ThingDef>

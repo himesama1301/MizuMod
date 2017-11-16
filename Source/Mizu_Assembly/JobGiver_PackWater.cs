@@ -15,7 +15,7 @@ namespace MizuMod
 
         private const float MinWaterPerColonistToDo = 1.5f;
 
-        public const WaterPreferability MinWaterPreferability = WaterPreferability.WaterSimple;
+        public const WaterPreferability MinWaterPreferability = WaterPreferability.SeaWater;
 
         protected override Job TryGiveJob(Pawn pawn)
         {
