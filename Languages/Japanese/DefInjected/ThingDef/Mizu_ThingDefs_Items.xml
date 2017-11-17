@@ -1,7 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
+  <Mizu_ClearWater.label>きれいな水</Mizu_ClearWater.label>
+  <Mizu_ClearWater.description>飲用水です。きっとおいしい。</Mizu_ClearWater.description>
+
   <Mizu_NormalWater.label>水</Mizu_NormalWater.label>
-  <Mizu_NormalWater.description>飲用水です。安心して飲むことができます。</Mizu_NormalWater.description>
+  <Mizu_NormalWater.description>飲用水です。特別な効果はありません。</Mizu_NormalWater.description>
+
+  <Mizu_RainWater.label>雨水</Mizu_RainWater.label>
+  <Mizu_RainWater.description>飲用水です。ちょっと変な味がします。</Mizu_RainWater.description>
+
+  <Mizu_MudWater.label>泥水</Mizu_MudWater.label>
+  <Mizu_MudWater.description>飲用水です。ひどい味がします。</Mizu_MudWater.description>
+
+  <Mizu_SeaWater.label>海水</Mizu_SeaWater.label>
+  <Mizu_SeaWater.description>飲用水です。味もひどい上にしょっぱいです。</Mizu_SeaWater.description>
 
 </LanguageData>

@@ -2,8 +2,16 @@
 <LanguageData>
 
   <Mizu_DrawNormalWater.label>水を汲む</Mizu_DrawNormalWater.label>
-  <Mizu_DrawNormalWater.description>飲用水をひとつ汲みます。</Mizu_DrawNormalWater.description>
+  <Mizu_DrawNormalWater.description>水をひとつ汲みます。</Mizu_DrawNormalWater.description>
   <Mizu_DrawNormalWater.jobString>水を汲んでいる</Mizu_DrawNormalWater.jobString>
+
+  <Mizu_DrawMudWater.label>泥水を汲む</Mizu_DrawMudWater.label>
+  <Mizu_DrawMudWater.description>泥水をひとつ汲みます。</Mizu_DrawMudWater.description>
+  <Mizu_DrawMudWater.jobString>泥水を汲んでいる</Mizu_DrawMudWater.jobString>
+
+  <Mizu_DrawSeaWater.label>海水を汲む</Mizu_DrawSeaWater.label>
+  <Mizu_DrawSeaWater.description>海水をひとつ汲みます。</Mizu_DrawSeaWater.description>
+  <Mizu_DrawSeaWater.jobString>海水を汲んでいる</Mizu_DrawSeaWater.jobString>
 
   <Mizu_DrawNormalWaterFromWell.label>水を汲む</Mizu_DrawNormalWaterFromWell.label>
   <Mizu_DrawNormalWaterFromWell.description>飲用水をひとつ汲みます。</Mizu_DrawNormalWaterFromWell.description>

@@ -47,6 +47,8 @@
     </placeWorkers>
     <recipes>
       <li>Mizu_DrawNormalWater</li>
+      <li>Mizu_DrawMudWater</li>
+      <li>Mizu_DrawSeaWater</li>
     </recipes>
   </ThingDef>
 

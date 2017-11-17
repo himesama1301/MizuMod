@@ -28,9 +28,31 @@
   </ThingDef>
   
   <ThingDef ParentName="Mizu_WaterItemBase">
+    <defName>Mizu_ClearWater</defName>
+    <label>Clear water</label>
+    <description>Water for drinking. It will taste good.</description>
+    <graphicData>
+      <texPath>Things/Item/Drug/Beer</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1</MarketValue>
+      <WorkToMake>300</WorkToMake>
+    </statBases>
+    <comps>
+      <li Class="MizuMod.CompProperties_Water">
+        <waterAmount>0.8</waterAmount>
+        <waterPreferability>ClearWater</waterPreferability>
+        <getSound>Ingest_Beer</getSound>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="Mizu_WaterItemBase">
     <defName>Mizu_NormalWater</defName>
     <label>Water</label>
-    <description>Water for drinking</description>
+    <description>Water for drinking. It has no special effects.</description>
     <graphicData>
       <texPath>Things/Item/Drug/Beer</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -43,6 +65,72 @@
       <li Class="MizuMod.CompProperties_Water">
         <waterAmount>0.8</waterAmount>
         <waterPreferability>NormalWater</waterPreferability>
+        <getSound>Ingest_Beer</getSound>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Mizu_WaterItemBase">
+    <defName>Mizu_RainWater</defName>
+    <label>Rain water</label>
+    <description>Water for drinking. It will taste bad a little.</description>
+    <graphicData>
+      <texPath>Things/Item/Drug/Beer</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1</MarketValue>
+      <WorkToMake>300</WorkToMake>
+    </statBases>
+    <comps>
+      <li Class="MizuMod.CompProperties_Water">
+        <waterAmount>0.8</waterAmount>
+        <waterPreferability>RainWater</waterPreferability>
+        <getSound>Ingest_Beer</getSound>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Mizu_WaterItemBase">
+    <defName>Mizu_MudWater</defName>
+    <label>Mud water</label>
+    <description>Water for drinking. It will taste terrible.</description>
+    <graphicData>
+      <texPath>Things/Item/Drug/Beer</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1</MarketValue>
+      <WorkToMake>300</WorkToMake>
+    </statBases>
+    <comps>
+      <li Class="MizuMod.CompProperties_Water">
+        <waterAmount>0.8</waterAmount>
+        <waterPreferability>MudWater</waterPreferability>
+        <getSound>Ingest_Beer</getSound>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Mizu_WaterItemBase">
+    <defName>Mizu_SeaWater</defName>
+    <label>Seawater</label>
+    <description>Water for drinking. It will taste terrible and salty.</description>
+    <graphicData>
+      <texPath>Things/Item/Drug/Beer</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1</MarketValue>
+      <WorkToMake>300</WorkToMake>
+    </statBases>
+    <comps>
+      <li Class="MizuMod.CompProperties_Water">
+        <waterAmount>0.8</waterAmount>
+        <waterPreferability>SeaWater</waterPreferability>
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
       </li>
