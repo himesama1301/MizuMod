@@ -53,11 +53,19 @@ namespace MizuMod
             }
         }
 
+        public virtual bool CanSupplyFromWaterNet
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         public bool NeedSupply
         {
             get
             {
-                return this.AmountCanAccept > 0.0f;
+                return this.AmountCanAccept > 0.0f && this.CanSupplyFromWaterNet;
             }
         }
 

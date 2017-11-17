@@ -8,7 +8,7 @@ using Verse;
 
 namespace MizuMod
 {
-    public class Building_GroundWaterPump : Building_Pump
+    public class Building_GroundWaterPump : Building_Pump, IBuilding_Pump
     {
         public override void TickWaterType(CompWaterNetPump comp)
         {

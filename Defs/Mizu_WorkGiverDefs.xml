@@ -86,6 +86,7 @@
     <priorityInType>102</priorityInType>
     <fixedBillGiverDefs>
       <li>Mizu_WaterFaucet</li>
+      <li>Mizu_RainTank</li>
     </fixedBillGiverDefs>
     <verb>draw</verb>
     <gerund>drawing at</gerund>

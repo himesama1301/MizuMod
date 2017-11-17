@@ -7,7 +7,7 @@ using Verse;
 
 namespace MizuMod
 {
-    public class Building_Pump : Building_WaterNetBase
+    public class Building_Pump : Building_WaterNetBase, IBuilding_Pump
     {
         protected WaterType waterType = WaterType.NoWater;
         public virtual WaterType WaterType

@@ -401,6 +401,66 @@
   </ThingDef>
   
   <ThingDef>
+    <defName>Mizu_RainTank</defName>
+    <label>Rain tank</label>
+    <description>A building for storing rain water. You can connect water network (it works output only pump) and draw rain water directly.</description>
+    <thingClass>MizuMod.Building_RainTank</thingClass>
+    <category>Building</category>
+    <graphicData>
+      <texPath>Things/Building/Production/Mizu_WaterTank</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(2.33,2.33)</drawSize>
+      <damageData>
+        <rect>(0.05,0.05,0.95,0.95)</rect>
+      </damageData>
+    </graphicData>
+    <Size>(2,2)</Size>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <blockWind>false</blockWind>
+    <castEdgeShadows>true</castEdgeShadows>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <pathCost>8</pathCost>
+    <tickerType>Normal</tickerType>
+    <costList>
+      <Steel>50</Steel>
+    </costList>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <WorkToBuild>800</WorkToBuild>
+      <Mass>200</Mass>
+      <Flammability>1.0</Flammability>
+      <Beauty>-6</Beauty>
+    </statBases>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <neverMultiSelect>true</neverMultiSelect>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <repairEffect>Repair</repairEffect>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Mizu</designationCategory>
+    <designationHotKey>Misc1</designationHotKey>
+    <filthLeaving>BuildingRubble</filthLeaving>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <comps>
+      <li Class="MizuMod.CompProperties_RainTank">
+        <compClass>MizuMod.CompWaterNetRainTank</compClass>
+        <baseWaterFlow>500</baseWaterFlow>
+        <baseRainCharge>3000</baseRainCharge>
+        <storedWaterVolumeMax>150</storedWaterVolumeMax>
+      </li>
+    </comps>
+    <inspectorTabs>
+      <li>ITab_Bills</li>
+    </inspectorTabs>
+    <recipes>
+      <li>Mizu_DrawRainWaterFromFaucet</li>
+    </recipes>
+  </ThingDef>
+  
+  <ThingDef>
     <defName>Mizu_WaterFaucet</defName>
     <label>Faucet</label>
     <description>In use this tool, you take water for drinking from water tank.</description>

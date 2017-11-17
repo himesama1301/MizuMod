@@ -22,25 +22,24 @@ namespace MizuMod
 
         public override bool ShouldLinkWith(IntVec3 c, Thing parent)
         {
+            bool isFound = false;
             IBuilding_WaterNetBase thing_wnb = parent as IBuilding_WaterNetBase;
-            if (thing_wnb == null || !thing_wnb.IsActivatedForWaterNet)
+            if (thing_wnb == null)
             {
                 return false;
+            }
+            if (!thing_wnb.IsActivatedForWaterNet && parent.OccupiedRect().Contains(c))
+            {
+                isFound = true;
+                goto LinkFound;
             }
 
             ThingWithComps thing = parent as ThingWithComps;
             CompWaterNetBase comp = thing.GetComp<CompWaterNetBase>();
-            bool isFound = false;
             foreach (var net in comp.Manager.Nets)
             {
                 foreach (var t in net.Things)
                 {
-                    IBuilding_WaterNetBase t_wnb = t as IBuilding_WaterNetBase;
-                    if (t_wnb == null || !t_wnb.IsActivatedForWaterNet)
-                    {
-                        continue;
-                    }
-
                     if (t == thing)
                     {
                         if (t.OccupiedRect().Contains(c))
@@ -51,6 +50,12 @@ namespace MizuMod
                     }
                     else
                     {
+                        IBuilding_WaterNetBase t_wnb = t as IBuilding_WaterNetBase;
+                        if (t_wnb == null || !t_wnb.IsActivatedForWaterNet)
+                        {
+                            continue;
+                        }
+
                         if (t.OccupiedRect().Contains(c) && t.IsConnectedTo(thing))
                         {
                             isFound = true;

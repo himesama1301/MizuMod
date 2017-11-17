@@ -127,22 +127,41 @@ namespace MizuMod
         public void Tick()
         {
             List<ThingWithComps> pumps = things.FindAll((t) => t.GetComp<CompWaterNetPump>() != null);
-            List<ThingWithComps> tanks = things.FindAll((t) => t.GetComp<CompWaterNetTank>() != null);
+            List<ThingWithComps> rainTanks = things.FindAll((t) => t.GetComp<CompWaterNetRainTank>() != null);
+            List<ThingWithComps> tanks = things.FindAll((t) => (t.GetComp<CompWaterNetTank>() != null) && t.GetComp<CompWaterNetTank>().CanSupplyFromWaterNet);
 
             float sumPumpWaterFlow = 0.0f;
             foreach (var pump in pumps)
             {
                 sumPumpWaterFlow += pump.GetComp<CompWaterNetPump>().WaterFlow;
             }
+            foreach (var pump in rainTanks)
+            {
+                sumPumpWaterFlow += pump.GetComp<CompWaterNetRainTank>().WaterFlow;
+            }
             float sumPumpWaterFlowPerTick = sumPumpWaterFlow / 60000;
 
             if (sumPumpWaterFlowPerTick > 0.0f)
             {
                 this.AddWaterVolume(sumPumpWaterFlowPerTick);
+                foreach (var pump in rainTanks)
+                {
+                    CompWaterNetRainTank comp = pump.GetComp<CompWaterNetRainTank>();
+                    if (comp.WaterFlow > 0.0f)
+                    {
+                        comp.DrawWaterVolume(comp.WaterFlow / 60000);
+                    }
+                }
             }
             else if (sumPumpWaterFlowPerTick < 0.0f)
             {
                 // 未実装
+            }
+
+            foreach (var tank in rainTanks)
+            {
+                CompWaterNetRainTank comp = tank.GetComp<CompWaterNetRainTank>();
+                comp.AddWaterVolume(comp.RainCharge / 60000 * comp.Manager.map.weatherManager.RainRate);
             }
         }
 
@@ -152,7 +171,7 @@ namespace MizuMod
 
             foreach (var t in things)
             {
-                Building_Pump pump = t as Building_Pump;
+                IBuilding_Pump pump = t as IBuilding_Pump;
                 if (pump == null)
                 {
                     continue;
