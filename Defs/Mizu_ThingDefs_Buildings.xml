@@ -247,7 +247,7 @@
     <defName>Mizu_GroundWaterPump</defName>
     <label>Ground water pump</label>
     <description>A building for pumping water for river, lake, pond and sea. Need electrical power.</description>
-    <thingClass>MizuMod.Building_WaterNetBase</thingClass>
+    <thingClass>MizuMod.Building_GroundWaterPump</thingClass>
     <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Production/DeepDrill</texPath>
@@ -300,7 +300,7 @@
     <defName>Mizu_UndergroundWaterPump</defName>
     <label>Underground water pump</label>
     <description>A building for pumping water for underground. Need electrical power.</description>
-    <thingClass>MizuMod.Building_WaterNetBase</thingClass>
+    <thingClass>MizuMod.Building_Pump</thingClass>
     <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Production/DeepDrill</texPath>
@@ -454,7 +454,11 @@
       <li Class="CompProperties_Forbiddable"/>
     </comps>
     <recipes>
+      <li>Mizu_DrawClearWaterFromFaucet</li>
       <li>Mizu_DrawNormalWaterFromFaucet</li>
+      <li>Mizu_DrawRainWaterFromFaucet</li>
+      <li>Mizu_DrawMudWaterFromFaucet</li>
+      <li>Mizu_DrawSeaWaterFromFaucet</li>
     </recipes>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_Faucet</li>

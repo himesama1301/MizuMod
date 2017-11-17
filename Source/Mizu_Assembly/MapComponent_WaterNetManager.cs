@@ -108,6 +108,11 @@ namespace MizuMod
                     }
                 }
             }
+
+            foreach (var net in nets)
+            {
+                net.RefreshWaterType();
+            }
         }
 
         public void AddThing(ThingWithComps thing)

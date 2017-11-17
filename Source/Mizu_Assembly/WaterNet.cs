@@ -11,7 +11,6 @@ namespace MizuMod
     public class WaterNet
     {
         private static int nextID = 1;
-
         public static void ClearNextID()
         {
             nextID = 1;
@@ -20,7 +19,6 @@ namespace MizuMod
         public int ID = 0;
 
         private List<ThingWithComps> things = new List<ThingWithComps>();
-
         public List<ThingWithComps> Things
         {
             get
@@ -29,11 +27,14 @@ namespace MizuMod
             }
         }
 
+        public WaterType WaterType { get; private set; }
+
         public MapComponent_WaterNetManager Manager { get; set; }
 
         public WaterNet()
         {
             this.ID = nextID;
+            this.WaterType = WaterType.NoWater;
             nextID++;
         }
 
@@ -143,6 +144,34 @@ namespace MizuMod
             {
                 // 未実装
             }
+        }
+
+        public void RefreshWaterType()
+        {
+            WaterType curWaterType = WaterType.NoWater;
+
+            foreach (var t in things)
+            {
+                Building_Pump pump = t as Building_Pump;
+                if (pump == null)
+                {
+                    continue;
+                }
+
+                if (pump.WaterType != WaterType.NoWater)
+                {
+                    if (curWaterType == WaterType.NoWater)
+                    {
+                        curWaterType = pump.WaterType;
+                    }
+                    else
+                    {
+                        curWaterType = (WaterType)Math.Min((int)pump.WaterType, (int)curWaterType);
+                    }
+                }
+            }
+
+            this.WaterType = curWaterType;
         }
     }
 }

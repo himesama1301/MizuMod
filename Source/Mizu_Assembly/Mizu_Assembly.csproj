@@ -54,7 +54,9 @@
     <Compile Include="Alert_DehydrationColonists.cs" />
     <Compile Include="Alert_LowWater.cs" />
     <Compile Include="Building_Faucet.cs" />
+    <Compile Include="Building_GroundWaterPump.cs" />
     <Compile Include="Building_Pipe.cs" />
+    <Compile Include="Building_Pump.cs" />
     <Compile Include="Building_Valve.cs" />
     <Compile Include="Building_WaterNetBase.cs" />
     <Compile Include="CompProperties_WaterTank.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="ThoughtWorker_NeedWater.cs" />
     <Compile Include="WaterNet.cs" />
     <Compile Include="WaterTerrainType.cs" />
+    <Compile Include="WaterType.cs" />
     <Compile Include="WorkGiver_DoBillDrawer.cs" />
     <Compile Include="WorkGiver_DoBillFaucet.cs" />
     <Compile Include="WorkGiver_FeedWaterPatient.cs" />

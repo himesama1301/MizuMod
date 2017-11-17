@@ -80,7 +80,8 @@ namespace MizuMod
 
             if (DebugSettings.godMode)
             {
-                str = string.Format("Net ID = {0}", this.WaterNet != null ? this.WaterNet.ID.ToString() : "null");
+                str = string.Format("Water Net ID = {0}", this.WaterNet != null ? this.WaterNet.ID.ToString() : "null");
+                str += "\nWater Type = " + (this.WaterNet != null ? this.WaterNet.WaterType.ToString() : "null");
             }
 
             string baseStr = base.CompInspectStringExtra();

@@ -9,6 +9,7 @@ namespace MizuMod
 {
     public class FaucetRecipeDef : RecipeDef
     {
+        public WaterType needWaterType = WaterType.NoWater;
         public float needWaterVolume = 1.0f;
     }
 }
