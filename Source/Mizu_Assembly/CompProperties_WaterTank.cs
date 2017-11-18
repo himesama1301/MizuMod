@@ -5,8 +5,4 @@ using System.Text;
 
 namespace MizuMod
 {
-    public class CompProperties_WaterTank : CompProperties_WaterNet
-    {
-        public float storedWaterVolumeMax = 1000f;
-    }
 }

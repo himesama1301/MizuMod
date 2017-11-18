@@ -8,44 +8,20 @@ using Verse;
 
 namespace MizuMod
 {
-    public class Building_Valve : Building_WaterNetBase, IBuilding_WaterNetBase
+    public class Building_Valve : Building_WaterNet, IBuilding_WaterNet
     {
         private CompFlickable flickableComp;
-        private CompWaterNetValve valveComp;
 
-        private bool lastIsOpen = true;
-
-        public override List<IntVec3> ConnectVecs
-        {
-            get
-            {
-                List<IntVec3> vecs = new List<IntVec3>();
-                vecs.Add(this.Position + this.Rotation.FacingCell);
-                vecs.Add(this.Position + this.Rotation.FacingCell * (-1));
-                return vecs;
-            }
-        }
-
-        public override bool IsActivatedForWaterNet
-        {
-            get
-            {
-                return this.IsOpen;
-            }
-        }
-
-        public bool IsOpen
-        {
-            get
-            {
-                return FlickUtility.WantsToBeOn(this);
-            }
-        }
+        private bool lastSwitchIsOn = true;
 
         public override Graphic Graphic
         {
             get
             {
+                if (flickableComp == null)
+                {
+                    return base.Graphic;
+                }
                 return this.flickableComp.CurrentGraphic;
             }
         }
@@ -54,23 +30,22 @@ namespace MizuMod
         {
             base.SpawnSetup(map, respawningAfterLoad);
             this.flickableComp = base.GetComp<CompFlickable>();
-            this.valveComp = base.GetComp<CompWaterNetValve>();
         }
 
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<bool>(ref this.lastIsOpen, "lastIsOpen");
+            Scribe_Values.Look<bool>(ref this.lastSwitchIsOn, "lastSwitchIsOn");
         }
 
         public override void Tick()
         {
             base.Tick();
 
-            if (lastIsOpen != IsOpen)
+            if (lastSwitchIsOn != this.flickableComp.SwitchIsOn)
             {
-                lastIsOpen = IsOpen;
-                valveComp.Manager.RefreshWaterNets();
+                lastSwitchIsOn = this.flickableComp.SwitchIsOn;
+                this.WaterNetManager.RefreshWaterNets();
             }
         }
 
@@ -87,6 +62,13 @@ namespace MizuMod
                 stringBuilder.Append(MizuStrings.InspectValveClosed);
             }
             return stringBuilder.ToString();
+        }
+
+        public override void CreateConnectors()
+        {
+            this.Connectors.Clear();
+            this.Connectors.Add(this.Position + this.Rotation.FacingCell);
+            this.Connectors.Add(this.Position + this.Rotation.FacingCell * (-1));
         }
     }
 }

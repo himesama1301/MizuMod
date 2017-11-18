@@ -10,11 +10,8 @@ namespace MizuMod
 {
     internal class SectionLayer_WaterNet : SectionLayer_Things
     {
-        //public PipeType mode;
-
         public SectionLayer_WaterNet(Section section) : base(section)
 		{
-            //this.mode = PipeType.Sewage;
             this.requireAddToMapMesh = false;
             this.relevantChangeTypes = MapMeshFlag.Buildings;
         }
@@ -35,15 +32,10 @@ namespace MizuMod
 
         protected override void TakePrintFrom(Thing t)
         {
-            Building building = t as Building;
+            IBuilding_WaterNet building = t as IBuilding_WaterNet;
             if (building != null)
             {
-                CompWaterNetBase comp = building.GetComp<CompWaterNetBase>();
-                if (comp == null)
-                {
-                    return;
-                }
-                comp.PrintForGrid(this);
+                building.PrintForGrid(this);
             }
         }
     }

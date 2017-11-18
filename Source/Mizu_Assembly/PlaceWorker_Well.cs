@@ -14,7 +14,7 @@ namespace MizuMod
         private const float MinDistance = 20.0f;
         private const float MinDistanceSquared = MinDistance * MinDistance;
 
-        public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Thing thingToIgnore = null)
+        public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
         {
             ThingDef def = checkingDef as ThingDef;
             if (def == null)
@@ -35,7 +35,7 @@ namespace MizuMod
                 for (int z = 0; z < def.Size.z; z++)
                 {
                     IntVec3 cur_vec = loc + vec_x * x + vec_z * z;
-                    TerrainDef terrainLoc = this.Map.terrainGrid.TerrainAt(cur_vec);
+                    TerrainDef terrainLoc = map.terrainGrid.TerrainAt(cur_vec);
                     if (terrainLoc.fertility < MinFertility)
                     {
                         cond_ok = false;
@@ -45,8 +45,8 @@ namespace MizuMod
             }
 
             // 井戸同士の距離チェック
-            List<Thing> other_wells = this.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial).FindAll((t) => t.def == def);
-            List<Thing> other_wells_blueprint = this.Map.listerThings.ThingsInGroup(ThingRequestGroup.Blueprint).FindAll((t) => t.def.defName.Contains(def.defName));
+            List<Thing> other_wells = map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial).FindAll((t) => t.def == def);
+            List<Thing> other_wells_blueprint = map.listerThings.ThingsInGroup(ThingRequestGroup.Blueprint).FindAll((t) => t.def.defName.Contains(def.defName));
             other_wells.AddRange(other_wells_blueprint);
             for (int i = 0; i < other_wells.Count; i++)
             {

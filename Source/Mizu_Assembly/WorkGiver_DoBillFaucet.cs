@@ -25,16 +25,16 @@ namespace MizuMod
                 return null;
             }
 
-            CompWaterNetBase comp = thing.TryGetComp<CompWaterNetBase>();
-            if (comp == null || comp.WaterNet == null)
+            IBuilding_WaterNet building = thing as IBuilding_WaterNet;
+            if (building == null || building.WaterNet == null)
             {
                 return null;
             }
-            if (recipe.needWaterType != comp.WaterNet.WaterType)
+            if (recipe.needWaterType != building.WaterNet.WaterType)
             {
                 return null;
             }
-            if (recipe.needWaterVolume > comp.WaterNet.WaterVolume)
+            if (recipe.needWaterVolume > building.WaterNet.StoredWaterVolume)
             {
                 return null;
             }

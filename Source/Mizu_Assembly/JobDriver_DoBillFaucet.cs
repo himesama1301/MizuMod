@@ -21,7 +21,7 @@ namespace MizuMod
                 {
                     Log.Error("comp is null");
                 }
-                FaucetRecipeDef recipe = this.CurJob.bill.recipe as FaucetRecipeDef;
+                FaucetRecipeDef recipe = this.job.bill.recipe as FaucetRecipeDef;
                 comp.WaterNet.DrawWaterVolume(recipe.needWaterVolume);
             };
             lastToil.defaultCompleteMode = ToilCompleteMode.Instant;

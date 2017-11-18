@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<StatDefs>
+<Defs>
 
   <StatDef>
     <defName>Mizu_DrawingSpeed</defName>
@@ -19,4 +19,4 @@
     </capacityFactors>
   </StatDef>
 
-</StatDefs>
+</Defs>

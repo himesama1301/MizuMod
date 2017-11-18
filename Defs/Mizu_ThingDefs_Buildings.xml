@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ThingDefs>
+<Defs>
 
   <ThingDef>
     <defName>Mizu_DrawingWaterSpot</defName>
     <label>Drawing water spot</label>
-    <Description>A place for drawing water. This can be built on water or marsh.</Description>
+    <description>A place for drawing water. This can be built on water or marsh.</description>
     <category>Building</category>
-    <ThingClass>Building_WorkTable</ThingClass>
+    <thingClass>Building_WorkTable</thingClass>
     <graphicData>
       <texPath>Things/Building/Production/CraftingSpot</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <drawSize>(1,1)</drawSize>
     </graphicData>
-    <AltitudeLayer>FloorEmplacement</AltitudeLayer>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
     <statBases>
       <WorkToBuild>0</WorkToBuild>
       <SellPriceFactor>0.70</SellPriceFactor>
@@ -23,9 +23,9 @@
     <repairEffect>Repair</repairEffect>
     <scatterableOnMapGen>false</scatterableOnMapGen>
     <useHitPoints>False</useHitPoints>
-    <Size>(1,1)</Size>
-    <DesignationCategory>Mizu</DesignationCategory>
-    <Passability>Standable</Passability>
+    <size>(1,1)</size>
+    <designationCategory>Mizu</designationCategory>
+    <passability>Standable</passability>
     <hasInteractionCell>True</hasInteractionCell>
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <surfaceType>Item</surfaceType>
@@ -55,15 +55,15 @@
   <ThingDef>
     <defName>Mizu_Well</defName>
     <label>Well</label>
-    <Description>A building for drawing water. The condition you need to build a well is [fertility >= 50% and distance of each other well]</Description>
+    <description>A building for drawing water. The condition you need to build a well is [fertility >= 50% and distance of each other well]</description>
     <category>Building</category>
-    <ThingClass>Building_WorkTable</ThingClass>
+    <thingClass>Building_WorkTable</thingClass>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_Well</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <drawSize>(2.33,2.33)</drawSize>
     </graphicData>
-    <AltitudeLayer>Building</AltitudeLayer>
+    <altitudeLayer>Building</altitudeLayer>
     <stuffCategories>
       <li>Metallic</li>
       <li>Stony</li>
@@ -82,8 +82,8 @@
     <repairEffect>Repair</repairEffect>
     <scatterableOnMapGen>false</scatterableOnMapGen>
     <useHitPoints>False</useHitPoints>
-    <Size>(2,2)</Size>
-    <DesignationCategory>Mizu</DesignationCategory>
+    <size>(2,2)</size>
+    <designationCategory>Mizu</designationCategory>
     <passability>PassThroughOnly</passability>
     <pathCost>70</pathCost>
     <hasInteractionCell>True</hasInteractionCell>
@@ -126,7 +126,6 @@
     </blueprintGraphicData>
     <building>
       <isInert>true</isInert>
-      <ignoreNeedsPower>true</ignoreNeedsPower>
       <isEdifice>false</isEdifice>
     </building>
     <altitudeLayer>FloorEmplacement</altitudeLayer>
@@ -149,11 +148,6 @@
     <designationCategory>Mizu</designationCategory>
     <designationHotKey>Misc1</designationHotKey>
     <filthLeaving>BuildingRubble</filthLeaving>
-    <comps>
-      <li Class="MizuMod.CompProperties_WaterNet">
-        <compClass>MizuMod.CompWaterNetPipe</compClass>
-      </li>
-    </comps>
   </ThingDef>
 
   <ThingDef ParentName="Mizu_WaterPipeBase">
@@ -193,7 +187,6 @@
     </graphicData>
     <building>
       <isInert>true</isInert>
-      <ignoreNeedsPower>true</ignoreNeedsPower>
       <isEdifice>false</isEdifice>
     </building>
     <altitudeLayer>Building</altitudeLayer>
@@ -218,9 +211,6 @@
     <designationHotKey>Misc1</designationHotKey>
     <filthLeaving>BuildingRubble</filthLeaving>
     <comps>
-      <li Class="MizuMod.CompProperties_WaterNet">
-        <compClass>MizuMod.CompWaterNetValve</compClass>
-      </li>
       <li Class="CompProperties_Flickable">
         <commandTexture>Things/Building/Production/Mizu_WaterValve</commandTexture>
         <commandLabelKey>MizuCommandDesignateOpenCloseValveLabel</commandLabelKey>
@@ -260,7 +250,7 @@
     <castEdgeShadows>true</castEdgeShadows>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
     <pathCost>8</pathCost>
-    <Size>(1,1)</Size>
+    <size>(1,1)</size>
     <tickerType>Normal</tickerType>
     <costList>
       <Steel>50</Steel>
@@ -283,9 +273,8 @@
     <designationHotKey>Misc1</designationHotKey>
     <filthLeaving>BuildingRubble</filthLeaving>
     <comps>
-      <li Class="MizuMod.CompProperties_WaterNet">
-        <compClass>MizuMod.CompWaterNetPump</compClass>
-        <baseWaterFlow>1000</baseWaterFlow>
+      <li Class="MizuMod.CompProperties_WaterNetOutput">
+        <maxOutputWaterFlow>1000</maxOutputWaterFlow>
       </li>
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
@@ -300,7 +289,7 @@
     <defName>Mizu_UndergroundWaterPump</defName>
     <label>Underground water pump</label>
     <description>A building for pumping water for underground. Need electrical power.</description>
-    <thingClass>MizuMod.Building_Pump</thingClass>
+    <thingClass>MizuMod.Building_UndergroundWaterPump</thingClass>
     <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Production/DeepDrill</texPath>
@@ -314,7 +303,7 @@
     <castEdgeShadows>true</castEdgeShadows>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
     <pathCost>8</pathCost>
-    <Size>(1,1)</Size>
+    <size>(1,1)</size>
     <tickerType>Normal</tickerType>
     <costList>
       <Steel>50</Steel>
@@ -337,9 +326,8 @@
     <designationHotKey>Misc1</designationHotKey>
     <filthLeaving>BuildingRubble</filthLeaving>
     <comps>
-      <li Class="MizuMod.CompProperties_WaterNet">
-        <compClass>MizuMod.CompWaterNetPump</compClass>
-        <baseWaterFlow>1000</baseWaterFlow>
+      <li Class="MizuMod.CompProperties_WaterNetOutput">
+        <maxOutputWaterFlow>1000</maxOutputWaterFlow>
       </li>
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
@@ -354,7 +342,7 @@
     <defName>Mizu_WaterTank</defName>
     <label>Water tank</label>
     <description>A building for storing water.</description>
-    <thingClass>MizuMod.Building_WaterNetBase</thingClass>
+    <thingClass>MizuMod.Building_WaterNet</thingClass>
     <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterTank</texPath>
@@ -364,7 +352,7 @@
         <rect>(0.05,0.05,0.95,0.95)</rect>
       </damageData>
     </graphicData>
-    <Size>(2,2)</Size>
+    <size>(2,2)</size>
     <altitudeLayer>Building</altitudeLayer>
     <passability>PassThroughOnly</passability>
     <blockWind>false</blockWind>
@@ -393,9 +381,12 @@
     <designationHotKey>Misc1</designationHotKey>
     <filthLeaving>BuildingRubble</filthLeaving>
     <comps>
-      <li Class="MizuMod.CompProperties_WaterTank">
-        <compClass>MizuMod.CompWaterNetTank</compClass>
-        <storedWaterVolumeMax>1000</storedWaterVolumeMax>
+      <li Class="MizuMod.CompProperties_WaterNetTank">
+        <maxWaterVolume>1000</maxWaterVolume>
+      </li>
+      <li Class="MizuMod.CompProperties_WaterNetInput"/>
+      <li Class="MizuMod.CompProperties_WaterNetOutput">
+        <maxOutputWaterFlow>1000</maxOutputWaterFlow>
       </li>
     </comps>
   </ThingDef>
@@ -414,7 +405,7 @@
         <rect>(0.05,0.05,0.95,0.95)</rect>
       </damageData>
     </graphicData>
-    <Size>(2,2)</Size>
+    <size>(2,2)</size>
     <altitudeLayer>Building</altitudeLayer>
     <passability>PassThroughOnly</passability>
     <blockWind>false</blockWind>
@@ -445,11 +436,15 @@
     <hasInteractionCell>True</hasInteractionCell>
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <comps>
-      <li Class="MizuMod.CompProperties_RainTank">
-        <compClass>MizuMod.CompWaterNetRainTank</compClass>
-        <baseWaterFlow>500</baseWaterFlow>
-        <baseRainCharge>3000</baseRainCharge>
-        <storedWaterVolumeMax>150</storedWaterVolumeMax>
+      <li Class="MizuMod.CompProperties_WaterNetTank">
+        <maxWaterVolume>150</maxWaterVolume>
+      </li>
+      <li Class="MizuMod.CompProperties_WaterNetInput">
+        <inputType>Rain</inputType>
+        <maxInputWaterFlow>3000</maxInputWaterFlow>
+      </li>
+      <li Class="MizuMod.CompProperties_WaterNetOutput">
+        <maxOutputWaterFlow>1000</maxOutputWaterFlow>
       </li>
     </comps>
     <inspectorTabs>
@@ -507,10 +502,10 @@
     <designationHotKey>Misc1</designationHotKey>
     <filthLeaving>BuildingRubble</filthLeaving>
     <comps>
-      <li Class="MizuMod.CompProperties_WaterTank">
-        <compClass>MizuMod.CompWaterNetFaucet</compClass>
-        <storedWaterVolumeMax>50</storedWaterVolumeMax>
+      <li Class="MizuMod.CompProperties_WaterNetTank">
+        <maxWaterVolume>50</maxWaterVolume>
       </li>
+      <li Class="MizuMod.CompProperties_WaterNetInput"/>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
     <recipes>
@@ -524,4 +519,4 @@
       <li>MizuMod.PlaceWorker_Faucet</li>
     </placeWorkers>  </ThingDef>
   
-</ThingDefs>
+</Defs>

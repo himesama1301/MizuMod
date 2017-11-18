@@ -10,6 +10,7 @@ namespace MizuMod
 {
     public class CompProperties_WaterNet : CompProperties
     {
-        public float baseWaterFlow = 0.0f;
+        public CompProperties_WaterNet() : base(typeof(CompWaterNet)) { }
+        public CompProperties_WaterNet(Type compClass) : base(compClass) { }
     }
 }

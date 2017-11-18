@@ -8,24 +8,12 @@ using Verse;
 
 namespace MizuMod
 {
-    public class Building_Faucet : Building_WorkTable, IBuilding_WaterNetBase
+    public class Building_Faucet : Building_WaterNetWorkTable, IBuilding_WaterNet
     {
-        public virtual bool IsActivatedForWaterNet
+        public override void CreateConnectors()
         {
-            get
-            {
-                return true;
-            }
-        }
-
-        public virtual List<IntVec3> ConnectVecs
-        {
-            get
-            {
-                List<IntVec3> vecs = new List<IntVec3>();
-                vecs.Add(this.Position + this.Rotation.FacingCell);
-                return vecs;
-            }
+            this.Connectors.Clear();
+            this.Connectors.Add(this.Position + this.Rotation.FacingCell);
         }
     }
 }

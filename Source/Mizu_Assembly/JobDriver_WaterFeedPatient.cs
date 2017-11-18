@@ -35,6 +35,11 @@ namespace MizuMod
             this.getItemFromInventory = (this.pawn.inventory != null && this.pawn.inventory.Contains(this.TargetA.Thing));
         }
 
+        public override bool TryMakePreToilReservations()
+        {
+            return true;
+        }
+
         protected override IEnumerable<Toil> MakeNewToils()
         {
             // ターゲットがThing=水アイテムを摂取する場合
@@ -61,9 +66,9 @@ namespace MizuMod
             });
 
             // 水(食事)を予約
-            if (ReservationUtility.CanReserveAndReach(this.pawn, this.TargetA, PathEndMode.Touch, Danger.Deadly, 1, this.CurJob.count, null, false) == true)
+            if (ReservationUtility.CanReserveAndReach(this.pawn, this.TargetA, PathEndMode.Touch, Danger.Deadly, 1, this.job.count, null, false) == true)
             {
-                yield return Toils_Reserve.Reserve(WaterIndex, 1, this.CurJob.count, null);
+                yield return Toils_Reserve.Reserve(WaterIndex, 1, this.job.count, null);
             }
             else
             {
@@ -114,7 +119,7 @@ namespace MizuMod
                         actor.jobs.EndCurrentJob(JobCondition.Incompletable, true);
                         return;
                     }
-                    actor.Drawer.rotator.FaceCell(actor.Position);
+                    actor.rotationTracker.FaceCell(actor.Position);
                     if (!thing.CanDrinkWaterNow())
                     {
                         actor.jobs.EndCurrentJob(JobCondition.Incompletable, true);
@@ -123,7 +128,7 @@ namespace MizuMod
                     actor.jobs.curDriver.ticksLeftThisToil = CompProperties_Water.BaseDrinkTicks;
                     if (thing.Spawned)
                     {
-                        thing.Map.physicalInteractionReservationManager.Reserve(actor, thing);
+                        thing.Map.physicalInteractionReservationManager.Reserve(actor, this.job, thing);
                     }
                 };
                 toil.tickAction = delegate
@@ -160,7 +165,7 @@ namespace MizuMod
                     }
                     if (actor.Map.physicalInteractionReservationManager.IsReservedBy(actor, thing))
                     {
-                        actor.Map.physicalInteractionReservationManager.Release(actor, thing);
+                        actor.Map.physicalInteractionReservationManager.Release(actor, this.job, thing);
                     }
                 });
 

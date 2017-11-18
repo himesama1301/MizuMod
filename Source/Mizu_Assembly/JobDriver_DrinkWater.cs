@@ -28,9 +28,14 @@ namespace MizuMod
             this.drinkingFromInventory = (this.pawn.inventory != null && this.pawn.inventory.Contains(this.TargetA.Thing));
         }
 
+        public override bool TryMakePreToilReservations()
+        {
+            return true;
+        }
+
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            if (this.CurJob.targetA.HasThing)
+            if (this.job.targetA.HasThing)
             {
                 // ターゲットがThing=水アイテムを摂取する場合
 
@@ -38,9 +43,9 @@ namespace MizuMod
                 ToilFailConditions.FailOnDestroyedNullOrForbidden<JobDriver_DrinkWater>(this, WaterIndex);
 
                 // 水(食事)を予約
-                if (ReservationUtility.CanReserveAndReach(this.pawn, this.TargetA, PathEndMode.Touch, Danger.Deadly, 1, this.CurJob.count, null, false) == true)
+                if (ReservationUtility.CanReserveAndReach(this.pawn, this.TargetA, PathEndMode.Touch, Danger.Deadly, 1, this.job.count, null, false) == true)
                 {
-                    yield return Toils_Reserve.Reserve(WaterIndex, 1, this.CurJob.count, null);
+                    yield return Toils_Reserve.Reserve(WaterIndex, 1, this.job.count, null);
                 }
                 else
                 {
@@ -140,9 +145,9 @@ namespace MizuMod
                         if (thing != null)
                         {
                             intVec = thing.Position;
-                            actor.Reserve(thing, 1, -1, null);
+                            actor.Reserve(thing, this.job, 1, -1, null);
                         }
-                        actor.Map.pawnDestinationManager.ReserveDestinationFor(actor, intVec);
+                        actor.Map.pawnDestinationReservationManager.Reserve(actor, this.job, intVec);
                         actor.pather.StartPath(intVec, PathEndMode.OnCell);
                     };
                     toil.defaultCompleteMode = ToilCompleteMode.PatherArrival;
@@ -164,7 +169,7 @@ namespace MizuMod
                             actor.jobs.EndCurrentJob(JobCondition.Incompletable, true);
                             return;
                         }
-                        actor.Drawer.rotator.FaceCell(actor.Position);
+                        actor.rotationTracker.FaceCell(actor.Position);
                         if (!thing.CanDrinkWaterNow())
                         {
                             actor.jobs.EndCurrentJob(JobCondition.Incompletable, true);
@@ -173,7 +178,7 @@ namespace MizuMod
                         actor.jobs.curDriver.ticksLeftThisToil = CompProperties_Water.BaseDrinkTicks;
                         if (thing.Spawned)
                         {
-                            thing.Map.physicalInteractionReservationManager.Reserve(actor, thing);
+                            thing.Map.physicalInteractionReservationManager.Reserve(actor, this.job, thing);
                         }
                     };
                     toil.tickAction = delegate
@@ -210,7 +215,7 @@ namespace MizuMod
                         }
                         if (actor.Map.physicalInteractionReservationManager.IsReservedBy(actor, thing))
                         {
-                            actor.Map.physicalInteractionReservationManager.Release(actor, thing);
+                            actor.Map.physicalInteractionReservationManager.Release(actor, this.job, thing);
                         }
                     });
 
@@ -295,7 +300,7 @@ namespace MizuMod
                 // 選んだ水地形が使用不可能or到達不可能になったらFail
                 ToilFailConditions.FailOn<JobDriver_DrinkWater>(this, () =>
                 {
-                    return this.CurJob.targetA.Cell.IsForbidden(pawn) || !pawn.CanReach(this.CurJob.targetA.Cell, PathEndMode.OnCell, Danger.Deadly);
+                    return this.job.targetA.Cell.IsForbidden(pawn) || !pawn.CanReach(this.job.targetA.Cell, PathEndMode.OnCell, Danger.Deadly);
                 });
 
                 // 水地形まで移動
@@ -307,7 +312,7 @@ namespace MizuMod
                     toil.initAction = delegate
                     {
                         Pawn actor = toil.actor;
-                        actor.Drawer.rotator.FaceCell(actor.Position);
+                        actor.rotationTracker.FaceCell(actor.Position);
                         actor.jobs.curDriver.ticksLeftThisToil = CompProperties_Water.BaseDrinkTicks;
                     };
                     toil.tickAction = delegate
@@ -321,7 +326,7 @@ namespace MizuMod
                     toil.defaultCompleteMode = ToilCompleteMode.Delay;
                     toil.FailOn((t) =>
                     {
-                        return this.CurJob.targetA.Cell.IsForbidden(pawn) || !pawn.CanReach(this.CurJob.targetA.Cell, PathEndMode.OnCell, Danger.Deadly);
+                        return this.job.targetA.Cell.IsForbidden(pawn) || !pawn.CanReach(this.job.targetA.Cell, PathEndMode.OnCell, Danger.Deadly);
                     });
 
                     // エフェクト追加

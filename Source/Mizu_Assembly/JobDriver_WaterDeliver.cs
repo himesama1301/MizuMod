@@ -29,15 +29,20 @@ namespace MizuMod
             this.drinkingFromInventory = (this.pawn.inventory != null && this.pawn.inventory.Contains(this.TargetA.Thing));
         }
 
+        public override bool TryMakePreToilReservations()
+        {
+            return true;
+        }
+
         protected override IEnumerable<Toil> MakeNewToils()
         {
             // 水が使用不可能になったらFail
             ToilFailConditions.FailOnDestroyedNullOrForbidden<JobDriver_WaterDeliver>(this, WaterIndex);
 
             // 水(食事)を予約
-            if (ReservationUtility.CanReserveAndReach(this.pawn, this.TargetA, PathEndMode.Touch, Danger.Deadly, 1, this.CurJob.count, null, false) == true)
+            if (ReservationUtility.CanReserveAndReach(this.pawn, this.TargetA, PathEndMode.Touch, Danger.Deadly, 1, this.job.count, null, false) == true)
             {
-                yield return Toils_Reserve.Reserve(WaterIndex, 1, this.CurJob.count, null);
+                yield return Toils_Reserve.Reserve(WaterIndex, 1, this.job.count, null);
             }
             else
             {
@@ -96,9 +101,9 @@ namespace MizuMod
                     {
                         if (pawn.Map.reservationManager.ReservedBy(thing, pawn))
                         {
-                            pawn.Map.reservationManager.Release(thing, pawn);
+                            pawn.Map.reservationManager.Release(thing, pawn, this.job);
                         }
-                        ReservationUtility.Reserve((Pawn)this.TargetB.Thing, thing);
+                        ReservationUtility.Reserve((Pawn)this.TargetB.Thing, thing, this.job);
                     }
                     
                 };

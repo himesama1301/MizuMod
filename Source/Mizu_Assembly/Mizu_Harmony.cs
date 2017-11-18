@@ -60,7 +60,7 @@ namespace MizuMod
                         }
                         if (!MizuCaravanUtility.TryGetBestWater(caravan, pawn, out thing, out pawn2))
                         {
-                            Messages.Message(string.Format(MizuStrings.MessageCaravanRunOutOfWater, caravan.LabelCap, pawn.Label), caravan, MessageSound.SeriousAlert);
+                            Messages.Message(string.Format(MizuStrings.MessageCaravanRunOutOfWater, caravan.LabelCap, pawn.Label), caravan, MessageTypeDefOf.ThreatBig);
                         }
                     }
                 }
@@ -72,7 +72,7 @@ namespace MizuMod
     [HarmonyPatch("DrawThingRow")]
     class ITab_Pawn_Gear_DrawThingRow
     {
-        static void Postfix(ref float y, float width, Thing thing, bool showDropButtonIfPrisoner = false)
+        static void Postfix(ref float y, float width, Thing thing, bool inventory = false)
         {
             float width2 = width - 72f;
             float y2 = y - 28f;

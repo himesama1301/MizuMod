@@ -23,44 +23,38 @@ namespace MizuMod
         public override bool ShouldLinkWith(IntVec3 c, Thing parent)
         {
             bool isFound = false;
-            IBuilding_WaterNetBase thing_wnb = parent as IBuilding_WaterNetBase;
-            if (thing_wnb == null)
+            IBuilding_WaterNet thing = parent as IBuilding_WaterNet;
+            if (thing == null)
             {
                 return false;
             }
-            if (!thing_wnb.IsActivatedForWaterNet && parent.OccupiedRect().Contains(c))
+            if (parent.OccupiedRect().Contains(c))
             {
                 isFound = true;
                 goto LinkFound;
             }
+            if (!thing.HasConnector)
+            {
+                return false;
+            }
 
-            ThingWithComps thing = parent as ThingWithComps;
-            CompWaterNetBase comp = thing.GetComp<CompWaterNetBase>();
-            foreach (var net in comp.Manager.Nets)
+            foreach (var net in thing.WaterNetManager.Nets)
             {
                 foreach (var t in net.Things)
                 {
                     if (t == thing)
                     {
-                        if (t.OccupiedRect().Contains(c))
-                        {
-                            isFound = true;
-                            goto LinkFound;
-                        }
+                        continue;
                     }
-                    else
+                    if (!t.HasConnector)
                     {
-                        IBuilding_WaterNetBase t_wnb = t as IBuilding_WaterNetBase;
-                        if (t_wnb == null || !t_wnb.IsActivatedForWaterNet)
-                        {
-                            continue;
-                        }
+                        continue;
+                    }
 
-                        if (t.OccupiedRect().Contains(c) && t.IsConnectedTo(thing))
-                        {
-                            isFound = true;
-                            goto LinkFound;
-                        }
+                    if (t.IsConnectedTo(thing) && t.OccupiedRect().Contains(c))
+                    {
+                        isFound = true;
+                        goto LinkFound;
                     }
                 }
             }
@@ -73,7 +67,7 @@ namespace MizuMod
         {
             foreach (var current in parent.OccupiedRect())
             {
-                Vector3 vector = current.ToVector3ShiftedWithAltitude(AltitudeLayer.WorldDataOverlay);
+                Vector3 vector = current.ToVector3ShiftedWithAltitude(AltitudeLayer.MapDataOverlay);
                 Printer_Plane.PrintPlane(layer, vector, Vector2.one, base.LinkedDrawMatFrom(parent, current), 0f, false, null, null, 0.01f);
             }
         }

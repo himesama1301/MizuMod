@@ -7,9 +7,4 @@ using Verse;
 
 namespace MizuMod
 {
-    interface IBuilding_WaterNetBase
-    {
-        bool IsActivatedForWaterNet { get; }
-        List<IntVec3> ConnectVecs { get; }
-    }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<WorkTypeDefs>
+<Defs>
 
   <WorkTypeDef>
     <defName>Mizu_Drawing</defName>
@@ -15,4 +15,4 @@
     </workTags>
   </WorkTypeDef>
 
-</WorkTypeDefs>
+</Defs>

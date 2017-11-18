@@ -11,7 +11,7 @@ namespace MizuMod
     public class MapComponent_WaterNetManager : MapComponent
     {
         private List<WaterNet> nets = new List<WaterNet>();
-        private List<ThingWithComps> unNetThings = new List<ThingWithComps>();
+        private List<IBuilding_WaterNet> unNetThings = new List<IBuilding_WaterNet>();
 
         public List<WaterNet> Nets
         {
@@ -25,20 +25,19 @@ namespace MizuMod
         {
         }
 
-        public Queue<ThingWithComps> ClearWaterNets()
+        public Queue<IBuilding_WaterNet> ClearWaterNets()
         {
-            Queue<ThingWithComps> unNetQueue = new Queue<ThingWithComps>();
+            Queue<IBuilding_WaterNet> unNetQueue = new Queue<IBuilding_WaterNet>();
 
             foreach (var net in nets)
             {
                 foreach (var t in net.Things)
                 {
-                    t.GetComp<CompWaterNetBase>().WaterNet = null;
                     unNetQueue.Enqueue(t);
                 }
-                net.Things.Clear();
+                net.ClearThings();
             }
-            nets.Clear();
+            this.ClearNets();
 
             foreach (var t in this.unNetThings)
             {
@@ -53,15 +52,14 @@ namespace MizuMod
 
         public void RefreshWaterNets()
         {
-            Queue<ThingWithComps> unNetQueue = this.ClearWaterNets();
+            Queue<IBuilding_WaterNet> unNetQueue = this.ClearWaterNets();
 
             while (unNetQueue.Count > 0)
             {
-                ThingWithComps thing = unNetQueue.Dequeue();
-                IBuilding_WaterNetBase thing_wnb = thing as IBuilding_WaterNetBase;
+                IBuilding_WaterNet thing = unNetQueue.Dequeue();
                 List<WaterNet> connectNets = new List<WaterNet>();
 
-                if (!thing_wnb.IsActivatedForWaterNet)
+                if (!thing.HasConnector)
                 {
                     this.unNetThings.Add(thing);
                     continue;
@@ -82,9 +80,7 @@ namespace MizuMod
                 if (connectNets.Count == 0)
                 {
                     // 0個=新しい水道網
-                    WaterNet newNet = new WaterNet();
-                    newNet.AddThing(thing);
-                    nets.Add(newNet);
+                    this.AddNet(new WaterNet(thing));
                 }
                 else if (connectNets.Count == 1)
                 {
@@ -111,17 +107,15 @@ namespace MizuMod
 
             foreach (var net in nets)
             {
-                net.RefreshWaterType();
+                net.UpdateWaterType();
             }
         }
 
-        public void AddThing(ThingWithComps thing)
+        public void AddThing(IBuilding_WaterNet thing)
         {
             if (nets.Count == 0)
             {
-                WaterNet newNet = new WaterNet();
-                newNet.AddThing(thing);
-                nets.Add(newNet);
+                nets.Add(new WaterNet(thing));
                 return;
             }
 
@@ -129,14 +123,33 @@ namespace MizuMod
             this.RefreshWaterNets();
         }
 
-        public void RemoveThing(ThingWithComps thing)
+        public void RemoveThing(IBuilding_WaterNet thing)
         {
-            WaterNet curNet = thing.GetComp<CompWaterNetBase>().WaterNet;
-
             // 対象の物を除去
-            curNet.RemoveThing(thing);
+            thing.WaterNet.RemoveThing(thing);
 
             this.RefreshWaterNets();
+        }
+
+        public void AddNet(WaterNet net)
+        {
+            net.Manager = this;
+            this.nets.Add(net);
+        }
+
+        public void RemoveNet(WaterNet net)
+        {
+            net.Manager = null;
+            this.nets.Remove(net);
+        }
+
+        public void ClearNets()
+        {
+            foreach (var net in nets)
+            {
+                net.Manager = null;
+            }
+            nets.Clear();
         }
 
         public override void MapComponentTick()
@@ -145,7 +158,19 @@ namespace MizuMod
 
             foreach (var net in nets)
             {
-                net.Tick();
+                net.UpdateOutputWaterFlow();
+            }
+            foreach (var net in nets)
+            {
+                net.UpdateInputWaterFlow();
+            }
+            foreach (var net in nets)
+            {
+                net.UpdateWaterTankStorage();
+            }
+            foreach (var net in nets)
+            {
+                net.UpdateWaterType();
             }
         }
     }

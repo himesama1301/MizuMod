@@ -12,8 +12,16 @@ namespace MizuMod
     public class CompWaterNetTank : CompWaterNet
     {
         private static readonly float BarThick = 0.25f;
-        private static readonly Material WaterNetTankBarFilledMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(0.1f, 0.8f, 0.8f), false);
-        private static readonly Material WaterNetTankBarUnfilledMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(0.15f, 0.15f, 0.15f), false);
+        private static readonly Material BarFilledMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(0.1f, 0.8f, 0.8f), false);
+        private static readonly Material BarUnfilledMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(0.15f, 0.15f, 0.15f), false);
+
+        public new CompProperties_WaterNetTank Props
+        {
+            get
+            {
+                return (CompProperties_WaterNetTank)this.props;
+            }
+        }
 
         private float storedWaterVolume = 0;
 
@@ -21,11 +29,19 @@ namespace MizuMod
         {
             get
             {
-                if (this.IsBrokenDown)
+                if (!this.IsActivated)
                 {
                     return 0f;
                 }
-                return (this.Props.storedWaterVolumeMax - this.storedWaterVolume);
+                return (this.MaxWaterVolume - this.StoredWaterVolume);
+            }
+        }
+
+        public float MaxWaterVolume
+        {
+            get
+            {
+                return this.Props.maxWaterVolume;
             }
         }
 
@@ -35,62 +51,59 @@ namespace MizuMod
             {
                 return this.storedWaterVolume;
             }
-        }
-
-        public float StoredWaterVolumePercent
-        {
-            get
+            set
             {
-                return this.StoredWaterVolume / this.Props.storedWaterVolumeMax;
+                if (value > this.MaxWaterVolume)
+                {
+                    this.storedWaterVolume = this.MaxWaterVolume;
+                }
+                else if (value < 0.0f)
+                {
+                    this.storedWaterVolume = 0.0f;
+                }
+                else
+                {
+                    this.storedWaterVolume = value;
+                }
             }
         }
 
-        public new CompProperties_WaterTank Props
+        private WaterType storedWaterType = WaterType.NoWater;
+        public WaterType StoredWaterType
         {
             get
             {
-                return (CompProperties_WaterTank)this.props;
+                return this.storedWaterType;
+            }
+            set
+            {
+                this.storedWaterType = value;
             }
         }
 
-        public virtual bool CanSupplyFromWaterNet
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        public bool NeedSupply
-        {
-            get
-            {
-                return this.AmountCanAccept > 0.0f && this.CanSupplyFromWaterNet;
-            }
-        }
 
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look<float>(ref this.storedWaterVolume, "storedWaterVolume", 0f, false);
-            if (this.storedWaterVolume > this.Props.storedWaterVolumeMax)
+            Scribe_Values.Look<float>(ref this.storedWaterVolume, "storedWaterVolume");
+            Scribe_Values.Look<WaterType>(ref this.storedWaterType, "storedWaterType", WaterType.NoWater);
+            if (this.storedWaterVolume > this.MaxWaterVolume)
             {
-                this.storedWaterVolume = this.Props.storedWaterVolumeMax;
+                this.storedWaterVolume = this.MaxWaterVolume;
             }
         }
 
-        public void AddWaterVolume(float amount)
+        public float AddWaterVolume(float amount)
         {
             if (amount < 0f)
             {
                 Log.Error("Cannot add negative water volume " + amount);
-                return;
+                return 0.0f;
             }
-            if (amount > this.AmountCanAccept)
-            {
-                amount = this.AmountCanAccept;
-            }
-            this.storedWaterVolume += amount;
+
+            float prevWaterVolume = this.StoredWaterVolume;
+            this.StoredWaterVolume += amount;
+            return this.StoredWaterVolume - prevWaterVolume;
         }
 
         public float DrawWaterVolume(float amount)
@@ -100,32 +113,27 @@ namespace MizuMod
                 Log.Error("Cannot draw negative water volume " + amount);
                 return 0.0f;
             }
-            if (amount > this.StoredWaterVolume)
-            {
-                amount = this.StoredWaterVolume;
-            }
-            this.storedWaterVolume -= amount;
-            return amount;
+            float prevWaterVolume = this.StoredWaterVolume;
+            this.StoredWaterVolume -= amount;
+            return prevWaterVolume - this.StoredWaterVolume;
         }
 
         public override string CompInspectStringExtra()
         {
-            string text = string.Concat(new string[]
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(base.CompInspectStringExtra());
+
+            stringBuilder.AppendLine(string.Concat(new string[]
             {
                 MizuStrings.InspectWaterTankStored,
                 ": ",
-                this.storedWaterVolume.ToString("F0"),
+                this.StoredWaterVolume.ToString("F0"),
                 " / ",
-                this.Props.storedWaterVolumeMax.ToString("F0"),
+                this.MaxWaterVolume.ToString("F0"),
                 " WaterVolume"
-            });
+            }));
 
-            string baseStr = base.CompInspectStringExtra();
-            if (!string.IsNullOrEmpty(baseStr))
-            {
-                text += "\n" + baseStr;
-            }
-            return text;
+            return stringBuilder.ToString();
         }
 
         public override void PostDraw()
@@ -135,9 +143,9 @@ namespace MizuMod
             GenDraw.FillableBarRequest r = new GenDraw.FillableBarRequest();
             r.center = this.parent.DrawPos + Vector3.up * 0.1f;
             r.size = new Vector2(this.parent.RotatedSize.x, BarThick);
-            r.fillPercent = this.StoredWaterVolumePercent;
-            r.filledMat = CompWaterNetTank.WaterNetTankBarFilledMat;
-            r.unfilledMat = CompWaterNetTank.WaterNetTankBarUnfilledMat;
+            r.fillPercent = this.StoredWaterVolume / this.MaxWaterVolume;
+            r.filledMat = BarFilledMat;
+            r.unfilledMat = BarUnfilledMat;
             r.margin = 0.15f;
             GenDraw.DrawFillableBar(r);
         }

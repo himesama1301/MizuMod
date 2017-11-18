@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<JobDefs>
+<Defs>
 
   <JobDef>
     <defName>Mizu_DrinkWater</defName>
@@ -26,4 +26,4 @@
     <suspendable>false</suspendable>
   </JobDef>
   
-</JobDefs>
+</Defs>

@@ -3,7 +3,7 @@
 
   <!-- コロニストの思考ツリーに飲み水が欲しいを追加する -->
   <Operation Class="PatchOperationAdd">
-    <xpath>/ThinkTrees/ThinkTreeDef[defName = "MainColonistBehaviorCore"]/thinkRoot/subNodes/li/subNodes</xpath>
+    <xpath>*/ThinkTreeDef[defName = "MainColonistBehaviorCore"]/thinkRoot/subNodes/li/subNodes</xpath>
     <value>
       <li Class="MizuMod.JobGiver_GetWater"/>
     </value>
@@ -19,7 +19,7 @@
 
   <!-- 動物の思考ツリーに飲み水が欲しいを追加する -->
   <Operation Class="PatchOperationAdd">
-    <xpath>/ThinkTrees/ThinkTreeDef[defName = "SatisfyBasicNeeds"]/thinkRoot/subNodes/li/subNodes</xpath>
+    <xpath>*/ThinkTreeDef[defName = "SatisfyBasicNeeds"]/thinkRoot/subNodes/li/subNodes</xpath>
     <value>
       <li Class="MizuMod.JobGiver_GetWater"/>
     </value>
@@ -27,7 +27,7 @@
 
   <!-- コロニストの思考ツリーに携帯飲料を取得するを追加する -->
   <Operation Class="PatchOperationAdd">
-    <xpath>/ThinkTrees/ThinkTreeDef[defName = "Humanlike"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalColonist"][2]/subNodes</xpath>
+    <xpath>*/ThinkTreeDef[defName = "Humanlike"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalColonist"][2]/subNodes</xpath>
     <value>
       <li Class="ThinkNode_ConditionalNeedPercentageAbove">
         <need>Mizu_Water</need>
@@ -46,11 +46,11 @@
     <success>Always</success>
     <operations>
       <li Class="PatchOperationTest">
-        <xpath>/TerrainDefs/TerrainDef[defName = "WaterDeep"]/affordances</xpath>
+        <xpath>*/TerrainDef[defName = "WaterDeep"]/affordances</xpath>
         <success>Invert</success>
       </li>
       <li Class="PatchOperationAdd">
-        <xpath>/TerrainDefs/TerrainDef[defName = "WaterDeep"]</xpath>
+        <xpath>*/TerrainDef[defName = "WaterDeep"]</xpath>
         <value>
           <affordances/>
         </value>
@@ -61,11 +61,11 @@
     <success>Always</success>
     <operations>
       <li Class="PatchOperationTest">
-        <xpath>/TerrainDefs/TerrainDef[defName = "WaterMovingDeep"]/affordances</xpath>
+        <xpath>*/TerrainDef[defName = "WaterMovingDeep"]/affordances</xpath>
         <success>Invert</success>
       </li>
       <li Class="PatchOperationAdd">
-        <xpath>/TerrainDefs/TerrainDef[defName = "WaterMovingDeep"]</xpath>
+        <xpath>*/TerrainDef[defName = "WaterMovingDeep"]</xpath>
         <value>
           <affordances/>
         </value>
@@ -76,11 +76,11 @@
     <success>Always</success>
     <operations>
       <li Class="PatchOperationTest">
-        <xpath>/TerrainDefs/TerrainDef[defName = "WaterOceanDeep"]/affordances</xpath>
+        <xpath>*/TerrainDef[defName = "WaterOceanDeep"]/affordances</xpath>
         <success>Invert</success>
       </li>
       <li Class="PatchOperationAdd">
-        <xpath>/TerrainDefs/TerrainDef[defName = "WaterOceanDeep"]</xpath>
+        <xpath>*/TerrainDef[defName = "WaterOceanDeep"]</xpath>
         <value>
           <affordances/>
         </value>
@@ -91,11 +91,11 @@
     <success>Always</success>
     <operations>
       <li Class="PatchOperationTest">
-        <xpath>/TerrainDefs/TerrainDef[defName = "WaterShallow"]/affordances</xpath>
+        <xpath>*/TerrainDef[defName = "WaterShallow"]/affordances</xpath>
         <success>Invert</success>
       </li>
       <li Class="PatchOperationAdd">
-        <xpath>/TerrainDefs/TerrainDef[defName = "WaterShallow"]</xpath>
+        <xpath>*/TerrainDef[defName = "WaterShallow"]</xpath>
         <value>
           <affordances/>
         </value>
@@ -106,11 +106,11 @@
     <success>Always</success>
     <operations>
       <li Class="PatchOperationTest">
-        <xpath>/TerrainDefs/TerrainDef[defName = "WaterMovingShallow"]/affordances</xpath>
+        <xpath>*/TerrainDef[defName = "WaterMovingShallow"]/affordances</xpath>
         <success>Invert</success>
       </li>
       <li Class="PatchOperationAdd">
-        <xpath>/TerrainDefs/TerrainDef[defName = "WaterMovingShallow"]</xpath>
+        <xpath>*/TerrainDef[defName = "WaterMovingShallow"]</xpath>
         <value>
           <affordances/>
         </value>
@@ -121,11 +121,11 @@
     <success>Always</success>
     <operations>
       <li Class="PatchOperationTest">
-        <xpath>/TerrainDefs/TerrainDef[defName = "WaterOceanShallow"]/affordances</xpath>
+        <xpath>*/TerrainDef[defName = "WaterOceanShallow"]/affordances</xpath>
         <success>Invert</success>
       </li>
       <li Class="PatchOperationAdd">
-        <xpath>/TerrainDefs/TerrainDef[defName = "WaterOceanShallow"]</xpath>
+        <xpath>*/TerrainDef[defName = "WaterOceanShallow"]</xpath>
         <value>
           <affordances/>
         </value>
@@ -136,11 +136,11 @@
     <success>Always</success>
     <operations>
       <li Class="PatchOperationTest">
-        <xpath>/TerrainDefs/TerrainDef[defName = "Marsh"]/affordances</xpath>
+        <xpath>*/TerrainDef[defName = "Marsh"]/affordances</xpath>
         <success>Invert</success>
       </li>
       <li Class="PatchOperationAdd">
-        <xpath>/TerrainDefs/TerrainDef[defName = "Marsh"]</xpath>
+        <xpath>*/TerrainDef[defName = "Marsh"]</xpath>
         <value>
           <affordances/>
         </value>
@@ -151,11 +151,11 @@
     <success>Always</success>
     <operations>
       <li Class="PatchOperationTest">
-        <xpath>/TerrainDefs/TerrainDef[defName = "Mud"]/affordances</xpath>
+        <xpath>*/TerrainDef[defName = "Mud"]/affordances</xpath>
         <success>Invert</success>
       </li>
       <li Class="PatchOperationAdd">
-        <xpath>/TerrainDefs/TerrainDef[defName = "Mud"]</xpath>
+        <xpath>*/TerrainDef[defName = "Mud"]</xpath>
         <value>
           <affordances/>
         </value>
@@ -165,49 +165,49 @@
 
   <!-- 水地形のTerrainAffordanceにUndefinedを追加 -->
   <Operation Class="PatchOperationAdd">
-    <xpath>/TerrainDefs/TerrainDef[defName = "WaterDeep"]/affordances</xpath>
+    <xpath>*/TerrainDef[defName = "WaterDeep"]/affordances</xpath>
     <value>
       <li>Undefined</li>
     </value>
   </Operation>
   <Operation Class="PatchOperationAdd">
-    <xpath>/TerrainDefs/TerrainDef[defName = "WaterMovingDeep"]/affordances</xpath>
+    <xpath>*/TerrainDef[defName = "WaterMovingDeep"]/affordances</xpath>
     <value>
       <li>Undefined</li>
     </value>
   </Operation>
   <Operation Class="PatchOperationAdd">
-    <xpath>/TerrainDefs/TerrainDef[defName = "WaterOceanDeep"]/affordances</xpath>
+    <xpath>*/TerrainDef[defName = "WaterOceanDeep"]/affordances</xpath>
     <value>
       <li>Undefined</li>
     </value>
   </Operation>
   <Operation Class="PatchOperationAdd">
-    <xpath>/TerrainDefs/TerrainDef[defName = "WaterShallow"]/affordances</xpath>
+    <xpath>*/TerrainDef[defName = "WaterShallow"]/affordances</xpath>
     <value>
       <li>Undefined</li>
     </value>
   </Operation>
   <Operation Class="PatchOperationAdd">
-    <xpath>/TerrainDefs/TerrainDef[defName = "WaterMovingShallow"]/affordances</xpath>
+    <xpath>*/TerrainDef[defName = "WaterMovingShallow"]/affordances</xpath>
     <value>
       <li>Undefined</li>
     </value>
   </Operation>
   <Operation Class="PatchOperationAdd">
-    <xpath>/TerrainDefs/TerrainDef[defName = "WaterOceanShallow"]/affordances</xpath>
+    <xpath>*/TerrainDef[defName = "WaterOceanShallow"]/affordances</xpath>
     <value>
       <li>Undefined</li>
     </value>
   </Operation>
   <Operation Class="PatchOperationAdd">
-    <xpath>/TerrainDefs/TerrainDef[defName = "Marsh"]/affordances</xpath>
+    <xpath>*/TerrainDef[defName = "Marsh"]/affordances</xpath>
     <value>
       <li>Undefined</li>
     </value>
   </Operation>
   <Operation Class="PatchOperationAdd">
-    <xpath>/TerrainDefs/TerrainDef[defName = "Mud"]/affordances</xpath>
+    <xpath>*/TerrainDef[defName = "Mud"]/affordances</xpath>
     <value>
       <li>Undefined</li>
     </value>
@@ -216,7 +216,7 @@
   <!-- 各種ポーンの初期所持品に水を追加する -->
   <!-- 原住民 -->
   <Operation Class="PatchOperationAdd">
-    <xpath>/PawnKindDefs/PawnKindDef[@Name = "TribalBase"]</xpath>
+    <xpath>*/PawnKindDef[@Name = "TribalBase"]</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>
@@ -236,7 +236,7 @@
   
   <!-- 異国人 -->
   <Operation Class="PatchOperationAdd">
-    <xpath>/PawnKindDefs/PawnKindDef[@Name = "OutlanderBase"]</xpath>
+    <xpath>*/PawnKindDef[@Name = "OutlanderBase"]</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>
@@ -255,7 +255,7 @@
   </Operation>
   
   <Operation Class="PatchOperationReplace">
-    <xpath>/PawnKindDefs/PawnKindDef[defName = "Villager"]/inventoryOptions</xpath>
+    <xpath>*/PawnKindDef[defName = "Villager"]/inventoryOptions</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>
@@ -296,7 +296,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>/PawnKindDefs/PawnKindDef[defName = "TownGuard"]/inventoryOptions</xpath>
+    <xpath>*/PawnKindDef[defName = "TownGuard"]/inventoryOptions</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>
@@ -329,7 +329,7 @@
 
   <!-- 傭兵 -->
   <Operation Class="PatchOperationAdd">
-    <xpath>/PawnKindDefs/PawnKindDef[@Name = "MercenaryBase"]</xpath>
+    <xpath>*/PawnKindDef[@Name = "MercenaryBase"]</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>
@@ -348,7 +348,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>/PawnKindDefs/PawnKindDef[@Name = "GrenadierBase"]/inventoryOptions</xpath>
+    <xpath>*/PawnKindDef[@Name = "GrenadierBase"]/inventoryOptions</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>
@@ -387,7 +387,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>/PawnKindDefs/PawnKindDef[defName = "MercenaryGunner"]/inventoryOptions</xpath>
+    <xpath>*/PawnKindDef[defName = "MercenaryGunner"]/inventoryOptions</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>
@@ -426,7 +426,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>/PawnKindDefs/PawnKindDef[defName = "MercenarySniper"]/inventoryOptions</xpath>
+    <xpath>*/PawnKindDef[defName = "MercenarySniper"]/inventoryOptions</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>
@@ -465,7 +465,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>/PawnKindDefs/PawnKindDef[defName = "MercenarySlasher"]/inventoryOptions</xpath>
+    <xpath>*/PawnKindDef[defName = "MercenarySlasher"]/inventoryOptions</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>
@@ -504,7 +504,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>/PawnKindDefs/PawnKindDef[@Name = "EliteBase"]/inventoryOptions</xpath>
+    <xpath>*/PawnKindDef[@Name = "EliteBase"]/inventoryOptions</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>
@@ -544,7 +544,7 @@
 
   <!-- 宙族 -->
   <Operation Class="PatchOperationAdd">
-    <xpath>/PawnKindDefs/PawnKindDef[@Name = "PirateBase"]</xpath>
+    <xpath>*/PawnKindDef[@Name = "PirateBase"]</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>
@@ -563,7 +563,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>/PawnKindDefs/PawnKindDef[defName = "Drifter"]/inventoryOptions</xpath>
+    <xpath>*/PawnKindDef[defName = "Drifter"]/inventoryOptions</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>
@@ -602,7 +602,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>/PawnKindDefs/PawnKindDef[defName = "Scavenger"]/inventoryOptions</xpath>
+    <xpath>*/PawnKindDef[defName = "Scavenger"]/inventoryOptions</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>
@@ -641,7 +641,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>/PawnKindDefs/PawnKindDef[defName = "TownGuard"]/inventoryOptions</xpath>
+    <xpath>*/PawnKindDef[defName = "TownGuard"]/inventoryOptions</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>
@@ -663,7 +663,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>/PawnKindDefs/PawnKindDef[defName = "Thrasher"]/inventoryOptions</xpath>
+    <xpath>*/PawnKindDef[defName = "Thrasher"]/inventoryOptions</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>
@@ -702,7 +702,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>/PawnKindDefs/PawnKindDef[defName = "Pirate"]/inventoryOptions</xpath>
+    <xpath>*/PawnKindDef[defName = "Pirate"]/inventoryOptions</xpath>
     <value>
       <inventoryOptions>
         <skipChance>0</skipChance>

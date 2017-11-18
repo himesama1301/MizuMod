@@ -2,7 +2,7 @@
 <Defs>
 
   <DesignationCategoryDef>
-    <DefName>Mizu</DefName>
+    <defName>Mizu</defName>
     <label>Water</label>
     <description>Structures used for getting water.</description>
     <order>910</order>

@@ -85,22 +85,19 @@ namespace MizuMod
             return num;
         }
 
-        public static bool IsConnectedTo(this ThingWithComps t1, ThingWithComps t2)
+        public static bool IsConnectedTo(this IBuilding_WaterNet t1, IBuilding_WaterNet t2)
         {
-            IBuilding_WaterNetBase thing1 = t1 as IBuilding_WaterNetBase;
-            IBuilding_WaterNetBase thing2 = t2 as IBuilding_WaterNetBase;
-
-            if (thing1 == null || !thing1.IsActivatedForWaterNet)
+            if (!t1.HasConnector)
             {
                 return false;
             }
-            if (thing2 == null || !thing2.IsActivatedForWaterNet)
+            if (!t2.HasConnector)
             {
                 return false;
             }
 
             bool t1_connected_to_t2 = false;
-            foreach (var connectVec1 in thing1.ConnectVecs)
+            foreach (var connectVec1 in t1.Connectors)
             {
                 foreach (var occupiedVec2 in t2.OccupiedRect())
                 {
@@ -115,7 +112,7 @@ namespace MizuMod
             T1toT2Checked:
 
             bool t2_connected_to_t1 = false;
-            foreach (var connectVec2 in thing2.ConnectVecs)
+            foreach (var connectVec2 in t2.Connectors)
             {
                 foreach (var occupiedVec1 in t1.OccupiedRect())
                 {
@@ -176,6 +173,23 @@ namespace MizuMod
         public static bool IsMud(this TerrainDef def)
         {
             return def.defName.Contains("Mud");
+        }
+
+        public static WaterType ToWaterType(this TerrainDef def)
+        {
+            if (def.IsSea())
+            {
+                return WaterType.SeaWater;
+            }
+            else if (def.IsMarsh())
+            {
+                return WaterType.MudWater;
+            }
+            else if (def.IsRiver() || def.IsLakeOrPond())
+            {
+                return WaterType.NormalWater;
+            }
+            return WaterType.NoWater;
         }
     }
 }

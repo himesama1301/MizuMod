@@ -20,11 +20,10 @@ namespace MizuMod
 
         public override bool ShouldLinkWith(IntVec3 c, Thing parent)
         {
-            Building_WaterNetBase thing = parent as Building_WaterNetBase;
-            CompWaterNetBase comp = thing.GetComp<CompWaterNetBase>();
+            IBuilding_WaterNet thing = parent as IBuilding_WaterNet;
 
             bool foundWaterNetBase = false;
-            foreach (var net in comp.Manager.Nets)
+            foreach (var net in thing.WaterNetManager.Nets)
             {
                 foreach (var t in net.Things)
                 {
@@ -56,37 +55,6 @@ namespace MizuMod
         public override void Print(SectionLayer layer, Thing parent)
         {
             Printer_Plane.PrintPlane(layer, parent.TrueCenter(), Vector2.one, this.LinkedDrawMatFrom(parent, parent.Position), 0f, false, null, null, 0.01f);
-
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    IntVec3 intVec = parent.Position + GenAdj.CardinalDirections[i];
-
-            //    CompWaterNetBase comp = parent.TryGetComp<CompWaterNetBase>();
-            //    bool foundWaterNetBase = false;
-            //    foreach (var net in comp.Manager.Nets)
-            //    {
-            //        foreach (var t in net.Things)
-            //        {
-            //            foundWaterNetBase = t.OccupiedRect().Contains(intVec);
-            //            goto FoundWaterNetBase;
-            //        }
-            //    }
-
-            //    FoundWaterNetBase:
-
-            //    if (intVec.InBounds(parent.Map) && foundWaterNetBase && !intVec.GetTerrain(parent.Map).layerable)
-            //    {
-            //        bool containsPipe = intVec.GetThingList(parent.Map).Any((t) =>
-            //        {
-            //            return t.TryGetComp<CompWaterNetPipe>() != null;
-            //        });
-
-            //        if (!containsPipe)
-            //        {
-            //            Printer_Plane.PrintPlane(layer, intVec.ToVector3ShiftedWithAltitude(parent.def.Altitude), Vector2.one, this.LinkedDrawMatFrom(parent, intVec), 0f, false, null, null, 0.01f);
-            //        }
-            //    }
-            //}
         }
     }
 }
