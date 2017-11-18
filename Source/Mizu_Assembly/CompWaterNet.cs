@@ -69,32 +69,12 @@ namespace MizuMod
             }
         }
 
-        public WaterNet WaterNet = null;
-
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
 
             this.breakdownableComp = this.parent.GetComp<CompBreakdownable>();
             this.powerComp = this.parent.GetComp<CompPowerTrader>();
-        }
-
-        public override string CompInspectStringExtra()
-        {
-            string str = string.Empty;
-
-            if (DebugSettings.godMode)
-            {
-                str = string.Format("Water Net ID = {0}", this.WaterNet != null ? this.WaterNet.ID.ToString() : "null");
-                str += "\nWater Type = " + (this.WaterNet != null ? this.WaterNet.WaterType.ToString() : "null");
-            }
-
-            string baseStr = base.CompInspectStringExtra();
-            if (!string.IsNullOrEmpty(baseStr))
-            {
-                str += "\n" + baseStr;
-            }
-            return str;
         }
     }
 }

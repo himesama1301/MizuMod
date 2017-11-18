@@ -25,4 +25,8 @@
   <Mizu_GetWaterFromFaucet.verb>を汲む</Mizu_GetWaterFromFaucet.verb>
   <Mizu_GetWaterFromFaucet.gerund>を汲む</Mizu_GetWaterFromFaucet.gerund>
 
+  <Mizu_GetWaterFromTank.label>水を汲む</Mizu_GetWaterFromTank.label>
+  <Mizu_GetWaterFromTank.verb>を汲む</Mizu_GetWaterFromTank.verb>
+  <Mizu_GetWaterFromTank.gerund>を汲む</Mizu_GetWaterFromTank.gerund>
+
 </LanguageData>

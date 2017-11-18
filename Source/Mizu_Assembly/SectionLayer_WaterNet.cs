@@ -18,12 +18,11 @@ namespace MizuMod
 
         public override void DrawLayer()
         {
-            Designator_Build designator_Build = Find.DesignatorManager.SelectedDesignator as Designator_Build;
-            if (designator_Build != null)
+            Designator_Build designator = Find.DesignatorManager.SelectedDesignator as Designator_Build;
+            if (designator != null)
             {
-                ThingDef thingDef = designator_Build.PlacingDef as ThingDef;
-                CompProperties_WaterNet compprops = thingDef.GetCompProperties<CompProperties_WaterNet>();
-                if (thingDef != null && compprops != null)
+                ThingDef thingDef = designator.PlacingDef as ThingDef;
+                if (thingDef != null && typeof(IBuilding_WaterNet).IsAssignableFrom(thingDef.thingClass))
                 {
                     base.DrawLayer();
                 }

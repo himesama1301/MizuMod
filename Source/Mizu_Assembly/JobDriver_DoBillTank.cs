@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using RimWorld;
 using Verse;
 using Verse.AI;
 
 namespace MizuMod
 {
-    public class JobDriver_DoBillFaucet : JobDriver_DoBill
+    public class JobDriver_DoBillTank : JobDriver_DoBill
     {
         protected override IEnumerable<Toil> MakeNewToils()
         {
@@ -22,7 +23,12 @@ namespace MizuMod
                     Log.Error("workTable is null");
                 }
                 FaucetRecipeDef recipe = this.job.bill.recipe as FaucetRecipeDef;
-                workTable.WaterNet.DrawWaterVolume(recipe.needWaterVolume);
+                CompWaterNetTank comp = workTable.GetComp<CompWaterNetTank>();
+                if (comp == null)
+                {
+                    Log.Error("comp is null");
+                }
+                comp.DrawWaterVolume(recipe.needWaterVolume);
             };
             lastToil.defaultCompleteMode = ToilCompleteMode.Instant;
 

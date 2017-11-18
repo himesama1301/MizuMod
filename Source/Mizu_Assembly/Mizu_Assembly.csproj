@@ -82,6 +82,7 @@
     <Compile Include="IBuilding_WaterNet.cs" />
     <Compile Include="IBuilding_WaterNetBase.cs" />
     <Compile Include="JobDriver_DoBillFaucet.cs" />
+    <Compile Include="JobDriver_DoBillTank.cs" />
     <Compile Include="JobDriver_DrinkWater.cs" />
     <Compile Include="JobDriver_WaterDeliver.cs" />
     <Compile Include="JobDriver_WaterFeedPatient.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="WaterType.cs" />
     <Compile Include="WorkGiver_DoBillDrawer.cs" />
     <Compile Include="WorkGiver_DoBillFaucet.cs" />
+    <Compile Include="WorkGiver_DoBillTank.cs" />
     <Compile Include="WorkGiver_FeedWaterPatient.cs" />
     <Compile Include="WorkGiver_Warden_DeliverWater.cs" />
   </ItemGroup>

@@ -25,6 +25,7 @@ namespace MizuMod
         public static readonly string LabelDaysWorthOfFoodWarningDialog = "MizuDaysWorthOfWaterWarningDialog".Translate();
         public static readonly string LabelDaysWorthOfFoodWarningDialog_NoFood = "MizuDaysWorthOfWaterWarningDialog_NoWater".Translate();
         public static readonly string InspectWaterFlowOutput = "MizuWaterFlowOutput".Translate();
+        public static readonly string InspectWaterFlowInput = "MizuWaterFlowInput".Translate();
         public static readonly string InspectWaterTankStored = "MizuWaterTankStored".Translate();
         public static readonly string InspectValveClosed = "MizuValveClosed".Translate();
     }

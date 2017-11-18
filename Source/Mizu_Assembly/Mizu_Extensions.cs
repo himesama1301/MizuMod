@@ -181,7 +181,7 @@ namespace MizuMod
             {
                 return WaterType.SeaWater;
             }
-            else if (def.IsMarsh())
+            else if (def.IsMarsh() || def.IsMud())
             {
                 return WaterType.MudWater;
             }

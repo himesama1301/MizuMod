@@ -28,7 +28,14 @@ namespace MizuMod
             }
         }
 
-        public WaterType WaterType { get; private set; }
+        private WaterType waterType = WaterType.NoWater;
+        public WaterType WaterType
+        {
+            get
+            {
+                return this.waterType;
+            }
+        }
         public float LastOutputWaterFlow { get; private set; }
         public float LastInputWaterFlow { get; private set; }
 
@@ -37,7 +44,7 @@ namespace MizuMod
         public WaterNet()
         {
             this.ID = nextID;
-            this.WaterType = WaterType.NoWater;
+            this.waterType = WaterType.NoWater;
             nextID++;
         }
 
@@ -168,8 +175,11 @@ namespace MizuMod
             List<IBuilding_WaterNet> inputters_constant = things.FindAll((t) =>
             {
                 CompWaterNetInput comp = t.GetComp<CompWaterNetInput>();
-                bool isOK = (comp != null);
-                isOK &= comp.IsActivated;
+                if (comp == null)
+                {
+                    return false;
+                }
+                bool isOK = comp.IsActivated;
                 isOK &= comp.InputType == CompProperties_WaterNetInput.InputType.WaterNet;
                 isOK &= comp.InputWaterFlowType == CompProperties_WaterNetInput.InputWaterFlowType.Constant;
                 return isOK;
@@ -193,24 +203,29 @@ namespace MizuMod
                 List<IBuilding_WaterNet> inputters_any = things.FindAll((t) =>
                 {
                     CompWaterNetInput comp = t.GetComp<CompWaterNetInput>();
-                    bool isOK = (comp != null);
-                    isOK &= comp.IsActivated;
+                    if (comp == null)
+                    {
+                        return false;
+                    }
+                    bool isOK = comp.IsActivated;
                     isOK &= comp.InputType == CompProperties_WaterNetInput.InputType.WaterNet;
                     isOK &= comp.InputWaterFlowType == CompProperties_WaterNetInput.InputWaterFlowType.Any;
                     isOK &= comp.InputWaterFlow < comp.MaxInputWaterFlow;
                     return isOK;
                 });
 
-                if (inputters_any.Count != 0)
+                if (inputters_any.Count == 0)
                 {
-                    float averageOutputWaterFlow = outputWaterFlow / inputters_any.Count;
-                    foreach (var inputter in inputters_any)
-                    {
-                        CompWaterNetInput comp = inputter.GetComp<CompWaterNetInput>();
-                        float actualInput = Mathf.Min(averageOutputWaterFlow, comp.MaxInputWaterFlow);
-                        comp.InputWaterFlow = actualInput;
-                        outputWaterFlow -= actualInput;
-                    }
+                    break;
+                }
+
+                float averageOutputWaterFlow = outputWaterFlow / inputters_any.Count;
+                foreach (var inputter in inputters_any)
+                {
+                    CompWaterNetInput comp = inputter.GetComp<CompWaterNetInput>();
+                    float actualInput = Mathf.Min(averageOutputWaterFlow, comp.MaxInputWaterFlow);
+                    comp.InputWaterFlow = actualInput;
+                    outputWaterFlow -= actualInput;
                 }
             }
 
@@ -221,35 +236,94 @@ namespace MizuMod
             List<IBuilding_WaterNet> inputters_rain = things.FindAll((t) =>
             {
                 CompWaterNetInput comp = t.GetComp<CompWaterNetInput>();
-                bool isOK = (comp != null);
-                isOK &= comp.IsActivated;
+                if (comp == null)
+                {
+                    return false;
+                }
+                bool isOK = comp.IsActivated;
                 isOK &= comp.InputType == CompProperties_WaterNetInput.InputType.Rain;
-                isOK &= comp.InputWaterFlow < comp.MaxInputWaterFlow;
                 return isOK;
             });
 
             foreach (var inputter in inputters_rain)
             {
                 CompWaterNetInput comp = inputter.GetComp<CompWaterNetInput>();
-                comp.InputWaterFlow = 1.0f * inputter.Map.weatherManager.RainRate;
+                comp.InputWaterFlow = comp.MaxInputWaterFlow * inputter.Map.weatherManager.RainRate;
             }
         }
 
         public void UpdateWaterTankStorage()
         {
-            List<IBuilding_WaterNet> tanks = things.FindAll((t) =>
+            List<IBuilding_WaterNet> notFullTanks = things.FindAll((t) =>
             {
                 CompWaterNetTank comp = t.GetComp<CompWaterNetTank>();
-                bool isOK = comp != null;
-                isOK &= comp.AmountCanAccept > 0.0f;
-                return isOK;
+                //return comp != null && comp.AmountCanAccept > 0.0f;
+                return comp != null;
             });
 
-            foreach (var tank in tanks)
+            foreach (var tank in notFullTanks)
             {
                 CompWaterNetTank tankComp = tank.GetComp<CompWaterNetTank>();
                 CompWaterNetInput inputComp = tank.GetComp<CompWaterNetInput>();
-                tankComp.AddWaterVolume(inputComp.InputWaterFlow / 60000.0f);
+                CompWaterNetOutput outputComp = tank.GetComp<CompWaterNetOutput>();
+                if (tankComp == null)
+                {
+                    continue;
+                }
+                float inputWaterFlow = 0.0f;
+                if (inputComp != null)
+                {
+                    inputWaterFlow = inputComp.InputWaterFlow;
+                }
+                float outputWaterFlow = 0.0f;
+                if (outputComp != null)
+                {
+                    outputWaterFlow = outputComp.OutputWaterFlow;
+                }
+
+                float deltaWaterFlow = inputWaterFlow - outputWaterFlow;
+                if (deltaWaterFlow > 0.0f)
+                {
+                    tankComp.AddWaterVolume(deltaWaterFlow / 60000.0f);
+                }
+                else if (deltaWaterFlow < 0.0f)
+                {
+                    tankComp.DrawWaterVolume(-deltaWaterFlow / 60000.0f);
+                }
+            }
+
+            List<IBuilding_WaterNet> waterNetTanks = things.FindAll((t) =>
+            {
+                CompWaterNetTank tankComp = t.GetComp<CompWaterNetTank>();
+                CompWaterNetInput inputComp = t.GetComp<CompWaterNetInput>();
+                return tankComp != null && inputComp != null && inputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet;
+            });
+            foreach (var tank in waterNetTanks)
+            {
+                CompWaterNetTank tankComp = tank.GetComp<CompWaterNetTank>();
+                if (tankComp.StoredWaterVolume == 0.0f)
+                {
+                    tankComp.StoredWaterType = WaterType.NoWater;
+                }
+            }
+
+            List<IBuilding_WaterNet> rainTanks = things.FindAll((t) =>
+            {
+                CompWaterNetTank tankComp = t.GetComp<CompWaterNetTank>();
+                CompWaterNetInput inputComp = t.GetComp<CompWaterNetInput>();
+                return tankComp != null && inputComp != null && inputComp.InputType == CompProperties_WaterNetInput.InputType.Rain;
+            });
+            foreach (var tank in rainTanks)
+            {
+                CompWaterNetTank tankComp = tank.GetComp<CompWaterNetTank>();
+                if (tankComp.StoredWaterVolume == 0.0f)
+                {
+                    tankComp.StoredWaterType = WaterType.NoWater;
+                }
+                else
+                {
+                    tankComp.StoredWaterType = WaterType.RainWater;
+                }
             }
         }
 
@@ -278,7 +352,39 @@ namespace MizuMod
                 }
             }
 
-            this.WaterType = curWaterType;
+            List<IBuilding_WaterNet> tanks = things.FindAll((t) => t.GetComp<CompWaterNetTank>() != null);
+            if (curWaterType != WaterType.NoWater)
+            {
+                this.waterType = curWaterType;
+                foreach (var tank in tanks)
+                {
+                    CompWaterNetInput inputComp = tank.GetComp<CompWaterNetInput>();
+                    if (inputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet)
+                    {
+                        tank.GetComp<CompWaterNetTank>().StoredWaterType = curWaterType;
+                    }
+                }
+            }
+            else
+            {
+                foreach (var tank in tanks)
+                {
+                    WaterType tankWaterType = tank.GetComp<CompWaterNetTank>().StoredWaterType;
+                    if (tankWaterType != WaterType.NoWater)
+                    {
+                        if (curWaterType == WaterType.NoWater)
+                        {
+                            curWaterType = tank.GetComp<CompWaterNetTank>().StoredWaterType;
+                        }
+                        else
+                        {
+                            curWaterType = (WaterType)Math.Min((int)tank.GetComp<CompWaterNetTank>().StoredWaterType, (int)curWaterType);
+                        }
+                    }
+                    this.waterType = curWaterType;
+                }
+            }
+
         }
     }
 }

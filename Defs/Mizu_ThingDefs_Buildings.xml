@@ -385,9 +385,6 @@
         <maxWaterVolume>1000</maxWaterVolume>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetInput"/>
-      <li Class="MizuMod.CompProperties_WaterNetOutput">
-        <maxOutputWaterFlow>1000</maxOutputWaterFlow>
-      </li>
     </comps>
   </ThingDef>
   

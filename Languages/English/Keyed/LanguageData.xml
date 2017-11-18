@@ -23,6 +23,7 @@
   <MizuDaysWorthOfWaterWarningDialog_NoWater>Your caravan has no water and will become thirsty very quickly.\n\nAre you sure you want to form this caravan?</MizuDaysWorthOfWaterWarningDialog_NoWater>
 
   <MizuWaterFlowOutput>Water Flow Output</MizuWaterFlowOutput>
+  <MizuWaterFlowInput>Water Flow Input</MizuWaterFlowInput>
   <MizuWaterTankStored>Stured Water Volume</MizuWaterTankStored>
 
   <MizuCommandDesignateOpenCloseValveLabel>Designate open/close</MizuCommandDesignateOpenCloseValveLabel>

@@ -122,8 +122,12 @@ namespace MizuMod
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(base.CompInspectStringExtra());
+            if (stringBuilder.ToString() != string.Empty)
+            {
+                stringBuilder.AppendLine();
+            }
 
-            stringBuilder.AppendLine(string.Concat(new string[]
+            stringBuilder.Append(string.Concat(new string[]
             {
                 MizuStrings.InspectWaterTankStored,
                 ": ",
@@ -132,6 +136,10 @@ namespace MizuMod
                 this.MaxWaterVolume.ToString("F0"),
                 " WaterVolume"
             }));
+            if (DebugSettings.godMode)
+            {
+                stringBuilder.Append(string.Format("({0})", this.StoredWaterType));
+            }
 
             return stringBuilder.ToString();
         }

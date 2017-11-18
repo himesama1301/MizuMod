@@ -23,6 +23,7 @@
   <MizuDaysWorthOfWaterWarningDialog_NoWater>キャラバン隊は 飲用水がないので、あっという間に水不足が始まります。\n\n本当に良いのですか？</MizuDaysWorthOfWaterWarningDialog_NoWater>
 
   <MizuWaterFlowOutput>供給水量</MizuWaterFlowOutput>
+  <MizuWaterFlowInput>増加水量</MizuWaterFlowInput>
   <MizuWaterTankStored>貯水量</MizuWaterTankStored>
   
   <MizuCommandDesignateOpenCloseValveLabel>開/閉を指示</MizuCommandDesignateOpenCloseValveLabel>
