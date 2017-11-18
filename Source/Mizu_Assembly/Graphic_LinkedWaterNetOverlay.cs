@@ -30,8 +30,7 @@ namespace MizuMod
             }
             if (parent.OccupiedRect().Contains(c))
             {
-                isFound = true;
-                goto LinkFound;
+                return GenGrid.InBounds(c, parent.Map);
             }
             if (!thing.HasConnector)
             {
@@ -51,15 +50,14 @@ namespace MizuMod
                         continue;
                     }
 
-                    if (t.IsConnectedTo(thing) && t.OccupiedRect().Contains(c))
+                    if (t.IsConnectedOr(thing) && t.OccupiedRect().Contains(c))
                     {
                         isFound = true;
-                        goto LinkFound;
                     }
                 }
+                if (isFound) break;
             }
 
-        LinkFound:
             return GenGrid.InBounds(c, parent.Map) && isFound;
         }
 

@@ -12,11 +12,15 @@ namespace MizuMod
         bool HasConnector { get; }
         bool HasInputConnector { get; }
         bool HasOutputConnector { get; }
+        bool IsSameConnector { get; }
         MapComponent_WaterNetManager WaterNetManager { get; }
-        WaterNet WaterNet { get; set; }
+        WaterNet InputWaterNet { get; set; }
+        WaterNet OutputWaterNet { get; set; }
         Map Map { get; }
         WaterType OutputWaterType { get; }
-        List<IntVec3> Connectors { get; }
+        //List<IntVec3> Connectors { get; }
+        List<IntVec3> InputConnectors { get; }
+        List<IntVec3> OutputConnectors { get; }
         T GetComp<T>() where T : ThingComp;
         CellRect OccupiedRect();
 

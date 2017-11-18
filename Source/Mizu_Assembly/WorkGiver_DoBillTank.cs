@@ -27,7 +27,7 @@ namespace MizuMod
 
             IBuilding_WaterNet building = thing as IBuilding_WaterNet;
             CompWaterNetTank comp = building.GetComp<CompWaterNetTank>();
-            if (building == null || building.WaterNet == null)
+            if (building == null || building.InputWaterNet == null)
             {
                 return null;
             }

@@ -59,6 +59,7 @@
     <Compile Include="Building_RainTank.cs" />
     <Compile Include="Building_UndergroundWaterPump.cs" />
     <Compile Include="Building_Valve.cs" />
+    <Compile Include="Building_WaterFilter.cs" />
     <Compile Include="Building_WaterNet.cs" />
     <Compile Include="Building_WaterNetWorkTable.cs" />
     <Compile Include="CompProperties_WaterNetInput.cs" />

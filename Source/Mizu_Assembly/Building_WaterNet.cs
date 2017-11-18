@@ -14,7 +14,7 @@ namespace MizuMod
         {
             get
             {
-                return FlickUtility.WantsToBeOn(this);
+                return this.HasInputConnector || this.HasOutputConnector;
             }
         }
 
@@ -22,7 +22,7 @@ namespace MizuMod
         {
             get
             {
-                return false;
+                return FlickUtility.WantsToBeOn(this) && this.InputConnectors.Count > 0;
             }
         }
 
@@ -30,7 +30,15 @@ namespace MizuMod
         {
             get
             {
-                return false;
+                return FlickUtility.WantsToBeOn(this) && this.OutputConnectors.Count > 0;
+            }
+        }
+
+        public virtual bool IsSameConnector
+        {
+            get
+            {
+                return true;
             }
         }
 
@@ -42,7 +50,8 @@ namespace MizuMod
             }
         }
 
-        public WaterNet WaterNet { get; set; }
+        public WaterNet InputWaterNet { get; set; }
+        public WaterNet OutputWaterNet { get; set; }
 
         public virtual WaterType OutputWaterType
         {
@@ -52,13 +61,17 @@ namespace MizuMod
             }
         }
 
-        public virtual List<IntVec3> Connectors { get; private set; }
+        //public virtual List<IntVec3> Connectors { get; private set; }
+        public virtual List<IntVec3> InputConnectors { get; private set; }
+        public virtual List<IntVec3> OutputConnectors { get; private set; }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
 
-            this.Connectors = new List<IntVec3>();
+            //this.Connectors = new List<IntVec3>();
+            this.InputConnectors = new List<IntVec3>();
+            this.OutputConnectors = new List<IntVec3>();
             this.CreateConnectors();
 
             this.WaterNetManager.AddThing(this);
@@ -73,7 +86,8 @@ namespace MizuMod
 
         public virtual void CreateConnectors()
         {
-            this.Connectors.Clear();
+            this.InputConnectors.Clear();
+            this.OutputConnectors.Clear();
             CellRect rect = this.OccupiedRect().ExpandedBy(1);
 
             foreach (var cell in rect.EdgeCells)
@@ -94,13 +108,14 @@ namespace MizuMod
                 {
                     continue;
                 }
-                this.Connectors.Add(cell);
+                this.InputConnectors.Add(cell);
+                this.OutputConnectors.Add(cell);
             }
         }
 
         public virtual void PrintForGrid(SectionLayer sectionLayer)
         {
-            if (this.HasConnector)
+            if (FlickUtility.WantsToBeOn(this))
             {
                 MizuGraphics.LinkedWaterNetOverlay.Print(sectionLayer, this);
             }
@@ -122,19 +137,34 @@ namespace MizuMod
                 {
                     stringBuilder.AppendLine();
                 }
-                if (this.WaterNet != null)
+                if (this.InputWaterNet != null)
                 {
                     stringBuilder.Append(string.Join(",", new string[] {
-                        string.Format("NetID({0})", this.WaterNet.ID),
-                        string.Format("In({0})", this.WaterNet.LastInputWaterFlow.ToString("F0")),
-                        string.Format("Out({0})", this.WaterNet.LastOutputWaterFlow.ToString("F0")),
-                        string.Format("Stored({0})", this.WaterNet.StoredWaterVolume.ToString("F0")),
-                        string.Format("Type({0})", this.WaterNet.WaterType),
+                        string.Format("InNetID({0})", this.InputWaterNet.ID),
+                        string.Format("In({0})", this.InputWaterNet.LastInputWaterFlow.ToString("F0")),
+                        string.Format("Out({0})", this.InputWaterNet.LastOutputWaterFlow.ToString("F0")),
+                        string.Format("Stored({0})", this.InputWaterNet.StoredWaterVolume.ToString("F0")),
+                        string.Format("Type({0})", this.InputWaterNet.WaterType),
                     }));
                 }
                 else
                 {
-                    stringBuilder.Append("Net(null)");
+                    stringBuilder.Append("InNet(null)");
+                }
+                stringBuilder.AppendLine();
+                if (this.OutputWaterNet != null)
+                {
+                    stringBuilder.Append(string.Join(",", new string[] {
+                        string.Format("OutNetID({0})", this.OutputWaterNet.ID),
+                        string.Format("In({0})", this.OutputWaterNet.LastInputWaterFlow.ToString("F0")),
+                        string.Format("Out({0})", this.OutputWaterNet.LastOutputWaterFlow.ToString("F0")),
+                        string.Format("Stored({0})", this.OutputWaterNet.StoredWaterVolume.ToString("F0")),
+                        string.Format("Type({0})", this.OutputWaterNet.WaterType),
+                    }));
+                }
+                else
+                {
+                    stringBuilder.Append("OutNet(null)");
                 }
             }
 

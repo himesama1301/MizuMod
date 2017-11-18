@@ -12,8 +12,12 @@ namespace MizuMod
     {
         public override void CreateConnectors()
         {
-            this.Connectors.Clear();
-            this.Connectors.Add(this.Position + this.Rotation.FacingCell);
+            //this.Connectors.Clear();
+            this.InputConnectors.Clear();
+            this.OutputConnectors.Clear();
+
+            this.InputConnectors.Add(this.Position + this.Rotation.FacingCell);
+            this.OutputConnectors.Add(this.Position + this.Rotation.FacingCell);
         }
     }
 }

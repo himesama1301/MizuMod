@@ -55,13 +55,23 @@ namespace MizuMod
 
         public void AddThing(IBuilding_WaterNet thing)
         {
-            thing.WaterNet = this;
+            thing.InputWaterNet = this;
+            thing.OutputWaterNet = this;
+            things.Add(thing);
+        }
+        public void AddInputThing(IBuilding_WaterNet thing)
+        {
+            thing.InputWaterNet = this;
+            things.Add(thing);
+        }
+        public void AddOutputThing(IBuilding_WaterNet thing)
+        {
+            thing.OutputWaterNet = this;
             things.Add(thing);
         }
 
         public void RemoveThing(IBuilding_WaterNet thing)
         {
-            thing.WaterNet = null;
             things.Remove(thing);
         }
 
@@ -69,7 +79,8 @@ namespace MizuMod
         {
             foreach (var thing in things)
             {
-                thing.WaterNet = null;
+                thing.InputWaterNet = null;
+                thing.OutputWaterNet = null;
             }
             things.Clear();
         }
@@ -149,7 +160,7 @@ namespace MizuMod
             List<IBuilding_WaterNet> outputters = things.FindAll((t) =>
             {
                 CompWaterNetOutput comp = t.GetComp<CompWaterNetOutput>();
-                return comp != null && comp.IsActivated;
+                return t.OutputWaterNet == this && comp != null && comp.IsActivated;
             });
 
             // 全出力の合計値を算出
@@ -180,6 +191,7 @@ namespace MizuMod
                     return false;
                 }
                 bool isOK = comp.IsActivated;
+                isOK &= t.InputWaterNet == this;
                 isOK &= comp.InputType == CompProperties_WaterNetInput.InputType.WaterNet;
                 isOK &= comp.InputWaterFlowType == CompProperties_WaterNetInput.InputWaterFlowType.Constant;
                 return isOK;
@@ -190,7 +202,7 @@ namespace MizuMod
             foreach (var inputter in inputters_constant)
             {
                 CompWaterNetInput comp = inputter.GetComp<CompWaterNetInput>();
-                if (outputWaterFlow >= comp.MaxInputWaterFlow)
+                if (outputWaterFlow >= comp.MaxInputWaterFlow && comp.AcceptWaterTypes.Contains(this.WaterType))
                 {
                     comp.InputWaterFlow = comp.MaxInputWaterFlow;
                     outputWaterFlow -= comp.MaxInputWaterFlow;
@@ -208,9 +220,11 @@ namespace MizuMod
                         return false;
                     }
                     bool isOK = comp.IsActivated;
+                    isOK &= t.InputWaterNet == this;
                     isOK &= comp.InputType == CompProperties_WaterNetInput.InputType.WaterNet;
                     isOK &= comp.InputWaterFlowType == CompProperties_WaterNetInput.InputWaterFlowType.Any;
                     isOK &= comp.InputWaterFlow < comp.MaxInputWaterFlow;
+                    isOK &= comp.AcceptWaterTypes.Contains(this.WaterType);
                     return isOK;
                 });
 
@@ -241,6 +255,7 @@ namespace MizuMod
                     return false;
                 }
                 bool isOK = comp.IsActivated;
+                isOK &= t.InputWaterNet == this;
                 isOK &= comp.InputType == CompProperties_WaterNetInput.InputType.Rain;
                 return isOK;
             });
@@ -333,6 +348,11 @@ namespace MizuMod
 
             foreach (var t in things)
             {
+                if (t.OutputWaterNet != this)
+                {
+                    continue;
+                }
+
                 CompWaterNetOutput comp = t.GetComp<CompWaterNetOutput>();
                 if (comp == null)
                 {

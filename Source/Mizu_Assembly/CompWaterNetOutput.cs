@@ -24,6 +24,20 @@ namespace MizuMod
                 return this.Props.maxOutputWaterFlow;
             }
         }
+        protected virtual WaterType ForceOutputWaterType
+        {
+            get
+            {
+                return this.Props.forceOutputWaterType;
+            }
+        }
+        protected virtual CompProperties_WaterNetOutput.OutputWaterFlowType OutputWaterFlowType
+        {
+            get
+            {
+                return this.Props.outputWaterFlowType;
+            }
+        }
 
         public float OutputWaterFlow { get; private set; }
         public WaterType OutputWaterType { get; private set; }
@@ -78,9 +92,37 @@ namespace MizuMod
 
             if (!this.HasTank)
             {
-                // 貯蔵機能なし=ポンプ
-                this.OutputWaterType = this.WaterNetBuilding.OutputWaterType;
-                this.OutputWaterFlow = this.MaxOutputWaterFlow;
+                CompWaterNetInput inputComp = this.WaterNetBuilding.GetComp<CompWaterNetInput>();
+                if (inputComp == null)
+                {
+                    // 貯蔵機能なし、入力なし=ポンプ
+                    this.OutputWaterType = this.WaterNetBuilding.OutputWaterType;
+                    this.OutputWaterFlow = this.MaxOutputWaterFlow;
+                }
+                else
+                {
+                    // 貯蔵機能なし、入力あり=フィルター
+                    if (this.OutputWaterFlowType == CompProperties_WaterNetOutput.OutputWaterFlowType.Constant)
+                    {
+                        this.OutputWaterFlow = this.MaxOutputWaterFlow;
+                    }
+                    else
+                    {
+                        this.OutputWaterFlow = inputComp.InputWaterFlow;
+                    }
+                    if (this.OutputWaterFlow == 0.0f)
+                    {
+                        this.OutputWaterType = WaterType.NoWater;
+                    }
+                    else if (this.ForceOutputWaterType != WaterType.Undefined)
+                    {
+                        this.OutputWaterType = this.ForceOutputWaterType;
+                    }
+                    else
+                    {
+                        this.OutputWaterType = this.WaterNetBuilding.OutputWaterType;
+                    }
+                }
                 return;
             }
 
@@ -92,8 +134,9 @@ namespace MizuMod
                 return;
             }
 
+            // 水道網に満タンでないタンクがあるか探す
             bool foundNotFullTank = false;
-            foreach (var t in this.WaterNetBuilding.WaterNet.Things)
+            foreach (var t in this.WaterNetBuilding.OutputWaterNet.Things)
             {
                 CompWaterNetTank tankComp = t.GetComp<CompWaterNetTank>();
                 CompWaterNetInput inputComp = t.GetComp<CompWaterNetInput>();
@@ -102,11 +145,11 @@ namespace MizuMod
                 {
                     continue;
                 }
-                if (inputComp == null || inputComp.InputType != CompProperties_WaterNetInput.InputType.WaterNet)
+                if (inputComp == null || !inputComp.IsActivated || inputComp.InputType != CompProperties_WaterNetInput.InputType.WaterNet)
                 {
                     continue;
                 }
-                if (tankComp == null || tankComp.AmountCanAccept == 0.0f)
+                if (tankComp != null && tankComp.AmountCanAccept == 0.0f)
                 {
                     continue;
                 }

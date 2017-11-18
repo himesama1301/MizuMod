@@ -85,48 +85,55 @@ namespace MizuMod
             return num;
         }
 
-        public static bool IsConnectedTo(this IBuilding_WaterNet t1, IBuilding_WaterNet t2)
+        public static bool IsOutputTo(this IBuilding_WaterNet t1, IBuilding_WaterNet t2)
         {
-            if (!t1.HasConnector)
+            if (!t1.HasOutputConnector)
             {
                 return false;
             }
-            if (!t2.HasConnector)
+            if (!t2.HasInputConnector)
             {
                 return false;
             }
 
-            bool t1_connected_to_t2 = false;
-            foreach (var connectVec1 in t1.Connectors)
+            bool t1_out_t2_body = false;
+            foreach (var vec1 in t1.OutputConnectors)
             {
-                foreach (var occupiedVec2 in t2.OccupiedRect())
+                foreach (var vec2 in t2.OccupiedRect())
                 {
-                    if (connectVec1 == occupiedVec2)
+                    if (vec1 == vec2)
                     {
-                        t1_connected_to_t2 = true;
-                        goto T1toT2Checked;
+                        t1_out_t2_body = true;
+                        break;
                     }
                 }
+                if (t1_out_t2_body) break;
             }
 
-            T1toT2Checked:
-
-            bool t2_connected_to_t1 = false;
-            foreach (var connectVec2 in t2.Connectors)
+            bool t1_body_t2_in = false;
+            foreach (var vec1 in t1.OccupiedRect())
             {
-                foreach (var occupiedVec1 in t1.OccupiedRect())
+                foreach (var vec2 in t2.InputConnectors)
                 {
-                    if (connectVec2 == occupiedVec1)
+                    if (vec1 == vec2)
                     {
-                        t2_connected_to_t1 = true;
-                        goto T2toT1Checked;
+                        t1_body_t2_in = true;
+                        break;
                     }
                 }
+                if (t1_body_t2_in) break;
             }
 
-            T2toT1Checked:
+            return t1_out_t2_body && t1_body_t2_in;
+        }
 
-            return t1_connected_to_t2 && t2_connected_to_t1;
+        public static bool IsConnectedOr(this IBuilding_WaterNet t1, IBuilding_WaterNet t2)
+        {
+            return t1.IsOutputTo(t2) || t2.IsOutputTo(t1);
+        }
+        public static bool IsConnectedAnd(this IBuilding_WaterNet t1, IBuilding_WaterNet t2)
+        {
+            return t1.IsOutputTo(t2) && t2.IsOutputTo(t1);
         }
 
         public static WaterTerrainType GetWaterTerrainType(this TerrainDef def)

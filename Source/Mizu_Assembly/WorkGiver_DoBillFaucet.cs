@@ -26,15 +26,15 @@ namespace MizuMod
             }
 
             IBuilding_WaterNet building = thing as IBuilding_WaterNet;
-            if (building == null || building.WaterNet == null)
+            if (building == null || building.InputWaterNet == null)
             {
                 return null;
             }
-            if (recipe.needWaterType != building.WaterNet.WaterType)
+            if (recipe.needWaterType != building.InputWaterNet.WaterType)
             {
                 return null;
             }
-            if (recipe.needWaterVolume > building.WaterNet.StoredWaterVolume)
+            if (recipe.needWaterVolume > building.InputWaterNet.StoredWaterVolume)
             {
                 return null;
             }

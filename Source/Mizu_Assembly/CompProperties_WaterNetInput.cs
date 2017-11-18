@@ -25,6 +25,15 @@ namespace MizuMod
         public InputType inputType = InputType.WaterNet;
         public InputWaterFlowType inputWaterFlowType = InputWaterFlowType.Any;
 
+        public List<WaterType> acceptWaterTypes = new List<WaterType>
+        {
+            WaterType.ClearWater,
+            WaterType.NormalWater,
+            WaterType.RainWater,
+            WaterType.MudWater,
+            WaterType.SeaWater,
+        };
+
         public CompProperties_WaterNetInput() : base(typeof(CompWaterNetInput)) { }
         public CompProperties_WaterNetInput(Type compClass) : base(compClass) { }
     }

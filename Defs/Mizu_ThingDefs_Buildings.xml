@@ -516,4 +516,101 @@
       <li>MizuMod.PlaceWorker_Faucet</li>
     </placeWorkers>  </ThingDef>
   
+  <ThingDef Name="Mizu_WaterFilterBase" Abstract="True">
+    <thingClass>MizuMod.Building_WaterFilter</thingClass>
+    <category>Building</category>
+    <graphicData>
+      <texPath>Things/Building/Production/Mizu_WaterFilter</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <damageData>
+        <rect>(0,0.35,1,0.3)</rect>
+      </damageData>
+    </graphicData>
+    <building>
+      <isInert>true</isInert>
+      <isEdifice>false</isEdifice>
+    </building>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Standable</passability>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <tickerType>Normal</tickerType>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <WorkToBuild>35</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>-2</Beauty>
+    </statBases>
+    <placingDraggableDimensions>1</placingDraggableDimensions>
+    <rotatable>true</rotatable>
+    <selectable>true</selectable>
+    <neverMultiSelect>true</neverMultiSelect>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <repairEffect>Repair</repairEffect>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Mizu</designationCategory>
+    <designationHotKey>Misc1</designationHotKey>
+    <filthLeaving>BuildingRubble</filthLeaving>
+    <placeWorkers>
+      <li>MizuMod.PlaceWorker_Valve</li>
+    </placeWorkers>
+  </ThingDef>
+
+  <ThingDef ParentName="Mizu_WaterFilterBase">
+    <defName>Mizu_DirtyWaterFilter</defName>
+    <label>Dirty water filter</label>
+    <description>Dirty water filter description.</description>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>1</costStuffCount>
+    <comps>
+      <li Class="MizuMod.CompProperties_WaterNetInput">
+        <maxInputWaterFlow>100</maxInputWaterFlow>
+        <acceptWaterTypes>
+          <li>RainWater</li>
+          <li>MudWater</li>
+          <li>SeaWater</li>
+        </acceptWaterTypes>
+      </li>
+      <li Class="MizuMod.CompProperties_WaterNetOutput">
+        <maxOutputWaterFlow>100</maxOutputWaterFlow>
+        <forceOutputWaterType>NormalWater</forceOutputWaterType>
+      </li>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>50</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="Mizu_WaterFilterBase">
+    <defName>Mizu_ClearWaterFilter</defName>
+    <label>Clear water filter</label>
+    <description>Clear water filter description.</description>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>1</costStuffCount>
+    <comps>
+      <li Class="MizuMod.CompProperties_WaterNetInput">
+        <maxInputWaterFlow>100</maxInputWaterFlow>
+        <acceptWaterTypes>
+          <li>NormalWater</li>
+        </acceptWaterTypes>
+      </li>
+      <li Class="MizuMod.CompProperties_WaterNetOutput">
+        <maxOutputWaterFlow>100</maxOutputWaterFlow>
+        <forceOutputWaterType>ClearWater</forceOutputWaterType>
+      </li>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>50</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+    </comps>
+  </ThingDef>
 </Defs>

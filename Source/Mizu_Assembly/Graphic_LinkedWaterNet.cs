@@ -27,7 +27,7 @@ namespace MizuMod
             {
                 foreach (var t in net.Things)
                 {
-                    if (thing.IsConnectedTo(t))
+                    if (thing.IsConnectedOr(t))
                     {
                         if (t.OccupiedRect().Contains(c))
                         {

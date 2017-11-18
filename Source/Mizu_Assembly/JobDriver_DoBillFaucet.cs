@@ -22,7 +22,7 @@ namespace MizuMod
                     Log.Error("workTable is null");
                 }
                 FaucetRecipeDef recipe = this.job.bill.recipe as FaucetRecipeDef;
-                workTable.WaterNet.DrawWaterVolume(recipe.needWaterVolume);
+                workTable.InputWaterNet.DrawWaterVolume(recipe.needWaterVolume);
             };
             lastToil.defaultCompleteMode = ToilCompleteMode.Instant;
 

@@ -36,6 +36,13 @@ namespace MizuMod
                 return this.Props.inputWaterFlowType;
             }
         }
+        public virtual List<WaterType> AcceptWaterTypes
+        {
+            get
+            {
+                return this.Props.acceptWaterTypes;
+            }
+        }
 
         public float InputWaterFlow { get; set; }
 
