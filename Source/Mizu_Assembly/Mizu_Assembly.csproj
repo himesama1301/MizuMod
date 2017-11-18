@@ -60,13 +60,10 @@
     <Compile Include="Building_UndergroundWaterPump.cs" />
     <Compile Include="Building_Valve.cs" />
     <Compile Include="Building_WaterNet.cs" />
-    <Compile Include="Building_WaterNetBase.cs" />
     <Compile Include="Building_WaterNetWorkTable.cs" />
-    <Compile Include="CompProperties_RainTank.cs" />
     <Compile Include="CompProperties_WaterNetInput.cs" />
     <Compile Include="CompProperties_WaterNetOutput.cs" />
     <Compile Include="CompProperties_WaterNetTank.cs" />
-    <Compile Include="CompProperties_WaterTank.cs" />
     <Compile Include="CompWaterNetInput.cs" />
     <Compile Include="CompWaterNetOutput.cs" />
     <Compile Include="CompProperties_WaterNet.cs" />
@@ -78,9 +75,7 @@
     <Compile Include="FaucetRecipeDef.cs" />
     <Compile Include="Graphic_LinkedWaterNet.cs" />
     <Compile Include="Graphic_LinkedWaterNetOverlay.cs" />
-    <Compile Include="IBuilding_Pump.cs" />
     <Compile Include="IBuilding_WaterNet.cs" />
-    <Compile Include="IBuilding_WaterNetBase.cs" />
     <Compile Include="JobDriver_DoBillFaucet.cs" />
     <Compile Include="JobDriver_DoBillTank.cs" />
     <Compile Include="JobDriver_DrinkWater.cs" />
