@@ -395,8 +395,8 @@
     <thingClass>MizuMod.Building_RainTank</thingClass>
     <category>Building</category>
     <graphicData>
-      <texPath>Things/Building/Production/Mizu_WaterTank</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Building/Production/Mizu_RainTank</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
       <drawSize>(2.33,2.33)</drawSize>
       <damageData>
         <rect>(0.05,0.05,0.95,0.95)</rect>
@@ -420,7 +420,7 @@
       <Flammability>1.0</Flammability>
       <Beauty>-6</Beauty>
     </statBases>
-    <rotatable>false</rotatable>
+    <rotatable>true</rotatable>
     <selectable>true</selectable>
     <neverMultiSelect>true</neverMultiSelect>
     <drawerType>MapMeshAndRealTime</drawerType>
