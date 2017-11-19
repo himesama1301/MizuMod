@@ -154,118 +154,222 @@ namespace MizuMod
             }
         }
 
-        public void UpdateOutputWaterFlow()
-        {
-            // 稼働中の出力機能付き建造物を取得
-            List<IBuilding_WaterNet> outputters = things.FindAll((t) =>
-            {
-                CompWaterNetOutput comp = t.GetComp<CompWaterNetOutput>();
-                return t.OutputWaterNet == this && comp != null && comp.IsActivated;
-            });
+        //public void UpdateOutputWaterFlow()
+        //{
+        //    // 稼働中の出力機能付き建造物を取得
+        //    List<IBuilding_WaterNet> outputters = things.FindAll((t) =>
+        //    {
+        //        CompWaterNetOutput comp = t.GetComp<CompWaterNetOutput>();
+        //        return t.OutputWaterNet == this && comp != null && comp.IsActivated;
+        //    });
 
-            // 全出力の合計値を算出
-            float outputWaterFlow = 0.0f;
-            foreach (var outputter in outputters)
-            {
-                outputWaterFlow += outputter.GetComp<CompWaterNetOutput>().OutputWaterFlow;
-            }
-            this.LastOutputWaterFlow = outputWaterFlow;
-        }
+        //    // 全出力の合計値を算出
+        //    float outputWaterFlow = 0.0f;
+        //    foreach (var outputter in outputters)
+        //    {
+        //        outputWaterFlow += outputter.GetComp<CompWaterNetOutput>().OutputWaterFlow;
+        //    }
+        //    this.LastOutputWaterFlow = outputWaterFlow;
+        //}
 
-        public void UpdateInputWaterFlow()
+        public void UpdateWaterFlow()
         {
+            // t1 出力
+            // t2 入力
+            // 出力機能のあるもの毎に出力を割り振っていく
+            // 自分自身には出力しない
+
             // 入力値をクリア
-            foreach (var t in things.FindAll((t) => t.GetComp<CompWaterNetInput>() != null))
+            List<IBuilding_WaterNet> inputList = things.FindAll((t) =>
+            {
+                CompWaterNetInput inputComp = t.GetComp<CompWaterNetInput>();
+                return (inputComp != null) && (t.InputWaterNet == this);
+            });
+            foreach (var t in inputList)
             {
                 t.GetComp<CompWaterNetInput>().InputWaterFlow = 0.0f;
             }
 
-            // 水道網から入力する装置の処理
-
-            // 一定の入力が必要な入力装置を取得
-            List<IBuilding_WaterNet> inputters_constant = things.FindAll((t) =>
+            foreach (var t1 in things)
             {
-                CompWaterNetInput comp = t.GetComp<CompWaterNetInput>();
-                if (comp == null)
+                CompWaterNetOutput t1out = t1.GetComp<CompWaterNetOutput>();
+                CompWaterNetInput t1in = t1.GetComp<CompWaterNetInput>();
+                CompWaterNetTank t1tank = t1.GetComp<CompWaterNetTank>();
+
+                if (t1out == null || t1out.OutputWaterFlow == 0.0f || t1.OutputWaterNet != this)
                 {
-                    return false;
+                    continue;
                 }
-                bool isOK = comp.IsActivated;
-                isOK &= t.InputWaterNet == this;
-                isOK &= comp.InputType == CompProperties_WaterNetInput.InputType.WaterNet;
-                isOK &= comp.InputWaterFlowType == CompProperties_WaterNetInput.InputWaterFlowType.Constant;
-                return isOK;
-            });
 
-            // 一定の入力が必要な入力装置の入力から先に割り振る
-            float outputWaterFlow = this.LastOutputWaterFlow;
-            foreach (var inputter in inputters_constant)
-            {
-                CompWaterNetInput comp = inputter.GetComp<CompWaterNetInput>();
-                if (outputWaterFlow >= comp.MaxInputWaterFlow && comp.AcceptWaterTypes.Contains(this.WaterType))
+                if (t1in != null && t1in.InputType == CompProperties_WaterNetInput.InputType.Rain)
                 {
-                    comp.InputWaterFlow = comp.MaxInputWaterFlow;
-                    outputWaterFlow -= comp.MaxInputWaterFlow;
+                    t1in.InputWaterFlow = t1in.MaxInputWaterFlow * this.Manager.map.weatherManager.RainRate;
                 }
-            }
 
-            // 余った出力を、入力値が任意で良い入力装置に割り振る
-            while (outputWaterFlow > 0.0f)
-            {
-                List<IBuilding_WaterNet> inputters_any = things.FindAll((t) =>
+                List<IBuilding_WaterNet> t2list = things.FindAll((t) =>
                 {
-                    CompWaterNetInput comp = t.GetComp<CompWaterNetInput>();
-                    if (comp == null)
-                    {
-                        return false;
-                    }
-                    bool isOK = comp.IsActivated;
-                    isOK &= t.InputWaterNet == this;
-                    isOK &= comp.InputType == CompProperties_WaterNetInput.InputType.WaterNet;
-                    isOK &= comp.InputWaterFlowType == CompProperties_WaterNetInput.InputWaterFlowType.Any;
-                    isOK &= comp.InputWaterFlow < comp.MaxInputWaterFlow;
-                    isOK &= comp.AcceptWaterTypes.Contains(this.WaterType);
+                    CompWaterNetOutput tout = t.GetComp<CompWaterNetOutput>();
+                    CompWaterNetInput tin = t.GetComp<CompWaterNetInput>();
+                    CompWaterNetTank ttank = t.GetComp<CompWaterNetTank>();
+
+                    bool isOK = (t != t1);
+                    if (isOK) isOK &= t.InputWaterNet == this;
+                    if (isOK) isOK &= (tin != null);
+                    if (isOK) isOK &= tin.IsActivated;
+                    if (isOK) isOK &= (tin.InputType == CompProperties_WaterNetInput.InputType.WaterNet);
+                    if (isOK) isOK &= ((ttank == null) || (ttank.AmountCanAccept > 0.0f));
+                    if (isOK) isOK &= (tin.AcceptWaterTypes.Contains(this.WaterType));
                     return isOK;
                 });
 
-                if (inputters_any.Count == 0)
+                List<IBuilding_WaterNet> t2list_constant = t2list.FindAll((t) =>
                 {
-                    break;
+                    CompWaterNetInput tin = t.GetComp<CompWaterNetInput>();
+                    return tin.InputWaterFlowType == CompProperties_WaterNetInput.InputWaterFlowType.Constant;
+                });
+
+                float outputWaterFlow = t1out.OutputWaterFlow;
+                foreach (var t2 in t2list_constant)
+                {
+                    CompWaterNetInput t2in = t2.GetComp<CompWaterNetInput>();
+                    if (outputWaterFlow >= t2in.MaxInputWaterFlow)
+                    {
+                        t2in.InputWaterFlow = t2in.MaxInputWaterFlow;
+                        outputWaterFlow -= t2in.MaxInputWaterFlow;
+                    }
                 }
 
-                float averageOutputWaterFlow = outputWaterFlow / inputters_any.Count;
-                foreach (var inputter in inputters_any)
+                // 余った出力を、入力値が任意で良い入力装置に割り振る
+                while (outputWaterFlow > 0.0f)
                 {
-                    CompWaterNetInput comp = inputter.GetComp<CompWaterNetInput>();
-                    float actualInput = Mathf.Min(averageOutputWaterFlow, comp.MaxInputWaterFlow);
-                    comp.InputWaterFlow = actualInput;
-                    outputWaterFlow -= actualInput;
+                    List<IBuilding_WaterNet> t2list_any = t2list.FindAll((t) =>
+                    {
+                        CompWaterNetInput tin = t.GetComp<CompWaterNetInput>();
+                        CompWaterNetTank ttank = t.GetComp<CompWaterNetTank>();
+
+                        bool isOK = ((ttank == null) || (ttank.AmountCanAccept > 0.0f));
+                        if (isOK) isOK &= (tin.InputWaterFlowType == CompProperties_WaterNetInput.InputWaterFlowType.Any);
+                        if (isOK) isOK &= (tin.InputWaterFlow < tin.MaxInputWaterFlow);
+                        return isOK;
+                    });
+
+                    if (t2list_any.Count == 0)
+                    {
+                        break;
+                    }
+
+                    float aveOutputWaterFlow = outputWaterFlow / t2list_any.Count;
+                    foreach (var t2 in t2list_any)
+                    {
+                        CompWaterNetInput t2in = t2.GetComp<CompWaterNetInput>();
+                        float actualInputWaterFlow = Mathf.Min(aveOutputWaterFlow, t2in.MaxInputWaterFlow - t2in.InputWaterFlow);
+                        t2in.InputWaterFlow += actualInputWaterFlow;
+                        outputWaterFlow -= actualInputWaterFlow;
+                    }
                 }
-            }
-
-            this.LastInputWaterFlow = this.LastOutputWaterFlow - outputWaterFlow;
-
-            // 雨からの入力
-
-            List<IBuilding_WaterNet> inputters_rain = things.FindAll((t) =>
-            {
-                CompWaterNetInput comp = t.GetComp<CompWaterNetInput>();
-                if (comp == null)
-                {
-                    return false;
-                }
-                bool isOK = comp.IsActivated;
-                isOK &= t.InputWaterNet == this;
-                isOK &= comp.InputType == CompProperties_WaterNetInput.InputType.Rain;
-                return isOK;
-            });
-
-            foreach (var inputter in inputters_rain)
-            {
-                CompWaterNetInput comp = inputter.GetComp<CompWaterNetInput>();
-                comp.InputWaterFlow = comp.MaxInputWaterFlow * inputter.Map.weatherManager.RainRate;
             }
         }
+
+        //public void UpdateInputWaterFlow()
+        //{
+        //    // 入力値をクリア
+        //    foreach (var t in things.FindAll((t) => t.GetComp<CompWaterNetInput>() != null))
+        //    {
+        //        t.GetComp<CompWaterNetInput>().InputWaterFlow = 0.0f;
+        //    }
+
+        //    // 水道網から入力する装置の処理
+
+        //    // 一定の入力が必要な入力装置を取得
+        //    List<IBuilding_WaterNet> inputters_constant = things.FindAll((t) =>
+        //    {
+        //        CompWaterNetInput inputComp = t.GetComp<CompWaterNetInput>();
+        //        if (inputComp == null)
+        //        {
+        //            return false;
+        //        }
+        //        CompWaterNetTank tankComp = t.GetComp<CompWaterNetTank>();
+        //        CompWaterNetOutput outputComp = t.GetComp<CompWaterNetOutput>();
+        //        bool isOK = inputComp.IsActivated;
+        //        isOK &= (tankComp == null) || (outputComp == null) || (outputComp.OutputWaterFlow == 0.0f);
+        //        isOK &= t.InputWaterNet == this;
+        //        isOK &= inputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet;
+        //        isOK &= inputComp.InputWaterFlowType == CompProperties_WaterNetInput.InputWaterFlowType.Constant;
+        //        return isOK;
+        //    });
+
+        //    // 一定の入力が必要な入力装置の入力から先に割り振る
+        //    float outputWaterFlow = this.LastOutputWaterFlow;
+        //    foreach (var inputter in inputters_constant)
+        //    {
+        //        CompWaterNetInput comp = inputter.GetComp<CompWaterNetInput>();
+        //        if (outputWaterFlow >= comp.MaxInputWaterFlow && comp.AcceptWaterTypes.Contains(this.WaterType))
+        //        {
+        //            comp.InputWaterFlow = comp.MaxInputWaterFlow;
+        //            outputWaterFlow -= comp.MaxInputWaterFlow;
+        //        }
+        //    }
+
+        //    // 余った出力を、入力値が任意で良い入力装置に割り振る
+        //    while (outputWaterFlow > 0.0f)
+        //    {
+        //        List<IBuilding_WaterNet> inputters_any = things.FindAll((t) =>
+        //        {
+        //            CompWaterNetInput inputComp = t.GetComp<CompWaterNetInput>();
+        //            if (inputComp == null)
+        //            {
+        //                return false;
+        //            }
+        //            CompWaterNetTank tankComp = t.GetComp<CompWaterNetTank>();
+        //            CompWaterNetOutput outputComp = t.GetComp<CompWaterNetOutput>();
+        //            bool isOK = inputComp.IsActivated;
+        //            isOK &= (tankComp == null) || (outputComp == null) || (outputComp.OutputWaterFlow == 0.0f);
+        //            isOK &= t.InputWaterNet == this;
+        //            isOK &= inputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet;
+        //            isOK &= inputComp.InputWaterFlowType == CompProperties_WaterNetInput.InputWaterFlowType.Any;
+        //            isOK &= inputComp.InputWaterFlow < inputComp.MaxInputWaterFlow;
+        //            isOK &= inputComp.AcceptWaterTypes.Contains(this.WaterType);
+        //            return isOK;
+        //        });
+
+        //        if (inputters_any.Count == 0)
+        //        {
+        //            break;
+        //        }
+
+        //        float averageOutputWaterFlow = outputWaterFlow / inputters_any.Count;
+        //        foreach (var inputter in inputters_any)
+        //        {
+        //            CompWaterNetInput comp = inputter.GetComp<CompWaterNetInput>();
+        //            float actualInput = Mathf.Min(averageOutputWaterFlow, comp.MaxInputWaterFlow);
+        //            comp.InputWaterFlow = actualInput;
+        //            outputWaterFlow -= actualInput;
+        //        }
+        //    }
+
+        //    this.LastInputWaterFlow = this.LastOutputWaterFlow - outputWaterFlow;
+
+        //    // 雨からの入力
+
+        //    List<IBuilding_WaterNet> inputters_rain = things.FindAll((t) =>
+        //    {
+        //        CompWaterNetInput comp = t.GetComp<CompWaterNetInput>();
+        //        if (comp == null)
+        //        {
+        //            return false;
+        //        }
+        //        bool isOK = comp.IsActivated;
+        //        isOK &= t.InputWaterNet == this;
+        //        isOK &= comp.InputType == CompProperties_WaterNetInput.InputType.Rain;
+        //        return isOK;
+        //    });
+
+        //    foreach (var inputter in inputters_rain)
+        //    {
+        //        CompWaterNetInput comp = inputter.GetComp<CompWaterNetInput>();
+        //        comp.InputWaterFlow = comp.MaxInputWaterFlow * inputter.Map.weatherManager.RainRate;
+        //    }
+        //}
 
         public void UpdateWaterTankStorage()
         {

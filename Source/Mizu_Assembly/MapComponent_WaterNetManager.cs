@@ -311,12 +311,16 @@ namespace MizuMod
 
             foreach (var net in nets)
             {
-                net.UpdateOutputWaterFlow();
+                net.UpdateWaterFlow();
             }
-            foreach (var net in nets)
-            {
-                net.UpdateInputWaterFlow();
-            }
+            //foreach (var net in nets)
+            //{
+            //    net.UpdateOutputWaterFlow();
+            //}
+            //foreach (var net in nets)
+            //{
+            //    net.UpdateInputWaterFlow();
+            //}
             foreach (var net in nets)
             {
                 net.UpdateWaterTankStorage();

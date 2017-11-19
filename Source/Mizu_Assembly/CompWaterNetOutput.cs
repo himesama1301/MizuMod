@@ -134,7 +134,7 @@ namespace MizuMod
                 return;
             }
 
-            // 水道網に満タンでないタンクがあるか探す
+            // 水道網に、自分自身ではなく水道網から入力を受け付けていて、(タンクではない)or(タンクだが満タンではない)があるか探す
             bool foundNotFullTank = false;
             foreach (var t in this.WaterNetBuilding.OutputWaterNet.Things)
             {
@@ -160,9 +160,19 @@ namespace MizuMod
 
             if (foundNotFullTank)
             {
-                // 貯蔵機能あり、中身あり、水道網の中に満タンでないタンクあり
-                this.OutputWaterType = tankComp.StoredWaterType;
-                this.OutputWaterFlow = this.MaxOutputWaterFlow;
+                CompWaterNetInput inputComp = this.WaterNetBuilding.GetComp<CompWaterNetInput>();
+                if (inputComp != null && inputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet && inputComp.InputWaterFlow > 0.0f)
+                {
+                    // 貯蔵機能あり、中身あり、水道網の中に満タンでないタンクあり、水道網からの供給を受けている
+                    this.OutputWaterType = this.WaterNetBuilding.OutputWaterType;
+                    this.OutputWaterFlow = 0;
+                }
+                else
+                {
+                    // 貯蔵機能あり、中身あり、水道網の中に満タンでないタンクあり、水道網からの供給を受けていない
+                    this.OutputWaterType = tankComp.StoredWaterType;
+                    this.OutputWaterFlow = this.MaxOutputWaterFlow;
+                }
             }
             else
             {
