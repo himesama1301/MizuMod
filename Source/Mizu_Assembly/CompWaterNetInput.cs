@@ -89,33 +89,33 @@ namespace MizuMod
             //this.UpdateInputWaterStatus();
         }
 
-        public void UpdateInputWaterStatus()
-        {
-            if (!this.IsActivated)
-            {
-                // 機能していない
-                this.InputWaterFlow = 0f;
-                return;
-            }
+        //public void UpdateInputWaterStatus()
+        //{
+        //    if (!this.IsActivated)
+        //    {
+        //        // 機能していない
+        //        this.InputWaterFlow = 0f;
+        //        return;
+        //    }
 
-            if (!this.HasTank)
-            {
-                // 貯蔵機能なし=フィルター
-                this.InputWaterFlow = this.MaxInputWaterFlow;
-                return;
-            }
+        //    if (!this.HasTank)
+        //    {
+        //        // 貯蔵機能なし=フィルター
+        //        this.InputWaterFlow = this.MaxInputWaterFlow;
+        //        return;
+        //    }
 
-            if (!this.TankCanAccept)
-            {
-                // 貯蔵機能あり、受け入れ不可
-                this.InputWaterFlow = 0f;
-            }
-            else
-            {
-                // 貯蔵機能あり、受け入れ可
-                this.InputWaterFlow = this.MaxInputWaterFlow;
-            }
-        }
+        //    if (!this.TankCanAccept)
+        //    {
+        //        // 貯蔵機能あり、受け入れ不可
+        //        this.InputWaterFlow = 0f;
+        //    }
+        //    else
+        //    {
+        //        // 貯蔵機能あり、受け入れ可
+        //        this.InputWaterFlow = this.MaxInputWaterFlow;
+        //    }
+        //}
 
         public override string CompInspectStringExtra()
         {

@@ -10,6 +10,8 @@ namespace MizuMod
 {
     public class MapComponent_WaterNetManager : MapComponent
     {
+        private bool requestedUpdateWaterNet = false;
+
         private List<WaterNet> nets = new List<WaterNet>();
         private List<IBuilding_WaterNet> unNetThings = new List<IBuilding_WaterNet>();
 
@@ -23,6 +25,11 @@ namespace MizuMod
 
         public MapComponent_WaterNetManager(Map map) : base(map)
         {
+        }
+
+        public void RequestUpdateWaterNet()
+        {
+            this.requestedUpdateWaterNet = true;
         }
 
         public Queue<IBuilding_WaterNet> ClearWaterNets()
@@ -60,7 +67,7 @@ namespace MizuMod
             return unNetQueue;
         }
 
-        public void RefreshWaterNets()
+        public void UpdateWaterNets()
         {
             Queue<IBuilding_WaterNet> unNetQueue = this.ClearWaterNets();
             Queue<IBuilding_WaterNet> unNetDiffQueue = new Queue<IBuilding_WaterNet>();
@@ -259,7 +266,7 @@ namespace MizuMod
         public void AddThing(IBuilding_WaterNet thing)
         {
             this.unNetThings.Add(thing);
-            this.RefreshWaterNets();
+            this.UpdateWaterNets();
         }
 
         public void RemoveThing(IBuilding_WaterNet thing)
@@ -268,7 +275,7 @@ namespace MizuMod
             thing.InputWaterNet.RemoveThing(thing);
             thing.OutputWaterNet.RemoveThing(thing);
 
-            this.RefreshWaterNets();
+            this.UpdateWaterNets();
         }
 
         public void AddNet(WaterNet net)
@@ -295,6 +302,12 @@ namespace MizuMod
         public override void MapComponentTick()
         {
             base.MapComponentTick();
+
+            if (this.requestedUpdateWaterNet)
+            {
+                this.requestedUpdateWaterNet = false;
+                this.UpdateWaterNets();
+            }
 
             foreach (var net in nets)
             {

@@ -45,7 +45,7 @@ namespace MizuMod
             if (lastSwitchIsOn != this.flickableComp.SwitchIsOn)
             {
                 lastSwitchIsOn = this.flickableComp.SwitchIsOn;
-                this.WaterNetManager.RefreshWaterNets();
+                this.WaterNetManager.UpdateWaterNets();
             }
         }
 

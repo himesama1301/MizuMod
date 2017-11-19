@@ -10,6 +10,8 @@ namespace MizuMod
 {
     public abstract class CompWaterNet : ThingComp
     {
+        private bool lastIsActivated;
+
         protected CompBreakdownable breakdownableComp;
         protected CompPowerTrader powerComp;
 
@@ -69,12 +71,35 @@ namespace MizuMod
             }
         }
 
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look<bool>(ref this.lastIsActivated, "lastIsActivated");
+        }
+
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
 
+            this.lastIsActivated = this.IsActivated;
             this.breakdownableComp = this.parent.GetComp<CompBreakdownable>();
             this.powerComp = this.parent.GetComp<CompPowerTrader>();
+        }
+
+        public override void CompTick()
+        {
+            base.CompTick();
+
+            if (this.lastIsActivated != this.IsActivated)
+            {
+                this.lastIsActivated = this.IsActivated;
+                foreach (var vec in this.WaterNetBuilding.OccupiedRect().ExpandedBy(1))
+                {
+                    this.WaterNetManager.map.mapDrawer.MapMeshDirty(vec, MapMeshFlag.Things);
+                    this.WaterNetManager.map.mapDrawer.MapMeshDirty(vec, MapMeshFlag.Buildings);
+                }
+                this.WaterNetManager.RequestUpdateWaterNet();
+            }
         }
     }
 }
