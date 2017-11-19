@@ -105,6 +105,9 @@
     <recipes>
       <li>Mizu_DrawNormalWater</li>
     </recipes>
+    <placeWorkers>
+      <li>MizuMod.PlaceWorker_ShallowWater</li>
+    </placeWorkers>
   </ThingDef>
 
   <ThingDef Name="Mizu_WaterPipeBase" Abstract="True">
@@ -285,10 +288,7 @@
     </comps>
   </ThingDef>
   
-  <ThingDef>
-    <defName>Mizu_UndergroundWaterPump</defName>
-    <label>Underground water pump</label>
-    <description>A building for pumping water for underground. Need electrical power.</description>
+  <ThingDef Name="Mizu_UndergroundWaterPumpBase" Abstract="True">
     <thingClass>MizuMod.Building_UndergroundWaterPump</thingClass>
     <category>Building</category>
     <graphicData>
@@ -336,6 +336,21 @@
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_Breakdownable"/>
     </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Mizu_UndergroundWaterPumpBase">
+    <defName>Mizu_UndergroundWaterPumpShallow</defName>
+    <label>Underground water pump (shallow)</label>
+    <description>A building for pumping water for underground shallow layer. Need electrical power.</description>
+    <placeWorkers>
+      <li>MizuMod.PlaceWorker_ShallowWater</li>
+    </placeWorkers>
+  </ThingDef>
+  
+  <ThingDef ParentName="Mizu_UndergroundWaterPumpBase">
+    <defName>Mizu_UndergroundWaterPumpDeep</defName>
+    <label>Underground water pump (deep)</label>
+    <description>A building for pumping water for underground deep layer. Need electrical power.</description>
   </ThingDef>
   
   <ThingDef>
@@ -517,7 +532,8 @@
     </recipes>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_Faucet</li>
-    </placeWorkers>  </ThingDef>
+    </placeWorkers>
+  </ThingDef>
   
   <ThingDef Name="Mizu_WaterFilterBase" Abstract="True">
     <thingClass>MizuMod.Building_WaterFilter</thingClass>

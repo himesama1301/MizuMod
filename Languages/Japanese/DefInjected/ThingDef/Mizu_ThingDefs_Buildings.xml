@@ -16,8 +16,11 @@
   <Mizu_GroundWaterPump.label>汲み上げポンプ</Mizu_GroundWaterPump.label>
   <Mizu_GroundWaterPump.description>川、池、湖、海などから水を汲んで水道に流すための設備です。電力を必要とします。</Mizu_GroundWaterPump.description>
   
-  <Mizu_UndergroundWaterPump.label>地下水汲み上げポンプ</Mizu_UndergroundWaterPump.label>
-  <Mizu_UndergroundWaterPump.description>地下水を汲んで水道に流すための設備です。電力を必要とします。</Mizu_UndergroundWaterPump.description>
+  <Mizu_UndergroundWaterPumpShallow.label>地下水汲み上げポンプ(表層用)</Mizu_UndergroundWaterPumpShallow.label>
+  <Mizu_UndergroundWaterPumpShallow.description>表層の地下水を汲んで水道に流すための設備です。電力を必要とします。</Mizu_UndergroundWaterPumpShallow.description>
+
+  <Mizu_UndergroundWaterPumpDeep.label>地下水汲み上げポンプ(深層用)</Mizu_UndergroundWaterPumpDeep.label>
+  <Mizu_UndergroundWaterPumpDeep.description>深層の地下水を汲んで水道に流すための設備です。電力を必要とします。</Mizu_UndergroundWaterPumpDeep.description>
 
   <Mizu_WaterTank.label>貯水タンク</Mizu_WaterTank.label>
   <Mizu_WaterTank.description>ポンプで汲み上げた水を貯える設備です。</Mizu_WaterTank.description>
