@@ -21,7 +21,7 @@
   <WorkGiverDef>
     <defName>Mizu_DoDrawingWaterFromWell</defName>
     <label>drawing water at well</label>
-    <giverClass>WorkGiver_DoBill</giverClass>
+    <giverClass>MizuMod.WorkGiver_DoBillWell</giverClass>
     <workType>Mizu_Drawing</workType>
     <priorityInType>101</priorityInType>
     <fixedBillGiverDefs>

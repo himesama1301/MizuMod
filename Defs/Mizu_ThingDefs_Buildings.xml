@@ -57,7 +57,7 @@
     <label>Well</label>
     <description>A building for drawing water. The condition you need to build a well is [fertility >= 50% and distance of each other well]</description>
     <category>Building</category>
-    <thingClass>Building_WorkTable</thingClass>
+    <thingClass>MizuMod.Building_Well</thingClass>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_Well</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -103,7 +103,7 @@
     </comps>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <recipes>
-      <li>Mizu_DrawNormalWater</li>
+      <li>Mizu_DrawNormalWaterFromFaucet</li>
     </recipes>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_ShallowWater</li>

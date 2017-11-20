@@ -14,13 +14,14 @@ namespace MizuMod
 
         private ushort[] poolIDGrid;
         private List<UndergroundWaterPool> pools = new List<UndergroundWaterPool>();
+        private int lastTick;
 
         public Color Color { get { return Color.white; } }
-
         public MapComponent_ShallowWaterGrid(Map map) : base(map)
         {
             this.poolIDGrid = new ushort[map.cellIndices.NumGridCells];
             this.drawer = new CellBoolDrawer(this, map.Size.x, map.Size.z, 1f);
+            this.lastTick = Find.TickManager.TicksGame;
         }
 
         public override void ExposeData()
@@ -33,6 +34,7 @@ namespace MizuMod
             }, "poolIDGrid");
 
             Scribe_Collections.Look<UndergroundWaterPool>(ref this.pools, "pools", LookMode.Deep);
+            Scribe_Values.Look<int>(ref this.lastTick, "lastTick");
         }
 
         public void AddWaterPool(UndergroundWaterPool pool, IEnumerable<IntVec3> cells)
@@ -165,10 +167,17 @@ namespace MizuMod
         public Color GetCellExtraColor(int index)
         {
             var pool = pools.Find((p) => p.ID == this.poolIDGrid[index]);
-            float storedWaterVolumePercent = pool.CurrentWaterVolume / pool.MaxWaterVolume;
-            return UndergroundWaterMaterials.Mat(Mathf.RoundToInt(storedWaterVolumePercent * UndergroundWaterMaterials.MaterialCount)).color;
+            return UndergroundWaterMaterials.Mat(Mathf.RoundToInt(pool.CurrentWaterVolumePercent * UndergroundWaterMaterials.MaterialCount)).color;
         }
 
+        public void SetDirty()
+        {
+            if (this.map == Find.VisibleMap)
+            {
+                this.drawer.SetDirty();
+            }
+
+        }
         public void MarkForDraw()
         {
             if (this.map == Find.VisibleMap)
@@ -182,6 +191,28 @@ namespace MizuMod
             base.MapComponentUpdate();
 
             this.drawer.CellBoolDrawerUpdate();
+
+            int curTick = Find.TickManager.TicksGame;
+            float addWaterVolume = map.weatherManager.RainRate * (curTick - lastTick);
+            if (addWaterVolume < 0.0f)
+            {
+                addWaterVolume = 0.0f;
+            }
+            if (addWaterVolume > 0.0f)
+            {
+                foreach (var pool in pools)
+                {
+                    int prevMatIndex = Mathf.RoundToInt(pool.CurrentWaterVolumePercent * UndergroundWaterMaterials.MaterialCount);
+                    pool.CurrentWaterVolume = Math.Min(pool.CurrentWaterVolume + addWaterVolume, pool.MaxWaterVolume);
+                    int curMatIndex = Mathf.RoundToInt(pool.CurrentWaterVolumePercent * UndergroundWaterMaterials.MaterialCount);
+                    if (prevMatIndex != curMatIndex)
+                    {
+                        this.drawer.SetDirty();
+                    }
+                }
+            }
+
+            this.lastTick = curTick;
         }
     }
 }

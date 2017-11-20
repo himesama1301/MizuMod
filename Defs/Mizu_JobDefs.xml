@@ -33,4 +33,11 @@
     <suspendable>false</suspendable>
   </JobDef>
   
+  <JobDef>
+    <defName>Mizu_DoBillWell</defName>
+    <driverClass>MizuMod.JobDriver_DoBillWell</driverClass>
+    <reportString>doing bill at TargetA.</reportString>
+    <suspendable>false</suspendable>
+  </JobDef>
+  
 </Defs>
