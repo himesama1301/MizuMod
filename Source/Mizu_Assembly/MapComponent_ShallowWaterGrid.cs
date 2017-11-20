@@ -149,6 +149,14 @@ namespace MizuMod
             }
         }
 
+        public int GetID(int index)
+        {
+            return (int)this.poolIDGrid[index];
+        }
+        public UndergroundWaterPool GetPool(int index)
+        {
+            return pools.Find((p) => p.ID == this.poolIDGrid[index]);
+        }
         public bool GetCellBool(int index)
         {
             return (this.poolIDGrid[index] != 0);

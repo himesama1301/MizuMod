@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <GenStepDef>
+    <defName>UndergroundWater</defName>
+    <linkWithMapGenerator>BasicMap</linkWithMapGenerator>
+    <order>2000</order>
+    <genStep Class="MizuMod.GenStep_ShallowWater"/>
+  </GenStepDef>
+
+</Defs>

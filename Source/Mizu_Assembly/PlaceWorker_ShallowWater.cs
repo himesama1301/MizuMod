@@ -24,49 +24,43 @@ namespace MizuMod
             }
         }
 
-        //public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
-        //{
-        //    ThingDef def = checkingDef as ThingDef;
-        //    if (def == null)
-        //    {
-        //        return false;
-        //    }
+        public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
+        {
+            var waterGrid = map.GetComponent<MapComponent_ShallowWaterGrid>();
+            ThingDef def = checkingDef as ThingDef;
+            if (def == null)
+            {
+                return false;
+            }
 
-        //    IntVec3 vec_z = rot.FacingCell;
-        //    Rot4 rot_x = new Rot4(rot.AsInt);
-        //    rot_x.Rotate(RotationDirection.Clockwise);
-        //    IntVec3 vec_x = rot_x.FacingCell;
+            int curID = 0;
 
-        //    bool cond_ok = true;
+            // 肥沃度チェック
+            for (int x = 0; x < def.Size.x; x++)
+            {
+                for (int z = 0; z < def.Size.z; z++)
+                {
+                    IntVec3 relVec = (new IntVec3(x, 0, z)).RotatedBy(rot);
+                    IntVec3 curVec = loc + relVec;
 
-        //    // 肥沃度チェック
-        //    for (int x = 0; x < def.Size.x; x++)
-        //    {
-        //        for (int z = 0; z < def.Size.z; z++)
-        //        {
-        //            IntVec3 cur_vec = loc + vec_x * x + vec_z * z;
-        //            TerrainDef terrainLoc = map.terrainGrid.TerrainAt(cur_vec);
-        //            if (terrainLoc.fertility < MinFertility)
-        //            {
-        //                cond_ok = false;
-        //                break;
-        //            }
-        //        }
-        //    }
+                    int poolID = waterGrid.GetID(map.cellIndices.CellToIndex(curVec));
+                    if (poolID == 0)
+                    {
+                        return false;
+                    }
 
-        //    // 井戸同士の距離チェック
-        //    List<Thing> other_wells = map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial).FindAll((t) => t.def == def);
-        //    List<Thing> other_wells_blueprint = map.listerThings.ThingsInGroup(ThingRequestGroup.Blueprint).FindAll((t) => t.def.defName.Contains(def.defName));
-        //    other_wells.AddRange(other_wells_blueprint);
-        //    for (int i = 0; i < other_wells.Count; i++)
-        //    {
-        //        if ((loc - other_wells[i].Position).LengthHorizontalSquared < MinDistanceSquared)
-        //        {
-        //            cond_ok = false;
-        //            break;
-        //        }
-        //    }
-        //    return cond_ok;
-        //}
+                    if (curID == 0)
+                    {
+                        curID = poolID;
+                    }
+                    else if (curID != poolID)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
     }
 }
