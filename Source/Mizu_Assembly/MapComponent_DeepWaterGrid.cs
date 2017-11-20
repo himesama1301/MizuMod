@@ -8,11 +8,11 @@ using Verse;
 
 namespace MizuMod
 {
-    public class MapComponent_ShallowWaterGrid : MapComponent_WaterGrid
+    public class MapComponent_DeepWaterGrid : MapComponent_WaterGrid
     {
         private const float BaseRegenRate = 5000.0f;
 
-        public MapComponent_ShallowWaterGrid(Map map) : base(map)
+        public MapComponent_DeepWaterGrid(Map map) : base(map)
         {
 
         }

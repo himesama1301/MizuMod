@@ -2,10 +2,17 @@
 <Defs>
 
   <GenStepDef>
-    <defName>UndergroundWater</defName>
+    <defName>UndergroundShallowWater</defName>
     <linkWithMapGenerator>BasicMap</linkWithMapGenerator>
     <order>2000</order>
-    <genStep Class="MizuMod.GenStep_ShallowWater"/>
+    <genStep Class="MizuMod.GenStep_UndergroundShallowWater"/>
+  </GenStepDef>
+
+  <GenStepDef>
+    <defName>UndergroundDeepWater</defName>
+    <linkWithMapGenerator>BasicMap</linkWithMapGenerator>
+    <order>2001</order>
+    <genStep Class="MizuMod.GenStep_UndergroundDeepWater"/>
   </GenStepDef>
 
 </Defs>

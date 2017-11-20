@@ -42,7 +42,9 @@ namespace MizuMod
         public float OutputWaterFlow { get; private set; }
         public WaterType OutputWaterType { get; private set; }
 
+        private UndergroundWaterPool waterPool = null;
         private CompWaterNetTank tankComp = null;
+
         private bool HasTank
         {
             get
@@ -70,7 +72,13 @@ namespace MizuMod
         {
             base.PostSpawnSetup(respawningAfterLoad);
             this.OutputWaterType = WaterType.NoWater;
-            tankComp = this.parent.GetComp<CompWaterNetTank>();
+            this.tankComp = this.parent.GetComp<CompWaterNetTank>();
+
+            var pump = this.parent as Building_UndergroundWaterPump;
+            if (pump != null)
+            {
+                this.waterPool = pump.WaterGrid.GetPool(this.WaterNetBuilding.Map.cellIndices.CellToIndex((this.WaterNetBuilding as Building).Position));
+            }
         }
 
         public override void CompTick()
@@ -90,14 +98,57 @@ namespace MizuMod
                 return;
             }
 
+            // 水道網に、自分自身ではなく水道網から入力を受け付けていて、(タンクではない)or(タンクだが満タンではない)があるか探す
+            bool foundNotFullTank = false;
+            foreach (var t in this.WaterNetBuilding.OutputWaterNet.Things)
+            {
+                CompWaterNetTank tankComp = t.GetComp<CompWaterNetTank>();
+                CompWaterNetInput inputComp = t.GetComp<CompWaterNetInput>();
+
+                if (t == this.WaterNetBuilding)
+                {
+                    continue;
+                }
+                if (inputComp == null || !inputComp.IsActivated || inputComp.InputType != CompProperties_WaterNetInput.InputType.WaterNet)
+                {
+                    continue;
+                }
+                if (tankComp != null && tankComp.AmountCanAccept == 0.0f)
+                {
+                    continue;
+                }
+
+                foundNotFullTank = true;
+                break;
+            }
+
             if (!this.HasTank)
             {
                 CompWaterNetInput inputComp = this.WaterNetBuilding.GetComp<CompWaterNetInput>();
                 if (inputComp == null)
                 {
-                    // 貯蔵機能なし、入力なし=ポンプ
-                    this.OutputWaterType = this.WaterNetBuilding.OutputWaterType;
-                    this.OutputWaterFlow = this.MaxOutputWaterFlow;
+                    if (foundNotFullTank)
+                    {
+                        // 貯蔵機能なし、入力なし、水道網の中に満タンでないタンクあり
+                        this.OutputWaterType = this.WaterNetBuilding.OutputWaterType;
+                        if (this.waterPool.CurrentWaterVolume <= 0.0f)
+                        {
+                            // 地下水脈が空
+                            this.OutputWaterFlow = 0.0f;
+                        }
+                        else
+                        {
+                            // 地下水脈に水がある
+                            this.OutputWaterFlow = this.MaxOutputWaterFlow;
+                            this.waterPool.CurrentWaterVolume = Math.Max(this.waterPool.CurrentWaterVolume - this.MaxOutputWaterFlow / 60000.0f, 0.0f);
+                        }
+                    }
+                    else
+                    {
+                        // 貯蔵機能なし、入力なし、水道網の中に満タンでないタンクあり
+                        this.OutputWaterType = this.WaterNetBuilding.OutputWaterType;
+                        this.OutputWaterFlow = 0.0f;
+                    }
                 }
                 else
                 {
@@ -132,30 +183,6 @@ namespace MizuMod
                 this.OutputWaterType = WaterType.NoWater;
                 this.OutputWaterFlow = 0f;
                 return;
-            }
-
-            // 水道網に、自分自身ではなく水道網から入力を受け付けていて、(タンクではない)or(タンクだが満タンではない)があるか探す
-            bool foundNotFullTank = false;
-            foreach (var t in this.WaterNetBuilding.OutputWaterNet.Things)
-            {
-                CompWaterNetTank tankComp = t.GetComp<CompWaterNetTank>();
-                CompWaterNetInput inputComp = t.GetComp<CompWaterNetInput>();
-
-                if (t == this.WaterNetBuilding)
-                {
-                    continue;
-                }
-                if (inputComp == null || !inputComp.IsActivated || inputComp.InputType != CompProperties_WaterNetInput.InputType.WaterNet)
-                {
-                    continue;
-                }
-                if (tankComp != null && tankComp.AmountCanAccept == 0.0f)
-                {
-                    continue;
-                }
-
-                foundNotFullTank = true;
-                break;
             }
 
             if (foundNotFullTank)

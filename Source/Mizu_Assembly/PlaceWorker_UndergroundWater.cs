@@ -3,30 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using RimWorld;
 using Verse;
 
 namespace MizuMod
 {
-    public class PlaceWorker_ShallowWater : PlaceWorker
+    public abstract class PlaceWorker_UndergroundWater : PlaceWorker
     {
-        private const float MinFertility = 0.5f;
-        private const float MinDistance = 20.0f;
-        private const float MinDistanceSquared = MinDistance * MinDistance;
+        public abstract MapComponent_WaterGrid WaterGrid { get; }
 
         public override void DrawGhost(ThingDef def, IntVec3 center, Rot4 rot)
         {
-            Map visibleMap = Find.VisibleMap;
-            MapComponent_ShallowWaterGrid waterGrid = visibleMap.GetComponent<MapComponent_ShallowWaterGrid>();
-            if (waterGrid != null)
-            {
-                waterGrid.MarkForDraw();
-            }
+            this.WaterGrid.MarkForDraw();
         }
 
         public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
         {
-            var waterGrid = map.GetComponent<MapComponent_ShallowWaterGrid>();
             ThingDef def = checkingDef as ThingDef;
             if (def == null)
             {
@@ -35,7 +26,6 @@ namespace MizuMod
 
             int curID = 0;
 
-            // 肥沃度チェック
             for (int x = 0; x < def.Size.x; x++)
             {
                 for (int z = 0; z < def.Size.z; z++)
@@ -43,7 +33,7 @@ namespace MizuMod
                     IntVec3 relVec = (new IntVec3(x, 0, z)).RotatedBy(rot);
                     IntVec3 curVec = loc + relVec;
 
-                    int poolID = waterGrid.GetID(map.cellIndices.CellToIndex(curVec));
+                    int poolID = this.WaterGrid.GetID(map.cellIndices.CellToIndex(curVec));
                     if (poolID == 0)
                     {
                         return false;

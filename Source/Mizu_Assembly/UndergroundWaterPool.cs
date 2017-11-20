@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using UnityEngine;
 using Verse;
 
 namespace MizuMod
@@ -19,7 +20,26 @@ namespace MizuMod
                 return maxWaterVolume;
             }
         }
-        public float CurrentWaterVolume;
+        private float currentWaterVolume;
+        public float CurrentWaterVolume
+        {
+            get
+            {
+                return currentWaterVolume;
+            }
+            set
+            {
+                currentWaterVolume = value;
+                var curMaterialIndex = Mathf.RoundToInt(this.CurrentWaterVolumePercent * UndergroundWaterMaterials.MaterialCount);
+                if (lastMaterialIndex != curMaterialIndex)
+                {
+                    lastMaterialIndex = curMaterialIndex;
+                    this.waterGrid.SetDirty();
+                }
+            }
+        }
+
+        private int lastMaterialIndex = UndergroundWaterMaterials.MaterialCount;
 
         public float CurrentWaterVolumePercent
         {
@@ -29,22 +49,24 @@ namespace MizuMod
             }
         }
 
-        public UndergroundWaterPool()
-        {
+        private MapComponent_WaterGrid waterGrid;
 
+        public UndergroundWaterPool(MapComponent_WaterGrid waterGrid)
+        {
+            this.waterGrid = waterGrid;
         }
 
-        public UndergroundWaterPool(int maxWaterVolume)
+        public UndergroundWaterPool(MapComponent_WaterGrid waterGrid, float maxWaterVolume) : this(waterGrid)
         {
             this.maxWaterVolume = maxWaterVolume;
-            this.CurrentWaterVolume = maxWaterVolume;
+            this.currentWaterVolume = maxWaterVolume;
         }
 
         public void ExposeData()
         {
             Scribe_Values.Look<int>(ref this.ID, "ID");
             Scribe_Values.Look<float>(ref this.maxWaterVolume, "maxWaterVolume");
-            Scribe_Values.Look<float>(ref this.CurrentWaterVolume, "currenteWaterVolume");
+            Scribe_Values.Look<float>(ref this.currentWaterVolume, "currenteWaterVolume");
         }
 
         public void MergeWaterVolume(UndergroundWaterPool p)

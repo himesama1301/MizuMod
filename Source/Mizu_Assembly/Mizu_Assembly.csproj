@@ -57,6 +57,8 @@
     <Compile Include="Building_GroundWaterPump.cs" />
     <Compile Include="Building_Pipe.cs" />
     <Compile Include="Building_RainTank.cs" />
+    <Compile Include="Building_UndergroundDeepWaterPump.cs" />
+    <Compile Include="Building_UndergroundShallowWaterPump.cs" />
     <Compile Include="Building_UndergroundWaterPump.cs" />
     <Compile Include="Building_Valve.cs" />
     <Compile Include="Building_WaterFilter.cs" />
@@ -75,7 +77,9 @@
     <Compile Include="DaysWorthOfWaterCalculator.cs" />
     <Compile Include="DrawerRecipeDef.cs" />
     <Compile Include="FaucetRecipeDef.cs" />
-    <Compile Include="GenStep_ShallowWater.cs" />
+    <Compile Include="GenStep_UndergroundDeepWater.cs" />
+    <Compile Include="GenStep_UndergroundShallowWater.cs" />
+    <Compile Include="GenStep_UndergroundWater.cs" />
     <Compile Include="Graphic_LinkedWaterNet.cs" />
     <Compile Include="Graphic_LinkedWaterNetOverlay.cs" />
     <Compile Include="IBuilding_WaterNet.cs" />
@@ -87,7 +91,9 @@
     <Compile Include="JobDriver_WaterFeedPatient.cs" />
     <Compile Include="JobGiver_GetWater.cs" />
     <Compile Include="JobGiver_PackWater.cs" />
+    <Compile Include="MapComponent_DeepWaterGrid.cs" />
     <Compile Include="MapComponent_ShallowWaterGrid.cs" />
+    <Compile Include="MapComponent_WaterGrid.cs" />
     <Compile Include="MapComponent_WaterNetManager.cs" />
     <Compile Include="MizuCaravanUtility.cs" />
     <Compile Include="MizuDef.cs" />
@@ -100,7 +106,9 @@
     <Compile Include="Mizu_Harmony.cs" />
     <Compile Include="Need_Water.cs" />
     <Compile Include="PlaceWorker_Faucet.cs" />
-    <Compile Include="PlaceWorker_ShallowWater.cs" />
+    <Compile Include="PlaceWorker_UndergroundDeepWater.cs" />
+    <Compile Include="PlaceWorker_UndergroundShallowWater.cs" />
+    <Compile Include="PlaceWorker_UndergroundWater.cs" />
     <Compile Include="PlaceWorker_Valve.cs" />
     <Compile Include="PlaceWorker_WaterWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
