@@ -131,7 +131,12 @@ namespace MizuMod
                     {
                         // 貯蔵機能なし、入力なし、水道網の中に満タンでないタンクあり
                         this.OutputWaterType = this.WaterNetBuilding.OutputWaterType;
-                        if (this.waterPool.CurrentWaterVolume <= 0.0f)
+                        if (this.waterPool == null)
+                        {
+                            // 対応する地下水脈なし=地上ポンプ
+                            this.OutputWaterFlow = this.MaxOutputWaterFlow;
+                        }
+                        else if (this.waterPool.CurrentWaterVolume <= 0.0f)
                         {
                             // 地下水脈が空
                             this.OutputWaterFlow = 0.0f;
