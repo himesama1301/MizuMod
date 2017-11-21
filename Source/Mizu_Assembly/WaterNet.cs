@@ -196,14 +196,14 @@ namespace MizuMod
                 CompWaterNetInput t1in = t1.GetComp<CompWaterNetInput>();
                 CompWaterNetTank t1tank = t1.GetComp<CompWaterNetTank>();
 
-                if (t1out == null || t1out.OutputWaterFlow == 0.0f || t1.OutputWaterNet != this)
-                {
-                    continue;
-                }
-
                 if (t1in != null && t1in.InputType == CompProperties_WaterNetInput.InputType.Rain)
                 {
                     t1in.InputWaterFlow = t1in.MaxInputWaterFlow * this.Manager.map.weatherManager.RainRate;
+                }
+
+                if (t1out == null || t1out.OutputWaterFlow == 0.0f || t1.OutputWaterNet != this)
+                {
+                    continue;
                 }
 
                 List<IBuilding_WaterNet> t2list = things.FindAll((t) =>
