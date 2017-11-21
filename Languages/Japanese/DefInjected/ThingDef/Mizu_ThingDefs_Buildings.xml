@@ -43,7 +43,7 @@
   <Mizu_FueledWaterCleaner.label>燃料式浄水器</Mizu_FueledWaterCleaner.label>
   <Mizu_FueledWaterCleaner.description>海水、泥水、雨水を水に変換する手動式の浄水器です。木材を燃料として動作します。</Mizu_FueledWaterCleaner.description>
   
-  <Mizu_ElectricWaterCleaner.label>電動式浄水器</Mizu_ClearWaterFilter.label>
+  <Mizu_ElectricWaterCleaner.label>電動式浄水器</Mizu_ElectricWaterCleaner.label>
   <Mizu_ElectricWaterCleaner.description>海水、泥水、雨水を水に変換する手動式の浄水器です。電力を必要とします。</Mizu_ElectricWaterCleaner.description>
   
 </LanguageData>
