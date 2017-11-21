@@ -33,4 +33,8 @@
   <Mizu_DrawSeaWaterFromFaucet.description>海水をひとつ汲みます。</Mizu_DrawSeaWaterFromFaucet.description>
   <Mizu_DrawSeaWaterFromFaucet.jobString>海水を汲んでいる</Mizu_DrawSeaWaterFromFaucet.jobString>
   
+  <Mizu_CleanDirtyWater.label>汚水を浄化する</Mizu_CleanDirtyWater.label>
+  <Mizu_CleanDirtyWater.description>汚水をひとつ浄化します。</Mizu_CleanDirtyWater.description>
+  <Mizu_CleanDirtyWater.jobString>汚水を浄化している</Mizu_CleanDirtyWater.jobString>
+  
 </LanguageData>

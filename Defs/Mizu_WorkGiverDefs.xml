@@ -6,7 +6,7 @@
     <label>drawing water at spot</label>
     <giverClass>MizuMod.WorkGiver_DoBillDrawer</giverClass>
     <workType>Mizu_Drawing</workType>
-    <priorityInType>100</priorityInType>
+    <priorityInType>90</priorityInType>
     <fixedBillGiverDefs>
       <li>Mizu_DrawingWaterSpot</li>
     </fixedBillGiverDefs>
@@ -106,6 +106,24 @@
     </fixedBillGiverDefs>
     <verb>draw</verb>
     <gerund>drawing at</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>Mizu_CleanWater</defName>
+    <label>cleaning water</label>
+    <giverClass>WorkGiver_DoBill</giverClass>
+    <workType>Mizu_Drawing</workType>
+    <priorityInType>99</priorityInType>
+    <fixedBillGiverDefs>
+      <li>Mizu_FueledWaterCleaner</li>
+      <li>Mizu_ElectricWaterCleaner</li>
+    </fixedBillGiverDefs>
+    <verb>clean</verb>
+    <gerund>cleaning at</gerund>
     <requiredCapacities>
       <li>Manipulation</li>
     </requiredCapacities>

@@ -126,4 +126,38 @@
     </products>
   </MizuMod.FaucetRecipeDef>
 
+  <RecipeDef>
+    <defName>Mizu_CleanDirtyWater</defName>
+    <label>clean dirty water</label>
+    <description></description>
+    <jobString>Cleaning dirty water.</jobString>
+    <workAmount>300</workAmount>
+    <workSpeedStat>CookSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Mizu_RainWater</li>
+            <li>Mizu_MudWater</li>
+            <li>Mizu_SeaWater</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Mizu_RainWater</li>
+        <li>Mizu_MudWater</li>
+        <li>Mizu_SeaWater</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Mizu_NormalWater>1</Mizu_NormalWater>
+    </products>
+    <workSkill>Cooking</workSkill>
+  </RecipeDef>
+
 </Defs>

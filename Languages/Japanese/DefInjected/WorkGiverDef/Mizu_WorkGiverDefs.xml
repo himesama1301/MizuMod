@@ -29,4 +29,8 @@
   <Mizu_GetWaterFromTank.verb>を汲む</Mizu_GetWaterFromTank.verb>
   <Mizu_GetWaterFromTank.gerund>を汲む</Mizu_GetWaterFromTank.gerund>
 
+  <Mizu_CleanWater.label>水を浄化する</Mizu_CleanWater.label>
+  <Mizu_CleanWater.verb>を浄化する</Mizu_CleanWater.verb>
+  <Mizu_CleanWater.gerund>を浄化する</Mizu_CleanWater.gerund>
+
 </LanguageData>

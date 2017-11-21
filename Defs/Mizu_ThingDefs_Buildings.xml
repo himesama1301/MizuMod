@@ -636,4 +636,120 @@
       <li Class="CompProperties_Breakdownable"/>
     </comps>
   </ThingDef>
+  
+  <ThingDef Name="Mizu_WaterCleanerBase" Abstract="True">
+    <constructEffect>ConstructMetal</constructEffect>
+    <altitudeLayer>Building</altitudeLayer>
+    <fillPercent>0.5</fillPercent>
+    <useHitPoints>True</useHitPoints>
+    <statBases>
+      <WorkToBuild>2000</WorkToBuild>
+      <MaxHitPoints>180</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <SellPriceFactor>0.70</SellPriceFactor>
+    </statBases>
+    <size>(3,1)</size>
+    <designationCategory>Mizu</designationCategory>
+    <passability>PassThroughOnly</passability>
+    <pathCost>70</pathCost>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <surfaceType>Item</surfaceType>
+    <recipes>
+      <li>Mizu_CleanDirtyWater</li>
+    </recipes>
+    <inspectorTabs>
+      <li>ITab_Bills</li>
+    </inspectorTabs>
+    <comps>
+      <li>
+        <compClass>CompReportWorkSpeed</compClass>
+      </li>
+    </comps>
+    <building>
+      <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+      <heatPerTickWhileWorking>0.10</heatPerTickWhileWorking>
+      <workSpeedPenaltyOutdoors>true</workSpeedPenaltyOutdoors>
+      <workSpeedPenaltyTemperature>true</workSpeedPenaltyTemperature>
+    </building>
+    <category>Building</category>
+    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <selectable>true</selectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <repairEffect>Repair</repairEffect>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <filthLeaving>BuildingRubble</filthLeaving>
+    <castEdgeShadows>true</castEdgeShadows>
+    <staticSunShadowHeight>0.20</staticSunShadowHeight>
+    <canOverlapZones>false</canOverlapZones>
+    <placeWorkers>
+      <li>PlaceWorker_ReportWorkSpeedPenalties</li>
+    </placeWorkers>
+  </ThingDef>
+
+  <ThingDef ParentName="Mizu_WaterCleanerBase">
+    <defName>Mizu_FueledWaterCleaner</defName>
+    <label>Fueled water cleaner</label>
+    <thingClass>Building_WorkTable_HeatPush</thingClass>
+    <description>A simple wood-fueled water cleaner.</description>
+    <graphicData>
+      <texPath>Things/Building/Production/TableStoveFueled</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3.5,1.5)</drawSize>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+    </graphicData>
+    <costList>
+      <Steel>80</Steel>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Refuelable">
+        <fuelConsumptionRate>160.0</fuelConsumptionRate>
+        <fuelCapacity>50.0</fuelCapacity>
+        <fuelFilter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </fuelFilter>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Mizu_WaterCleanerBase">
+    <defName>Mizu_ElectricWaterCleaner</defName>
+    <label>Electric water cleaner</label>
+    <thingClass>Building_WorkTable_HeatPush</thingClass>
+    <description>An electrically-powered water cleaner.</description>
+    <graphicData>
+      <texPath>Things/Building/Production/TableStoveFueled</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3.5,1.5)</drawSize>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+    </graphicData>
+    <costList>
+      <Steel>80</Steel>
+      <Component>2</Component>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <startElectricalFires>true</startElectricalFires>
+        <basePowerConsumption>350</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+    </comps>
+  </ThingDef>
+
 </Defs>
