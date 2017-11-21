@@ -5,7 +5,7 @@
     <defName>Mizu</defName>
     <label>Water</label>
     <description>Structures used for getting water.</description>
-    <order>910</order>
+    <order>24</order>
     <specialDesignatorClasses>
       <li>Designator_Cancel</li>
       <li>Designator_Deconstruct</li>
