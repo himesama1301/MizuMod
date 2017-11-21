@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ResearchProjectDef>
+    <defName>Mizu_UndergroundWater</defName>
+    <label>Underground water</label>
+    <description>Make wells, a primitive building for drawing underground water of shallow layer.</description>
+    <tab>Mizu_ResearchTab</tab>
+    <baseCost>100</baseCost>
+    <techLevel>Neolithic</techLevel>
+    <tags>
+      <li>ClassicStart</li>
+    </tags>
+    <researchViewX>0</researchViewX>
+    <researchViewY>0</researchViewY>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>Mizu_Waterworks</defName>
+    <label>Waterworks</label>
+    <description>Allows you to build pipe, valve, faucet, tank and some type of pumps.</description>
+    <tab>Mizu_ResearchTab</tab>
+    <baseCost>100</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>Electricity</li>
+      <li>Mizu_UndergroundWater</li>
+    </prerequisites>
+    <researchViewX>1</researchViewX>
+    <researchViewY>0</researchViewY>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>Mizu_ClearWater</defName>
+    <label>Clearing water</label>
+    <description>Allows you to build fuel type water cleaner.</description>
+    <tab>Mizu_ResearchTab</tab>
+    <baseCost>100</baseCost>
+    <techLevel>Medieval</techLevel>
+    <tags>
+      <li>ClassicStart</li>
+    </tags>
+    <researchViewX>0</researchViewX>
+    <researchViewY>1</researchViewY>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>Mizu_ElectricalClearWater</defName>
+    <label>Electrical clearing water</label>
+    <description>Allows you to build electrical water cleaner.</description>
+    <tab>Mizu_ResearchTab</tab>
+    <baseCost>100</baseCost>
+    <techLevel>Medieval</techLevel>
+    <prerequisites>
+      <li>Electricity</li>
+      <li>Mizu_ClearWater</li>
+    </prerequisites>
+    <tags>
+      <li>ClassicStart</li>
+    </tags>
+    <researchViewX>1</researchViewX>
+    <researchViewY>1</researchViewY>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>Mizu_DeepUndergroundWater</defName>
+    <label>Deep underground water</label>
+    <description>Allows you to build pump for drawing underground water of deep layer.</description>
+    <tab>Mizu_ResearchTab</tab>
+    <baseCost>100</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>DeepDrilling</li>
+      <li>Mizu_Waterworks</li>
+    </prerequisites>
+    <researchViewX>3</researchViewX>
+    <researchViewY>0</researchViewY>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>Mizu_WaterFilter</defName>
+    <label>Water filter</label>
+    <description>Allows you to build water filters for waterworks.</description>
+    <tab>Mizu_ResearchTab</tab>
+    <baseCost>100</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MicroelectronicsBasics</li>
+      <li>Mizu_Waterworks</li>
+      <li>Mizu_ElectricalClearWater</li>
+    </prerequisites>
+    <researchViewX>2</researchViewX>
+    <researchViewY>1</researchViewY>
+  </ResearchProjectDef>
+
+</Defs>

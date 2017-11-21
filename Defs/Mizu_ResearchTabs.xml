@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ResearchTabDef>
+    <defName>Mizu_ResearchTab</defName>
+    <label>Need Water</label>
+  </ResearchTabDef>
+
+</Defs>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <Mizu_UndergroundWater.label>地下水</Mizu_UndergroundWater.label>
+  <Mizu_UndergroundWater.description>表層地下水脈から水を汲み出すための井戸が作れるようになります。</Mizu_UndergroundWater.description>
+
+  <Mizu_Waterworks.label>水道網</Mizu_Waterworks.label>
+  <Mizu_Waterworks.description>水道網を構築するための水道管、バルブ、蛇口、貯水タンク、いくつかの汲み上げポンプが作れるようになります。</Mizu_Waterworks.description>
+
+  <Mizu_ClearWater.label>浄水器</Mizu_ClearWater.label>
+  <Mizu_ClearWater.description>燃料式の浄水器が作れるようになります。</Mizu_ClearWater.description>
+
+  <Mizu_ElectricalClearWater.label>電動浄水器</Mizu_ElectricalClearWater.label>
+  <Mizu_ElectricalClearWater.description>電動の浄水器が作れるようになります。</Mizu_ElectricalClearWater.description>
+
+  <Mizu_DeepUndergroundWater.label>深層地下水脈</Mizu_DeepUndergroundWater.label>
+  <Mizu_DeepUndergroundWater.description>深層地下水脈から水を汲み出すためのポンプが作れるようになります。</Mizu_DeepUndergroundWater.description>
+
+  <Mizu_WaterFilter.label>浄水フィルター</Mizu_WaterFilter.label>
+  <Mizu_WaterFilter.description>水道網の水を浄化するためのフィルターが作れるようになります。</Mizu_WaterFilter.description>
+
+</LanguageData>
