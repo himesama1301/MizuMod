@@ -11,13 +11,13 @@ namespace MizuMod
 {
     public static class Toils_Mizu
     {
-        public static T FailOnChangingTerrain<T>(this T f, TargetIndex index) where T : IJobEndable
+        public static T FailOnChangingTerrain<T>(this T f, TargetIndex index, List<WaterTerrainType> waterTerrainTypeList) where T : IJobEndable
         {
             f.AddEndCondition(() =>
             {
                 Thing thing = f.GetActor().jobs.curJob.GetTarget(index).Thing;
                 TerrainDef terrainDef = thing.Map.terrainGrid.TerrainAt(thing.Position);
-                if (terrainDef.GetWaterTerrainType() == WaterTerrainType.NoWater)
+                if (!waterTerrainTypeList.Contains(terrainDef.GetWaterTerrainType()))
                 {
                     return JobCondition.Incompletable;
                 }

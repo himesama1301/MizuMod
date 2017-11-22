@@ -8,8 +8,16 @@ using Verse;
 
 namespace MizuMod
 {
-    public class RecipeWorkerCounter_AnyWater : RecipeWorkerCounter
+    public class RecipeWorkerCounter_DrawFromTerrain : RecipeWorkerCounter
     {
+        public GetWaterRecipeDef GetWaterRecipe
+        {
+            get
+            {
+                return (GetWaterRecipeDef)this.recipe;
+            }
+        }
+
         private List<ThingDef> waterDefs;
 
         public override bool CanCountProducts(Bill_Production bill)
@@ -23,11 +31,12 @@ namespace MizuMod
             {
                 // 水アイテム定義リストの生成(初回のみ)
                 this.waterDefs = new List<ThingDef>();
-                foreach (ThingDef current in DefDatabase<ThingDef>.AllDefsListForReading)
+                foreach (var waterTerrainType in this.GetWaterRecipe.needWaterTerrainTypes)
                 {
-                    if (current.thingCategories != null && current.thingCategories.Contains(MizuDef.ThingCategory_Waters))
+                    var thingDef = MizuUtility.GetWaterThingDefFromTerrainType(waterTerrainType);
+                    if (thingDef != null)
                     {
-                        this.waterDefs.Add(current);
+                        this.waterDefs.Add(thingDef);
                     }
                 }
             }
@@ -41,7 +50,7 @@ namespace MizuMod
 
         public override string ProductsDescription(Bill_Production bill)
         {
-            return MizuDef.ThingCategory_Waters.label;
+            return null;
         }
     }
 }

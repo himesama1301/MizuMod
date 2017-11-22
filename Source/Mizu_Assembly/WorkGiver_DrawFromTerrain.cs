@@ -9,7 +9,7 @@ using Verse.AI;
 
 namespace MizuMod
 {
-    public class WorkGiver_DoBillDrawing : WorkGiver_DoBill
+    public class WorkGiver_DrawFromTerrain : WorkGiver_DoBill
     {
         public override Job JobOnThing(Pawn pawn, Thing thing, bool forced = false)
         {
@@ -19,12 +19,18 @@ namespace MizuMod
                 return null;
             }
 
-            if (thing.Map.terrainGrid.TerrainAt(thing.Position).GetWaterTerrainType() == WaterTerrainType.NoWater)
+            var getWaterRecipe = baseJob.bill.recipe as GetWaterRecipeDef;
+            if (getWaterRecipe == null || getWaterRecipe.needWaterTerrainTypes == null)
             {
                 return null;
             }
 
-            return new Job(MizuDef.Job_DoBillDrawing, thing)
+            if (!getWaterRecipe.needWaterTerrainTypes.Contains(thing.Map.terrainGrid.TerrainAt(thing.Position).GetWaterTerrainType()))
+            {
+                return null;
+            }
+
+            return new Job(MizuDef.Job_DrawFromTerrain, thing)
             {
                 targetQueueB = baseJob.targetQueueB,
                 countQueue = baseJob.countQueue,

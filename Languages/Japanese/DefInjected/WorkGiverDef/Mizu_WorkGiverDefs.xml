@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-  <Mizu_DoDrawingWater.label>水を汲む</Mizu_DoDrawingWater.label>
-  <Mizu_DoDrawingWater.verb>を汲む</Mizu_DoDrawingWater.verb>
-  <Mizu_DoDrawingWater.gerund>を汲む</Mizu_DoDrawingWater.gerund>
+  <Mizu_DrawFromTerrain.label>水を汲む</Mizu_DrawFromTerrain.label>
+  <Mizu_DrawFromTerrain.verb>を汲む</Mizu_DrawFromTerrain.verb>
+  <Mizu_DrawFromTerrain.gerund>を汲む</Mizu_DrawFromTerrain.gerund>
 
   <Mizu_DoDrawingWaterFromWell.label>水を汲む</Mizu_DoDrawingWaterFromWell.label>
   <Mizu_DoDrawingWaterFromWell.verb>を汲む</Mizu_DoDrawingWaterFromWell.verb>

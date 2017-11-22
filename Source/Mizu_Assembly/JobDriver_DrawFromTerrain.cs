@@ -8,7 +8,7 @@ using Verse.AI;
 
 namespace MizuMod
 {
-    public class JobDriver_DoBillDrawing : JobDriver_DoBill
+    public class JobDriver_DrawFromTerrain : JobDriver_DoBill
     {
         private const TargetIndex BillGiverIndex = TargetIndex.A;
 
@@ -20,10 +20,17 @@ namespace MizuMod
         protected override IEnumerable<Toil> MakeNewToils()
         {
             // 設備が使えなくなったら失敗
-            ToilFailConditions.FailOnDespawnedNullOrForbidden<JobDriver_DoBillDrawing>(this, BillGiverIndex);
+            ToilFailConditions.FailOnDespawnedNullOrForbidden<JobDriver_DrawFromTerrain>(this, BillGiverIndex);
+
+            GetWaterRecipeDef getWaterRecipe = this.job.bill.recipe as GetWaterRecipeDef;
+            if (getWaterRecipe == null)
+            {
+                this.GetActor().jobs.EndCurrentJob(JobCondition.Incompletable);
+                yield break;
+            }
 
             // 水汲み中に地形が変化して水が汲めなくなったら失敗
-            Toils_Mizu.FailOnChangingTerrain<JobDriver_DoBillDrawing>(this, BillGiverIndex);
+            Toils_Mizu.FailOnChangingTerrain<JobDriver_DrawFromTerrain>(this, BillGiverIndex,  getWaterRecipe.needWaterTerrainTypes);
 
             // 設備まで行く
             yield return Toils_Goto.GotoCell(this.job.GetTarget(BillGiverIndex).Thing.InteractionCell, PathEndMode.OnCell);

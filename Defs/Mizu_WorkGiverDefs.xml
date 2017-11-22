@@ -2,9 +2,9 @@
 <Defs>
 
   <WorkGiverDef>
-    <defName>Mizu_DoDrawingWater</defName>
+    <defName>Mizu_DrawFromTerrain</defName>
     <label>drawing water at spot</label>
-    <giverClass>MizuMod.WorkGiver_DoBillDrawing</giverClass>
+    <giverClass>MizuMod.WorkGiver_DrawFromTerrain</giverClass>
     <workType>Mizu_Drawing</workType>
     <priorityInType>90</priorityInType>
     <fixedBillGiverDefs>

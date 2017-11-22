@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-  <Mizu_DrawWater.label>水を汲む</Mizu_DrawWater.label>
+  <Mizu_DrawWater.label>その場で水を汲む</Mizu_DrawWater.label>
   <Mizu_DrawWater.description>水をひとつ汲みます。地形によって水の種類が変わります。</Mizu_DrawWater.description>
   <Mizu_DrawWater.jobString>水を汲んでいる</Mizu_DrawWater.jobString>
 
