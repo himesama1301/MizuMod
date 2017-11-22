@@ -46,9 +46,7 @@
       <li>MizuMod.PlaceWorker_WaterWorker</li>
     </placeWorkers>
     <recipes>
-      <li>Mizu_DrawNormalWater</li>
-      <li>Mizu_DrawMudWater</li>
-      <li>Mizu_DrawSeaWater</li>
+      <li>Mizu_DrawWater</li>
     </recipes>
   </ThingDef>
 

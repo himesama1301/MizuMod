@@ -17,6 +17,8 @@ namespace MizuMod
         public static JobDef Job_DoBillTank = DefDatabase<JobDef>.GetNamed("Mizu_DoBillTank", true);
         public static JobDef Job_DoBillWell = DefDatabase<JobDef>.GetNamed("Mizu_DoBillWell", true);
 
+        public static JobDef Job_DoBillDrawing = DefDatabase<JobDef>.GetNamed("Mizu_DoBillDrawing", true);
+
         public static StatCategoryDef StatCategory_Water = DefDatabase<StatCategoryDef>.GetNamed("Mizu_WaterCategory", true);
 
         public static HediffDef Hediff_Dehydration = DefDatabase<HediffDef>.GetNamed("Mizu_Dehydration", true);
@@ -24,5 +26,11 @@ namespace MizuMod
         public static RecordDef Record_WaterDrank = DefDatabase<RecordDef>.GetNamed("Mizu_WaterDrank", true);
 
         public static ThoughtDef Thought_DrankWaterDirectly = DefDatabase<ThoughtDef>.GetNamed("Mizu_DrankWaterDirectly", true);
+
+        public static ThingDef Thing_ClearWater = DefDatabase<ThingDef>.GetNamed("Mizu_ClearWater", true);
+        public static ThingDef Thing_NormalWater = DefDatabase<ThingDef>.GetNamed("Mizu_NormalWater", true);
+        public static ThingDef Thing_RainWater = DefDatabase<ThingDef>.GetNamed("Mizu_RainWater", true);
+        public static ThingDef Thing_MudWater = DefDatabase<ThingDef>.GetNamed("Mizu_MudWater", true);
+        public static ThingDef Thing_SeaWater = DefDatabase<ThingDef>.GetNamed("Mizu_SeaWater", true);
     }
 }

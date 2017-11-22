@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <MizuMod.DrawerRecipeDef>
-    <defName>Mizu_DrawNormalWater</defName>
+  <RecipeDef>
+    <defName>Mizu_DrawWater</defName>
     <label>draw water</label>
     <description>Draws water for drinking</description>
     <jobString>Drawing water.</jobString>
@@ -10,42 +10,11 @@
     <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_CookMeal</soundWorking>
-    <needWaterTerrainType>FreshWater</needWaterTerrainType>
     <products>
       <Mizu_NormalWater>1</Mizu_NormalWater>
     </products>
-  </MizuMod.DrawerRecipeDef>
-
-  <MizuMod.DrawerRecipeDef>
-    <defName>Mizu_DrawMudWater</defName>
-    <label>draw mud water</label>
-    <description>Draws mud water for drinking</description>
-    <jobString>Drawing mud water.</jobString>
-    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
-    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
-    <effectWorking>Cook</effectWorking>
-    <soundWorking>Recipe_CookMeal</soundWorking>
-    <needWaterTerrainType>MudWater</needWaterTerrainType>
-    <products>
-      <Mizu_MudWater>1</Mizu_MudWater>
-    </products>
-  </MizuMod.DrawerRecipeDef>
-
-  <MizuMod.DrawerRecipeDef>
-    <defName>Mizu_DrawSeaWater</defName>
-    <label>draw seawater</label>
-    <description>Draws seawater for drinking</description>
-    <jobString>Drawing seawater.</jobString>
-    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
-    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
-    <effectWorking>Cook</effectWorking>
-    <soundWorking>Recipe_CookMeal</soundWorking>
-    <needWaterTerrainType>SeaWater</needWaterTerrainType>
-    <products>
-      <Mizu_SeaWater>1</Mizu_SeaWater>
-    </products>
-  </MizuMod.DrawerRecipeDef>
-
+  </RecipeDef>
+  
   <MizuMod.FaucetRecipeDef>
     <defName>Mizu_DrawClearWaterFromFaucet</defName>
     <label>draw clear water from faucet</label>

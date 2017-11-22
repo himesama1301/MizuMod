@@ -360,5 +360,20 @@ namespace MizuMod
             // 心情あり、水分要求あり、状態はまだ大丈夫 = 地形から水を摂取しない
             return false;
         }
+
+        public static ThingDef GetWaterThingDefFromTerrainType(WaterTerrainType waterTerrainType)
+        {
+            switch (waterTerrainType)
+            {
+                case WaterTerrainType.FreshWater:
+                    return MizuDef.Thing_NormalWater;
+                case WaterTerrainType.MudWater:
+                    return MizuDef.Thing_MudWater;
+                case WaterTerrainType.SeaWater:
+                    return MizuDef.Thing_SeaWater;
+                default:
+                    return null;
+            }
+        }
     }
 }

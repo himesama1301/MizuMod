@@ -4,7 +4,7 @@
   <WorkGiverDef>
     <defName>Mizu_DoDrawingWater</defName>
     <label>drawing water at spot</label>
-    <giverClass>MizuMod.WorkGiver_DoBillDrawer</giverClass>
+    <giverClass>MizuMod.WorkGiver_DoBillDrawing</giverClass>
     <workType>Mizu_Drawing</workType>
     <priorityInType>90</priorityInType>
     <fixedBillGiverDefs>

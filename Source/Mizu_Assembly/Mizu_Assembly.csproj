@@ -75,7 +75,6 @@
     <Compile Include="CompWaterNet.cs" />
     <Compile Include="CompWaterNetTank.cs" />
     <Compile Include="DaysWorthOfWaterCalculator.cs" />
-    <Compile Include="DrawerRecipeDef.cs" />
     <Compile Include="FaucetRecipeDef.cs" />
     <Compile Include="GenStep_UndergroundDeepWater.cs" />
     <Compile Include="GenStep_UndergroundShallowWater.cs" />
@@ -83,6 +82,7 @@
     <Compile Include="Graphic_LinkedWaterNet.cs" />
     <Compile Include="Graphic_LinkedWaterNetOverlay.cs" />
     <Compile Include="IBuilding_WaterNet.cs" />
+    <Compile Include="JobDriver_DoBillDrawing.cs" />
     <Compile Include="JobDriver_DoBillFaucet.cs" />
     <Compile Include="JobDriver_DoBillTank.cs" />
     <Compile Include="JobDriver_DoBillWell.cs" />
@@ -115,12 +115,13 @@
     <Compile Include="SectionLayer_WaterNet.cs" />
     <Compile Include="ThirstCategory.cs" />
     <Compile Include="ThoughtWorker_NeedWater.cs" />
+    <Compile Include="Toils_Mizu.cs" />
     <Compile Include="UndergroundWaterMaterials.cs" />
     <Compile Include="UndergroundWaterPool.cs" />
     <Compile Include="WaterNet.cs" />
     <Compile Include="WaterTerrainType.cs" />
     <Compile Include="WaterType.cs" />
-    <Compile Include="WorkGiver_DoBillDrawer.cs" />
+    <Compile Include="WorkGiver_DoBillDrawing.cs" />
     <Compile Include="WorkGiver_DoBillFaucet.cs" />
     <Compile Include="WorkGiver_DoBillTank.cs" />
     <Compile Include="WorkGiver_DoBillWell.cs" />

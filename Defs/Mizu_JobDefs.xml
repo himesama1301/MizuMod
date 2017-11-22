@@ -20,6 +20,13 @@
   </JobDef>
 
   <JobDef>
+    <defName>Mizu_DoBillDrawing</defName>
+    <driverClass>MizuMod.JobDriver_DoBillDrawing</driverClass>
+    <reportString>doing bill at TargetA.</reportString>
+    <suspendable>true</suspendable>
+  </JobDef>
+  
+  <JobDef>
     <defName>Mizu_DoBillFaucet</defName>
     <driverClass>MizuMod.JobDriver_DoBillFaucet</driverClass>
     <reportString>doing bill at TargetA.</reportString>
