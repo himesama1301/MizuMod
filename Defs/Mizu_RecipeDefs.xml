@@ -6,6 +6,7 @@
     <label>draw water</label>
     <description>Draws water for drinking</description>
     <jobString>Drawing water.</jobString>
+    <workerCounterClass>MizuMod.RecipeWorkerCounter_AnyWater</workerCounterClass>
     <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
     <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
     <effectWorking>Cook</effectWorking>
