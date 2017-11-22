@@ -17,6 +17,12 @@
   <Mizu_DrawSeaWater.description>海水をひとつ汲みます。</Mizu_DrawSeaWater.description>
   <Mizu_DrawSeaWater.jobString>海水を汲んでいる</Mizu_DrawSeaWater.jobString>
 
+  <Mizu_DrawNormalWaterFromWaterPool.label>水を汲む</Mizu_DrawNormalWaterFromWaterPool.label>
+  <Mizu_DrawNormalWaterFromWaterPool.description>水をひとつ汲みます。</Mizu_DrawNormalWaterFromWaterPool.description>
+  <Mizu_DrawNormalWaterFromWaterPool.jobString>水を汲んでいる</Mizu_DrawNormalWaterFromWaterPool.jobString>
+  
+  
+  
   <Mizu_DrawClearWaterFromFaucet.label>きれいな水を汲む</Mizu_DrawClearWaterFromFaucet.label>
   <Mizu_DrawClearWaterFromFaucet.description>きれいな水をひとつ汲みます。</Mizu_DrawClearWaterFromFaucet.description>
   <Mizu_DrawClearWaterFromFaucet.jobString>きれいな水を汲んでいる</Mizu_DrawClearWaterFromFaucet.jobString>

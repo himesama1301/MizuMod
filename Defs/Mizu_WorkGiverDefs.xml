@@ -19,9 +19,9 @@
   </WorkGiverDef>
 
   <WorkGiverDef>
-    <defName>Mizu_DoDrawingWaterFromWell</defName>
-    <label>drawing water at well</label>
-    <giverClass>MizuMod.WorkGiver_DoBillWell</giverClass>
+    <defName>Mizu_DrawFromWaterPool</defName>
+    <label>drawing water at underground</label>
+    <giverClass>MizuMod.WorkGiver_DrawFromWaterPool</giverClass>
     <workType>Mizu_Drawing</workType>
     <priorityInType>101</priorityInType>
     <fixedBillGiverDefs>

@@ -5,9 +5,9 @@
   <Mizu_DrawFromTerrain.verb>を汲む</Mizu_DrawFromTerrain.verb>
   <Mizu_DrawFromTerrain.gerund>を汲む</Mizu_DrawFromTerrain.gerund>
 
-  <Mizu_DoDrawingWaterFromWell.label>水を汲む</Mizu_DoDrawingWaterFromWell.label>
-  <Mizu_DoDrawingWaterFromWell.verb>を汲む</Mizu_DoDrawingWaterFromWell.verb>
-  <Mizu_DoDrawingWaterFromWell.gerund>を汲む</Mizu_DoDrawingWaterFromWell.gerund>
+  <Mizu_DrawFromWaterPool.label>水を汲む</Mizu_DrawFromWaterPool.label>
+  <Mizu_DrawFromWaterPool.verb>を汲む</Mizu_DrawFromWaterPool.verb>
+  <Mizu_DrawFromWaterPool.gerund>を汲む</Mizu_DrawFromWaterPool.gerund>
 
   <Mizu_DoctorFeedWaterHumanlikes.label>水を与える</Mizu_DoctorFeedWaterHumanlikes.label>
   <Mizu_DoctorFeedWaterHumanlikes.verb>に水を与える</Mizu_DoctorFeedWaterHumanlikes.verb>

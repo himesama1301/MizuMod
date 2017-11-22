@@ -23,7 +23,12 @@
     <defName>Mizu_DrawFromTerrain</defName>
     <driverClass>MizuMod.JobDriver_DrawFromTerrain</driverClass>
     <reportString>doing bill at TargetA.</reportString>
-    <suspendable>true</suspendable>
+  </JobDef>
+  
+  <JobDef>
+    <defName>Mizu_DrawFromWaterPool</defName>
+    <driverClass>MizuMod.JobDriver_DrawFromWaterPool</driverClass>
+    <reportString>doing bill at TargetA.</reportString>
   </JobDef>
   
   <JobDef>
@@ -36,13 +41,6 @@
   <JobDef>
     <defName>Mizu_DoBillTank</defName>
     <driverClass>MizuMod.JobDriver_DoBillTank</driverClass>
-    <reportString>doing bill at TargetA.</reportString>
-    <suspendable>false</suspendable>
-  </JobDef>
-  
-  <JobDef>
-    <defName>Mizu_DoBillWell</defName>
-    <driverClass>MizuMod.JobDriver_DoBillWell</driverClass>
     <reportString>doing bill at TargetA.</reportString>
     <suspendable>false</suspendable>
   </JobDef>

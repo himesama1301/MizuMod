@@ -75,6 +75,21 @@
     </needWaterTerrainTypes>
   </MizuMod.GetWaterRecipeDef>
   
+  <MizuMod.GetWaterRecipeDef>
+    <defName>Mizu_DrawNormalWaterFromWaterPool</defName>
+    <label>draw water from underground</label>
+    <description>Draws water from underground for drinking</description>
+    <jobString>Drawing water from underground.</jobString>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <products>
+      <Mizu_NormalWater>1</Mizu_NormalWater>
+    </products>
+    <needWaterVolume>50</needWaterVolume>
+  </MizuMod.GetWaterRecipeDef>
+  
   <MizuMod.FaucetRecipeDef>
     <defName>Mizu_DrawClearWaterFromFaucet</defName>
     <label>draw clear water from faucet</label>
