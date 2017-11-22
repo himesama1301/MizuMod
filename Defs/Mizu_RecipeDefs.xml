@@ -3,6 +3,26 @@
 
   <MizuMod.GetWaterRecipeDef>
     <defName>Mizu_DrawWater</defName>
+    <label>draw water at this spot</label>
+    <description>Draws water for drinking. the type of water depends on terrain.</description>
+    <jobString>Drawing water.</jobString>
+    <workerCounterClass>MizuMod.RecipeWorkerCounter_DrawFromTerrain</workerCounterClass>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <products>
+      <Mizu_NormalWater>1</Mizu_NormalWater> <!-- dummy data -->
+    </products>
+    <needWaterTerrainTypes>
+      <li>FreshWater</li>
+      <li>MudWater</li>
+      <li>SeaWater</li>
+    </needWaterTerrainTypes>
+  </MizuMod.GetWaterRecipeDef>
+  
+  <MizuMod.GetWaterRecipeDef>
+    <defName>Mizu_DrawNormalWater</defName>
     <label>draw water</label>
     <description>Draws water for drinking</description>
     <jobString>Drawing water.</jobString>
@@ -16,7 +36,41 @@
     </products>
     <needWaterTerrainTypes>
       <li>FreshWater</li>
+    </needWaterTerrainTypes>
+  </MizuMod.GetWaterRecipeDef>
+  
+  <MizuMod.GetWaterRecipeDef>
+    <defName>Mizu_DrawMudWater</defName>
+    <label>draw mud water</label>
+    <description>Draws mud water for drinking</description>
+    <jobString>Drawing water.</jobString>
+    <workerCounterClass>MizuMod.RecipeWorkerCounter_DrawFromTerrain</workerCounterClass>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <products>
+      <Mizu_NormalWater>1</Mizu_NormalWater> <!-- dummy data -->
+    </products>
+    <needWaterTerrainTypes>
       <li>MudWater</li>
+    </needWaterTerrainTypes>
+  </MizuMod.GetWaterRecipeDef>
+  
+  <MizuMod.GetWaterRecipeDef>
+    <defName>Mizu_DrawSeaWater</defName>
+    <label>draw seawater</label>
+    <description>Draws seawater for drinking</description>
+    <jobString>Drawing water.</jobString>
+    <workerCounterClass>MizuMod.RecipeWorkerCounter_DrawFromTerrain</workerCounterClass>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <products>
+      <Mizu_NormalWater>1</Mizu_NormalWater> <!-- dummy data -->
+    </products>
+    <needWaterTerrainTypes>
       <li>SeaWater</li>
     </needWaterTerrainTypes>
   </MizuMod.GetWaterRecipeDef>

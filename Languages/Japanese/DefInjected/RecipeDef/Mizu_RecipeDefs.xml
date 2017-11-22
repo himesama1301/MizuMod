@@ -5,6 +5,18 @@
   <Mizu_DrawWater.description>水をひとつ汲みます。地形によって水の種類が変わります。</Mizu_DrawWater.description>
   <Mizu_DrawWater.jobString>水を汲んでいる</Mizu_DrawWater.jobString>
 
+  <Mizu_DrawNormalWater.label>水を汲む</Mizu_DrawNormalWater.label>
+  <Mizu_DrawNormalWater.description>水をひとつ汲みます。</Mizu_DrawNormalWater.description>
+  <Mizu_DrawNormalWater.jobString>水を汲んでいる</Mizu_DrawNormalWater.jobString>
+
+  <Mizu_DrawMudWater.label>泥水を汲む</Mizu_DrawMudWater.label>
+  <Mizu_DrawMudWater.description>泥水をひとつ汲みます。</Mizu_DrawMudWater.description>
+  <Mizu_DrawMudWater.jobString>泥水を汲んでいる</Mizu_DrawMudWater.jobString>
+
+  <Mizu_DrawSeaWater.label>海水を汲む</Mizu_DrawSeaWater.label>
+  <Mizu_DrawSeaWater.description>海水をひとつ汲みます。</Mizu_DrawSeaWater.description>
+  <Mizu_DrawSeaWater.jobString>海水を汲んでいる</Mizu_DrawSeaWater.jobString>
+
   <Mizu_DrawClearWaterFromFaucet.label>きれいな水を汲む</Mizu_DrawClearWaterFromFaucet.label>
   <Mizu_DrawClearWaterFromFaucet.description>きれいな水をひとつ汲みます。</Mizu_DrawClearWaterFromFaucet.description>
   <Mizu_DrawClearWaterFromFaucet.jobString>きれいな水を汲んでいる</Mizu_DrawClearWaterFromFaucet.jobString>
