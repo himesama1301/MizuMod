@@ -39,9 +39,9 @@ namespace MizuMod
             {
                 return null;
             }
-            Thing thing;
-            ThingDef def;
-            if (!MizuUtility.TryFindBestWaterSourceFor(pawn, pawn2, out thing, out def, true, false, false))
+
+            Thing thing = MizuUtility.TryFindBestWaterSourceFor(pawn, pawn2, true, false, false);
+            if (thing == null)
             {
                 return null;
             }

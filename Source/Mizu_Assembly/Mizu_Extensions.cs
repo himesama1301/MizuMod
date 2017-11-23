@@ -52,15 +52,17 @@ namespace MizuMod
             float waterAmount = t.GetWaterAmount();
             if (waterAmount == 0.0f)
             {
+                // 水分量0のアイテムの必要個数を計算させようとしている
                 Log.Error("error in GetWaterCalculateAmounts : waterAmount == 0.0f");
                 numTaken = 0;
                 waterGot = 0.0f;
                 return;
             }
-            numTaken = (int)Math.Ceiling(waterWanted / waterAmount);
-            numTaken = Math.Min(Math.Min(numTaken, t.stackCount), t.TryGetComp<CompWater>().MaxNumToGetAtOnce);
-            numTaken = Math.Max(numTaken, 1);
-            waterGot = (float)numTaken * waterAmount;
+
+            numTaken = (int)Math.Ceiling(waterWanted / waterAmount);  // そのアイテムで必要な水分を満たすのに何個必要か
+            numTaken = Math.Min(Math.Min(numTaken, t.stackCount), t.TryGetComp<CompWater>().MaxNumToGetAtOnce);  // 必要数、スタック数、同時摂取可能数のうち最も低い数字
+            numTaken = Math.Max(numTaken, 1);  // 最低値は1
+            waterGot = (float)numTaken * waterAmount;  // 個数と1個当たりの水分の積→摂取水分量
         }
 
         public static float TotalWater(this ResourceCounter rc)

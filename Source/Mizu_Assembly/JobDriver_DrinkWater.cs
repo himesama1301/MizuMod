@@ -9,7 +9,7 @@ using Verse.AI;
 
 namespace MizuMod
 {
-    internal class JobDriver_DrinkWater : JobDriver
+    public class JobDriver_DrinkWater : JobDriver
     {
         private const TargetIndex WaterIndex = TargetIndex.A;
         private const TargetIndex TableIndex = TargetIndex.B;
@@ -39,18 +39,11 @@ namespace MizuMod
             {
                 // ターゲットがThing=水アイテムを摂取する場合
 
-                // 水(食事)が使用不可能になったらFail
+                // 水が使用不可能になったらFail
                 ToilFailConditions.FailOnDestroyedNullOrForbidden<JobDriver_DrinkWater>(this, WaterIndex);
 
-                // 水(食事)を予約
-                if (ReservationUtility.CanReserveAndReach(this.pawn, this.TargetA, PathEndMode.Touch, Danger.Deadly, 1, this.job.count, null, false) == true)
-                {
-                    yield return Toils_Reserve.Reserve(WaterIndex, 1, this.job.count, null);
-                }
-                else
-                {
-                    yield break;
-                }
+                // 水を予約
+                yield return Toils_Reserve.Reserve(WaterIndex, 1, this.job.count);
 
                 // 水を取得
                 if (this.drinkingFromInventory)
@@ -61,7 +54,7 @@ namespace MizuMod
                     {
                         Pawn actor = toil.actor;
                         Job curJob = actor.jobs.curJob;
-                        Thing thing = curJob.GetTarget(TargetIndex.A).Thing;
+                        Thing thing = curJob.GetTarget(WaterIndex).Thing;
                         if (actor.inventory != null && thing != null)
                         {
                             actor.inventory.innerContainer.Take(thing);

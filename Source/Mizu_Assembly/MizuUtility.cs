@@ -12,10 +12,9 @@ namespace MizuMod
 {
     public static class MizuUtility
     {
-        private static HashSet<Thing> filtered = new HashSet<Thing>();
         private static List<ThoughtDef> getWaterThoughts = new List<ThoughtDef>();
 
-        public static bool TryFindBestWaterSourceFor(Pawn getter, Pawn eater, out Thing waterSource, out ThingDef waterDef, bool canUseInventory = true, bool allowForbidden = false, bool allowSociallyImproper = false)
+        public static Thing TryFindBestWaterSourceFor(Pawn getter, Pawn eater, bool canUseInventory = true, bool allowForbidden = false, bool allowSociallyImproper = false)
         {
             // ドラッグ嫌いではない
             //    →ドラッグを許可
@@ -29,15 +28,10 @@ namespace MizuMod
                 inventoryThing = MizuUtility.BestWaterInInventory(getter, WaterPreferability.NormalWater, WaterPreferability.ClearWater, 0f, allowDrug);
             }
 
-            if (inventoryThing != null && getter.Faction != Faction.OfPlayer)
-            {
-                // 所持品から見つかり、取得者はプレイヤーではない
-                //   →そのまま飲む
-                // プレイヤーだった場合はマップ中の飲み物も探して、より適切なものを選ぶため保留
-                waterSource = inventoryThing;
-                waterDef = inventoryThing.def;
-                return true;
-            }
+            // 所持品から見つかり、取得者はプレイヤーではない
+            //   →そのまま飲む
+            // プレイヤーだった場合はマップ中の飲み物も探して、より適切なものを選ぶため保留
+            if (inventoryThing != null && getter.Faction != Faction.OfPlayer) return inventoryThing;
 
             // マップからベストな飲み物を探す
             Thing mapThing = MizuUtility.BestWaterSourceOnMap(getter, eater, WaterPreferability.ClearWater, allowForbidden, allowSociallyImproper);
@@ -47,58 +41,35 @@ namespace MizuMod
                 //   →ランクを落として所持品から探しなおす
                 if (canUseInventory && getter.CanManipulate())
                 {
-                    inventoryThing = MizuUtility.BestWaterInInventory(getter, WaterPreferability.SeaWater, WaterPreferability.ClearWater, 0f, allowDrug);
-                    if (inventoryThing != null)
-                    {
-                        // 良くない水が所持品から見つかった
-                        waterSource = inventoryThing;
-                        waterDef = inventoryThing.def;
-                        return true;
-                    }
+                    // 見つかっても見つからなくてもその結果を返す
+                    return MizuUtility.BestWaterInInventory(getter, WaterPreferability.SeaWater, WaterPreferability.ClearWater, 0f, allowDrug);
                 }
 
-                // 所持品から探せる状態ではないor所持品にいかなる水もなし
-                //   →見つからなかった
-                waterSource = null;
-                waterDef = null;
-                return false;
+                // 所持品から探せる状態ではない
+                return null;
             }
 
-            if (inventoryThing == null && mapThing != null)
-            {
-                // 所持品にまともな水なし、マップから水が見つかった
-                //   →マップの水を取得
-                waterSource = mapThing;
-                waterDef = mapThing.def;
-                return true;
-            }
-            if (inventoryThing != null && mapThing == null)
-            {
-                // 所持品からまともな水が見つかった、マップからはいかなる水も見つけられない
-                //   →所持品の水を取得
-                waterSource = inventoryThing;
-                waterDef = inventoryThing.def;
-                return true;
-            }
+            // 所持品にまともな水なし、マップから水が見つかった
+            //   →マップの水を取得
+            if (inventoryThing == null && mapThing != null) return mapThing;
+
+            // 所持品からまともな水が見つかった、マップからはいかなる水も見つけられない
+            //   →所持品の水を取得
+            if (inventoryThing != null && mapThing == null) return inventoryThing;
 
             // 所持品からまともな水が、マップからは何らかの水が見つかった
             //   →どちらが良いか評価(スコアが高い方が良い)
             float scoreMapThing = MizuUtility.GetWaterItemScore(eater, mapThing, (float)(getter.Position - mapThing.Position).LengthManhattan, false);
             float scoreInventoryThing = MizuUtility.GetWaterItemScore(eater, inventoryThing, 0f, false);
+
+            // 所持品アイテムは距離32相当のマイナス(所持品より備蓄をやや優先する)
             scoreInventoryThing -= 32f;
 
-            if (scoreMapThing > scoreInventoryThing)
-            {
-                // マップの水のほうが高スコア
-                waterSource = mapThing;
-                waterDef = mapThing.def;
-                return true;
-            }
+            // マップの水のほうが高スコア
+            if (scoreMapThing > scoreInventoryThing) return mapThing;
 
             // 所持品の水のほうが高スコア
-            waterSource = inventoryThing;
-            waterDef = inventoryThing.def;
-            return true;
+            return inventoryThing;
         }
 
         public static Thing BestWaterInInventory(Pawn holder, WaterPreferability minWaterPref = WaterPreferability.SeaWater, WaterPreferability maxWaterPref = WaterPreferability.ClearWater, float minStackWaterAmount = 0.0f, bool allowDrug = false)
@@ -126,7 +97,7 @@ namespace MizuMod
             return null;
         }
 
-        public static Thing BestWaterSourceOnMap(Pawn getter, Pawn eater, WaterPreferability maxPref = WaterPreferability.ClearWater, bool allowForbidden = false, bool allowSociallyImproper = false)
+        public static Thing BestWaterSourceOnMap(Pawn getter, Pawn eater, WaterPreferability maxPref = WaterPreferability.ClearWater, bool allowDrug = false, bool allowForbidden = false, bool allowSociallyImproper = false)
         {
             if (!getter.CanManipulate() && getter != eater)
             {
@@ -145,15 +116,17 @@ namespace MizuMod
                 return null;
             }
 
-            Predicate<Thing> waterValidator = delegate (Thing t)
+            Predicate<Thing> waterValidator = (t) =>
             {
                 // 禁止されている＆禁止を無視して取得してはいけない
                 if (!allowForbidden && t.IsForbidden(getter)) return false;
 
+                // ドラッグ禁止＆対象はドラッグ
+                if (!allowDrug && t.def.IsDrug) return false;
+
                 // 水分を持っていない(摂取しても水分を得られない)
                 if (!t.CanGetWater()) return false;
 
-                float waterAmount = t.GetWaterAmount();
                 WaterPreferability waterPreferability = t.GetWaterPreferability();
 
                 // 水の品質が範囲外
@@ -162,10 +135,10 @@ namespace MizuMod
                 // 現在飲める状態には無い
                 if (!t.CanDrinkWaterNow()) return false;
 
-                // ？
+                // 入植者は囚人部屋のアイテムを扱えないことがあるが、そのことに関するチェックでダメならfalse
                 if (!MizuUtility.IsWaterSourceOnMapSociallyProper(t, getter, eater, allowSociallyImproper)) return false;
 
-                // ？
+                // 取得者がそれに気づいていない
                 if (!getter.AnimalAwareOf(t)) return false;
 
                 // 取得者が予約できない
@@ -174,97 +147,133 @@ namespace MizuMod
                 return true;
             };
 
-            Thing thing;
             if (getter.RaceProps.Humanlike)
             {
-                thing = MizuUtility.SpawnedWaterSearchInnerScan(
+                // 取得者はHumanlikeである
+                //   →条件を満たすものの中から最適な物を探す
+                return MizuUtility.SpawnedWaterSearchInnerScan(
                     eater,
                     getter.Position,
                     getter.Map.listerThings.ThingsInGroup(ThingRequestGroup.Everything).FindAll((t) => t.CanDrinkWaterNow()),
                     PathEndMode.ClosestTouch,
-                    TraverseParms.For(getter, Danger.Deadly, TraverseMode.ByPawn, false),
+                    TraverseParms.For(getter),
                     9999f, waterValidator);
             }
-            else
+
+            // 取得者はHumanlikeではない
+
+            // プレイヤー派閥に所属しているかどうかでリージョン数を変える
+            int searchRegionsMax = 30;
+            if (getter.Faction == Faction.OfPlayer)
             {
-                int searchRegionsMax = 30;
-                if (getter.Faction == Faction.OfPlayer)
+                searchRegionsMax = 100;
+            }
+
+            HashSet<Thing> filtered = new HashSet<Thing>();
+            foreach (Thing current in GenRadial.RadialDistinctThingsAround(getter.Position, getter.Map, 2f, true))
+            {
+                // 自分を中心に半径2以内の物をチェック
+
+                Pawn pawn = current as Pawn;
+                if (pawn != null && pawn != getter && pawn.RaceProps.Animal && pawn.CurJob != null && pawn.CurJob.def == MizuDef.Job_DrinkWater && pawn.CurJob.GetTarget(TargetIndex.A).HasThing)
                 {
-                    searchRegionsMax = 100;
-                }
-                MizuUtility.filtered.Clear();
-                foreach (Thing current in GenRadial.RadialDistinctThingsAround(getter.Position, getter.Map, 2f, true))
-                {
-                    Pawn pawn = current as Pawn;
-                    if (pawn != null && pawn != getter && pawn.RaceProps.Animal && pawn.CurJob != null && pawn.CurJob.def == MizuDef.Job_DrinkWater && pawn.CurJob.GetTarget(TargetIndex.A).HasThing)
-                    {
-                        MizuUtility.filtered.Add(pawn.CurJob.GetTarget(TargetIndex.A).Thing);
-                    }
-                }
-                bool flag = !allowForbidden && ForbidUtility.CaresAboutForbidden(getter, true) && getter.playerSettings != null && getter.playerSettings.EffectiveAreaRestrictionInPawnCurrentMap != null;
-                Predicate<Thing> predicate = (Thing t) => waterValidator(t) && !MizuUtility.filtered.Contains(t) && t.GetWaterPreferability() > WaterPreferability.SeaWater;
-                Predicate<Thing> validator = predicate;
-                bool ignoreEntirelyForbiddenRegions = flag;
-                thing = GenClosest.ClosestThingReachable(getter.Position, getter.Map, ThingRequest.ForGroup(ThingRequestGroup.HaulableEver), PathEndMode.ClosestTouch, TraverseParms.For(getter, Danger.Deadly, TraverseMode.ByPawn, false), 9999f, validator, null, 0, searchRegionsMax, false, RegionType.Set_Passable, ignoreEntirelyForbiddenRegions);
-                MizuUtility.filtered.Clear();
-                if (thing == null)
-                {
-                    validator = waterValidator;
-                    ignoreEntirelyForbiddenRegions = flag;
-                    thing = GenClosest.ClosestThingReachable(getter.Position, getter.Map, ThingRequest.ForGroup(ThingRequestGroup.HaulableEver), PathEndMode.ClosestTouch, TraverseParms.For(getter, Danger.Deadly, TraverseMode.ByPawn, false), 9999f, validator, null, 0, searchRegionsMax, false, RegionType.Set_Passable, ignoreEntirelyForbiddenRegions);
+                    // 自分ではない動物が現在水アイテムを摂取している
+                    //   →今まさに摂取している物は探索対象から除外
+                    filtered.Add(pawn.CurJob.GetTarget(TargetIndex.A).Thing);
                 }
             }
-            return thing;
+
+            bool ignoreEntirelyForbiddenRegions = !allowForbidden  // 禁止物のアクセスは許可されていない
+                && ForbidUtility.CaresAboutForbidden(getter, true) // 禁止設定を守ろうとする
+                && (getter.playerSettings != null && getter.playerSettings.EffectiveAreaRestrictionInPawnCurrentMap != null); // 有効な制限エリアなし
+
+            Predicate<Thing> predicate = (t) =>
+            {
+                return waterValidator(t) // アイテムが条件を満たしている
+                    && !filtered.Contains(t)  // すぐ近くで他の動物が飲んでいる水のリストに入っていない
+                    && t.GetWaterPreferability() >= WaterPreferability.SeaWater; // 水の品質が最低値より上
+            };
+
+            // 指定の条件下でアクセスできるものを探す
+            Thing thing = GenClosest.ClosestThingReachable(
+                getter.Position,
+                getter.Map,
+                ThingRequest.ForGroup(ThingRequestGroup.HaulableEver),
+                PathEndMode.ClosestTouch,
+                TraverseParms.For(getter),
+                9999f,
+                predicate,
+                null,
+                0,
+                searchRegionsMax,
+                false,
+                RegionType.Set_Passable,
+                ignoreEntirelyForbiddenRegions);
+
+            // 物が見つかった
+            if (thing != null) return thing;
+
+            // 条件を変えて再探索
+            return GenClosest.ClosestThingReachable(
+                getter.Position,
+                getter.Map,
+                ThingRequest.ForGroup(ThingRequestGroup.HaulableEver),
+                PathEndMode.ClosestTouch,
+                TraverseParms.For(getter),
+                9999f,
+                waterValidator,  // ここが変わった
+                null,
+                0,
+                searchRegionsMax,
+                false,
+                RegionType.Set_Passable,
+                ignoreEntirelyForbiddenRegions);
         }
 
         private static bool IsWaterSourceOnMapSociallyProper(Thing t, Pawn getter, Pawn eater, bool allowSociallyImproper)
         {
-            if (!allowSociallyImproper)
-            {
-                bool animalsCare = !getter.RaceProps.Animal;
-                if (!t.IsSociallyProper(getter) && !t.IsSociallyProper(eater, eater.IsPrisonerOfColony, animalsCare))
-                {
-                    return false;
-                }
-            }
-            return true;
+            // 囚人部屋にあっても強引に使用して良い
+            if (allowSociallyImproper) return true;
+
+            // 適切な場所にある
+            if (t.IsSociallyProper(getter) || t.IsSociallyProper(eater, eater.IsPrisonerOfColony, !getter.RaceProps.Animal)) return true;
+
+            return false;
         }
 
         private static Thing SpawnedWaterSearchInnerScan(Pawn eater, IntVec3 root, List<Thing> searchSet, PathEndMode peMode, TraverseParms traverseParams, float maxDistance = 9999f, Predicate<Thing> validator = null)
         {
-            if (searchSet == null)
-            {
-                return null;
-            }
+            // 探索対象リストなし
+            if (searchSet == null) return null;
+
+            // 対象のポーンを決める(取得者優先、次点で摂取者)
             Pawn pawn = traverseParams.pawn ?? eater;
-            int num = 0;
-            int num2 = 0;
+
             Thing result = null;
-            float num3 = float.MinValue;
-            for (int i = 0; i < searchSet.Count; i++)
+            float maxScore = float.MinValue;
+
+            foreach (var thing in searchSet)
             {
-                Thing thing = searchSet[i];
-                num2++;
-                float num4 = (float)(root - thing.Position).LengthManhattan;
-                if (num4 <= maxDistance)
-                {
-                    float num5 = MizuUtility.GetWaterItemScore(eater, thing, num4, false);
-                    if (num5 >= num3)
-                    {
-                        if (pawn.Map.reachability.CanReach(root, thing, peMode, traverseParams))
-                        {
-                            if (thing.Spawned)
-                            {
-                                if (validator == null || validator(thing))
-                                {
-                                    result = thing;
-                                    num3 = num5;
-                                    num++;
-                                }
-                            }
-                        }
-                    }
-                }
+                // アイテムとの距離が限界以上離れていたらダメ
+                float lengthManhattan = (float)(root - thing.Position).LengthManhattan;
+                if (lengthManhattan > maxDistance) continue;
+
+                // 現時点での候補アイテムのスコア(摂取者にとって)を超えていないならダメ
+                float thingScore = MizuUtility.GetWaterItemScore(eater, thing, lengthManhattan, false);
+                if (thingScore < maxScore) continue;
+
+                // ポーンがそこまでたどり着けなければだめ
+                if (!pawn.Map.reachability.CanReach(root, thing, peMode, traverseParams)) continue;
+
+                // まだ出現していない場合はダメ
+                if (!thing.Spawned) continue;
+
+                // アイテムが指定の条件を満たしていないならダメ
+                if (validator != null && !validator(thing)) continue;
+
+                // すべての条件を満足
+                result = thing;
+                maxScore = thingScore;
             }
             return result;
         }
@@ -287,16 +296,20 @@ namespace MizuMod
 
         public static float GetWater(Pawn getter, Thing thing, float waterWanted)
         {
+            // 摂取しようとしているものが既に消滅している(エラー)
             if (thing.Destroyed)
             {
                 Log.Error(getter + " drank destroyed thing " + thing);
                 return 0f;
             }
+
+            // 現在飲めないはずのものを飲もうとしている(エラー)
             if (!thing.CanDrinkWaterNow())
             {
                 Log.Error(getter + " drank CanDrinkWaterNow()=false thing " + thing);
                 return 0f;
             }
+
             // 食事による心情変化
             if (getter.needs.mood != null)
             {
@@ -307,25 +320,34 @@ namespace MizuMod
                     getter.needs.mood.thoughts.memories.TryGainMemory(list[j], null);
                 }
             }
-            int num;
-            float result;
-            thing.GetWaterCalculateAmounts(getter, waterWanted, out num, out result);
-            if (num > 0)
+
+            int drankWaterItemCount;
+            float gotWaterAmount;
+
+            // 摂取個数と摂取水分量の計算
+            thing.GetWaterCalculateAmounts(getter, waterWanted, out drankWaterItemCount, out gotWaterAmount);
+
+            if (drankWaterItemCount > 0)
             {
-                if (num == thing.stackCount)
+                if (drankWaterItemCount == thing.stackCount)
                 {
+                    // アイテム消費数とスタック数が同じ
+                    //   →完全消滅
                     thing.Destroy(DestroyMode.Vanish);
                 }
                 else
                 {
-                    thing.SplitOff(num);
+                    // スタック数と異なる
+                    //   →消費した数だけ減らす
+                    thing.SplitOff(drankWaterItemCount);
                 }
             }
-            return result;
+            return gotWaterAmount;
         }
 
         public static List<ThoughtDef> ThoughtsFromGettingWater(Pawn getter, Thing t)
         {
+            // ポーンがそのアイテムから得る心情リストを作成
             MizuUtility.getWaterThoughts.Clear();
             return MizuUtility.getWaterThoughts;
         }
@@ -333,30 +355,30 @@ namespace MizuMod
         public static int WillGetStackCountOf(Pawn getter, Thing thing)
         {
             CompWater comp = thing.TryGetComp<CompWater>();
-            if (comp == null)
-            {
-                return 0;
-            }
 
-            int num = Math.Min(comp.MaxNumToGetAtOnce, MizuUtility.StackCountForWater(thing, getter.needs.water().WaterWanted));
-            if (num < 1)
-            {
-                num = 1;
-            }
-            return num;
+            // 水ではない→摂取数0
+            if (comp == null) return 0;
+
+            // それを一度に摂取できる数と、何個摂取すれば水分が100%になるのか、の小さい方
+            int wantedWaterItemCount = Math.Min(comp.MaxNumToGetAtOnce, MizuUtility.StackCountForWater(thing, getter.needs.water().WaterWanted));
+
+            // 1個未満なら1個にする
+            if (wantedWaterItemCount < 1) return 1;
+
+            return wantedWaterItemCount;
         }
 
         public static int StackCountForWater(Thing thing, float water)
         {
             CompWater comp = thing.TryGetComp<CompWater>();
-            if (comp == null)
-            {
-                return 0;
-            }
-            if (water <= 0.0001f)
-            {
-                return 0;
-            }
+
+            // 水ではない
+            if (comp == null) return 0;
+
+            // 必要な水分がほぼゼロ
+            if (water <= 0.0001f) return 0;
+
+            // それを何個摂取すれば水分が十分になるのかを返す(最低値1)
             return Math.Max((int)Math.Round(water / comp.WaterAmount), 1);
         }
 
@@ -364,21 +386,14 @@ namespace MizuMod
         {
             Need_Water need_water = pawn.needs.water();
 
-            if (need_water == null)
-            {
-                // 水分要求なし = そもそも水を必要としていない
-                return false;
-            }
-            else if (pawn.needs.mood == null)
-            {
-                // 心情無し = 地面から水をすすることに抵抗なし
-                return true;
-            }
-            else if (need_water.CurCategory == ThirstCategory.Dehydration)
-            {
-                // 心情有り、水分要求あり、状態が脱水症状 = (心情悪化するけど)地形から水を摂取する
-                return true;
-            }
+            // 水分要求なし = そもそも水を必要としていない
+            if (need_water == null) return false;
+
+            // 心情無し = 地面から水をすすることに抵抗なし
+            if (pawn.needs.mood == null) return true;
+
+            // 心情有り、水分要求あり、状態が脱水症状 = (心情悪化するけど)地形から水を摂取する
+            if (need_water.CurCategory == ThirstCategory.Dehydration) return true;
 
             // 心情あり、水分要求あり、状態はまだ大丈夫 = 地形から水を摂取しない
             return false;
@@ -386,6 +401,7 @@ namespace MizuMod
 
         public static ThingDef GetWaterThingDefFromTerrainType(WaterTerrainType waterTerrainType)
         {
+            // 地形タイプ→水アイテム
             switch (waterTerrainType)
             {
                 case WaterTerrainType.FreshWater:
@@ -401,6 +417,7 @@ namespace MizuMod
 
         public static ThingDef GetWaterThingDefFromWaterType(WaterType waterType)
         {
+            // 水の種類→水アイテム
             switch (waterType)
             {
                 case WaterType.ClearWater:

@@ -31,11 +31,9 @@ namespace MizuMod
                 return null;
             }
 
-            Thing thing;
-            ThingDef def;
-
             // 水アイテムを探す
-            if (MizuUtility.TryFindBestWaterSourceFor(pawn, pawn, out thing, out def, true, false, false))
+            Thing thing = MizuUtility.TryFindBestWaterSourceFor(pawn, pawn, true, false, false);
+            if (thing != null)
             {
                 // 水アイテムが見つかった
                 return new Job(MizuDef.Job_DrinkWater, thing)
@@ -77,14 +75,13 @@ namespace MizuMod
                 TerrainDef terrain = pawn.Map.terrainGrid.TerrainAt(vec);
                 return !vec.IsForbidden(pawn) && terrain.passability == Traversability.Standable && terrain.CanGetWater();
             };
+
             for (int i = 10; i < MaxDistanceOfSearchWaterTerrain; i += 10)
             {
                 // 近場は試行回数を増やす
                 int maxTrial = 1;
-                if (i < 50)
-                {
-                    maxTrial = 5;
-                }
+                if (i < 50) maxTrial = 5;
+
                 for (int j = 0; j < maxTrial; j++)
                 {
                     IntVec3 dirtyWaterVec = IntVec3.Invalid;
@@ -106,7 +103,7 @@ namespace MizuMod
             }
 
             // 水を発見できず、前回の水地形情報もなし
-            return null;
+            return new Job(JobDefOf.GotoWander);
         }
     }
 }

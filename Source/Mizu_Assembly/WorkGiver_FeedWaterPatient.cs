@@ -54,31 +54,30 @@ namespace MizuMod
             {
                 return false;
             }
-            Thing thing;
-            ThingDef thingDef;
-            if (!MizuUtility.TryFindBestWaterSourceFor(pawn, pawn2, out thing, out thingDef, true, false, false))
+
+            Thing thing = MizuUtility.TryFindBestWaterSourceFor(pawn, pawn2, true, false, false);
+            if (thing == null)
             {
                 JobFailReason.Is(MizuStrings.JobFailReasonNoWater);
                 return false;
             }
+
             return true;
         }
 
-        public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
+        public override Job JobOnThing(Pawn getter, Thing target, bool forced = false)
         {
-            Pawn pawn2 = (Pawn)t;
-            Thing t2;
-            ThingDef def;
-            if (MizuUtility.TryFindBestWaterSourceFor(pawn, pawn2, out t2, out def, true, false, false))
+            Pawn patient = target as Pawn;
+
+            Thing waterThing = MizuUtility.TryFindBestWaterSourceFor(getter, patient, true, false, false);
+            if (waterThing == null) return null;
+
+            return new Job(MizuDef.Job_FeedWaterPatient)
             {
-                return new Job(MizuDef.Job_FeedWaterPatient)
-                {
-                    targetA = t2,
-                    targetB = pawn2,
-                    count = MizuUtility.WillGetStackCountOf(pawn2, t2)
-                };
-            }
-            return null;
+                targetA = waterThing,
+                targetB = patient,
+                count = MizuUtility.WillGetStackCountOf(patient, waterThing)
+            };
         }
     }
 }
