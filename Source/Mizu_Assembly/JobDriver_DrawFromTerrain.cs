@@ -8,47 +8,23 @@ using Verse.AI;
 
 namespace MizuMod
 {
-    public class JobDriver_DrawFromTerrain : JobDriver_DoBill
+    public class JobDriver_DrawFromTerrain : JobDriver_DrawWater
     {
-        private const TargetIndex BillGiverIndex = TargetIndex.A;
-
-        public override bool TryMakePreToilReservations()
+        protected override void SetFailCondition()
         {
-            return this.pawn.Reserve(this.job.GetTarget(BillGiverIndex), this.job);
+            // 水汲み中に地形が変化して水が汲めなくなったら失敗
+            Toils_Mizu.FailOnChangingTerrain(this, BillGiverInd, recipe.needWaterTerrainTypes);
         }
 
-        protected override IEnumerable<Toil> MakeNewToils()
+        protected override Thing FinishAction()
         {
-            // 設備が使えなくなったら失敗
-            ToilFailConditions.FailOnDespawnedNullOrForbidden<JobDriver_DrawFromTerrain>(this, BillGiverIndex);
+            // 現在の地形から水の種類を決定
+            TerrainDef terrainDef = this.Map.terrainGrid.TerrainAt(this.job.GetTarget(BillGiverInd).Thing.Position);
+            var waterTerrainType = terrainDef.GetWaterTerrainType();
+            var waterThingDef = MizuUtility.GetWaterThingDefFromTerrainType(waterTerrainType);
 
-            GetWaterRecipeDef getWaterRecipe = this.job.bill.recipe as GetWaterRecipeDef;
-            if (getWaterRecipe == null)
-            {
-                this.GetActor().jobs.EndCurrentJob(JobCondition.Incompletable);
-                yield break;
-            }
-
-            // 水汲み中に地形が変化して水が汲めなくなったら失敗
-            Toils_Mizu.FailOnChangingTerrain<JobDriver_DrawFromTerrain>(this, BillGiverIndex,  getWaterRecipe.needWaterTerrainTypes);
-
-            // 設備まで行く
-            yield return Toils_Goto.GotoCell(this.job.GetTarget(BillGiverIndex).Thing.InteractionCell, PathEndMode.OnCell);
-
-            // レシピ実行
-            yield return Toils_Mizu.DoRecipeWorkDrawing(BillGiverIndex);
-
-            // レシピ終了処理
-            yield return Toils_Mizu.FinishRecipeAndStartStoringProduct(() =>
-            {
-                // 現在の地形から水の種類を決定
-                TerrainDef terrainDef = this.Map.terrainGrid.TerrainAt(this.job.GetTarget(BillGiverIndex).Thing.Position);
-                var waterTerrainType = terrainDef.GetWaterTerrainType();
-                var waterThingDef = MizuUtility.GetWaterThingDefFromTerrainType(waterTerrainType);
-
-                // 水を生成
-                return ThingMaker.MakeThing(waterThingDef);
-            });
+            // 水を生成
+            return ThingMaker.MakeThing(waterThingDef);
         }
     }
 }

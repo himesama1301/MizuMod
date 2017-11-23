@@ -87,6 +87,7 @@
     <Compile Include="JobDriver_DoBillTank.cs" />
     <Compile Include="JobDriver_DrawFromTerrain.cs" />
     <Compile Include="JobDriver_DrawFromWaterPool.cs" />
+    <Compile Include="JobDriver_DrawWater.cs" />
     <Compile Include="JobDriver_DrinkWater.cs" />
     <Compile Include="JobDriver_WaterDeliver.cs" />
     <Compile Include="JobDriver_WaterFeedPatient.cs" />
