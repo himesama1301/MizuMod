@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -26,9 +27,6 @@ namespace MizuMod
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            // 設備が使えなくなったら失敗
-            ToilFailConditions.FailOnDespawnedNullOrForbidden(this, BillGiverInd);
-
             // その他の失敗条件設定
             this.SetFailCondition();
 
@@ -40,6 +38,14 @@ namespace MizuMod
 
             // レシピ終了処理
             yield return Toils_Mizu.FinishRecipeAndStartStoringProduct(this.FinishAction);
+
+            // 最適な倉庫まで運ぶ場合はさらに処理をする
+
+            // 持っていく
+            yield return Toils_Haul.CarryHauledThingToCell(TargetIndex.B);
+
+            // 置く
+            yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.A, null, false);
         }
 
         protected abstract void SetFailCondition();

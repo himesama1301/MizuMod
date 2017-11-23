@@ -28,11 +28,6 @@ namespace MizuMod
 
         protected override void SetFailCondition()
         {
-            // 地下水源の水量が必要量より少なくなったら失敗
-            ToilFailConditions.FailOn(this, () =>
-            {
-                return this.pool.CurrentWaterVolume < this.recipe.needWaterVolume;
-            });
         }
 
         protected override Thing FinishAction()

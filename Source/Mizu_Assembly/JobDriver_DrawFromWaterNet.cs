@@ -29,19 +29,6 @@ namespace MizuMod
 
         protected override void SetFailCondition()
         {
-            ToilFailConditions.FailOn(this, () =>
-            {
-                // 入力水道網がなくなったら失敗
-                if (this.workTable.InputWaterNet == null) return true;
-
-                // レシピが必要とする水の種類と入力水道網の水の種類が合わなくなったら失敗
-                if (!this.recipe.needWaterTypes.Contains(this.workTable.InputWaterNet.WaterType)) return true;
-
-                // 入力水道網の水の残量が必要量を下回ったら失敗
-                if (this.workTable.InputWaterNet.StoredWaterVolume < this.recipe.needWaterVolume) return true;
-
-                return false;
-            });
         }
 
         protected override Thing FinishAction()

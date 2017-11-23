@@ -108,17 +108,13 @@ namespace MizuMod
                     actor.skills.GetSkill(curJob.RecipeDef.workSkill).Learn(xp, false);
                 }
 
-                // 素材の消費と生産物の生成
-                //List<Thing> ingredients = Toils_Recipe.CalculateIngredients(curJob, actor);
-                //Thing dominantIngredient = Toils_Recipe.CalculateDominantIngredient(curJob, ingredients);
-                //List<Thing> list = GenRecipe.MakeRecipeProducts(curJob.RecipeDef, actor, null, null).ToList<Thing>();
+                // 生産物の生成
                 Thing thing = makeRecipeProduct();
                 if (thing == null)
                 {
                     actor.jobs.EndCurrentJob(JobCondition.Succeeded, true);
                     return;
                 }
-                //Toils_Recipe.ConsumeIngredients(ingredients, curJob.RecipeDef, actor.Map);
                 
                 curJob.bill.Notify_IterationCompleted(actor, null);
                 RecordsUtility.Notify_BillDone(actor, new List<Thing>() { thing });
@@ -147,8 +143,8 @@ namespace MizuMod
                 if (StoreUtility.TryFindBestBetterStoreCellFor(thing, actor, actor.Map, StoragePriority.Unstored, actor.Faction, out c, true))
                 {
                     actor.carryTracker.TryStartCarry(thing);
-                    curJob.targetB = c;
                     curJob.targetA = thing;
+                    curJob.targetB = c;
                     curJob.count = 99999;
                     return;
                 }
@@ -164,6 +160,7 @@ namespace MizuMod
                 }
                 actor.jobs.EndCurrentJob(JobCondition.Succeeded, true);
             };
+            toil.defaultCompleteMode = ToilCompleteMode.Instant;
             return toil;
         }
     }

@@ -12,8 +12,6 @@ namespace MizuMod
     {
         protected override void SetFailCondition()
         {
-            // 水汲み中に地形が変化して水が汲めなくなったら失敗
-            Toils_Mizu.FailOnChangingTerrain(this, BillGiverInd, recipe.needWaterTerrainTypes);
         }
 
         protected override Thing FinishAction()

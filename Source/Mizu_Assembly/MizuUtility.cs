@@ -333,6 +333,7 @@ namespace MizuMod
                 {
                     // アイテム消費数とスタック数が同じ
                     //   →完全消滅
+                    getter.Map.reservationManager.Release(thing, getter, getter.CurJob);
                     thing.Destroy(DestroyMode.Vanish);
                 }
                 else
