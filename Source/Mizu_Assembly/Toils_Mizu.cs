@@ -163,5 +163,224 @@ namespace MizuMod
             toil.defaultCompleteMode = ToilCompleteMode.Instant;
             return toil;
         }
+
+        public static Toil StartCarryFromInventory(TargetIndex thingIndex)
+        {
+            // 水(食事)を持ち物から取り出す
+            Toil toil = new Toil();
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+                Job curJob = actor.jobs.curJob;
+                Thing thing = curJob.GetTarget(thingIndex).Thing;
+                if (actor.inventory != null && thing != null)
+                {
+                    actor.inventory.innerContainer.Take(thing);
+                    actor.carryTracker.TryStartCarry(thing);
+                }
+            };
+            toil.defaultCompleteMode = ToilCompleteMode.Instant;
+            toil.FailOnDestroyedOrNull(thingIndex);
+            return toil;
+        }
+
+        public static Toil StartPathToDrinkSpot(TargetIndex thingIndex)
+        {
+            Toil toil = new Toil();
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+                IntVec3 intVec = IntVec3.Invalid;
+
+                intVec = RCellFinder.SpotToChewStandingNear(actor, actor.CurJob.GetTarget(thingIndex).Thing);
+                actor.Map.pawnDestinationReservationManager.Reserve(actor, actor.CurJob, intVec);
+                actor.pather.StartPath(intVec, PathEndMode.OnCell);
+            };
+            toil.defaultCompleteMode = ToilCompleteMode.PatherArrival;
+            return toil;
+        }
+
+        public static Toil Drink(TargetIndex thingIndex)
+        {
+            Toil toil = new Toil();
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+                Thing thing = actor.CurJob.GetTarget(thingIndex).Thing;
+                CompWater comp = thing.TryGetComp<CompWater>();
+                if (comp == null)
+                {
+                    actor.jobs.EndCurrentJob(JobCondition.Incompletable, true);
+                    return;
+                }
+                actor.rotationTracker.FaceCell(actor.Position);
+                if (!thing.CanDrinkWaterNow())
+                {
+                    actor.jobs.EndCurrentJob(JobCondition.Incompletable, true);
+                    return;
+                }
+                actor.jobs.curDriver.ticksLeftThisToil = CompProperties_Water.BaseDrinkTicks;
+                if (thing.Spawned)
+                {
+                    thing.Map.physicalInteractionReservationManager.Reserve(actor, actor.CurJob, thing);
+                }
+            };
+            toil.tickAction = delegate
+            {
+                toil.actor.GainComfortFromCellIfPossible();
+            };
+            toil.WithProgressBar(thingIndex, delegate
+            {
+                Pawn actor = toil.actor;
+                Thing thing = actor.CurJob.GetTarget(thingIndex).Thing;
+                if (thing == null)
+                {
+                    return 1f;
+                }
+                return 1f - (float)toil.actor.jobs.curDriver.ticksLeftThisToil / (float)CompProperties_Water.BaseDrinkTicks;
+            }, false, -0.5f);
+            toil.defaultCompleteMode = ToilCompleteMode.Delay;
+            toil.FailOnDestroyedOrNull(thingIndex);
+            toil.AddFinishAction(delegate
+            {
+                Pawn actor = toil.actor;
+                if (actor == null)
+                {
+                    return;
+                }
+                if (actor.CurJob == null)
+                {
+                    return;
+                }
+                Thing thing = actor.CurJob.GetTarget(thingIndex).Thing;
+                if (thing == null)
+                {
+                    return;
+                }
+                if (actor.Map.physicalInteractionReservationManager.IsReservedBy(actor, thing))
+                {
+                    actor.Map.physicalInteractionReservationManager.Release(actor, actor.CurJob, thing);
+                }
+            });
+
+            // エフェクト追加
+            toil.WithEffect(delegate
+            {
+                Pawn actor = toil.actor;
+                LocalTargetInfo target = toil.actor.CurJob.GetTarget(thingIndex);
+                if (!target.HasThing)
+                {
+                    return null;
+                }
+                EffecterDef effecter = null;
+                CompWater comp = target.Thing.TryGetComp<CompWater>();
+                if (comp != null)
+                {
+                    effecter = comp.GetEffect;
+                }
+                return effecter;
+            }, delegate
+            {
+                if (!toil.actor.CurJob.GetTarget(thingIndex).HasThing)
+                {
+                    return null;
+                }
+                return toil.actor.CurJob.GetTarget(thingIndex).Thing;
+            });
+            toil.PlaySustainerOrSound(delegate
+            {
+                Pawn actor = toil.actor;
+                if (!actor.RaceProps.Humanlike)
+                {
+                    return null;
+                }
+                LocalTargetInfo target = toil.actor.CurJob.GetTarget(thingIndex);
+                if (!target.HasThing)
+                {
+                    return null;
+                }
+                CompWater comp = target.Thing.TryGetComp<CompWater>();
+                if (comp == null)
+                {
+                    return null;
+                }
+                return comp.PropsWater.getSound;
+            });
+            return toil;
+        }
+
+        public static Toil FinishDrink(TargetIndex thingIndex)
+        {
+            Toil toil = new Toil();
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+                Job curJob = actor.jobs.curJob;
+                Thing thing = curJob.GetTarget(thingIndex).Thing;
+                float num = actor.needs.water().WaterWanted;
+                float num2 = MizuUtility.GetWater(actor, thing, num);
+                if (!actor.Dead)
+                {
+                    actor.needs.water().CurLevel += num2;
+                }
+                actor.records.AddTo(MizuDef.Record_WaterDrank, num2);
+            };
+            toil.defaultCompleteMode = ToilCompleteMode.Instant;
+            return toil;
+        }
+
+        public static Toil DrinkTerrain(TargetIndex thingIndex)
+        {
+            Toil toil = new Toil();
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+                actor.rotationTracker.FaceCell(actor.Position);
+                actor.jobs.curDriver.ticksLeftThisToil = CompProperties_Water.BaseDrinkTicks;
+            };
+            toil.tickAction = delegate
+            {
+                toil.actor.GainComfortFromCellIfPossible();
+            };
+            toil.WithProgressBar(thingIndex, delegate
+            {
+                return 1f - (float)toil.actor.jobs.curDriver.ticksLeftThisToil / (float)CompProperties_Water.BaseDrinkTicks;
+            }, false, -0.5f);
+            toil.defaultCompleteMode = ToilCompleteMode.Delay;
+            toil.FailOn((t) =>
+            {
+                Pawn actor = toil.actor;
+                return actor.CurJob.targetA.Cell.IsForbidden(actor) || !actor.CanReach(actor.CurJob.targetA.Cell, PathEndMode.OnCell, Danger.Deadly);
+            });
+
+            // エフェクト追加
+            toil.PlaySustainerOrSound(delegate
+            {
+                return DefDatabase<SoundDef>.GetNamed("Ingest_Beer");
+            });
+            return toil;
+        }
+
+        public static Toil FinishDrinkTerrain()
+        {
+            Toil toil = new Toil();
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+                Need_Water need_water = actor.needs.water();
+                float numWater = need_water.MaxLevel - need_water.CurLevel;
+                if (actor.needs.mood != null)
+                {
+                    actor.needs.mood.thoughts.memories.TryGainMemory(MizuDef.Thought_DrankWaterDirectly);
+                }
+                if (!actor.Dead)
+                {
+                    actor.needs.water().CurLevel += numWater;
+                }
+                actor.records.AddTo(MizuDef.Record_WaterDrank, numWater);
+            };
+            toil.defaultCompleteMode = ToilCompleteMode.Instant;
+            return toil;
+        }
     }
 }
