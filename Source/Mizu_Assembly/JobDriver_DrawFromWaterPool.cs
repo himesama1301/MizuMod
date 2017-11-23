@@ -37,11 +37,20 @@ namespace MizuMod
 
         protected override Thing FinishAction()
         {
+            // 地下水脈の水の種類から水アイテムの種類を決定
+            var waterThingDef = MizuUtility.GetWaterThingDefFromWaterType(this.pool.WaterType);
+            if (waterThingDef == null) return null;
+
             // 地下水脈から水を減らす
             this.pool.CurrentWaterVolume = Mathf.Max(0, pool.CurrentWaterVolume - recipe.needWaterVolume);
 
             // 水を生成
-            return ThingMaker.MakeThing(MizuDef.Thing_NormalWater);
+            var createThing = ThingMaker.MakeThing(waterThingDef);
+            if (createThing == null) return null;
+
+            // 個数設定
+            createThing.stackCount = recipe.getItemCount;
+            return createThing;
         }
 
         //public override string GetReport()

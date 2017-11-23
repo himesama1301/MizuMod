@@ -50,6 +50,10 @@
       <li>Mizu_DrawNormalWater</li>
       <li>Mizu_DrawMudWater</li>
       <li>Mizu_DrawSeaWater</li>
+      <li>Mizu_DrawWaterMulti</li>
+      <li>Mizu_DrawNormalWaterMulti</li>
+      <li>Mizu_DrawMudWaterMulti</li>
+      <li>Mizu_DrawSeaWaterMulti</li>
     </recipes>
   </ThingDef>
 
@@ -105,6 +109,7 @@
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <recipes>
       <li>Mizu_DrawNormalWaterFromWaterPool</li>
+      <li>Mizu_DrawNormalWaterFromWaterPoolMulti</li>
     </recipes>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_UndergroundShallowWater</li>
@@ -614,6 +619,7 @@
     </inspectorTabs>
     <recipes>
       <li>Mizu_DrawRainWaterFromWaterNet</li>
+      <li>Mizu_DrawRainWaterFromWaterNetMulti</li>
     </recipes>
   </ThingDef>
   
@@ -677,6 +683,12 @@
       <li>Mizu_DrawRainWaterFromWaterNet</li>
       <li>Mizu_DrawMudWaterFromWaterNet</li>
       <li>Mizu_DrawSeaWaterFromWaterNet</li>
+      <li>Mizu_DrawWaterFromWaterNetMulti</li>
+      <li>Mizu_DrawClearWaterFromWaterNetMulti</li>
+      <li>Mizu_DrawNormalWaterFromWaterNetMulti</li>
+      <li>Mizu_DrawRainWaterFromWaterNetMulti</li>
+      <li>Mizu_DrawMudWaterFromWaterNetMulti</li>
+      <li>Mizu_DrawSeaWaterFromWaterNetMulti</li>
     </recipes>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_Faucet</li>

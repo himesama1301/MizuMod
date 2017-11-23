@@ -24,7 +24,12 @@ namespace MizuMod
             var waterThingDef = MizuUtility.GetWaterThingDefFromTerrainType(waterTerrainType);
 
             // 水を生成
-            return ThingMaker.MakeThing(waterThingDef);
+            var createThing = ThingMaker.MakeThing(waterThingDef);
+            if (createThing == null) return null;
+
+            // 個数設定
+            createThing.stackCount = recipe.getItemCount;
+            return createThing;
         }
     }
 }
