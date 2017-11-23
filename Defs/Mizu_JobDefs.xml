@@ -32,17 +32,9 @@
   </JobDef>
   
   <JobDef>
-    <defName>Mizu_DoBillFaucet</defName>
-    <driverClass>MizuMod.JobDriver_DoBillFaucet</driverClass>
+    <defName>Mizu_DrawFromWaterNet</defName>
+    <driverClass>MizuMod.JobDriver_DrawFromWaterNet</driverClass>
     <reportString>doing bill at TargetA.</reportString>
-    <suspendable>false</suspendable>
-  </JobDef>
-  
-  <JobDef>
-    <defName>Mizu_DoBillTank</defName>
-    <driverClass>MizuMod.JobDriver_DoBillTank</driverClass>
-    <reportString>doing bill at TargetA.</reportString>
-    <suspendable>false</suspendable>
   </JobDef>
   
 </Defs>

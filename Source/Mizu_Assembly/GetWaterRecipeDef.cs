@@ -10,7 +10,7 @@ namespace MizuMod
     public class GetWaterRecipeDef : RecipeDef
     {
         public List<WaterTerrainType> needWaterTerrainTypes = null;
-        public WaterType needWaterType = WaterType.NoWater;
+        public List<WaterType> needWaterTypes = null;
         public float needWaterVolume = 1.0f;
     }
 }

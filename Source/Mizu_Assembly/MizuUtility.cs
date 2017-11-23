@@ -375,5 +375,24 @@ namespace MizuMod
                     return null;
             }
         }
+
+        public static ThingDef GetWaterThingDefFromWaterType(WaterType waterType)
+        {
+            switch (waterType)
+            {
+                case WaterType.ClearWater:
+                    return MizuDef.Thing_ClearWater;
+                case WaterType.NormalWater:
+                    return MizuDef.Thing_NormalWater;
+                case WaterType.RainWater:
+                    return MizuDef.Thing_RainWater;
+                case WaterType.MudWater:
+                    return MizuDef.Thing_MudWater;
+                case WaterType.SeaWater:
+                    return MizuDef.Thing_SeaWater;
+                default:
+                    return null;
+            }
+        }
     }
 }

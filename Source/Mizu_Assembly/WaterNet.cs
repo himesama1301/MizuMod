@@ -107,7 +107,7 @@ namespace MizuMod
         {
             float totalAmount = amount;
 
-            while (totalAmount > 0.0f)
+            while (totalAmount > 0.1f)
             {
                 List<IBuilding_WaterNet> tanks = things.FindAll((t) =>
                 {

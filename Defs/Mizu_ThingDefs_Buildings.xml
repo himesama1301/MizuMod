@@ -613,7 +613,7 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
     <recipes>
-      <li>Mizu_DrawRainWaterFromFaucet</li>
+      <li>Mizu_DrawRainWaterFromWaterNet</li>
     </recipes>
   </ThingDef>
   
@@ -671,11 +671,12 @@
       <li Class="CompProperties_Forbiddable"/>
     </comps>
     <recipes>
-      <li>Mizu_DrawClearWaterFromFaucet</li>
-      <li>Mizu_DrawNormalWaterFromFaucet</li>
-      <li>Mizu_DrawRainWaterFromFaucet</li>
-      <li>Mizu_DrawMudWaterFromFaucet</li>
-      <li>Mizu_DrawSeaWaterFromFaucet</li>
+      <li>Mizu_DrawWaterFromWaterNet</li>
+      <li>Mizu_DrawClearWaterFromWaterNet</li>
+      <li>Mizu_DrawNormalWaterFromWaterNet</li>
+      <li>Mizu_DrawRainWaterFromWaterNet</li>
+      <li>Mizu_DrawMudWaterFromWaterNet</li>
+      <li>Mizu_DrawSeaWaterFromWaterNet</li>
     </recipes>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_Faucet</li>

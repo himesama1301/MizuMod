@@ -21,30 +21,28 @@
   <Mizu_DrawNormalWaterFromWaterPool.description>水をひとつ汲みます。</Mizu_DrawNormalWaterFromWaterPool.description>
   <Mizu_DrawNormalWaterFromWaterPool.jobString>水を汲んでいる</Mizu_DrawNormalWaterFromWaterPool.jobString>
   
+  <Mizu_DrawWaterFromWaterNet.label>水道から水を汲む</Mizu_DrawWaterFromWaterNet.label>
+  <Mizu_DrawWaterFromWaterNet.description>水道から水をひとつ汲みます。</Mizu_DrawWaterFromWaterNet.description>
+  <Mizu_DrawWaterFromWaterNet.jobString>水を汲んでいる</Mizu_DrawWaterFromWaterNet.jobString>
   
+  <Mizu_DrawClearWaterFromWaterNet.label>きれいな水を汲む</Mizu_DrawClearWaterFromWaterNet.label>
+  <Mizu_DrawClearWaterFromWaterNet.description>きれいな水をひとつ汲みます。</Mizu_DrawClearWaterFromWaterNet.description>
+  <Mizu_DrawClearWaterFromWaterNet.jobString>きれいな水を汲んでいる</Mizu_DrawClearWaterFromWaterNet.jobString>
   
-  <Mizu_DrawClearWaterFromFaucet.label>きれいな水を汲む</Mizu_DrawClearWaterFromFaucet.label>
-  <Mizu_DrawClearWaterFromFaucet.description>きれいな水をひとつ汲みます。</Mizu_DrawClearWaterFromFaucet.description>
-  <Mizu_DrawClearWaterFromFaucet.jobString>きれいな水を汲んでいる</Mizu_DrawClearWaterFromFaucet.jobString>
+  <Mizu_DrawNormalWaterFromWaterNet.label>水を汲む</Mizu_DrawNormalWaterFromWaterNet.label>
+  <Mizu_DrawNormalWaterFromWaterNet.description>水をひとつ汲みます。</Mizu_DrawNormalWaterFromWaterNet.description>
+  <Mizu_DrawNormalWaterFromWaterNet.jobString>水を汲んでいる</Mizu_DrawNormalWaterFromWaterNet.jobString>
   
-  <Mizu_DrawNormalWaterFromFaucet.label>水を汲む</Mizu_DrawNormalWaterFromFaucet.label>
-  <Mizu_DrawNormalWaterFromFaucet.description>水をひとつ汲みます。</Mizu_DrawNormalWaterFromFaucet.description>
-  <Mizu_DrawNormalWaterFromFaucet.jobString>水を汲んでいる</Mizu_DrawNormalWaterFromFaucet.jobString>
+  <Mizu_DrawRainWaterFromWaterNet.label>雨水を汲む</Mizu_DrawRainWaterFromWaterNet.label>
+  <Mizu_DrawRainWaterFromWaterNet.description>雨水をひとつ汲みます。</Mizu_DrawRainWaterFromWaterNet.description>
+  <Mizu_DrawRainWaterFromWaterNet.jobString>雨水を汲んでいる</Mizu_DrawRainWaterFromWaterNet.jobString>
   
-  <Mizu_DrawRainWaterFromFaucet.label>雨水を汲む</Mizu_DrawRainWaterFromFaucet.label>
-  <Mizu_DrawRainWaterFromFaucet.description>雨水をひとつ汲みます。</Mizu_DrawRainWaterFromFaucet.description>
-  <Mizu_DrawRainWaterFromFaucet.jobString>雨水を汲んでいる</Mizu_DrawRainWaterFromFaucet.jobString>
+  <Mizu_DrawMudWaterFromWaterNet.label>泥水を汲む</Mizu_DrawMudWaterFromWaterNet.label>
+  <Mizu_DrawMudWaterFromWaterNet.description>泥水をひとつ汲みます。</Mizu_DrawMudWaterFromWaterNet.description>
+  <Mizu_DrawMudWaterFromWaterNet.jobString>泥水を汲んでいる</Mizu_DrawMudWaterFromWaterNet.jobString>
   
-  <Mizu_DrawMudWaterFromFaucet.label>泥水を汲む</Mizu_DrawMudWaterFromFaucet.label>
-  <Mizu_DrawMudWaterFromFaucet.description>泥水をひとつ汲みます。</Mizu_DrawMudWaterFromFaucet.description>
-  <Mizu_DrawMudWaterFromFaucet.jobString>泥水を汲んでいる</Mizu_DrawMudWaterFromFaucet.jobString>
-  
-  <Mizu_DrawSeaWaterFromFaucet.label>海水を汲む</Mizu_DrawSeaWaterFromFaucet.label>
-  <Mizu_DrawSeaWaterFromFaucet.description>海水をひとつ汲みます。</Mizu_DrawSeaWaterFromFaucet.description>
-  <Mizu_DrawSeaWaterFromFaucet.jobString>海水を汲んでいる</Mizu_DrawSeaWaterFromFaucet.jobString>
-  
-  <Mizu_CleanDirtyWater.label>汚水を浄化する</Mizu_CleanDirtyWater.label>
-  <Mizu_CleanDirtyWater.description>汚水をひとつ浄化します。</Mizu_CleanDirtyWater.description>
-  <Mizu_CleanDirtyWater.jobString>汚水を浄化している</Mizu_CleanDirtyWater.jobString>
+  <Mizu_DrawSeaWaterFromWaterNet.label>海水を汲む</Mizu_DrawSeaWaterFromWaterNet.label>
+  <Mizu_DrawSeaWaterFromWaterNet.description>海水をひとつ汲みます。</Mizu_DrawSeaWaterFromWaterNet.description>
+  <Mizu_DrawSeaWaterFromWaterNet.jobString>海水を汲んでいる</Mizu_DrawSeaWaterFromWaterNet.jobString>
   
 </LanguageData>

@@ -19,7 +19,7 @@ namespace MizuMod
                 return null;
             }
 
-            FaucetRecipeDef recipe = baseJob.bill.recipe as FaucetRecipeDef;
+            var recipe = baseJob.bill.recipe as GetWaterRecipeDef;
             if (recipe == null)
             {
                 return null;
@@ -30,7 +30,7 @@ namespace MizuMod
             {
                 return null;
             }
-            if (recipe.needWaterType != building.InputWaterNet.WaterType)
+            if (recipe.needWaterTypes == null || !recipe.needWaterTypes.Contains(building.InputWaterNet.WaterType))
             {
                 return null;
             }
@@ -39,7 +39,7 @@ namespace MizuMod
                 return null;
             }
 
-            Job job = new Job(MizuDef.Job_DoBillFaucet, (Thing)thing);
+            Job job = new Job(MizuDef.Job_DrawFromWaterNet, (Thing)thing);
             job.targetQueueB = baseJob.targetQueueB;
             job.countQueue = baseJob.countQueue;
             job.haulMode = baseJob.haulMode;

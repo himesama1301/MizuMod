@@ -113,6 +113,11 @@ namespace MizuMod
                 //Thing dominantIngredient = Toils_Recipe.CalculateDominantIngredient(curJob, ingredients);
                 //List<Thing> list = GenRecipe.MakeRecipeProducts(curJob.RecipeDef, actor, null, null).ToList<Thing>();
                 Thing thing = makeRecipeProduct();
+                if (thing == null)
+                {
+                    actor.jobs.EndCurrentJob(JobCondition.Succeeded, true);
+                    return;
+                }
                 //Toils_Recipe.ConsumeIngredients(ingredients, curJob.RecipeDef, actor.Map);
                 
                 curJob.bill.Notify_IterationCompleted(actor, null);

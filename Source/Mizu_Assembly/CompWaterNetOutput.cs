@@ -98,28 +98,31 @@ namespace MizuMod
                 return;
             }
 
-            // 水道網に、自分自身ではなく水道網から入力を受け付けていて、(タンクではない)or(タンクだが満タンではない)があるか探す
+            // 出力水道網に、自分自身ではなく水道網から入力を受け付けていて、(タンクではない)or(タンクだが満タンではない)があるか探す
             bool foundNotFullTank = false;
-            foreach (var t in this.WaterNetBuilding.OutputWaterNet.Things)
+            if (this.WaterNetBuilding.OutputWaterNet != null)
             {
-                CompWaterNetTank tankComp = t.GetComp<CompWaterNetTank>();
-                CompWaterNetInput inputComp = t.GetComp<CompWaterNetInput>();
+                foreach (var t in this.WaterNetBuilding.OutputWaterNet.Things)
+                {
+                    CompWaterNetTank tankComp = t.GetComp<CompWaterNetTank>();
+                    CompWaterNetInput inputComp = t.GetComp<CompWaterNetInput>();
 
-                if (t == this.WaterNetBuilding)
-                {
-                    continue;
-                }
-                if (inputComp == null || !inputComp.IsActivated || inputComp.InputType != CompProperties_WaterNetInput.InputType.WaterNet)
-                {
-                    continue;
-                }
-                if (tankComp != null && tankComp.AmountCanAccept == 0.0f)
-                {
-                    continue;
-                }
+                    if (t == this.WaterNetBuilding)
+                    {
+                        continue;
+                    }
+                    if (inputComp == null || !inputComp.IsActivated || inputComp.InputType != CompProperties_WaterNetInput.InputType.WaterNet)
+                    {
+                        continue;
+                    }
+                    if (tankComp != null && tankComp.AmountCanAccept == 0.0f)
+                    {
+                        continue;
+                    }
 
-                foundNotFullTank = true;
-                break;
+                    foundNotFullTank = true;
+                    break;
+                }
             }
 
             if (!this.HasTank)
