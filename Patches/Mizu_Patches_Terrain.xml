@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- 水地形にaffordancesが無い場合、空のaffordancesを追加 -->
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>*/TerrainDef[contains(defName, "Water")]/affordances</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>*/TerrainDef[contains(defName, "Water")]</xpath>
+        <value>
+          <affordances/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>*/TerrainDef[contains(defName, "Marsh")]/affordances</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>*/TerrainDef[contains(defName, "Marsh")]</xpath>
+        <value>
+          <affordances/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>*/TerrainDef[defName = "Mud"]/affordances</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>*/TerrainDef[defName = "Mud"]</xpath>
+        <value>
+          <affordances/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+
+  <!-- 水地形のTerrainAffordanceにUndefinedを追加 -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TerrainDef[contains(defName, "Water")]/affordances</xpath>
+    <value>
+      <li>Undefined</li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TerrainDef[contains(defName, "Marsh")]/affordances</xpath>
+    <value>
+      <li>Undefined</li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TerrainDef[defName = "Mud"]/affordances</xpath>
+    <value>
+      <li>Undefined</li>
+    </value>
+  </Operation>
+
+</Patch>
