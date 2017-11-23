@@ -33,7 +33,7 @@ namespace MizuMod
                 if (CellFinderLoose.TryFindRandomNotEdgeCellWith(5, (c) => !waterGrid.GetCellBool(map.cellIndices.CellToIndex(c)), map, out result))
                 {
                     int numCells = poolCellRange.RandomInRange;
-                    UndergroundWaterPool pool = new UndergroundWaterPool(waterGrid, numCells * waterVolumePerCell);
+                    UndergroundWaterPool pool = new UndergroundWaterPool(waterGrid, numCells * waterVolumePerCell, WaterType.NormalWater);
                     pool.ID = i + 1;
                     waterGrid.AddWaterPool(pool, GridShapeMaker.IrregularLump(result, map, numCells));
                 }

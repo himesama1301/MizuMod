@@ -12,6 +12,15 @@ namespace MizuMod
     {
         public int ID;
 
+        private WaterType waterType;
+        public WaterType WaterType
+        {
+            get
+            {
+                return this.waterType;
+            }
+        }
+
         private float maxWaterVolume;
         public float MaxWaterVolume
         {
@@ -56,10 +65,11 @@ namespace MizuMod
             this.waterGrid = waterGrid;
         }
 
-        public UndergroundWaterPool(MapComponent_WaterGrid waterGrid, float maxWaterVolume) : this(waterGrid)
+        public UndergroundWaterPool(MapComponent_WaterGrid waterGrid, float maxWaterVolume, WaterType waterType) : this(waterGrid)
         {
             this.maxWaterVolume = maxWaterVolume;
             this.currentWaterVolume = maxWaterVolume;
+            this.waterType = waterType;
         }
 
         public void ExposeData()
@@ -67,6 +77,7 @@ namespace MizuMod
             Scribe_Values.Look<int>(ref this.ID, "ID");
             Scribe_Values.Look<float>(ref this.maxWaterVolume, "maxWaterVolume");
             Scribe_Values.Look<float>(ref this.currentWaterVolume, "currenteWaterVolume");
+            Scribe_Values.Look<WaterType>(ref this.waterType, "waterType");
         }
 
         public void MergeWaterVolume(UndergroundWaterPool p)

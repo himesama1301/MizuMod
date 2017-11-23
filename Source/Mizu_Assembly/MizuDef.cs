@@ -8,13 +8,12 @@ using Verse;
 
 namespace MizuMod
 {
+    [StaticConstructorOnStartup]
     public static class MizuDef
     {
         public static JobDef Job_DrinkWater = DefDatabase<JobDef>.GetNamed("Mizu_DrinkWater");
         public static JobDef Job_FeedWaterPatient = DefDatabase<JobDef>.GetNamed("Mizu_FeedWaterPatient");
         public static JobDef Job_DeliverWater = DefDatabase<JobDef>.GetNamed("Mizu_DeliverWater");
-        public static JobDef Job_DoBillFaucet = DefDatabase<JobDef>.GetNamed("Mizu_DoBillFaucet");
-        public static JobDef Job_DoBillTank = DefDatabase<JobDef>.GetNamed("Mizu_DoBillTank");
 
         public static JobDef Job_DrawFromTerrain = DefDatabase<JobDef>.GetNamed("Mizu_DrawFromTerrain");
         public static JobDef Job_DrawFromWaterPool = DefDatabase<JobDef>.GetNamed("Mizu_DrawFromWaterPool");

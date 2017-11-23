@@ -123,9 +123,8 @@
     <Compile Include="WaterNet.cs" />
     <Compile Include="WaterTerrainType.cs" />
     <Compile Include="WaterType.cs" />
-    <Compile Include="WorkGiver_DoBillFaucet.cs" />
-    <Compile Include="WorkGiver_DoBillTank.cs" />
     <Compile Include="WorkGiver_DrawFromTerrain.cs" />
+    <Compile Include="WorkGiver_DrawFromWaterNet.cs" />
     <Compile Include="WorkGiver_DrawFromWaterPool.cs" />
     <Compile Include="WorkGiver_DrawWater.cs" />
     <Compile Include="WorkGiver_FeedWaterPatient.cs" />

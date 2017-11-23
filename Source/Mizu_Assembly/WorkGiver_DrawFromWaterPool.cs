@@ -17,6 +17,7 @@ namespace MizuMod
             var waterGrid = thing.Map.GetComponent<MapComponent_ShallowWaterGrid>();
             var pool = waterGrid.GetPool(thing.Map.cellIndices.CellToIndex(thing.Position));
 
+            if (!recipe.needWaterTypes.Contains(pool.WaterType)) return null;
             if (pool.CurrentWaterVolume < recipe.needWaterVolume) return null;
 
             return new Job(MizuDef.Job_DrawFromWaterPool, thing) { bill = bill };
