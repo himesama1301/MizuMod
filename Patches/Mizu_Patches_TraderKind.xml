@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- トレーダーの商品に水を追加する -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TraderKindDef[defName = "Base_Outlander_Standard"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Mizu_Waters</categoryDef>
+        <thingDefCountRange>
+          <min>3</min>
+          <max>3</max>
+        </thingDefCountRange>
+        <totalPriceRange>
+          <min>150</min>
+          <max>600</max>
+        </totalPriceRange>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TraderKindDef[defName = "Caravan_Outlander_BulkGoods"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Mizu_Waters</categoryDef>
+        <thingDefCountRange>
+          <min>3</min>
+          <max>3</max>
+        </thingDefCountRange>
+        <totalPriceRange>
+          <min>150</min>
+          <max>600</max>
+        </totalPriceRange>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TraderKindDef[defName = "Visitor_Outlander_Standard"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Mizu_Waters</categoryDef>
+        <thingDefCountRange>
+          <min>3</min>
+          <max>3</max>
+        </thingDefCountRange>
+        <totalPriceRange>
+          <min>150</min>
+          <max>600</max>
+        </totalPriceRange>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TraderKindDef[defName = "Base_Neolithic_Standard"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Mizu_Waters</categoryDef>
+        <thingDefCountRange>
+          <min>3</min>
+          <max>3</max>
+        </thingDefCountRange>
+        <totalPriceRange>
+          <min>150</min>
+          <max>600</max>
+        </totalPriceRange>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TraderKindDef[defName = "Caravan_Neolithic_BulkGoods"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Mizu_Waters</categoryDef>
+        <thingDefCountRange>
+          <min>3</min>
+          <max>3</max>
+        </thingDefCountRange>
+        <totalPriceRange>
+          <min>150</min>
+          <max>600</max>
+        </totalPriceRange>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TraderKindDef[defName = "Visitor_Neolithic_Standard"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Mizu_Waters</categoryDef>
+        <thingDefCountRange>
+          <min>3</min>
+          <max>3</max>
+        </thingDefCountRange>
+        <totalPriceRange>
+          <min>150</min>
+          <max>600</max>
+        </totalPriceRange>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/TraderKindDef[defName = "Orbital_BulkGoods"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Mizu_Waters</categoryDef>
+        <thingDefCountRange>
+          <min>3</min>
+          <max>3</max>
+        </thingDefCountRange>
+        <totalPriceRange>
+          <min>150</min>
+          <max>600</max>
+        </totalPriceRange>
+      </li>
+    </value>
+  </Operation>
+
+</Patch>
