@@ -198,5 +198,15 @@ namespace MizuMod
             }
             return WaterType.NoWater;
         }
+
+        public static bool CanGetWater(this TerrainDef def)
+        {
+            return def.IsRiver() || def.IsLakeOrPond() || def.IsMarsh() || def.IsSea();
+        }
+
+        public static bool CanManipulate(this Pawn pawn)
+        {
+            return pawn.RaceProps.ToolUser && pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation);
+        }
     }
 }

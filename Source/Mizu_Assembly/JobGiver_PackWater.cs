@@ -55,7 +55,7 @@ namespace MizuMod
                     }
                 }
                 return true;
-            }, (Thing x) => MizuUtility.WaterSourceOptimality(pawn, x, 0f, false), 24, 30);
+            }, (Thing x) => MizuUtility.GetWaterItemScore(pawn, x, 0f, false), 24, 30);
             if (thing2 == null)
             {
                 return null;

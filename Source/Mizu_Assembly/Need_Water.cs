@@ -148,20 +148,23 @@ namespace MizuMod
             {
                 return;
             }
-            if (!base.IsFrozen)
+            if (base.IsFrozen)
             {
-                this.CurLevel -= WaterFallPerTick * 150f * HighSpeedFactorForDebug;
+                return;
             }
-            if (!base.IsFrozen)
+            
+            // 水分要求定価
+            this.CurLevel -= WaterFallPerTick * 150f * HighSpeedFactorForDebug;
+
+            if (this.Dehydrating)
             {
-                if (this.Dehydrating)
-                {
-                    HealthUtility.AdjustSeverity(this.pawn, MizuDef.Hediff_Dehydration, DehydrationSeverityPerInterval * HighSpeedFactorForDebug);
-                }
-                else
-                {
-                    HealthUtility.AdjustSeverity(this.pawn, MizuDef.Hediff_Dehydration, -DehydrationSeverityPerInterval * HighSpeedFactorForDebug);
-                }
+                // 脱水症状進行度アップ
+                HealthUtility.AdjustSeverity(this.pawn, MizuDef.Hediff_Dehydration, DehydrationSeverityPerInterval * HighSpeedFactorForDebug);
+            }
+            else
+            {
+                // 脱水症状進行度ダウン
+                HealthUtility.AdjustSeverity(this.pawn, MizuDef.Hediff_Dehydration, -DehydrationSeverityPerInterval * HighSpeedFactorForDebug);
             }
         }
 

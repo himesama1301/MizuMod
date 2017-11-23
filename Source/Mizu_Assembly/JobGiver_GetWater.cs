@@ -11,18 +11,16 @@ namespace MizuMod
 {
     public class JobGiver_GetWater : ThinkNode_JobGiver
     {
+        private const int MaxDistanceOfSearchWaterTerrain = 500;
+
         public override float GetPriority(Pawn pawn)
         {
             Need_Water need_water = pawn.needs.water();
-            if (need_water == null)
-            {
-                return 0f;
-            }
-            if (need_water.CurLevelPercentage < Need_Water.NeedBorder)
-            {
-                return 9.4f;
-            }
-            return 0f;
+
+            if (need_water == null) return 0.0f;
+            if (need_water.CurLevelPercentage >= Need_Water.NeedBorder) return 0.0f;
+
+            return 9.4f;
         }
 
         protected override Job TryGiveJob(Pawn pawn)
@@ -35,70 +33,80 @@ namespace MizuMod
 
             Thing thing;
             ThingDef def;
-            if (!MizuUtility.TryFindBestWaterSourceFor(pawn, pawn, out thing, out def, true, false, false))
+
+            // 水アイテムを探す
+            if (MizuUtility.TryFindBestWaterSourceFor(pawn, pawn, out thing, out def, true, false, false))
             {
-                // 心情ステータスなし or 心情ステータスあり＋脱水症状まで進んでいる → 地面から直接水をすする
-                if (MizuUtility.CanDrinkTerrain(pawn) == true)
+                // 水アイテムが見つかった
+                return new Job(MizuDef.Job_DrinkWater, thing)
                 {
-                    // 前回使ったことがある水タイルを探す
-                    // 前回使ったタイルより近い範囲を新たに探索して、見つからなかったら前回と同じタイルを使う
-                    int maxDistance = 500;
-                    IntVec3 lastDirtyWaterVec = IntVec3.Invalid;
-                    if (need_water.lastDrinkTerrainPos != IntVec3.Invalid)
-                    {
-                        // 地形変化で前回のタイルが水タイルでなくなっていないか確認
-                        TerrainDef terrain = pawn.Map.terrainGrid.TerrainAt(need_water.lastDrinkTerrainPos);
-                        if (terrain.defName.Contains("Water") || terrain.defName.Contains("Marsh"))
-                        {
-                            maxDistance = (int)(need_water.lastDrinkTerrainPos - pawn.Position).LengthHorizontal;
-                            lastDirtyWaterVec = need_water.lastDrinkTerrainPos;
-                        }
-                        else
-                        {
-                            need_water.lastDrinkTerrainPos = IntVec3.Invalid;
-                        }
-                    }
+                    count = MizuUtility.WillGetStackCountOf(pawn, thing)
+                };
+            }
 
-                    // どの水地形を利用するか決める
-                    Predicate<IntVec3> validator = (vec) =>
-                    {
-                        TerrainDef terrain = pawn.Map.terrainGrid.TerrainAt(vec);
-                        return !vec.IsForbidden(pawn) && terrain.passability == Traversability.Standable && (terrain.defName.Contains("Water") || terrain.defName.Contains("Marsh"));
-                    };
-                    for (int i = 10; i < maxDistance; i += 10)
-                    {
-                        // 近場は試行回数を増やす
-                        int maxTrial = 1;
-                        if (i < 50)
-                        {
-                            maxTrial = 5;
-                        }
-                        for (int j = 0; j < maxTrial; j++)
-                        {
-                            IntVec3 dirtyWaterVec = IntVec3.Invalid;
-                            bool isTerrainFound = CellFinder.TryRandomClosewalkCellNear(pawn.Position, pawn.Map, i, out dirtyWaterVec, validator);
+            if (!MizuUtility.CanDrinkTerrain(pawn))
+            {
+                // 地形から直接水を摂取しない
+                //   →少しうろうろさせる
+                return new Job(JobDefOf.GotoWander);
+            }
 
-                            if (isTerrainFound)
-                            {
-                                need_water.lastDrinkTerrainPos = dirtyWaterVec;
-                                return new Job(MizuDef.Job_DrinkWater, dirtyWaterVec);
-                            }
-                        }
-                    }
+            // 前回使ったことがある水地形を探す
+            int maxDistance = MaxDistanceOfSearchWaterTerrain;
+            IntVec3 lastDirtyWaterVec = IntVec3.Invalid;
+            if (need_water.lastDrinkTerrainPos != IntVec3.Invalid)
+            {
+                // 地形変化で前回の場所が水地形でなくなっていないか確認
+                TerrainDef terrain = pawn.Map.terrainGrid.TerrainAt(need_water.lastDrinkTerrainPos);
+                if (terrain.CanGetWater())
+                {
+                    // 前回の水地形までの距離を最大探索距離にする
+                    maxDistance = (int)(need_water.lastDrinkTerrainPos - pawn.Position).LengthHorizontal;
+                    lastDirtyWaterVec = need_water.lastDrinkTerrainPos;
+                }
+                else
+                {
+                    // 前回の水地形が使えなくなっていたので情報をリセット
+                    need_water.lastDrinkTerrainPos = IntVec3.Invalid;
+                }
+            }
 
-                    // 見つからなかったので前回のタイルを使用
-                    if (lastDirtyWaterVec != IntVec3.Invalid)
+            // どの水地形を利用するか決める
+            Predicate<IntVec3> validator = (vec) =>
+            {
+                TerrainDef terrain = pawn.Map.terrainGrid.TerrainAt(vec);
+                return !vec.IsForbidden(pawn) && terrain.passability == Traversability.Standable && terrain.CanGetWater();
+            };
+            for (int i = 10; i < MaxDistanceOfSearchWaterTerrain; i += 10)
+            {
+                // 近場は試行回数を増やす
+                int maxTrial = 1;
+                if (i < 50)
+                {
+                    maxTrial = 5;
+                }
+                for (int j = 0; j < maxTrial; j++)
+                {
+                    IntVec3 dirtyWaterVec = IntVec3.Invalid;
+                    bool isTerrainFound = CellFinder.TryRandomClosewalkCellNear(pawn.Position, pawn.Map, i, out dirtyWaterVec, validator);
+
+                    if (isTerrainFound)
                     {
-                        return new Job(MizuDef.Job_DrinkWater, lastDirtyWaterVec);
+                        // 水地形を発見
+                        need_water.lastDrinkTerrainPos = dirtyWaterVec;
+                        return new Job(MizuDef.Job_DrinkWater, dirtyWaterVec);
                     }
                 }
-                return null;
             }
-            
-            return new Job(MizuDef.Job_DrinkWater, thing)
+
+            // 見つからなかったので前回のタイルを使用
+            if (lastDirtyWaterVec != IntVec3.Invalid)
             {
-                count = MizuUtility.WillGetStackCountOf(pawn, thing)
-            };
+                return new Job(MizuDef.Job_DrinkWater, lastDirtyWaterVec);
+            }
+
+            // 水を発見できず、前回の水地形情報もなし
+            return null;
         }
     }
 }
