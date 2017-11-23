@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- 思考ツリーの「食事を摂る」の下に「水を飲む」を追加する -->
+  <Operation Class="PatchOperationInsert">
+    <xpath>*/ThinkTreeDef//li[@Class = "JobGiver_GetFood"]</xpath>
+    <value>
+      <li Class="MizuMod.JobGiver_GetWater"/>
+    </value>
+  </Operation>
+
+  <!-- 思考ツリーに「食事を所持品に加える」の下に「水を所持品に加える」を追加する -->
+  <Operation Class="PatchOperationInsert">
+    <xpath>*/ThinkTreeDef//li[@Class = "ThinkNode_ConditionalNeedPercentageAbove" and need = "Food"]</xpath>
+    <value>
+      <li Class="ThinkNode_ConditionalNeedPercentageAbove">
+        <need>Mizu_Water</need>
+        <threshold>0.6</threshold>
+        <subNodes>
+          <li Class="MizuMod.JobGiver_PackWater">
+            <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
+          </li>
+        </subNodes>
+      </li>
+    </value>
+  </Operation>
+
+</Patch>

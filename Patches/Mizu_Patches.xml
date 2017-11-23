@@ -1,46 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-  <!-- コロニストの思考ツリーに飲み水が欲しいを追加する -->
-  <Operation Class="PatchOperationAdd">
-    <xpath>*/ThinkTreeDef[defName = "MainColonistBehaviorCore"]/thinkRoot/subNodes/li/subNodes</xpath>
-    <value>
-      <li Class="MizuMod.JobGiver_GetWater"/>
-    </value>
-  </Operation>
-
-  <!-- 囚人の思考ツリーに飲み水が欲しいを追加する -->
-  <Operation Class="PatchOperationAdd">
-    <xpath>*/ThinkTreeDef[defName = "Humanlike"]/thinkRoot/subNodes/li[@Class = "ThinkNode_ConditionalPrisoner"]/subNodes/li[tagToGive = "SatisfyingNeeds"]/subNodes/li/subNodes</xpath>
-    <value>
-      <li Class="MizuMod.JobGiver_GetWater"/>
-    </value>
-  </Operation>
-
-  <!-- 動物の思考ツリーに飲み水が欲しいを追加する -->
-  <Operation Class="PatchOperationAdd">
-    <xpath>*/ThinkTreeDef[defName = "SatisfyBasicNeeds"]/thinkRoot/subNodes/li/subNodes</xpath>
-    <value>
-      <li Class="MizuMod.JobGiver_GetWater"/>
-    </value>
-  </Operation>
-
-  <!-- コロニストの思考ツリーに携帯飲料を取得するを追加する -->
-  <Operation Class="PatchOperationAdd">
-    <xpath>*/ThinkTreeDef[defName = "Humanlike"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalColonist"][2]/subNodes</xpath>
-    <value>
-      <li Class="ThinkNode_ConditionalNeedPercentageAbove">
-        <need>Mizu_Water</need>
-        <threshold>0.6</threshold>
-        <subNodes>
-          <li Class="MizuMod.JobGiver_PackWater">
-            <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
-          </li>
-        </subNodes>
-      </li>
-    </value>
-  </Operation>
-
   <!-- 各種ポーンの初期所持品に水を追加する -->
   <!-- 原住民 -->
   <Operation Class="PatchOperationAdd">
