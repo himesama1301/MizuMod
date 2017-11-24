@@ -12,8 +12,6 @@ namespace MizuMod
 {
     public static class MizuUtility
     {
-        private static List<ThoughtDef> getWaterThoughts = new List<ThoughtDef>();
-
         public static Thing TryFindBestWaterSourceFor(Pawn getter, Pawn eater, bool canUseInventory = true, bool allowForbidden = false, bool allowSociallyImproper = false)
         {
             // ドラッグ嫌いではない
@@ -310,15 +308,25 @@ namespace MizuMod
                 return 0f;
             }
 
-            // 食事による心情変化
             if (getter.needs.mood != null)
             {
-                // 現在は何も変化しない
-                List<ThoughtDef> list = MizuUtility.ThoughtsFromGettingWater(getter, thing);
-                for (int j = 0; j < list.Count; j++)
+                // 水分摂取による心情変化
+                foreach (var thoughtDef in MizuUtility.ThoughtsFromGettingWater(getter, thing))
                 {
-                    getter.needs.mood.thoughts.memories.TryGainMemory(list[j], null);
+                    getter.needs.mood.thoughts.memories.TryGainMemory(thoughtDef);
                 }
+            }
+
+            // 健康状態の変化
+            CompWater comp = thing.TryGetComp<CompWater>();
+            if (comp == null)
+            {
+                Log.Error("comp is null");
+                return 0.0f;
+            }
+            if (comp.DrinkHediff != null)
+            {
+                getter.health.AddHediff(HediffMaker.MakeHediff(comp.DrinkHediff, getter));
             }
 
             int drankWaterItemCount;
@@ -333,7 +341,10 @@ namespace MizuMod
                 {
                     // アイテム消費数とスタック数が同じ
                     //   →完全消滅
-                    getter.Map.reservationManager.Release(thing, getter, getter.CurJob);
+                    if (getter.Map.reservationManager.ReservedBy(thing, getter, getter.CurJob))
+                    {
+                        getter.Map.reservationManager.Release(thing, getter, getter.CurJob);
+                    }
                     thing.Destroy(DestroyMode.Vanish);
                 }
                 else
@@ -348,9 +359,23 @@ namespace MizuMod
 
         public static List<ThoughtDef> ThoughtsFromGettingWater(Pawn getter, Thing t)
         {
-            // ポーンがそのアイテムから得る心情リストを作成
-            MizuUtility.getWaterThoughts.Clear();
-            return MizuUtility.getWaterThoughts;
+            // 空のリスト
+            List<ThoughtDef> thoughtList = new List<ThoughtDef>();
+
+            // 心情ステータスの無いポーンには空のリストを返す
+            if (getter.needs == null || getter.needs.mood == null) return thoughtList;
+
+            // アイテムが水でないなら空のリストを返す
+            CompWater comp = t.TryGetComp<CompWater>();
+            if (comp == null) return thoughtList;
+
+            // 禁欲主義ではない＆飲んだ時の心情が設定されていたら、それを与える
+            if (!getter.story.traits.HasTrait(TraitDefOf.Ascetic) && comp.DrinkThought != null)
+            {
+                thoughtList.Add(comp.DrinkThought);
+            }
+
+            return thoughtList;
         }
 
         public static int WillGetStackCountOf(Pawn getter, Thing thing)
@@ -411,6 +436,20 @@ namespace MizuMod
                     return MizuDef.Thing_MudWater;
                 case WaterTerrainType.SeaWater:
                     return MizuDef.Thing_SeaWater;
+                default:
+                    return null;
+            }
+        }
+
+        public static ThoughtDef GetThoughtDefFromTerrainType(WaterTerrainType waterTerrainType)
+        {
+            // 地形タイプ→心情
+            switch (waterTerrainType)
+            {
+                case WaterTerrainType.MudWater:
+                    return MizuDef.Thought_DrankMudWater;
+                case WaterTerrainType.SeaWater:
+                    return MizuDef.Thought_DrankSeaWater;
                 default:
                     return null;
             }

@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-  <NeedWater.stages.0.label>喉が渇いた</NeedWater.stages.0.label>
-  <NeedWater.stages.0.description>本当に喉が渇いてきた。</NeedWater.stages.0.description>
-  <NeedWater.stages.1.label>ひどく喉が渇いた</NeedWater.stages.1.label>
-  <NeedWater.stages.1.description>喉が渇いて、他の事ができない。</NeedWater.stages.1.description>
-  <NeedWater.stages.2.label>脱水症状(些細)</NeedWater.stages.2.label>
-  <NeedWater.stages.2.description>最後に水を飲んでから日が経った。意識がぼんやりしていて集中するのが難しい。</NeedWater.stages.2.description>
-  <NeedWater.stages.3.label>脱水症状(マイナー)</NeedWater.stages.3.label>
-  <NeedWater.stages.3.description>身体が衰弱していくのがわかる。胃がキリキリと病んでいる。</NeedWater.stages.3.description>
-  <NeedWater.stages.4.label>脱水症状(中程度)</NeedWater.stages.4.label>
-  <NeedWater.stages.4.description>私はなんとか、やっとの思いで飲み物以外の事を考えることができる。皮膚は骨に張り付いている。このままだと死ぬのかな？</NeedWater.stages.4.description>
-  <NeedWater.stages.5.label>脱水症状(シビア)</NeedWater.stages.5.label>
-  <NeedWater.stages.5.description>私はなんとか、やっとの思いで飲み物以外の事を考えることができる。皮膚は骨に張り付いている。もう死ぬのかな？</NeedWater.stages.5.description>
-  <NeedWater.stages.6.label>脱水症状(極限)</NeedWater.stages.6.label>
-  <NeedWater.stages.6.description>水...みず... なんでも... ょうだい...</NeedWater.stages.6.description>
+  <Mizu_NeedWater.stages.0.label>喉が渇いた</Mizu_NeedWater.stages.0.label>
+  <Mizu_NeedWater.stages.0.description>本当に喉が渇いてきた。</Mizu_NeedWater.stages.0.description>
+  <Mizu_NeedWater.stages.1.label>ひどく喉が渇いた</Mizu_NeedWater.stages.1.label>
+  <Mizu_NeedWater.stages.1.description>喉が渇いて、他の事ができない。</Mizu_NeedWater.stages.1.description>
+  <Mizu_NeedWater.stages.2.label>脱水症状(些細)</Mizu_NeedWater.stages.2.label>
+  <Mizu_NeedWater.stages.2.description>最後に水を飲んでから日が経った。意識がぼんやりしていて集中するのが難しい。</Mizu_NeedWater.stages.2.description>
+  <Mizu_NeedWater.stages.3.label>脱水症状(マイナー)</Mizu_NeedWater.stages.3.label>
+  <Mizu_NeedWater.stages.3.description>身体が衰弱していくのがわかる。胃がキリキリと病んでいる。</Mizu_NeedWater.stages.3.description>
+  <Mizu_NeedWater.stages.4.label>脱水症状(中程度)</Mizu_NeedWater.stages.4.label>
+  <Mizu_NeedWater.stages.4.description>私はなんとか、やっとの思いで飲み物以外の事を考えることができる。皮膚は骨に張り付いている。このままだと死ぬのかな？</Mizu_NeedWater.stages.4.description>
+  <Mizu_NeedWater.stages.5.label>脱水症状(シビア)</Mizu_NeedWater.stages.5.label>
+  <Mizu_NeedWater.stages.5.description>私はなんとか、やっとの思いで飲み物以外の事を考えることができる。皮膚は骨に張り付いている。もう死ぬのかな？</Mizu_NeedWater.stages.5.description>
+  <Mizu_NeedWater.stages.6.label>脱水症状(極限)</Mizu_NeedWater.stages.6.label>
+  <Mizu_NeedWater.stages.6.description>水...みず... なんでも... ょうだい...</Mizu_NeedWater.stages.6.description>
 
 </LanguageData>

@@ -2,7 +2,7 @@
 <Defs>
 
   <ThoughtDef>
-    <defName>NeedWater</defName>
+    <defName>Mizu_NeedWater</defName>
     <workerClass>MizuMod.ThoughtWorker_NeedWater</workerClass>
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
@@ -43,7 +43,59 @@
       </li>
     </stages>
   </ThoughtDef>
-
+  
+  <ThoughtDef>
+    <defName>Mizu_DrankClearWater</defName>
+    <durationDays>0.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>drank clear water</label>
+        <description>I drank clear water. It's tasty good.</description>
+        <baseMoodEffect>10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef>
+    <defName>Mizu_DrankRainWater</defName>
+    <durationDays>0.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>drank rain water</label>
+        <description>I drank unfiltered rain water. taste bad slightly.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef>
+    <defName>Mizu_DrankMudWater</defName>
+    <durationDays>0.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>drank mud water</label>
+        <description>I drank unfiltered mud water. so terrible taste!</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef>
+    <defName>Mizu_DrankSeaWater</defName>
+    <durationDays>0.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>drank sea water</label>
+        <description>I drank unfiltered sea water. so terrible and salty taste!</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
   <ThoughtDef>
     <defName>Mizu_DrankWaterDirectly</defName>
     <durationDays>0.5</durationDays>

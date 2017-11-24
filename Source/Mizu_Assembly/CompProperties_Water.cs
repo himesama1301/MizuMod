@@ -17,7 +17,8 @@ namespace MizuMod
         public EffecterDef getEffect = null;
         public SoundDef getSound = null;
         public int maxNumToGetAtOnce = 1;
-        public float chairSearchRadius = 25f;
+        public ThoughtDef drinkThought = null;
+        public HediffDef drinkHediff = null;
 
         public CompProperties_Water()
         {
@@ -26,10 +27,15 @@ namespace MizuMod
 
         public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
         {
-            StatDrawEntry[] extraStats = new StatDrawEntry[] {
-                new StatDrawEntry(MizuDef.StatCategory_Water, MizuStrings.CompWaterAmount , waterAmount.ToString("0.##"), 11),
-            };
-            return base.SpecialDisplayStats().Concat(extraStats);
+            foreach (var statDrawEntry in base.SpecialDisplayStats())
+            {
+                yield return statDrawEntry;
+            }
+            yield return new StatDrawEntry(MizuDef.StatCategory_Water, MizuStrings.CompWaterAmount, waterAmount.ToString("0.##"), 11);
+            //StatDrawEntry[] extraStats = new StatDrawEntry[] {
+            //    new StatDrawEntry(MizuDef.StatCategory_Water, MizuStrings.CompWaterAmount , waterAmount.ToString("0.##"), 11),
+            //};
+            //return base.SpecialDisplayStats().Concat(extraStats);
         }
 
     }

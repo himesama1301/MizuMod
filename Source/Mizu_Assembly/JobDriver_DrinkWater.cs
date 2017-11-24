@@ -85,7 +85,7 @@ namespace MizuMod
                 yield return Toils_Mizu.DrinkTerrain(WaterIndex);
 
                 // 終了
-                yield return Toils_Mizu.FinishDrinkTerrain();
+                yield return Toils_Mizu.FinishDrinkTerrain(WaterIndex);
             }
         }
     }

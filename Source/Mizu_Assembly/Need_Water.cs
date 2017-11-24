@@ -22,6 +22,7 @@ namespace MizuMod
         private const float BaseFallPerTick = 1.33E-05f;
 
         public IntVec3 lastDrinkTerrainPos;
+        public int lastSearchWaterTick;
 
         public ThirstCategory CurCategory
         {
@@ -112,6 +113,7 @@ namespace MizuMod
             this.threshPercents = new List<float>();
             this.threshPercents.Add(this.PercentageThreshUrgentlyThirsty);
             this.threshPercents.Add(this.PercentageThreshThirsty);
+            this.lastSearchWaterTick = Find.TickManager.TicksGame;
         }
 
         private float WaterFallPerTickAssumingCategory(ThirstCategory cat)
@@ -135,6 +137,7 @@ namespace MizuMod
         {
             base.ExposeData();
             Scribe_Values.Look<IntVec3>(ref this.lastDrinkTerrainPos, "lastDrinkTerrainPos", IntVec3.Invalid, false);
+            Scribe_Values.Look<int>(ref this.lastSearchWaterTick, "lastSearchWaterTick");
         }
 
         public override void SetInitialLevel()

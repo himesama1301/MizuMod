@@ -297,7 +297,7 @@ namespace MizuMod
                 {
                     return null;
                 }
-                return comp.PropsWater.getSound;
+                return comp.Props.getSound;
             });
             return toil;
         }
@@ -404,18 +404,37 @@ namespace MizuMod
             return toil;
         }
 
-        public static Toil FinishDrinkTerrain()
+        public static Toil FinishDrinkTerrain(TargetIndex terrainVecIndex)
         {
             Toil toil = new Toil();
             toil.initAction = delegate
             {
                 Pawn actor = toil.actor;
                 Need_Water need_water = actor.needs.water();
+
                 float numWater = need_water.MaxLevel - need_water.CurLevel;
+
+                TerrainDef terrain = actor.Map.terrainGrid.TerrainAt(actor.CurJob.GetTarget(terrainVecIndex).Cell);
+
                 if (actor.needs.mood != null)
                 {
+                    // 地面から直接飲んだ
                     actor.needs.mood.thoughts.memories.TryGainMemory(MizuDef.Thought_DrankWaterDirectly);
+
+                    ThoughtDef thoughtDef = MizuUtility.GetThoughtDefFromTerrainType(terrain.GetWaterTerrainType());
+                    if (thoughtDef != null)
+                    {
+                        // 水の種類による心情
+                        actor.needs.mood.thoughts.memories.TryGainMemory(thoughtDef);
+                    }
                 }
+
+                if (terrain.IsSea())
+                {
+                    // 海水の場合の健康状態悪化
+                    actor.health.AddHediff(HediffMaker.MakeHediff(MizuDef.Hediff_DrankSeaWater, actor));
+                }
+
                 if (!actor.Dead)
                 {
                     actor.needs.water().CurLevel += numWater;

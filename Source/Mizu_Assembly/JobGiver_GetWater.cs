@@ -12,6 +12,7 @@ namespace MizuMod
     public class JobGiver_GetWater : ThinkNode_JobGiver
     {
         private const int MaxDistanceOfSearchWaterTerrain = 500;
+        private const int SearchWaterIntervalTick = 180;
 
         public override float GetPriority(Pawn pawn)
         {
@@ -31,6 +32,13 @@ namespace MizuMod
                 return null;
             }
 
+            // 最後に水を探してから少し経つまで次の探索はしない
+            if (need_water.lastSearchWaterTick + SearchWaterIntervalTick > Find.TickManager.TicksGame)
+            {
+                return null;
+            }
+            need_water.lastSearchWaterTick = Find.TickManager.TicksGame;
+
             // 水アイテムを探す
             Thing thing = MizuUtility.TryFindBestWaterSourceFor(pawn, pawn, true, false, false);
             if (thing != null)
@@ -46,7 +54,7 @@ namespace MizuMod
             {
                 // 地形から直接水を摂取しない
                 //   →少しうろうろさせる
-                return new Job(JobDefOf.GotoWander);
+                return null;
             }
 
             // 前回使ったことがある水地形を探す

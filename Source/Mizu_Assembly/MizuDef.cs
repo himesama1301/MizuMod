@@ -22,10 +22,13 @@ namespace MizuMod
         public static StatCategoryDef StatCategory_Water = DefDatabase<StatCategoryDef>.GetNamed("Mizu_WaterCategory");
 
         public static HediffDef Hediff_Dehydration = DefDatabase<HediffDef>.GetNamed("Mizu_Dehydration");
+        public static HediffDef Hediff_DrankSeaWater = DefDatabase<HediffDef>.GetNamed("Mizu_DrankSeaWater");
 
         public static RecordDef Record_WaterDrank = DefDatabase<RecordDef>.GetNamed("Mizu_WaterDrank");
 
         public static ThoughtDef Thought_DrankWaterDirectly = DefDatabase<ThoughtDef>.GetNamed("Mizu_DrankWaterDirectly");
+        public static ThoughtDef Thought_DrankMudWater = DefDatabase<ThoughtDef>.GetNamed("Mizu_DrankMudWater");
+        public static ThoughtDef Thought_DrankSeaWater = DefDatabase<ThoughtDef>.GetNamed("Mizu_DrankSeaWater");
 
         public static ThingDef Thing_ClearWater = DefDatabase<ThingDef>.GetNamed("Mizu_ClearWater");
         public static ThingDef Thing_NormalWater = DefDatabase<ThingDef>.GetNamed("Mizu_NormalWater");

@@ -45,6 +45,7 @@
         <waterPreferability>ClearWater</waterPreferability>
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <drinkThought>Mizu_DrankClearWater</drinkThought>
       </li>
     </comps>
   </ThingDef>
@@ -74,7 +75,7 @@
   <ThingDef ParentName="Mizu_WaterItemBase">
     <defName>Mizu_RainWater</defName>
     <label>Rain water</label>
-    <description>Water for drinking. It will taste bad a little.</description>
+    <description>Water for drinking. It will taste bad slightly.</description>
     <graphicData>
       <texPath>Things/Item/Drug/Beer</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -89,6 +90,7 @@
         <waterPreferability>RainWater</waterPreferability>
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <drinkThought>Mizu_DrankRainWater</drinkThought>
       </li>
     </comps>
   </ThingDef>
@@ -111,6 +113,7 @@
         <waterPreferability>MudWater</waterPreferability>
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <drinkThought>Mizu_DrankMudWater</drinkThought>
       </li>
     </comps>
   </ThingDef>
@@ -133,6 +136,8 @@
         <waterPreferability>SeaWater</waterPreferability>
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <drinkThought>Mizu_DrankSeaWater</drinkThought>
+        <drinkHediff>Mizu_DrankSeaWater</drinkHediff>
       </li>
     </comps>
   </ThingDef>
