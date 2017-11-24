@@ -144,16 +144,10 @@ namespace MizuMod
 
         public override void NeedInterval()
         {
-            if (this.pawn.RaceProps.IsMechanoid)
-            {
-                return;
-            }
-            if (base.IsFrozen)
-            {
-                return;
-            }
+            if (this.pawn.RaceProps.IsMechanoid) return;
+            if (base.IsFrozen) return;
             
-            // 水分要求定価
+            // 水分要求低下
             this.CurLevel -= WaterFallPerTick * 150f * HighSpeedFactorForDebug;
 
             if (this.Dehydrating)

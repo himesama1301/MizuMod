@@ -19,48 +19,53 @@ namespace MizuMod
 
         protected override Job TryGiveJob(Pawn pawn)
         {
-            if (pawn.inventory == null)
+            // 所持品インスタンスがない
+            if (pawn.inventory == null) return null;
+
+            // 既に条件を満たしたアイテムを持っているか？
+            foreach (var thing in pawn.inventory.innerContainer)
             {
-                return null;
-            }
-            ThingOwner<Thing> innerContainer = pawn.inventory.innerContainer;
-            for (int i = 0; i < innerContainer.Count; i++)
-            {
-                Thing thing = innerContainer[i];
                 CompWater comp = thing.TryGetComp<CompWater>();
+                if (comp == null) continue;
+                if (comp.WaterAmount <= MinWaterAmount) continue;
+                if (comp.WaterPreferability < MinWaterPreferability) continue;
 
-                if (comp != null && comp.WaterAmount > MinWaterAmount && comp.WaterPreferability >= MinWaterPreferability)
-                {
-                    return null;
-                }
-            }
-
-            if (pawn.Map.resourceCounter.TotalWater() < (float)pawn.Map.mapPawns.ColonistsSpawnedCount * MinWaterPerColonistToDo)
-            {
                 return null;
             }
-            Thing thing2 = GenClosest.ClosestThing_Regionwise_ReachablePrioritized(pawn.Position, pawn.Map, ThingRequest.ForGroup(ThingRequestGroup.HaulableEver), PathEndMode.ClosestTouch, TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false), 20f, delegate (Thing t)
-            {
-                CompWater comp2 = t.TryGetComp<CompWater>();
-                if (comp2 == null || comp2.WaterAmount < MinWaterAmount || t.IsForbidden(pawn) || !pawn.CanReserve(t, 1, -1, null, false) || !t.IsSociallyProper(pawn))
-                {
-                    return false;
-                }
-                List<ThoughtDef> list = MizuUtility.ThoughtsFromGettingWater(pawn, t);
-                for (int j = 0; j < list.Count; j++)
-                {
-                    if (list[j].stages[0].baseMoodEffect < 0f)
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }, (Thing x) => MizuUtility.GetWaterItemScore(pawn, x, 0f, false), 24, 30);
-            if (thing2 == null)
-            {
-                return null;
-            }
-            return new Job(JobDefOf.TakeInventory, thing2)
+
+            // マップ中の水アイテムの合計水分量が、最低限必要とされる水の量(×入植者の人数)以下しかなければ、
+            // 個人の所持品には入れない
+            if (pawn.Map.resourceCounter.TotalWater() < (float)pawn.Map.mapPawns.ColonistsSpawnedCount * MinWaterPerColonistToDo) return null;
+
+            var waterThing = GenClosest.ClosestThing_Regionwise_ReachablePrioritized(
+                pawn.Position,
+                pawn.Map,
+                ThingRequest.ForGroup(ThingRequestGroup.HaulableEver),
+                PathEndMode.ClosestTouch,
+                TraverseParms.For(pawn),
+                20f,
+                (t) => {
+                    CompWater comp = t.TryGetComp<CompWater>();
+                    if (comp == null) return false; // 水でないもの×
+                    if (comp.WaterAmount < MinWaterAmount) return false;  // 最低水分量を満たしていないもの×
+                    if (t.IsForbidden(pawn)) return false;  // 禁止されている×
+                    if (!pawn.CanReserve(t)) return false;  // 予約不可能×
+                    if (!t.IsSociallyProper(pawn)) return false;  // 囚人部屋の物×
+
+                    // それを摂取した時心情悪化するもの×
+                    //   最悪海水とかを持っていくこともあるかもなのでコメントアウト
+                    //foreach (var thought in MizuUtility.ThoughtsFromGettingWater(pawn, t))
+                    //{
+                    //    if (thought.stages[0].baseMoodEffect < 0f) return false;
+                    //}
+
+                    return true;
+                }, (x) => MizuUtility.GetWaterItemScore(pawn, x, 0f, false)  // スコアの高いものが優先？
+            );
+
+            if (waterThing == null) return null;
+
+            return new Job(JobDefOf.TakeInventory, waterThing)
             {
                 count = 1
             };

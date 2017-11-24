@@ -168,7 +168,7 @@ namespace MizuMod
         {
             // 水(食事)を持ち物から取り出す
             Toil toil = new Toil();
-            toil.initAction = delegate
+            toil.initAction = () =>
             {
                 Pawn actor = toil.actor;
                 Job curJob = actor.jobs.curJob;
@@ -200,7 +200,7 @@ namespace MizuMod
             return toil;
         }
 
-        public static Toil Drink(TargetIndex thingIndex)
+        private static Toil DrinkSomeone(TargetIndex thingIndex, Func<Toil, Func<LocalTargetInfo>> funcGetter)
         {
             Toil toil = new Toil();
             toil.initAction = delegate
@@ -279,14 +279,7 @@ namespace MizuMod
                     effecter = comp.GetEffect;
                 }
                 return effecter;
-            }, delegate
-            {
-                if (!toil.actor.CurJob.GetTarget(thingIndex).HasThing)
-                {
-                    return null;
-                }
-                return toil.actor.CurJob.GetTarget(thingIndex).Thing;
-            });
+            }, funcGetter(toil));
             toil.PlaySustainerOrSound(delegate
             {
                 Pawn actor = toil.actor;
@@ -309,24 +302,74 @@ namespace MizuMod
             return toil;
         }
 
-        public static Toil FinishDrink(TargetIndex thingIndex)
+        public static Toil Drink(TargetIndex thingIndex)
+        {
+            return Toils_Mizu.DrinkSomeone(thingIndex, (toil) =>
+            {
+                return () =>
+                {
+                    if (!toil.actor.CurJob.GetTarget(thingIndex).HasThing)
+                    {
+                        return null;
+                    }
+                    return toil.actor.CurJob.GetTarget(thingIndex).Thing;
+                };
+            });
+        }
+
+        public static Toil FeedToPatient(TargetIndex thingIndex, TargetIndex patientIndex)
+        {
+            return Toils_Mizu.DrinkSomeone(thingIndex, (toil) =>
+            {
+                return () =>
+                {
+                    if (!toil.actor.CurJob.GetTarget(patientIndex).HasThing) return null;
+
+                    var patient = toil.actor.CurJob.GetTarget(patientIndex).Thing as Pawn;
+                    if (patient == null) return null;
+
+                    return patient;
+                };
+            });
+        }
+
+        private static Toil FinishDrinkSomeone(TargetIndex thingIndex, Func<Toil, Pawn> pawnGetter)
         {
             Toil toil = new Toil();
-            toil.initAction = delegate
+            toil.initAction = () =>
             {
-                Pawn actor = toil.actor;
-                Job curJob = actor.jobs.curJob;
-                Thing thing = curJob.GetTarget(thingIndex).Thing;
-                float num = actor.needs.water().WaterWanted;
-                float num2 = MizuUtility.GetWater(actor, thing, num);
-                if (!actor.Dead)
+                Thing thing = toil.actor.jobs.curJob.GetTarget(thingIndex).Thing;
+                Pawn getter = pawnGetter(toil);
+                if (getter == null) return;
+
+                float wantedWaterAmount = getter.needs.water().WaterWanted;
+                float gotWaterAmount = MizuUtility.GetWater(getter, thing, wantedWaterAmount);
+                if (!getter.Dead)
                 {
-                    actor.needs.water().CurLevel += num2;
+                    getter.needs.water().CurLevel += gotWaterAmount;
                 }
-                actor.records.AddTo(MizuDef.Record_WaterDrank, num2);
+                getter.records.AddTo(MizuDef.Record_WaterDrank, gotWaterAmount);
             };
             toil.defaultCompleteMode = ToilCompleteMode.Instant;
             return toil;
+        }
+
+        public static Toil FinishDrink(TargetIndex thingIndex)
+        {
+            return Toils_Mizu.FinishDrinkSomeone(thingIndex, (toil) =>
+            {
+                return toil.actor;
+            });
+        }
+
+        public static Toil FinishDrinkPatient(TargetIndex thingIndex, TargetIndex patientIndex)
+        {
+            return Toils_Mizu.FinishDrinkSomeone(thingIndex, (toil) =>
+            {
+                if (!toil.actor.CurJob.GetTarget(patientIndex).HasThing) return null;
+
+                return toil.actor.CurJob.GetTarget(patientIndex).Thing as Pawn;
+            });
         }
 
         public static Toil DrinkTerrain(TargetIndex thingIndex)
@@ -380,6 +423,55 @@ namespace MizuMod
                 actor.records.AddTo(MizuDef.Record_WaterDrank, numWater);
             };
             toil.defaultCompleteMode = ToilCompleteMode.Instant;
+            return toil;
+        }
+
+        public static Toil DropCarriedThing(TargetIndex prisonerIndex, TargetIndex dropSpotIndex)
+        {
+            Toil toil = new Toil();
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+
+                // そもそも何も運んでいない
+                if (actor.carryTracker == null || actor.carryTracker.CarriedThing == null) return;
+
+                // ターゲットが場所ではなく物
+                if (actor.CurJob.GetTarget(dropSpotIndex).HasThing) return;
+
+                Thing dropThing = null;
+
+                // その場に置いてみる
+                bool isDropSuccess = actor.carryTracker.TryDropCarriedThing(actor.CurJob.GetTarget(dropSpotIndex).Cell, ThingPlaceMode.Direct, out dropThing);
+
+                if (!isDropSuccess)
+                {
+                    // その場に置けなかったら近くに置いてみる
+                    isDropSuccess = actor.carryTracker.TryDropCarriedThing(actor.CurJob.GetTarget(dropSpotIndex).Cell, ThingPlaceMode.Near, out dropThing);
+                }
+
+                // その場or近くに置けなかった
+                if (!isDropSuccess) return;
+
+                if (actor.Map.reservationManager.ReservedBy(dropThing, actor))
+                {
+                    // 持ってる人に予約されているなら、解放する
+                    actor.Map.reservationManager.Release(dropThing, actor, actor.CurJob);
+                }
+
+                // 相手が囚人でない可能性
+                if (!actor.CurJob.GetTarget(prisonerIndex).HasThing) return;
+
+                Pawn prisoner = actor.CurJob.GetTarget(prisonerIndex).Thing as Pawn;
+
+                // 囚人がポーンではない
+                if (prisoner == null) return;
+
+                // 置いた水を囚人に予約させる
+                prisoner.Reserve(dropThing, actor.CurJob);
+            };
+            toil.defaultCompleteMode = ToilCompleteMode.Instant;
+            toil.atomicWithPrevious = true;
             return toil;
         }
     }

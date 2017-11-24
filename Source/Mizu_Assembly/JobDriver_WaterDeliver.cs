@@ -13,7 +13,7 @@ namespace MizuMod
     {
         private const TargetIndex WaterIndex = TargetIndex.A;
         private const TargetIndex PrisonerIndex = TargetIndex.B;
-        private const TargetIndex ChewSpotIndex = TargetIndex.C;
+        private const TargetIndex DropSpotIndex = TargetIndex.C;
 
         private bool drinkingFromInventory;
 
@@ -39,40 +39,26 @@ namespace MizuMod
             // 水が使用不可能になったらFail
             ToilFailConditions.FailOnDestroyedNullOrForbidden<JobDriver_WaterDeliver>(this, WaterIndex);
 
-            // 水(食事)を予約
-            if (ReservationUtility.CanReserveAndReach(this.pawn, this.TargetA, PathEndMode.Touch, Danger.Deadly, 1, this.job.count, null, false) == true)
+            if (!this.pawn.CanReserveAndReach(this.TargetA, PathEndMode.Touch, Danger.Deadly, 1, this.job.count))
             {
-                yield return Toils_Reserve.Reserve(WaterIndex, 1, this.job.count, null);
-            }
-            else
-            {
+                // 水を予約できなかったら終了
+                this.pawn.jobs.EndCurrentJob(JobCondition.Incompletable);
                 yield break;
             }
 
-            // 水を取得
+            // 予約する
+            yield return Toils_Reserve.Reserve(WaterIndex, 1, this.job.count, null);
+
             if (this.drinkingFromInventory)
             {
                 // 水を持ち物から取り出す
-                Toil toil = new Toil();
-                toil.initAction = delegate
-                {
-                    Pawn actor = toil.actor;
-                    Job curJob = actor.jobs.curJob;
-                    Thing thing = curJob.GetTarget(TargetIndex.A).Thing;
-                    if (actor.inventory != null && thing != null)
-                    {
-                        actor.inventory.innerContainer.Take(thing);
-                        actor.carryTracker.TryStartCarry(thing);
-                    }
-                };
-                toil.defaultCompleteMode = ToilCompleteMode.Instant;
-                toil.FailOnDestroyedOrNull(WaterIndex);
-                yield return toil;
+                yield return Toils_Mizu.StartCarryFromInventory(WaterIndex);
             }
             else
             {
                 // 水の場所まで行く
                 yield return Toils_Goto.Goto(WaterIndex, PathEndMode.OnCell);
+
                 // 水を拾う
                 yield return Toils_Ingest.PickupIngestible(WaterIndex, this.pawn);
             }
@@ -80,38 +66,8 @@ namespace MizuMod
             // スポットまで移動する
             yield return Toils_Goto.GotoCell(this.TargetC.Cell, PathEndMode.OnCell);
 
-            // 置く
-            {
-                Toil toil = new Toil();
-                toil.initAction = delegate
-                {
-                    Pawn actor = toil.actor;
-                    if (actor.carryTracker == null || actor.carryTracker.CarriedThing == null)
-                    {
-                        return;
-                    }
-                    Thing thing = null;
-                    bool isDropSuccess = actor.carryTracker.TryDropCarriedThing(this.TargetC.Cell, ThingPlaceMode.Direct, out thing);
-                    if (!isDropSuccess)
-                    {
-                        isDropSuccess = actor.carryTracker.TryDropCarriedThing(this.TargetC.Cell, ThingPlaceMode.Near, out thing);
-                    }
-
-                    if (isDropSuccess)
-                    {
-                        if (pawn.Map.reservationManager.ReservedBy(thing, pawn))
-                        {
-                            pawn.Map.reservationManager.Release(thing, pawn, this.job);
-                        }
-                        ReservationUtility.Reserve((Pawn)this.TargetB.Thing, thing, this.job);
-                    }
-                    
-                };
-                toil.defaultCompleteMode = ToilCompleteMode.Instant;
-                toil.atomicWithPrevious = true;
-                yield return toil;
-            }
-            yield break;
+            // 置いて囚人によやくさせる
+            yield return Toils_Mizu.DropCarriedThing(PrisonerIndex, DropSpotIndex);
         }
     }
 }
