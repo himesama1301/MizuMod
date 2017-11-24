@@ -22,5 +22,7 @@
     <path>Mizu_Dehydration.stages[4].label</path>
     <trans>末期</trans>
   </rep>
+  
+  <Mizu_DrankSeaWater.label>海水を飲んだ</Mizu_DrankSeaWater.label>
 
 </LanguageData>

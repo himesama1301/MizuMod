@@ -15,5 +15,17 @@
   <Mizu_NeedWater.stages.5.description>私はなんとか、やっとの思いで飲み物以外の事を考えることができる。皮膚は骨に張り付いている。もう死ぬのかな？</Mizu_NeedWater.stages.5.description>
   <Mizu_NeedWater.stages.6.label>脱水症状(極限)</Mizu_NeedWater.stages.6.label>
   <Mizu_NeedWater.stages.6.description>水...みず... なんでも... ょうだい...</Mizu_NeedWater.stages.6.description>
-
+  
+  <Mizu_DrankClearWater.stages.0.label>きれいな水を飲んだ</Mizu_DrankClearWater.stages.0.label>
+  <Mizu_DrankClearWater.stages.0.description>きれいな水を飲んだ。おいしかった。</Mizu_DrankClearWater.stages.0.description>
+  <Mizu_DrankRainWater.stages.0.label>雨水を飲んだ</Mizu_DrankRainWater.stages.0.label>
+  <Mizu_DrankRainWater.stages.0.description>浄化していない雨水を飲んだ。ちょっと変な味がした。</Mizu_DrankRainWater.stages.0.description>
+  <Mizu_DrankMudWater.stages.0.label>泥水を飲んだ</Mizu_DrankMudWater.stages.0.label>
+  <Mizu_DrankMudWater.stages.0.description>浄化していない泥水を飲んだ。まずい！</Mizu_DrankMudWater.stages.0.description>
+  <Mizu_DrankSeaWater.stages.0.label>海水を飲んだ</Mizu_DrankSeaWater.stages.0.label>
+  <Mizu_DrankSeaWater.stages.0.description>浄化していない海水を飲んだ。まずい上にしょっぱい！</Mizu_DrankSeaWater.stages.0.description>
+  
+  <Mizu_DrankWaterDirectly.stages.0.label>地面から直接水を飲んだ</Mizu_DrankWaterDirectly.stages.0.label>
+  <Mizu_DrankWaterDirectly.stages.0.description>地面から直接水を飲む以外に選択肢がなかった。</Mizu_DrankWaterDirectly.stages.0.description>
+  
 </LanguageData>
