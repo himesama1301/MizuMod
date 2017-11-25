@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Harmony;
 using System.Reflection;
-using Verse;
+using System.Reflection.Emit;
+
+using UnityEngine;
 using RimWorld;
 using RimWorld.Planet;
-using UnityEngine;
+using Verse;
 using Verse.Sound;
 using Verse.AI;
-using System.Reflection.Emit;
+
+using Harmony;
 
 namespace MizuMod
 {
@@ -30,40 +32,75 @@ namespace MizuMod
     {
         static void Postfix(Pawn pawn, Caravan caravan)
         {
+            // キャラバンのポーンの水分要求の処理
+            if (pawn.needs == null) return;
+
             Need_Water need_water = pawn.needs.water();
-            if (need_water != null)
+            if (need_water == null) return;
+
+            // 渇き状態より小さい(喉が渇いてない)場合は飲まない
+            if (need_water.CurCategory < ThirstCategory.Thirsty) return;
+
+            // タイルが0以上(?)、死んでない、ローカルではなく惑星マップ上にいる(キャラバンしてる)、そのポーンが地形から水を飲める(心情がある/ない、脱水症状まで進んでいる/いない、など)
+            if (pawn.Tile >= 0 && !pawn.Dead && pawn.IsWorldPawn() && pawn.CanDrinkFromTerrain())
             {
-                if (need_water.CurCategory < ThirstCategory.Thirsty)
+                // 地形から水を飲む
+                need_water.CurLevel = 1.0f;
+
+                WaterTerrainType drankTerrainType = caravan.GetWaterTerrainType();
+                if (drankTerrainType == WaterTerrainType.SeaWater)
                 {
-                    return;
+                    // 海水の場合の健康状態悪化
+                    pawn.health.AddHediff(HediffMaker.MakeHediff(MizuDef.Hediff_DrankSeaWater, pawn));
                 }
-                Thing thing;
-                Pawn pawn2;
-                //if (VirtualPlantsUtility.CanEatVirtualPlantsNow(pawn))
-                //{
-                //    VirtualPlantsUtility.EatVirtualPlants(pawn);
-                //}
-                if (pawn.Tile >= 0 && !pawn.Dead && pawn.IsWorldPawn() && MizuUtility.CanDrinkTerrain(pawn))
+
+                // 心情要求がなければここで終了
+                if (pawn.needs.mood == null) return;
+
+                // 地形から水を飲んだ心情付加
+                pawn.needs.mood.thoughts.memories.TryGainMemory(MizuDef.Thought_DrankWaterDirectly);
+
+                // キャラバンのいる地形に応じた心情を付加
+                ThoughtDef thoughtDef = MizuUtility.GetThoughtDefFromTerrainType(drankTerrainType);
+                if (thoughtDef != null)
                 {
-                    need_water.CurLevel += Rand.Range(0.2f, 0.4f);
+                    // 水の種類による心情
+                    pawn.needs.mood.thoughts.memories.TryGainMemory(thoughtDef);
                 }
-                else if (MizuCaravanUtility.TryGetBestWater(caravan, pawn, out thing, out pawn2))
-                {
-                    need_water.CurLevel += MizuUtility.GetWater(pawn, thing, need_water.WaterWanted);
-                    if (thing.Destroyed)
-                    {
-                        if (pawn2 != null)
-                        {
-                            pawn2.inventory.innerContainer.Remove(thing);
-                            caravan.RecacheImmobilizedNow();
-                            caravan.RecacheDaysWorthOfFood();
-                        }
-                        if (!MizuCaravanUtility.TryGetBestWater(caravan, pawn, out thing, out pawn2))
-                        {
-                            Messages.Message(string.Format(MizuStrings.MessageCaravanRunOutOfWater, caravan.LabelCap, pawn.Label), caravan, MessageTypeDefOf.ThreatBig);
-                        }
-                    }
-                }
+
+                return;
+            }
+
+
+            // 水アイテムを探す
+            Thing waterThing;
+            Pawn inventoryPawn;
+
+            // アイテムが見つからない
+            if (!MizuCaravanUtility.TryGetBestWater(caravan, pawn, out waterThing, out inventoryPawn)) return;
+
+            // アイテムに応じた水分を摂取＆心情編か＆健康変化
+            need_water.CurLevel += MizuUtility.GetWater(pawn, waterThing, need_water.WaterWanted);
+
+            // 水アイテムが消滅していない場合(スタックの一部だけ消費した場合等)はここで終了
+            if (!waterThing.Destroyed) return;
+
+            if (inventoryPawn != null)
+            {
+                // 誰かの所持品にあった水スタックを飲みきったのであれば、所持品欄から除去
+                inventoryPawn.inventory.innerContainer.Remove(waterThing);
+
+                // 移動不可状態を一旦リセット(して再計算させる？)
+                caravan.RecacheImmobilizedNow();
+
+                // 水の残量再計算フラグON
+                MizuCaravanUtility.daysWorthOfWaterDirty = true;
+            }
+
+            if (!MizuCaravanUtility.TryGetBestWater(caravan, pawn, out waterThing, out inventoryPawn))
+            {
+                // 飲んだことにより水がなくなったら警告を出す
+                Messages.Message(string.Format(MizuStrings.MessageCaravanRunOutOfWater, caravan.LabelCap, pawn.Label), caravan, MessageTypeDefOf.ThreatBig);
             }
         }
     }
@@ -74,8 +111,15 @@ namespace MizuMod
     {
         static void Postfix(ref float y, float width, Thing thing, bool inventory = false)
         {
-            float width2 = width - 72f;
-            float y2 = y - 28f;
+            // 所持品に含まれる水アイテムに、所持品を直接摂取するボタンを増やす
+            // yは次の行のtop上端座標、widthは右端座標
+
+            // db=DrinkButton
+            const float dbWidth = 24f;
+            const float dbHeight = 24f;
+
+            float dbRight = width - 72f;
+            float dbTop = y - 28f;
 
             Pawn selPawn = Find.Selector.SingleSelectedThing as Pawn;
             Corpse selCorpse = Find.Selector.SingleSelectedThing as Corpse;
@@ -83,34 +127,28 @@ namespace MizuMod
             {
                 selPawn = selCorpse.InnerPawn;
             }
-            if (selPawn == null)
-            {
-                return;
-            }
 
-            if (!selPawn.IsColonistPlayerControlled || selPawn.Downed)
+            // ポーンデータがないなら終了
+            if (selPawn == null) return;
+
+            // プレイヤーが操作するポーンではない、またはそのポーンは倒れている→終了
+            if (!selPawn.IsColonistPlayerControlled || selPawn.Downed) return;
+
+            // 水として飲めないアイテムなら終了
+            if (!thing.CanGetWater() || !thing.CanDrinkWaterNow()) return;
+
+            // ツールチップとボタンを追加
+            Rect dbRect = new Rect(dbRight - dbWidth, dbTop, dbWidth, dbHeight);
+            TooltipHandler.TipRegion(dbRect, string.Format(MizuStrings.FloatMenuGetWater, thing.LabelNoCount));
+            if (Widgets.ButtonImage(dbRect, MizuGraphics.Texture_ButtonIngest))
             {
-                return;
-            }
-            if (thing.CanGetWater() && thing.CanDrinkWaterNow())
-            {
-                Rect rect3 = new Rect(width2 - 24f, y2, 24f, 24f);
-                //TooltipHandler.TipRegion(rect3, "ConsumeThing".Translate(new object[]
-                //{
-                //        thing.LabelNoCount
-                //}));
-                TooltipHandler.TipRegion(rect3, string.Format(MizuStrings.FloatMenuGetWater, thing.LabelNoCount));
-                if (Widgets.ButtonImage(rect3, ContentFinder<Texture2D>.Get("UI/Buttons/Ingest", true)))
+                SoundDefOf.TickHigh.PlayOneShotOnCamera(null);
+                Job job = new Job(MizuDef.Job_DrinkWater, thing)
                 {
-                    SoundDefOf.TickHigh.PlayOneShotOnCamera(null);
-                    //this.InterfaceIngest(thing);
-                    Job job = new Job(MizuDef.Job_DrinkWater, thing);
-                    //job.count = Mathf.Min(thing.stackCount, thing.def.ingestible.maxNumToIngestAtOnce);
-                    job.count = Mathf.Min(thing.stackCount, 1);
-                    selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                }
+                    count = MizuUtility.WillGetStackCountOf(selPawn, thing)
+                };
+                selPawn.jobs.TryTakeOrderedJob(job, JobTag.SatisfyingNeeds);
             }
-            //    return true;
         }
     }
 
@@ -120,6 +158,8 @@ namespace MizuMod
     {
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
+            // キャラバンの荷物選択時、右上に現在の水分総量を表示させる処理を追加
+
             int insert_index = -1;
             var codes = new List<CodeInstruction>(instructions);
             for (int i = 0; i < codes.Count; i++)
@@ -132,6 +172,8 @@ namespace MizuMod
                 //{
                 //    Log.Message(string.Format("{0}", codes[i].opcode.ToString()));
                 //}
+
+                // 食料表示処理のコード位置を頼りに挿入すべき場所を探す
                 if (codes[i].opcode == OpCodes.Call && codes[i].operand.ToString().Contains("DrawDaysWorthOfFoodInfo"))
                 {
                     insert_index = i;
@@ -177,10 +219,14 @@ namespace MizuMod
     {
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
+            // 水アイテム不足で出発しようとしたとき、警告ダイアログを出す
+            // 実際の処理は、食料不足の警告ダイアログに便乗する形
             int replace_index = -1;
             int insert_index = -1;
             int found_ldnull = 0;
             var codes = new List<CodeInstruction>(instructions);
+
+            // 処理を挿入すべき場所の近くにあった文字列のnullチェック処理を手掛かりにする(かなり強引なやり方)
             for (int i = 0; i < codes.Count; i++)
             {
                 if (found_ldnull < 2 && codes[i].opcode == OpCodes.Ldnull)
@@ -193,6 +239,7 @@ namespace MizuMod
                     insert_index = i;
                 }
             }
+
             if (replace_index > -1 && insert_index > -1)
             {
                 List<CodeInstruction> replace_codes = new List<CodeInstruction>();

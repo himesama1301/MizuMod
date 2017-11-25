@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using UnityEngine;
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 
 namespace MizuMod
@@ -209,6 +211,68 @@ namespace MizuMod
         public static bool CanManipulate(this Pawn pawn)
         {
             return pawn.RaceProps.ToolUser && pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation);
+        }
+
+        public static bool CanDrinkFromTerrain(this Pawn pawn)
+        {
+            // 心情無し = 地面から水をすすることに抵抗なし
+            if (pawn.needs == null || pawn.needs.mood == null) return true;
+
+            Need_Water need_water = pawn.needs.water();
+
+            // 水分要求なし = そもそも水を必要としていない
+            if (need_water == null) return false;
+
+            // 心情有り、水分要求あり、状態が脱水症状 = (心情悪化するけど)地形から水を摂取する
+            if (need_water.CurCategory == ThirstCategory.Dehydration) return true;
+
+            // 心情あり、水分要求あり、状態はまだ大丈夫 = 地形から水を摂取しない
+            return false;
+        }
+
+        public static WaterTerrainType GetWaterTerrainType(this Caravan caravan)
+        {
+            if (caravan.Tile < 0) return WaterTerrainType.NoWater;
+
+            Tile tile = Find.WorldGrid[caravan.Tile];
+
+            WaterTerrainType result = WaterTerrainType.NoWater;
+
+            // バイオーム
+            string biomeDefName = tile.biome.defName;
+            if (biomeDefName.Contains("Desert"))
+            {
+                // 砂漠Desert、極限の砂漠ExtremeDesertは水なし
+                result = (WaterTerrainType)Mathf.Max((int)result, (int)WaterTerrainType.NoWater);
+            }
+            else if (biomeDefName.Contains("SeaIce"))
+            {
+                // 海氷SeaIceは海水
+                result = (WaterTerrainType)Mathf.Max((int)result, (int)WaterTerrainType.SeaWater);
+            }
+            else if (biomeDefName.Contains("ColdBog") || biomeDefName.Contains("Swamp"))
+            {
+                // 寒冷湿地ColdBog、温帯湿地TemperateSwamp、熱帯湿地TropicalSwampは泥水
+                result = (WaterTerrainType)Mathf.Max((int)result, (int)WaterTerrainType.MudWater);
+            }
+            else
+            {
+                // それ以外は真水
+                result = (WaterTerrainType)Mathf.Max((int)result, (int)WaterTerrainType.FreshWater);
+            }
+
+            if (tile.VisibleRivers.Count > 0)
+            {
+                // 川があれば真水が飲める(凍ってるか等はチェックしないことにする)
+                result = (WaterTerrainType)Mathf.Max((int)result, (int)WaterTerrainType.FreshWater);
+            }
+            if (Find.World.CoastDirectionAt(caravan.Tile).IsValid)
+            {
+                // 海岸線があるなら海水が飲める
+                result = (WaterTerrainType)Mathf.Max((int)result, (int)WaterTerrainType.SeaWater);
+            }
+
+            return result;
         }
     }
 }

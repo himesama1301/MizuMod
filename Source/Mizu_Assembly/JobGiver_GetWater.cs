@@ -50,7 +50,7 @@ namespace MizuMod
                 };
             }
 
-            if (!MizuUtility.CanDrinkTerrain(pawn))
+            if (!pawn.CanDrinkFromTerrain())
             {
                 // 地形から直接水を摂取しない
                 //   →少しうろうろさせる

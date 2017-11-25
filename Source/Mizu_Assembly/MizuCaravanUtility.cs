@@ -12,30 +12,45 @@ namespace MizuMod
 {
     public static class MizuCaravanUtility
     {
+        // 水が大量にあるかどうかの閾値(単位：日数)
+        private const float InfiniteDaysWorthOfWaterThreshold = 1000.0f;
+
+        // 水が少ない警告を出すかどうかの閾値(単位：日数)
+        private const float DaysWorthOfWaterWarningBeforeLeavingThreshold = 5.0f;
+
+        // 水が無いかどうかの判断閾値(単位：日数)
+        private const float DaysWorthOfNoWaterThreshold = 0.1f;
+
         public static bool TryGetBestWater(Caravan caravan, Pawn forPawn, out Thing water, out Pawn owner)
         {
-            List<Thing> inv_thing_list = CaravanInventoryUtility.AllInventoryItems(caravan);
-            Thing found_thing = null;
-            float best_score = 0f;
-            for (int i = 0; i < inv_thing_list.Count; i++)
+            List<Thing> inventoryThings = CaravanInventoryUtility.AllInventoryItems(caravan);
+            Thing foundThing = null;
+            float bestScore = float.MinValue;
+
+            // キャラバンの全所持品をチェック
+            foreach (var thing in inventoryThings)
             {
-                Thing inv_thing = inv_thing_list[i];
-                if (MizuCaravanUtility.CanNowGetWater(inv_thing, forPawn))
+                if (MizuCaravanUtility.CanNowGetWater(thing, forPawn))
                 {
-                    float foodScore = MizuCaravanUtility.GetWaterScore(inv_thing, forPawn);
-                    if (found_thing == null || foodScore > best_score)
+                    float foodScore = MizuCaravanUtility.GetWaterScore(thing, forPawn);
+                    if (foundThing == null || foodScore > bestScore)
                     {
-                        found_thing = inv_thing;
-                        best_score = foodScore;
+                        foundThing = thing;
+                        bestScore = foodScore;
                     }
                 }
+
             }
-            if (found_thing != null)
+
+            if (foundThing != null)
             {
-                water = found_thing;
-                owner = CaravanInventoryUtility.GetOwnerOf(caravan, found_thing);
+                // 何かしらの水が見つかった
+                water = foundThing;
+                // 水が個人の所持品に含まれている場合は持ち主が誰かを調べておく
+                owner = CaravanInventoryUtility.GetOwnerOf(caravan, foundThing);
                 return true;
             }
+
             water = null;
             owner = null;
             return false;
@@ -53,17 +68,9 @@ namespace MizuMod
 
         public static bool CanEverGetWater(ThingDef water, Pawn pawn)
         {
-            bool canGetWater = false;
-            CompProperties_Water compprop_water = null;
-            for (int i = 0; i < water.comps.Count; i++)
-            {
-                compprop_water = water.comps[i] as CompProperties_Water;
-                if (compprop_water != null && compprop_water.waterAmount > 0.0f)
-                {
-                    canGetWater = true;
-                }
-            }
-            return canGetWater && (compprop_water.waterPreferability > WaterPreferability.NeverDrink);
+            CompProperties_Water compprop = water.GetCompProperties<CompProperties_Water>();
+
+            return (compprop != null && compprop.waterAmount > 0.0f && (compprop.waterPreferability > WaterPreferability.NeverDrink));
         }
 
         public static float GetWaterScore(Thing water, Pawn pawn)
@@ -73,14 +80,10 @@ namespace MizuMod
 
         public static float GetWaterScore(ThingDef water, Pawn pawn)
         {
-            CompProperties_Water compprop_water = null;
-            for (int i = 0; i < water.comps.Count; i++)
+            CompProperties_Water compprop = water.GetCompProperties<CompProperties_Water>();
+            if (compprop != null)
             {
-                compprop_water = water.comps[i] as CompProperties_Water;
-                if (compprop_water != null)
-                {
-                    return (float)compprop_water.waterPreferability;
-                }
+                return (float)compprop.waterPreferability;
             }
             return 0.0f;
         }
@@ -100,143 +103,175 @@ namespace MizuMod
         public static void DrawDaysWorthOfWaterInfo(Rect rect, float daysWorthOfWater, bool alignRight = false, float truncToWidth = float.MaxValue)
         {
             GUI.color = Color.gray;
-            string text;
-            if (daysWorthOfWater >= 1000f)
+            string originalText;
+
+            if (daysWorthOfWater >= InfiniteDaysWorthOfWaterThreshold)
             {
                 // 大量にある
-                text = MizuStrings.LabelInfiniteDaysWorthOfWaterInfo;
+                originalText = MizuStrings.LabelInfiniteDaysWorthOfWaterInfo;
             }
             else
             {
                 // 大量には無い
-                text = string.Format(MizuStrings.LabelDaysWorthOfWaterInfo, daysWorthOfWater.ToString("0.#"));
+                originalText = string.Format(MizuStrings.LabelDaysWorthOfWaterInfo, daysWorthOfWater.ToString("0.#"));
             }
-            string text2 = text;
+
+            string truncText = originalText;
             if (truncToWidth != float.MaxValue)
             {
                 // 表示幅指定がある場合、幅をオーバーしていたら「...」で省略する
-                text2 = text.Truncate(truncToWidth, null);
+                // オーバーしていなければオリジナルテキストが返ってくる？
+                truncText = originalText.Truncate(truncToWidth, null);
             }
-            Vector2 vector = Text.CalcSize(text2);
-            Rect rect2;
+
+            // 省略テキストの描画サイズ
+            Vector2 truncTextSize = Text.CalcSize(truncText);
+            Rect truncTextRect;
             if (alignRight)
             {
                 // 描画領域指定(右寄せ)
-                rect2 = new Rect(rect.xMax - vector.x, rect.y, vector.x, vector.y);
+                truncTextRect = new Rect(rect.xMax - truncTextSize.x, rect.y, truncTextSize.x, truncTextSize.y);
             }
             else
             {
                 // 描画領域指定(左寄せ)
-                rect2 = new Rect(rect.x, rect.y, vector.x, vector.y);
+                truncTextRect = new Rect(rect.x, rect.y, truncTextSize.x, truncTextSize.y);
             }
+
             // ラベル生成
-            Widgets.Label(rect2, text2);
-            string text3 = string.Empty;
-            if (truncToWidth != float.MaxValue && Text.CalcSize(text).x > truncToWidth)
+            Widgets.Label(truncTextRect, truncText);
+
+            string toolTipText = string.Empty;
+            if (truncToWidth != float.MaxValue && Text.CalcSize(originalText).x > truncToWidth)
             {
                 // 省略が発生している場合は、全文を追加
-                text3 = text3 + text + "\n\n";
+                toolTipText = toolTipText + originalText + "\n\n";
             }
+
             // ツールチップのテキストを追加
-            text3 = text3 + MizuStrings.LabelDaysWorthOfWaterTooltip + "\n\n";
+            toolTipText = toolTipText + MizuStrings.LabelDaysWorthOfWaterTooltip + "\n\n";
+
             // ラベルの領域にツールチップを設定
-            TooltipHandler.TipRegion(rect2, text3);
+            TooltipHandler.TipRegion(truncTextRect, toolTipText);
+
             // GUIのカラーを戻す
             GUI.color = Color.white;
         }
 
         public static void AppendWaterWorthToCaravanInspectString(Caravan c, StringBuilder stringBuilder)
         {
-            float daysWorthOfWater = DaysWorthOfWaterCalculator.ApproxDaysWorthOfWater(c);
-            string text;
-            if (AnyPawnOutOfWater(c, out text))
+            string worstDehydrationText;
+            if (AnyPawnOutOfWater(c, out worstDehydrationText))
             {
+                // 水不足のポーンがいる
                 stringBuilder.AppendLine();
                 stringBuilder.Append(MizuStrings.InspectCaravanOutOfWater);
-                if (!text.NullOrEmpty())
+
+                if (!worstDehydrationText.NullOrEmpty())
                 {
+                    // 脱水症状のテキストがあるならそれも追加
                     stringBuilder.Append(" ");
-                    stringBuilder.Append(text);
+                    stringBuilder.Append(worstDehydrationText);
                     stringBuilder.Append(".");
                 }
             }
-            else if (daysWorthOfWater < 1000f)
+            else 
             {
-                stringBuilder.AppendLine();
-                stringBuilder.Append(string.Format(MizuStrings.InspectCaravanDaysOfFood, daysWorthOfWater.ToString("0.#")));
+                // 水不足のポーンがいないなら、総量をチェック
+                float daysWorthOfWater = DaysWorthOfWaterCalculator.ApproxDaysWorthOfWater(c);
+                if (daysWorthOfWater < InfiniteDaysWorthOfWaterThreshold)
+                {
+                    // 水は大量というわけでないなら、水残量を表示
+                    stringBuilder.AppendLine();
+                    stringBuilder.Append(string.Format(MizuStrings.InspectCaravanDaysOfWater, daysWorthOfWater.ToString("0.#")));
+                }
             }
         }
 
-        public static bool AnyPawnOutOfWater(Caravan c, out string dehydrationHediff)
+        public static bool AnyPawnOutOfWater(Caravan c, out string worstDehydrationText)
         {
-            List<Thing> tmpInvWater = new List<Thing>();
-            List<Thing> list = CaravanInventoryUtility.AllInventoryItems(c);
-            tmpInvWater.Clear();
-            for (int i = 0; i < list.Count; i++)
+            // キャラバンの全所持品の水アイテムリスト作成
+            List<Thing> tmpInvWater = CaravanInventoryUtility.AllInventoryItems(c).FindAll((t) => t.CanGetWater());
+
+            bool allFoundWaterItem = true;
+
+            // キャラバン内の全ポーンをチェック
+            foreach (var pawn in c.PawnsListForReading)
             {
-                if (list[i].CanGetWater())
+                // 水分要求なし→水不要
+                if (pawn.needs.water() == null) continue;
+
+                // 心情ステータス無し、キャラバンの地形に水がある→アイテムがなくても水は飲める
+                if (pawn.needs.mood == null && c.GetWaterTerrainType() != WaterTerrainType.NoWater) continue;
+
+                // そのポーンが飲める水があるなら良し
+                if (tmpInvWater.Exists((t) => MizuCaravanUtility.CanEverGetWater(t.def, pawn))) continue;
+
+                // 適切な水アイテムを見つけられなかったポーンがいる
+                allFoundWaterItem = false;
+                break;
+            }
+
+            if (allFoundWaterItem)
+            {
+                // 全ポーンが水アイテムを見つけた
+                //   →脱水症状のテキストは不要
+                worstDehydrationText = null;
+                return false;
+            }
+
+            // 適切なアイテムを見つけられなかったポーンがいる
+            //   →全ポーンの脱水症状をチェックして最悪の状態を調査、そのテキストを取得
+            int maxHediffStageIndex = -1;
+            string maxHediffText = null;
+            foreach (var pawn in c.PawnsListForReading)
+            {
+                // 脱水症状の健康状態を持っているか
+                var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(MizuDef.Hediff_Dehydration, false);
+                if (hediff == null) continue;
+
+                if (maxHediffText == null || maxHediffStageIndex < hediff.CurStageIndex)
                 {
-                    tmpInvWater.Add(list[i]);
+                    // 最悪状態なら更新
+                    maxHediffStageIndex = hediff.CurStageIndex;
+                    maxHediffText = hediff.LabelCap;
                 }
             }
-            List<Pawn> pawnsListForReading = c.PawnsListForReading;
-            for (int j = 0; j < pawnsListForReading.Count; j++)
-            {
-                Pawn pawn = pawnsListForReading[j];
-                if (pawn.needs.mood != null && pawn.needs.water() != null)
-                {
-                    bool flag = false;
-                    for (int k = 0; k < tmpInvWater.Count; k++)
-                    {
-                        if (MizuCaravanUtility.CanEverGetWater(tmpInvWater[k].def, pawn))
-                        {
-                            flag = true;
-                            break;
-                        }
-                    }
-                    if (!flag)
-                    {
-                        int num = -1;
-                        string text = null;
-                        for (int l = 0; l < pawnsListForReading.Count; l++)
-                        {
-                            Hediff firstHediffOfDef = pawnsListForReading[l].health.hediffSet.GetFirstHediffOfDef(MizuDef.Hediff_Dehydration, false);
-                            if (firstHediffOfDef != null && (text == null || firstHediffOfDef.CurStageIndex > num))
-                            {
-                                num = firstHediffOfDef.CurStageIndex;
-                                text = firstHediffOfDef.LabelCap;
-                            }
-                        }
-                        dehydrationHediff = text;
-                        return true;
-                    }
-                }
-            }
-            dehydrationHediff = null;
-            return false;
+
+            // 最悪の脱水症状テキストを返す
+            worstDehydrationText = maxHediffText;
+            return true;
         }
 
         public static string AddWaterWarningString(Dialog_FormCaravan dialog, string text)
         {
+            var stringBuilder = new StringBuilder(text);
+
             float daysWorthOfWater = DaysWorthOfWater(dialog);
-            if (daysWorthOfWater < 5f)
+
+            if (daysWorthOfWater < DaysWorthOfWaterWarningBeforeLeavingThreshold)
             {
-                if (string.IsNullOrEmpty(text) == false)
+                // キャラバン出発前の警告ダイアログに表示が必要な状態である
+
+                if (!string.IsNullOrEmpty(stringBuilder.ToString()))
                 {
-                    text += "\n\n";
+                    stringBuilder.AppendLine();
+                    stringBuilder.AppendLine();
                 }
 
-                if (daysWorthOfWater >= 0.1f)
+                if (daysWorthOfWater >= DaysWorthOfNoWaterThreshold)
                 {
-                    text += string.Format(MizuStrings.LabelDaysWorthOfFoodWarningDialog, daysWorthOfWater.ToString("0.#"));
+                    // 少しはある
+                    stringBuilder.Append(string.Format(MizuStrings.LabelDaysWorthOfWaterWarningDialog, daysWorthOfWater.ToString("0.#")));
                 }
                 else
                 {
-                    text += MizuStrings.LabelDaysWorthOfFoodWarningDialog_NoFood;
+                    // 全く水を持っていない
+                    stringBuilder.Append(MizuStrings.LabelDaysWorthOfWaterWarningDialog_NoWater);
                 }
             }
 
-            return text;
+            return stringBuilder.ToString();
         }
     }
 }

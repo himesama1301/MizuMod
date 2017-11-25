@@ -415,13 +415,14 @@ namespace MizuMod
                 float numWater = need_water.MaxLevel - need_water.CurLevel;
 
                 TerrainDef terrain = actor.Map.terrainGrid.TerrainAt(actor.CurJob.GetTarget(terrainVecIndex).Cell);
+                WaterTerrainType drankTerrainType = terrain.GetWaterTerrainType();
 
                 if (actor.needs.mood != null)
                 {
                     // 地面から直接飲んだ
                     actor.needs.mood.thoughts.memories.TryGainMemory(MizuDef.Thought_DrankWaterDirectly);
 
-                    ThoughtDef thoughtDef = MizuUtility.GetThoughtDefFromTerrainType(terrain.GetWaterTerrainType());
+                    ThoughtDef thoughtDef = MizuUtility.GetThoughtDefFromTerrainType(drankTerrainType);
                     if (thoughtDef != null)
                     {
                         // 水の種類による心情
@@ -429,7 +430,7 @@ namespace MizuMod
                     }
                 }
 
-                if (terrain.IsSea())
+                if (drankTerrainType == WaterTerrainType.SeaWater)
                 {
                     // 海水の場合の健康状態悪化
                     actor.health.AddHediff(HediffMaker.MakeHediff(MizuDef.Hediff_DrankSeaWater, actor));

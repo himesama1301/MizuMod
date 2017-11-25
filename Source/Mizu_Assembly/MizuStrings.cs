@@ -9,21 +9,28 @@ namespace MizuMod
 {
     public static class MizuStrings
     {
+        // 水アイテムやポーンのジョブ関連
         public static readonly string CompWaterAmount = "MizuWaterAmount".Translate();
         public static readonly string FloatMenuGetWater = "MizuConsumeWater".Translate();
         public static readonly string JobFailReasonNoWater = "MizuNoWater".Translate();
+
+        // コロニー警告(右下あたりのアレ)
         public static readonly string AlertLowWater = "MizuLowWater".Translate();
         public static readonly string AlertLowWaterDesc = "MizuLowWaterDesc".Translate();
         public static readonly string AlertDehydration = "MizuDehydration".Translate();
         public static readonly string AlertDehydrationDesc = "MizuDehydrationDesc".Translate();
+
+        // キャラバン関連
         public static readonly string MessageCaravanRunOutOfWater = "MizuMessageCaravanRunOutOfWater".Translate();
         public static readonly string LabelInfiniteDaysWorthOfWaterInfo = "MizuInfiniteDaysWorthOfWaterInfo".Translate();
         public static readonly string LabelDaysWorthOfWaterInfo = "MizuDaysWorthOfWaterInfo".Translate();
         public static readonly string LabelDaysWorthOfWaterTooltip = "MizuDaysWorthOfWaterTooltip".Translate();
         public static readonly string InspectCaravanOutOfWater = "MizuCaravanOutOfWater".Translate();
-        public static readonly string InspectCaravanDaysOfFood = "MizuCaravanDaysOfWater".Translate();
-        public static readonly string LabelDaysWorthOfFoodWarningDialog = "MizuDaysWorthOfWaterWarningDialog".Translate();
-        public static readonly string LabelDaysWorthOfFoodWarningDialog_NoFood = "MizuDaysWorthOfWaterWarningDialog_NoWater".Translate();
+        public static readonly string InspectCaravanDaysOfWater = "MizuCaravanDaysOfWater".Translate();
+        public static readonly string LabelDaysWorthOfWaterWarningDialog = "MizuDaysWorthOfWaterWarningDialog".Translate();
+        public static readonly string LabelDaysWorthOfWaterWarningDialog_NoWater = "MizuDaysWorthOfWaterWarningDialog_NoWater".Translate();
+
+        // 水道網関連
         public static readonly string InspectWaterFlowOutput = "MizuWaterFlowOutput".Translate();
         public static readonly string InspectWaterFlowInput = "MizuWaterFlowInput".Translate();
         public static readonly string InspectWaterTankStored = "MizuWaterTankStored".Translate();

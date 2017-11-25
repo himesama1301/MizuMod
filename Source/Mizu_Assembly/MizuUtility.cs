@@ -408,23 +408,6 @@ namespace MizuMod
             return Math.Max((int)Math.Round(water / comp.WaterAmount), 1);
         }
 
-        public static bool CanDrinkTerrain(Pawn pawn)
-        {
-            Need_Water need_water = pawn.needs.water();
-
-            // 水分要求なし = そもそも水を必要としていない
-            if (need_water == null) return false;
-
-            // 心情無し = 地面から水をすすることに抵抗なし
-            if (pawn.needs.mood == null) return true;
-
-            // 心情有り、水分要求あり、状態が脱水症状 = (心情悪化するけど)地形から水を摂取する
-            if (need_water.CurCategory == ThirstCategory.Dehydration) return true;
-
-            // 心情あり、水分要求あり、状態はまだ大丈夫 = 地形から水を摂取しない
-            return false;
-        }
-
         public static ThingDef GetWaterThingDefFromTerrainType(WaterTerrainType waterTerrainType)
         {
             // 地形タイプ→水アイテム
