@@ -44,10 +44,14 @@ namespace MizuMod
             // タイルが0以上(?)、死んでない、ローカルではなく惑星マップ上にいる(キャラバンしてる)、そのポーンが地形から水を飲める(心情がある/ない、脱水症状まで進んでいる/いない、など)
             if (pawn.Tile >= 0 && !pawn.Dead && pawn.IsWorldPawn() && pawn.CanDrinkFromTerrain())
             {
+                WaterTerrainType drankTerrainType = caravan.GetWaterTerrainType();
+
+                // 水を飲めない場所
+                if (drankTerrainType == WaterTerrainType.NoWater) return;
+
                 // 地形から水を飲む
                 need_water.CurLevel = 1.0f;
 
-                WaterTerrainType drankTerrainType = caravan.GetWaterTerrainType();
                 if (drankTerrainType == WaterTerrainType.SeaWater)
                 {
                     // 海水の場合の健康状態悪化
@@ -221,35 +225,42 @@ namespace MizuMod
         {
             // 水アイテム不足で出発しようとしたとき、警告ダイアログを出す
             // 実際の処理は、食料不足の警告ダイアログに便乗する形
-            int replace_index = -1;
+            int key_index = -1;
             int insert_index = -1;
-            int found_ldnull = 0;
             var codes = new List<CodeInstruction>(instructions);
 
             // 処理を挿入すべき場所の近くにあった文字列のnullチェック処理を手掛かりにする(かなり強引なやり方)
             for (int i = 0; i < codes.Count; i++)
             {
-                if (found_ldnull < 2 && codes[i].opcode == OpCodes.Ldnull)
+                if (key_index < 0 && codes[i].opcode == OpCodes.Ldstr && codes[i].operand.ToString() == "CaravanFoodWillRotSoonWarningDialog")
                 {
-                    replace_index = i;
-                    found_ldnull++;
+                    key_index = i;
                 }
-                if (found_ldnull >= 2 && codes[i].opcode == OpCodes.Call && codes[i].operand.ToString().Contains("NullOrEmpty"))
+                if (key_index >= 0 && insert_index < 0 && codes[i].opcode == OpCodes.Ldarg_0)
                 {
-                    insert_index = i;
+                    insert_index = i + 1;
                 }
+                //if (found_ldnull < 2 && codes[i].opcode == OpCodes.Ldnull)
+                //{
+                //    replace_index = i;
+                //    found_ldnull++;
+                //}
+                //if (found_ldnull >= 2 && codes[i].opcode == OpCodes.Call && codes[i].operand.ToString().Contains("NullOrEmpty"))
+                //{
+                //    insert_index = i;
+                //}
             }
 
-            if (replace_index > -1 && insert_index > -1)
+            if (key_index > -1 && insert_index > -1)
             {
-                List<CodeInstruction> replace_codes = new List<CodeInstruction>();
-                replace_codes.Add(new CodeInstruction(OpCodes.Ldstr, string.Empty));
-                codes[replace_index].opcode = OpCodes.Nop;
-                codes.InsertRange(replace_index + 1, replace_codes);
-                insert_index += replace_codes.Count;
+                //List<CodeInstruction> replace_codes = new List<CodeInstruction>();
+                //replace_codes.Add(new CodeInstruction(OpCodes.Ldstr, string.Empty));
+                //codes[replace_index].opcode = OpCodes.Nop;
+                //codes.InsertRange(replace_index + 1, replace_codes);
+                //insert_index += replace_codes.Count;
 
                 List<CodeInstruction> insert_codes = new List<CodeInstruction>();
-                codes[insert_index - 1].opcode = OpCodes.Nop;
+                //codes[insert_index - 1].opcode = OpCodes.Nop;
                 //insert_codes.Add(new CodeInstruction(OpCodes.Ldstr, "{0}{1}"));
 
                 //insert_codes.Add(new CodeInstruction(OpCodes.Ldc_I4_2));
@@ -269,11 +280,10 @@ namespace MizuMod
                 //insert_codes.Add(new CodeInstruction(OpCodes.Stloc_1));
 
                 insert_codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
-                insert_codes.Add(new CodeInstruction(OpCodes.Ldloc_1));
-                insert_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.AddWaterWarningString), new Type[] { typeof(Dialog_FormCaravan), typeof(string) })));
-                insert_codes.Add(new CodeInstruction(OpCodes.Stloc_1));
+                insert_codes.Add(new CodeInstruction(OpCodes.Ldloc_S, 4));
+                insert_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.AddWaterWarningString), new Type[] { typeof(Dialog_FormCaravan), typeof(List<string>) })));
+                //insert_codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
 
-                insert_codes.Add(new CodeInstruction(OpCodes.Ldloc_1));
                 codes.InsertRange(insert_index, insert_codes);
             }
             return codes.AsEnumerable();

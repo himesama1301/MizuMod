@@ -261,7 +261,7 @@ namespace MizuMod
                 result = (WaterTerrainType)Mathf.Max((int)result, (int)WaterTerrainType.FreshWater);
             }
 
-            if (tile.VisibleRivers.Count > 0)
+            if (tile.VisibleRivers != null && tile.VisibleRivers.Count > 0)
             {
                 // 川があれば真水が飲める(凍ってるか等はチェックしないことにする)
                 result = (WaterTerrainType)Mathf.Max((int)result, (int)WaterTerrainType.FreshWater);

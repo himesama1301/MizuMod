@@ -243,35 +243,25 @@ namespace MizuMod
             return true;
         }
 
-        public static string AddWaterWarningString(Dialog_FormCaravan dialog, string text)
+        public static void AddWaterWarningString(Dialog_FormCaravan dialog, List<string> strList)
         {
-            var stringBuilder = new StringBuilder(text);
-
             float daysWorthOfWater = DaysWorthOfWater(dialog);
 
             if (daysWorthOfWater < DaysWorthOfWaterWarningBeforeLeavingThreshold)
             {
                 // キャラバン出発前の警告ダイアログに表示が必要な状態である
 
-                if (!string.IsNullOrEmpty(stringBuilder.ToString()))
-                {
-                    stringBuilder.AppendLine();
-                    stringBuilder.AppendLine();
-                }
-
                 if (daysWorthOfWater >= DaysWorthOfNoWaterThreshold)
                 {
                     // 少しはある
-                    stringBuilder.Append(string.Format(MizuStrings.LabelDaysWorthOfWaterWarningDialog, daysWorthOfWater.ToString("0.#")));
+                    strList.Add(string.Format(MizuStrings.LabelDaysWorthOfWaterWarningDialog, daysWorthOfWater.ToString("0.#")));
                 }
                 else
                 {
                     // 全く水を持っていない
-                    stringBuilder.Append(MizuStrings.LabelDaysWorthOfWaterWarningDialog_NoWater);
+                    strList.Add(MizuStrings.LabelDaysWorthOfWaterWarningDialog_NoWater);
                 }
             }
-
-            return stringBuilder.ToString();
         }
     }
 }
