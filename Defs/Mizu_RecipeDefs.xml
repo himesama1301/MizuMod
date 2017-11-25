@@ -177,7 +177,6 @@
     <label>draw clear water from waterworks</label>
     <description>Draws clear water from waterworks for drinking</description>
     <jobString>Drawing clear water from waterworks.</jobString>
-    <needWaterVolume>50</needWaterVolume>
     <needWaterTypes>
       <li>ClearWater</li>
     </needWaterTypes>
@@ -188,7 +187,6 @@
     <label>draw water from waterworks</label>
     <description>Draws water from waterworks for drinking</description>
     <jobString>Drawing water from waterworks.</jobString>
-    <needWaterVolume>50</needWaterVolume>
     <needWaterTypes>
       <li>NormalWater</li>
     </needWaterTypes>
@@ -199,7 +197,6 @@
     <label>draw rain water from waterworks</label>
     <description>Draws rain water from waterworks for drinking</description>
     <jobString>Drawing rain water from waterworks.</jobString>
-    <needWaterVolume>50</needWaterVolume>
     <needWaterTypes>
       <li>RainWater</li>
     </needWaterTypes>
@@ -210,7 +207,6 @@
     <label>draw mud water from waterworks</label>
     <description>Draws mud water from waterworks for drinking</description>
     <jobString>Drawing mud water from waterworks.</jobString>
-    <needWaterVolume>50</needWaterVolume>
     <needWaterTypes>
       <li>MudWater</li>
     </needWaterTypes>
@@ -221,7 +217,6 @@
     <label>draw seawater from waterworks</label>
     <description>Draws seawater from waterworks for drinking</description>
     <jobString>Drawing seawater from waterworks.</jobString>
-    <needWaterVolume>50</needWaterVolume>
     <needWaterTypes>
       <li>SeaWater</li>
     </needWaterTypes>
@@ -256,7 +251,6 @@
     <label>draw clear water x5 from waterworks</label>
     <description>Draws clear water x5 from waterworks for drinking</description>
     <jobString>Drawing clear water from waterworks.</jobString>
-    <needWaterVolume>50</needWaterVolume>
     <needWaterTypes>
       <li>ClearWater</li>
     </needWaterTypes>
@@ -267,7 +261,6 @@
     <label>draw water x5 from waterworks</label>
     <description>Draws water x5 from waterworks for drinking</description>
     <jobString>Drawing water x5 from waterworks.</jobString>
-    <needWaterVolume>50</needWaterVolume>
     <needWaterTypes>
       <li>NormalWater</li>
     </needWaterTypes>
@@ -278,7 +271,6 @@
     <label>draw rain water x5 from waterworks</label>
     <description>Draws rain water x5 from waterworks for drinking</description>
     <jobString>Drawing rain water from waterworks.</jobString>
-    <needWaterVolume>50</needWaterVolume>
     <needWaterTypes>
       <li>RainWater</li>
     </needWaterTypes>
@@ -289,7 +281,6 @@
     <label>draw mud water x5 from waterworks</label>
     <description>Draws mud water x5 from waterworks for drinking</description>
     <jobString>Drawing mud water from waterworks.</jobString>
-    <needWaterVolume>50</needWaterVolume>
     <needWaterTypes>
       <li>MudWater</li>
     </needWaterTypes>
@@ -300,7 +291,6 @@
     <label>draw seawater x5 from waterworks</label>
     <description>Draws seawater x5 from waterworks for drinking</description>
     <jobString>Drawing seawater x5 from waterworks.</jobString>
-    <needWaterVolume>50</needWaterVolume>
     <needWaterTypes>
       <li>SeaWater</li>
     </needWaterTypes>
