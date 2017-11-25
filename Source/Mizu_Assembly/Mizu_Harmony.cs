@@ -336,4 +336,51 @@ namespace MizuMod
             return codes.AsEnumerable();
         }
     }
+
+    [HarmonyPatch(typeof(PawnInventoryGenerator))]
+    [HarmonyPatch("GiveRandomFood")]
+    class PawnInventoryGenerator_GiveRandomFood
+    {
+        static void Postfix(Pawn p)
+        {
+            if (p.kindDef.invNutrition <= 0.001f) return;
+
+            ThingDef thingDef = null;
+            if (p.kindDef.itemQuality > QualityCategory.Normal)
+            {
+                thingDef = MizuDef.Thing_ClearWater;    
+            }
+            else if (p.kindDef.itemQuality == QualityCategory.Normal)
+            {
+                thingDef = MizuDef.Thing_NormalWater;
+            }
+            else
+            {
+                float value = Rand.Value;
+                if (value < 0.7f)
+                {
+                    // 70%
+                    thingDef = MizuDef.Thing_RainWater;
+                }
+                else if ((double)value < 0.9)
+                {
+                    // 20%
+                    thingDef = MizuDef.Thing_MudWater;
+                }
+                else
+                {
+                    // 10%
+                    thingDef = MizuDef.Thing_SeaWater;
+                }
+            }
+
+            var compprop = thingDef.GetCompProperties<CompProperties_Water>();
+            if (compprop == null) return;
+
+            Thing thing = ThingMaker.MakeThing(thingDef, null);
+            thing.stackCount = GenMath.RoundRandom(p.kindDef.invNutrition / compprop.waterAmount);
+
+            p.inventory.TryAddItemNotForSale(thing);
+        }
+    }
 }
