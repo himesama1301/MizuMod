@@ -8,12 +8,12 @@ namespace MizuMod
     public enum WaterPreferability : byte
     {
         Undefined = 0,
-        NeverDrink = 1,
-        TerrainWater = 2,
-        SeaWater = 3,
-        MudWater = 4,
-        RainWater = 5,
-        NormalWater = 6,
-        ClearWater = 7,
+        NeverDrink = 10,
+        TerrainWater = 20,
+        SeaWater = 30,
+        MudWater = 40,
+        RainWater = 50,
+        NormalWater = 60,
+        ClearWater = 70,
     }
 }
