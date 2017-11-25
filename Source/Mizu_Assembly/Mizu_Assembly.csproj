@@ -79,6 +79,7 @@
     <Compile Include="GenStep_UndergroundShallowWater.cs" />
     <Compile Include="GenStep_UndergroundWater.cs" />
     <Compile Include="GetWaterRecipeDef.cs" />
+    <Compile Include="GlobalSettingDef.cs" />
     <Compile Include="Graphic_LinkedWaterNet.cs" />
     <Compile Include="Graphic_LinkedWaterNetOverlay.cs" />
     <Compile Include="IBuilding_WaterNet.cs" />

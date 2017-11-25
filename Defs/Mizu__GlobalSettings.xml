@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <MizuMod.GlobalSettingDef>
+    <defName>Mizu_GlobalSettings</defName>
+    <needWaterReduceRate>1</needWaterReduceRate>
+  </MizuMod.GlobalSettingDef>
+
+</Defs>

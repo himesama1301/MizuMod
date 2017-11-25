@@ -11,8 +11,6 @@ namespace MizuMod
 {
     public class Need_Water : Need
     {
-        private const float HighSpeedFactorForDebug = 1.0f;
-
         public const float NeedBorder = 0.3f;
 
         private const float DehydrationSeverityPerDay = 0.10f;
@@ -151,18 +149,17 @@ namespace MizuMod
             if (base.IsFrozen) return;
             
             // 水分要求低下
-            this.CurLevel -= WaterFallPerTick * 150f * HighSpeedFactorForDebug;
+            this.CurLevel -= WaterFallPerTick * 150f * MizuDef.GlobalSettings.needWaterReduceRate;
 
+            int directionFactor = -1;
             if (this.Dehydrating)
             {
-                // 脱水症状進行度アップ
-                HealthUtility.AdjustSeverity(this.pawn, MizuDef.Hediff_Dehydration, DehydrationSeverityPerInterval * HighSpeedFactorForDebug);
+                // 脱水症状深刻化方向に変更
+                directionFactor = 1;
             }
-            else
-            {
-                // 脱水症状進行度ダウン
-                HealthUtility.AdjustSeverity(this.pawn, MizuDef.Hediff_Dehydration, -DehydrationSeverityPerInterval * HighSpeedFactorForDebug);
-            }
+
+            // 脱水症状進行度更新
+            HealthUtility.AdjustSeverity(this.pawn, MizuDef.Hediff_Dehydration, directionFactor * DehydrationSeverityPerInterval * MizuDef.GlobalSettings.needWaterReduceRate);
         }
 
         public override string GetTipString()
