@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <ThingDef>
+  <ThingDef Name="Mizu_BuildingBase" Abstract="True">
+    <category>Building</category>
+    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <selectable>true</selectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <designationCategory>Mizu</designationCategory>
+    <altitudeLayer>Building</altitudeLayer>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <passability>PassThroughOnly</passability>
+    <repairEffect>Repair</repairEffect>
+    <filthLeaving>BuildingRubble</filthLeaving>
+    <useHitPoints>True</useHitPoints>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+  </ThingDef>
+  
+  <ThingDef ParentName="Mizu_BuildingBase">
     <defName>Mizu_DrawingWaterSpot</defName>
     <label>Drawing water spot</label>
     <description>A place for drawing water. This can be built on water or marsh.</description>
-    <category>Building</category>
     <thingClass>Building_WorkTable</thingClass>
     <graphicData>
       <texPath>Things/Building/Production/CraftingSpot</texPath>
@@ -17,18 +31,14 @@
       <WorkToBuild>0</WorkToBuild>
       <SellPriceFactor>0.70</SellPriceFactor>
     </statBases>
-    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
-    <selectable>true</selectable>
-    <drawerType>MapMeshAndRealTime</drawerType>
-    <repairEffect>Repair</repairEffect>
     <scatterableOnMapGen>false</scatterableOnMapGen>
     <useHitPoints>False</useHitPoints>
     <size>(1,1)</size>
-    <designationCategory>Mizu</designationCategory>
     <passability>Standable</passability>
     <hasInteractionCell>True</hasInteractionCell>
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <surfaceType>Item</surfaceType>
+    <filthLeaving></filthLeaving>
     <inspectorTabs>
       <li>ITab_Bills</li>
     </inspectorTabs>
@@ -57,18 +67,16 @@
     </recipes>
   </ThingDef>
 
-  <ThingDef>
+  <ThingDef ParentName="Mizu_BuildingBase">
     <defName>Mizu_Well</defName>
     <label>Well</label>
     <description>A building for drawing underground water.</description>
-    <category>Building</category>
     <thingClass>MizuMod.Building_Well</thingClass>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_Well</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <drawSize>(2.33,2.33)</drawSize>
     </graphicData>
-    <altitudeLayer>Building</altitudeLayer>
     <stuffCategories>
       <li>Metallic</li>
       <li>Stony</li>
@@ -81,18 +89,10 @@
       <SellPriceFactor>0.70</SellPriceFactor>
       <WorkTableWorkSpeedFactor>0.5</WorkTableWorkSpeedFactor>
     </statBases>
-    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
-    <selectable>true</selectable>
-    <drawerType>MapMeshAndRealTime</drawerType>
-    <repairEffect>Repair</repairEffect>
     <scatterableOnMapGen>false</scatterableOnMapGen>
-    <useHitPoints>False</useHitPoints>
     <size>(2,2)</size>
-    <designationCategory>Mizu</designationCategory>
-    <passability>PassThroughOnly</passability>
     <pathCost>70</pathCost>
     <hasInteractionCell>True</hasInteractionCell>
-    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <surfaceType>Item</surfaceType>
     <inspectorTabs>
       <li>ITab_Bills</li>
@@ -106,7 +106,6 @@
     <comps>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
-    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <recipes>
       <li>Mizu_DrawNormalWaterFromWaterPool</li>
       <li>Mizu_DrawNormalWaterFromWaterPoolMulti</li>
@@ -119,11 +118,9 @@
     </researchPrerequisites>
   </ThingDef>
   
-  <ThingDef Name="Mizu_WaterCleanerBase" Abstract="True">
+  <ThingDef Name="Mizu_WaterCleanerBase" ParentName="Mizu_BuildingBase" Abstract="True">
     <constructEffect>ConstructMetal</constructEffect>
-    <altitudeLayer>Building</altitudeLayer>
     <fillPercent>0.5</fillPercent>
-    <useHitPoints>True</useHitPoints>
     <statBases>
       <WorkToBuild>2000</WorkToBuild>
       <MaxHitPoints>180</MaxHitPoints>
@@ -131,8 +128,6 @@
       <SellPriceFactor>0.70</SellPriceFactor>
     </statBases>
     <size>(3,1)</size>
-    <designationCategory>Mizu</designationCategory>
-    <passability>PassThroughOnly</passability>
     <pathCost>70</pathCost>
     <hasInteractionCell>True</hasInteractionCell>
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
@@ -154,14 +149,7 @@
       <workSpeedPenaltyOutdoors>true</workSpeedPenaltyOutdoors>
       <workSpeedPenaltyTemperature>true</workSpeedPenaltyTemperature>
     </building>
-    <category>Building</category>
-    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
-    <selectable>true</selectable>
-    <drawerType>MapMeshAndRealTime</drawerType>
-    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <repairEffect>Repair</repairEffect>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
-    <filthLeaving>BuildingRubble</filthLeaving>
     <castEdgeShadows>true</castEdgeShadows>
     <staticSunShadowHeight>0.20</staticSunShadowHeight>
     <canOverlapZones>false</canOverlapZones>
@@ -189,6 +177,7 @@
     <costList>
       <Steel>80</Steel>
     </costList>
+    <filthLeaving></filthLeaving>
     <comps>
       <li Class="CompProperties_Refuelable">
         <fuelConsumptionRate>160.0</fuelConsumptionRate>
@@ -240,9 +229,8 @@
     </researchPrerequisites>
   </ThingDef>
 
-  <ThingDef Name="Mizu_WaterPipeBase" Abstract="True">
+  <ThingDef Name="Mizu_WaterPipeBase" ParentName="Mizu_BuildingBase" Abstract="True">
     <thingClass>MizuMod.Building_Pipe</thingClass>
-    <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterPipe</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -272,15 +260,8 @@
     </statBases>
     <placingDraggableDimensions>1</placingDraggableDimensions>
     <rotatable>false</rotatable>
-    <selectable>true</selectable>
     <neverMultiSelect>true</neverMultiSelect>
-    <drawerType>MapMeshAndRealTime</drawerType>
-    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
-    <repairEffect>Repair</repairEffect>
-    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <designationCategory>Mizu</designationCategory>
     <designationHotKey>Misc1</designationHotKey>
-    <filthLeaving>BuildingRubble</filthLeaving>
     <researchPrerequisites>
       <li>Mizu_Waterworks</li>
     </researchPrerequisites>
@@ -311,9 +292,8 @@
     <costStuffCount>1</costStuffCount>
   </ThingDef>
   
-  <ThingDef Name="Mizu_WaterValveBase" Abstract="True">
+  <ThingDef Name="Mizu_WaterValveBase" ParentName="Mizu_BuildingBase" Abstract="True">
     <thingClass>MizuMod.Building_Valve</thingClass>
-    <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterValve</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -325,7 +305,6 @@
       <isInert>true</isInert>
       <isEdifice>false</isEdifice>
     </building>
-    <altitudeLayer>Building</altitudeLayer>
     <passability>Standable</passability>
     <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
     <tickerType>Normal</tickerType>
@@ -337,15 +316,8 @@
     </statBases>
     <placingDraggableDimensions>1</placingDraggableDimensions>
     <rotatable>true</rotatable>
-    <selectable>true</selectable>
     <neverMultiSelect>true</neverMultiSelect>
-    <drawerType>MapMeshAndRealTime</drawerType>
-    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
-    <repairEffect>Repair</repairEffect>
-    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <designationCategory>Mizu</designationCategory>
     <designationHotKey>Misc1</designationHotKey>
-    <filthLeaving>BuildingRubble</filthLeaving>
     <comps>
       <li Class="CompProperties_Flickable">
         <commandTexture>Things/Building/Production/Mizu_WaterValve</commandTexture>
@@ -372,19 +344,16 @@
     <costStuffCount>1</costStuffCount>
   </ThingDef>
   
-  <ThingDef>
+  <ThingDef ParentName="Mizu_BuildingBase">
     <defName>Mizu_GroundWaterPump</defName>
     <label>Ground water pump</label>
     <description>A building for pumping water for river, lake, pond and sea. Need electrical power.</description>
     <thingClass>MizuMod.Building_GroundWaterPump</thingClass>
-    <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Production/DeepDrill</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <drawSize>(2,2)</drawSize>
     </graphicData>
-    <altitudeLayer>Building</altitudeLayer>
-    <passability>PassThroughOnly</passability>
     <blockWind>false</blockWind>
     <castEdgeShadows>true</castEdgeShadows>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
@@ -402,15 +371,9 @@
       <Beauty>-25</Beauty>
     </statBases>
     <rotatable>true</rotatable>
-    <selectable>true</selectable>
     <neverMultiSelect>true</neverMultiSelect>
-    <drawerType>MapMeshAndRealTime</drawerType>
-    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
-    <repairEffect>Repair</repairEffect>
     <terrainAffordanceNeeded>Undefined</terrainAffordanceNeeded>
-    <designationCategory>Mizu</designationCategory>
     <designationHotKey>Misc1</designationHotKey>
-    <filthLeaving>BuildingRubble</filthLeaving>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
         <maxOutputWaterFlow>1000</maxOutputWaterFlow>
@@ -427,16 +390,13 @@
     </researchPrerequisites>
   </ThingDef>
   
-  <ThingDef Name="Mizu_UndergroundWaterPumpBase" Abstract="True">
-    <category>Building</category>
+  <ThingDef Name="Mizu_UndergroundWaterPumpBase" ParentName="Mizu_BuildingBase" Abstract="True">
     <graphicData>
       <texPath>Things/Building/Production/DeepDrill</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <drawSize>(2,2)</drawSize>
       <drawRotated>false</drawRotated>
     </graphicData>
-    <altitudeLayer>Building</altitudeLayer>
-    <passability>PassThroughOnly</passability>
     <blockWind>false</blockWind>
     <castEdgeShadows>true</castEdgeShadows>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
@@ -454,15 +414,8 @@
       <Beauty>-25</Beauty>
     </statBases>
     <rotatable>false</rotatable>
-    <selectable>true</selectable>
     <neverMultiSelect>true</neverMultiSelect>
-    <drawerType>MapMeshAndRealTime</drawerType>
-    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
-    <repairEffect>Repair</repairEffect>
-    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <designationCategory>Mizu</designationCategory>
     <designationHotKey>Misc1</designationHotKey>
-    <filthLeaving>BuildingRubble</filthLeaving>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
         <maxOutputWaterFlow>1000</maxOutputWaterFlow>
@@ -502,12 +455,11 @@
     </researchPrerequisites>
   </ThingDef>
   
-  <ThingDef>
+  <ThingDef ParentName="Mizu_BuildingBase">
     <defName>Mizu_WaterTank</defName>
     <label>Water tank</label>
     <description>A building for storing water.</description>
     <thingClass>MizuMod.Building_WaterNet</thingClass>
-    <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterTank</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -517,8 +469,6 @@
       </damageData>
     </graphicData>
     <size>(2,2)</size>
-    <altitudeLayer>Building</altitudeLayer>
-    <passability>PassThroughOnly</passability>
     <blockWind>false</blockWind>
     <castEdgeShadows>true</castEdgeShadows>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
@@ -535,15 +485,8 @@
       <Beauty>-6</Beauty>
     </statBases>
     <rotatable>false</rotatable>
-    <selectable>true</selectable>
     <neverMultiSelect>true</neverMultiSelect>
-    <drawerType>MapMeshAndRealTime</drawerType>
-    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
-    <repairEffect>Repair</repairEffect>
-    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <designationCategory>Mizu</designationCategory>
     <designationHotKey>Misc1</designationHotKey>
-    <filthLeaving>BuildingRubble</filthLeaving>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetTank">
         <maxWaterVolume>1000</maxWaterVolume>
@@ -558,12 +501,11 @@
     </researchPrerequisites>
   </ThingDef>
   
-  <ThingDef>
+  <ThingDef ParentName="Mizu_BuildingBase">
     <defName>Mizu_RainTank</defName>
     <label>Rain tank</label>
     <description>A building for storing rain water. You can connect water network (it works output only pump) and draw rain water directly.</description>
     <thingClass>MizuMod.Building_RainTank</thingClass>
-    <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_RainTank</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -573,8 +515,6 @@
       </damageData>
     </graphicData>
     <size>(2,2)</size>
-    <altitudeLayer>Building</altitudeLayer>
-    <passability>PassThroughOnly</passability>
     <blockWind>false</blockWind>
     <castEdgeShadows>true</castEdgeShadows>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
@@ -591,15 +531,8 @@
       <Beauty>-6</Beauty>
     </statBases>
     <rotatable>true</rotatable>
-    <selectable>true</selectable>
     <neverMultiSelect>true</neverMultiSelect>
-    <drawerType>MapMeshAndRealTime</drawerType>
-    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
-    <repairEffect>Repair</repairEffect>
-    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <designationCategory>Mizu</designationCategory>
     <designationHotKey>Misc1</designationHotKey>
-    <filthLeaving>BuildingRubble</filthLeaving>
     <hasInteractionCell>True</hasInteractionCell>
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <comps>
@@ -623,12 +556,11 @@
     </recipes>
   </ThingDef>
   
-  <ThingDef>
+  <ThingDef ParentName="Mizu_BuildingBase">
     <defName>Mizu_WaterFaucet</defName>
     <label>Faucet</label>
     <description>In use this tool, you take water for drinking from water tank.</description>
     <thingClass>MizuMod.Building_Faucet</thingClass>
-    <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterFaucet</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -638,8 +570,6 @@
       </damageData>
     </graphicData>
     <uiIconPath>UI/Icons/Buildings/Mizu_WaterFaucet_Icon</uiIconPath>
-    <altitudeLayer>Building</altitudeLayer>
-    <passability>PassThroughOnly</passability>
     <blockWind>false</blockWind>
     <castEdgeShadows>true</castEdgeShadows>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
@@ -658,17 +588,10 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
     <rotatable>true</rotatable>
-    <selectable>true</selectable>
     <neverMultiSelect>true</neverMultiSelect>
     <hasInteractionCell>True</hasInteractionCell>
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
-    <drawerType>MapMeshAndRealTime</drawerType>
-    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
-    <repairEffect>Repair</repairEffect>
-    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <designationCategory>Mizu</designationCategory>
     <designationHotKey>Misc1</designationHotKey>
-    <filthLeaving>BuildingRubble</filthLeaving>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetTank">
         <maxWaterVolume>50</maxWaterVolume>
@@ -698,9 +621,8 @@
     </researchPrerequisites>
   </ThingDef>
   
-  <ThingDef Name="Mizu_WaterFilterBase" Abstract="True">
+  <ThingDef Name="Mizu_WaterFilterBase" ParentName="Mizu_BuildingBase" Abstract="True">
     <thingClass>MizuMod.Building_WaterFilter</thingClass>
-    <category>Building</category>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterFilter</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -712,10 +634,9 @@
       <isInert>true</isInert>
       <isEdifice>false</isEdifice>
     </building>
-    <altitudeLayer>Building</altitudeLayer>
-    <passability>Standable</passability>
     <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
     <tickerType>Normal</tickerType>
+    <filthLeaving></filthLeaving>
     <statBases>
       <MaxHitPoints>80</MaxHitPoints>
       <WorkToBuild>35</WorkToBuild>
@@ -724,15 +645,8 @@
     </statBases>
     <placingDraggableDimensions>1</placingDraggableDimensions>
     <rotatable>true</rotatable>
-    <selectable>true</selectable>
     <neverMultiSelect>true</neverMultiSelect>
-    <drawerType>MapMeshAndRealTime</drawerType>
-    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
-    <repairEffect>Repair</repairEffect>
-    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <designationCategory>Mizu</designationCategory>
     <designationHotKey>Misc1</designationHotKey>
-    <filthLeaving>BuildingRubble</filthLeaving>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_Valve</li>
     </placeWorkers>

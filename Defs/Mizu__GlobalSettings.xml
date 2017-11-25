@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
+  
+  <!--
+    needWaterReduceRate : 水分要求の減少速度、脱水症状の進行と改善の速度にかかる係数。大きいほど速くなる。
+  -->
+  
   <MizuMod.GlobalSettingDef>
     <defName>Mizu_GlobalSettings</defName>
     <needWaterReduceRate>1</needWaterReduceRate>
   </MizuMod.GlobalSettingDef>
-
+  
 </Defs>

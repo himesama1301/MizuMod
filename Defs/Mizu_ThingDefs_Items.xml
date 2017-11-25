@@ -37,7 +37,7 @@
     </graphicData>
     <statBases>
       <MarketValue>1</MarketValue>
-      <WorkToMake>300</WorkToMake>
+      <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
       <li Class="MizuMod.CompProperties_Water">
@@ -59,8 +59,8 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>1</MarketValue>
-      <WorkToMake>300</WorkToMake>
+      <MarketValue>0.3</MarketValue>
+      <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
       <li Class="MizuMod.CompProperties_Water">
@@ -81,8 +81,8 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>1</MarketValue>
-      <WorkToMake>300</WorkToMake>
+      <MarketValue>0.1</MarketValue>
+      <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
       <li Class="MizuMod.CompProperties_Water">
@@ -104,8 +104,8 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>1</MarketValue>
-      <WorkToMake>300</WorkToMake>
+      <MarketValue>0.05</MarketValue>
+      <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
       <li Class="MizuMod.CompProperties_Water">
@@ -127,8 +127,8 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>1</MarketValue>
-      <WorkToMake>300</WorkToMake>
+      <MarketValue>0.02</MarketValue>
+      <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
       <li Class="MizuMod.CompProperties_Water">
