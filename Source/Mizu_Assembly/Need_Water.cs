@@ -11,13 +11,9 @@ namespace MizuMod
 {
     public class Need_Water : Need
     {
-        public const float NeedBorder = 0.3f;
+        //private const float DehydrationSeverityPerInterval = DehydrationSeverityPerDay / 150;
 
-        private const float DehydrationSeverityPerDay = 0.10f;
-
-        private const float DehydrationSeverityPerInterval = DehydrationSeverityPerDay / 150;
-
-        private const float BaseFallPerTick = 1.33E-05f;
+        //private const float BaseFallPerTick = 1.33E-05f;
 
         //public IntVec3 lastDrinkTerrainPos;
         public int lastSearchWaterTick;
@@ -30,11 +26,11 @@ namespace MizuMod
                 {
                     return ThirstCategory.Dehydration;
                 }
-                if (this.CurLevel < NeedBorder * 0.4f)
+                if (this.CurLevel < this.PercentageThreshUrgentlyThirsty)
                 {
                     return ThirstCategory.UrgentlyThirsty;
                 }
-                if (this.CurLevel < NeedBorder * 0.8f)
+                if (this.CurLevel < this.PercentageThreshThirsty)
                 {
                     return ThirstCategory.Thirsty;
                 }
@@ -54,7 +50,7 @@ namespace MizuMod
         {
             get
             {
-                return NeedBorder * 0.4f;
+                return MizuDef.GlobalSettings.needWater.borderBase * 0.4f;
             }
         }
 
@@ -62,7 +58,7 @@ namespace MizuMod
         {
             get
             {
-                return NeedBorder * 0.8f;
+                return MizuDef.GlobalSettings.needWater.borderBase * 0.8f;
             }
         }
 
@@ -119,13 +115,13 @@ namespace MizuMod
             switch (cat)
             {
                 case ThirstCategory.Healthy:
-                    return BaseFallPerTick;
+                    return MizuDef.GlobalSettings.needWater.fallPerTickBase;
                 case ThirstCategory.Thirsty:
-                    return BaseFallPerTick * 0.5f;
+                    return MizuDef.GlobalSettings.needWater.fallPerTickBase * 0.5f;
                 case ThirstCategory.UrgentlyThirsty:
-                    return BaseFallPerTick * 0.25f;
+                    return MizuDef.GlobalSettings.needWater.fallPerTickBase * 0.25f;
                 case ThirstCategory.Dehydration:
-                    return BaseFallPerTick * 0.15f;
+                    return MizuDef.GlobalSettings.needWater.fallPerTickBase * 0.15f;
                 default:
                     return 999f;
             }
@@ -149,7 +145,7 @@ namespace MizuMod
             if (base.IsFrozen) return;
             
             // 水分要求低下
-            this.CurLevel -= WaterFallPerTick * 150f * MizuDef.GlobalSettings.needWaterReduceRate;
+            this.CurLevel -= WaterFallPerTick * 150f * MizuDef.GlobalSettings.forDebug.needWaterReduceRate;
 
             int directionFactor = -1;
             if (this.Dehydrating)
@@ -159,7 +155,10 @@ namespace MizuMod
             }
 
             // 脱水症状進行度更新
-            HealthUtility.AdjustSeverity(this.pawn, MizuDef.Hediff_Dehydration, directionFactor * DehydrationSeverityPerInterval * MizuDef.GlobalSettings.needWaterReduceRate);
+            HealthUtility.AdjustSeverity(
+                this.pawn,
+                MizuDef.Hediff_Dehydration,
+                directionFactor * MizuDef.GlobalSettings.needWater.dehydrationSeverityPerDay / 150 * MizuDef.GlobalSettings.forDebug.needWaterReduceRate);
         }
 
         public override string GetTipString()

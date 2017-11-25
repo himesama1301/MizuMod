@@ -1,13 +1,45 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   
-  <!--
-    needWaterReduceRate : 水分要求の減少速度、脱水症状の進行と改善の速度にかかる係数。大きいほど速くなる。
-  -->
-  
   <MizuMod.GlobalSettingDef>
     <defName>Mizu_GlobalSettings</defName>
-    <needWaterReduceRate>1</needWaterReduceRate>
+    
+    <forDebug>
+      <needWaterReduceRate>1</needWaterReduceRate>
+    </forDebug>
+    
+    <needWater>
+      <fallPerTickBase>1.33E-05</fallPerTickBase>
+      <borderBase>0.3</borderBase>
+      <dehydrationSeverityPerDay>0.1</dehydrationSeverityPerDay>
+    </needWater>
+    
+    <shallowWaterLayer>
+      <basePoolNum>30</basePoolNum>
+      <baseRainFall>1000</baseRainFall>
+      <basePlantDensity>0.25</basePlantDensity>
+      <minWaterPoolNum>3</minWaterPoolNum>
+      <poolCellRange>
+        <min>30</min>
+        <max>100</max>
+      </poolCellRange>
+      <waterVolumePerCell>10</waterVolumePerCell>
+      <baseRegenRate>5000</baseRegenRate>
+    </shallowWaterLayer>
+    
+    <deepWaterLayer>
+      <basePoolNum>30</basePoolNum>
+      <baseRainFall>1000</baseRainFall>
+      <basePlantDensity>0.25</basePlantDensity>
+      <minWaterPoolNum>10</minWaterPoolNum>
+      <poolCellRange>
+        <min>50</min>
+        <max>100</max>
+      </poolCellRange>
+      <waterVolumePerCell>30</waterVolumePerCell>
+      <baseRegenRate>5000</baseRegenRate>
+    </deepWaterLayer>
+    
   </MizuMod.GlobalSettingDef>
   
 </Defs>

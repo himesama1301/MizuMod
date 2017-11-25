@@ -10,8 +10,6 @@ namespace MizuMod
 {
     public class MapComponent_ShallowWaterGrid : MapComponent_WaterGrid
     {
-        private const float BaseRegenRate = 5000.0f;
-
         public MapComponent_ShallowWaterGrid(Map map) : base(map)
         {
 
@@ -21,7 +19,7 @@ namespace MizuMod
         {
             base.MapComponentUpdate();
 
-            base.RegenPool(BaseRegenRate);
+            base.RegenPool(MizuDef.GlobalSettings.shallowWaterLayer.baseRegenRate);
         }
     }
 }

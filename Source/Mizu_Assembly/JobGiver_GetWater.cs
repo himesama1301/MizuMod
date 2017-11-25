@@ -11,7 +11,7 @@ namespace MizuMod
 {
     public class JobGiver_GetWater : ThinkNode_JobGiver
     {
-        private const int MaxDistanceOfSearchWaterTerrain = 300;
+        //private const int MaxDistanceOfSearchWaterTerrain = 300;
         private const int SearchWaterIntervalTick = 180;
 
         public override float GetPriority(Pawn pawn)
@@ -19,7 +19,7 @@ namespace MizuMod
             Need_Water need_water = pawn.needs.water();
 
             if (need_water == null) return 0.0f;
-            if (need_water.CurLevelPercentage >= Need_Water.NeedBorder) return 0.0f;
+            if (need_water.CurCategory > ThirstCategory.Thirsty) return 0.0f;
 
             return 9.4f;
         }
@@ -27,16 +27,10 @@ namespace MizuMod
         protected override Job TryGiveJob(Pawn pawn)
         {
             Need_Water need_water = pawn.needs.water();
-            if (need_water == null)
-            {
-                return null;
-            }
+            if (need_water == null) return null;
 
             // 最後に水を探してから少し経つまで次の探索はしない
-            if (need_water.lastSearchWaterTick + SearchWaterIntervalTick > Find.TickManager.TicksGame)
-            {
-                return null;
-            }
+            if (need_water.lastSearchWaterTick + SearchWaterIntervalTick > Find.TickManager.TicksGame) return null;
             need_water.lastSearchWaterTick = Find.TickManager.TicksGame;
 
             // 水アイテムを探す
@@ -77,9 +71,9 @@ namespace MizuMod
             //    }
             //}
 
-            // 地形利用処理が重いので削除、動物はどんなマップでも水が欲しい時には地形から摂取可能
+            // 地形利用処理が重いので削除、動物はどんなマップでも水が欲しい時には地形から摂取可能(家畜はダメ)
             //   ただしアイテムを見つけた時は先にアイテムから飲む
-            if (pawn.RaceProps.Animal)
+            if (pawn.RaceProps.Animal && pawn.Faction != Faction.OfPlayer)
             {
                 need_water.CurLevel = 1.0f;
             }
