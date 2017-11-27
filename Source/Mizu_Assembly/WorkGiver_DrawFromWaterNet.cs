@@ -16,10 +16,10 @@ namespace MizuMod
             var thing = giver as Thing;
             if (thing == null) return null;
 
-            var bwn = giver as IBuilding_WaterNet;
-            if (bwn == null || bwn.InputWaterNet == null) return null;
-            if (!recipe.needWaterTypes.Contains(bwn.InputWaterNet.WaterType)) return null;
-            if (bwn.InputWaterNet.StoredWaterVolume < recipe.needWaterVolume) return null;
+            var workTable = giver as Building_WaterNetWorkTable;
+            if (workTable == null) return null;
+            if (!recipe.needWaterTypes.Contains(workTable.StoredWaterType)) return null;
+            if (workTable.StoredWaterVolume < recipe.needWaterVolume) return null;
 
             return new Job(MizuDef.Job_DrawFromWaterNet, thing) { bill = bill };
         }
