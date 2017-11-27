@@ -628,13 +628,6 @@
   
   <ThingDef Name="Mizu_WaterFilterBase" ParentName="Mizu_BuildingBase" Abstract="True">
     <thingClass>MizuMod.Building_WaterFilter</thingClass>
-    <graphicData>
-      <texPath>Things/Building/Production/Mizu_WaterFilter</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <damageData>
-        <rect>(0,0.35,1,0.3)</rect>
-      </damageData>
-    </graphicData>
     <building>
       <isInert>true</isInert>
       <isEdifice>false</isEdifice>
@@ -664,6 +657,14 @@
     <defName>Mizu_DirtyWaterFilter</defName>
     <label>Dirty water filter</label>
     <description>Dirty water filter description.</description>
+    <graphicData>
+      <texPath>Things/Building/Production/Mizu_WaterFilter_Dirty</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <damageData>
+        <rect>(0,0.35,1,0.3)</rect>
+      </damageData>
+      <shaderType>CutoutComplex</shaderType>
+    </graphicData>
     <stuffCategories>
       <li>Metallic</li>
     </stuffCategories>
@@ -694,6 +695,14 @@
     <defName>Mizu_ClearWaterFilter</defName>
     <label>Clear water filter</label>
     <description>Clear water filter description.</description>
+    <graphicData>
+      <texPath>Things/Building/Production/Mizu_WaterFilter_Clear</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <damageData>
+        <rect>(0,0.35,1,0.3)</rect>
+      </damageData>
+      <shaderType>CutoutComplex</shaderType>
+    </graphicData>
     <stuffCategories>
       <li>Metallic</li>
     </stuffCategories>
