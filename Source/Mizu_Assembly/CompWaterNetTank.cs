@@ -44,7 +44,13 @@ namespace MizuMod
                 return this.Props.maxWaterVolume;
             }
         }
-
+        public bool ShowBar
+        {
+            get
+            {
+                return this.Props.showBar;
+            }
+        }
         public float StoredWaterVolume
         {
             get
@@ -147,6 +153,8 @@ namespace MizuMod
         public override void PostDraw()
         {
             base.PostDraw();
+
+            if (!this.ShowBar) return;
 
             GenDraw.FillableBarRequest r = new GenDraw.FillableBarRequest();
             r.center = this.parent.DrawPos + Vector3.up * 0.1f;

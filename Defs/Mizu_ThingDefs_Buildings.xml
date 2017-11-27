@@ -579,9 +579,11 @@
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
     <pathCost>8</pathCost>
     <tickerType>Normal</tickerType>
-    <costList>
-      <Steel>2</Steel>
-    </costList>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>2</costStuffCount>
     <statBases>
       <MaxHitPoints>120</MaxHitPoints>
       <WorkToBuild>200</WorkToBuild>
@@ -593,12 +595,11 @@
     </inspectorTabs>
     <rotatable>true</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
-    <hasInteractionCell>True</hasInteractionCell>
-    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <designationHotKey>Misc1</designationHotKey>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetTank">
         <maxWaterVolume>1</maxWaterVolume>
+        <showBar>false</showBar>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetInput"/>
       <li Class="CompProperties_Forbiddable"/>
