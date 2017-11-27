@@ -464,20 +464,23 @@
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterTank</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(2.33,2.33)</drawSize>
+      <drawSize>(1,1)</drawSize>
       <damageData>
         <rect>(0.05,0.05,0.95,0.95)</rect>
       </damageData>
     </graphicData>
-    <size>(2,2)</size>
+    <size>(1,1)</size>
     <blockWind>false</blockWind>
     <castEdgeShadows>true</castEdgeShadows>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
     <pathCost>8</pathCost>
     <tickerType>Normal</tickerType>
-    <costList>
-      <Steel>50</Steel>
-    </costList>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>20</costStuffCount>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
       <WorkToBuild>1000</WorkToBuild>
@@ -490,7 +493,7 @@
     <designationHotKey>Misc1</designationHotKey>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetTank">
-        <maxWaterVolume>500</maxWaterVolume>
+        <maxWaterVolume>100</maxWaterVolume>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetInput"/>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
@@ -510,12 +513,13 @@
     <graphicData>
       <texPath>Things/Building/Production/Mizu_RainTank</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(2.33,2.33)</drawSize>
+      <drawSize>(1,1)</drawSize>
       <damageData>
         <rect>(0.05,0.05,0.95,0.95)</rect>
       </damageData>
+      <shaderType>CutoutComplex</shaderType>
     </graphicData>
-    <size>(2,2)</size>
+    <size>(1,1)</size>
     <blockWind>false</blockWind>
     <castEdgeShadows>true</castEdgeShadows>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
@@ -526,7 +530,7 @@
       <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
-    <costStuffCount>50</costStuffCount>
+    <costStuffCount>20</costStuffCount>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
       <WorkToBuild>800</WorkToBuild>
@@ -537,11 +541,9 @@
     <rotatable>true</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
     <designationHotKey>Misc1</designationHotKey>
-    <hasInteractionCell>True</hasInteractionCell>
-    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetTank">
-        <maxWaterVolume>500</maxWaterVolume>
+        <maxWaterVolume>100</maxWaterVolume>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetInput">
         <inputType>Rain</inputType>

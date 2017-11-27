@@ -11,7 +11,7 @@ namespace MizuMod
     [StaticConstructorOnStartup]
     public class CompWaterNetTank : CompWaterNet
     {
-        private static readonly float BarThick = 0.25f;
+        private static readonly float BarThick = 0.15f;
         private static readonly Material BarFilledMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(0.1f, 0.8f, 0.8f), false);
         private static readonly Material BarUnfilledMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(0.15f, 0.15f, 0.15f), false);
 
@@ -157,8 +157,10 @@ namespace MizuMod
             if (!this.ShowBar) return;
 
             GenDraw.FillableBarRequest r = new GenDraw.FillableBarRequest();
-            r.center = this.parent.DrawPos + Vector3.up * 0.1f;
+            r.center = this.parent.DrawPos + Vector3.up * 0.1f + Vector3.back * this.parent.def.size.z / 4.0f;
             r.size = new Vector2(this.parent.RotatedSize.x, BarThick);
+            //r.center = new Vector3(this.parent.DrawPos.x, 0.1f, 1.0f - r.size.y / 2.0f);
+            //Log.Message(this.parent.DrawPos.ToString());
             r.fillPercent = this.StoredWaterVolume / this.MaxWaterVolume;
             r.filledMat = BarFilledMat;
             r.unfilledMat = BarUnfilledMat;
