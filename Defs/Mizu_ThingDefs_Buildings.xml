@@ -288,6 +288,7 @@
     <terrainAffordanceNeeded>Undefined</terrainAffordanceNeeded>
     <stuffCategories>
       <li>Metallic</li>
+      <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
     <costStuffCount>1</costStuffCount>
@@ -586,6 +587,7 @@
     <tickerType>Normal</tickerType>
     <stuffCategories>
       <li>Metallic</li>
+      <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
     <costStuffCount>2</costStuffCount>
