@@ -274,6 +274,7 @@
     <uiIconPath>UI/Icons/Buildings/Mizu_WaterPipe_Icon</uiIconPath>
     <stuffCategories>
       <li>Metallic</li>
+      <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
     <costStuffCount>1</costStuffCount>
