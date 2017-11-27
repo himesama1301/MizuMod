@@ -342,6 +342,7 @@
     <description>A building for connect water network. You can switch state (open/close).</description>
     <stuffCategories>
       <li>Metallic</li>
+      <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
     <costStuffCount>5</costStuffCount>
