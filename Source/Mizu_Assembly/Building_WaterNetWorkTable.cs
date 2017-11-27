@@ -194,5 +194,60 @@ namespace MizuMod
 
             return stringBuilder.ToString();
         }
+
+        public float StoredWaterVolume
+        {
+            get
+            {
+                var tankComp = this.GetComp<CompWaterNetTank>();
+                var inputComp = this.GetComp<CompWaterNetInput>();
+                if (tankComp == null || inputComp == null) return 0.0f;
+
+                if (inputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet)
+                {
+                    return this.InputWaterNet.StoredWaterVolume;
+                }
+                else
+                {
+                    return tankComp.StoredWaterVolume;
+                }
+            }
+        }
+
+        public WaterType StoredWaterType
+        {
+            get
+            {
+                var tankComp = this.GetComp<CompWaterNetTank>();
+                var inputComp = this.GetComp<CompWaterNetInput>();
+                if (tankComp == null || inputComp == null) return WaterType.NoWater;
+
+                if (inputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet)
+                {
+                    return this.InputWaterNet.WaterType;
+                }
+                else
+                {
+                    return tankComp.StoredWaterType;
+                }
+            }
+        }
+
+        public void DrawWaterVolume(float amount)
+        {
+            var tankComp = this.GetComp<CompWaterNetTank>();
+            var inputComp = this.GetComp<CompWaterNetInput>();
+            if (tankComp == null || inputComp == null) return;
+
+            if (inputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet)
+            {
+                this.InputWaterNet.DrawWaterVolume(amount);
+            }
+            else
+            {
+                tankComp.DrawWaterVolume(amount);                
+            }
+
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace MizuMod
             Need_Water need_water = pawn.needs.water();
 
             if (need_water == null) return 0.0f;
-            if (need_water.CurCategory > ThirstCategory.Thirsty) return 0.0f;
+            if (need_water.CurCategory < ThirstCategory.Thirsty) return 0.0f;
 
             return 9.4f;
         }
@@ -131,7 +131,8 @@ namespace MizuMod
             //}
 
             // 水を発見できず、前回の水地形情報もなし
-            return new Job(JobDefOf.GotoWander);
+            return null;
+            //return new Job(JobDefOf.GotoWander);
         }
     }
 }
