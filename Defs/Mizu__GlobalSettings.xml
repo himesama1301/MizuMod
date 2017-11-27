@@ -15,20 +15,20 @@
     </needWater>
     
     <shallowWaterLayer>
-      <basePoolNum>30</basePoolNum>
+      <basePoolNum>20</basePoolNum>
       <baseRainFall>1000</baseRainFall>
       <basePlantDensity>0.25</basePlantDensity>
-      <minWaterPoolNum>3</minWaterPoolNum>
+      <minWaterPoolNum>2</minWaterPoolNum>
       <poolCellRange>
         <min>30</min>
         <max>100</max>
       </poolCellRange>
-      <literPerCell>10</literPerCell>
-      <baseRegenRate>5000</baseRegenRate>
+      <literPerCell>5</literPerCell>
+      <baseRegenRate>200</baseRegenRate>
     </shallowWaterLayer>
     
     <deepWaterLayer>
-      <basePoolNum>30</basePoolNum>
+      <basePoolNum>40</basePoolNum>
       <baseRainFall>1000</baseRainFall>
       <basePlantDensity>0.25</basePlantDensity>
       <minWaterPoolNum>10</minWaterPoolNum>
@@ -36,8 +36,8 @@
         <min>50</min>
         <max>100</max>
       </poolCellRange>
-      <literPerCell>30</literPerCell>
-      <baseRegenRate>5000</baseRegenRate>
+      <literPerCell>15</literPerCell>
+      <baseRegenRate>200</baseRegenRate>
     </deepWaterLayer>
     
   </MizuMod.GlobalSettingDef>
