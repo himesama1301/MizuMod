@@ -22,13 +22,15 @@
   <MizuDaysWorthOfWaterWarningDialog>キャラバン隊は {0}日分の飲用水しかないので、あっという間に水不足が始まります。\n\n本当に良いのですか？</MizuDaysWorthOfWaterWarningDialog>
   <MizuDaysWorthOfWaterWarningDialog_NoWater>キャラバン隊は 飲用水がないので、あっという間に水不足が始まります。\n\n本当に良いのですか？</MizuDaysWorthOfWaterWarningDialog_NoWater>
 
-  <MizuWaterFlowOutput>供給水量</MizuWaterFlowOutput>
-  <MizuWaterFlowInput>増加水量</MizuWaterFlowInput>
+  <MizuWaterFlowOutput>出力水量</MizuWaterFlowOutput>
+  <MizuWaterFlowInput>入力水量</MizuWaterFlowInput>
   <MizuWaterTankStored>貯水量</MizuWaterTankStored>
   
   <MizuCommandDesignateOpenCloseValveLabel>開/閉を指示</MizuCommandDesignateOpenCloseValveLabel>
   <MizuCommandDesignateOpenCloseValveDesc>バルブの開閉を指示します。入植者は直ぐに作業に掛かります。</MizuCommandDesignateOpenCloseValveDesc>
   
   <MizuValveClosed>閉</MizuValveClosed>
+  
+  <MizuStoredWaterPool>地下水残量</MizuStoredWaterPool>
   
 </LanguageData>

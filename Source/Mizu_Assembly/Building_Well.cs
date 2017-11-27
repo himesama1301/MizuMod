@@ -38,10 +38,10 @@ namespace MizuMod
             {
                 stringBuilder.AppendLine();
             }
-            stringBuilder.Append(string.Format("Remain Water={0}%", (pool.CurrentWaterVolumePercent * 100).ToString("F0")));
+            stringBuilder.Append(string.Format(MizuStrings.InspectStoredWaterPool + ": {0}%", (pool.CurrentWaterVolumePercent * 100).ToString("F0")));
             if (DebugSettings.godMode)
             {
-                stringBuilder.Append(string.Format(" ({0}/{1} L)", pool.CurrentWaterVolume, pool.MaxWaterVolume));
+                stringBuilder.Append(string.Format(" ({0}/{1} L)", pool.CurrentWaterVolume.ToString("F2"), pool.MaxWaterVolume.ToString("F2")));
             }
 
             return stringBuilder.ToString();

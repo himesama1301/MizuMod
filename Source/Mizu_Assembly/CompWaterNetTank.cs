@@ -131,9 +131,9 @@ namespace MizuMod
             {
                 MizuStrings.InspectWaterTankStored,
                 ": ",
-                this.StoredWaterVolume.ToString("F0"),
+                this.StoredWaterVolume.ToString("F2"),
                 " / ",
-                this.MaxWaterVolume.ToString("F0"),
+                this.MaxWaterVolume.ToString("F2"),
                 " L"
             }));
             if (DebugSettings.godMode)
