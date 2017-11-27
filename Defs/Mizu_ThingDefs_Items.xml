@@ -12,7 +12,7 @@
       <Mass>0.44</Mass>
     </statBases>
     <altitudeLayer>Item</altitudeLayer>
-    <stackLimit>75</stackLimit>
+    <stackLimit>25</stackLimit>
     <tickerType>Rare</tickerType>
     <socialPropernessMatters>true</socialPropernessMatters>
     <thingCategories>
@@ -41,7 +41,7 @@
     </statBases>
     <comps>
       <li Class="MizuMod.CompProperties_Water">
-        <waterAmount>0.8</waterAmount>
+        <waterAmount>0.9</waterAmount>
         <waterPreferability>ClearWater</waterPreferability>
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
@@ -64,7 +64,7 @@
     </statBases>
     <comps>
       <li Class="MizuMod.CompProperties_Water">
-        <waterAmount>0.8</waterAmount>
+        <waterAmount>0.9</waterAmount>
         <waterPreferability>NormalWater</waterPreferability>
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
@@ -86,7 +86,7 @@
     </statBases>
     <comps>
       <li Class="MizuMod.CompProperties_Water">
-        <waterAmount>0.8</waterAmount>
+        <waterAmount>0.9</waterAmount>
         <waterPreferability>RainWater</waterPreferability>
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
@@ -109,7 +109,7 @@
     </statBases>
     <comps>
       <li Class="MizuMod.CompProperties_Water">
-        <waterAmount>0.8</waterAmount>
+        <waterAmount>0.9</waterAmount>
         <waterPreferability>MudWater</waterPreferability>
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
@@ -132,7 +132,7 @@
     </statBases>
     <comps>
       <li Class="MizuMod.CompProperties_Water">
-        <waterAmount>0.8</waterAmount>
+        <waterAmount>0.9</waterAmount>
         <waterPreferability>SeaWater</waterPreferability>
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
