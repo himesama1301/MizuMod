@@ -226,7 +226,7 @@ namespace MizuMod
             {
                 stringBuilder.AppendLine();
             }
-            stringBuilder.Append(MizuStrings.InspectWaterFlowOutput + ": " + this.OutputWaterFlow.ToString("#####0") + " WaterVolume/day");
+            stringBuilder.Append(MizuStrings.InspectWaterFlowOutput + ": " + this.OutputWaterFlow.ToString("#####0") + " L/day");
             if (DebugSettings.godMode)
             {
                 stringBuilder.Append(string.Format("({0})", this.OutputWaterType));

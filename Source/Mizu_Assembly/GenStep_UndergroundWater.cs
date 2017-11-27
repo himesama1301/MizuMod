@@ -13,7 +13,7 @@ namespace MizuMod
     {
         private const float BaseMapArea = 250f * 250f;
 
-        public void GenerateUndergroundWaterGrid(Map map, MapComponent_WaterGrid waterGrid, int basePoolNum, int minWaterPoolNum, float baseRainFall, float basePlantDensity, float waterVolumePerCell, IntRange poolCellRange)
+        public void GenerateUndergroundWaterGrid(Map map, MapComponent_WaterGrid waterGrid, int basePoolNum, int minWaterPoolNum, float baseRainFall, float basePlantDensity, float literPerCell, IntRange poolCellRange)
         {
             float rainRate = map.TileInfo.rainfall / baseRainFall;
             float areaRate = map.Area / BaseMapArea;
@@ -33,7 +33,7 @@ namespace MizuMod
                 if (CellFinderLoose.TryFindRandomNotEdgeCellWith(5, (c) => !waterGrid.GetCellBool(map.cellIndices.CellToIndex(c)), map, out result))
                 {
                     int numCells = poolCellRange.RandomInRange;
-                    UndergroundWaterPool pool = new UndergroundWaterPool(waterGrid, numCells * waterVolumePerCell, WaterType.NormalWater);
+                    UndergroundWaterPool pool = new UndergroundWaterPool(waterGrid, numCells * literPerCell, WaterType.NormalWater);
                     pool.ID = i + 1;
                     waterGrid.AddWaterPool(pool, GridShapeMaker.IrregularLump(result, map, numCells));
                 }

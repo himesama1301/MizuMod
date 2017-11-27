@@ -19,7 +19,7 @@ namespace MizuMod
                 MizuDef.GlobalSettings.deepWaterLayer.minWaterPoolNum,
                 MizuDef.GlobalSettings.deepWaterLayer.baseRainFall,
                 MizuDef.GlobalSettings.deepWaterLayer.basePlantDensity,
-                MizuDef.GlobalSettings.deepWaterLayer.waterVolumePerCell,
+                MizuDef.GlobalSettings.deepWaterLayer.literPerCell,
                 MizuDef.GlobalSettings.deepWaterLayer.poolCellRange);
         }
     }

@@ -36,8 +36,6 @@ namespace MizuMod
                 return this.waterType;
             }
         }
-        public float LastOutputWaterFlow { get; private set; }
-        public float LastInputWaterFlow { get; private set; }
 
         public MapComponent_WaterNetManager Manager { get; set; }
 

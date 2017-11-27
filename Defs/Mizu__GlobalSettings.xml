@@ -23,7 +23,7 @@
         <min>30</min>
         <max>100</max>
       </poolCellRange>
-      <waterVolumePerCell>10</waterVolumePerCell>
+      <literPerCell>10</literPerCell>
       <baseRegenRate>5000</baseRegenRate>
     </shallowWaterLayer>
     
@@ -36,7 +36,7 @@
         <min>50</min>
         <max>100</max>
       </poolCellRange>
-      <waterVolumePerCell>30</waterVolumePerCell>
+      <literPerCell>30</literPerCell>
       <baseRegenRate>5000</baseRegenRate>
     </deepWaterLayer>
     

@@ -134,7 +134,7 @@ namespace MizuMod
                 this.StoredWaterVolume.ToString("F0"),
                 " / ",
                 this.MaxWaterVolume.ToString("F0"),
-                " WaterVolume"
+                " L"
             }));
             if (DebugSettings.godMode)
             {

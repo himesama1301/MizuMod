@@ -141,8 +141,6 @@ namespace MizuMod
                 {
                     stringBuilder.Append(string.Join(",", new string[] {
                         string.Format("InNetID({0})", this.InputWaterNet.ID),
-                        string.Format("In({0})", this.InputWaterNet.LastInputWaterFlow.ToString("F0")),
-                        string.Format("Out({0})", this.InputWaterNet.LastOutputWaterFlow.ToString("F0")),
                         string.Format("Stored({0})", this.InputWaterNet.StoredWaterVolume.ToString("F0")),
                         string.Format("Type({0})", this.InputWaterNet.WaterType),
                     }));
@@ -156,8 +154,6 @@ namespace MizuMod
                 {
                     stringBuilder.Append(string.Join(",", new string[] {
                         string.Format("OutNetID({0})", this.OutputWaterNet.ID),
-                        string.Format("In({0})", this.OutputWaterNet.LastInputWaterFlow.ToString("F0")),
-                        string.Format("Out({0})", this.OutputWaterNet.LastOutputWaterFlow.ToString("F0")),
                         string.Format("Stored({0})", this.OutputWaterNet.StoredWaterVolume.ToString("F0")),
                         string.Format("Type({0})", this.OutputWaterNet.WaterType),
                     }));
