@@ -29,7 +29,6 @@
     <altitudeLayer>FloorEmplacement</altitudeLayer>
     <statBases>
       <WorkToBuild>0</WorkToBuild>
-      <SellPriceFactor>0.70</SellPriceFactor>
     </statBases>
     <scatterableOnMapGen>false</scatterableOnMapGen>
     <useHitPoints>False</useHitPoints>
@@ -86,8 +85,6 @@
       <MaxHitPoints>150</MaxHitPoints>
       <WorkToBuild>2500</WorkToBuild>
       <Flammability>1.0</Flammability>
-      <SellPriceFactor>0.70</SellPriceFactor>
-      <WorkTableWorkSpeedFactor>0.5</WorkTableWorkSpeedFactor>
     </statBases>
     <scatterableOnMapGen>false</scatterableOnMapGen>
     <size>(2,2)</size>
@@ -175,7 +172,7 @@
       </damageData>
     </graphicData>
     <costList>
-      <Steel>80</Steel>
+      <Steel>40</Steel>
     </costList>
     <filthLeaving></filthLeaving>
     <comps>
@@ -212,14 +209,14 @@
       </damageData>
     </graphicData>
     <costList>
-      <Steel>80</Steel>
-      <Component>2</Component>
+      <Steel>40</Steel>
+      <Component>1</Component>
     </costList>
     <comps>
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
         <startElectricalFires>true</startElectricalFires>
-        <basePowerConsumption>350</basePowerConsumption>
+        <basePowerConsumption>150</basePowerConsumption>
       </li>
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_Breakdownable"/>
@@ -341,7 +338,7 @@
       <li>Metallic</li>
       <li>Stony</li>
     </stuffCategories>
-    <costStuffCount>1</costStuffCount>
+    <costStuffCount>5</costStuffCount>
   </ThingDef>
   
   <ThingDef ParentName="Mizu_BuildingBase">
@@ -376,7 +373,7 @@
     <designationHotKey>Misc1</designationHotKey>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
-        <maxOutputWaterFlow>1000</maxOutputWaterFlow>
+        <maxOutputWaterFlow>50</maxOutputWaterFlow>
       </li>
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
@@ -418,7 +415,7 @@
     <designationHotKey>Misc1</designationHotKey>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
-        <maxOutputWaterFlow>1000</maxOutputWaterFlow>
+        <maxOutputWaterFlow>50</maxOutputWaterFlow>
       </li>
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
@@ -479,7 +476,7 @@
     </costList>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
-      <WorkToBuild>800</WorkToBuild>
+      <WorkToBuild>1000</WorkToBuild>
       <Mass>200</Mass>
       <Flammability>1.0</Flammability>
       <Beauty>-6</Beauty>
@@ -489,11 +486,11 @@
     <designationHotKey>Misc1</designationHotKey>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetTank">
-        <maxWaterVolume>1000</maxWaterVolume>
+        <maxWaterVolume>500</maxWaterVolume>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetInput"/>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
-        <maxOutputWaterFlow>1000</maxOutputWaterFlow>
+        <maxOutputWaterFlow>50</maxOutputWaterFlow>
       </li>
     </comps>
     <researchPrerequisites>
@@ -520,9 +517,12 @@
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
     <pathCost>8</pathCost>
     <tickerType>Normal</tickerType>
-    <costList>
-      <Steel>50</Steel>
-    </costList>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>1</costStuffCount>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
       <WorkToBuild>800</WorkToBuild>
@@ -537,14 +537,14 @@
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetTank">
-        <maxWaterVolume>150</maxWaterVolume>
+        <maxWaterVolume>500</maxWaterVolume>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetInput">
         <inputType>Rain</inputType>
-        <maxInputWaterFlow>3000</maxInputWaterFlow>
+        <maxInputWaterFlow>500</maxInputWaterFlow>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
-        <maxOutputWaterFlow>1000</maxOutputWaterFlow>
+        <maxOutputWaterFlow>50</maxOutputWaterFlow>
       </li>
     </comps>
     <inspectorTabs>
@@ -594,7 +594,7 @@
     <designationHotKey>Misc1</designationHotKey>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetTank">
-        <maxWaterVolume>50</maxWaterVolume>
+        <maxWaterVolume>1</maxWaterVolume>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetInput"/>
       <li Class="CompProperties_Forbiddable"/>
@@ -665,7 +665,7 @@
     <costStuffCount>1</costStuffCount>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetInput">
-        <maxInputWaterFlow>100</maxInputWaterFlow>
+        <maxInputWaterFlow>5</maxInputWaterFlow>
         <acceptWaterTypes>
           <li>RainWater</li>
           <li>MudWater</li>
@@ -673,12 +673,12 @@
         </acceptWaterTypes>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
-        <maxOutputWaterFlow>100</maxOutputWaterFlow>
+        <maxOutputWaterFlow>5</maxOutputWaterFlow>
         <forceOutputWaterType>NormalWater</forceOutputWaterType>
       </li>
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
-        <basePowerConsumption>50</basePowerConsumption>
+        <basePowerConsumption>25</basePowerConsumption>
       </li>
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_Breakdownable"/>
@@ -695,18 +695,18 @@
     <costStuffCount>1</costStuffCount>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetInput">
-        <maxInputWaterFlow>100</maxInputWaterFlow>
+        <maxInputWaterFlow>5</maxInputWaterFlow>
         <acceptWaterTypes>
           <li>NormalWater</li>
         </acceptWaterTypes>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
-        <maxOutputWaterFlow>100</maxOutputWaterFlow>
+        <maxOutputWaterFlow>5</maxOutputWaterFlow>
         <forceOutputWaterType>ClearWater</forceOutputWaterType>
       </li>
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
-        <basePowerConsumption>50</basePowerConsumption>
+        <basePowerConsumption>25</basePowerConsumption>
       </li>
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_Breakdownable"/>
