@@ -13,13 +13,20 @@ namespace MizuMod
         private bool requestedUpdateWaterNet = false;
 
         private List<WaterNet> nets = new List<WaterNet>();
-        private List<IBuilding_WaterNet> unNetThings = new List<IBuilding_WaterNet>();
-
         public List<WaterNet> Nets
         {
             get
             {
                 return nets;
+            }
+        }
+
+        private List<IBuilding_WaterNet> unNetThings = new List<IBuilding_WaterNet>();
+        public List<IBuilding_WaterNet> UnNetThings
+        {
+            get
+            {
+                return unNetThings;
             }
         }
 

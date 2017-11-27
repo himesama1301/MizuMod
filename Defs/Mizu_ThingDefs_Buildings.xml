@@ -238,7 +238,9 @@
       <damageData>
         <rect>(0,0.35,1,0.3)</rect>
       </damageData>
+      <drawSize>(1,1)</drawSize>
     </graphicData>
+    <size>(1,1)</size>
     <blueprintGraphicData>
       <texPath>Things/Building/Production/Mizu_WaterPipe</texPath>
     </blueprintGraphicData>
@@ -294,10 +296,12 @@
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterValve</texPath>
       <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
       <damageData>
         <rect>(0,0.35,1,0.3)</rect>
       </damageData>
     </graphicData>
+    <size>(1,1)</size>
     <building>
       <isInert>true</isInert>
       <isEdifice>false</isEdifice>

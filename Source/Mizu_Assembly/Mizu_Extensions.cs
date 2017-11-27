@@ -89,13 +89,13 @@ namespace MizuMod
             return num;
         }
 
-        public static bool IsOutputTo(this IBuilding_WaterNet t1, IBuilding_WaterNet t2)
+        public static bool IsOutputTo(this IBuilding_WaterNet t1, IBuilding_WaterNet t2, bool ignoreActivate = false)
         {
-            if (!t1.HasOutputConnector)
+            if (!ignoreActivate && !t1.HasOutputConnector)
             {
                 return false;
             }
-            if (!t2.HasInputConnector)
+            if (!ignoreActivate && !t2.HasInputConnector)
             {
                 return false;
             }
@@ -131,13 +131,13 @@ namespace MizuMod
             return t1_out_t2_body && t1_body_t2_in;
         }
 
-        public static bool IsConnectedOr(this IBuilding_WaterNet t1, IBuilding_WaterNet t2)
+        public static bool IsConnectedOr(this IBuilding_WaterNet t1, IBuilding_WaterNet t2, bool ignoreActivate = false)
         {
-            return t1.IsOutputTo(t2) || t2.IsOutputTo(t1);
+            return t1.IsOutputTo(t2, ignoreActivate) || t2.IsOutputTo(t1, ignoreActivate);
         }
-        public static bool IsConnectedAnd(this IBuilding_WaterNet t1, IBuilding_WaterNet t2)
+        public static bool IsConnectedAnd(this IBuilding_WaterNet t1, IBuilding_WaterNet t2, bool ignoreActivate = false)
         {
-            return t1.IsOutputTo(t2) && t2.IsOutputTo(t1);
+            return t1.IsOutputTo(t2, ignoreActivate) && t2.IsOutputTo(t1, ignoreActivate);
         }
 
         public static WaterTerrainType GetWaterTerrainType(this TerrainDef def)

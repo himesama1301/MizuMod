@@ -27,19 +27,32 @@ namespace MizuMod
             {
                 foreach (var t in net.Things)
                 {
-                    if (thing.IsConnectedOr(t))
+                    if (thing.IsConnectedOr(t, true))
                     {
                         if (t.OccupiedRect().Contains(c))
                         {
                             foundWaterNetBase = true;
-                            goto FoundWaterNetBase;
+                            break;
+                        }
+                    }
+                }
+                if (foundWaterNetBase) break;
+            }
 
+            if (!foundWaterNetBase)
+            {
+                foreach (var t in thing.WaterNetManager.UnNetThings)
+                {
+                    if (thing.IsConnectedOr(t, true))
+                    {
+                        if (t.OccupiedRect().Contains(c))
+                        {
+                            foundWaterNetBase = true;
+                            break;
                         }
                     }
                 }
             }
-
-            FoundWaterNetBase:
 
             return GenGrid.InBounds(c, parent.Map) && foundWaterNetBase;
         }
