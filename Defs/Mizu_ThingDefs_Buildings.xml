@@ -522,7 +522,7 @@
       <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
-    <costStuffCount>1</costStuffCount>
+    <costStuffCount>50</costStuffCount>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
       <WorkToBuild>800</WorkToBuild>
@@ -662,7 +662,7 @@
     <stuffCategories>
       <li>Metallic</li>
     </stuffCategories>
-    <costStuffCount>1</costStuffCount>
+    <costStuffCount>5</costStuffCount>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetInput">
         <maxInputWaterFlow>5</maxInputWaterFlow>
@@ -692,7 +692,7 @@
     <stuffCategories>
       <li>Metallic</li>
     </stuffCategories>
-    <costStuffCount>1</costStuffCount>
+    <costStuffCount>5</costStuffCount>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetInput">
         <maxInputWaterFlow>5</maxInputWaterFlow>
