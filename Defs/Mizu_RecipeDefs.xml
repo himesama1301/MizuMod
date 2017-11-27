@@ -116,7 +116,7 @@
   
   <MizuMod.GetWaterRecipeDef Name="Mizu_DrawWaterFromWaterPoolBase" ParentName="Mizu_DrawWaterBase" Abstract="True">
     <workerCounterClass>MizuMod.RecipeWorkerCounter_DrawFromWaterNet</workerCounterClass>
-    <needWaterVolume>50</needWaterVolume>
+    <needWaterVolume>0.5</needWaterVolume>
   </MizuMod.GetWaterRecipeDef>
   
   <MizuMod.GetWaterRecipeDef ParentName="Mizu_DrawWaterFromWaterPoolBase">
@@ -135,7 +135,7 @@
   
   <MizuMod.GetWaterRecipeDef Name="Mizu_DrawWaterFromWaterPoolMultiBase" ParentName="Mizu_DrawWaterFromWaterPoolBase" Abstract="True">
     <workAmount>500</workAmount>
-    <needWaterVolume>250</needWaterVolume>
+    <needWaterVolume>2.5</needWaterVolume>
     <getItemCount>5</getItemCount>
   </MizuMod.GetWaterRecipeDef>
   
@@ -155,7 +155,7 @@
   
   <MizuMod.GetWaterRecipeDef Name="Mizu_DrawWaterFromWaterNetBase" ParentName="Mizu_DrawWaterBase" Abstract="True">
     <workerCounterClass>MizuMod.RecipeWorkerCounter_DrawFromWaterNet</workerCounterClass>
-    <needWaterVolume>50</needWaterVolume>
+    <needWaterVolume>0.5</needWaterVolume>
   </MizuMod.GetWaterRecipeDef>
   
   <MizuMod.GetWaterRecipeDef ParentName="Mizu_DrawWaterFromWaterNetBase">
@@ -228,7 +228,7 @@
   
   <MizuMod.GetWaterRecipeDef Name="Mizu_DrawWaterFromWaterNetMultiBase" ParentName="Mizu_DrawWaterFromWaterNetBase" Abstract="True">
     <workAmount>500</workAmount>
-    <needWaterVolume>250</needWaterVolume>
+    <needWaterVolume>2.5</needWaterVolume>
     <getItemCount>5</getItemCount>
   </MizuMod.GetWaterRecipeDef>
   
