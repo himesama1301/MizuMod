@@ -32,8 +32,8 @@
     <label>Clear water</label>
     <description>Water for drinking. It will taste good.</description>
     <graphicData>
-      <texPath>Things/Item/Drug/Beer</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
+      <texPath>Things/Item/Mizu_ClearWater</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>1</MarketValue>
@@ -55,8 +55,8 @@
     <label>Water</label>
     <description>Water for drinking. It has no special effects.</description>
     <graphicData>
-      <texPath>Things/Item/Drug/Beer</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
+      <texPath>Things/Item/Mizu_NormalWater</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>0.3</MarketValue>
@@ -77,8 +77,8 @@
     <label>Rain water</label>
     <description>Water for drinking. It will taste bad slightly.</description>
     <graphicData>
-      <texPath>Things/Item/Drug/Beer</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
+      <texPath>Things/Item/Mizu_RainWater</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>0.1</MarketValue>
@@ -100,8 +100,8 @@
     <label>Mud water</label>
     <description>Water for drinking. It will taste terrible.</description>
     <graphicData>
-      <texPath>Things/Item/Drug/Beer</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
+      <texPath>Things/Item/Mizu_MudWater</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>0.05</MarketValue>
@@ -123,8 +123,8 @@
     <label>Seawater</label>
     <description>Water for drinking. It will taste terrible and salty.</description>
     <graphicData>
-      <texPath>Things/Item/Drug/Beer</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
+      <texPath>Things/Item/Mizu_SeaWater</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>0.02</MarketValue>
