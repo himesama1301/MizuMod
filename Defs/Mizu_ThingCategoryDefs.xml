@@ -6,7 +6,7 @@
     <label>Waters</label>
     <parent>Foods</parent>
     <resourceReadoutRoot>true</resourceReadoutRoot>
-    <iconPath>UI/Icons/ThingCategories/Waters</iconPath>
+    <iconPath>UI/Icons/ThingCategories/Mizu_WaterCategory_Icon</iconPath>
   </ThingCategoryDef>
 
 </Defs>
