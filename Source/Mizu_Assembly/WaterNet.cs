@@ -439,7 +439,7 @@ namespace MizuMod
                 }
                 else
                 {
-                    tankComp.StoredWaterType = WaterType.RainWater;
+                    tankComp.StoredWaterType = WaterType.NaturalWater;
                 }
             }
         }

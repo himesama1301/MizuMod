@@ -413,8 +413,8 @@ namespace MizuMod
             // 地形タイプ→水アイテム
             switch (waterTerrainType)
             {
-                case WaterTerrainType.FreshWater:
-                    return MizuDef.Thing_NormalWater;
+                case WaterTerrainType.NaturalWater:
+                    return MizuDef.Thing_NaturalWater;
                 case WaterTerrainType.MudWater:
                     return MizuDef.Thing_MudWater;
                 case WaterTerrainType.SeaWater:
@@ -447,8 +447,8 @@ namespace MizuMod
                     return MizuDef.Thing_ClearWater;
                 case WaterType.NormalWater:
                     return MizuDef.Thing_NormalWater;
-                case WaterType.RainWater:
-                    return MizuDef.Thing_RainWater;
+                case WaterType.NaturalWater:
+                    return MizuDef.Thing_NaturalWater;
                 case WaterType.MudWater:
                     return MizuDef.Thing_MudWater;
                 case WaterType.SeaWater:

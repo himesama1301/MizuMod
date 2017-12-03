@@ -11,7 +11,7 @@ namespace MizuMod
         NoWater,
         SeaWater,
         MudWater,
-        RainWater,
+        NaturalWater,
         NormalWater,
         ClearWater,
     }

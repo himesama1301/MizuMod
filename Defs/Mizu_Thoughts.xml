@@ -58,7 +58,7 @@
   </ThoughtDef>
   
   <ThoughtDef>
-    <defName>Mizu_DrankRainWater</defName>
+    <defName>Mizu_DrankNaturalWater</defName>
     <durationDays>0.5</durationDays>
     <stackLimit>1</stackLimit>
     <stages>

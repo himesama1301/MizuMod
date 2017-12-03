@@ -29,7 +29,7 @@ namespace MizuMod
         {
             WaterType.ClearWater,
             WaterType.NormalWater,
-            WaterType.RainWater,
+            WaterType.NaturalWater,
             WaterType.MudWater,
             WaterType.SeaWater,
         };

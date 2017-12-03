@@ -370,7 +370,7 @@ namespace MizuMod
                 if (value < 0.7f)
                 {
                     // 70%
-                    thingDef = MizuDef.Thing_RainWater;
+                    thingDef = MizuDef.Thing_NaturalWater;
                 }
                 else if ((double)value < 0.9)
                 {

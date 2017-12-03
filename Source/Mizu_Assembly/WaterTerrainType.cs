@@ -11,6 +11,6 @@ namespace MizuMod
         NoWater,
         SeaWater,
         MudWater,
-        FreshWater,
+        NaturalWater,
     }
 }

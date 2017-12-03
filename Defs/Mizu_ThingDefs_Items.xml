@@ -73,11 +73,11 @@
   </ThingDef>
 
   <ThingDef ParentName="Mizu_WaterItemBase">
-    <defName>Mizu_RainWater</defName>
-    <label>Rain water</label>
+    <defName>Mizu_NaturalWater</defName>
+    <label>Natural water</label>
     <description>Water for drinking. It will taste bad slightly.</description>
     <graphicData>
-      <texPath>Things/Item/Mizu_RainWater</texPath>
+      <texPath>Things/Item/Mizu_NaturalWater</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
@@ -87,10 +87,10 @@
     <comps>
       <li Class="MizuMod.CompProperties_Water">
         <waterAmount>0.9</waterAmount>
-        <waterPreferability>RainWater</waterPreferability>
+        <waterPreferability>NaturalWater</waterPreferability>
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
-        <drinkThought>Mizu_DrankRainWater</drinkThought>
+        <drinkThought>Mizu_DrankNaturalWater</drinkThought>
       </li>
     </comps>
   </ThingDef>
