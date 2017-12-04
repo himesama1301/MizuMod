@@ -15,7 +15,7 @@ namespace MizuMod
         {
             get
             {
-                return WaterType.NormalWater;
+                return this.pool.WaterType;
             }
         }
 

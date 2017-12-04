@@ -18,6 +18,10 @@ namespace MizuMod
     public class GSForDebug
     {
         public float needWaterReduceRate = 1.0f;
+        public bool enableChangeWaterPoolType = false;
+        public WaterType changeWaterPoolType = WaterType.NoWater;
+        public bool enableChangeWaterPoolVolume = false;
+        public float waterPoolVolumeRate = 1.0f;
     }
 
     public class GSNeedWater

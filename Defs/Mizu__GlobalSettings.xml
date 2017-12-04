@@ -6,6 +6,10 @@
     
     <forDebug>
       <needWaterReduceRate>1</needWaterReduceRate>
+      <enableChangeWaterPoolType>false</enableChangeWaterPoolType>
+      <changeWaterPoolType>NaturalWater</changeWaterPoolType>
+      <enableChangeWaterPoolVolume>false</enableChangeWaterPoolVolume>
+      <waterPoolVolumeRate>100.0</waterPoolVolumeRate>
     </forDebug>
     
     <needWater>

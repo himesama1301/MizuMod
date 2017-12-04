@@ -198,7 +198,7 @@ namespace MizuMod
             }
             else if (def.IsRiver() || def.IsLakeOrPond())
             {
-                return WaterType.NormalWater;
+                return WaterType.NaturalWater;
             }
             return WaterType.NoWater;
         }

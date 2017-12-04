@@ -10,6 +10,8 @@ namespace MizuMod
 {
     public class UndergroundWaterPool : IExposable
     {
+        private bool debugFlag = true;
+
         public int ID;
 
         private WaterType waterType;
@@ -78,6 +80,20 @@ namespace MizuMod
             Scribe_Values.Look<float>(ref this.maxWaterVolume, "maxWaterVolume");
             Scribe_Values.Look<float>(ref this.currentWaterVolume, "currenteWaterVolume");
             Scribe_Values.Look<WaterType>(ref this.waterType, "waterType");
+
+            if (this.debugFlag)
+            {
+                this.debugFlag = false;
+                if (MizuDef.GlobalSettings.forDebug.enableChangeWaterPoolType)
+                {
+                    this.waterType = MizuDef.GlobalSettings.forDebug.changeWaterPoolType;
+                }
+                if (MizuDef.GlobalSettings.forDebug.enableChangeWaterPoolVolume)
+                {
+                    this.maxWaterVolume *= MizuDef.GlobalSettings.forDebug.waterPoolVolumeRate;
+                    this.currentWaterVolume *= MizuDef.GlobalSettings.forDebug.waterPoolVolumeRate;
+                }
+            }
         }
 
         public void MergeWaterVolume(UndergroundWaterPool p)
