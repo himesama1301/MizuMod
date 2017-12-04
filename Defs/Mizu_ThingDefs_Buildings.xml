@@ -105,8 +105,8 @@
       <li Class="CompProperties_Forbiddable"/>
     </comps>
     <recipes>
-      <li>Mizu_DrawNormalWaterFromWaterPool</li>
-      <li>Mizu_DrawNormalWaterFromWaterPoolMulti</li>
+      <li>Mizu_DrawNaturalWaterFromWaterPool</li>
+      <li>Mizu_DrawNaturalWaterFromWaterPoolMulti</li>
     </recipes>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_UndergroundShallowWater</li>

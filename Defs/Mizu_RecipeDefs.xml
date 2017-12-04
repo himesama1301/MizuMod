@@ -122,12 +122,12 @@
   </MizuMod.GetWaterRecipeDef>
   
   <MizuMod.GetWaterRecipeDef ParentName="Mizu_DrawWaterFromWaterPoolBase">
-    <defName>Mizu_DrawNormalWaterFromWaterPool</defName>
-    <label>draw water from underground</label>
-    <description>Draws water from underground for drinking</description>
-    <jobString>Drawing water from underground.</jobString>
+    <defName>Mizu_DrawNaturalWaterFromWaterPool</defName>
+    <label>draw natural water from underground</label>
+    <description>Draws natural water from underground for drinking</description>
+    <jobString>Drawing natural water from underground.</jobString>
     <needWaterTypes>
-      <li>NormalWater</li>
+      <li>NaturalWater</li>
     </needWaterTypes>
   </MizuMod.GetWaterRecipeDef>
   
@@ -142,12 +142,12 @@
   </MizuMod.GetWaterRecipeDef>
   
   <MizuMod.GetWaterRecipeDef ParentName="Mizu_DrawWaterFromWaterPoolMultiBase">
-    <defName>Mizu_DrawNormalWaterFromWaterPoolMulti</defName>
-    <label>draw water x5 from underground</label>
-    <description>Draws water x5 from underground for drinking</description>
-    <jobString>Drawing water from underground.</jobString>
+    <defName>Mizu_DrawNaturalWaterFromWaterPoolMulti</defName>
+    <label>draw natural water x5 from underground</label>
+    <description>Draws natural water x5 from underground for drinking</description>
+    <jobString>Drawing natural water from underground.</jobString>
     <needWaterTypes>
-      <li>NormalWater</li>
+      <li>NaturalWater</li>
     </needWaterTypes>
   </MizuMod.GetWaterRecipeDef>
   
