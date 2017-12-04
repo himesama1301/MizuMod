@@ -56,11 +56,11 @@
     </placeWorkers>
     <recipes>
       <li>Mizu_DrawWater</li>
-      <li>Mizu_DrawNaturalWater</li>
+      <li>Mizu_DrawRawWater</li>
       <li>Mizu_DrawMudWater</li>
       <li>Mizu_DrawSeaWater</li>
       <li>Mizu_DrawWaterMulti</li>
-      <li>Mizu_DrawNaturalWaterMulti</li>
+      <li>Mizu_DrawRawWaterMulti</li>
       <li>Mizu_DrawMudWaterMulti</li>
       <li>Mizu_DrawSeaWaterMulti</li>
     </recipes>
@@ -105,8 +105,8 @@
       <li Class="CompProperties_Forbiddable"/>
     </comps>
     <recipes>
-      <li>Mizu_DrawNaturalWaterFromWaterPool</li>
-      <li>Mizu_DrawNaturalWaterFromWaterPoolMulti</li>
+      <li>Mizu_DrawRawWaterFromWaterPool</li>
+      <li>Mizu_DrawRawWaterFromWaterPoolMulti</li>
     </recipes>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_UndergroundShallowWater</li>
@@ -561,8 +561,8 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
     <recipes>
-      <li>Mizu_DrawNaturalWaterFromWaterNet</li>
-      <li>Mizu_DrawNaturalWaterFromWaterNetMulti</li>
+      <li>Mizu_DrawRawWaterFromWaterNet</li>
+      <li>Mizu_DrawRawWaterFromWaterNetMulti</li>
     </recipes>
   </ThingDef>
   
@@ -615,13 +615,13 @@
       <li>Mizu_DrawWaterFromWaterNet</li>
       <li>Mizu_DrawClearWaterFromWaterNet</li>
       <li>Mizu_DrawNormalWaterFromWaterNet</li>
-      <li>Mizu_DrawNaturalWaterFromWaterNet</li>
+      <li>Mizu_DrawRawWaterFromWaterNet</li>
       <li>Mizu_DrawMudWaterFromWaterNet</li>
       <li>Mizu_DrawSeaWaterFromWaterNet</li>
       <li>Mizu_DrawWaterFromWaterNetMulti</li>
       <li>Mizu_DrawClearWaterFromWaterNetMulti</li>
       <li>Mizu_DrawNormalWaterFromWaterNetMulti</li>
-      <li>Mizu_DrawNaturalWaterFromWaterNetMulti</li>
+      <li>Mizu_DrawRawWaterFromWaterNetMulti</li>
       <li>Mizu_DrawMudWaterFromWaterNetMulti</li>
       <li>Mizu_DrawSeaWaterFromWaterNetMulti</li>
     </recipes>
@@ -680,7 +680,7 @@
       <li Class="MizuMod.CompProperties_WaterNetInput">
         <maxInputWaterFlow>5</maxInputWaterFlow>
         <acceptWaterTypes>
-          <li>NaturalWater</li>
+          <li>RawWater</li>
           <li>MudWater</li>
           <li>SeaWater</li>
         </acceptWaterTypes>

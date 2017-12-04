@@ -148,11 +148,11 @@ namespace MizuMod
             }
             else if (def.IsRiver())
             {
-                return WaterTerrainType.NaturalWater;
+                return WaterTerrainType.RawWater;
             }
             else if (def.IsLakeOrPond())
             {
-                return WaterTerrainType.NaturalWater;
+                return WaterTerrainType.RawWater;
             }
             else if (def.IsMarsh())
             {
@@ -198,7 +198,7 @@ namespace MizuMod
             }
             else if (def.IsRiver() || def.IsLakeOrPond())
             {
-                return WaterType.NaturalWater;
+                return WaterType.RawWater;
             }
             return WaterType.NoWater;
         }
@@ -258,13 +258,13 @@ namespace MizuMod
             else
             {
                 // それ以外は真水
-                result = (WaterTerrainType)Mathf.Max((int)result, (int)WaterTerrainType.NaturalWater);
+                result = (WaterTerrainType)Mathf.Max((int)result, (int)WaterTerrainType.RawWater);
             }
 
             if (tile.VisibleRivers != null && tile.VisibleRivers.Count > 0)
             {
                 // 川があれば真水が飲める(凍ってるか等はチェックしないことにする)
-                result = (WaterTerrainType)Mathf.Max((int)result, (int)WaterTerrainType.NaturalWater);
+                result = (WaterTerrainType)Mathf.Max((int)result, (int)WaterTerrainType.RawWater);
             }
             if (Find.World.CoastDirectionAt(caravan.Tile).IsValid)
             {

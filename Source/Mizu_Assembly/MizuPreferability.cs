@@ -12,7 +12,7 @@ namespace MizuMod
         TerrainWater = 20,
         SeaWater = 30,
         MudWater = 40,
-        NaturalWater = 50,
+        RawWater = 50,
         NormalWater = 60,
         ClearWater = 70,
     }

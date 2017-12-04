@@ -35,7 +35,7 @@ namespace MizuMod
 
         public static ThingDef Thing_ClearWater = DefDatabase<ThingDef>.GetNamed("Mizu_ClearWater");
         public static ThingDef Thing_NormalWater = DefDatabase<ThingDef>.GetNamed("Mizu_NormalWater");
-        public static ThingDef Thing_NaturalWater = DefDatabase<ThingDef>.GetNamed("Mizu_NaturalWater");
+        public static ThingDef Thing_RawWater = DefDatabase<ThingDef>.GetNamed("Mizu_RawWater");
         public static ThingDef Thing_MudWater = DefDatabase<ThingDef>.GetNamed("Mizu_MudWater");
         public static ThingDef Thing_SeaWater = DefDatabase<ThingDef>.GetNamed("Mizu_SeaWater");
 

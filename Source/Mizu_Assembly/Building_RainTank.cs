@@ -14,7 +14,7 @@ namespace MizuMod
         {
             get
             {
-                return WaterType.NaturalWater;
+                return WaterType.RawWater;
             }
         }
     }
