@@ -354,7 +354,7 @@
   <ThingDef ParentName="Mizu_BuildingBase">
     <defName>Mizu_GroundWaterPump</defName>
     <label>Ground water pump</label>
-    <description>A building for pumping water for river, lake, pond and sea. Need electrical power.</description>
+    <description>A building for pumping water for river, lake, pond, sea and marsh. Need electrical power.</description>
     <thingClass>MizuMod.Building_GroundWaterPump</thingClass>
     <graphicData>
       <texPath>Things/Building/Production/DeepDrill</texPath>
@@ -392,6 +392,9 @@
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_Breakdownable"/>
     </comps>
+    <placeWorkers>
+      <li>MizuMod.PlaceWorker_WaterWorker</li>
+    </placeWorkers>
     <researchPrerequisites>
       <li>Mizu_Waterworks</li>
     </researchPrerequisites>

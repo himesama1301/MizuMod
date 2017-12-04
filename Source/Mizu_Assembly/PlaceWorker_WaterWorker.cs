@@ -25,11 +25,14 @@ namespace MizuMod
                 cond_building = true;
             }
 
-            bool cond_interaction = false;
-            TerrainDef terrainInteraction = map.terrainGrid.TerrainAt(ThingUtility.InteractionCellWhenAt(def, loc, rot, map));
-            if (terrainInteraction.passability == Traversability.Standable)
+            bool cond_interaction = true;
+            if (def.hasInteractionCell)
             {
-                cond_interaction = true;
+                TerrainDef terrainInteraction = map.terrainGrid.TerrainAt(ThingUtility.InteractionCellWhenAt(def, loc, rot, map));
+                if (terrainInteraction.passability != Traversability.Standable)
+                {
+                    cond_interaction = false;
+                }
             }
 
             return (cond_building && cond_interaction);
