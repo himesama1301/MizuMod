@@ -28,7 +28,7 @@
         <max>100</max>
       </poolCellRange>
       <literPerCell>30</literPerCell>
-      <baseRegenRate>200</baseRegenRate>
+      <baseRegenRate>600</baseRegenRate>
     </shallowWaterLayer>
     
     <deepWaterLayer>
@@ -41,7 +41,7 @@
         <max>100</max>
       </poolCellRange>
       <literPerCell>120</literPerCell>
-      <baseRegenRate>200</baseRegenRate>
+      <baseRegenRate>600</baseRegenRate>
     </deepWaterLayer>
     
   </MizuMod.GlobalSettingDef>
