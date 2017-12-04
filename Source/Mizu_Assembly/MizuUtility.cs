@@ -324,9 +324,15 @@ namespace MizuMod
                 Log.Error("comp is null");
                 return 0.0f;
             }
+            // 指定された健康状態になる
             if (comp.DrinkHediff != null)
             {
                 getter.health.AddHediff(HediffMaker.MakeHediff(comp.DrinkHediff, getter));
+            }
+            // 確率で食中毒
+            if (Rand.Value < comp.FoodPoisonChance)
+            {
+                FoodUtility.AddFoodPoisoningHediff(getter, thing);
             }
 
             int drankWaterItemCount;

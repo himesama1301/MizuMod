@@ -18,7 +18,8 @@ namespace MizuMod
         public SoundDef GetSound { get { return this.Props.getSound; } }
         public int MaxNumToGetAtOnce { get { return this.Props.maxNumToGetAtOnce; } }
         public ThoughtDef DrinkThought { get { return this.Props.drinkThought; } }
-        public HediffDef DrinkHediff {  get { return this.Props.drinkHediff;  } }
+        public HediffDef DrinkHediff { get { return this.Props.drinkHediff;  } }
+        public float FoodPoisonChance { get { return this.Props.foodPoisonChance; } }
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {

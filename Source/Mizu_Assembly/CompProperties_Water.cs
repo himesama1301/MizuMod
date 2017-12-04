@@ -19,6 +19,7 @@ namespace MizuMod
         public int maxNumToGetAtOnce = 1;
         public ThoughtDef drinkThought = null;
         public HediffDef drinkHediff = null;
+        public float foodPoisonChance = 0.0f;
 
         public CompProperties_Water()
         {

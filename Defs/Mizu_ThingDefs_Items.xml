@@ -46,6 +46,7 @@
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
         <drinkThought>Mizu_DrankClearWater</drinkThought>
+        <foodPoisonChance>0</foodPoisonChance>
       </li>
     </comps>
   </ThingDef>
@@ -68,6 +69,7 @@
         <waterPreferability>NormalWater</waterPreferability>
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <foodPoisonChance>0</foodPoisonChance>
       </li>
     </comps>
   </ThingDef>
@@ -91,6 +93,7 @@
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
         <drinkThought>Mizu_DrankRawWater</drinkThought>
+        <foodPoisonChance>0.02</foodPoisonChance>
       </li>
     </comps>
   </ThingDef>
@@ -114,6 +117,7 @@
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
         <drinkThought>Mizu_DrankMudWater</drinkThought>
+        <foodPoisonChance>0.05</foodPoisonChance>
       </li>
     </comps>
   </ThingDef>
@@ -138,6 +142,7 @@
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
         <drinkThought>Mizu_DrankSeaWater</drinkThought>
         <drinkHediff>Mizu_DrankSeaWater</drinkHediff>
+        <foodPoisonChance>0.05</foodPoisonChance>
       </li>
     </comps>
   </ThingDef>
