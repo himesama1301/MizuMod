@@ -305,12 +305,13 @@
   <!-- others -->
   
   <RecipeDef>
-    <defName>Mizu_CleanDirtyWater</defName>
-    <label>clean dirty water</label>
-    <description></description>
-    <jobString>Cleaning dirty water.</jobString>
+    <defName>Mizu_BoilRawWater</defName>
+    <label>boil raw water</label>
+    <description>boil raw water for converting to water.</description>
+    <jobString>Boiling raw water.</jobString>
     <workAmount>300</workAmount>
-    <workSpeedStat>CookSpeed</workSpeedStat>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_CookMeal</soundWorking>
     <ingredients>
@@ -318,8 +319,6 @@
         <filter>
           <thingDefs>
             <li>Mizu_RawWater</li>
-            <li>Mizu_MudWater</li>
-            <li>Mizu_SeaWater</li>
           </thingDefs>
         </filter>
         <count>1</count>
@@ -328,8 +327,6 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Mizu_RawWater</li>
-        <li>Mizu_MudWater</li>
-        <li>Mizu_SeaWater</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -338,4 +335,65 @@
     <workSkill>Cooking</workSkill>
   </RecipeDef>
 
+  <RecipeDef>
+    <defName>Mizu_PercolateMudWater</defName>
+    <label>percolate mud water</label>
+    <description>percolate and boil mud water for converting to normal water</description>
+    <jobString>Percolating mud water.</jobString>
+    <workAmount>600</workAmount>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Mizu_MudWater</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Mizu_MudWater</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Mizu_NormalWater>1</Mizu_NormalWater>
+    </products>
+    <workSkill>Cooking</workSkill>
+  </RecipeDef>
+
+  <RecipeDef>
+    <defName>Mizu_DistillSeaWater</defName>
+    <label>distill seawater</label>
+    <description>distill seawater for converting to water.</description>
+    <jobString>Distilling seawater.</jobString>
+    <workAmount>900</workAmount>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Mizu_SeaWater</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Mizu_SeaWater</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Mizu_NormalWater>1</Mizu_NormalWater>
+    </products>
+    <workSkill>Cooking</workSkill>
+  </RecipeDef>
 </Defs>

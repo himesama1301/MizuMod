@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- バニラの調理系設備に煮沸レシピを追加する -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/ThingDef[defName = "ElectricStove"]/recipes</xpath>
+    <value>
+      <li>Mizu_BoilRawWater</li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/ThingDef[defName = "FueledStove"]/recipes</xpath>
+    <value>
+      <li>Mizu_BoilRawWater</li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/ThingDef[defName = "Campfire"]/recipes</xpath>
+    <value>
+      <li>Mizu_BoilRawWater</li>
+    </value>
+  </Operation>
+
+</Patch>

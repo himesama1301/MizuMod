@@ -30,7 +30,7 @@
   <Mizu_DeliverWaterToPrisoner.gerund>に水を与える</Mizu_DeliverWaterToPrisoner.gerund>
 
   <Mizu_CleanWater.label>水を浄化する</Mizu_CleanWater.label>
-  <Mizu_CleanWater.verb>を浄化する</Mizu_CleanWater.verb>
-  <Mizu_CleanWater.gerund>を浄化する</Mizu_CleanWater.gerund>
+  <Mizu_CleanWater.verb>で水を浄化する</Mizu_CleanWater.verb>
+  <Mizu_CleanWater.gerund>で水を浄化する</Mizu_CleanWater.gerund>
 
 </LanguageData>

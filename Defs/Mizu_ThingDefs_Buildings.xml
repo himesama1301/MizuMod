@@ -131,7 +131,9 @@
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <surfaceType>Item</surfaceType>
     <recipes>
-      <li>Mizu_CleanDirtyWater</li>
+      <li>Mizu_BoilRawWater</li>
+      <li>Mizu_PercolateMudWater</li>
+      <li>Mizu_DistillSeaWater</li>
     </recipes>
     <inspectorTabs>
       <li>ITab_Bills</li>

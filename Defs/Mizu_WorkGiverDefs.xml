@@ -121,6 +121,9 @@
     <fixedBillGiverDefs>
       <li>Mizu_FueledWaterCleaner</li>
       <li>Mizu_ElectricWaterCleaner</li>
+      <li>ElectricStove</li>
+      <li>FueledStove</li>
+      <li>Campfire</li>
     </fixedBillGiverDefs>
     <verb>clean</verb>
     <gerund>cleaning at</gerund>
