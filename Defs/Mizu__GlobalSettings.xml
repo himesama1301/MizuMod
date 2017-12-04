@@ -13,9 +13,9 @@
     </forDebug>
     
     <needWater>
-      <fallPerTickBase>1.33E-05</fallPerTickBase>
+      <fallPerTickBase>1.5E-05</fallPerTickBase>
       <borderBase>0.3</borderBase>
-      <dehydrationSeverityPerDay>0.1</dehydrationSeverityPerDay>
+      <dehydrationSeverityPerDay>0.2</dehydrationSeverityPerDay>
     </needWater>
     
     <shallowWaterLayer>
