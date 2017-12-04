@@ -665,7 +665,7 @@
   <ThingDef ParentName="Mizu_WaterFilterBase">
     <defName>Mizu_DirtyWaterFilter</defName>
     <label>Dirty water filter</label>
-    <description>Dirty water filter description.</description>
+    <description>Convert raw/mud/sea water to normal water in waterworks. Need electrical power.</description>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterFilter_Dirty</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -703,7 +703,7 @@
   <ThingDef ParentName="Mizu_WaterFilterBase">
     <defName>Mizu_ClearWaterFilter</defName>
     <label>Clear water filter</label>
-    <description>Clear water filter description.</description>
+    <description>Convert normal water to clear water in waterworks. Need electrical power.</description>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterFilter_Clear</texPath>
       <graphicClass>Graphic_Single</graphicClass>
