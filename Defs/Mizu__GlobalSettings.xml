@@ -9,7 +9,7 @@
       <enableChangeWaterPoolType>false</enableChangeWaterPoolType>
       <changeWaterPoolType>RawWater</changeWaterPoolType>
       <enableChangeWaterPoolVolume>false</enableChangeWaterPoolVolume>
-      <waterPoolVolumeRate>100.0</waterPoolVolumeRate>
+      <waterPoolVolumeRate>3.0</waterPoolVolumeRate>
     </forDebug>
     
     <needWater>
@@ -27,7 +27,7 @@
         <min>30</min>
         <max>100</max>
       </poolCellRange>
-      <literPerCell>10</literPerCell>
+      <literPerCell>30</literPerCell>
       <baseRegenRate>200</baseRegenRate>
     </shallowWaterLayer>
     
@@ -40,7 +40,7 @@
         <min>50</min>
         <max>100</max>
       </poolCellRange>
-      <literPerCell>40</literPerCell>
+      <literPerCell>120</literPerCell>
       <baseRegenRate>200</baseRegenRate>
     </deepWaterLayer>
     
