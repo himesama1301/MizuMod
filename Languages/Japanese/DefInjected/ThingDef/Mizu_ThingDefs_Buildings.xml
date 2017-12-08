@@ -3,47 +3,92 @@
 
   <Mizu_DrawingWaterSpot.label>水汲み場</Mizu_DrawingWaterSpot.label>
   <Mizu_DrawingWaterSpot.description>飲用水を汲む場所です。水か沼に設置できます。</Mizu_DrawingWaterSpot.description>
+  <Mizu_DrawingWaterSpot_Blueprint.label>水汲み場(設計)</Mizu_DrawingWaterSpot_Blueprint.label>
+  <Mizu_DrawingWaterSpot_Frame.label>水汲み場(施行)</Mizu_DrawingWaterSpot_Frame.label>
+  <Mizu_DrawingWaterSpot_Frame.description>飲用水を汲む場所です。水か沼に設置できます。</Mizu_DrawingWaterSpot_Frame.description>
 
   <Mizu_Well.label>井戸</Mizu_Well.label>
   <Mizu_Well.description>水を汲むことができる設備です。</Mizu_Well.description>
+  <Mizu_Well_Blueprint.label>井戸(設計)</Mizu_Well_Blueprint.label>
+  <Mizu_Well_Frame.label>井戸(施行)</Mizu_Well_Frame.label>
+  <Mizu_Well_Frame.description>水を汲むことができる設備です。</Mizu_Well_Frame.description>
 
   <Mizu_WaterPipe.label>水道管</Mizu_WaterPipe.label>
   <Mizu_WaterPipe.description>ポンプや貯水タンク、蛇口などをつなげるための設備です。</Mizu_WaterPipe.description>
+  <Mizu_WaterPipe_Blueprint.label>水道管(設計)</Mizu_WaterPipe_Blueprint.label>
+  <Mizu_WaterPipe_Frame.label>水道管(施行)</Mizu_WaterPipe_Frame.label>
+  <Mizu_WaterPipe_Frame.description>ポンプや貯水タンク、蛇口などをつなげるための設備です。</Mizu_WaterPipe_Frame.description>
 
   <Mizu_WaterPipeInWater.label>水道管(水中)</Mizu_WaterPipeInWater.label>
   <Mizu_WaterPipeInWater.description>ポンプや貯水タンク、蛇口などをつなげるための設備です。</Mizu_WaterPipeInWater.description>
+  <Mizu_WaterPipeInWater_Blueprint.label>水道管(水中)(設計)</Mizu_WaterPipeInWater_Blueprint.label>
+  <Mizu_WaterPipeInWater_Frame.label>水道管(水中)(施行)</Mizu_WaterPipeInWater_Frame.label>
+  <Mizu_WaterPipeInWater_Frame.description>ポンプや貯水タンク、蛇口などをつなげるための設備です。</Mizu_WaterPipeInWater_Frame.description>
 
   <Mizu_GroundWaterPump.label>汲み上げポンプ</Mizu_GroundWaterPump.label>
   <Mizu_GroundWaterPump.description>川、池、湖、海などから水を汲んで水道に流すための設備です。電力を必要とします。</Mizu_GroundWaterPump.description>
-  
+  <Mizu_GroundWaterPump_Blueprint.label>汲み上げポンプ(設計)</Mizu_GroundWaterPump_Blueprint.label>
+  <Mizu_GroundWaterPump_Frame.label>汲み上げポンプ(施行)</Mizu_GroundWaterPump_Frame.label>
+  <Mizu_GroundWaterPump_Frame.description>川、池、湖、海などから水を汲んで水道に流すための設備です。電力を必要とします。</Mizu_GroundWaterPump_Frame.description>
+
   <Mizu_UndergroundWaterPumpShallow.label>地下水汲み上げポンプ(表層用)</Mizu_UndergroundWaterPumpShallow.label>
   <Mizu_UndergroundWaterPumpShallow.description>表層の地下水を汲んで水道に流すための設備です。電力を必要とします。</Mizu_UndergroundWaterPumpShallow.description>
+  <Mizu_UndergroundWaterPumpShallow_Blueprint.label>地下水汲み上げポンプ(表層用)(設計)</Mizu_UndergroundWaterPumpShallow_Blueprint.label>
+  <Mizu_UndergroundWaterPumpShallow_Frame.label>地下水汲み上げポンプ(表層用)(施行)</Mizu_UndergroundWaterPumpShallow_Frame.label>
+  <Mizu_UndergroundWaterPumpShallow_Frame.description>表層の地下水を汲んで水道に流すための設備です。電力を必要とします。</Mizu_UndergroundWaterPumpShallow_Frame.description>
 
   <Mizu_UndergroundWaterPumpDeep.label>地下水汲み上げポンプ(深層用)</Mizu_UndergroundWaterPumpDeep.label>
   <Mizu_UndergroundWaterPumpDeep.description>深層の地下水を汲んで水道に流すための設備です。電力を必要とします。</Mizu_UndergroundWaterPumpDeep.description>
+  <Mizu_UndergroundWaterPumpDeep_Blueprint.label>地下水汲み上げポンプ(深層用)(設計)</Mizu_UndergroundWaterPumpDeep_Blueprint.label>
+  <Mizu_UndergroundWaterPumpDeep_Frame.label>地下水汲み上げポンプ(深層用)(施行)</Mizu_UndergroundWaterPumpDeep_Frame.label>
+  <Mizu_UndergroundWaterPumpDeep_Frame.description>深層の地下水を汲んで水道に流すための設備です。電力を必要とします。</Mizu_UndergroundWaterPumpDeep_Frame.description>
 
   <Mizu_WaterTank.label>貯水タンク</Mizu_WaterTank.label>
   <Mizu_WaterTank.description>ポンプで汲み上げた水を貯える設備です。</Mizu_WaterTank.description>
+  <Mizu_WaterTank_Blueprint.label>貯水タンク(設計)</Mizu_WaterTank_Blueprint.label>
+  <Mizu_WaterTank_Frame.label>貯水タンク(施行)</Mizu_WaterTank_Frame.label>
+  <Mizu_WaterTank_Frame.description>ポンプで汲み上げた水を貯える設備です。</Mizu_WaterTank_Frame.description>
 
   <Mizu_RainTank.label>雨水タンク</Mizu_RainTank.label>
   <Mizu_RainTank.description>雨水を貯える設備です。水道網につなぐことも、直接雨水を汲みだすことも出来ます。</Mizu_RainTank.description>
+  <Mizu_RainTank_Blueprint.label>雨水タンク(設計)</Mizu_RainTank_Blueprint.label>
+  <Mizu_RainTank_Frame.label>雨水タンク(施行)</Mizu_RainTank_Frame.label>
+  <Mizu_RainTank_Frame.description>雨水を貯える設備です。水道網につなぐことも、直接雨水を汲みだすことも出来ます。</Mizu_RainTank_Frame.description>
 
   <Mizu_WaterFaucet.label>蛇口</Mizu_WaterFaucet.label>
   <Mizu_WaterFaucet.description>これを使えば、水道網から飲用水を得ることができます。</Mizu_WaterFaucet.description>
+  <Mizu_WaterFaucet_Blueprint.label>蛇口(設計)</Mizu_WaterFaucet_Blueprint.label>
+  <Mizu_WaterFaucet_Frame.label>蛇口(施行)</Mizu_WaterFaucet_Frame.label>
+  <Mizu_WaterFaucet_Frame.description>これを使えば、水道網から飲用水を得ることができます。</Mizu_WaterFaucet_Frame.description>
 
   <Mizu_WaterValve.label>バルブ</Mizu_WaterValve.label>
   <Mizu_WaterValve.description>水道網の接続に使用します。開/閉を切り替えることができます。</Mizu_WaterValve.description>
+  <Mizu_WaterValve_Blueprint.label>バルブ(設計)</Mizu_WaterValve_Blueprint.label>
+  <Mizu_WaterValve_Frame.label>バルブ(施行)</Mizu_WaterValve_Frame.label>
+  <Mizu_WaterValve_Frame.description>水道網の接続に使用します。開/閉を切り替えることができます。</Mizu_WaterValve_Frame.description>
   
   <Mizu_DirtyWaterFilter.label>浄水フィルター(汚水用)</Mizu_DirtyWaterFilter.label>
   <Mizu_DirtyWaterFilter.description>海水、泥水、生水を水に変換します。電力を必要とします。</Mizu_DirtyWaterFilter.description>
+  <Mizu_DirtyWaterFilter_Blueprint.label>浄水フィルター(汚水用)(設計)</Mizu_DirtyWaterFilter_Blueprint.label>
+  <Mizu_DirtyWaterFilter_Frame.label>浄水フィルター(汚水用)(施行)</Mizu_DirtyWaterFilter_Frame.label>
+  <Mizu_DirtyWaterFilter_Frame.description>海水、泥水、生水を水に変換します。電力を必要とします。</Mizu_DirtyWaterFilter_Frame.description>
   
   <Mizu_ClearWaterFilter.label>浄水フィルター</Mizu_ClearWaterFilter.label>
   <Mizu_ClearWaterFilter.description>水をきれいな水に変換します。電力を必要とします。</Mizu_ClearWaterFilter.description>
+  <Mizu_ClearWaterFilter_Blueprint.label>浄水フィルター(設計)</Mizu_ClearWaterFilter_Blueprint.label>
+  <Mizu_ClearWaterFilter_Frame.label>浄水フィルター(施行)</Mizu_ClearWaterFilter_Frame.label>
+  <Mizu_ClearWaterFilter_Frame.description>水をきれいな水に変換します。電力を必要とします。</Mizu_ClearWaterFilter_Frame.description>
   
   <Mizu_FueledWaterCleaner.label>燃料式浄水器</Mizu_FueledWaterCleaner.label>
   <Mizu_FueledWaterCleaner.description>海水、泥水、生水を水に変換する手動式の浄水器です。木材を燃料として動作します。</Mizu_FueledWaterCleaner.description>
+  <Mizu_FueledWaterCleaner_Blueprint.label>燃料式浄水器(設計)</Mizu_FueledWaterCleaner_Blueprint.label>
+  <Mizu_FueledWaterCleaner_Frame.label>燃料式浄水器(施行)</Mizu_FueledWaterCleaner_Frame.label>
+  <Mizu_FueledWaterCleaner_Frame.description>海水、泥水、生水を水に変換する手動式の浄水器です。木材を燃料として動作します。</Mizu_FueledWaterCleaner_Frame.description>
   
   <Mizu_ElectricWaterCleaner.label>電動式浄水器</Mizu_ElectricWaterCleaner.label>
   <Mizu_ElectricWaterCleaner.description>海水、泥水、生水を水に変換する手動式の浄水器です。電力を必要とします。</Mizu_ElectricWaterCleaner.description>
+  <Mizu_ElectricWaterCleaner_Blueprint.label>電動式浄水器(設計)</Mizu_ElectricWaterCleaner_Blueprint.label>
+  <Mizu_ElectricWaterCleaner_Frame.label>電動式浄水器(施行)</Mizu_ElectricWaterCleaner_Frame.label>
+  <Mizu_ElectricWaterCleaner_Frame.description>海水、泥水、生水を水に変換する手動式の浄水器です。電力を必要とします。</Mizu_ElectricWaterCleaner_Frame.description>
   
 </LanguageData>
