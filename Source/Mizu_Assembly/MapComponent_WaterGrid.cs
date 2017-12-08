@@ -13,7 +13,6 @@ namespace MizuMod
         private CellBoolDrawer drawer;
         private ushort[] poolIDGrid;
         private List<UndergroundWaterPool> pools = new List<UndergroundWaterPool>();
-        private int lastTick;
 
         public Color Color { get { return Color.white; } }
 
@@ -21,7 +20,6 @@ namespace MizuMod
         {
             this.poolIDGrid = new ushort[map.cellIndices.NumGridCells];
             this.drawer = new CellBoolDrawer(this, map.Size.x, map.Size.z, 1f);
-            this.lastTick = Find.TickManager.TicksGame;
         }
 
         public override void ExposeData()
@@ -37,7 +35,6 @@ namespace MizuMod
             {
                 this
             });
-            Scribe_Values.Look<int>(ref this.lastTick, "lastTick");
         }
 
         public void AddWaterPool(UndergroundWaterPool pool, IEnumerable<IntVec3> cells)
@@ -206,25 +203,11 @@ namespace MizuMod
             base.MapComponentUpdate();
 
             this.drawer.CellBoolDrawerUpdate();
-        }
 
-        public void RegenPool(float baseRegenRate)
-        {
-            int curTick = Find.TickManager.TicksGame;
-            float addWaterVolume = baseRegenRate / 60000.0f * map.weatherManager.RainRate * (curTick - lastTick);
-            if (addWaterVolume < 0.0f)
+            foreach (var pool in this.pools)
             {
-                addWaterVolume = 0.0f;
+                pool.RegenPool();
             }
-            if (addWaterVolume > 0.0f)
-            {
-                foreach (var pool in this.pools)
-                {
-                    pool.CurrentWaterVolume = Math.Min(pool.CurrentWaterVolume + addWaterVolume, pool.MaxWaterVolume);
-                }
-            }
-
-            lastTick = curTick;
         }
     }
 }

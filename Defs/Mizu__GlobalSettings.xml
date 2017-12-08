@@ -10,6 +10,15 @@
       <changeWaterPoolType>RawWater</changeWaterPoolType>
       <enableChangeWaterPoolVolume>false</enableChangeWaterPoolVolume>
       <waterPoolVolumeRate>3.0</waterPoolVolumeRate>
+      <enableResetBaseRegenRate>true</enableResetBaseRegenRate>
+      <resetBaseRegenRateRangeForShallow>
+        <min>10</min>
+        <max>20</max>
+      </resetBaseRegenRateRangeForShallow>
+      <resetBaseRegenRateRangeForDeep>
+        <min>40</min>
+        <max>80</max>
+      </resetBaseRegenRateRangeForDeep>
     </forDebug>
     
     <needWater>
@@ -17,32 +26,6 @@
       <borderBase>0.3</borderBase>
       <dehydrationSeverityPerDay>0.2</dehydrationSeverityPerDay>
     </needWater>
-    
-    <shallowWaterLayer>
-      <basePoolNum>20</basePoolNum>
-      <baseRainFall>1000</baseRainFall>
-      <basePlantDensity>0.25</basePlantDensity>
-      <minWaterPoolNum>2</minWaterPoolNum>
-      <poolCellRange>
-        <min>30</min>
-        <max>100</max>
-      </poolCellRange>
-      <literPerCell>30</literPerCell>
-      <baseRegenRate>600</baseRegenRate>
-    </shallowWaterLayer>
-    
-    <deepWaterLayer>
-      <basePoolNum>40</basePoolNum>
-      <baseRainFall>1000</baseRainFall>
-      <basePlantDensity>0.25</basePlantDensity>
-      <minWaterPoolNum>10</minWaterPoolNum>
-      <poolCellRange>
-        <min>50</min>
-        <max>100</max>
-      </poolCellRange>
-      <literPerCell>120</literPerCell>
-      <baseRegenRate>600</baseRegenRate>
-    </deepWaterLayer>
     
   </MizuMod.GlobalSettingDef>
   

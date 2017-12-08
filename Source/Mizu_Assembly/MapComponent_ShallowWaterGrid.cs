@@ -14,12 +14,5 @@ namespace MizuMod
         {
 
         }
-
-        public override void MapComponentUpdate()
-        {
-            base.MapComponentUpdate();
-
-            base.RegenPool(MizuDef.GlobalSettings.shallowWaterLayer.baseRegenRate);
-        }
     }
 }

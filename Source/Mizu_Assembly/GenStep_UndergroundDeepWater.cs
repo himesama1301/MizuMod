@@ -15,12 +15,14 @@ namespace MizuMod
             this.GenerateUndergroundWaterGrid(
                 map,
                 waterGrid,
-                MizuDef.GlobalSettings.deepWaterLayer.basePoolNum,
-                MizuDef.GlobalSettings.deepWaterLayer.minWaterPoolNum,
-                MizuDef.GlobalSettings.deepWaterLayer.baseRainFall,
-                MizuDef.GlobalSettings.deepWaterLayer.basePlantDensity,
-                MizuDef.GlobalSettings.deepWaterLayer.literPerCell,
-                MizuDef.GlobalSettings.deepWaterLayer.poolCellRange);
+                this.basePoolNum,
+                this.minWaterPoolNum,
+                this.baseRainFall,
+                this.basePlantDensity,
+                this.literPerCell,
+                this.poolCellRange,
+                this.baseRegenRateRange,
+                this.rainRegenRatePerCell);
         }
     }
 }

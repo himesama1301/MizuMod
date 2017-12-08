@@ -5,14 +5,44 @@
     <defName>UndergroundShallowWater</defName>
     <linkWithMapGenerator>BasicMap</linkWithMapGenerator>
     <order>2000</order>
-    <genStep Class="MizuMod.GenStep_UndergroundShallowWater"/>
+    <genStep Class="MizuMod.GenStep_UndergroundShallowWater">
+      <basePoolNum>20</basePoolNum>
+      <baseRainFall>1000</baseRainFall>
+      <basePlantDensity>0.25</basePlantDensity>
+      <minWaterPoolNum>2</minWaterPoolNum>
+      <poolCellRange>
+        <min>30</min>
+        <max>100</max>
+      </poolCellRange>
+      <literPerCell>30</literPerCell>
+      <baseRegenRateRange>
+        <min>10</min>
+        <max>20</max>
+      </baseRegenRateRange>
+      <rainRegenRatePerCell>10</rainRegenRatePerCell>
+    </genStep>
   </GenStepDef>
 
   <GenStepDef>
     <defName>UndergroundDeepWater</defName>
     <linkWithMapGenerator>BasicMap</linkWithMapGenerator>
     <order>2001</order>
-    <genStep Class="MizuMod.GenStep_UndergroundDeepWater"/>
+    <genStep Class="MizuMod.GenStep_UndergroundDeepWater">
+      <basePoolNum>40</basePoolNum>
+      <baseRainFall>1000</baseRainFall>
+      <basePlantDensity>0.25</basePlantDensity>
+      <minWaterPoolNum>10</minWaterPoolNum>
+      <poolCellRange>
+        <min>50</min>
+        <max>100</max>
+      </poolCellRange>
+      <literPerCell>120</literPerCell>
+      <baseRegenRateRange>
+        <min>40</min>
+        <max>80</max>
+      </baseRegenRateRange>
+      <rainRegenRatePerCell>5</rainRegenRatePerCell>
+    </genStep>
   </GenStepDef>
 
 </Defs>

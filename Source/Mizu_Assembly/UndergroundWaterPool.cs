@@ -49,6 +49,23 @@ namespace MizuMod
                 }
             }
         }
+        private float baseRegenRate;
+        public float BaseRegenRate
+        {
+            get
+            {
+                return this.baseRegenRate;
+            }
+        }
+        private float rainRegenRatePerCell;
+        public float RainRegenRatePerCell
+        {
+            get
+            {
+                return this.rainRegenRatePerCell;
+            }
+        }
+        private int lastTick;
 
         private int lastMaterialIndex = UndergroundWaterMaterials.MaterialCount;
 
@@ -65,13 +82,16 @@ namespace MizuMod
         public UndergroundWaterPool(MapComponent_WaterGrid waterGrid)
         {
             this.waterGrid = waterGrid;
+            this.lastTick = Find.TickManager.TicksGame;
         }
 
-        public UndergroundWaterPool(MapComponent_WaterGrid waterGrid, float maxWaterVolume, WaterType waterType) : this(waterGrid)
+        public UndergroundWaterPool(MapComponent_WaterGrid waterGrid, float maxWaterVolume, WaterType waterType, float baseRegenRate, float rainRegenRatePerCell) : this(waterGrid)
         {
             this.maxWaterVolume = maxWaterVolume;
             this.currentWaterVolume = maxWaterVolume;
             this.waterType = waterType;
+            this.baseRegenRate = baseRegenRate;
+            this.rainRegenRatePerCell = rainRegenRatePerCell;
         }
 
         public void ExposeData()
@@ -80,6 +100,9 @@ namespace MizuMod
             Scribe_Values.Look<float>(ref this.maxWaterVolume, "maxWaterVolume");
             Scribe_Values.Look<float>(ref this.currentWaterVolume, "currenteWaterVolume");
             Scribe_Values.Look<WaterType>(ref this.waterType, "waterType");
+            Scribe_Values.Look<float>(ref this.baseRegenRate, "baseRegenRate");
+            Scribe_Values.Look<float>(ref this.rainRegenRatePerCell, "rainRegenRatePerCell");
+            Scribe_Values.Look<int>(ref this.lastTick, "lastTick");
 
             if (this.debugFlag)
             {
@@ -92,6 +115,18 @@ namespace MizuMod
                 {
                     this.maxWaterVolume *= MizuDef.GlobalSettings.forDebug.waterPoolVolumeRate;
                     this.currentWaterVolume *= MizuDef.GlobalSettings.forDebug.waterPoolVolumeRate;
+                }
+                if (MizuDef.GlobalSettings.forDebug.enableResetBaseRegenRate)
+                {
+                    if (this.waterGrid is MapComponent_ShallowWaterGrid)
+                    {
+                        this.baseRegenRate = MizuDef.GlobalSettings.forDebug.resetBaseRegenRateRangeForShallow.RandomInRange;
+                    }
+                    if (this.waterGrid is MapComponent_DeepWaterGrid)
+                    {
+                        this.baseRegenRate = MizuDef.GlobalSettings.forDebug.resetBaseRegenRateRangeForDeep.RandomInRange;
+                    }
+
                 }
             }
         }
@@ -112,6 +147,29 @@ namespace MizuMod
                     idGrid[i] = (ushort)this.ID;
                 }
             }
+        }
+
+        public void RegenPool()
+        {
+            int curTick = Find.TickManager.TicksGame;
+
+            // 基本回復量
+            float addWaterVolumeBase = this.baseRegenRate / 60000.0f * (curTick - lastTick);
+
+            // 雨による回復量
+            //float addWaterVolumeRain = baseRegenRate / 60000.0f * this.waterGrid.map.weatherManager.RainRate * (curTick - lastTick);
+
+            float addWaterVolumeTotal = addWaterVolumeBase;
+            if (addWaterVolumeTotal < 0.0f)
+            {
+                addWaterVolumeTotal = 0.0f;
+            }
+            if (addWaterVolumeTotal > 0.0f)
+            {
+                this.CurrentWaterVolume = Math.Min(this.CurrentWaterVolume + addWaterVolumeTotal, this.MaxWaterVolume);
+            }
+
+            lastTick = curTick;
         }
     }
 }
