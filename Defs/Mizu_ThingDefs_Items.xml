@@ -8,8 +8,8 @@
     <selectable>true</selectable>
     <statBases>
       <MaxHitPoints>50</MaxHitPoints>
-      <Beauty>-4</Beauty>
-      <Mass>0.44</Mass>
+      <Beauty>-1</Beauty>
+      <Mass>1.5</Mass>
     </statBases>
     <altitudeLayer>Item</altitudeLayer>
     <stackLimit>25</stackLimit>
