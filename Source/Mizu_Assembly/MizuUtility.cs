@@ -280,6 +280,9 @@ namespace MizuMod
         {
             float score = 300f;  // 基本点
 
+            // 水の種類による加算点
+            score += (int)t.GetWaterPreferability() * 10;
+
             // 距離が遠いと減点
             score -= dist;
 
