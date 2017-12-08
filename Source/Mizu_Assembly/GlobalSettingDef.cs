@@ -20,9 +20,11 @@ namespace MizuMod
         public WaterType changeWaterPoolType = WaterType.NoWater;
         public bool enableChangeWaterPoolVolume = false;
         public float waterPoolVolumeRate = 1.0f;
-        public bool enableResetBaseRegenRate = false;
-        public FloatRange resetBaseRegenRateRangeForShallow;
-        public FloatRange resetBaseRegenRateRangeForDeep;
+        public bool enableResetRegenRate = false;
+        public FloatRange resetBaseRegenRateRangeForShallow = new FloatRange(10.0f, 20.0f);
+        public FloatRange resetBaseRegenRateRangeForDeep = new FloatRange(40.0f, 80.0f);
+        public float resetRainRegenRatePerCellForShallow = 10.0f;
+        public float resetRainRegenRatePerCellForDeep = 5.0f;
     }
 
     public class GSNeedWater

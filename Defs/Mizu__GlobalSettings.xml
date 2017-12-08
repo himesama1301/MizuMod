@@ -10,7 +10,7 @@
       <changeWaterPoolType>RawWater</changeWaterPoolType>
       <enableChangeWaterPoolVolume>false</enableChangeWaterPoolVolume>
       <waterPoolVolumeRate>3.0</waterPoolVolumeRate>
-      <enableResetBaseRegenRate>true</enableResetBaseRegenRate>
+      <enableResetRegenRate>true</enableResetRegenRate>
       <resetBaseRegenRateRangeForShallow>
         <min>10</min>
         <max>20</max>
@@ -19,6 +19,8 @@
         <min>40</min>
         <max>80</max>
       </resetBaseRegenRateRangeForDeep>
+      <resetRainRegenRatePerCellForShallow>10</resetRainRegenRatePerCellForShallow>
+      <resetRainRegenRatePerCellForDeep>5</resetRainRegenRatePerCellForDeep>
     </forDebug>
     
     <needWater>

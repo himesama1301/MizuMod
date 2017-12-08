@@ -116,17 +116,18 @@ namespace MizuMod
                     this.maxWaterVolume *= MizuDef.GlobalSettings.forDebug.waterPoolVolumeRate;
                     this.currentWaterVolume *= MizuDef.GlobalSettings.forDebug.waterPoolVolumeRate;
                 }
-                if (MizuDef.GlobalSettings.forDebug.enableResetBaseRegenRate)
+                if (MizuDef.GlobalSettings.forDebug.enableResetRegenRate)
                 {
                     if (this.waterGrid is MapComponent_ShallowWaterGrid)
                     {
                         this.baseRegenRate = MizuDef.GlobalSettings.forDebug.resetBaseRegenRateRangeForShallow.RandomInRange;
+                        this.rainRegenRatePerCell = MizuDef.GlobalSettings.forDebug.resetRainRegenRatePerCellForShallow;
                     }
                     if (this.waterGrid is MapComponent_DeepWaterGrid)
                     {
                         this.baseRegenRate = MizuDef.GlobalSettings.forDebug.resetBaseRegenRateRangeForDeep.RandomInRange;
+                        this.rainRegenRatePerCell = MizuDef.GlobalSettings.forDebug.resetRainRegenRatePerCellForDeep;
                     }
-
                 }
             }
         }
