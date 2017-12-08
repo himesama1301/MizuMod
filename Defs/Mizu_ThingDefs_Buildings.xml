@@ -133,7 +133,7 @@
     <recipes>
       <li>Mizu_BoilRawWater</li>
       <li>Mizu_PercolateMudWater</li>
-      <li>Mizu_DistillSeaWater</li>
+      <li>Mizu_DesalinateSeaWater</li>
     </recipes>
     <inspectorTabs>
       <li>ITab_Bills</li>

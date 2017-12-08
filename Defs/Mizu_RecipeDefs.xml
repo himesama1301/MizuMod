@@ -367,10 +367,10 @@
   </RecipeDef>
 
   <RecipeDef>
-    <defName>Mizu_DistillSeaWater</defName>
-    <label>distill seawater</label>
-    <description>distill seawater for converting to water.</description>
-    <jobString>Distilling seawater.</jobString>
+    <defName>Mizu_DesalinateSeaWater</defName>
+    <label>desalinate seawater</label>
+    <description>desalinate seawater for converting to water.</description>
+    <jobString>Desalinating seawater.</jobString>
     <workAmount>900</workAmount>
     <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
     <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
