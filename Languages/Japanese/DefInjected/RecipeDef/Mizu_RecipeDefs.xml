@@ -127,4 +127,16 @@
   <Mizu_DesalinateSeaWater.description>海水を淡水化し、普通の水にします。</Mizu_DesalinateSeaWater.description>
   <Mizu_DesalinateSeaWater.jobString>海水を淡水化している</Mizu_DesalinateSeaWater.jobString>
   
+  <Mizu_BoilRawWaterMulti.label>生水を5個煮沸する</Mizu_BoilRawWaterMulti.label>
+  <Mizu_BoilRawWaterMulti.description>生水を5個煮沸し、普通の水にします。</Mizu_BoilRawWaterMulti.description>
+  <Mizu_BoilRawWaterMulti.jobString>生水を煮沸している</Mizu_BoilRawWaterMulti.jobString>
+  
+  <Mizu_PercolateMudWaterMulti.label>泥水を5個濾過する</Mizu_PercolateMudWaterMulti.label>
+  <Mizu_PercolateMudWaterMulti.description>泥水を5個濾過・煮沸し、普通の水にします。</Mizu_PercolateMudWaterMulti.description>
+  <Mizu_PercolateMudWaterMulti.jobString>泥水を濾過している</Mizu_PercolateMudWaterMulti.jobString>
+  
+  <Mizu_DesalinateSeaWaterMulti.label>海水を5個淡水化する</Mizu_DesalinateSeaWaterMulti.label>
+  <Mizu_DesalinateSeaWaterMulti.description>海水を5個淡水化し、普通の水にします。</Mizu_DesalinateSeaWaterMulti.description>
+  <Mizu_DesalinateSeaWaterMulti.jobString>海水を淡水化している</Mizu_DesalinateSeaWaterMulti.jobString>
+  
 </LanguageData>

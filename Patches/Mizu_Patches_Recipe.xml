@@ -6,18 +6,21 @@
     <xpath>*/ThingDef[defName = "ElectricStove"]/recipes</xpath>
     <value>
       <li>Mizu_BoilRawWater</li>
+      <li>Mizu_BoilRawWaterMulti</li>
     </value>
   </Operation>
   <Operation Class="PatchOperationAdd">
     <xpath>*/ThingDef[defName = "FueledStove"]/recipes</xpath>
     <value>
       <li>Mizu_BoilRawWater</li>
+      <li>Mizu_BoilRawWaterMulti</li>
     </value>
   </Operation>
   <Operation Class="PatchOperationAdd">
     <xpath>*/ThingDef[defName = "Campfire"]/recipes</xpath>
     <value>
       <li>Mizu_BoilRawWater</li>
+      <li>Mizu_BoilRawWaterMulti</li>
     </value>
   </Operation>
 
