@@ -502,7 +502,7 @@
     <designationHotKey>Misc1</designationHotKey>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetTank">
-        <maxWaterVolume>300</maxWaterVolume>
+        <maxWaterVolume>100</maxWaterVolume>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetInput"/>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
@@ -552,7 +552,7 @@
     <designationHotKey>Misc1</designationHotKey>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetTank">
-        <maxWaterVolume>300</maxWaterVolume>
+        <maxWaterVolume>100</maxWaterVolume>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetInput">
         <inputType>Rain</inputType>
