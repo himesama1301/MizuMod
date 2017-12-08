@@ -79,6 +79,8 @@ namespace MizuMod
 
         private MapComponent_WaterGrid waterGrid;
 
+        private List<IntVec3> poolCells = null;
+
         public UndergroundWaterPool(MapComponent_WaterGrid waterGrid)
         {
             this.waterGrid = waterGrid;
@@ -152,15 +154,30 @@ namespace MizuMod
 
         public void RegenPool()
         {
+            if (this.poolCells == null)
+            {
+                this.GeneratePoolCells();
+            }
+
             int curTick = Find.TickManager.TicksGame;
 
             // 基本回復量
             float addWaterVolumeBase = this.baseRegenRate / 60000.0f * (curTick - lastTick);
 
-            // 雨による回復量
-            //float addWaterVolumeRain = baseRegenRate / 60000.0f * this.waterGrid.map.weatherManager.RainRate * (curTick - lastTick);
+            // 屋根チェック
+            int unroofedCells = 0;
+            foreach (var c in this.poolCells)
+            {
+                if (!c.Roofed(this.waterGrid.map))
+                {
+                    unroofedCells++;
+                }
+            }
 
-            float addWaterVolumeTotal = addWaterVolumeBase;
+            // 雨による回復量
+            float addWaterVolumeRain = this.rainRegenRatePerCell * unroofedCells / 60000.0f * this.waterGrid.map.weatherManager.RainRate * (curTick - lastTick);
+
+            float addWaterVolumeTotal = addWaterVolumeBase + addWaterVolumeRain;
             if (addWaterVolumeTotal < 0.0f)
             {
                 addWaterVolumeTotal = 0.0f;
@@ -171,6 +188,19 @@ namespace MizuMod
             }
 
             lastTick = curTick;
+        }
+
+        private void GeneratePoolCells()
+        {
+            this.poolCells = new List<IntVec3>();
+
+            foreach (var c in this.waterGrid.map.AllCells)
+            {
+                if (this.ID == this.waterGrid.GetID(c))
+                {
+                    this.poolCells.Add(c);
+                }
+            }
         }
     }
 }
