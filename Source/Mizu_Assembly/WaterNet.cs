@@ -196,7 +196,20 @@ namespace MizuMod
 
                 if (t1in != null && t1in.InputType == CompProperties_WaterNetInput.InputType.Rain)
                 {
-                    t1in.InputWaterFlow = t1in.MaxInputWaterFlow * this.Manager.map.weatherManager.RainRate;
+                    // 建造物にどれだけ屋根がかぶっているかチェック
+                    int allCells = 0;
+                    int unroofedCells = 0;
+                    foreach (var c in t1.OccupiedRect())
+                    {
+                        allCells++;
+                        if (!c.Roofed(this.Manager.map))
+                        {
+                            unroofedCells++;
+                        }
+                    }
+                    float unroofedPercent = (float)unroofedCells / allCells;
+
+                    t1in.InputWaterFlow = t1in.MaxInputWaterFlow * this.Manager.map.weatherManager.RainRate * unroofedCells;
                 }
 
                 if (t1out == null || t1out.OutputWaterFlow == 0.0f || t1.OutputWaterNet != this)
