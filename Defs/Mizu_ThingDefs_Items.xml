@@ -92,7 +92,6 @@
         <waterPreferability>RawWater</waterPreferability>
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
-        <drinkThought>Mizu_DrankRawWater</drinkThought>
         <foodPoisonChance>0.01</foodPoisonChance>
       </li>
     </comps>
