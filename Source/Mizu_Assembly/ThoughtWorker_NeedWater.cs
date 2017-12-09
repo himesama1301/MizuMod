@@ -20,15 +20,18 @@ namespace MizuMod
             {
                 case ThirstCategory.Healthy:
                     return ThoughtState.Inactive;
-                case ThirstCategory.Thirsty:
+                case ThirstCategory.SlightlyThirsty:
                     return ThoughtState.ActiveAtStage(0);
-                case ThirstCategory.UrgentlyThirsty:
+                case ThirstCategory.Thirsty:
                     return ThoughtState.ActiveAtStage(1);
+                case ThirstCategory.UrgentlyThirsty:
+                    return ThoughtState.ActiveAtStage(2);
                 case ThirstCategory.Dehydration:
                     {
                         Hediff firstHediffOfDef = p.health.hediffSet.GetFirstHediffOfDef(MizuDef.Hediff_Dehydration, false);
                         int num = (firstHediffOfDef != null) ? firstHediffOfDef.CurStageIndex : 0;
-                        return ThoughtState.ActiveAtStage(2 + num);
+                        // 脱水症状の1段階目=喉の渇き心情の4段階目 => +3する
+                        return ThoughtState.ActiveAtStage(3 + num);
                     }
                 default:
                     throw new NotImplementedException();

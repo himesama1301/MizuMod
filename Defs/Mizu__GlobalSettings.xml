@@ -25,7 +25,9 @@
     
     <needWater>
       <fallPerTickBase>1.5E-05</fallPerTickBase>
-      <borderBase>0.3</borderBase>
+      <slightlyThirstyBorder>0.6</slightlyThirstyBorder>
+      <thirstyBorder>0.24</thirstyBorder>
+      <urgentlyThirstyBorder>0.12</urgentlyThirstyBorder>
       <dehydrationSeverityPerDay>0.2</dehydrationSeverityPerDay>
     </needWater>
     

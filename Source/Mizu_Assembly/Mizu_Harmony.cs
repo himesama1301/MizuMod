@@ -38,8 +38,8 @@ namespace MizuMod
             Need_Water need_water = pawn.needs.water();
             if (need_water == null) return;
 
-            // 渇き状態より小さい(喉が渇いてない)場合は飲まない
-            if (need_water.CurCategory < ThirstCategory.Thirsty) return;
+            // 喉が渇いてない場合は飲まない
+            if (need_water.CurCategory <= ThirstCategory.Healthy) return;
 
             // タイルが0以上(?)、死んでない、ローカルではなく惑星マップ上にいる(キャラバンしてる)、そのポーンが地形から水を飲める(心情がある/ない、脱水症状まで進んでいる/いない、など)
             if (pawn.Tile >= 0 && !pawn.Dead && pawn.IsWorldPawn() && pawn.CanDrinkFromTerrain())

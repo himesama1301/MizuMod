@@ -42,7 +42,7 @@ namespace MizuMod
             if (this.def.feedAnimalsOnly && !giver.RaceProps.Animal) return false;
 
             // 与える相手が水分要求を持っているが、喉が渇いていると感じていない→×
-            if (giver.needs.water() == null || giver.needs.water().CurLevelPercentage > giver.needs.water().PercentageThreshThirsty + 0.02f) return false;
+            if (giver.needs.water() == null || giver.needs.water().CurLevelPercentage > giver.needs.water().PercentageThreshSlightlyThirsty + 0.02f) return false;
 
             // 与える相手の状態が、誰かに食事を与えてもらうべき状態ではない→×
             if (!FeedPatientUtility.ShouldBeFed(giver)) return false;

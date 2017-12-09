@@ -30,7 +30,9 @@ namespace MizuMod
     public class GSNeedWater
     {
         public float fallPerTickBase = 1.33E-05f;
-        public float borderBase = 0.3f;
+        public float urgentlyThirstyBorder = 0.12f;
+        public float thirstyBorder = 0.24f;
+        public float slightlyThirstyBorder = 0.6f;
         public float dehydrationSeverityPerDay = 0.1f;
     }
 }

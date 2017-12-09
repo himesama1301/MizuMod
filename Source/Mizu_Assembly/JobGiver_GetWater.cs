@@ -19,7 +19,7 @@ namespace MizuMod
             Need_Water need_water = pawn.needs.water();
 
             if (need_water == null) return 0.0f;
-            if (need_water.CurCategory < ThirstCategory.Thirsty) return 0.0f;
+            if (need_water.CurCategory <= ThirstCategory.Healthy) return 0.0f;
 
             return 9.4f;
         }

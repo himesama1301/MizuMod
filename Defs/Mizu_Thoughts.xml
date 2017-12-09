@@ -7,6 +7,11 @@
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
       <li>
+        <label>slightly thirsty</label>
+        <description>I'm slightly thirsty.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
         <label>thirsty</label>
         <description>I'm really thirsty.</description>
         <baseMoodEffect>-8</baseMoodEffect>

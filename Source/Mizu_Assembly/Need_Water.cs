@@ -34,6 +34,10 @@ namespace MizuMod
                 {
                     return ThirstCategory.Thirsty;
                 }
+                if (this.CurLevel < this.PercentageThreshSlightlyThirsty)
+                {
+                    return ThirstCategory.SlightlyThirsty;
+                }
                 return ThirstCategory.Healthy;
             }
         }
@@ -50,7 +54,7 @@ namespace MizuMod
         {
             get
             {
-                return MizuDef.GlobalSettings.needWater.borderBase * 0.4f;
+                return MizuDef.GlobalSettings.needWater.urgentlyThirstyBorder;
             }
         }
 
@@ -58,7 +62,15 @@ namespace MizuMod
         {
             get
             {
-                return MizuDef.GlobalSettings.needWater.borderBase * 0.8f;
+                return MizuDef.GlobalSettings.needWater.thirstyBorder;
+            }
+        }
+
+        public float PercentageThreshSlightlyThirsty
+        {
+            get
+            {
+                return MizuDef.GlobalSettings.needWater.slightlyThirstyBorder;
             }
         }
 
@@ -107,6 +119,7 @@ namespace MizuMod
             this.threshPercents = new List<float>();
             this.threshPercents.Add(this.PercentageThreshUrgentlyThirsty);
             this.threshPercents.Add(this.PercentageThreshThirsty);
+            this.threshPercents.Add(this.PercentageThreshSlightlyThirsty);
             this.lastSearchWaterTick = Find.TickManager.TicksGame;
         }
 
@@ -115,6 +128,8 @@ namespace MizuMod
             switch (cat)
             {
                 case ThirstCategory.Healthy:
+                    return MizuDef.GlobalSettings.needWater.fallPerTickBase;
+                case ThirstCategory.SlightlyThirsty:
                     return MizuDef.GlobalSettings.needWater.fallPerTickBase;
                 case ThirstCategory.Thirsty:
                     return MizuDef.GlobalSettings.needWater.fallPerTickBase * 0.5f;
