@@ -48,6 +48,10 @@
         <drinkThought>Mizu_DrankClearWater</drinkThought>
         <foodPoisonChance>0</foodPoisonChance>
       </li>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>60</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
     </comps>
   </ThingDef>
   
@@ -71,6 +75,10 @@
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
         <foodPoisonChance>0</foodPoisonChance>
       </li>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>30</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
     </comps>
   </ThingDef>
 
@@ -93,6 +101,10 @@
         <getSound>Ingest_Beer</getSound>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
         <foodPoisonChance>0.01</foodPoisonChance>
+      </li>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>4</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
       </li>
     </comps>
   </ThingDef>
@@ -118,6 +130,10 @@
         <drinkThought>Mizu_DrankMudWater</drinkThought>
         <foodPoisonChance>0.03</foodPoisonChance>
       </li>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>4</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
     </comps>
   </ThingDef>
 
@@ -142,6 +158,10 @@
         <drinkThought>Mizu_DrankSeaWater</drinkThought>
         <drinkHediff>Mizu_DrankSeaWater</drinkHediff>
         <foodPoisonChance>0.02</foodPoisonChance>
+      </li>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>4</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
       </li>
     </comps>
   </ThingDef>
