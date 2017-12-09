@@ -5,12 +5,15 @@
     <defName>Mizu_GlobalSettings</defName>
     
     <forDebug>
-      <needWaterReduceRate>5</needWaterReduceRate>
+      <needWaterReduceRate>1</needWaterReduceRate>
+      
       <enableChangeWaterPoolType>false</enableChangeWaterPoolType>
       <changeWaterPoolType>RawWater</changeWaterPoolType>
+      
       <enableChangeWaterPoolVolume>false</enableChangeWaterPoolVolume>
       <waterPoolVolumeRate>3.0</waterPoolVolumeRate>
-      <enableResetRegenRate>true</enableResetRegenRate>
+      
+      <enableResetRegenRate>false</enableResetRegenRate>
       <resetBaseRegenRateRangeForShallow>
         <min>10</min>
         <max>20</max>
@@ -21,6 +24,7 @@
       </resetBaseRegenRateRangeForDeep>
       <resetRainRegenRatePerCellForShallow>10</resetRainRegenRatePerCellForShallow>
       <resetRainRegenRatePerCellForDeep>5</resetRainRegenRatePerCellForDeep>
+      
     </forDebug>
     
     <needWater>
