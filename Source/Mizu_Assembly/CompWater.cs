@@ -28,27 +28,45 @@ namespace MizuMod
                 yield return floatMenuOption;
             }
 
-            yield return new FloatMenuOption(string.Format(MizuStrings.FloatMenuGetWater, this.parent.Label), () =>
+            if (selPawn.IsColonistPlayerControlled)
             {
-                Job job = new Job(MizuDef.Job_DrinkWater, this.parent)
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(string.Format(MizuStrings.FloatMenuGetWater, this.parent.Label));
+
+                if (!this.parent.IsSociallyProper(selPawn))
                 {
-                    count = MizuUtility.WillGetStackCountOf(selPawn, this.parent)
-                };
-                selPawn.jobs.TryTakeOrderedJob(job, JobTag.SatisfyingNeeds);
-            });
+                    // 囚人部屋のものは表示を追加
+                    stringBuilder.Append(string.Concat(
+                        " (",
+                        "ReservedForPrisoners".Translate(),
+                        ")"
+                    ));
+                }
+                foreach (var p in this.parent.Map.mapPawns.AllPawns)
+                {
+                    if (this.parent.Map.reservationManager.ReservedBy(this.parent, p))
+                    {
+                        // 予約されている物は表示を追加
+                        stringBuilder.AppendLine();
+                        stringBuilder.Append(string.Format(string.Concat(
+                            " (",
+                            "ReservedBy".Translate(),
+                            ")"),
+                        p.NameStringShort));
 
-            //FloatMenuOption[] extraOptions = new FloatMenuOption[]
-            //{
-            //    new FloatMenuOption(string.Format(MizuStrings.FloatMenuGetWater, this.parent.Label), ()=>{
-            //        Job job = new Job(MizuDef.Job_DrinkWater, this.parent)
-            //        {
-            //            count = MizuUtility.WillGetStackCountOf(selPawn, this.parent)
-            //        };
-            //        selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                        break;
+                    }
+                }
 
-            //    }, MenuOptionPriority.Default, null, null, 0f, null, null),
-            //};
-            //return base.CompFloatMenuOptions(selPawn).Concat(extraOptions);
+                yield return new FloatMenuOption(stringBuilder.ToString(), () =>
+                {
+                    Job job = new Job(MizuDef.Job_DrinkWater, this.parent)
+                    {
+                        count = MizuUtility.WillGetStackCountOf(selPawn, this.parent)
+                    };
+                    selPawn.jobs.TryTakeOrderedJob(job, JobTag.SatisfyingNeeds);
+                });
+            }
         }
     }
 }

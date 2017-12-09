@@ -67,7 +67,10 @@ namespace MizuMod
             }
 
             // 水を予約する
-            yield return Toils_Reserve.Reserve(WaterIndex, 1, this.job.count, null);
+            if (!this.pawn.Map.reservationManager.ReservedBy(this.TargetA.Thing, pawn))
+            {
+                yield return Toils_Reserve.Reserve(WaterIndex, 1, this.job.count, null);
+            }
 
             if (this.getItemFromInventory)
             {

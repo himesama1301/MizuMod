@@ -487,8 +487,15 @@ namespace MizuMod
                 // 囚人がポーンではない
                 if (prisoner == null) return;
 
-                // 置いた水を囚人に予約させる
-                prisoner.Reserve(dropThing, actor.CurJob);
+                //// 置いた水を囚人が飲むジョブを作成
+                //Job job = new Job(MizuDef.Job_DrinkWater, dropThing)
+                //{
+                //    count = MizuUtility.WillGetStackCountOf(prisoner, dropThing)
+                //};
+                //// ジョブを囚人の待ち行列に加える
+                //prisoner.jobs.jobQueue.EnqueueLast(job, JobTag.SatisfyingNeeds);
+                //// 新ジョブに対して水を予約させる
+                //prisoner.Map.reservationManager.Reserve(prisoner, job, dropThing);
             };
             toil.defaultCompleteMode = ToilCompleteMode.Instant;
             toil.atomicWithPrevious = true;

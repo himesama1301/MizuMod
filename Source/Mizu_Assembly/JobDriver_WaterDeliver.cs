@@ -47,7 +47,10 @@ namespace MizuMod
             }
 
             // 予約する
-            yield return Toils_Reserve.Reserve(WaterIndex, 1, this.job.count, null);
+            if (!this.pawn.Map.reservationManager.ReservedBy(this.TargetA.Thing, pawn))
+            {
+                yield return Toils_Reserve.Reserve(WaterIndex, 1, this.job.count, null);
+            }
 
             if (this.drinkingFromInventory)
             {
@@ -66,14 +69,8 @@ namespace MizuMod
             // スポットまで移動する
             yield return Toils_Goto.GotoCell(this.TargetC.Cell, PathEndMode.OnCell);
 
-            // 置いて囚人によやくさせる
+            // 置いて囚人に予約させる
             yield return Toils_Mizu.DropCarriedThing(PrisonerIndex, DropSpotIndex);
-
-            if (this.drinkingFromInventory && !this.TargetA.ThingDestroyed)
-            {
-                // 所持品から取り出した＆まだ残っている場合は所持品に戻す
-                yield return Toils_Mizu.AddCarriedThingToInventory();
-            }
         }
     }
 }

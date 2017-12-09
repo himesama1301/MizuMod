@@ -42,7 +42,10 @@ namespace MizuMod
                 ToilFailConditions.FailOnDestroyedNullOrForbidden<JobDriver_DrinkWater>(this, WaterIndex);
 
                 // 水を予約
-                yield return Toils_Reserve.Reserve(WaterIndex, 1, this.job.count);
+                if (!this.pawn.Map.reservationManager.ReservedBy(this.TargetA.Thing, pawn))
+                {
+                    yield return Toils_Reserve.Reserve(WaterIndex, 1, this.job.count);
+                }
 
                 // 水を取得
                 if (this.drinkingFromInventory)

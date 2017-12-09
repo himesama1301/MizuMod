@@ -393,4 +393,20 @@ namespace MizuMod
             p.inventory.TryAddItemNotForSale(thing);
         }
     }
+
+    [HarmonyPatch(typeof(HaulAIUtility))]
+    [HarmonyPatch("PawnCanAutomaticallyHaulBasicChecks")]
+    class HaulAIUtility_PawnCanAutomaticallyHaulBasicChecks
+    {
+        static void Postfix(ref bool __result, Pawn p, Thing t, bool forced)
+        {
+            if (t.CanGetWater() && !t.IsSociallyProper(p, false, true))
+            {
+                JobFailReason.Is("ReservedForPrisoners".Translate());
+                __result = false;
+                return;
+            }
+        }
+    }
+
 }
