@@ -8,7 +8,7 @@
       <li Class="ScenPart_StartingThing_Defined">
         <def>StartingThing_Defined</def>
         <thingDef>Mizu_NormalWater</thingDef>
-        <count>30</count>
+        <count>60</count>
       </li>
     </value>
   </Operation>
@@ -19,7 +19,7 @@
       <li Class="ScenPart_StartingThing_Defined">
         <def>StartingThing_Defined</def>
         <thingDef>Mizu_RawWater</thingDef>
-        <count>20</count>
+        <count>40</count>
       </li>
     </value>
   </Operation>
@@ -29,7 +29,7 @@
       <li Class="ScenPart_StartingThing_Defined">
         <def>StartingThing_Defined</def>
         <thingDef>Mizu_MudWater</thingDef>
-        <count>20</count>
+        <count>40</count>
       </li>
     </value>
   </Operation>
@@ -40,7 +40,7 @@
       <li Class="ScenPart_StartingThing_Defined">
         <def>StartingThing_Defined</def>
         <thingDef>Mizu_NormalWater</thingDef>
-        <count>30</count>
+        <count>60</count>
       </li>
     </value>
   </Operation>
