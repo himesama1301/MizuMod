@@ -14,12 +14,12 @@
         <min>30</min>
         <max>100</max>
       </poolCellRange>
-      <literPerCell>30</literPerCell>
+      <literPerCell>10</literPerCell>
       <baseRegenRateRange>
-        <min>10</min>
-        <max>20</max>
+        <min>2.5</min>
+        <max>5.0</max>
       </baseRegenRateRange>
-      <rainRegenRatePerCell>10</rainRegenRatePerCell>
+      <rainRegenRatePerCell>4</rainRegenRatePerCell>
     </genStep>
   </GenStepDef>
 
@@ -36,12 +36,12 @@
         <min>50</min>
         <max>100</max>
       </poolCellRange>
-      <literPerCell>120</literPerCell>
+      <literPerCell>40</literPerCell>
       <baseRegenRateRange>
-        <min>40</min>
-        <max>80</max>
+        <min>10</min>
+        <max>20</max>
       </baseRegenRateRange>
-      <rainRegenRatePerCell>5</rainRegenRatePerCell>
+      <rainRegenRatePerCell>2</rainRegenRatePerCell>
     </genStep>
   </GenStepDef>
 
