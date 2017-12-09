@@ -494,5 +494,22 @@ namespace MizuMod
             toil.atomicWithPrevious = true;
             return toil;
         }
+
+        public static Toil AddCarriedThingToInventory()
+        {
+            Toil toil = new Toil();
+            toil.initAction = () =>
+            {
+                var actor = toil.actor;
+                if (actor.carryTracker == null || actor.carryTracker.innerContainer == null) return;
+                if (actor.inventory == null || actor.inventory.innerContainer == null) return;
+
+                Thing takeThing = actor.carryTracker.innerContainer.Take(actor.carryTracker.CarriedThing);
+                actor.inventory.innerContainer.TryAdd(takeThing);
+            };
+            toil.defaultCompleteMode = ToilCompleteMode.Instant;
+
+            return toil;
+        }
     }
 }

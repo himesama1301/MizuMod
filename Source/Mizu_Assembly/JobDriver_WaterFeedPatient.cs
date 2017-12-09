@@ -91,6 +91,12 @@ namespace MizuMod
 
             // 水の摂取終了(心情、食事の処理)
             yield return Toils_Mizu.FinishDrinkPatient(WaterIndex, PatientIndex);
+
+            if (this.getItemFromInventory && !this.TargetA.ThingDestroyed)
+            {
+                // 所持品から取り出した＆まだ残っている場合は所持品に戻す
+                yield return Toils_Mizu.AddCarriedThingToInventory();
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using UnityEngine;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -11,9 +12,12 @@ namespace MizuMod
 {
     public class JobGiver_PackWater : ThinkNode_JobGiver
     {
-        private const float MinWaterAmount = 0.3f;
+        private const float MinWaterAmountPerOneItem = 0.3f;
+        private const float NeedTotalWaterAmount = 1.0f;
 
         private const float MinWaterPerColonistToDo = 1.5f;
+
+        private const int ContinuousPackIntervalTick = 150;
 
         public const WaterPreferability MinWaterPreferability = WaterPreferability.SeaWater;
 
@@ -22,12 +26,16 @@ namespace MizuMod
             // 所持品インスタンスがない
             if (pawn.inventory == null) return null;
 
+            // 水分要求がない
+            Need_Water need_water = pawn.needs.water();
+            if (need_water == null) return null;
+
             // 既に条件を満たしたアイテムを持っているか？
             foreach (var thing in pawn.inventory.innerContainer)
             {
                 CompWater comp = thing.TryGetComp<CompWater>();
                 if (comp == null) continue;
-                if (comp.WaterAmount <= MinWaterAmount) continue;
+                if (comp.WaterAmount < MinWaterAmountPerOneItem) continue;
                 if (comp.WaterPreferability < MinWaterPreferability) continue;
 
                 return null;
@@ -47,7 +55,7 @@ namespace MizuMod
                 (t) => {
                     CompWater comp = t.TryGetComp<CompWater>();
                     if (comp == null) return false; // 水でないもの×
-                    if (comp.WaterAmount < MinWaterAmount) return false;  // 最低水分量を満たしていないもの×
+                    if (comp.WaterAmount < MinWaterAmountPerOneItem) return false;  // 最低水分量を満たしていないもの×
                     if (t.IsForbidden(pawn)) return false;  // 禁止されている×
                     if (!pawn.CanReserve(t)) return false;  // 予約不可能×
                     if (!t.IsSociallyProper(pawn)) return false;  // 囚人部屋の物×
@@ -67,7 +75,7 @@ namespace MizuMod
 
             return new Job(JobDefOf.TakeInventory, waterThing)
             {
-                count = 1
+                count = Mathf.Min(MizuUtility.StackCountForWater(waterThing, NeedTotalWaterAmount), waterThing.stackCount)
             };
         }
     }

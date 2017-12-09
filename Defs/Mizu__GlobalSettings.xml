@@ -5,7 +5,7 @@
     <defName>Mizu_GlobalSettings</defName>
     
     <forDebug>
-      <needWaterReduceRate>1</needWaterReduceRate>
+      <needWaterReduceRate>5</needWaterReduceRate>
       <enableChangeWaterPoolType>false</enableChangeWaterPoolType>
       <changeWaterPoolType>RawWater</changeWaterPoolType>
       <enableChangeWaterPoolVolume>false</enableChangeWaterPoolVolume>

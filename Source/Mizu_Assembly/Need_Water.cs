@@ -120,6 +120,7 @@ namespace MizuMod
             this.threshPercents.Add(this.PercentageThreshUrgentlyThirsty);
             this.threshPercents.Add(this.PercentageThreshThirsty);
             this.threshPercents.Add(this.PercentageThreshSlightlyThirsty);
+
             this.lastSearchWaterTick = Find.TickManager.TicksGame;
         }
 

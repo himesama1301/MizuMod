@@ -65,8 +65,14 @@ namespace MizuMod
                 // 水を摂取
                 yield return Toils_Mizu.Drink(WaterIndex);
 
-                // 水の摂取終了(心情、食事の処理)
+                // 水の摂取終了(心情、水分、アイテム個数の処理)
                 yield return Toils_Mizu.FinishDrink(WaterIndex);
+
+                if (this.drinkingFromInventory && !this.TargetA.ThingDestroyed)
+                {
+                    // 所持品から取り出した＆まだ残っている場合は所持品に戻す
+                    yield return Toils_Mizu.AddCarriedThingToInventory();
+                }
             }
             else
             {

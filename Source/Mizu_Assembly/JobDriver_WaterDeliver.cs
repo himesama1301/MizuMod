@@ -68,6 +68,12 @@ namespace MizuMod
 
             // 置いて囚人によやくさせる
             yield return Toils_Mizu.DropCarriedThing(PrisonerIndex, DropSpotIndex);
+
+            if (this.drinkingFromInventory && !this.TargetA.ThingDestroyed)
+            {
+                // 所持品から取り出した＆まだ残っている場合は所持品に戻す
+                yield return Toils_Mizu.AddCarriedThingToInventory();
+            }
         }
     }
 }

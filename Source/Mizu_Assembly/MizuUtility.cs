@@ -61,7 +61,8 @@ namespace MizuMod
             float scoreInventoryThing = MizuUtility.GetWaterItemScore(eater, inventoryThing, 0f, false);
 
             // 所持品アイテムは距離32相当のマイナス(所持品より備蓄をやや優先する)
-            scoreInventoryThing -= 32f;
+            //   →水と食事の違いを考えて無効化してみる
+            //scoreInventoryThing -= 32f;
 
             // マップの水のほうが高スコア
             if (scoreMapThing > scoreInventoryThing) return mapThing;
@@ -403,7 +404,7 @@ namespace MizuMod
             return wantedWaterItemCount;
         }
 
-        public static int StackCountForWater(Thing thing, float water)
+        public static int StackCountForWater(Thing thing, float waterWanted)
         {
             CompWater comp = thing.TryGetComp<CompWater>();
 
@@ -411,10 +412,10 @@ namespace MizuMod
             if (comp == null) return 0;
 
             // 必要な水分がほぼゼロ
-            if (water <= 0.0001f) return 0;
+            if (waterWanted <= 0.0001f) return 0;
 
             // それを何個摂取すれば水分が十分になるのかを返す(最低値1)
-            return Math.Max((int)Math.Round(water / comp.WaterAmount), 1);
+            return Math.Max((int)Math.Round(waterWanted / comp.WaterAmount), 1);
         }
 
         public static ThingDef GetWaterThingDefFromTerrainType(WaterTerrainType waterTerrainType)
