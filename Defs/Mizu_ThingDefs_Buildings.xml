@@ -613,11 +613,6 @@
     <neverMultiSelect>true</neverMultiSelect>
     <designationHotKey>Misc1</designationHotKey>
     <comps>
-      <li Class="MizuMod.CompProperties_WaterNetTank">
-        <maxWaterVolume>1.5</maxWaterVolume>
-        <showBar>false</showBar>
-      </li>
-      <li Class="MizuMod.CompProperties_WaterNetInput"/>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
     <recipes>
