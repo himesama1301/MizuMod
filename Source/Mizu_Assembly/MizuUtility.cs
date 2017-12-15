@@ -291,11 +291,24 @@ namespace MizuMod
             // 基本点
             float score = 300f;
 
-            // 水の種類による加算点(品質1の差=10点→距離10相当)
-            score += (int)t.GetWaterPreferability();
-
             // 距離が遠いと減点
             score -= dist;
+
+            if (!eater.story.traits.HasTrait(TraitDefOf.Ascetic))
+            {
+                // 水の種類による加算点
+                // 通常：品質1=10点
+                score += (int)t.GetWaterPreferability();
+            }
+            else
+            {
+                // 水の種類による加算点
+                // 禁欲主義：品質1=-10点
+                score += (int)WaterPreferability.ClearWater - (int)t.GetWaterPreferability();
+            }
+
+            // 海水は健康被害を及ぼすので減点
+            if (t.GetWaterPreferability() == WaterPreferability.SeaWater) score -= 100f;
 
             // 腐りかけの場合10点加算(品質1相当)
             if (t.IsRotSoonForWater()) score += 10f;
