@@ -34,11 +34,11 @@ namespace MizuMod
         protected override Thing FinishAction()
         {
             // 水道網の水の種類から水アイテムの種類を決定
-            var waterThingDef = MizuUtility.GetWaterThingDefFromWaterType(this.workTable.StoredWaterType);
+            var waterThingDef = MizuUtility.GetWaterThingDefFromWaterType(this.waterNet.WaterType);
             if (waterThingDef == null) return null;
 
             // 水道網から水を減らす
-            this.workTable.DrawWaterVolume(recipe.needWaterVolume);
+            this.waterNet.DrawWaterVolume(recipe.needWaterVolume);
 
             // 水を生成
             var createThing = ThingMaker.MakeThing(waterThingDef);

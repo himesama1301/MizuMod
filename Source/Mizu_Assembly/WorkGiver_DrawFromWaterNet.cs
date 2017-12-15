@@ -17,9 +17,10 @@ namespace MizuMod
             if (thing == null) return null;
 
             var workTable = giver as Building_WaterNetWorkTable;
-            if (workTable == null) return null;
-            if (!recipe.needWaterTypes.Contains(workTable.StoredWaterType)) return null;
-            if (workTable.StoredWaterVolume < recipe.needWaterVolume) return null;
+            if (workTable == null || workTable.InputWaterNet == null) return null;
+
+            if (!recipe.needWaterTypes.Contains(workTable.InputWaterNet.WaterType)) return null;
+            if (workTable.InputWaterNet.StoredWaterVolume < recipe.needWaterVolume) return null;
 
             return new Job(MizuDef.Job_DrawFromWaterNet, thing) { bill = bill };
         }
