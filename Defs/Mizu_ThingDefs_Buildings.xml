@@ -228,7 +228,8 @@
       <li Class="CompProperties_Breakdownable"/>
     </comps>
     <researchPrerequisites>
-      <li>Mizu_ElectricalCleanWater</li>
+      <li>Electricity</li>
+      <li>Mizu_CleanWater</li>
     </researchPrerequisites>
   </ThingDef>
 

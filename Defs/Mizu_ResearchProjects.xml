@@ -45,24 +45,6 @@
   </ResearchProjectDef>
 
   <ResearchProjectDef>
-    <defName>Mizu_ElectricalCleanWater</defName>
-    <label>Electrical clearing water</label>
-    <description>Allows you to build electrical water cleaner.</description>
-    <tab>Mizu_ResearchTab</tab>
-    <baseCost>300</baseCost>
-    <techLevel>Medieval</techLevel>
-    <prerequisites>
-      <li>Electricity</li>
-      <li>Mizu_CleanWater</li>
-    </prerequisites>
-    <tags>
-      <li>ClassicStart</li>
-    </tags>
-    <researchViewX>1</researchViewX>
-    <researchViewY>1</researchViewY>
-  </ResearchProjectDef>
-
-  <ResearchProjectDef>
     <defName>Mizu_DeepUndergroundWater</defName>
     <label>Deep underground water</label>
     <description>Allows you to build pump for drawing underground water of deep layer.</description>
@@ -87,7 +69,7 @@
     <prerequisites>
       <li>MicroelectronicsBasics</li>
       <li>Mizu_Waterworks</li>
-      <li>Mizu_ElectricalCleanWater</li>
+      <li>Mizu_CleanWater</li>
     </prerequisites>
     <researchViewX>2</researchViewX>
     <researchViewY>1</researchViewY>

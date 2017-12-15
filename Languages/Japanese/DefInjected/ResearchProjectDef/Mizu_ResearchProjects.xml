@@ -10,9 +10,6 @@
   <Mizu_CleanWater.label>浄水器</Mizu_CleanWater.label>
   <Mizu_CleanWater.description>燃料式の浄水器が作れるようになります。</Mizu_CleanWater.description>
 
-  <Mizu_ElectricalCleanWater.label>電動浄水器</Mizu_ElectricalCleanWater.label>
-  <Mizu_ElectricalCleanWater.description>電動の浄水器が作れるようになります。</Mizu_ElectricalCleanWater.description>
-
   <Mizu_DeepUndergroundWater.label>深層地下水脈</Mizu_DeepUndergroundWater.label>
   <Mizu_DeepUndergroundWater.description>深層地下水脈から水を汲み出すためのポンプが作れるようになります。</Mizu_DeepUndergroundWater.description>
 
