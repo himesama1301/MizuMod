@@ -274,5 +274,20 @@ namespace MizuMod
 
             return result;
         }
+
+        public static bool IsRotSoonForWater(this Thing t)
+        {
+            // 水でなければfalse
+            if (!t.CanGetWater()) return false;
+
+            var compRottable = t.TryGetComp<CompRottable>();
+            if (compRottable == null) return false;
+            if (compRottable.Stage != RotStage.Fresh) return false;
+            if (compRottable.TicksUntilRotAtCurrentTemp >= 60000) return false;
+
+            // 腐る水で、現在は新鮮で、あと1日以内に腐ってしまう場合、腐りかけと判断する
+            return true;
+        }
+
     }
 }

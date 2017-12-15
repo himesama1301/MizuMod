@@ -29,7 +29,12 @@ namespace MizuMod
             // 所持品から見つかり、取得者はプレイヤーではない
             //   →そのまま飲む
             // プレイヤーだった場合はマップ中の飲み物も探して、より適切なものを選ぶため保留
-            if (inventoryThing != null && getter.Faction != Faction.OfPlayer) return inventoryThing;
+            if (inventoryThing != null)
+            {
+                if (getter.Faction != Faction.OfPlayer) return inventoryThing;
+
+                if (inventoryThing.IsRotSoonForWater()) return inventoryThing;
+            }
 
             // マップからベストな飲み物を探す
             Thing mapThing = MizuUtility.BestWaterSourceOnMap(getter, eater, WaterPreferability.ClearWater, allowForbidden, allowSociallyImproper);
@@ -279,20 +284,22 @@ namespace MizuMod
 
         public static float GetWaterItemScore(Pawn eater, Thing t, float dist, bool takingToInventory = false)
         {
-            float score = 300f;  // 基本点
+            // 水ではない、もしくは水だけど水の種類データが未設定
+            //   →最低スコア
+            if (t.GetWaterPreferability() == WaterPreferability.Undefined) return float.MinValue;
 
-            // 水の種類による加算点
-            score += (int)t.GetWaterPreferability() * 10;
+            // 基本点
+            float score = 300f;
+
+            // 水の種類による加算点(品質1の差=10点→距離10相当)
+            score += (int)t.GetWaterPreferability();
 
             // 距離が遠いと減点
             score -= dist;
 
-            if (t.GetWaterPreferability() == WaterPreferability.Undefined)
-            {
-                // 水ではない、もしくは水だけど水の種類データが未設定
-                //   →最低スコア
-                return float.MinValue;
-            }
+            // 腐りかけの場合10点加算(品質1相当)
+            if (t.IsRotSoonForWater()) score += 10f;
+
             return score;
         }
 
