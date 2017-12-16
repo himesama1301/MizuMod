@@ -14,13 +14,9 @@ namespace MizuMod
         public static readonly SimpleCurve NeedWaterFallTickFromTemperatureCurve = new SimpleCurve
         {
             { new CurvePoint(30f, 0f), true },
-            { new CurvePoint(30f, 0f), true },
+            { new CurvePoint(130f, 1.33E-05f), true },
         };
-        //private const float DehydrationSeverityPerInterval = DehydrationSeverityPerDay / 150;
 
-        //private const float BaseFallPerTick = 1.33E-05f;
-
-        //public IntVec3 lastDrinkTerrainPos;
         public int lastSearchWaterTick;
 
         public ThirstCategory CurCategory
@@ -152,7 +148,7 @@ namespace MizuMod
         public override void ExposeData()
         {
             base.ExposeData();
-            //Scribe_Values.Look<IntVec3>(ref this.lastDrinkTerrainPos, "lastDrinkTerrainPos", IntVec3.Invalid, false);
+
             Scribe_Values.Look<int>(ref this.lastSearchWaterTick, "lastSearchWaterTick");
         }
 
