@@ -63,19 +63,6 @@
   </ThoughtDef>
   
   <ThoughtDef>
-    <defName>Mizu_DrankRawWater</defName>
-    <durationDays>0.5</durationDays>
-    <stackLimit>1</stackLimit>
-    <stages>
-      <li>
-        <label>drank rain water</label>
-        <description>I drank unfiltered rain water. taste bad slightly.</description>
-        <baseMoodEffect>-2</baseMoodEffect>
-      </li>
-    </stages>
-  </ThoughtDef>
-  
-  <ThoughtDef>
     <defName>Mizu_DrankMudWater</defName>
     <durationDays>0.5</durationDays>
     <stackLimit>1</stackLimit>

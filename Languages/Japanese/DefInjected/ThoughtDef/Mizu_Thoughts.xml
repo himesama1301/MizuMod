@@ -20,8 +20,6 @@
   
   <Mizu_DrankClearWater.stages.0.label>きれいな水を飲んだ</Mizu_DrankClearWater.stages.0.label>
   <Mizu_DrankClearWater.stages.0.description>きれいな水を飲んだ。おいしかった。</Mizu_DrankClearWater.stages.0.description>
-  <Mizu_DrankRawWater.stages.0.label>生水を飲んだ</Mizu_DrankRawWater.stages.0.label>
-  <Mizu_DrankRawWater.stages.0.description>浄化していない生水を飲んだ。ちょっと変な味がした。</Mizu_DrankRawWater.stages.0.description>
   <Mizu_DrankMudWater.stages.0.label>泥水を飲んだ</Mizu_DrankMudWater.stages.0.label>
   <Mizu_DrankMudWater.stages.0.description>浄化していない泥水を飲んだ。まずい！</Mizu_DrankMudWater.stages.0.description>
   <Mizu_DrankSeaWater.stages.0.label>海水を飲んだ</Mizu_DrankSeaWater.stages.0.label>
