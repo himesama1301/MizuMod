@@ -9,7 +9,7 @@
     <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_CookMeal</soundWorking>
-    <workAmount>500</workAmount>
+    <workAmount>350</workAmount>
     <getItemCount>1</getItemCount>
   </MizuMod.GetWaterRecipeDef>
   
@@ -64,7 +64,7 @@
   <!-- Draw Water Multi From Terrain -->
   
   <MizuMod.GetWaterRecipeDef Name="Mizu_DrawWaterMultiBase" ParentName="Mizu_DrawWaterBase" Abstract="True">
-    <workAmount>2500</workAmount>
+    <workAmount>1750</workAmount>
     <getItemCount>5</getItemCount>
   </MizuMod.GetWaterRecipeDef>
   
@@ -116,7 +116,7 @@
   
   <MizuMod.GetWaterRecipeDef Name="Mizu_DrawWaterFromWaterPoolBase" ParentName="Mizu_DrawWaterBase" Abstract="True">
     <workerCounterClass>MizuMod.RecipeWorkerCounter_DrawFromWaterNet</workerCounterClass>
-    <workAmount>300</workAmount>
+    <workAmount>200</workAmount>
     <needWaterVolume>0.5</needWaterVolume>
     <getItemCount>1</getItemCount>
   </MizuMod.GetWaterRecipeDef>
@@ -136,7 +136,7 @@
   <!-- Draw Water Multi From Water Pool -->
   
   <MizuMod.GetWaterRecipeDef Name="Mizu_DrawWaterFromWaterPoolMultiBase" ParentName="Mizu_DrawWaterFromWaterPoolBase" Abstract="True">
-    <workAmount>1500</workAmount>
+    <workAmount>1000</workAmount>
     <needWaterVolume>2.5</needWaterVolume>
     <getItemCount>5</getItemCount>
   </MizuMod.GetWaterRecipeDef>
@@ -157,7 +157,7 @@
   
   <MizuMod.GetWaterRecipeDef Name="Mizu_DrawWaterFromWaterNetBase" ParentName="Mizu_DrawWaterBase" Abstract="True">
     <workerCounterClass>MizuMod.RecipeWorkerCounter_DrawFromWaterNet</workerCounterClass>
-    <workAmount>100</workAmount>
+    <workAmount>70</workAmount>
     <needWaterVolume>0.5</needWaterVolume>
     <getItemCount>1</getItemCount>
   </MizuMod.GetWaterRecipeDef>
@@ -231,7 +231,7 @@
   <!-- Draw Water Multi From Water Net -->
   
   <MizuMod.GetWaterRecipeDef Name="Mizu_DrawWaterFromWaterNetMultiBase" ParentName="Mizu_DrawWaterFromWaterNetBase" Abstract="True">
-    <workAmount>500</workAmount>
+    <workAmount>350</workAmount>
     <needWaterVolume>2.5</needWaterVolume>
     <getItemCount>5</getItemCount>
   </MizuMod.GetWaterRecipeDef>
@@ -309,7 +309,7 @@
     <label>boil raw water</label>
     <description>boil raw water for converting to water.</description>
     <jobString>Boiling raw water.</jobString>
-    <workAmount>300</workAmount>
+    <workAmount>200</workAmount>
     <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
     <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
     <effectWorking>Cook</effectWorking>
@@ -340,7 +340,7 @@
     <label>percolate mud water</label>
     <description>percolate and boil mud water for converting to normal water</description>
     <jobString>Percolating mud water.</jobString>
-    <workAmount>600</workAmount>
+    <workAmount>400</workAmount>
     <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
     <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
     <effectWorking>Cook</effectWorking>
@@ -371,7 +371,7 @@
     <label>desalinate seawater</label>
     <description>desalinate seawater for converting to water.</description>
     <jobString>Desalinating seawater.</jobString>
-    <workAmount>900</workAmount>
+    <workAmount>600</workAmount>
     <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
     <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
     <effectWorking>Cook</effectWorking>
@@ -402,7 +402,7 @@
     <label>boil raw water x5</label>
     <description>boil raw water x5 for converting to water.</description>
     <jobString>Boiling raw water.</jobString>
-    <workAmount>1500</workAmount>
+    <workAmount>1000</workAmount>
     <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
     <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
     <effectWorking>Cook</effectWorking>
@@ -433,7 +433,7 @@
     <label>percolate mud water x5</label>
     <description>percolate and boil mud water x5 for converting to normal water</description>
     <jobString>Percolating mud water.</jobString>
-    <workAmount>3000</workAmount>
+    <workAmount>2000</workAmount>
     <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
     <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
     <effectWorking>Cook</effectWorking>
@@ -464,7 +464,7 @@
     <label>desalinate seawater x5</label>
     <description>desalinate seawater x5 for converting to water.</description>
     <jobString>Desalinating seawater.</jobString>
-    <workAmount>4500</workAmount>
+    <workAmount>3000</workAmount>
     <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
     <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
     <effectWorking>Cook</effectWorking>
