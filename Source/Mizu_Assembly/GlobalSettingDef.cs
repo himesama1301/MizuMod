@@ -34,5 +34,10 @@ namespace MizuMod
         public float thirstyBorder = 0.24f;
         public float slightlyThirstyBorder = 0.6f;
         public float dehydrationSeverityPerDay = 0.1f;
+        public SimpleCurve fallPerTickFromTempCurve = new SimpleCurve
+        {
+            new CurvePoint(30f, 0f),
+            new CurvePoint(130f, 1.5E-05f),
+        };
     }
 }

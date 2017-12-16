@@ -33,6 +33,12 @@
       <thirstyBorder>0.24</thirstyBorder>
       <urgentlyThirstyBorder>0.12</urgentlyThirstyBorder>
       <dehydrationSeverityPerDay>0.2</dehydrationSeverityPerDay>
+      <fallPerTickFromTempCurve>
+        <points>
+          <li>30, 0</li>
+          <li>130, 1.5E-05</li>
+        </points>
+      </fallPerTickFromTempCurve>
     </needWater>
     
   </MizuMod.GlobalSettingDef>

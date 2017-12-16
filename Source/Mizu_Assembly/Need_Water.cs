@@ -11,6 +11,11 @@ namespace MizuMod
 {
     public class Need_Water : Need
     {
+        public static readonly SimpleCurve NeedWaterFallTickFromTemperatureCurve = new SimpleCurve
+        {
+            { new CurvePoint(30f, 0f), true },
+            { new CurvePoint(30f, 0f), true },
+        };
         //private const float DehydrationSeverityPerInterval = DehydrationSeverityPerDay / 150;
 
         //private const float BaseFallPerTick = 1.33E-05f;
@@ -126,18 +131,19 @@ namespace MizuMod
 
         private float WaterFallPerTickAssumingCategory(ThirstCategory cat)
         {
+            float fallPerTickBase = MizuDef.GlobalSettings.needWater.fallPerTickBase + MizuDef.GlobalSettings.needWater.fallPerTickFromTempCurve.Evaluate(this.pawn.AmbientTemperature);
             switch (cat)
             {
                 case ThirstCategory.Healthy:
-                    return MizuDef.GlobalSettings.needWater.fallPerTickBase;
+                    return fallPerTickBase;
                 case ThirstCategory.SlightlyThirsty:
-                    return MizuDef.GlobalSettings.needWater.fallPerTickBase;
+                    return fallPerTickBase;
                 case ThirstCategory.Thirsty:
-                    return MizuDef.GlobalSettings.needWater.fallPerTickBase * 0.5f;
+                    return fallPerTickBase * 0.5f;
                 case ThirstCategory.UrgentlyThirsty:
-                    return MizuDef.GlobalSettings.needWater.fallPerTickBase * 0.25f;
+                    return fallPerTickBase * 0.25f;
                 case ThirstCategory.Dehydration:
-                    return MizuDef.GlobalSettings.needWater.fallPerTickBase * 0.15f;
+                    return fallPerTickBase * 0.15f;
                 default:
                     return 999f;
             }
