@@ -505,6 +505,11 @@
     <neverMultiSelect>true</neverMultiSelect>
     <designationHotKey>Misc1</designationHotKey>
     <comps>
+      <li Class="CompProperties_Flickable">
+        <commandTexture>Things/Building/Production/Mizu_WaterTank</commandTexture>
+        <commandLabelKey>MizuCommandDesignateDrainTankLabel</commandLabelKey>
+        <commandDescKey>MizuCommandDesignateDrainTankDesc</commandDescKey>
+      </li>
       <li Class="MizuMod.CompProperties_WaterNetTank">
         <maxWaterVolume>100</maxWaterVolume>
       </li>
@@ -555,6 +560,11 @@
     <neverMultiSelect>true</neverMultiSelect>
     <designationHotKey>Misc1</designationHotKey>
     <comps>
+      <li Class="CompProperties_Flickable">
+        <commandTexture>Things/Building/Production/Mizu_RainTank</commandTexture>
+        <commandLabelKey>MizuCommandDesignateDrainTankLabel</commandLabelKey>
+        <commandDescKey>MizuCommandDesignateDrainTankDesc</commandDescKey>
+      </li>
       <li Class="MizuMod.CompProperties_WaterNetTank">
         <maxWaterVolume>100</maxWaterVolume>
       </li>

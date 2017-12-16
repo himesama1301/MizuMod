@@ -22,7 +22,7 @@ namespace MizuMod
         {
             get
             {
-                return FlickUtility.WantsToBeOn(this) && this.InputConnectors.Count > 0;
+                return this.InputConnectors.Count > 0;
             }
         }
 
@@ -30,7 +30,7 @@ namespace MizuMod
         {
             get
             {
-                return FlickUtility.WantsToBeOn(this) && this.OutputConnectors.Count > 0;
+                return this.OutputConnectors.Count > 0;
             }
         }
 
@@ -39,6 +39,28 @@ namespace MizuMod
             get
             {
                 return true;
+            }
+        }
+
+        protected bool PowerOn
+        {
+            get
+            {
+                return this.powerTraderComp == null || this.powerTraderComp.PowerOn;
+            }
+        }
+        protected bool SwitchIsOn
+        {
+            get
+            {
+                return FlickUtility.WantsToBeOn(this);
+            }
+        }
+        public virtual bool IsActivated
+        {
+            get
+            {
+                return this.PowerOn && !this.IsBrokenDown();
             }
         }
 
@@ -65,9 +87,13 @@ namespace MizuMod
         public virtual List<IntVec3> InputConnectors { get; private set; }
         public virtual List<IntVec3> OutputConnectors { get; private set; }
 
+        private CompPowerTrader powerTraderComp;
+
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
+            
+            this.powerTraderComp = this.GetComp<CompPowerTrader>();
 
             //this.Connectors = new List<IntVec3>();
             this.InputConnectors = new List<IntVec3>();
@@ -115,7 +141,7 @@ namespace MizuMod
 
         public virtual void PrintForGrid(SectionLayer sectionLayer)
         {
-            if (FlickUtility.WantsToBeOn(this))
+            if (this.HasConnector)
             {
                 MizuGraphics.LinkedWaterNetOverlay.Print(sectionLayer, this);
             }

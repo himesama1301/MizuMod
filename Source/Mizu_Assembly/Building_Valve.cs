@@ -14,6 +14,30 @@ namespace MizuMod
 
         private bool lastSwitchIsOn = true;
 
+        public override bool HasInputConnector
+        {
+            get
+            {
+                return base.HasInputConnector && FlickUtility.WantsToBeOn(this);
+            }
+        }
+
+        public override bool HasOutputConnector
+        {
+            get
+            {
+                return base.HasOutputConnector && FlickUtility.WantsToBeOn(this);
+            }
+        }
+
+        public override bool IsActivated
+        {
+            get
+            {
+                return base.IsActivated && this.SwitchIsOn;
+            }
+        }
+
         public override Graphic Graphic
         {
             get

@@ -33,4 +33,9 @@
   
   <MizuStoredWaterPool>地下水残量</MizuStoredWaterPool>
   
+  <MizuDraining>水抜き中</MizuDraining>
+  
+  <MizuCommandDesignateDrainTankLabel>開/閉を指示</MizuCommandDesignateDrainTankLabel>
+  <MizuCommandDesignateDrainTankDesc>水抜きバルブの開閉を指示します。入植者は直ぐに作業に掛かります。</MizuCommandDesignateDrainTankDesc>
+  
 </LanguageData>

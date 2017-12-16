@@ -38,6 +38,27 @@ namespace MizuMod
                 return true;
             }
         }
+        protected bool PowerOn
+        {
+            get
+            {
+                return this.powerTraderComp == null || this.powerTraderComp.PowerOn;
+            }
+        }
+        protected bool SwitchIsOn
+        {
+            get
+            {
+                return FlickUtility.WantsToBeOn(this);
+            }
+        }
+        public virtual bool IsActivated
+        {
+            get
+            {
+                return this.PowerOn && !this.IsBrokenDown();
+            }
+        }
         public MapComponent_WaterNetManager WaterNetManager
         {
             get
@@ -47,6 +68,8 @@ namespace MizuMod
         }
         public WaterNet InputWaterNet { get; set; }
         public WaterNet OutputWaterNet { get; set; }
+
+        private CompPowerTrader powerTraderComp;
 
         public virtual WaterType OutputWaterType
         {
@@ -62,6 +85,8 @@ namespace MizuMod
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
+
+            this.powerTraderComp = this.GetComp<CompPowerTrader>();
 
             //this.Connectors = new List<IntVec3>();
             this.InputConnectors = new List<IntVec3>();

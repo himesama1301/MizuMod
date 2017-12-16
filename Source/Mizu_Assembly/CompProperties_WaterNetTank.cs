@@ -9,6 +9,7 @@ namespace MizuMod
     {
         public float maxWaterVolume = 0f;
         public bool showBar = true;
+        public float drainWaterFlow = 1000.0f;
 
         public CompProperties_WaterNetTank() : base(typeof(CompWaterNetTank)) { }
         public CompProperties_WaterNetTank(Type compClass) : base(compClass) { }

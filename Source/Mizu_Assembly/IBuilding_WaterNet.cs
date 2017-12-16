@@ -9,6 +9,7 @@ namespace MizuMod
 {
     public interface IBuilding_WaterNet
     {
+        bool IsActivated { get; }
         bool HasConnector { get; }
         bool HasInputConnector { get; }
         bool HasOutputConnector { get; }

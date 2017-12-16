@@ -33,4 +33,9 @@
 
   <MizuStoredWaterPool>Remaining underground water</MizuStoredWaterPool>
   
+  <MizuDraining>Draining</MizuDraining>
+  
+  <MizuCommandDesignateDrainTankLabel>Designate open/close</MizuCommandDesignateDrainTankLabel>
+  <MizuCommandDesignateDrainTankDesc>Designate this drain valve to be opened or closed. A colonist will come soon to perform the task.</MizuCommandDesignateDrainTankDesc>
+  
 </LanguageData>

@@ -455,6 +455,21 @@ namespace MizuMod
                     tankComp.StoredWaterType = WaterType.RawWater;
                 }
             }
+
+            List<IBuilding_WaterNet> tanks = things.FindAll((t) =>
+            {
+                CompWaterNetTank tankComp = t.GetComp<CompWaterNetTank>();
+                return (tankComp != null);
+            });
+
+            foreach (var tank in tanks)
+            {
+                CompWaterNetTank tankComp = tank.GetComp<CompWaterNetTank>();
+                if (tankComp.IsDraining)
+                {
+                    tankComp.DrawWaterVolume(tankComp.DrainWaterFlow / 60000);
+                }
+            }
         }
 
         public void UpdateWaterType()

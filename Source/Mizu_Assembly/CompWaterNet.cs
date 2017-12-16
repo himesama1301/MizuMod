@@ -43,7 +43,8 @@ namespace MizuMod
         {
             get
             {
-                return !this.IsBrokenDown && this.WantsToBeOn && this.PowerOn;
+                return this.WaterNetBuilding.IsActivated;
+                //return !this.IsBrokenDown && this.WantsToBeOn && this.PowerOn;
             }
         }
 

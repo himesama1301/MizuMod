@@ -36,5 +36,6 @@ namespace MizuMod
         public static readonly string InspectWaterTankStored = "MizuWaterTankStored".Translate();
         public static readonly string InspectValveClosed = "MizuValveClosed".Translate();
         public static readonly string InspectStoredWaterPool = "MizuStoredWaterPool".Translate();
+        public static readonly string InspectWaterTankDraining = "MizuDraining".Translate();
     }
 }
