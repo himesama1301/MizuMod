@@ -64,6 +64,7 @@
       <li>Mizu_DrawMudWaterMulti</li>
       <li>Mizu_DrawSeaWaterMulti</li>
     </recipes>
+    <designationHotKey>Misc1</designationHotKey>
   </ThingDef>
 
   <ThingDef ParentName="Mizu_BuildingBase">
@@ -114,6 +115,7 @@
     <researchPrerequisites>
       <li>Mizu_UndergroundWater</li>
     </researchPrerequisites>
+    <designationHotKey>Misc2</designationHotKey>
   </ThingDef>
   
   <ThingDef Name="Mizu_WaterCleanerBase" ParentName="Mizu_BuildingBase" Abstract="True">
@@ -196,6 +198,7 @@
     <researchPrerequisites>
       <li>Mizu_CleanWater</li>
     </researchPrerequisites>
+    <designationHotKey>Misc3</designationHotKey>
   </ThingDef>
 
   <ThingDef ParentName="Mizu_WaterCleanerBase">
@@ -231,6 +234,7 @@
       <li>Electricity</li>
       <li>Mizu_CleanWater</li>
     </researchPrerequisites>
+    <designationHotKey>Misc4</designationHotKey>
   </ThingDef>
 
   <ThingDef Name="Mizu_WaterPipeBase" ParentName="Mizu_BuildingBase" Abstract="True">
@@ -267,7 +271,6 @@
     <placingDraggableDimensions>1</placingDraggableDimensions>
     <rotatable>false</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
-    <designationHotKey>Misc1</designationHotKey>
     <researchPrerequisites>
       <li>Mizu_Waterworks</li>
     </researchPrerequisites>
@@ -284,6 +287,7 @@
       <li>Stony</li>
     </stuffCategories>
     <costStuffCount>1</costStuffCount>
+    <designationHotKey>Misc5</designationHotKey>
   </ThingDef>
   
   <ThingDef ParentName="Mizu_WaterPipeBase">
@@ -298,6 +302,7 @@
       <li>Stony</li>
     </stuffCategories>
     <costStuffCount>1</costStuffCount>
+    <designationHotKey>Misc6</designationHotKey>
   </ThingDef>
   
   <ThingDef Name="Mizu_WaterValveBase" ParentName="Mizu_BuildingBase" Abstract="True">
@@ -327,7 +332,6 @@
     <placingDraggableDimensions>1</placingDraggableDimensions>
     <rotatable>true</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
-    <designationHotKey>Misc1</designationHotKey>
     <comps>
       <li Class="CompProperties_Flickable">
         <commandTexture>Things/Building/Production/Mizu_WaterValve</commandTexture>
@@ -353,6 +357,7 @@
       <li>Stony</li>
     </stuffCategories>
     <costStuffCount>5</costStuffCount>
+    <designationHotKey>Misc7</designationHotKey>
   </ThingDef>
   
   <ThingDef ParentName="Mizu_BuildingBase">
@@ -384,7 +389,6 @@
     <rotatable>true</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
     <terrainAffordanceNeeded>Undefined</terrainAffordanceNeeded>
-    <designationHotKey>Misc1</designationHotKey>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetInput">
         <maxInputWaterFlow>150</maxInputWaterFlow>
@@ -406,6 +410,7 @@
     <researchPrerequisites>
       <li>Mizu_Waterworks</li>
     </researchPrerequisites>
+    <designationHotKey>Misc8</designationHotKey>
   </ThingDef>
   
   <ThingDef Name="Mizu_UndergroundWaterPumpBase" ParentName="Mizu_BuildingBase" Abstract="True">
@@ -433,7 +438,6 @@
     </statBases>
     <rotatable>false</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
-    <designationHotKey>Misc1</designationHotKey>
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetInput">
         <maxInputWaterFlow>150</maxInputWaterFlow>
@@ -462,6 +466,7 @@
     <researchPrerequisites>
       <li>Mizu_Waterworks</li>
     </researchPrerequisites>
+    <designationHotKey>Misc9</designationHotKey>
   </ThingDef>
   
   <ThingDef ParentName="Mizu_UndergroundWaterPumpBase">
@@ -475,6 +480,7 @@
     <researchPrerequisites>
       <li>Mizu_DeepUndergroundWater</li>
     </researchPrerequisites>
+    <designationHotKey>Misc10</designationHotKey>
   </ThingDef>
   
   <ThingDef ParentName="Mizu_BuildingBase">
@@ -511,7 +517,6 @@
     </statBases>
     <rotatable>false</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
-    <designationHotKey>Misc1</designationHotKey>
     <comps>
       <li Class="CompProperties_Flickable">
         <commandTexture>Things/Building/Production/Mizu_WaterTank</commandTexture>
@@ -531,6 +536,7 @@
     <researchPrerequisites>
       <li>Mizu_Waterworks</li>
     </researchPrerequisites>
+    <designationHotKey>Misc11</designationHotKey>
   </ThingDef>
   
   <ThingDef ParentName="Mizu_BuildingBase">
@@ -568,7 +574,6 @@
     </statBases>
     <rotatable>true</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
-    <designationHotKey>Misc1</designationHotKey>
     <comps>
       <li Class="CompProperties_Flickable">
         <commandTexture>Things/Building/Production/Mizu_RainTank_front</commandTexture>
@@ -593,6 +598,7 @@
       <li>Mizu_DrawRawWaterFromWaterNet</li>
       <li>Mizu_DrawRawWaterFromWaterNetMulti</li>
     </recipes>
+    <designationHotKey>Misc12</designationHotKey>
   </ThingDef>
   
   <ThingDef ParentName="Mizu_BuildingBase">
@@ -631,7 +637,6 @@
     </inspectorTabs>
     <rotatable>true</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
-    <designationHotKey>Misc1</designationHotKey>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
@@ -675,7 +680,6 @@
     <placingDraggableDimensions>1</placingDraggableDimensions>
     <rotatable>true</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
-    <designationHotKey>Misc1</designationHotKey>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_Valve</li>
     </placeWorkers>
