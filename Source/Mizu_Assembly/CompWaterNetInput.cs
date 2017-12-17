@@ -97,10 +97,12 @@ namespace MizuMod
                 stringBuilder.AppendLine();
             }
             stringBuilder.Append(MizuStrings.InspectWaterFlowInput + ": " + this.InputWaterFlow.ToString("F2") + " L/day");
-            if (DebugSettings.godMode)
+            stringBuilder.Append(string.Concat(new string[]
             {
-                stringBuilder.Append(string.Format("({0})", this.InputWaterType));
-            }
+                "(",
+                MizuStrings.GetInspectWaterTypeString(this.InputWaterType),
+                ")",
+            }));
 
             return stringBuilder.ToString();
         }

@@ -177,6 +177,12 @@ namespace MizuMod
                 this.MaxWaterVolume.ToString("F2"),
                 " L"
             }));
+            stringBuilder.Append(string.Concat(new string[]
+            {
+                "(",
+                MizuStrings.GetInspectWaterTypeString(this.StoredWaterType),
+                ")",
+            }));
             if (this.IsDraining)
             {
                 stringBuilder.Append(string.Concat(new string[]
@@ -185,11 +191,6 @@ namespace MizuMod
                     MizuStrings.InspectWaterTankDraining,
                     ")",
                 }));
-            }
-
-            if (DebugSettings.godMode)
-            {
-                stringBuilder.Append(string.Format("({0})", this.StoredWaterType));
             }
 
             return stringBuilder.ToString();

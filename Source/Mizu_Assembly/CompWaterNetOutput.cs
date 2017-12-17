@@ -134,10 +134,9 @@ namespace MizuMod
             // 水源を決める
             if (this.HasTank)
             {
-                //if (!this.TankIsEmpty && !this.InputComp.IsReceiving)
                 if (!this.TankIsEmpty)
                 {
-                    // タンクがあり、タンクの中身があり、水道網から供給を受けていない
+                    // タンクがあり、タンクの中身がある
                     //   ⇒タンクが水源
                     this.OutputWaterType = this.TankComp.StoredWaterType;
                     this.OutputWaterFlow = this.MaxOutputWaterFlow;
@@ -188,10 +187,12 @@ namespace MizuMod
                 stringBuilder.AppendLine();
             }
             stringBuilder.Append(MizuStrings.InspectWaterFlowOutput + ": " + this.OutputWaterFlow.ToString("F2") + " L/day");
-            if (DebugSettings.godMode)
+            stringBuilder.Append(string.Concat(new string[]
             {
-                stringBuilder.Append(string.Format("({0})", this.OutputWaterType));
-            }
+                "(",
+                MizuStrings.GetInspectWaterTypeString(this.OutputWaterType),
+                ")",
+            }));
 
             return stringBuilder.ToString();
         }

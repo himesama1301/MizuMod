@@ -38,4 +38,11 @@
   <MizuCommandDesignateDrainTankLabel>Designate open/close</MizuCommandDesignateDrainTankLabel>
   <MizuCommandDesignateDrainTankDesc>Designate this drain valve to be opened or closed. A colonist will come soon to perform the task.</MizuCommandDesignateDrainTankDesc>
   
+  <MizuWaterTypeNo>No</MizuWaterTypeNo>
+  <MizuWaterTypeClear>ClearWater</MizuWaterTypeClear>
+  <MizuWaterTypeNormal>Water</MizuWaterTypeNormal>
+  <MizuWaterTypeRaw>RawWater</MizuWaterTypeRaw>
+  <MizuWaterTypeMud>MudWater</MizuWaterTypeMud>
+  <MizuWaterTypeSea>SeaWater</MizuWaterTypeSea>
+  
 </LanguageData>

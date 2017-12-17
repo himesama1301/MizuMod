@@ -37,5 +37,34 @@ namespace MizuMod
         public static readonly string InspectValveClosed = "MizuValveClosed".Translate();
         public static readonly string InspectStoredWaterPool = "MizuStoredWaterPool".Translate();
         public static readonly string InspectWaterTankDraining = "MizuDraining".Translate();
+
+        public static readonly string InspectWaterTypeNo = "MizuWaterTypeNo".Translate();
+        public static readonly string InspectWaterTypeClear = "MizuWaterTypeClear".Translate();
+        public static readonly string InspectWaterTypeNormal = "MizuWaterTypeNormal".Translate();
+        public static readonly string InspectWaterTypeRaw = "MizuWaterTypeRaw".Translate();
+        public static readonly string InspectWaterTypeMud = "MizuWaterTypeMud".Translate();
+        public static readonly string InspectWaterTypeSea = "MizuWaterTypeSea".Translate();
+
+        public static string GetInspectWaterTypeString(WaterType waterType)
+        {
+            switch (waterType)
+            {
+                case WaterType.NoWater:
+                    return MizuStrings.InspectWaterTypeNo;
+                case WaterType.ClearWater:
+                    return MizuStrings.InspectWaterTypeClear;
+                case WaterType.NormalWater:
+                    return MizuStrings.InspectWaterTypeNormal;
+                case WaterType.RawWater:
+                    return MizuStrings.InspectWaterTypeRaw;
+                case WaterType.MudWater:
+                    return MizuStrings.InspectWaterTypeMud;
+                case WaterType.SeaWater:
+                    return MizuStrings.InspectWaterTypeSea;
+                default:
+                    Log.Error("unknown water type");
+                    return "unknown";
+            }
+        }
     }
 }

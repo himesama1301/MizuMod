@@ -38,4 +38,11 @@
   <MizuCommandDesignateDrainTankLabel>開/閉を指示</MizuCommandDesignateDrainTankLabel>
   <MizuCommandDesignateDrainTankDesc>水抜きバルブの開閉を指示します。入植者は直ぐに作業に掛かります。</MizuCommandDesignateDrainTankDesc>
   
+  <MizuWaterTypeNo>なし</MizuWaterTypeNo>
+  <MizuWaterTypeClear>きれいな水</MizuWaterTypeClear>
+  <MizuWaterTypeNormal>水</MizuWaterTypeNormal>
+  <MizuWaterTypeRaw>生水</MizuWaterTypeRaw>
+  <MizuWaterTypeMud>泥水</MizuWaterTypeMud>
+  <MizuWaterTypeSea>海水</MizuWaterTypeSea>
+  
 </LanguageData>
