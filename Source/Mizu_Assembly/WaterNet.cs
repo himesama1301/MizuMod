@@ -31,6 +31,7 @@ namespace MizuMod
         private Dictionary<CompProperties_WaterNetInput.InputType, HashSet<IBuilding_WaterNet>> inputterTypeDic = new Dictionary<CompProperties_WaterNetInput.InputType, HashSet<IBuilding_WaterNet>>();
         private HashSet<IBuilding_WaterNet> outputters = new HashSet<IBuilding_WaterNet>();
         private HashSet<IBuilding_WaterNet> tanks = new HashSet<IBuilding_WaterNet>();
+        private IEnumerable<HashSet<IBuilding_WaterNet>> flatTankList;
 
         private WaterType waterType = WaterType.NoWater;
         public WaterType WaterType
@@ -129,6 +130,9 @@ namespace MizuMod
             {
                 this.tanks.Add(thing);
             }
+
+            // 平坦化リストを再作成
+            this.RefreshFlatTankList();
         }
 
         private void RemoveThingFromList(IBuilding_WaterNet thing)
@@ -147,6 +151,9 @@ namespace MizuMod
 
             // タンクリストから削除
             this.tanks.Remove(thing);
+
+            // 平坦化リストを再作成
+            this.RefreshFlatTankList();
         }
 
         public void ClearThings()
@@ -163,6 +170,9 @@ namespace MizuMod
                 item.Value.Clear();
             }
             outputters.Clear();
+            tanks.Clear();
+
+            flatTankList = null;
         }
 
         // 仮
@@ -371,102 +381,6 @@ namespace MizuMod
                     inputter.InputComp.InputWaterType = this.waterType;
                 }
             }
-
-            //foreach (var t1 in allThings)
-            //{
-            //    //// 雨から入力するタイプ
-            //    //if (t1.InputComp != null && t1.InputComp.InputType == CompProperties_WaterNetInput.InputType.Rain)
-            //    //{
-            //    //    // 建造物にどれだけ屋根がかぶっているかチェック
-            //    //    t1.InputComp.InputWaterFlow = t1.InputComp.MaxInputWaterFlow * this.Manager.map.weatherManager.RainRate * t1.GetUnroofedPercent();
-
-            //    //    if (t1.InputComp.InputWaterFlow > 0.0f) t1.InputComp.InputWaterType = WaterType.RawWater;
-            //    //}
-
-            //    //// 地下水から入力するタイプ
-            //    //if (t1.InputComp != null && t1.InputComp.InputType == CompProperties_WaterNetInput.InputType.WaterPool)
-            //    //{
-            //    //    if (t1.WaterPool != null && t1.WaterPool.CurrentWaterVolume > 0f)
-            //    //    {
-            //    //        t1.InputComp.InputWaterFlow = t1.InputComp.MaxInputWaterFlow;
-            //    //        t1.InputComp.InputWaterType = t1.WaterPool.WaterType;
-            //    //    }
-            //    //}
-
-            //    //// 地形から入力するタイプ
-            //    //if (t1.InputComp != null && t1.InputComp.InputType == CompProperties_WaterNetInput.InputType.Terrain)
-            //    //{
-            //    //    var building = t1 as Building;
-            //    //    var terrainWaterType = this.Manager.map.terrainGrid.TerrainAt(building.Position).ToWaterType();
-            //    //    if (t1.InputComp.AcceptWaterTypes.Contains(terrainWaterType))
-            //    //    {
-            //    //        t1.InputComp.InputWaterFlow = t1.InputComp.MaxInputWaterFlow;
-            //    //        t1.InputComp.InputWaterType = terrainWaterType;
-            //    //    }
-            //    //}
-
-            //    // ここから水道網出力タイプの処理
-            //    // 各出力源の処理を、水道網内の水道網入力タイプに割り振っていく
-
-            //    //// 出力機能が無ければスキップ
-            //    //if (t1.OutputComp == null || t1.OutputComp.OutputWaterFlow == 0.0f || t1.OutputWaterNet != this)
-            //    //{
-            //    //    continue;
-            //    //}
-
-                
-            //    //List<IBuilding_WaterNet> t2list = allThings.FindAll((t) =>
-            //    //{
-            //    //    bool isOK = (t != t1);
-            //    //    if (isOK) isOK &= t.InputWaterNet == this;
-            //    //    if (isOK) isOK &= (t.InputComp != null);
-            //    //    if (isOK) isOK &= t.InputComp.IsActivated;
-            //    //    if (isOK) isOK &= (t.InputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet);
-            //    //    if (isOK) isOK &= ((t.TankComp == null) || (t.TankComp.AmountCanAccept > 0.0f));
-            //    //    if (isOK) isOK &= (t.InputComp.AcceptWaterTypes.Contains(this.WaterType));
-            //    //    return isOK;
-            //    //});
-
-            //    //List<IBuilding_WaterNet> t2list_constant = t2list.FindAll((t) =>
-            //    //{
-            //    //    return t.InputComp.InputWaterFlowType == CompProperties_WaterNetInput.InputWaterFlowType.Constant;
-            //    //});
-
-            //    //float outputWaterFlow = t1.OutputComp.OutputWaterFlow;
-            //    //foreach (var t2 in t2list_constant)
-            //    //{
-            //    //    if (outputWaterFlow >= t2.InputComp.MaxInputWaterFlow)
-            //    //    {
-            //    //        t2.InputComp.InputWaterFlow = t2.InputComp.MaxInputWaterFlow;
-            //    //        outputWaterFlow -= t2.InputComp.MaxInputWaterFlow;
-            //    //    }
-            //    //}
-
-            //    // 余った出力を、入力値が任意で良い入力装置に割り振る
-            //    while (outputWaterFlow > 0.0f)
-            //    {
-            //        List<IBuilding_WaterNet> t2list_any = t2list.FindAll((t) =>
-            //        {
-            //            bool isOK = ((t.TankComp == null) || (t.TankComp.AmountCanAccept > 0.0f));
-            //            if (isOK) isOK &= (t.InputComp.InputWaterFlowType == CompProperties_WaterNetInput.InputWaterFlowType.Any);
-            //            if (isOK) isOK &= (t.InputComp.InputWaterFlow < t.InputComp.MaxInputWaterFlow);
-            //            return isOK;
-            //        });
-
-            //        if (t2list_any.Count == 0)
-            //        {
-            //            break;
-            //        }
-
-            //        float aveOutputWaterFlow = outputWaterFlow / t2list_any.Count;
-            //        foreach (var t2 in t2list_any)
-            //        {
-            //            float actualInputWaterFlow = Mathf.Min(aveOutputWaterFlow, t2.InputComp.MaxInputWaterFlow - t2.InputComp.InputWaterFlow);
-            //            t2.InputComp.InputWaterFlow += actualInputWaterFlow;
-            //            outputWaterFlow -= actualInputWaterFlow;
-            //        }
-            //    }
-            //}
         }
 
         public void UpdateWaterTank()
@@ -573,107 +487,84 @@ namespace MizuMod
                 this.storedWaterType = (WaterType)Mathf.Min((int)this.storedWaterType, (int)tank.TankComp.StoredWaterType);
             }
 
-            //List<IBuilding_WaterNet> waterNetTanks = allThings.FindAll((t) =>
-            //{
-            //    return t.TankComp != null && t.InputComp != null && t.InputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet;
-            //});
-            //foreach (var tank in waterNetTanks)
-            //{
-            //    if (tank.TankComp.StoredWaterVolume == 0.0f)
-            //    {
-            //        tank.TankComp.StoredWaterType = WaterType.NoWater;
-            //    }
-            //}
+            // 貯水量平坦化
+            if (this.flatTankList != null)
+            {
+                foreach (var list in flatTankList)
+                {
+                    // 平坦化対象になっている全タンクの貯水量と総容量、水質を求める
+                    float allMax = 0.0f;
+                    float allCur = 0.0f;
+                    WaterType allWaterType = WaterType.NoWater;
+                    foreach (var t in list)
+                    {
+                        allMax += t.TankComp.MaxWaterVolume;
+                        allCur += t.TankComp.StoredWaterVolume;
+                        allWaterType = (WaterType)Mathf.Min((int)allWaterType, (int)t.TankComp.StoredWaterType);
+                    }
 
-            //List<IBuilding_WaterNet> rainTanks = allThings.FindAll((t) =>
-            //{
-            //    return t.TankComp != null && t.InputComp != null && t.InputComp.InputType == CompProperties_WaterNetInput.InputType.Rain;
-            //});
-            //foreach (var tank in rainTanks)
-            //{
-            //    if (tank.TankComp.StoredWaterVolume == 0.0f)
-            //    {
-            //        tank.TankComp.StoredWaterType = WaterType.NoWater;
-            //    }
-            //    else
-            //    {
-            //        tank.TankComp.StoredWaterType = WaterType.RawWater;
-            //    }
-            //}
+                    // 割合を求める
+                    float flatPercent = allCur / allMax;
 
-            //List<IBuilding_WaterNet> tanks = allThings.FindAll((t) =>
-            //{
-            //    return (t.TankComp != null);
-            //});
-
+                    // 平坦化する
+                    foreach (var t in list)
+                    {
+                        t.TankComp.StoredWaterVolume = flatPercent * t.TankComp.MaxWaterVolume;
+                        t.TankComp.StoredWaterType = allWaterType;
+                    }
+                }
+            }
         }
 
-        //public void UpdateWaterType()
-        //{
-        //    WaterType curWaterType = WaterType.NoWater;
+        public void RefreshFlatTankList()
+        {
+            var flatTankListTmp = new HashSet<HashSet<IBuilding_WaterNet>>();
 
-        //    // 水道網の全出力から、現在の水道網に流れる水の種類を決める
-        //    foreach (var t in allThings)
-        //    {
-        //        if (t.OutputWaterNet != this) continue;
-        //        if (t.OutputComp == null) continue;
+            // IDが負でない⇒有効な平坦化IDを持っている
+            var flatTanks = this.tanks.Where((t) =>
+            {
+                return t.TankComp.FlatID >= 0;
+            });
+            if (flatTanks.Count() == 0) return;
 
-        //        if (t.OutputComp.OutputWaterType != WaterType.NoWater)
-        //        {
-        //            if (curWaterType == WaterType.NoWater)
-        //            {
-        //                curWaterType = t.OutputComp.OutputWaterType;
-        //            }
-        //            else
-        //            {
-        //                curWaterType = (WaterType)Math.Min((int)t.OutputComp.OutputWaterType, (int)curWaterType);
-        //            }
-        //        }
-        //    }
+            foreach (var t in flatTanks)
+            {
+                HashSet<IBuilding_WaterNet> foundList = null;
+                foreach (var list in flatTankListTmp)
+                {
+                    foreach (var listItem in list)
+                    {
+                        // IDが違うものは平坦化対象ではない
+                        if (t.TankComp.FlatID != listItem.TankComp.FlatID) continue;
 
-        //    // 入力の水質更新
-        //    var inputters = allThings.FindAll((t) => t.InputComp != null && t.InputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet && t.InputWaterNet == this);
-        //    foreach (var inputter in inputters)
-        //    {
-        //        if (inputter.InputComp.InputWaterFlow > 0f)
-        //        {
-        //            inputter.InputComp.InputWaterType = curWaterType;
-        //        }
-        //    }
+                        // 隣接していないものは平坦化対象ではない
+                        if (!t.IsAdjacentToCardinalOrInside(listItem)) continue;
 
-        //    // タンクの水質の更新
-        //    List<IBuilding_WaterNet> tanks = allThings.FindAll((t) => t.GetComp<CompWaterNetTank>() != null);
-        //    if (curWaterType != WaterType.NoWater)
-        //    {
-        //        this.waterType = curWaterType;
-        //        foreach (var tank in tanks)
-        //        {
-        //            if (tank.InputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet)
-        //            {
-        //                tank.TankComp.StoredWaterType = curWaterType;
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        foreach (var tank in tanks)
-        //        {
-        //            WaterType tankWaterType = tank.TankComp.StoredWaterType;
-        //            if (tankWaterType != WaterType.NoWater)
-        //            {
-        //                if (curWaterType == WaterType.NoWater)
-        //                {
-        //                    curWaterType = tank.TankComp.StoredWaterType;
-        //                }
-        //                else
-        //                {
-        //                    curWaterType = (WaterType)Math.Min((int)tank.TankComp.StoredWaterType, (int)curWaterType);
-        //                }
-        //            }
-        //            this.waterType = curWaterType;
-        //        }
-        //    }
+                        // このリストに追加する
+                        foundList = list;
+                        break;
+                    }
 
-        //}
+                    if (foundList != null) break;
+                }
+
+                if (foundList != null)
+                {
+                    // 見つかった平坦化リストに追加
+                    foundList.Add(t);
+                }
+                else
+                {
+                    // 新しい平坦化リストを作成
+                    flatTankListTmp.Add(new HashSet<IBuilding_WaterNet>() { t });
+                }
+            }
+
+            // 2個以上のタンクが含まれるリストのみ有効
+            this.flatTankList = flatTankListTmp.Where((list) =>
+            {
+                return list.Count() >= 2;
+            });
+        }
     }
 }

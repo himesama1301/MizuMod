@@ -134,7 +134,8 @@ namespace MizuMod
             // 水源を決める
             if (this.HasTank)
             {
-                if (!this.TankIsEmpty && !this.InputComp.IsReceiving)
+                //if (!this.TankIsEmpty && !this.InputComp.IsReceiving)
+                if (!this.TankIsEmpty)
                 {
                     // タンクがあり、タンクの中身があり、水道網から供給を受けていない
                     //   ⇒タンクが水源

@@ -263,11 +263,6 @@ namespace MizuMod
                 }
 
             }
-
-            //foreach (var net in nets)
-            //{
-            //    net.UpdateWaterType();
-            //}
         }
 
         public void AddThing(IBuilding_WaterNet thing)
@@ -326,10 +321,6 @@ namespace MizuMod
             {
                 net.UpdateWaterTank();
             }
-            //foreach (var net in nets)
-            //{
-            //    net.UpdateWaterType();
-            //}
         }
     }
 }

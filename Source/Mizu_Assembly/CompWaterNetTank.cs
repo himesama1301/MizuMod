@@ -58,6 +58,13 @@ namespace MizuMod
                 return this.Props.drainWaterFlow;
             }
         }
+        public int FlatID
+        {
+            get
+            {
+                return this.Props.flatID;
+            }
+        }
 
         private float storedWaterVolume = 0;
         public float StoredWaterVolume

@@ -31,6 +31,7 @@ namespace MizuMod
         List<IntVec3> OutputConnectors { get; }
         T GetComp<T>() where T : ThingComp;
         CellRect OccupiedRect();
+        bool IsAdjacentToCardinalOrInside(IBuilding_WaterNet other);
 
         void CreateConnectors();
         void PrintForGrid(SectionLayer sectionLayer);

@@ -242,6 +242,11 @@ namespace MizuMod
             return GenAdj.OccupiedRect(this);
         }
 
+        public virtual bool IsAdjacentToCardinalOrInside(IBuilding_WaterNet other)
+        {
+            return GenAdj.IsAdjacentToCardinalOrInside(this.OccupiedRect(), other.OccupiedRect());
+        }
+
         public override string GetInspectString()
         {
             StringBuilder stringBuilder = new StringBuilder();
