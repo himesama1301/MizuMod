@@ -271,6 +271,7 @@
     <placingDraggableDimensions>1</placingDraggableDimensions>
     <rotatable>false</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
+    <clearBuildingArea>false</clearBuildingArea>
     <researchPrerequisites>
       <li>Mizu_Waterworks</li>
     </researchPrerequisites>
