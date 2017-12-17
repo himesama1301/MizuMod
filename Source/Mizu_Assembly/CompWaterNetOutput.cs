@@ -158,18 +158,18 @@ namespace MizuMod
                     // 定量出力タイプで、入力が出力量を超えている場合、機能する
                     this.OutputWaterType = outWaterType;
                     this.OutputWaterFlow = this.MaxOutputWaterFlow;
+                    return;
                 }
                 else if (this.OutputWaterFlowType == CompProperties_WaterNetOutput.OutputWaterFlowType.Any)
                 {
                     // 任意出力タイプの場合、入力と同じ量だけ出力する
                     this.OutputWaterType = outWaterType;
                     this.OutputWaterFlow = this.InputComp.InputWaterFlow;
+
+                    // 結果的に出力量が0の場合、水の種類をクリアする
+                    if (this.OutputWaterFlow == 0.0f) this.OutputWaterType = WaterType.NoWater;
+                    return;
                 }
-
-                // 結果的に出力量が0の場合、水の種類をクリアする
-                if (this.OutputWaterFlow == 0.0f) this.OutputWaterType = WaterType.NoWater;
-
-                return;
             }
 
             // 有効な水源無し
