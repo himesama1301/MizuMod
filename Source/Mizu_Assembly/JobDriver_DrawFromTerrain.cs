@@ -20,6 +20,7 @@ namespace MizuMod
             TerrainDef terrainDef = this.Map.terrainGrid.TerrainAt(this.job.GetTarget(BillGiverInd).Thing.Position);
             var waterTerrainType = terrainDef.GetWaterTerrainType();
             var waterThingDef = MizuUtility.GetWaterThingDefFromTerrainType(waterTerrainType);
+            if (waterThingDef == null) return null;
 
             // 水を生成
             var createThing = ThingMaker.MakeThing(waterThingDef);
