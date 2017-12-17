@@ -8,11 +8,11 @@ namespace MizuMod
     public enum WaterType : byte
     {
         Undefined = 0,
-        NoWater,
         SeaWater,
         MudWater,
         RawWater,
         NormalWater,
         ClearWater,
+        NoWater,
     }
 }

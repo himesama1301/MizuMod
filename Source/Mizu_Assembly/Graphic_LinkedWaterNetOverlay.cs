@@ -39,7 +39,7 @@ namespace MizuMod
 
             foreach (var net in thing.WaterNetManager.Nets)
             {
-                foreach (var t in net.Things)
+                foreach (var t in net.AllThings)
                 {
                     if (t == thing)
                     {

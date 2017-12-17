@@ -10,10 +10,7 @@ namespace MizuMod
 {
     public abstract class CompWaterNet : ThingComp
     {
-        private bool lastIsActivated;
-
-        protected CompBreakdownable breakdownableComp;
-        protected CompPowerTrader powerComp;
+        private bool lastIsActivatedForWaterNet;
 
         protected bool IsBrokenDown
         {
@@ -23,11 +20,11 @@ namespace MizuMod
             }
         }
 
-        protected bool WantsToBeOn
+        protected bool SwitchIsOn
         {
             get
             {
-                return FlickUtility.WantsToBeOn(this.parent);
+                return this.WaterNetBuilding.SwitchIsOn;
             }
         }
 
@@ -35,7 +32,7 @@ namespace MizuMod
         {
             get
             {
-                return (this.powerComp == null || this.powerComp.PowerOn);
+                return this.WaterNetBuilding.PowerOn;
             }
         }
 
@@ -44,7 +41,14 @@ namespace MizuMod
             get
             {
                 return this.WaterNetBuilding.IsActivated;
-                //return !this.IsBrokenDown && this.WantsToBeOn && this.PowerOn;
+            }
+        }
+
+        public virtual bool IsActivatedForWaterNet
+        {
+            get
+            {
+                return this.WaterNetBuilding.IsActivatedForWaterNet;
             }
         }
 
@@ -72,28 +76,48 @@ namespace MizuMod
             }
         }
 
+        protected CompWaterNetInput InputComp
+        {
+            get
+            {
+                return this.WaterNetBuilding.InputComp;
+            }
+        }
+        protected CompWaterNetOutput OutputComp
+        {
+            get
+            {
+                return this.WaterNetBuilding.OutputComp;
+            }
+        }
+        protected CompWaterNetTank TankComp
+        {
+            get
+            {
+                return this.WaterNetBuilding.TankComp;
+            }
+        }
+
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look<bool>(ref this.lastIsActivated, "lastIsActivated");
+            Scribe_Values.Look<bool>(ref this.lastIsActivatedForWaterNet, "lastIsActivatedForWaterNet");
         }
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
 
-            this.lastIsActivated = this.IsActivated;
-            this.breakdownableComp = this.parent.GetComp<CompBreakdownable>();
-            this.powerComp = this.parent.GetComp<CompPowerTrader>();
+            this.lastIsActivatedForWaterNet = this.IsActivatedForWaterNet;
         }
 
         public override void CompTick()
         {
             base.CompTick();
 
-            if (this.lastIsActivated != this.IsActivated)
+            if (this.lastIsActivatedForWaterNet != this.IsActivatedForWaterNet)
             {
-                this.lastIsActivated = this.IsActivated;
+                this.lastIsActivatedForWaterNet = this.IsActivatedForWaterNet;
                 foreach (var vec in this.WaterNetBuilding.OccupiedRect().ExpandedBy(1))
                 {
                     this.WaterNetManager.map.mapDrawer.MapMeshDirty(vec, MapMeshFlag.Things);

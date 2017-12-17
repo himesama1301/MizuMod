@@ -42,21 +42,18 @@ namespace MizuMod
         public float OutputWaterFlow { get; private set; }
         public WaterType OutputWaterType { get; private set; }
 
-        private UndergroundWaterPool waterPool = null;
-        private CompWaterNetTank tankComp = null;
-
         private bool HasTank
         {
             get
             {
-                return tankComp != null;
+                return this.TankComp != null;
             }
         }
         private bool TankIsEmpty
         {
             get
             {
-                return !this.HasTank || tankComp.StoredWaterVolume <= 0.0f;
+                return !this.HasTank || this.TankComp.StoredWaterVolume <= 0.0f;
             }
         }
 
@@ -71,14 +68,8 @@ namespace MizuMod
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            this.OutputWaterType = WaterType.NoWater;
-            this.tankComp = this.parent.GetComp<CompWaterNetTank>();
 
-            var pump = this.parent as Building_UndergroundWaterPump;
-            if (pump != null)
-            {
-                this.waterPool = pump.WaterGrid.GetPool(this.WaterNetBuilding.Map.cellIndices.CellToIndex((this.WaterNetBuilding as Building).Position));
-            }
+            this.OutputWaterType = WaterType.NoWater;
         }
 
         public override void CompTick()
@@ -98,123 +89,92 @@ namespace MizuMod
                 return;
             }
 
-            // 出力水道網に、自分自身ではなく水道網から入力を受け付けていて、(タンクではない)or(タンクだが満タンではない)があるか探す
-            bool foundNotFullTank = false;
-            if (this.WaterNetBuilding.OutputWaterNet != null)
+            if (this.WaterNetBuilding.OutputWaterNet == null)
             {
-                foreach (var t in this.WaterNetBuilding.OutputWaterNet.Things)
-                {
-                    CompWaterNetTank tankComp = t.GetComp<CompWaterNetTank>();
-                    CompWaterNetInput inputComp = t.GetComp<CompWaterNetInput>();
-
-                    if (t == this.WaterNetBuilding)
-                    {
-                        continue;
-                    }
-                    if (inputComp == null || !inputComp.IsActivated || inputComp.InputType != CompProperties_WaterNetInput.InputType.WaterNet)
-                    {
-                        continue;
-                    }
-                    if (tankComp != null && tankComp.AmountCanAccept == 0.0f)
-                    {
-                        continue;
-                    }
-
-                    foundNotFullTank = true;
-                    break;
-                }
-            }
-
-            if (!this.HasTank)
-            {
-                CompWaterNetInput inputComp = this.WaterNetBuilding.GetComp<CompWaterNetInput>();
-                if (inputComp == null)
-                {
-                    if (foundNotFullTank)
-                    {
-                        // 貯蔵機能なし、入力なし、水道網の中に満タンでないタンクあり
-                        this.OutputWaterType = this.WaterNetBuilding.OutputWaterType;
-                        if (this.waterPool == null)
-                        {
-                            // 対応する地下水脈なし=地上ポンプ
-                            this.OutputWaterFlow = this.MaxOutputWaterFlow;
-                        }
-                        else if (this.waterPool.CurrentWaterVolume <= 0.0f)
-                        {
-                            // 地下水脈が空
-                            this.OutputWaterFlow = 0.0f;
-                        }
-                        else
-                        {
-                            // 地下水脈に水がある
-                            this.OutputWaterFlow = this.MaxOutputWaterFlow;
-                            this.waterPool.CurrentWaterVolume = Math.Max(this.waterPool.CurrentWaterVolume - this.MaxOutputWaterFlow / 60000.0f, 0.0f);
-                        }
-                    }
-                    else
-                    {
-                        // 貯蔵機能なし、入力なし、水道網の中に満タンでないタンクあり
-                        this.OutputWaterType = this.WaterNetBuilding.OutputWaterType;
-                        this.OutputWaterFlow = 0.0f;
-                    }
-                }
-                else
-                {
-                    // 貯蔵機能なし、入力あり=フィルター
-                    if (this.OutputWaterFlowType == CompProperties_WaterNetOutput.OutputWaterFlowType.Constant)
-                    {
-                        this.OutputWaterFlow = this.MaxOutputWaterFlow;
-                    }
-                    else
-                    {
-                        this.OutputWaterFlow = inputComp.InputWaterFlow;
-                    }
-                    if (this.OutputWaterFlow == 0.0f)
-                    {
-                        this.OutputWaterType = WaterType.NoWater;
-                    }
-                    else if (this.ForceOutputWaterType != WaterType.Undefined)
-                    {
-                        this.OutputWaterType = this.ForceOutputWaterType;
-                    }
-                    else
-                    {
-                        this.OutputWaterType = this.WaterNetBuilding.OutputWaterType;
-                    }
-                }
-                return;
-            }
-
-            if (this.TankIsEmpty)
-            {
-                // 貯蔵機能あり、中身なし
+                // 出力水道網なし
                 this.OutputWaterType = WaterType.NoWater;
                 this.OutputWaterFlow = 0f;
                 return;
             }
 
-            if (foundNotFullTank)
+            if (this.InputComp == null)
             {
-                CompWaterNetInput inputComp = this.WaterNetBuilding.GetComp<CompWaterNetInput>();
-                if (inputComp != null && inputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet && inputComp.InputWaterFlow > 0.0f)
+                // 入力機能なしで出力だけあるものは存在しない
+                this.OutputWaterType = WaterType.NoWater;
+                this.OutputWaterFlow = 0f;
+                return;
+            }
+
+            // 有効な出力先が1個でもあれば出力する
+            bool foundEffectiveInputter = false;
+            foreach (var t in this.WaterNetBuilding.OutputWaterNet.AllThings)
+            {
+                // 自分自身は除外
+                if (t == this.WaterNetBuilding) continue;
+
+                // 入力機能が無効、または水道網から入力しないタイプは無効
+                if (t.InputComp == null || !t.InputComp.IsActivated || t.InputComp.InputType != CompProperties_WaterNetInput.InputType.WaterNet) continue;
+
+                // 貯水機能を持っているが満タンである場合は無効
+                if (t.TankComp != null && t.TankComp.AmountCanAccept <= 0.0f) continue;
+
+                // 有効な出力先が見つかった
+                foundEffectiveInputter = true;
+                break;
+            }
+
+            if (!foundEffectiveInputter)
+            {
+                // 有効な出力先なし
+                this.OutputWaterType = WaterType.NoWater;
+                this.OutputWaterFlow = 0f;
+                return;
+            }
+
+            // 水源を決める
+            if (this.HasTank)
+            {
+                if (!this.TankIsEmpty && !this.InputComp.IsReceiving)
                 {
-                    // 貯蔵機能あり、中身あり、水道網の中に満タンでないタンクあり、水道網からの供給を受けている
-                    this.OutputWaterType = this.WaterNetBuilding.OutputWaterType;
-                    this.OutputWaterFlow = 0;
-                }
-                else
-                {
-                    // 貯蔵機能あり、中身あり、水道網の中に満タンでないタンクあり、水道網からの供給を受けていない
-                    this.OutputWaterType = tankComp.StoredWaterType;
+                    // タンクがあり、タンクの中身があり、水道網から供給を受けていない
+                    //   ⇒タンクが水源
+                    this.OutputWaterType = this.TankComp.StoredWaterType;
                     this.OutputWaterFlow = this.MaxOutputWaterFlow;
+                    return;
                 }
             }
             else
             {
-                // 貯蔵機能あり、中身あり、水道網の中に満タンでないタンクなし
-                this.OutputWaterType = this.WaterNetBuilding.OutputWaterType;
-                this.OutputWaterFlow = 0;
+                // タンクがない
+                //   ⇒水源は現在の入力
+
+                // 基本は入力されている水質をそのまま出力とする
+                // 出力の水質が強制されている場合はその水質にする
+                WaterType outWaterType = this.InputComp.InputWaterType;
+                if (this.ForceOutputWaterType != WaterType.Undefined) outWaterType = this.ForceOutputWaterType;
+                    
+                if (this.OutputWaterFlowType == CompProperties_WaterNetOutput.OutputWaterFlowType.Constant && this.InputComp.InputWaterFlow >= this.MaxOutputWaterFlow)
+                {
+                    // 定量出力タイプで、入力が出力量を超えている場合、機能する
+                    this.OutputWaterType = outWaterType;
+                    this.OutputWaterFlow = this.MaxOutputWaterFlow;
+                }
+                else if (this.OutputWaterFlowType == CompProperties_WaterNetOutput.OutputWaterFlowType.Any)
+                {
+                    // 任意出力タイプの場合、入力と同じ量だけ出力する
+                    this.OutputWaterType = outWaterType;
+                    this.OutputWaterFlow = this.InputComp.InputWaterFlow;
+                }
+
+                // 結果的に出力量が0の場合、水の種類をクリアする
+                if (this.OutputWaterFlow == 0.0f) this.OutputWaterType = WaterType.NoWater;
+
+                return;
             }
+
+            // 有効な水源無し
+            this.OutputWaterType = WaterType.NoWater;
+            this.OutputWaterFlow = 0;
         }
 
         public override string CompInspectStringExtra()

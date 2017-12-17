@@ -10,6 +10,7 @@ namespace MizuMod
     public abstract class Building_UndergroundWaterPump : Building_WaterNet, IBuilding_WaterNet
     {
         public abstract MapComponent_WaterGrid WaterGrid { get; }
+        private UndergroundWaterPool pool = null;
 
         public override WaterType OutputWaterType
         {
@@ -19,7 +20,13 @@ namespace MizuMod
             }
         }
 
-        private UndergroundWaterPool pool = null;
+        public override UndergroundWaterPool WaterPool
+        {
+            get
+            {
+                return this.pool;
+            }
+        }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {

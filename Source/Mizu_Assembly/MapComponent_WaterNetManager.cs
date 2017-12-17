@@ -56,7 +56,7 @@ namespace MizuMod
 
             foreach (var net in nets)
             {
-                foreach (var t in net.Things)
+                foreach (var t in net.AllThings)
                 {
                     if (!unNetQueue.Contains(t))
                     {
@@ -98,7 +98,7 @@ namespace MizuMod
                 }
                 foreach (var net in nets)
                 {
-                    foreach (var t in net.Things)
+                    foreach (var t in net.AllThings)
                     {
                         if (thing.IsOutputTo(t) && !outputNets.Contains(net))
                         {
@@ -131,7 +131,7 @@ namespace MizuMod
                 else if (connectNets.Count == 1)
                 {
                     // 1個=既存の水道網に加える
-                    if (!connectNets[0].Things.Contains(thing))
+                    if (!connectNets[0].AllThings.Contains(thing))
                     {
                         connectNets[0].AddThing(thing);
                     }
@@ -139,16 +139,16 @@ namespace MizuMod
                 else
                 {
                     // 2個以上=新しい物と、既存の水道網を全て最初の水道網に結合する
-                    if (!connectNets[0].Things.Contains(thing))
+                    if (!connectNets[0].AllThings.Contains(thing))
                     {
                         connectNets[0].AddThing(thing);
                     }
                     for (int i = 1; i < connectNets.Count; i++)
                     {
                         // 消滅する水道網に所属している物を全て移し替える
-                        foreach (var t in connectNets[i].Things)
+                        foreach (var t in connectNets[i].AllThings)
                         {
-                            if (!connectNets[0].Things.Contains(t))
+                            if (!connectNets[0].AllThings.Contains(t))
                             {
                                 connectNets[0].AddThing(t);
                             }
@@ -173,7 +173,7 @@ namespace MizuMod
                 }
                 foreach (var net in nets)
                 {
-                    foreach (var t in net.Things)
+                    foreach (var t in net.AllThings)
                     {
                         if (thing.IsOutputTo(t) && !outputNets.Contains(net))
                         {
@@ -196,7 +196,7 @@ namespace MizuMod
                 else if (inputNets.Count == 1)
                 {
                     // 1個=既存の水道網に加える
-                    if (!inputNets[0].Things.Contains(thing))
+                    if (!inputNets[0].AllThings.Contains(thing))
                     {
                         inputNets[0].AddInputThing(thing);
                     }
@@ -204,16 +204,16 @@ namespace MizuMod
                 else
                 {
                     // 2個以上=新しい物と、既存の水道網を全て最初の水道網に結合する
-                    if (!inputNets[0].Things.Contains(thing))
+                    if (!inputNets[0].AllThings.Contains(thing))
                     {
                         inputNets[0].AddInputThing(thing);
                     }
                     for (int i = 1; i<inputNets.Count; i++)
                     {
                         // 消滅する水道網に所属している物を全て移し替える
-                        foreach (var t in inputNets[i].Things)
+                        foreach (var t in inputNets[i].AllThings)
                         {
-                            if (!inputNets[0].Things.Contains(t))
+                            if (!inputNets[0].AllThings.Contains(t))
                             {
                                 inputNets[0].AddInputThing(t);
                             }
@@ -234,7 +234,7 @@ namespace MizuMod
                 else if (outputNets.Count == 1)
                 {
                     // 1個=既存の水道網に加える
-                    if (!outputNets[0].Things.Contains(thing))
+                    if (!outputNets[0].AllThings.Contains(thing))
                     {
                         outputNets[0].AddOutputThing(thing);
                     }
@@ -242,16 +242,16 @@ namespace MizuMod
                 else
                 {
                     // 2個以上=新しい物と、既存の水道網を全て最初の水道網に結合する
-                    if (!outputNets[0].Things.Contains(thing))
+                    if (!outputNets[0].AllThings.Contains(thing))
                     {
                         outputNets[0].AddOutputThing(thing);
                     }
                     for (int i = 1; i<outputNets.Count; i++)
                     {
                         // 消滅する水道網に所属している物を全て移し替える
-                        foreach (var t in outputNets[i].Things)
+                        foreach (var t in outputNets[i].AllThings)
                         {
-                            if (!outputNets[0].Things.Contains(t))
+                            if (!outputNets[0].AllThings.Contains(t))
                             {
                                 outputNets[0].AddOutputThing(t);
                             }
@@ -264,10 +264,10 @@ namespace MizuMod
 
             }
 
-            foreach (var net in nets)
-            {
-                net.UpdateWaterType();
-            }
+            //foreach (var net in nets)
+            //{
+            //    net.UpdateWaterType();
+            //}
         }
 
         public void AddThing(IBuilding_WaterNet thing)
@@ -316,26 +316,20 @@ namespace MizuMod
                 this.UpdateWaterNets();
             }
 
+            // 入力量と入力水質、水道網全体の水質を更新
             foreach (var net in nets)
             {
-                net.UpdateWaterFlow();
+                net.UpdateInputWaterFlow();
+            }
+            // タンクの水量とタンク内の水質を更新
+            foreach (var net in nets)
+            {
+                net.UpdateWaterTank();
             }
             //foreach (var net in nets)
             //{
-            //    net.UpdateOutputWaterFlow();
+            //    net.UpdateWaterType();
             //}
-            //foreach (var net in nets)
-            //{
-            //    net.UpdateInputWaterFlow();
-            //}
-            foreach (var net in nets)
-            {
-                net.UpdateWaterTankStorage();
-            }
-            foreach (var net in nets)
-            {
-                net.UpdateWaterType();
-            }
         }
     }
 }

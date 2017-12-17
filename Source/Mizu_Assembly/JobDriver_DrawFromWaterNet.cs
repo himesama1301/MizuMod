@@ -34,7 +34,7 @@ namespace MizuMod
         protected override Thing FinishAction()
         {
             // 水道網の水の種類から水アイテムの種類を決定
-            var waterThingDef = MizuUtility.GetWaterThingDefFromWaterType(this.waterNet.WaterType);
+            var waterThingDef = MizuUtility.GetWaterThingDefFromWaterType(this.waterNet.StoredWaterType);
             if (waterThingDef == null) return null;
 
             // 水道網から水を減らす

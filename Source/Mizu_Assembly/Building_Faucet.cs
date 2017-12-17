@@ -12,7 +12,6 @@ namespace MizuMod
     {
         public override void CreateConnectors()
         {
-            //this.Connectors.Clear();
             this.InputConnectors.Clear();
             this.OutputConnectors.Clear();
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Verse;
 
 namespace MizuMod
 {
@@ -44,29 +45,33 @@ namespace MizuMod
             }
         }
 
+        // 水道網から流し込まれる水量
+        // Maxを超えていることもある
         public float InputWaterFlow { get; set; }
+        public WaterType InputWaterType { get; set; }
 
-        private CompWaterNetTank tankComp = null;
         private bool HasTank
         {
             get
             {
-                return tankComp != null;
+                return this.TankComp != null;
             }
         }
-        private bool TankCanAccept
+        public bool IsReceiving
         {
             get
             {
-                return !this.HasTank || tankComp.AmountCanAccept > 0.0f;
+                // 水道網から入力するタイプで、現在の入力量が0ではない⇒入力中
+                return this.InputType == CompProperties_WaterNetInput.InputType.WaterNet && this.InputWaterFlow > 0f;
             }
         }
 
+        // 入力機能が働いているか
         public override bool IsActivated
         {
             get
             {
-                bool isOK = base.IsActivated && this.TankCanAccept;
+                bool isOK = base.IsActivated && this.IsActivatedForWaterNet && (!this.HasTank || this.TankComp.AmountCanAccept > 0.0f);
                 if (this.InputWaterFlowType == CompProperties_WaterNetInput.InputWaterFlowType.Constant)
                 {
                     isOK &= (this.InputWaterFlow >= this.MaxInputWaterFlow);
@@ -79,43 +84,8 @@ namespace MizuMod
         {
             base.PostSpawnSetup(respawningAfterLoad);
 
-            tankComp = this.parent.GetComp<CompWaterNetTank>();
+            this.InputWaterType = WaterType.NoWater;
         }
-
-        public override void CompTick()
-        {
-            base.CompTick();
-
-            //this.UpdateInputWaterStatus();
-        }
-
-        //public void UpdateInputWaterStatus()
-        //{
-        //    if (!this.IsActivated)
-        //    {
-        //        // 機能していない
-        //        this.InputWaterFlow = 0f;
-        //        return;
-        //    }
-
-        //    if (!this.HasTank)
-        //    {
-        //        // 貯蔵機能なし=フィルター
-        //        this.InputWaterFlow = this.MaxInputWaterFlow;
-        //        return;
-        //    }
-
-        //    if (!this.TankCanAccept)
-        //    {
-        //        // 貯蔵機能あり、受け入れ不可
-        //        this.InputWaterFlow = 0f;
-        //    }
-        //    else
-        //    {
-        //        // 貯蔵機能あり、受け入れ可
-        //        this.InputWaterFlow = this.MaxInputWaterFlow;
-        //    }
-        //}
 
         public override string CompInspectStringExtra()
         {
@@ -127,6 +97,10 @@ namespace MizuMod
                 stringBuilder.AppendLine();
             }
             stringBuilder.Append(MizuStrings.InspectWaterFlowInput + ": " + this.InputWaterFlow.ToString("F2") + " L/day");
+            if (DebugSettings.godMode)
+            {
+                stringBuilder.Append(string.Format("({0})", this.InputWaterType));
+            }
 
             return stringBuilder.ToString();
         }

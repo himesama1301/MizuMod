@@ -12,6 +12,8 @@ namespace MizuMod
             Undefined = 0,
             WaterNet,
             Rain,
+            WaterPool,
+            Terrain,
         }
 
         public enum InputWaterFlowType : byte

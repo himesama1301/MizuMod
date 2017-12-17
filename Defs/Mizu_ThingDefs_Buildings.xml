@@ -386,6 +386,10 @@
     <terrainAffordanceNeeded>Undefined</terrainAffordanceNeeded>
     <designationHotKey>Misc1</designationHotKey>
     <comps>
+      <li Class="MizuMod.CompProperties_WaterNetInput">
+        <maxInputWaterFlow>150</maxInputWaterFlow>
+        <inputType>Terrain</inputType>
+      </li>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
         <maxOutputWaterFlow>150</maxOutputWaterFlow>
       </li>
@@ -431,6 +435,10 @@
     <neverMultiSelect>true</neverMultiSelect>
     <designationHotKey>Misc1</designationHotKey>
     <comps>
+      <li Class="MizuMod.CompProperties_WaterNetInput">
+        <maxInputWaterFlow>150</maxInputWaterFlow>
+        <inputType>WaterPool</inputType>
+      </li>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
         <maxOutputWaterFlow>150</maxOutputWaterFlow>
       </li>
@@ -513,7 +521,9 @@
       <li Class="MizuMod.CompProperties_WaterNetTank">
         <maxWaterVolume>100</maxWaterVolume>
       </li>
-      <li Class="MizuMod.CompProperties_WaterNetInput"/>
+      <li Class="MizuMod.CompProperties_WaterNetInput">
+        <inputWaterFlowType>Any</inputWaterFlowType>
+      </li>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
         <maxOutputWaterFlow>150</maxOutputWaterFlow>
       </li>
@@ -561,7 +571,7 @@
     <designationHotKey>Misc1</designationHotKey>
     <comps>
       <li Class="CompProperties_Flickable">
-        <commandTexture>Things/Building/Production/Mizu_RainTank</commandTexture>
+        <commandTexture>Things/Building/Production/Mizu_RainTank_front</commandTexture>
         <commandLabelKey>MizuCommandDesignateDrainTankLabel</commandLabelKey>
         <commandDescKey>MizuCommandDesignateDrainTankDesc</commandDescKey>
       </li>
@@ -693,6 +703,7 @@
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetInput">
         <maxInputWaterFlow>15</maxInputWaterFlow>
+        <inputWaterFlowType>Any</inputWaterFlowType>
         <acceptWaterTypes>
           <li>RawWater</li>
           <li>MudWater</li>
@@ -701,6 +712,7 @@
       </li>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
         <maxOutputWaterFlow>15</maxOutputWaterFlow>
+        <outputWaterFlowType>Any</outputWaterFlowType>
         <forceOutputWaterType>NormalWater</forceOutputWaterType>
       </li>
       <li Class="CompProperties_Power">
@@ -731,12 +743,14 @@
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetInput">
         <maxInputWaterFlow>15</maxInputWaterFlow>
+        <inputWaterFlowType>Any</inputWaterFlowType>
         <acceptWaterTypes>
           <li>NormalWater</li>
         </acceptWaterTypes>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
         <maxOutputWaterFlow>15</maxOutputWaterFlow>
+        <outputWaterFlowType>Any</outputWaterFlowType>
         <forceOutputWaterType>ClearWater</forceOutputWaterType>
       </li>
       <li Class="CompProperties_Power">

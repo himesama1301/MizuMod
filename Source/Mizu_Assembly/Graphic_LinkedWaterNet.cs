@@ -25,7 +25,7 @@ namespace MizuMod
             bool foundWaterNetBase = false;
             foreach (var net in thing.WaterNetManager.Nets)
             {
-                foreach (var t in net.Things)
+                foreach (var t in net.AllThings)
                 {
                     if (thing.IsConnectedOr(t, true))
                     {

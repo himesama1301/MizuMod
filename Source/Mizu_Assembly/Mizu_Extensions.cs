@@ -289,5 +289,19 @@ namespace MizuMod
             return true;
         }
 
+        public static float GetUnroofedPercent(this IBuilding_WaterNet t)
+        {
+            int allCells = 0;
+            int unroofedCells = 0;
+            foreach (var c in t.OccupiedRect())
+            {
+                allCells++;
+                if (!c.Roofed(t.Map)) unroofedCells++;
+            }
+
+            if (allCells == 0) return 0f;
+
+            return (float)unroofedCells / allCells;
+        }
     }
 }

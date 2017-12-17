@@ -8,17 +8,16 @@ using Verse;
 
 namespace MizuMod
 {
+    // バルブの場合、スイッチON/OFF⇒バルブの開閉(水を通すかどうか)
     public class Building_Valve : Building_WaterNet, IBuilding_WaterNet
     {
-        private CompFlickable flickableComp;
-
         private bool lastSwitchIsOn = true;
 
         public override bool HasInputConnector
         {
             get
             {
-                return base.HasInputConnector && FlickUtility.WantsToBeOn(this);
+                return base.HasInputConnector && this.SwitchIsOn;
             }
         }
 
@@ -26,15 +25,15 @@ namespace MizuMod
         {
             get
             {
-                return base.HasOutputConnector && FlickUtility.WantsToBeOn(this);
+                return base.HasOutputConnector && this.SwitchIsOn;
             }
         }
 
-        public override bool IsActivated
+        public override bool IsActivatedForWaterNet
         {
             get
             {
-                return base.IsActivated && this.SwitchIsOn;
+                return base.IsActivatedForWaterNet && this.SwitchIsOn;
             }
         }
 
@@ -42,18 +41,10 @@ namespace MizuMod
         {
             get
             {
-                if (flickableComp == null)
-                {
-                    return base.Graphic;
-                }
+                if (this.flickableComp == null) return base.Graphic;
+
                 return this.flickableComp.CurrentGraphic;
             }
-        }
-
-        public override void SpawnSetup(Map map, bool respawningAfterLoad)
-        {
-            base.SpawnSetup(map, respawningAfterLoad);
-            this.flickableComp = base.GetComp<CompFlickable>();
         }
 
         public override void ExposeData()
@@ -66,9 +57,9 @@ namespace MizuMod
         {
             base.Tick();
 
-            if (lastSwitchIsOn != this.flickableComp.SwitchIsOn)
+            if (lastSwitchIsOn != this.SwitchIsOn)
             {
-                lastSwitchIsOn = this.flickableComp.SwitchIsOn;
+                lastSwitchIsOn = this.SwitchIsOn;
                 this.WaterNetManager.UpdateWaterNets();
             }
         }
@@ -77,7 +68,8 @@ namespace MizuMod
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(base.GetInspectString());
-            if (!FlickUtility.WantsToBeOn(this))
+
+            if (!this.SwitchIsOn)
             {
                 if (stringBuilder.Length > 0)
                 {

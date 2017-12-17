@@ -121,8 +121,10 @@ namespace MizuMod
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-
             compFlickable = this.parent.GetComp<CompFlickable>();
+
+            this.storedWaterVolume = 0.0f;
+            this.storedWaterType = WaterType.NoWater;
         }
 
         public float AddWaterVolume(float amount)
