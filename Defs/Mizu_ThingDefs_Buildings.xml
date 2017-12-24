@@ -252,9 +252,6 @@
       <drawSize>(1,1)</drawSize>
     </graphicData>
     <size>(1,1)</size>
-    <blueprintGraphicData>
-      <texPath>Things/Building/Production/Mizu_WaterPipe</texPath>
-    </blueprintGraphicData>
     <building>
       <isInert>true</isInert>
       <isEdifice>false</isEdifice>
