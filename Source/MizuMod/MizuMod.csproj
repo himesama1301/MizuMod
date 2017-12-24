@@ -75,6 +75,7 @@
     <Compile Include="CompWaterNet.cs" />
     <Compile Include="CompWaterNetTank.cs" />
     <Compile Include="DaysWorthOfWaterCalculator.cs" />
+    <Compile Include="DefExtension_NeedWater.cs" />
     <Compile Include="GenStep_UndergroundDeepWater.cs" />
     <Compile Include="GenStep_UndergroundShallowWater.cs" />
     <Compile Include="GenStep_UndergroundWater.cs" />

@@ -11,6 +11,8 @@ namespace MizuMod
 {
     public class Need_Water : Need
     {
+        private DefExtension_NeedWater ext;
+
         public int lastSearchWaterTick;
 
         public ThirstCategory CurCategory
@@ -49,7 +51,7 @@ namespace MizuMod
         {
             get
             {
-                return MizuDef.GlobalSettings.needWater.urgentlyThirstyBorder;
+                return this.ext.urgentlyThirstyBorder;
             }
         }
 
@@ -57,7 +59,7 @@ namespace MizuMod
         {
             get
             {
-                return MizuDef.GlobalSettings.needWater.thirstyBorder;
+                return this.ext.thirstyBorder;
             }
         }
 
@@ -65,7 +67,7 @@ namespace MizuMod
         {
             get
             {
-                return MizuDef.GlobalSettings.needWater.slightlyThirstyBorder;
+                return this.ext.slightlyThirstyBorder;
             }
         }
 
@@ -111,18 +113,12 @@ namespace MizuMod
 
         public Need_Water(Pawn pawn) : base(pawn)
         {
-            this.threshPercents = new List<float>();
-            this.threshPercents.Add(this.PercentageThreshUrgentlyThirsty);
-            this.threshPercents.Add(this.PercentageThreshThirsty);
-            this.threshPercents.Add(this.PercentageThreshSlightlyThirsty);
-
-            
             this.lastSearchWaterTick = Find.TickManager.TicksGame;
         }
 
         private float WaterFallPerTickAssumingCategory(ThirstCategory cat)
         {
-            float fallPerTickBase = MizuDef.GlobalSettings.needWater.fallPerTickBase + MizuDef.GlobalSettings.needWater.fallPerTickFromTempCurve.Evaluate(this.pawn.AmbientTemperature - this.pawn.ComfortableTemperatureRange().max);
+            float fallPerTickBase = this.ext.fallPerTickBase + this.ext.fallPerTickFromTempCurve.Evaluate(this.pawn.AmbientTemperature - this.pawn.ComfortableTemperatureRange().max);
             switch (cat)
             {
                 case ThirstCategory.Healthy:
@@ -145,6 +141,13 @@ namespace MizuMod
             base.ExposeData();
 
             Scribe_Values.Look<int>(ref this.lastSearchWaterTick, "lastSearchWaterTick");
+
+            this.ext = this.def.GetModExtension<DefExtension_NeedWater>();
+
+            this.threshPercents = new List<float>();
+            this.threshPercents.Add(this.PercentageThreshUrgentlyThirsty);
+            this.threshPercents.Add(this.PercentageThreshThirsty);
+            this.threshPercents.Add(this.PercentageThreshSlightlyThirsty);
         }
 
         public override void SetInitialLevel()
@@ -171,7 +174,7 @@ namespace MizuMod
             HealthUtility.AdjustSeverity(
                 this.pawn,
                 MizuDef.Hediff_Dehydration,
-                directionFactor * MizuDef.GlobalSettings.needWater.dehydrationSeverityPerDay / 150 * MizuDef.GlobalSettings.forDebug.needWaterReduceRate);
+                directionFactor * this.ext.dehydrationSeverityPerDay / 150 * MizuDef.GlobalSettings.forDebug.needWaterReduceRate);
         }
 
         public override string GetTipString()

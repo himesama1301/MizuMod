@@ -9,6 +9,23 @@
     <listPriority>700</listPriority>
     <major>true</major>
     <showForCaravanMembers>true</showForCaravanMembers>
+    
+    <modExtensions>
+      <li Class="MizuMod.DefExtension_NeedWater">
+        <fallPerTickBase>1.5E-05</fallPerTickBase>
+        <slightlyThirstyBorder>0.6</slightlyThirstyBorder>
+        <thirstyBorder>0.24</thirstyBorder>
+        <urgentlyThirstyBorder>0.12</urgentlyThirstyBorder>
+        <dehydrationSeverityPerDay>0.2</dehydrationSeverityPerDay>
+        <fallPerTickFromTempCurve>
+          <points>
+            <li>0, 0</li>
+            <li>100, 1.5E-05</li>
+          </points>
+        </fallPerTickFromTempCurve>
+      </li>
+    </modExtensions>
+    
   </NeedDef>
 
 </Defs>
