@@ -50,7 +50,7 @@ namespace MizuMod
             // 給仕者が与える相手を「予約可能＆到達可能」ではない→×
             if (!taker.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Deadly, 1, -1, null, forced)) return false;
 
-            if (MizuUtility.TryFindBestWaterSourceFor(taker, giver) == null)
+            if (MizuUtility.TryFindBestWaterSourceFor(taker, giver, true) == null)
             {
                 // 与えられる水があるか探したが見つからなかった
                 JobFailReason.Is(MizuStrings.JobFailReasonNoWater);
@@ -65,7 +65,7 @@ namespace MizuMod
             Pawn patient = target as Pawn;
 
             // 水を探す
-            Thing waterThing = MizuUtility.TryFindBestWaterSourceFor(getter, patient);
+            Thing waterThing = MizuUtility.TryFindBestWaterSourceFor(getter, patient, true);
             if (waterThing == null) return null;
 
             // 水を与えるジョブを発行

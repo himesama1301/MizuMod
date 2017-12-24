@@ -157,7 +157,7 @@
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
         <drinkThought>Mizu_DrankSeaWater</drinkThought>
         <drinkHediff>Mizu_DrankSeaWater</drinkHediff>
-        <foodPoisonChance>0.02</foodPoisonChance>
+        <foodPoisonChance>0.03</foodPoisonChance>
       </li>
       <li Class="CompProperties_Rottable">
         <daysToRotStart>4</daysToRotStart>

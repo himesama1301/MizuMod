@@ -68,7 +68,7 @@ namespace MizuMod
                     //}
 
                     return true;
-                }, (x) => MizuUtility.GetWaterItemScore(pawn, x, 0f, false)  // スコアの高いものが優先？
+                }, (x) => MizuUtility.GetWaterItemScore(pawn, x, 0f, true)  // スコアの高いものが優先？
             );
 
             if (waterThing == null) return null;

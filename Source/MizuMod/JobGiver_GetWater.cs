@@ -34,7 +34,7 @@ namespace MizuMod
             need_water.lastSearchWaterTick = Find.TickManager.TicksGame;
 
             // 水アイテムを探す
-            Thing thing = MizuUtility.TryFindBestWaterSourceFor(pawn, pawn, true, false, false);
+            Thing thing = MizuUtility.TryFindBestWaterSourceFor(pawn, pawn, false);
             if (thing != null)
             {
                 // 水アイテムが見つかった
