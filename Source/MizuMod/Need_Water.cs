@@ -11,7 +11,19 @@ namespace MizuMod
 {
     public class Need_Water : Need
     {
-        private DefExtension_NeedWater ext;
+        private DefExtension_NeedWater extInt;
+
+        private DefExtension_NeedWater ext
+        {
+            get
+            {
+                if (this.extInt == null)
+                {
+                    this.extInt = this.def.GetModExtension<DefExtension_NeedWater>();
+                }
+                return this.extInt;
+            }
+        }
 
         public int lastSearchWaterTick;
 
@@ -141,18 +153,26 @@ namespace MizuMod
             base.ExposeData();
 
             Scribe_Values.Look<int>(ref this.lastSearchWaterTick, "lastSearchWaterTick");
-
-            this.ext = this.def.GetModExtension<DefExtension_NeedWater>();
-
-            this.threshPercents = new List<float>();
-            this.threshPercents.Add(this.PercentageThreshUrgentlyThirsty);
-            this.threshPercents.Add(this.PercentageThreshThirsty);
-            this.threshPercents.Add(this.PercentageThreshSlightlyThirsty);
         }
 
         public override void SetInitialLevel()
         {
             this.CurLevel = Rand.Range(0.5f, 0.8f);
+        }
+
+        public override void DrawOnGUI(Rect rect, int maxThresholdMarkers = int.MaxValue, float customMargin = -1F, bool drawArrows = true, bool doTooltip = true)
+        {
+            if (this.threshPercents == null)
+            {
+                this.threshPercents = new List<float>()
+                {
+                    this.PercentageThreshUrgentlyThirsty,
+                    this.PercentageThreshThirsty,
+                    this.PercentageThreshSlightlyThirsty,
+                };
+            }
+
+            base.DrawOnGUI(rect, maxThresholdMarkers, customMargin, drawArrows, doTooltip);
         }
 
         public override void NeedInterval()
