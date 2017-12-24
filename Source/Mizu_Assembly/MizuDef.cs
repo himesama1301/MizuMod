@@ -40,5 +40,19 @@ namespace MizuMod
         public static ThingDef Thing_SeaWater = DefDatabase<ThingDef>.GetNamed("Mizu_SeaWater");
 
         public static ThingCategoryDef ThingCategory_Waters = DefDatabase<ThingCategoryDef>.GetNamed("Mizu_Waters");
-    }
+
+        public static List<ThingDef> List_WaterItem;
+
+        static MizuDef()
+        {
+            List_WaterItem = new List<ThingDef>()
+            {
+                Thing_ClearWater,
+                Thing_NormalWater,
+                Thing_RawWater,
+                Thing_MudWater,
+                Thing_SeaWater,
+            };
+        }
+}
 }
