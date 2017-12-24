@@ -11,12 +11,6 @@ namespace MizuMod
 {
     public class Need_Water : Need
     {
-        public static readonly SimpleCurve NeedWaterFallTickFromTemperatureCurve = new SimpleCurve
-        {
-            { new CurvePoint(30f, 0f), true },
-            { new CurvePoint(130f, 1.33E-05f), true },
-        };
-
         public int lastSearchWaterTick;
 
         public ThirstCategory CurCategory
@@ -122,12 +116,13 @@ namespace MizuMod
             this.threshPercents.Add(this.PercentageThreshThirsty);
             this.threshPercents.Add(this.PercentageThreshSlightlyThirsty);
 
+            
             this.lastSearchWaterTick = Find.TickManager.TicksGame;
         }
 
         private float WaterFallPerTickAssumingCategory(ThirstCategory cat)
         {
-            float fallPerTickBase = MizuDef.GlobalSettings.needWater.fallPerTickBase + MizuDef.GlobalSettings.needWater.fallPerTickFromTempCurve.Evaluate(this.pawn.AmbientTemperature);
+            float fallPerTickBase = MizuDef.GlobalSettings.needWater.fallPerTickBase + MizuDef.GlobalSettings.needWater.fallPerTickFromTempCurve.Evaluate(this.pawn.AmbientTemperature - this.pawn.ComfortableTemperatureRange().max);
             switch (cat)
             {
                 case ThirstCategory.Healthy:
