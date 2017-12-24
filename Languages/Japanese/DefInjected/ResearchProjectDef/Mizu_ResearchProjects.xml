@@ -8,7 +8,7 @@
   <Mizu_Waterworks.description>水道網を構築するための水道管、バルブ、蛇口、貯水タンク、いくつかの汲み上げポンプが作れるようになります。</Mizu_Waterworks.description>
 
   <Mizu_CleanWater.label>浄水器</Mizu_CleanWater.label>
-  <Mizu_CleanWater.description>燃料式の浄水器が作れるようになります。</Mizu_CleanWater.description>
+  <Mizu_CleanWater.description>浄水器が作れるようになります。</Mizu_CleanWater.description>
 
   <Mizu_DeepUndergroundWater.label>深層地下水脈</Mizu_DeepUndergroundWater.label>
   <Mizu_DeepUndergroundWater.description>深層地下水脈から水を汲み出すためのポンプが作れるようになります。</Mizu_DeepUndergroundWater.description>
