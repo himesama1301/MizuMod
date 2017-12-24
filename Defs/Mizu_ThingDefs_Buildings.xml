@@ -56,13 +56,7 @@
     </placeWorkers>
     <recipes>
       <li>Mizu_DrawWater</li>
-      <li>Mizu_DrawRawWater</li>
-      <li>Mizu_DrawMudWater</li>
-      <li>Mizu_DrawSeaWater</li>
       <li>Mizu_DrawWaterMulti</li>
-      <li>Mizu_DrawRawWaterMulti</li>
-      <li>Mizu_DrawMudWaterMulti</li>
-      <li>Mizu_DrawSeaWaterMulti</li>
     </recipes>
     <designationHotKey>Misc1</designationHotKey>
   </ThingDef>
@@ -106,8 +100,8 @@
       <li Class="CompProperties_Forbiddable"/>
     </comps>
     <recipes>
-      <li>Mizu_DrawRawWaterFromWaterPool</li>
-      <li>Mizu_DrawRawWaterFromWaterPoolMulti</li>
+      <li>Mizu_DrawWaterFromWaterPool</li>
+      <li>Mizu_DrawWaterFromWaterPoolMulti</li>
     </recipes>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_UndergroundShallowWater</li>
@@ -593,8 +587,8 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
     <recipes>
-      <li>Mizu_DrawRawWaterFromWaterNet</li>
-      <li>Mizu_DrawRawWaterFromWaterNetMulti</li>
+      <li>Mizu_DrawWaterFromWaterNet</li>
+      <li>Mizu_DrawWaterFromWaterNetMulti</li>
     </recipes>
     <designationHotKey>Misc12</designationHotKey>
   </ThingDef>
@@ -640,17 +634,7 @@
     </comps>
     <recipes>
       <li>Mizu_DrawWaterFromWaterNet</li>
-      <li>Mizu_DrawClearWaterFromWaterNet</li>
-      <li>Mizu_DrawNormalWaterFromWaterNet</li>
-      <li>Mizu_DrawRawWaterFromWaterNet</li>
-      <li>Mizu_DrawMudWaterFromWaterNet</li>
-      <li>Mizu_DrawSeaWaterFromWaterNet</li>
       <li>Mizu_DrawWaterFromWaterNetMulti</li>
-      <li>Mizu_DrawClearWaterFromWaterNetMulti</li>
-      <li>Mizu_DrawNormalWaterFromWaterNetMulti</li>
-      <li>Mizu_DrawRawWaterFromWaterNetMulti</li>
-      <li>Mizu_DrawMudWaterFromWaterNetMulti</li>
-      <li>Mizu_DrawSeaWaterFromWaterNetMulti</li>
     </recipes>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_Faucet</li>
