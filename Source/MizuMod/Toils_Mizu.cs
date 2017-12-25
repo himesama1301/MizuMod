@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using UnityEngine;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -419,8 +420,15 @@ namespace MizuMod
 
                 if (actor.needs.mood != null)
                 {
-                    // 地面から直接飲んだ
-                    actor.needs.mood.thoughts.memories.TryGainMemory(MizuDef.Thought_DrankWaterDirectly);
+                    // 直接飲んだ
+                    if (actor.CanManipulate())
+                    {
+                        actor.needs.mood.thoughts.memories.TryGainMemory(MizuDef.Thought_DrankScoopedWater);
+                    }
+                    else
+                    {
+                        actor.needs.mood.thoughts.memories.TryGainMemory(MizuDef.Thought_SippedWaterLikeBeast);
+                    }
 
                     ThoughtDef thoughtDef = MizuUtility.GetThoughtDefFromTerrainType(drankTerrainType);
                     if (thoughtDef != null)
@@ -516,6 +524,105 @@ namespace MizuMod
             };
             toil.defaultCompleteMode = ToilCompleteMode.Instant;
 
+            return toil;
+        }
+
+        public static Toil DrinkFromBuilding(TargetIndex buildingIndex)
+        {
+            int initialTicks = 1;
+
+            Toil toil = new Toil();
+            toil.initAction = delegate
+            {
+                var actor = toil.actor;
+                var thing = actor.CurJob.GetTarget(buildingIndex).Thing;
+                var building = thing as IBuilding_DrinkWater;
+                if (actor.needs == null || actor.needs.water() == null || building == null)
+                {
+                    actor.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    return;
+                }
+
+                // 向きを変更
+                actor.rotationTracker.FaceCell(actor.Position);
+
+                // 作業量
+                actor.jobs.curDriver.ticksLeftThisToil = (int)(building.DrinkWorkAmount * actor.needs.water().WaterWanted);
+                initialTicks = actor.jobs.curDriver.ticksLeftThisToil;
+
+                // 心情、健康変化
+                // 後で書く
+                if (actor.needs.mood != null)
+                {
+                    // 水分摂取による心情変化
+                    foreach (var thoughtDef in MizuUtility.ThoughtsFromGettingWater(actor, thing))
+                    {
+                        actor.needs.mood.thoughts.memories.TryGainMemory(thoughtDef);
+                    }
+                }
+
+                // 設備から飲んだ水に相当するアイテム
+                var def = MizuUtility.GetWaterThingDefFromWaterPreferability(thing.GetWaterPreferability());
+                var compprop = def.GetCompProperties<CompProperties_Water>();
+                if (compprop == null) return;
+
+                // 指定された健康状態になる
+                // この条件式はリファクタで直したい
+                if (compprop.drinkHediff != null)
+                {
+                    actor.health.AddHediff(HediffMaker.MakeHediff(compprop.drinkHediff, actor));
+                }
+                // 確率で食中毒
+                // リファクタ時にうまく直したい
+                if (Rand.Value < compprop.foodPoisonChance)
+                {
+                    FoodUtility.AddFoodPoisoningHediff(actor, thing);
+                }
+            };
+            toil.tickAction = delegate
+            {
+                toil.actor.GainComfortFromCellIfPossible();
+                var need_water = toil.actor.needs.water();
+                var building = toil.actor.CurJob.GetTarget(buildingIndex).Thing as IBuilding_DrinkWater;
+
+                if (building.IsEmpty)
+                {
+                    toil.actor.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    return;
+                }
+
+                // 徐々に飲む
+                float riseNeedWater = 1 / (float)building.DrinkWorkAmount;
+                need_water.CurLevel = Mathf.Min(need_water.CurLevel + riseNeedWater, need_water.MaxLevel);
+                building.DrawWater(riseNeedWater * Need_Water.NeedWaterVolumePerDay);
+            };
+            toil.WithProgressBar(buildingIndex, delegate
+            {
+                return 1f - (float)toil.actor.jobs.curDriver.ticksLeftThisToil / initialTicks;
+            }, false, -0.5f);
+            toil.defaultCompleteMode = ToilCompleteMode.Delay;
+            toil.FailOn((t) =>
+            {
+                Pawn actor = toil.actor;
+                var target = actor.CurJob.GetTarget(buildingIndex);
+
+                if (target.Thing.def.hasInteractionCell)
+                {
+                    // 使用場所があるなら使用場所基準
+                    return target.Thing.InteractionCell.IsForbidden(actor) || !actor.CanReach(target.Thing.InteractionCell, PathEndMode.OnCell, Danger.Deadly);
+                }
+                else
+                {
+                    // 使用場所がないなら設備の場所基準
+                    return target.Thing.Position.IsForbidden(actor) || !actor.CanReach(target.Thing.Position, PathEndMode.ClosestTouch, Danger.Deadly);
+                }
+            });
+
+            // エフェクト追加
+            toil.PlaySustainerOrSound(delegate
+            {
+                return DefDatabase<SoundDef>.GetNamed("Ingest_Beer");
+            });
             return toil;
         }
     }

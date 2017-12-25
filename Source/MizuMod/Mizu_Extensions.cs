@@ -40,8 +40,13 @@ namespace MizuMod
 
         public static WaterPreferability GetWaterPreferability(this Thing t)
         {
-            CompWater comp = t.TryGetComp<CompWater>();
-            return (comp != null) ? comp.WaterPreferability : WaterPreferability.Undefined;
+            var comp = t.TryGetComp<CompWater>();
+            if (comp != null) return comp.WaterPreferability;
+
+            var building = t as IBuilding_DrinkWater;
+            if (building != null) return building.WaterPreferability;
+
+            return WaterPreferability.Undefined;
         }
 
         public static Need_Water water(this Pawn_NeedsTracker needs)
@@ -302,6 +307,25 @@ namespace MizuMod
             if (allCells == 0) return 0f;
 
             return (float)unroofedCells / allCells;
+        }
+
+        public static WaterPreferability ToWaterPreferability(this WaterType waterType)
+        {
+            switch (waterType)
+            {
+                case WaterType.ClearWater:
+                    return WaterPreferability.ClearWater;
+                case WaterType.NormalWater:
+                    return WaterPreferability.NormalWater;
+                case WaterType.RawWater:
+                    return WaterPreferability.RawWater;
+                case WaterType.MudWater:
+                    return WaterPreferability.MudWater;
+                case WaterType.SeaWater:
+                    return WaterPreferability.SeaWater;
+                default:
+                    return WaterPreferability.Undefined;
+            }
         }
     }
 }

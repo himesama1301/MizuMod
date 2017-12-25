@@ -2,6 +2,7 @@
 <LanguageData>
 
   <Mizu_DrinkWater.reportString>TargetAを飲んでいる</Mizu_DrinkWater.reportString>
+  <Mizu_DrinkWaterFromBuilding.reportString>TargetAから水を飲んでいる</Mizu_DrinkWaterFromBuilding.reportString>
   <Mizu_FeedWaterPatient.reportString>TargetBにTargetAを飲ませている</Mizu_FeedWaterPatient.reportString>
   <Mizu_DeliverWater.reportString>TargetBにTargetAを与えている</Mizu_DeliverWater.reportString>
   <Mizu_DrawFromTerrain.reportString>TargetAで 作業している</Mizu_DrawFromTerrain.reportString>

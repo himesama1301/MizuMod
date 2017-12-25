@@ -61,8 +61,15 @@ namespace MizuMod
                 // 心情要求がなければここで終了
                 if (pawn.needs.mood == null) return;
 
-                // 地形から水を飲んだ心情付加
-                pawn.needs.mood.thoughts.memories.TryGainMemory(MizuDef.Thought_DrankWaterDirectly);
+                // 直接水を飲んだ心情付加
+                if (pawn.CanManipulate())
+                {
+                    pawn.needs.mood.thoughts.memories.TryGainMemory(MizuDef.Thought_DrankScoopedWater);
+                }
+                else
+                {
+                    pawn.needs.mood.thoughts.memories.TryGainMemory(MizuDef.Thought_SippedWaterLikeBeast);
+                }
 
                 // キャラバンのいる地形に応じた心情を付加
                 ThoughtDef thoughtDef = MizuUtility.GetThoughtDefFromTerrainType(drankTerrainType);

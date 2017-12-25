@@ -12,7 +12,11 @@ namespace MizuMod
 {
     public static class MizuUtility
     {
-        public static Thing TryFindBestWaterSourceFor(Pawn getter, Pawn eater, bool priorQuality, bool canUseInventory = true, bool allowForbidden = false, bool allowSociallyImproper = false)
+        private static List<ThoughtDef> thoughtList = new List<ThoughtDef>();
+
+        public const float SearchWaterRadiusForWildAnimal = 30f;
+
+        public static Thing TryFindBestWaterSourceFor(Pawn getter, Pawn eater, bool priorQuality, bool allowBuilding, bool canUseInventory = true, bool allowForbidden = false, bool allowSociallyImproper = false)
         {
             // ドラッグ嫌いではない
             //    →ドラッグを許可
@@ -39,7 +43,18 @@ namespace MizuMod
 
             // プレイヤー＆所持品の水は新鮮
             //   →マップからも探す
-            Thing mapThing = MizuUtility.BestWaterSourceOnMap(getter, eater, priorQuality, WaterPreferability.ClearWater, allowDrug, allowForbidden, allowSociallyImproper);
+            Thing mapThing = MizuUtility.BestWaterSourceOnMap(getter, eater, priorQuality, allowBuilding, WaterPreferability.ClearWater, allowDrug, allowForbidden, allowSociallyImproper);
+
+            if (eater.RaceProps.Animal && eater.Faction != Faction.OfPlayer)
+            {
+                // 野生の動物の場合、探したものが一定の距離以上であれば選択肢から除外
+                // １個しかない水飲み場に全動物が集まるのを防ぐ
+                if (mapThing != null && (eater.Position - mapThing.Position).LengthManhattan >= MizuUtility.SearchWaterRadiusForWildAnimal)
+                {
+                    mapThing = null;
+                }
+            }
+
             if (inventoryThing == null && mapThing == null)
             {
                 // 所持品にまともな水なし、マップからいかなる水も見つけられない
@@ -99,7 +114,7 @@ namespace MizuMod
             return null;
         }
 
-        public static Thing BestWaterSourceOnMap(Pawn getter, Pawn eater, bool priorQuality, WaterPreferability maxPref = WaterPreferability.ClearWater, bool allowDrug = false, bool allowForbidden = false, bool allowSociallyImproper = false)
+        public static Thing BestWaterSourceOnMap(Pawn getter, Pawn eater, bool priorQuality, bool allowBuilding, WaterPreferability maxPref = WaterPreferability.ClearWater, bool allowDrug = false, bool allowForbidden = false, bool allowSociallyImproper = false)
         {
             if (!getter.CanManipulate() && getter != eater)
             {
@@ -126,27 +141,76 @@ namespace MizuMod
                 // ドラッグ禁止＆対象はドラッグ
                 if (!allowDrug && t.def.IsDrug) return false;
 
-                // 水分を持っていない(摂取しても水分を得られない)
-                if (!t.CanGetWater()) return false;
-
-                WaterPreferability waterPreferability = t.GetWaterPreferability();
-
-                // 水の品質が範囲外
-                if (waterPreferability < WaterPreferability.SeaWater || waterPreferability > maxPref) return false;
-
-                // 現在飲める状態には無い
-                if (!t.CanDrinkWaterNow()) return false;
-
-                // 入植者は囚人部屋のアイテムを扱えないことがあるが、そのことに関するチェックでダメならfalse
-                if (!MizuUtility.IsWaterSourceOnMapSociallyProper(t, getter, eater, allowSociallyImproper)) return false;
-
-                // 取得者がそれに気づいていない
-                if (!getter.AnimalAwareOf(t)) return false;
-
                 // 取得者が予約できない
                 if (!getter.CanReserve(t)) return false;
 
-                return true;
+                if (t.CanGetWater())
+                {
+                    // 水分を持っている=水アイテムである
+                    WaterPreferability waterPreferability = t.GetWaterPreferability();
+
+                    // 水の品質が範囲外
+                    if (waterPreferability < WaterPreferability.SeaWater || waterPreferability > maxPref) return false;
+
+                    // 現在飲める状態には無い
+                    if (!t.CanDrinkWaterNow()) return false;
+
+                    // 入植者は囚人部屋のアイテムを扱えないことがあるが、そのことに関するチェックでダメならfalse
+                    if (!MizuUtility.IsWaterSourceOnMapSociallyProper(t, getter, eater, allowSociallyImproper)) return false;
+
+                    // 取得者がそれに気づいていない
+                    if (!getter.AnimalAwareOf(t)) return false;
+
+                    return true;
+                }
+                else if (t is IBuilding_DrinkWater)
+                {
+                    // 水汲みに使える設備である
+                    var drinkWaterBuilding = t as IBuilding_DrinkWater;
+
+                    // 水を飲む人が飲めない(能力が無い、水の量がない)
+                    if (!drinkWaterBuilding.CanDrinkFor(eater)) return false;
+
+                    // 最大水質を超えていたらダメ
+                    if (drinkWaterBuilding.WaterPreferability > maxPref) return false;
+
+                    // 野生人?(派閥所属なし?)はダメ
+                    if (eater.IsWildMan()) return false;
+
+                    // 自陣営or自陣営のホストの設備でなければダメ
+                    if (t.Faction != eater.Faction && t.Faction != eater.HostFaction) return false;
+
+                    // 使えない状態はダメ
+                    if (!drinkWaterBuilding.IsActivated) return false;
+
+                    // 入植者は囚人部屋のアイテムを扱えないことがあるが、そのことに関するチェックでダメならfalse
+                    if (!MizuUtility.IsWaterSourceOnMapSociallyProper(t, getter, eater, allowSociallyImproper)) return false;
+
+                    if (t.def.hasInteractionCell == true)
+                    {
+                        // 使用場所がある
+                        if (!t.InteractionCell.Standable(t.Map) || !eater.Map.reachability.CanReachNonLocal(getter.Position, new TargetInfo(t.InteractionCell, t.Map, false), PathEndMode.OnCell, TraverseParms.For(getter, Danger.Some, TraverseMode.ByPawn, false)))
+                        {
+                            // 使用場所に立てない or 使用場所まで行けない
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        // 使用場所が無い
+                        if (!getter.Map.reachability.CanReachNonLocal(getter.Position, new TargetInfo(t.Position, t.Map, false), PathEndMode.ClosestTouch, TraverseParms.For(getter, Danger.Some, TraverseMode.ByPawn, false)))
+                        {
+                            // その設備にタッチできない
+                            return false;
+                        }
+                    }
+
+                    return true;
+                }
+
+                // それ以外
+                return false;
+
             };
 
             if (getter.RaceProps.Humanlike)
@@ -156,7 +220,14 @@ namespace MizuMod
                 return MizuUtility.SpawnedWaterSearchInnerScan(
                     eater,
                     getter.Position,
-                    getter.Map.listerThings.ThingsInGroup(ThingRequestGroup.Everything).FindAll((t) => t.CanDrinkWaterNow()),
+                    getter.Map.listerThings.ThingsInGroup(ThingRequestGroup.Everything).FindAll((t) => {
+                        if (t.CanDrinkWaterNow()) return true;
+
+                        var building = t as IBuilding_DrinkWater;
+                        if (building != null && building.CanDrinkFor(eater)) return true;
+
+                        return false;
+                    }),
                     PathEndMode.ClosestTouch,
                     TraverseParms.For(getter),
                     priorQuality,
@@ -166,7 +237,7 @@ namespace MizuMod
 
             // 取得者はHumanlikeではない
 
-            // プレイヤー派閥に所属しているかどうかでリージョン数を変える
+            // プレイヤー派閥に所属しているかどうかでリージョン?数を変える
             int searchRegionsMax = 30;
             if (getter.Faction == Faction.OfPlayer)
             {
@@ -193,13 +264,23 @@ namespace MizuMod
 
             Predicate<Thing> predicate = (t) =>
             {
-                return waterValidator(t) // アイテムが条件を満たしている
-                    && !filtered.Contains(t)  // すぐ近くで他の動物が飲んでいる水のリストに入っていない
-                    && t.GetWaterPreferability() >= WaterPreferability.SeaWater; // 水の品質が最低値より上
+                // アイテムが条件を満たしていない
+                if (!waterValidator(t)) return false;
+
+                // すぐ近くで他の動物が飲んでいる水のリストに入っていない
+                if (filtered.Contains(t)) return false;
+
+                // 水の品質が最低値未満
+                if (t.GetWaterPreferability() < WaterPreferability.SeaWater) return false;
+
+                return true;
             };
 
             // 指定の条件下でアクセスできるものを探す
-            Thing thing = GenClosest.ClosestThingReachable(
+            Thing thing = null;
+
+            // 水アイテムから
+            thing = GenClosest.ClosestThingReachable(
                 getter.Position,
                 getter.Map,
                 ThingRequest.ForGroup(ThingRequestGroup.HaulableEver),
@@ -213,12 +294,28 @@ namespace MizuMod
                 false,
                 RegionType.Set_Passable,
                 ignoreEntirelyForbiddenRegions);
+            if (thing != null) return thing;
 
-            // 物が見つかった
+            // 水汲み設備
+            thing = GenClosest.ClosestThingReachable(
+                getter.Position,
+                getter.Map,
+                ThingRequest.ForGroup(ThingRequestGroup.HaulableEver),
+                PathEndMode.ClosestTouch,
+                TraverseParms.For(getter),
+                9999f,
+                predicate,
+                null,
+                0,
+                searchRegionsMax,
+                false,
+                RegionType.Set_Passable,
+                ignoreEntirelyForbiddenRegions);
             if (thing != null) return thing;
 
             // 条件を変えて再探索
-            return GenClosest.ClosestThingReachable(
+            // 水アイテム
+            thing = GenClosest.ClosestThingReachable(
                 getter.Position,
                 getter.Map,
                 ThingRequest.ForGroup(ThingRequestGroup.HaulableEver),
@@ -232,6 +329,26 @@ namespace MizuMod
                 false,
                 RegionType.Set_Passable,
                 ignoreEntirelyForbiddenRegions);
+            if (thing != null) return thing;
+
+            // 水汲み設備
+            thing = GenClosest.ClosestThingReachable(
+                getter.Position,
+                getter.Map,
+                ThingRequest.ForGroup(ThingRequestGroup.HaulableEver),
+                PathEndMode.ClosestTouch,
+                TraverseParms.For(getter),
+                9999f,
+                waterValidator,  // ここが変わった
+                null,
+                0,
+                searchRegionsMax,
+                false,
+                RegionType.Set_Passable,
+                ignoreEntirelyForbiddenRegions);
+            if (thing != null) return thing;
+
+            return null;
         }
 
         private static bool IsWaterSourceOnMapSociallyProper(Thing t, Pawn getter, Pawn eater, bool allowSociallyImproper)
@@ -284,10 +401,23 @@ namespace MizuMod
 
         public static float GetWaterItemScore(Pawn eater, Thing t, float dist, bool priorQuality)
         {
-            // 水ではない、もしくは水だけど水の種類データが未設定
-            //   →最低スコア
+            CompProperties_Water compprop = null;
             var comp = t.TryGetComp<CompWater>();
-            if (comp == null || comp.WaterPreferability == WaterPreferability.Undefined) return float.MinValue;
+            if (comp == null)
+            {
+                var building = t as IBuilding_DrinkWater;
+                if (building != null)
+                {
+                    compprop = MizuUtility.GetWaterThingDefFromWaterPreferability(building.WaterPreferability).GetCompProperties<CompProperties_Water>();
+                }
+            }
+            else
+            {
+                compprop = comp.Props;
+            }
+
+            // 水として飲むことができない
+            if (compprop == null || compprop.waterPreferability == WaterPreferability.Undefined) return float.MinValue;
 
             // 基本点計算
 
@@ -302,7 +432,12 @@ namespace MizuMod
             //   泥水  =  -6
             //   海水  =  -6
             float thoughtScore = 0f;
-            if (comp.DrinkThought != null) thoughtScore += comp.DrinkThought.stages[0].baseMoodEffect;
+
+            // 禁欲の影響も含まれている
+            foreach (var thought in MizuUtility.ThoughtsFromGettingWater(eater, t))
+            {
+                thoughtScore += thought.stages[0].baseMoodEffect;
+            }
 
             // 食中毒
             // メモ
@@ -311,11 +446,11 @@ namespace MizuMod
             //   生水  = 0.01 => -10
             //   泥水  = 0.03 => -30
             //   海水  = 0.03 => -30
-            float foodPoisoningScore = -(comp.FoodPoisonChance * 1000f);
+            float foodPoisoningScore = -(compprop.foodPoisonChance * 1000f);
 
             // 健康悪化
             float hediffScore = 0f;
-            if (comp.DrinkHediff != null) hediffScore -= 100f;
+            if (compprop.drinkHediff != null) hediffScore -= 100f;
 
             // 腐敗進行度
             float rotScore = 0f;
@@ -330,10 +465,6 @@ namespace MizuMod
             //   海水  =  -6,   -30,-100,-136(-130)
 
             // 各種状態によるスコアの変化
-
-            // 禁欲
-            // 心情変化量による差分なし
-            if (eater.story.traits.HasTrait(TraitDefOf.Ascetic)) thoughtScore = 0f;
 
             // 水質優先モードか否か
             if (priorQuality) distScore /= 10f;
@@ -415,19 +546,48 @@ namespace MizuMod
         public static List<ThoughtDef> ThoughtsFromGettingWater(Pawn getter, Thing t)
         {
             // 空のリスト
-            List<ThoughtDef> thoughtList = new List<ThoughtDef>();
+            thoughtList.Clear();
 
             // 心情ステータスの無いポーンには空のリストを返す
             if (getter.needs == null || getter.needs.mood == null) return thoughtList;
 
-            // アイテムが水でないなら空のリストを返す
-            CompWater comp = t.TryGetComp<CompWater>();
-            if (comp == null) return thoughtList;
+            var comp = t.TryGetComp<CompWater>();
+            var building = t as IBuilding_DrinkWater;
 
-            // 禁欲主義ではない＆飲んだ時の心情が設定されていたら、それを与える
-            if (!getter.story.traits.HasTrait(TraitDefOf.Ascetic) && comp.DrinkThought != null)
+            // 禁欲主義ではない
+            if (!getter.story.traits.HasTrait(TraitDefOf.Ascetic))
             {
-                thoughtList.Add(comp.DrinkThought);
+                // 水ごとの飲んだ時の心情が設定されていたら、それを与える
+                if (comp != null && comp.DrinkThought != null) thoughtList.Add(comp.DrinkThought);
+
+                if (building != null)
+                {
+                    // 設備から飲める水の種類によって心情付加
+                    switch (building.WaterPreferability)
+                    {
+                        case WaterPreferability.ClearWater:
+                            thoughtList.Add(MizuDef.Thought_DrankClearWater);
+                            break;
+                        case WaterPreferability.MudWater:
+                            thoughtList.Add(MizuDef.Thought_DrankMudWater);
+                            break;
+                        case WaterPreferability.SeaWater:
+                            thoughtList.Add(MizuDef.Thought_DrankSeaWater);
+                            break;
+                    }
+
+                    // 飲み方
+                    if (getter.CanManipulate())
+                    {
+                        // 手ですくって飲む
+                        thoughtList.Add(MizuDef.Thought_DrankScoopedWater);
+                    }
+                    else
+                    {
+                        // 直接口をつけて飲む
+                        thoughtList.Add(MizuDef.Thought_SippedWaterLikeBeast);
+                    }
+                }
             }
 
             return thoughtList;
@@ -507,6 +667,26 @@ namespace MizuMod
                 case WaterType.MudWater:
                     return MizuDef.Thing_MudWater;
                 case WaterType.SeaWater:
+                    return MizuDef.Thing_SeaWater;
+                default:
+                    return null;
+            }
+        }
+
+        public static ThingDef GetWaterThingDefFromWaterPreferability(WaterPreferability waterPreferability)
+        {
+            // 水の種類→水アイテム
+            switch (waterPreferability)
+            {
+                case WaterPreferability.ClearWater:
+                    return MizuDef.Thing_ClearWater;
+                case WaterPreferability.NormalWater:
+                    return MizuDef.Thing_NormalWater;
+                case WaterPreferability.RawWater:
+                    return MizuDef.Thing_RawWater;
+                case WaterPreferability.MudWater:
+                    return MizuDef.Thing_MudWater;
+                case WaterPreferability.SeaWater:
                     return MizuDef.Thing_SeaWater;
                 default:
                     return null;

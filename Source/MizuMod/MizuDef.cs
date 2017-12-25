@@ -15,6 +15,7 @@ namespace MizuMod
         public static GlobalSettingDef GlobalSettings = DefDatabase<MizuMod.GlobalSettingDef>.GetNamed("Mizu_GlobalSettings");
 
         public static JobDef Job_DrinkWater = DefDatabase<JobDef>.GetNamed("Mizu_DrinkWater");
+        public static JobDef Job_DrinkWaterFromBuilding = DefDatabase<JobDef>.GetNamed("Mizu_DrinkWaterFromBuilding");
         public static JobDef Job_FeedWaterPatient = DefDatabase<JobDef>.GetNamed("Mizu_FeedWaterPatient");
         public static JobDef Job_DeliverWater = DefDatabase<JobDef>.GetNamed("Mizu_DeliverWater");
 
@@ -29,9 +30,11 @@ namespace MizuMod
 
         public static RecordDef Record_WaterDrank = DefDatabase<RecordDef>.GetNamed("Mizu_WaterDrank");
 
-        public static ThoughtDef Thought_DrankWaterDirectly = DefDatabase<ThoughtDef>.GetNamed("Mizu_DrankWaterDirectly");
+        public static ThoughtDef Thought_DrankClearWater = DefDatabase<ThoughtDef>.GetNamed("Mizu_DrankClearWater");
         public static ThoughtDef Thought_DrankMudWater = DefDatabase<ThoughtDef>.GetNamed("Mizu_DrankMudWater");
         public static ThoughtDef Thought_DrankSeaWater = DefDatabase<ThoughtDef>.GetNamed("Mizu_DrankSeaWater");
+        public static ThoughtDef Thought_DrankScoopedWater = DefDatabase<ThoughtDef>.GetNamed("Mizu_DrankScoopedWater");
+        public static ThoughtDef Thought_SippedWaterLikeBeast = DefDatabase<ThoughtDef>.GetNamed("Mizu_SippedWaterLikeBeast");
 
         public static ThingDef Thing_ClearWater = DefDatabase<ThingDef>.GetNamed("Mizu_ClearWater");
         public static ThingDef Thing_NormalWater = DefDatabase<ThingDef>.GetNamed("Mizu_NormalWater");

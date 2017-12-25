@@ -25,7 +25,9 @@
   <Mizu_DrankSeaWater.stages.0.label>海水を飲んだ</Mizu_DrankSeaWater.stages.0.label>
   <Mizu_DrankSeaWater.stages.0.description>浄化していない海水を飲んだ。まずい上にしょっぱい！</Mizu_DrankSeaWater.stages.0.description>
   
-  <Mizu_DrankWaterDirectly.stages.0.label>地面から直接水を飲んだ</Mizu_DrankWaterDirectly.stages.0.label>
-  <Mizu_DrankWaterDirectly.stages.0.description>地面から直接水を飲む以外に選択肢がなかった。</Mizu_DrankWaterDirectly.stages.0.description>
+  <Mizu_DrankScoopedWater.stages.0.label>水をすくって飲んだ</Mizu_DrankScoopedWater.stages.0.label>
+  <Mizu_DrankScoopedWater.stages.0.description>水を手ですくって飲んだ。コップが欲しい。</Mizu_DrankScoopedWater.stages.0.description>
+  <Mizu_SippedWaterLikeBeast.stages.0.label>獣のように水を飲んだ</Mizu_SippedWaterLikeBeast.stages.0.label>
+  <Mizu_SippedWaterLikeBeast.stages.0.description>獣のように水をすする以外に選択肢がなかった。</Mizu_SippedWaterLikeBeast.stages.0.description>
   
 </LanguageData>

@@ -33,15 +33,23 @@ namespace MizuMod
             if (need_water.lastSearchWaterTick + SearchWaterIntervalTick > Find.TickManager.TicksGame) return null;
             need_water.lastSearchWaterTick = Find.TickManager.TicksGame;
 
-            // 水アイテムを探す
-            Thing thing = MizuUtility.TryFindBestWaterSourceFor(pawn, pawn, false);
+            // 水の供給源を探す
+            Thing thing = MizuUtility.TryFindBestWaterSourceFor(pawn, pawn, false, true);
             if (thing != null)
             {
-                // 水アイテムが見つかった
-                return new Job(MizuDef.Job_DrinkWater, thing)
+                if (thing.CanDrinkWater())
                 {
-                    count = MizuUtility.WillGetStackCountOf(pawn, thing)
-                };
+                    // 水アイテムが見つかった
+                    return new Job(MizuDef.Job_DrinkWater, thing)
+                    {
+                        count = MizuUtility.WillGetStackCountOf(pawn, thing)
+                    };
+                }
+                else if (thing is IBuilding_DrinkWater)
+                {
+                    // 水を汲める設備が見つかった
+                    return new Job(MizuDef.Job_DrinkWaterFromBuilding, thing);
+                }
             }
 
             //if (!pawn.CanDrinkFromTerrain())

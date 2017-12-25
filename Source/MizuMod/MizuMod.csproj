@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Alert_DehydrationColonists.cs" />
     <Compile Include="Alert_LowWater.cs" />
+    <Compile Include="Building_DrawingWaterSpot.cs" />
     <Compile Include="Building_Faucet.cs" />
     <Compile Include="Building_GroundWaterPump.cs" />
     <Compile Include="Building_Pipe.cs" />
@@ -83,12 +84,14 @@
     <Compile Include="GlobalSettingDef.cs" />
     <Compile Include="Graphic_LinkedWaterNet.cs" />
     <Compile Include="Graphic_LinkedWaterNetOverlay.cs" />
+    <Compile Include="IBuilding_DrinkWater.cs" />
     <Compile Include="IBuilding_WaterNet.cs" />
     <Compile Include="JobDriver_DrawFromTerrain.cs" />
     <Compile Include="JobDriver_DrawFromWaterNet.cs" />
     <Compile Include="JobDriver_DrawFromWaterPool.cs" />
     <Compile Include="JobDriver_DrawWater.cs" />
     <Compile Include="JobDriver_DrinkWater.cs" />
+    <Compile Include="JobDriver_DrinkWaterFromBuilding.cs" />
     <Compile Include="JobDriver_WaterDeliver.cs" />
     <Compile Include="JobDriver_WaterFeedPatient.cs" />
     <Compile Include="JobGiver_GetWater.cs" />

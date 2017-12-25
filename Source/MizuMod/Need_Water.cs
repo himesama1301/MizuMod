@@ -11,8 +11,10 @@ namespace MizuMod
 {
     public class Need_Water : Need
     {
-        private DefExtension_NeedWater extInt;
+        public const float NeedWaterVolumePerDay = 1.5f;
+        public const float DrinkFromBuildingMargin = 1.5f;
 
+        private DefExtension_NeedWater extInt;
         private DefExtension_NeedWater ext
         {
             get

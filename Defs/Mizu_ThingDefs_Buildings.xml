@@ -20,7 +20,7 @@
     <defName>Mizu_DrawingWaterSpot</defName>
     <label>Drawing water spot</label>
     <description>A place for drawing water. This can be built on water or marsh.</description>
-    <thingClass>Building_WorkTable</thingClass>
+    <thingClass>MizuMod.Building_DrawingWaterSpot</thingClass>
     <graphicData>
       <texPath>Things/Building/Production/CraftingSpot</texPath>
       <graphicClass>Graphic_Single</graphicClass>

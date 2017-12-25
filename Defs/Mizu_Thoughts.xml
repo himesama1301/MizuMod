@@ -89,14 +89,27 @@
   </ThoughtDef>
   
   <ThoughtDef>
-    <defName>Mizu_DrankWaterDirectly</defName>
+    <defName>Mizu_DrankScoopedWater</defName>
     <durationDays>0.5</durationDays>
     <stackLimit>1</stackLimit>
     <stages>
       <li>
-        <label>drank water from ground directly</label>
-        <description>I have no choice but to drink water from ground directly.</description>
-        <baseMoodEffect>-10</baseMoodEffect>
+        <label>drank scooped water</label>
+        <description>I drank scooped water by hand. I want a cup.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef>
+    <defName>Mizu_SippedWaterLikeBeast</defName>
+    <durationDays>0.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>sipped water fron nature</label>
+        <description>I have no choice but to sip water like beasts.</description>
+        <baseMoodEffect>-8</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

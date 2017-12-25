@@ -37,7 +37,7 @@ namespace MizuMod
             if (WardenFeedUtility.ShouldBeFed(prisoner)) return null;
 
             // 水が見つからない
-            Thing thing = MizuUtility.TryFindBestWaterSourceFor(warden, prisoner, false);
+            Thing thing = MizuUtility.TryFindBestWaterSourceFor(warden, prisoner, false, false);
             if (thing == null) return null;
 
             // 見つかった水アイテムは既に囚人がいる部屋の中にある

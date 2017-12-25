@@ -8,6 +8,12 @@
   </JobDef>
 
   <JobDef>
+    <defName>Mizu_DrinkWaterFromBuilding</defName>
+    <driverClass>MizuMod.JobDriver_DrinkWaterFromBuilding</driverClass>
+    <reportString>drinking from TargetA.</reportString>
+  </JobDef>
+
+  <JobDef>
     <defName>Mizu_FeedWaterPatient</defName>
     <driverClass>MizuMod.JobDriver_WaterFeedPatient</driverClass>
     <reportString>feeding TargetA to TargetB.</reportString>
