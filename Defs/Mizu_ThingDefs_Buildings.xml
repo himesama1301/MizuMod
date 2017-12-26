@@ -52,6 +52,7 @@
         <sourceType>Building</sourceType>
         <getSound>Ingest_Beer</getSound>
         <baseDrinkTicks>2000</baseDrinkTicks>
+        <needManipulate>false</needManipulate>
       </li>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
@@ -106,6 +107,7 @@
         <sourceType>Building</sourceType>
         <getSound>Ingest_Beer</getSound>
         <baseDrinkTicks>1200</baseDrinkTicks>
+        <needManipulate>true</needManipulate>
       </li>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
@@ -581,6 +583,7 @@
         <sourceType>Building</sourceType>
         <getSound>Ingest_Beer</getSound>
         <baseDrinkTicks>400</baseDrinkTicks>
+        <needManipulate>true</needManipulate>
       </li>
       <li Class="CompProperties_Flickable">
         <commandTexture>Things/Building/Production/Mizu_RainTank_front</commandTexture>
@@ -649,6 +652,7 @@
         <sourceType>Building</sourceType>
         <getSound>Ingest_Beer</getSound>
         <baseDrinkTicks>400</baseDrinkTicks>
+        <needManipulate>true</needManipulate>
       </li>
       <li Class="CompProperties_Forbiddable"/>
     </comps>

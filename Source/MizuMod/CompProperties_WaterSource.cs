@@ -31,6 +31,9 @@ namespace MizuMod
         // 設備の場合、要求を1.0得るのにかかるTick
         public int baseDrinkTicks = 100;
 
+        // 水を飲むのに手を必要とするかどうか
+        public bool needManipulate = false;
+
         // 水アイテム用 水質
         public WaterType waterType = WaterType.Undefined;
 

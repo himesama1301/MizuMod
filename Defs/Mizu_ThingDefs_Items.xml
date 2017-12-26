@@ -45,6 +45,7 @@
         <getSound>Ingest_Beer</getSound>
         <baseDrinkTicks>100</baseDrinkTicks>
         <waterType>ClearWater</waterType>
+        <needManipulate>true</needManipulate>
         <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
       </li>
@@ -73,6 +74,7 @@
         <getSound>Ingest_Beer</getSound>
         <baseDrinkTicks>100</baseDrinkTicks>
         <waterType>NormalWater</waterType>
+        <needManipulate>true</needManipulate>
         <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
       </li>
@@ -101,6 +103,7 @@
         <getSound>Ingest_Beer</getSound>
         <baseDrinkTicks>100</baseDrinkTicks>
         <waterType>RawWater</waterType>
+        <needManipulate>true</needManipulate>
         <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
       </li>
@@ -129,6 +132,7 @@
         <getSound>Ingest_Beer</getSound>
         <baseDrinkTicks>100</baseDrinkTicks>
         <waterType>MudWater</waterType>
+        <needManipulate>true</needManipulate>
         <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
       </li>
@@ -157,6 +161,7 @@
         <getSound>Ingest_Beer</getSound>
         <baseDrinkTicks>100</baseDrinkTicks>
         <waterType>SeaWater</waterType>
+        <needManipulate>true</needManipulate>
         <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
       </li>

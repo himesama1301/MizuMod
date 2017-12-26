@@ -17,6 +17,7 @@ namespace MizuMod
         public EffecterDef GetEffect { get { return this.Props.getEffect; } }
         public SoundDef GetSound { get { return this.Props.getSound; } }
         public int BaseDrinkTicks { get { return this.Props.baseDrinkTicks; } }
+        public bool NeedManipulate { get { return this.Props.needManipulate; } }
         public float WaterAmount { get { return this.Props.waterAmount; } }
         public int MaxNumToGetAtOnce { get { return this.Props.maxNumToGetAtOnce; } }
 

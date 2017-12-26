@@ -149,6 +149,9 @@ namespace MizuMod
                 // 水源として使用できない
                 if (comp == null || !comp.IsWaterSource) return false;
 
+                // 操作が必要なのに操作できない
+                if (comp.NeedManipulate && !getter.CanManipulate()) return false;
+
                 var waterTypeDef = MizuDef.Dic_WaterTypeDef[comp.WaterType];
 
                 if (comp.SourceType == CompProperties_WaterSource.SourceType.Item)
@@ -312,7 +315,7 @@ namespace MizuMod
             thing = GenClosest.ClosestThingReachable(
                 getter.Position,
                 getter.Map,
-                ThingRequest.ForGroup(ThingRequestGroup.HaulableEver),
+                ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial),
                 PathEndMode.ClosestTouch,
                 TraverseParms.For(getter),
                 9999f,
@@ -347,7 +350,7 @@ namespace MizuMod
             thing = GenClosest.ClosestThingReachable(
                 getter.Position,
                 getter.Map,
-                ThingRequest.ForGroup(ThingRequestGroup.HaulableEver),
+                ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial),
                 PathEndMode.ClosestTouch,
                 TraverseParms.For(getter),
                 9999f,
