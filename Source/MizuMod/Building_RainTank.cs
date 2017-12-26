@@ -19,21 +19,13 @@ namespace MizuMod
             }
         }
 
-        public WaterPreferability WaterPreferability
+        public WaterType WaterType
         {
             get
             {
-                if (this.TankComp == null) return WaterPreferability.Undefined;
+                if (this.TankComp == null) return WaterType.Undefined;
 
-                return this.TankComp.StoredWaterType.ToWaterPreferability();
-            }
-        }
-
-        public int DrinkWorkAmount
-        {
-            get
-            {
-                return 400;
+                return this.TankComp.StoredWaterType;
             }
         }
 

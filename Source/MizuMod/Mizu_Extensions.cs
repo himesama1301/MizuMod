@@ -14,7 +14,8 @@ namespace MizuMod
     {
         public static bool CanDrinkWater(this Thing t)
         {
-            return (t.TryGetComp<CompWater>() != null);
+            var comp = t.TryGetComp<CompWaterSource>();
+            return (comp != null && comp.SourceType == CompProperties_WaterSource.SourceType.Item);
         }
 
         public static bool CanDrinkWaterNow(this Thing t)
@@ -28,25 +29,26 @@ namespace MizuMod
             {
                 return false;
             }
-            CompWater comp = t.TryGetComp<CompWater>();
+            var comp = t.TryGetComp<CompWaterSource>();
             return (comp.WaterAmount > 0.0f);
         }
 
         public static float GetWaterAmount(this Thing t)
         {
-            CompWater comp = t.TryGetComp<CompWater>();
-            return (comp != null) ? Math.Max(comp.WaterAmount, 0.0f) : 0.0f;
+            var comp = t.TryGetComp<CompWaterSource>();
+            if (comp == null) return 0f;
+            if (comp.SourceType != CompProperties_WaterSource.SourceType.Item) return 0f;
+
+            return Math.Max(comp.WaterAmount, 0.0f);
         }
 
         public static WaterPreferability GetWaterPreferability(this Thing t)
         {
-            var comp = t.TryGetComp<CompWater>();
-            if (comp != null) return comp.WaterPreferability;
+            var comp = t.TryGetComp<CompWaterSource>();
+            if (comp == null) return WaterPreferability.Undefined;
+            if (!comp.IsWaterSource) return WaterPreferability.Undefined;
 
-            var building = t as IBuilding_DrinkWater;
-            if (building != null) return building.WaterPreferability;
-
-            return WaterPreferability.Undefined;
+            return MizuDef.Dic_WaterTypeDef[comp.WaterType].waterPreferability;
         }
 
         public static Need_Water water(this Pawn_NeedsTracker needs)
@@ -67,7 +69,7 @@ namespace MizuMod
             }
 
             numTaken = (int)Math.Ceiling(waterWanted / waterAmount);  // そのアイテムで必要な水分を満たすのに何個必要か
-            numTaken = Math.Min(Math.Min(numTaken, t.stackCount), t.TryGetComp<CompWater>().MaxNumToGetAtOnce);  // 必要数、スタック数、同時摂取可能数のうち最も低い数字
+            numTaken = Math.Min(Math.Min(numTaken, t.stackCount), t.TryGetComp<CompWaterSource>().MaxNumToGetAtOnce);  // 必要数、スタック数、同時摂取可能数のうち最も低い数字
             numTaken = Math.Max(numTaken, 1);  // 最低値は1
             waterGot = (float)numTaken * waterAmount;  // 個数と1個当たりの水分の積→摂取水分量
         }
@@ -77,19 +79,13 @@ namespace MizuMod
             float num = 0.0f;
             foreach (KeyValuePair<ThingDef, int> current in rc.AllCountedAmounts)
             {
-                if (current.Key.comps == null)
-                {
-                    continue;
-                }
-                CompProperties_Water comp = (CompProperties_Water)current.Key.comps.Find((c) => c.compClass == typeof(CompWater));
-                if (comp == null)
-                {
-                    continue;
-                }
-                if (comp.waterAmount > 0.0f)
-                {
-                    num += comp.waterAmount * (float)current.Value;
-                }
+                if (current.Key.comps == null) continue;
+
+                var compprop = (CompProperties_WaterSource)current.Key.comps.Find((c) => c.compClass == typeof(CompWaterSource));
+                if (compprop == null) continue;
+                if (compprop.sourceType != CompProperties_WaterSource.SourceType.Item) continue;
+
+                if (compprop.waterAmount > 0.0f) num += compprop.waterAmount * (float)current.Value;
             }
             return num;
         }

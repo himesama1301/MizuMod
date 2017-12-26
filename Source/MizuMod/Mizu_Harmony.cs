@@ -391,7 +391,7 @@ namespace MizuMod
                 }
             }
 
-            var compprop = thingDef.GetCompProperties<CompProperties_Water>();
+            var compprop = thingDef.GetCompProperties<CompProperties_WaterSource>();
             if (compprop == null) return;
 
             Thing thing = ThingMaker.MakeThing(thingDef, null);

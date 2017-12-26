@@ -19,21 +19,13 @@ namespace MizuMod
             this.OutputConnectors.Add(this.Position + this.Rotation.FacingCell);
         }
 
-        public WaterPreferability WaterPreferability
+        public WaterType WaterType
         {
             get
             {
-                if (this.InputWaterNet == null) return WaterPreferability.Undefined;
+                if (this.InputWaterNet == null) return WaterType.Undefined;
 
-                return this.InputWaterNet.WaterType.ToWaterPreferability();
-            }
-        }
-
-        public int DrinkWorkAmount
-        {
-            get
-            {
-                return 400;
+                return this.InputWaterNet.WaterType;
             }
         }
 

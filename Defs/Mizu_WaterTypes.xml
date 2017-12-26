@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <MizuMod.WaterTypeDef>
+    <defName>Mizu_WaterTypeClear</defName>
+    <waterType>ClearWater</waterType>
+    <waterPreferability>ClearWater</waterPreferability>
+    <thoughts>
+      <li>Mizu_DrankClearWater</li>
+    </thoughts>
+  </MizuMod.WaterTypeDef>
+  
+  <MizuMod.WaterTypeDef>
+    <defName>Mizu_WaterTypeNormal</defName>
+    <waterType>NormalWater</waterType>
+    <waterPreferability>NormalWater</waterPreferability>
+  </MizuMod.WaterTypeDef>
+  
+  <MizuMod.WaterTypeDef>
+    <defName>Mizu_WaterTypeRaw</defName>
+    <waterType>RawWater</waterType>
+    <waterPreferability>RawWater</waterPreferability>
+    <foodPoisonChance>0.01</foodPoisonChance>
+  </MizuMod.WaterTypeDef>
+  
+  <MizuMod.WaterTypeDef>
+    <defName>Mizu_WaterTypeMud</defName>
+    <waterType>MudWater</waterType>
+    <waterPreferability>MudWater</waterPreferability>
+    <thoughts>
+      <li>Mizu_DrankMudWater</li>
+    </thoughts>
+    <foodPoisonChance>0.03</foodPoisonChance>
+  </MizuMod.WaterTypeDef>
+  
+  <MizuMod.WaterTypeDef>
+    <defName>Mizu_WaterTypeSea</defName>
+    <waterType>SeaWater</waterType>
+    <waterPreferability>SeaWater</waterPreferability>
+    <thoughts>
+      <li>Mizu_DrankSeaWater</li>
+    </thoughts>
+    <hediffs>
+      <li>Mizu_DrankSeaWater</li>
+    </hediffs>
+    <foodPoisonChance>0.03</foodPoisonChance>
+  </MizuMod.WaterTypeDef>
+  
+</Defs>

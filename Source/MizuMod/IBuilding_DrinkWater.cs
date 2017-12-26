@@ -9,9 +9,8 @@ namespace MizuMod
 {
     public interface IBuilding_DrinkWater
     {
-        WaterPreferability WaterPreferability { get; }
+        WaterType WaterType { get; }
         bool IsActivated { get; }
-        int DrinkWorkAmount { get; }
         bool IsEmpty { get; }
 
         bool CanDrinkFor(Pawn p);

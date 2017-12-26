@@ -144,8 +144,18 @@ namespace MizuMod
                 // 取得者が予約できない
                 if (!getter.CanReserve(t)) return false;
 
-                if (t.CanGetWater())
+                var comp = t.TryGetComp<CompWaterSource>();
+
+                // 水源として使用できない
+                if (comp == null || !comp.IsWaterSource) return false;
+
+                var waterTypeDef = MizuDef.Dic_WaterTypeDef[comp.WaterType];
+
+                if (comp.SourceType == CompProperties_WaterSource.SourceType.Item)
                 {
+                    // 水分がない
+                    if (!t.CanGetWater()) return false;
+
                     // 水分を持っている=水アイテムである
                     WaterPreferability waterPreferability = t.GetWaterPreferability();
 
@@ -163,16 +173,18 @@ namespace MizuMod
 
                     return true;
                 }
-                else if (t is IBuilding_DrinkWater)
+                else if (comp.SourceType == CompProperties_WaterSource.SourceType.Building)
                 {
-                    // 水汲みに使える設備である
                     var drinkWaterBuilding = t as IBuilding_DrinkWater;
+
+                    // 水汲みに使えない
+                    if (drinkWaterBuilding == null) return false;
 
                     // 水を飲む人が飲めない(能力が無い、水の量がない)
                     if (!drinkWaterBuilding.CanDrinkFor(eater)) return false;
 
                     // 最大水質を超えていたらダメ
-                    if (drinkWaterBuilding.WaterPreferability > maxPref) return false;
+                    if (waterTypeDef.waterPreferability > maxPref) return false;
 
                     // 野生人?(派閥所属なし?)はダメ
                     if (eater.IsWildMan()) return false;
@@ -401,23 +413,12 @@ namespace MizuMod
 
         public static float GetWaterItemScore(Pawn eater, Thing t, float dist, bool priorQuality)
         {
-            CompProperties_Water compprop = null;
-            var comp = t.TryGetComp<CompWater>();
-            if (comp == null)
-            {
-                var building = t as IBuilding_DrinkWater;
-                if (building != null)
-                {
-                    compprop = MizuUtility.GetWaterThingDefFromWaterPreferability(building.WaterPreferability).GetCompProperties<CompProperties_Water>();
-                }
-            }
-            else
-            {
-                compprop = comp.Props;
-            }
+            var comp = t.TryGetComp<CompWaterSource>();
 
-            // 水として飲むことができない
-            if (compprop == null || compprop.waterPreferability == WaterPreferability.Undefined) return float.MinValue;
+            // 水源ではない or 水源として使えない
+            if (comp == null || !comp.IsWaterSource) return float.MinValue;
+
+            var waterTypeDef = MizuDef.Dic_WaterTypeDef[comp.WaterType];
 
             // 基本点計算
 
@@ -446,11 +447,17 @@ namespace MizuMod
             //   生水  = 0.01 => -10
             //   泥水  = 0.03 => -30
             //   海水  = 0.03 => -30
-            float foodPoisoningScore = -(compprop.foodPoisonChance * 1000f);
+            float foodPoisoningScore = -(waterTypeDef.foodPoisonChance * 1000f);
 
             // 健康悪化
             float hediffScore = 0f;
-            if (compprop.drinkHediff != null) hediffScore -= 100f;
+            if (waterTypeDef.hediffs != null)
+            {
+                foreach (var hediff in waterTypeDef.hediffs)
+                {
+                    hediffScore -= 100f;
+                }
+            }
 
             // 腐敗進行度
             float rotScore = 0f;
@@ -498,19 +505,35 @@ namespace MizuMod
             }
 
             // 健康状態の変化
-            CompWater comp = thing.TryGetComp<CompWater>();
+            var comp = thing.TryGetComp<CompWaterSource>();
             if (comp == null)
             {
                 Log.Error("comp is null");
                 return 0.0f;
             }
-            // 指定された健康状態になる
-            if (comp.DrinkHediff != null)
+            if (!comp.IsWaterSource)
             {
-                getter.health.AddHediff(HediffMaker.MakeHediff(comp.DrinkHediff, getter));
+                Log.Error("not watersource");
+                return 0.0f;
+            }
+            if (comp.SourceType != CompProperties_WaterSource.SourceType.Item)
+            {
+                Log.Error("source type is not item");
+                return 0.0f;
+            }
+
+            var waterTypeDef = MizuDef.Dic_WaterTypeDef[comp.WaterType];
+
+            // 指定された健康状態になる
+            if (waterTypeDef.hediffs != null)
+            {
+                foreach (var hediff in waterTypeDef.hediffs)
+                {
+                    getter.health.AddHediff(HediffMaker.MakeHediff(hediff, getter));
+                }
             }
             // 確率で食中毒
-            if (Rand.Value < comp.FoodPoisonChance)
+            if (Rand.Value < waterTypeDef.foodPoisonChance)
             {
                 FoodUtility.AddFoodPoisoningHediff(getter, thing);
             }
@@ -551,31 +574,20 @@ namespace MizuMod
             // 心情ステータスの無いポーンには空のリストを返す
             if (getter.needs == null || getter.needs.mood == null) return thoughtList;
 
-            var comp = t.TryGetComp<CompWater>();
-            var building = t as IBuilding_DrinkWater;
+            var comp = t.TryGetComp<CompWaterSource>();
+            if (comp == null) return thoughtList;
+            if (!comp.IsWaterSource) return thoughtList;
+
+            var waterTypeDef = MizuDef.Dic_WaterTypeDef[comp.WaterType];
 
             // 禁欲主義ではない
             if (!getter.story.traits.HasTrait(TraitDefOf.Ascetic))
             {
                 // 水ごとの飲んだ時の心情が設定されていたら、それを与える
-                if (comp != null && comp.DrinkThought != null) thoughtList.Add(comp.DrinkThought);
+                if (waterTypeDef.thoughts != null) thoughtList.AddRange(waterTypeDef.thoughts);
 
-                if (building != null)
+                if (comp.SourceType == CompProperties_WaterSource.SourceType.Building)
                 {
-                    // 設備から飲める水の種類によって心情付加
-                    switch (building.WaterPreferability)
-                    {
-                        case WaterPreferability.ClearWater:
-                            thoughtList.Add(MizuDef.Thought_DrankClearWater);
-                            break;
-                        case WaterPreferability.MudWater:
-                            thoughtList.Add(MizuDef.Thought_DrankMudWater);
-                            break;
-                        case WaterPreferability.SeaWater:
-                            thoughtList.Add(MizuDef.Thought_DrankSeaWater);
-                            break;
-                    }
-
                     // 飲み方
                     if (getter.CanManipulate())
                     {
@@ -595,10 +607,13 @@ namespace MizuMod
 
         public static int WillGetStackCountOf(Pawn getter, Thing thing)
         {
-            CompWater comp = thing.TryGetComp<CompWater>();
+            var comp = thing.TryGetComp<CompWaterSource>();
 
-            // 水ではない→摂取数0
-            if (comp == null) return 0;
+            // 水源ではない→摂取数0
+            if (comp == null || !comp.IsWaterSource) return 0;
+
+            // アイテムではない→摂取数0
+            if (comp.SourceType != CompProperties_WaterSource.SourceType.Item) return 0;
 
             // それを一度に摂取できる数と、何個摂取すれば水分が100%になるのか、の小さい方
             int wantedWaterItemCount = Math.Min(comp.MaxNumToGetAtOnce, MizuUtility.StackCountForWater(thing, getter.needs.water().WaterWanted));
@@ -611,10 +626,10 @@ namespace MizuMod
 
         public static int StackCountForWater(Thing thing, float waterWanted)
         {
-            CompWater comp = thing.TryGetComp<CompWater>();
+            var comp = thing.TryGetComp<CompWaterSource>();
 
-            // 水ではない
-            if (comp == null) return 0;
+            // 水源ではない
+            if (comp == null || !comp.IsWaterSource) return 0;
 
             // 必要な水分がほぼゼロ
             if (waterWanted <= 0.0001f) return 0;

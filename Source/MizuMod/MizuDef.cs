@@ -44,7 +44,14 @@ namespace MizuMod
 
         public static ThingCategoryDef ThingCategory_Waters = DefDatabase<ThingCategoryDef>.GetNamed("Mizu_Waters");
 
+        public static WaterTypeDef WaterType_Clear = DefDatabase<WaterTypeDef>.GetNamed("Mizu_WaterTypeClear");
+        public static WaterTypeDef WaterType_Normal = DefDatabase<WaterTypeDef>.GetNamed("Mizu_WaterTypeNormal");
+        public static WaterTypeDef WaterType_Raw = DefDatabase<WaterTypeDef>.GetNamed("Mizu_WaterTypeRaw");
+        public static WaterTypeDef WaterType_Mud = DefDatabase<WaterTypeDef>.GetNamed("Mizu_WaterTypeMud");
+        public static WaterTypeDef WaterType_Sea = DefDatabase<WaterTypeDef>.GetNamed("Mizu_WaterTypeSea");
+
         public static List<ThingDef> List_WaterItem;
+        public static Dictionary<WaterType, WaterTypeDef> Dic_WaterTypeDef;
 
         static MizuDef()
         {
@@ -56,6 +63,15 @@ namespace MizuMod
                 Thing_MudWater,
                 Thing_SeaWater,
             };
+
+            Dic_WaterTypeDef = new Dictionary<WaterType, WaterTypeDef>()
+            {
+                { WaterType.ClearWater, WaterType_Clear },
+                { WaterType.NormalWater, WaterType_Normal },
+                { WaterType.RawWater, WaterType_Raw },
+                { WaterType.MudWater, WaterType_Mud },
+                { WaterType.SeaWater, WaterType_Sea },
+            };
         }
-}
+    }
 }

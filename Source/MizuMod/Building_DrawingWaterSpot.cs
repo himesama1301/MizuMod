@@ -18,19 +18,11 @@ namespace MizuMod
             }
         }
 
-        public WaterPreferability WaterPreferability
+        public WaterType WaterType
         {
             get
             {
-                return this.Map.terrainGrid.TerrainAt(this.Position).ToWaterType().ToWaterPreferability();
-            }
-        }
-
-        public int DrinkWorkAmount
-        {
-            get
-            {
-                return 2000;
+                return this.Map.terrainGrid.TerrainAt(this.Position).ToWaterType();
             }
         }
 

@@ -48,6 +48,11 @@
       <ai_chillDestination>false</ai_chillDestination>
     </building>
     <comps>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Building</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>2000</baseDrinkTicks>
+      </li>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
     <terrainAffordanceNeeded>Undefined</terrainAffordanceNeeded>
@@ -97,6 +102,11 @@
       <ai_chillDestination>false</ai_chillDestination>
     </building>
     <comps>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Building</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>1200</baseDrinkTicks>
+      </li>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
     <recipes>
@@ -567,6 +577,11 @@
     <rotatable>true</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
     <comps>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Building</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>400</baseDrinkTicks>
+      </li>
       <li Class="CompProperties_Flickable">
         <commandTexture>Things/Building/Production/Mizu_RainTank_front</commandTexture>
         <commandLabelKey>MizuCommandDesignateDrainTankLabel</commandLabelKey>
@@ -630,6 +645,11 @@
     <rotatable>true</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
     <comps>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Building</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>400</baseDrinkTicks>
+      </li>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
     <recipes>

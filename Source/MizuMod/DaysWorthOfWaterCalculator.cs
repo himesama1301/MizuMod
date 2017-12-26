@@ -75,8 +75,8 @@ namespace MizuMod
                     bool canGetWater = false;
                     for (int j = 0; j < extraWater[i].ThingDef.comps.Count; j++)
                     {
-                        CompProperties_Water compprop_water = extraWater[i].ThingDef.comps[j] as CompProperties_Water;
-                        if (compprop_water != null && compprop_water.waterAmount > 0.0f)
+                        var compprop = extraWater[i].ThingDef.comps[j] as CompProperties_WaterSource;
+                        if (compprop != null && compprop.sourceType == CompProperties_WaterSource.SourceType.Item && compprop.waterAmount > 0.0f)
                         {
                             canGetWater = true;
                             break;
@@ -133,16 +133,16 @@ namespace MizuMod
                                 tmpAnyFoodLeftIngestibleByPawn[m] = false;
                                 break;
                             }
-                            CompProperties_Water compprop_water = null;
+                            CompProperties_WaterSource compprop = null;
                             for (int x = 0; x < tmpWater[num2].ThingDef.comps.Count; x++)
                             {
-                                compprop_water = tmpWater[num2].ThingDef.comps[x] as CompProperties_Water;
-                                if (compprop_water != null)
+                                compprop = tmpWater[num2].ThingDef.comps[x] as CompProperties_WaterSource;
+                                if (compprop != null && compprop.sourceType == CompProperties_WaterSource.SourceType.Item)
                                 {
                                     break;
                                 }
                             }
-                            if (compprop_water == null)
+                            if (compprop == null)
                             {
                                 tmpAnyFoodLeftIngestibleByPawn[m] = false;
                                 break;
@@ -153,7 +153,7 @@ namespace MizuMod
                                 tmpAnyFoodLeftIngestibleByPawn[m] = false;
                                 break;
                             }
-                            float num3 = Mathf.Min(compprop_water.waterAmount, need_water.WaterAmountBetweenThirstyAndHealthy);
+                            float num3 = Mathf.Min(compprop.waterAmount, need_water.WaterAmountBetweenThirstyAndHealthy);
                             float num4 = num3 / need_water.WaterAmountBetweenThirstyAndHealthy * (float)need_water.TicksUntilThirstyWhenHealthy / 60000f;
                             tmpDaysWorthOfFoodPerPawn[m] = tmpDaysWorthOfFoodPerPawn[m] + num4;
                             tmpWater[num2] = tmpWater[num2].WithCount(tmpWater[num2].Count - 1);

@@ -33,10 +33,12 @@ namespace MizuMod
             // 既に条件を満たしたアイテムを持っているか？
             foreach (var thing in pawn.inventory.innerContainer)
             {
-                CompWater comp = thing.TryGetComp<CompWater>();
+                var comp = thing.TryGetComp<CompWaterSource>();
                 if (comp == null) continue;
+                if (!comp.IsWaterSource) continue;
+                if (comp.SourceType != CompProperties_WaterSource.SourceType.Item) continue;
                 if (comp.WaterAmount < MinWaterAmountPerOneItem) continue;
-                if (comp.WaterPreferability < MinWaterPreferability) continue;
+                if (MizuDef.Dic_WaterTypeDef[comp.WaterType].waterPreferability < MinWaterPreferability) continue;
 
                 return null;
             }
@@ -53,19 +55,13 @@ namespace MizuMod
                 TraverseParms.For(pawn),
                 20f,
                 (t) => {
-                    CompWater comp = t.TryGetComp<CompWater>();
-                    if (comp == null) return false; // 水でないもの×
+                    var comp = t.TryGetComp<CompWaterSource>();
+                    if (comp == null) return false; // 水源でないもの×
+                    if (comp.SourceType != CompProperties_WaterSource.SourceType.Item) return false; // 水アイテムではないもの×
                     if (comp.WaterAmount < MinWaterAmountPerOneItem) return false;  // 最低水分量を満たしていないもの×
                     if (t.IsForbidden(pawn)) return false;  // 禁止されている×
                     if (!pawn.CanReserve(t)) return false;  // 予約不可能×
                     if (!t.IsSociallyProper(pawn)) return false;  // 囚人部屋の物×
-
-                    // それを摂取した時心情悪化するもの×
-                    //   最悪海水とかを持っていくこともあるかもなのでコメントアウト
-                    //foreach (var thought in MizuUtility.ThoughtsFromGettingWater(pawn, t))
-                    //{
-                    //    if (thought.stages[0].baseMoodEffect < 0f) return false;
-                    //}
 
                     return true;
                 }, (x) => MizuUtility.GetWaterItemScore(pawn, x, 0f, true)  // スコアの高いものが優先？

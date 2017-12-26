@@ -40,13 +40,13 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
-      <li Class="MizuMod.CompProperties_Water">
-        <waterAmount>0.35</waterAmount>
-        <waterPreferability>ClearWater</waterPreferability>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>100</baseDrinkTicks>
+        <waterType>ClearWater</waterType>
+        <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
-        <drinkThought>Mizu_DrankClearWater</drinkThought>
-        <foodPoisonChance>0</foodPoisonChance>
       </li>
       <li Class="CompProperties_Rottable">
         <daysToRotStart>60</daysToRotStart>
@@ -68,12 +68,13 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
-      <li Class="MizuMod.CompProperties_Water">
-        <waterAmount>0.35</waterAmount>
-        <waterPreferability>NormalWater</waterPreferability>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>100</baseDrinkTicks>
+        <waterType>NormalWater</waterType>
+        <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
-        <foodPoisonChance>0</foodPoisonChance>
       </li>
       <li Class="CompProperties_Rottable">
         <daysToRotStart>30</daysToRotStart>
@@ -95,12 +96,13 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
-      <li Class="MizuMod.CompProperties_Water">
-        <waterAmount>0.35</waterAmount>
-        <waterPreferability>RawWater</waterPreferability>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>100</baseDrinkTicks>
+        <waterType>RawWater</waterType>
+        <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
-        <foodPoisonChance>0.01</foodPoisonChance>
       </li>
       <li Class="CompProperties_Rottable">
         <daysToRotStart>4</daysToRotStart>
@@ -122,13 +124,13 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
-      <li Class="MizuMod.CompProperties_Water">
-        <waterAmount>0.35</waterAmount>
-        <waterPreferability>MudWater</waterPreferability>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>100</baseDrinkTicks>
+        <waterType>MudWater</waterType>
+        <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
-        <drinkThought>Mizu_DrankMudWater</drinkThought>
-        <foodPoisonChance>0.03</foodPoisonChance>
       </li>
       <li Class="CompProperties_Rottable">
         <daysToRotStart>4</daysToRotStart>
@@ -150,14 +152,13 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
-      <li Class="MizuMod.CompProperties_Water">
-        <waterAmount>0.35</waterAmount>
-        <waterPreferability>SeaWater</waterPreferability>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>100</baseDrinkTicks>
+        <waterType>SeaWater</waterType>
+        <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
-        <drinkThought>Mizu_DrankSeaWater</drinkThought>
-        <drinkHediff>Mizu_DrankSeaWater</drinkHediff>
-        <foodPoisonChance>0.03</foodPoisonChance>
       </li>
       <li Class="CompProperties_Rottable">
         <daysToRotStart>4</daysToRotStart>

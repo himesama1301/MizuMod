@@ -68,9 +68,9 @@ namespace MizuMod
 
         public static bool CanEverGetWater(ThingDef water, Pawn pawn)
         {
-            CompProperties_Water compprop = water.GetCompProperties<CompProperties_Water>();
+            var compprop = water.GetCompProperties<CompProperties_WaterSource>();
 
-            return (compprop != null && compprop.waterAmount > 0.0f && (compprop.waterPreferability > WaterPreferability.NeverDrink));
+            return (compprop != null && compprop.waterAmount > 0.0f && (compprop.waterType >= WaterType.SeaWater && compprop.waterType <= WaterType.ClearWater));
         }
 
         public static float GetWaterScore(Thing water, Pawn pawn)
@@ -80,10 +80,10 @@ namespace MizuMod
 
         public static float GetWaterScore(ThingDef water, Pawn pawn)
         {
-            CompProperties_Water compprop = water.GetCompProperties<CompProperties_Water>();
+            var compprop = water.GetCompProperties<CompProperties_WaterSource>();
             if (compprop != null)
             {
-                return (float)compprop.waterPreferability;
+                return (float)compprop.waterType;
             }
             return 0.0f;
         }

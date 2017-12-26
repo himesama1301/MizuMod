@@ -208,8 +208,8 @@ namespace MizuMod
             {
                 Pawn actor = toil.actor;
                 Thing thing = actor.CurJob.GetTarget(thingIndex).Thing;
-                CompWater comp = thing.TryGetComp<CompWater>();
-                if (comp == null)
+                var comp = thing.TryGetComp<CompWaterSource>();
+                if (comp == null || comp.SourceType != CompProperties_WaterSource.SourceType.Item)
                 {
                     actor.jobs.EndCurrentJob(JobCondition.Incompletable, true);
                     return;
@@ -220,7 +220,7 @@ namespace MizuMod
                     actor.jobs.EndCurrentJob(JobCondition.Incompletable, true);
                     return;
                 }
-                actor.jobs.curDriver.ticksLeftThisToil = CompProperties_Water.BaseDrinkTicks;
+                actor.jobs.curDriver.ticksLeftThisToil = comp.BaseDrinkTicks;
                 if (thing.Spawned)
                 {
                     thing.Map.physicalInteractionReservationManager.Reserve(actor, actor.CurJob, thing);
@@ -234,11 +234,12 @@ namespace MizuMod
             {
                 Pawn actor = toil.actor;
                 Thing thing = actor.CurJob.GetTarget(thingIndex).Thing;
-                if (thing == null)
+                var comp = thing.TryGetComp<CompWaterSource>();
+                if (thing == null || comp == null || comp.SourceType != CompProperties_WaterSource.SourceType.Item)
                 {
                     return 1f;
                 }
-                return 1f - (float)toil.actor.jobs.curDriver.ticksLeftThisToil / (float)CompProperties_Water.BaseDrinkTicks;
+                return 1f - (float)toil.actor.jobs.curDriver.ticksLeftThisToil / (float)comp.BaseDrinkTicks;
             }, false, -0.5f);
             toil.defaultCompleteMode = ToilCompleteMode.Delay;
             toil.FailOnDestroyedOrNull(thingIndex);
@@ -274,7 +275,7 @@ namespace MizuMod
                     return null;
                 }
                 EffecterDef effecter = null;
-                CompWater comp = target.Thing.TryGetComp<CompWater>();
+                var comp = target.Thing.TryGetComp<CompWaterSource>();
                 if (comp != null)
                 {
                     effecter = comp.GetEffect;
@@ -293,7 +294,7 @@ namespace MizuMod
                 {
                     return null;
                 }
-                CompWater comp = target.Thing.TryGetComp<CompWater>();
+                var comp = target.Thing.TryGetComp<CompWaterSource>();
                 if (comp == null)
                 {
                     return null;
@@ -375,12 +376,15 @@ namespace MizuMod
 
         public static Toil DrinkTerrain(TargetIndex thingIndex)
         {
+            // 地形から水を飲む
+            // いずれ削除予定
+
             Toil toil = new Toil();
             toil.initAction = delegate
             {
                 Pawn actor = toil.actor;
                 actor.rotationTracker.FaceCell(actor.Position);
-                actor.jobs.curDriver.ticksLeftThisToil = CompProperties_Water.BaseDrinkTicks;
+                actor.jobs.curDriver.ticksLeftThisToil = 100;
             };
             toil.tickAction = delegate
             {
@@ -388,7 +392,7 @@ namespace MizuMod
             };
             toil.WithProgressBar(thingIndex, delegate
             {
-                return 1f - (float)toil.actor.jobs.curDriver.ticksLeftThisToil / (float)CompProperties_Water.BaseDrinkTicks;
+                return 1f - (float)toil.actor.jobs.curDriver.ticksLeftThisToil / 100f;
             }, false, -0.5f);
             toil.defaultCompleteMode = ToilCompleteMode.Delay;
             toil.FailOn((t) =>
@@ -536,22 +540,25 @@ namespace MizuMod
             {
                 var actor = toil.actor;
                 var thing = actor.CurJob.GetTarget(buildingIndex).Thing;
+                var comp = thing.TryGetComp<CompWaterSource>();
                 var building = thing as IBuilding_DrinkWater;
-                if (actor.needs == null || actor.needs.water() == null || building == null)
+                
+                if (actor.needs == null || actor.needs.water() == null || building == null || comp == null || !comp.IsWaterSource)
                 {
                     actor.jobs.EndCurrentJob(JobCondition.Incompletable);
                     return;
                 }
 
+                var need_water = actor.needs.water();
+                var waterTypeDef = MizuDef.Dic_WaterTypeDef[comp.WaterType];
+
                 // 向きを変更
                 actor.rotationTracker.FaceCell(actor.Position);
 
                 // 作業量
-                actor.jobs.curDriver.ticksLeftThisToil = (int)(building.DrinkWorkAmount * actor.needs.water().WaterWanted);
+                actor.jobs.curDriver.ticksLeftThisToil = (int)(comp.BaseDrinkTicks * need_water.WaterWanted);
                 initialTicks = actor.jobs.curDriver.ticksLeftThisToil;
 
-                // 心情、健康変化
-                // 後で書く
                 if (actor.needs.mood != null)
                 {
                     // 水分摂取による心情変化
@@ -561,20 +568,16 @@ namespace MizuMod
                     }
                 }
 
-                // 設備から飲んだ水に相当するアイテム
-                var def = MizuUtility.GetWaterThingDefFromWaterPreferability(thing.GetWaterPreferability());
-                var compprop = def.GetCompProperties<CompProperties_Water>();
-                if (compprop == null) return;
-
                 // 指定された健康状態になる
-                // この条件式はリファクタで直したい
-                if (compprop.drinkHediff != null)
+                if (waterTypeDef.hediffs != null)
                 {
-                    actor.health.AddHediff(HediffMaker.MakeHediff(compprop.drinkHediff, actor));
+                    foreach (var hediff in waterTypeDef.hediffs)
+                    {
+                        actor.health.AddHediff(HediffMaker.MakeHediff(hediff, actor));
+                    }
                 }
                 // 確率で食中毒
-                // リファクタ時にうまく直したい
-                if (Rand.Value < compprop.foodPoisonChance)
+                if (Rand.Value < waterTypeDef.foodPoisonChance)
                 {
                     FoodUtility.AddFoodPoisoningHediff(actor, thing);
                 }
@@ -583,16 +586,17 @@ namespace MizuMod
             {
                 toil.actor.GainComfortFromCellIfPossible();
                 var need_water = toil.actor.needs.water();
-                var building = toil.actor.CurJob.GetTarget(buildingIndex).Thing as IBuilding_DrinkWater;
-
-                if (building.IsEmpty)
+                var thing = toil.actor.CurJob.GetTarget(buildingIndex).Thing;
+                var comp = thing.TryGetComp<CompWaterSource>();
+                var building = thing as IBuilding_DrinkWater;
+                if (thing == null || comp == null || !comp.IsWaterSource || building == null || building.IsEmpty)
                 {
                     toil.actor.jobs.EndCurrentJob(JobCondition.Incompletable);
                     return;
                 }
 
                 // 徐々に飲む
-                float riseNeedWater = 1 / (float)building.DrinkWorkAmount;
+                float riseNeedWater = 1 / (float)comp.BaseDrinkTicks;
                 need_water.CurLevel = Mathf.Min(need_water.CurLevel + riseNeedWater, need_water.MaxLevel);
                 building.DrawWater(riseNeedWater * Need_Water.NeedWaterVolumePerDay);
             };
