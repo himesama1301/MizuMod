@@ -612,6 +612,65 @@
   </ThingDef>
   
   <ThingDef ParentName="Mizu_BuildingBase">
+    <defName>Mizu_WaterBox</defName>
+    <label>Water box</label>
+    <description>A topless facility for storing small amount of water. It allows animals to drink water.</description>
+    <thingClass>MizuMod.Building_WaterBox</thingClass>
+    <graphicData>
+      <texPath>Things/Building/Production/Mizu_RainTank</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(1,1)</drawSize>
+      <damageData>
+        <rect>(0.05,0.05,0.95,0.95)</rect>
+      </damageData>
+      <shaderType>CutoutComplex</shaderType>
+    </graphicData>
+    <size>(1,1)</size>
+    <blockWind>false</blockWind>
+    <castEdgeShadows>true</castEdgeShadows>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <pathCost>8</pathCost>
+    <tickerType>Normal</tickerType>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>7</costStuffCount>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <WorkToBuild>800</WorkToBuild>
+      <Mass>200</Mass>
+      <Flammability>1.0</Flammability>
+      <Beauty>-6</Beauty>
+    </statBases>
+    <neverMultiSelect>true</neverMultiSelect>
+    <comps>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Building</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>2000</baseDrinkTicks>
+        <needManipulate>false</needManipulate>
+      </li>
+      <li Class="MizuMod.CompProperties_WaterNetTank">
+        <maxWaterVolume>10</maxWaterVolume>
+        <flatID>1</flatID>
+      </li>
+      <li Class="MizuMod.CompProperties_WaterNetInput">
+        <inputWaterFlowType>Any</inputWaterFlowType>
+      </li>
+    </comps>
+    <inspectorTabs>
+      <li>ITab_Bills</li>
+    </inspectorTabs>
+    <recipes>
+      <li>Mizu_DrawWaterFromWaterNet</li>
+      <li>Mizu_DrawWaterFromWaterNetMulti</li>
+    </recipes>
+    <designationHotKey>Misc12</designationHotKey>
+  </ThingDef>
+  
+  <ThingDef ParentName="Mizu_BuildingBase">
     <defName>Mizu_WaterFaucet</defName>
     <label>Faucet</label>
     <description>In use this tool, you take water for drinking from water tank.</description>

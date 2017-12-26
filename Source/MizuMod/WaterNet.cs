@@ -529,7 +529,7 @@ namespace MizuMod
 
             foreach (var t in flatTanks)
             {
-                HashSet<IBuilding_WaterNet> foundList = null;
+                List<HashSet<IBuilding_WaterNet>> foundLists = new List<HashSet<IBuilding_WaterNet>>();
                 foreach (var list in flatTankListTmp)
                 {
                     foreach (var listItem in list)
@@ -540,23 +540,34 @@ namespace MizuMod
                         // 隣接していないものは平坦化対象ではない
                         if (!t.IsAdjacentToCardinalOrInside(listItem)) continue;
 
-                        // このリストに追加する
-                        foundList = list;
+                        // 見つかったリストを加える
+                        foundLists.Add(list);
                         break;
                     }
-
-                    if (foundList != null) break;
                 }
 
-                if (foundList != null)
-                {
-                    // 見つかった平坦化リストに追加
-                    foundList.Add(t);
-                }
-                else
+                if (foundLists.Count == 0)
                 {
                     // 新しい平坦化リストを作成
                     flatTankListTmp.Add(new HashSet<IBuilding_WaterNet>() { t });
+                }
+                else if (foundLists.Count == 1)
+                {
+                    // 見つかった平坦化リストに追加
+                    foundLists[0].Add(t);
+                }
+                else
+                {
+                    // 複数のリストが見つかった→一つに統合
+                    var firstList = foundLists[0];
+                    for (int i = 1; i < foundLists.Count; i++)
+                    {
+                        foreach (var t2 in foundLists[i])
+                        {
+                            firstList.Add(t2);
+                        }
+                        flatTankListTmp.Remove(foundLists[i]);
+                    }
                 }
             }
 

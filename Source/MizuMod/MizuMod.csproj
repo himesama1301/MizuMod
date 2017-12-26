@@ -62,6 +62,7 @@
     <Compile Include="Building_UndergroundShallowWaterPump.cs" />
     <Compile Include="Building_UndergroundWaterPump.cs" />
     <Compile Include="Building_Valve.cs" />
+    <Compile Include="Building_WaterBox.cs" />
     <Compile Include="Building_WaterFilter.cs" />
     <Compile Include="Building_WaterNet.cs" />
     <Compile Include="Building_WaterNetWorkTable.cs" />
