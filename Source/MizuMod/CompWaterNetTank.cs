@@ -90,6 +90,15 @@ namespace MizuMod
             }
         }
 
+        public float StoredWaterVolumePercent
+        {
+            get
+            {
+                if (this.MaxWaterVolume <= 0f) return 0f;
+                return this.StoredWaterVolume / this.MaxWaterVolume;
+            }
+        }
+
         private WaterType storedWaterType = WaterType.NoWater;
         public WaterType StoredWaterType
         {

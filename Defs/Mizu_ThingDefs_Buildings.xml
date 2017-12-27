@@ -616,14 +616,18 @@
     <label>Water box</label>
     <description>A topless facility for storing small amount of water. It allows animals to drink water.</description>
     <thingClass>MizuMod.Building_WaterBox</thingClass>
+    <uiIconPath>UI/Icons/Buildings/Mizu_WaterBox_Icon</uiIconPath>
     <graphicData>
-      <texPath>Things/Building/Production/Mizu_RainTank</texPath>
-      <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(1,1)</drawSize>
+      <texPath>Things/Building/Production/Mizu_WaterBox0</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <linkType>Basic</linkType>
+      <linkFlags>
+        <li>Custom6</li>
+      </linkFlags>
       <damageData>
-        <rect>(0.05,0.05,0.95,0.95)</rect>
+        <rect>(0,0.35,1,0.3)</rect>
       </damageData>
-      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(1,1)</drawSize>
     </graphicData>
     <size>(1,1)</size>
     <blockWind>false</blockWind>
@@ -655,6 +659,7 @@
       <li Class="MizuMod.CompProperties_WaterNetTank">
         <maxWaterVolume>10</maxWaterVolume>
         <flatID>1</flatID>
+        <showBar>false</showBar>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetInput">
         <inputWaterFlowType>Any</inputWaterFlowType>
