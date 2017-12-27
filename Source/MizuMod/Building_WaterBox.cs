@@ -14,9 +14,9 @@ namespace MizuMod
             get
             {
                 if (this.TankComp == null) return MizuGraphics.LinkedWaterBox0.GetColoredVersion(MizuGraphics.WaterPipe.Shader, this.DrawColor, this.DrawColorTwo);
-                if (this.TankComp.StoredWaterVolumePercent <= 0.1f) return MizuGraphics.LinkedWaterBox0.GetColoredVersion(MizuGraphics.WaterPipe.Shader, this.DrawColor, this.DrawColorTwo);
+                if (this.TankComp.StoredWaterVolumePercent <= 0.1f) return MizuGraphics.LinkedWaterBox0.GetColoredVersion(MizuGraphics.WaterBox0.Shader, this.DrawColor, this.DrawColorTwo);
 
-                return MizuGraphics.LinkedWaterBox4.GetColoredVersion(MizuGraphics.WaterPipe.Shader, this.DrawColor, this.DrawColorTwo);
+                return MizuGraphics.LinkedWaterBox4.GetColoredVersion(MizuGraphics.WaterBox4.Shader, this.DrawColor, this.DrawColorTwo);
             }
         }
 

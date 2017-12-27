@@ -24,7 +24,7 @@ namespace MizuMod
 
         // 水箱
         public static Graphic WaterBox0 = GraphicDatabase.Get<Graphic_Single>("Things/Building/Production/Mizu_WaterBox0", ShaderDatabase.Transparent);
-        public static Graphic WaterBox4 = GraphicDatabase.Get<Graphic_Single>("Things/Building/Production/Mizu_WaterBox4", ShaderDatabase.Transparent);
+        public static Graphic WaterBox4 = GraphicDatabase.Get<Graphic_Single>("Things/Building/Production/Mizu_WaterBox4", ShaderDatabase.CutoutComplex);
 
         public static Graphic_Linked LinkedWaterBox0 = new Graphic_Linked(MizuGraphics.WaterBox0);
         public static Graphic_Linked LinkedWaterBox4 = new Graphic_Linked(MizuGraphics.WaterBox4);
