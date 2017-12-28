@@ -20,6 +20,7 @@ namespace MizuMod
         public bool NeedManipulate { get { return this.Props.needManipulate; } }
         public float WaterAmount { get { return this.Props.waterAmount; } }
         public int MaxNumToGetAtOnce { get { return this.Props.maxNumToGetAtOnce; } }
+        public float WaterVolume { get { return this.Props.waterVolume; } }
 
         public WaterType WaterType
         {

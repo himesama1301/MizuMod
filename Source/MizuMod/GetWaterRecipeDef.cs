@@ -11,7 +11,7 @@ namespace MizuMod
     {
         public List<WaterTerrainType> needWaterTerrainTypes = null;
         public List<WaterType> needWaterTypes = null;
-        public float needWaterVolume = 1.0f;
+        //public float needWaterVolume = 1.0f;
         public int getItemCount = 1;
 
         public override void PostLoad()

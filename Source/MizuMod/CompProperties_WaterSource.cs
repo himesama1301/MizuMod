@@ -37,11 +37,14 @@ namespace MizuMod
         // 水アイテム用 水質
         public WaterType waterType = WaterType.Undefined;
 
-        // 水アイテム用 1個あたりの水の量
+        // 水アイテム用 1個あたりの水の量(Need換算)
         public float waterAmount = 0.0f;
 
         // 水アイテム用 1回に摂取できる最大数
         public int maxNumToGetAtOnce = 1;
+
+        // 水アイテム用 1個あたりの水の量(リットル換算)
+        public float waterVolume = 0.0f;
 
         public CompProperties_WaterSource()
         {

@@ -36,8 +36,12 @@ namespace MizuMod
             var waterThingDef = MizuUtility.GetWaterThingDefFromWaterType(this.pool.WaterType);
             if (waterThingDef == null) return null;
 
+            // 水アイテムの水源情報を得る
+            var compprop = waterThingDef.GetCompProperties<CompProperties_WaterSource>();
+            if (compprop == null) return null;
+
             // 地下水脈から水を減らす
-            this.pool.CurrentWaterVolume = Mathf.Max(0, pool.CurrentWaterVolume - recipe.needWaterVolume);
+            this.pool.CurrentWaterVolume = Mathf.Max(0, pool.CurrentWaterVolume - compprop.waterVolume * recipe.getItemCount);
 
             // 水を生成
             var createThing = ThingMaker.MakeThing(waterThingDef);

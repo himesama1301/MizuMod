@@ -48,6 +48,7 @@
         <needManipulate>true</needManipulate>
         <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
       </li>
       <li Class="CompProperties_Rottable">
         <daysToRotStart>60</daysToRotStart>
@@ -77,6 +78,7 @@
         <needManipulate>true</needManipulate>
         <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
       </li>
       <li Class="CompProperties_Rottable">
         <daysToRotStart>30</daysToRotStart>
@@ -106,6 +108,7 @@
         <needManipulate>true</needManipulate>
         <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
       </li>
       <li Class="CompProperties_Rottable">
         <daysToRotStart>4</daysToRotStart>
@@ -135,6 +138,7 @@
         <needManipulate>true</needManipulate>
         <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
       </li>
       <li Class="CompProperties_Rottable">
         <daysToRotStart>4</daysToRotStart>
@@ -164,6 +168,7 @@
         <needManipulate>true</needManipulate>
         <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
       </li>
       <li Class="CompProperties_Rottable">
         <daysToRotStart>4</daysToRotStart>
