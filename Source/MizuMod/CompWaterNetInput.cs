@@ -51,6 +51,27 @@ namespace MizuMod
                 return this.Props.acceptWaterTypes;
             }
         }
+        public virtual float BaseRainFlow
+        {
+            get
+            {
+                return this.Props.baseRainFlow;
+            }
+        }
+        public virtual float RoofEfficiency
+        {
+            get
+            {
+                return this.Props.roofEfficiency;
+            }
+        }
+        public virtual int RoofDistance
+        {
+            get
+            {
+                return this.Props.roofDistance;
+            }
+        }
 
         // 水道網から流し込まれる水量
         // Maxを超えていることもある

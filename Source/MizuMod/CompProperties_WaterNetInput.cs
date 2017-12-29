@@ -41,6 +41,10 @@ namespace MizuMod
             WaterType.SeaWater,
         };
 
+        public float baseRainFlow = 1000f;
+        public float roofEfficiency = 0.5f;
+        public int roofDistance = 1;
+
         public CompProperties_WaterNetInput() : base(typeof(CompWaterNetInput)) { }
         public CompProperties_WaterNetInput(Type compClass) : base(compClass) { }
     }

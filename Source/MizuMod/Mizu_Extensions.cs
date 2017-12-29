@@ -305,6 +305,21 @@ namespace MizuMod
             return (float)unroofedCells / allCells;
         }
 
+        public static int GetRoofNumNearby(this IBuilding_WaterNet t, int dist)
+        {
+            int roofNum = 0;
+            foreach (var cell in t.OccupiedRect().ExpandedBy(dist))
+            {
+                if (!cell.InBounds(t.Map)) continue;
+
+                // 自然の屋根でなければボーナス
+                var roofDef = t.Map.roofGrid.RoofAt(cell);
+                if (roofDef != null && roofDef.isNatural == false) roofNum++;
+            }
+
+            return roofNum;
+        }
+
         public static WaterPreferability ToWaterPreferability(this WaterType waterType)
         {
             switch (waterType)

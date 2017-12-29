@@ -602,6 +602,9 @@
           <li>Rain</li>
         </inputTypes>
         <maxInputWaterFlow>1500</maxInputWaterFlow>
+        <baseRainFlow>70</baseRainFlow>
+        <roofEfficiency>0.25</roofEfficiency>
+        <roofDistance>1</roofDistance>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
         <maxOutputWaterFlow>150</maxOutputWaterFlow>
@@ -674,6 +677,9 @@
         </inputTypes>
         <inputWaterFlowType>Any</inputWaterFlowType>
         <maxInputWaterFlow>1500</maxInputWaterFlow>
+        <baseRainFlow>70</baseRainFlow>
+        <roofEfficiency>0.25</roofEfficiency>
+        <roofDistance>1</roofDistance>
       </li>
     </comps>
     <inspectorTabs>

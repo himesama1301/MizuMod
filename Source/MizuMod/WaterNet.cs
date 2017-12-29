@@ -262,7 +262,11 @@ namespace MizuMod
                 // 建造物にどれだけ屋根がかぶっているかチェック
                 if (!t.InputComp.IsActivated) continue;
 
-                float addRainWaterVolume = t.InputComp.MaxInputWaterFlow * this.Manager.map.weatherManager.RainRate * t.GetUnroofedPercent();
+                // 屋根ボーナスの計算(屋根の枚数/設備の面積*屋根効率)
+                var building = t as Building;
+                float roofBonus = (float)t.GetRoofNumNearby(t.InputComp.RoofDistance) / building.def.size.Area * t.InputComp.RoofEfficiency;
+
+                float addRainWaterVolume = t.InputComp.BaseRainFlow * this.Manager.map.weatherManager.RainRate * t.GetUnroofedPercent() * (1 + roofBonus);
                 t.InputComp.InputWaterFlow = Mathf.Min(t.InputComp.InputWaterFlow + addRainWaterVolume, t.InputComp.MaxInputWaterFlow);
                 if (addRainWaterVolume > 0.0f)
                 {
