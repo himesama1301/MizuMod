@@ -9,17 +9,23 @@ namespace MizuMod
 {
     public class Building_WaterBox : Building_WaterNetWorkTable, IBuilding_WaterNet, IBuilding_DrinkWater
     {
+        private List<float> graphicThreshold = new List<float>()
+        {
+            0.05f,
+            0.35f,
+            0.65f,
+            0.95f,
+            100f,
+        };
+
+        private int graphicIndex = 0;
+        private int prevGraphicIndex = 0;
+
         public override Graphic Graphic
         {
             get
             {
-                if (this.TankComp == null) return MizuGraphics.LinkedWaterBox0.GetColoredVersion(MizuGraphics.WaterPipe.Shader, this.DrawColor, this.DrawColorTwo);
-                if (this.TankComp.StoredWaterVolumePercent <= 0.05f) return MizuGraphics.LinkedWaterBox0.GetColoredVersion(MizuGraphics.WaterBox0.Shader, this.DrawColor, this.DrawColorTwo);
-                if (this.TankComp.StoredWaterVolumePercent <= 0.35f) return MizuGraphics.LinkedWaterBox1.GetColoredVersion(MizuGraphics.WaterBox1.Shader, this.DrawColor, this.DrawColorTwo);
-                if (this.TankComp.StoredWaterVolumePercent <= 0.65f) return MizuGraphics.LinkedWaterBox2.GetColoredVersion(MizuGraphics.WaterBox2.Shader, this.DrawColor, this.DrawColorTwo);
-                if (this.TankComp.StoredWaterVolumePercent <= 0.95f) return MizuGraphics.LinkedWaterBox3.GetColoredVersion(MizuGraphics.WaterBox3.Shader, this.DrawColor, this.DrawColorTwo);
-
-                return MizuGraphics.LinkedWaterBox4.GetColoredVersion(MizuGraphics.WaterBox4.Shader, this.DrawColor, this.DrawColorTwo);
+                return MizuGraphics.LinkedWaterBoxes[this.graphicIndex].GetColoredVersion(MizuGraphics.WaterBoxes[this.graphicIndex].Shader, this.DrawColor, this.DrawColorTwo);
             }
         }
 
@@ -56,6 +62,40 @@ namespace MizuMod
         {
             if (this.TankComp == null) return;
             this.TankComp.DrawWaterVolume(amount);
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+
+            Scribe_Values.Look<int>(ref this.graphicIndex, "graphicIndex");
+            this.prevGraphicIndex = this.graphicIndex;
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+
+            this.prevGraphicIndex = this.graphicIndex;
+            if (this.TankComp == null)
+            {
+                this.graphicIndex = 0;
+                return;
+            }
+
+            for (int i = 0; i < this.graphicThreshold.Count; i++)
+            {
+                if (this.TankComp.StoredWaterVolumePercent < this.graphicThreshold[i])
+                {
+                    this.graphicIndex = i;
+                    break;
+                }
+            }
+
+            if (this.graphicIndex != this.prevGraphicIndex)
+            {
+                this.DirtyMapMesh(this.Map);
+            }
         }
     }
 }
