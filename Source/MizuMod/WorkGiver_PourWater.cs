@@ -14,12 +14,12 @@ namespace MizuMod
     {
         public override Job JobOnThing(Pawn pawn, Thing thing, bool forced = false)
         {
-            var baseJob = base.JobOnThing(pawn, thing, forced);
-            if (baseJob == null) return null;
-
             var comp = thing.TryGetComp<CompWaterNetTank>();
             if (comp == null) return null;
             if (comp.AmountCanAccept <= 0f) return null;
+
+            var baseJob = base.JobOnThing(pawn, thing, forced);
+            if (baseJob == null) return null;
 
             return new Job(MizuDef.Job_PourWater)
             {
