@@ -104,18 +104,21 @@ namespace MizuMod
             // 入力系を仕分けして追加
             if (thing.InputComp != null)
             {
-                if (thing.InputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet)
+                foreach (var inputType in thing.InputComp.InputTypes)
                 {
-                    // 水道網入力タイプは、この水道網からの入力を受ける場合のみ追加
-                    if (thing.InputWaterNet == this)
+                    if (inputType == CompProperties_WaterNetInput.InputType.WaterNet)
                     {
-                        this.inputterTypeDic[thing.InputComp.InputType].Add(thing);
+                        // 水道網入力タイプは、この水道網からの入力を受ける場合のみ追加
+                        if (thing.InputWaterNet == this)
+                        {
+                            this.inputterTypeDic[inputType].Add(thing);
+                        }
                     }
-                }
-                else
-                {
-                    // 水道網入力タイプ以外は無条件で追加
-                    this.inputterTypeDic[thing.InputComp.InputType].Add(thing);
+                    else
+                    {
+                        // 水道網入力タイプ以外は無条件で追加
+                        this.inputterTypeDic[inputType].Add(thing);
+                    }
                 }
             }
 
@@ -225,7 +228,7 @@ namespace MizuMod
             {
                 List<IBuilding_WaterNet> tanks = allThings.FindAll((t) =>
                 {
-                    return (t.TankComp != null) && (t.TankComp.AmountCanAccept > 0.0f) && (t.InputComp != null) && (t.InputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet);
+                    return (t.TankComp != null) && (t.TankComp.AmountCanAccept > 0.0f) && (t.InputComp != null) && t.InputComp.InputTypes.Contains(CompProperties_WaterNetInput.InputType.WaterNet);
                 });
 
                 if (tanks.Count == 0)
@@ -259,8 +262,12 @@ namespace MizuMod
                 // 建造物にどれだけ屋根がかぶっているかチェック
                 if (!t.InputComp.IsActivated) continue;
 
-                t.InputComp.InputWaterFlow = t.InputComp.MaxInputWaterFlow * this.Manager.map.weatherManager.RainRate * t.GetUnroofedPercent();
-                if (t.InputComp.InputWaterFlow > 0.0f) t.InputComp.InputWaterType = WaterType.RawWater;
+                float addRainWaterVolume = t.InputComp.MaxInputWaterFlow * this.Manager.map.weatherManager.RainRate * t.GetUnroofedPercent();
+                t.InputComp.InputWaterFlow = Mathf.Min(t.InputComp.InputWaterFlow + addRainWaterVolume, t.InputComp.MaxInputWaterFlow);
+                if (addRainWaterVolume > 0.0f)
+                {
+                    t.InputComp.InputWaterType = t.InputComp.InputWaterType.GetMinType(WaterType.RawWater);
+                }
             }
             // 地下水入力タイプの入力量を決定
             foreach (var t in inputterTypeDic[CompProperties_WaterNetInput.InputType.WaterPool])
@@ -271,7 +278,7 @@ namespace MizuMod
                 {
                     // 地下水があれば入力あり
                     t.InputComp.InputWaterFlow = t.InputComp.MaxInputWaterFlow;
-                    t.InputComp.InputWaterType = t.WaterPool.WaterType;
+                    t.InputComp.InputWaterType = t.InputComp.InputWaterType.GetMinType(t.WaterPool.WaterType);
                 }
             }
             // 地形入力タイプの入力量を決定
@@ -285,7 +292,7 @@ namespace MizuMod
                 {
                     // 入力可能水質と地形が合っていれば入力あり
                     t.InputComp.InputWaterFlow = t.InputComp.MaxInputWaterFlow;
-                    t.InputComp.InputWaterType = terrainWaterType;
+                    t.InputComp.InputWaterType = t.InputComp.InputWaterType.GetMinType(terrainWaterType);
                 }
             }
 
@@ -330,11 +337,12 @@ namespace MizuMod
                 });
                 foreach (var inputter in constantInputters)
                 {
-                    if (remainOutputWaterFlow >= inputter.InputComp.MaxInputWaterFlow)
+                    float actualInputWaterFlow = inputter.InputComp.MaxInputWaterFlow - inputter.InputComp.InputWaterFlow;
+                    if (remainOutputWaterFlow >= actualInputWaterFlow)
                     {
                         // 残量がまだ足りているなら入力する
-                        inputter.InputComp.InputWaterFlow = inputter.InputComp.MaxInputWaterFlow;
-                        remainOutputWaterFlow -= inputter.InputComp.MaxInputWaterFlow;
+                        inputter.InputComp.InputWaterFlow += actualInputWaterFlow;
+                        remainOutputWaterFlow -= actualInputWaterFlow;
                     }
                 }
 

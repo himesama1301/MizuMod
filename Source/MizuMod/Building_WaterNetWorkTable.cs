@@ -292,7 +292,7 @@ namespace MizuMod
         {
             get
             {
-                if (this.inputComp != null && this.inputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet)
+                if (this.inputComp != null && this.inputComp.InputTypes.Contains(CompProperties_WaterNetInput.InputType.WaterNet))
                 {
                     return this.InputWaterNet.StoredWaterVolume;
                 }
@@ -309,7 +309,7 @@ namespace MizuMod
         {
             get
             {
-                if (this.inputComp != null && this.inputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet)
+                if (this.inputComp != null && this.inputComp.InputTypes.Contains(CompProperties_WaterNetInput.InputType.WaterNet))
                 {
                     return this.InputWaterNet.StoredWaterType;
                 }
@@ -324,7 +324,7 @@ namespace MizuMod
 
         public void DrawWaterVolume(float amount)
         {
-            if (this.inputComp != null && this.inputComp.InputType == CompProperties_WaterNetInput.InputType.WaterNet)
+            if (this.inputComp != null && this.inputComp.InputTypes.Contains(CompProperties_WaterNetInput.InputType.WaterNet))
             {
                 this.InputWaterNet.DrawWaterVolume(amount);
             }

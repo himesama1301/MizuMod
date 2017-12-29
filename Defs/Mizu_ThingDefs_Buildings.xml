@@ -396,7 +396,9 @@
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetInput">
         <maxInputWaterFlow>150</maxInputWaterFlow>
-        <inputType>Terrain</inputType>
+        <inputTypes>
+          <li>Terrain</li>
+        </inputTypes>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
         <maxOutputWaterFlow>150</maxOutputWaterFlow>
@@ -445,7 +447,9 @@
     <comps>
       <li Class="MizuMod.CompProperties_WaterNetInput">
         <maxInputWaterFlow>150</maxInputWaterFlow>
-        <inputType>WaterPool</inputType>
+        <inputTypes>
+          <li>WaterPool</li>
+        </inputTypes>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
         <maxOutputWaterFlow>150</maxOutputWaterFlow>
@@ -594,7 +598,9 @@
         <maxWaterVolume>100</maxWaterVolume>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetInput">
-        <inputType>Rain</inputType>
+        <inputTypes>
+          <li>Rain</li>
+        </inputTypes>
         <maxInputWaterFlow>1500</maxInputWaterFlow>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetOutput">
@@ -662,7 +668,12 @@
         <showBar>false</showBar>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetInput">
+        <inputTypes>
+          <li>WaterNet</li>
+          <li>Rain</li>
+        </inputTypes>
         <inputWaterFlowType>Any</inputWaterFlowType>
+        <maxInputWaterFlow>1500</maxInputWaterFlow>
       </li>
     </comps>
     <inspectorTabs>

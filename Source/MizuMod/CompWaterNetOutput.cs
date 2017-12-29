@@ -116,7 +116,7 @@ namespace MizuMod
                 if (this.WaterNetBuilding.OutputWaterNet != t.InputWaterNet) continue;
 
                 // 入力機能が無効、または水道網から入力しないタイプは無効
-                if (t.InputComp == null || !t.InputComp.IsActivated || t.InputComp.InputType != CompProperties_WaterNetInput.InputType.WaterNet) continue;
+                if (t.InputComp == null || !t.InputComp.IsActivated || !t.InputComp.InputTypes.Contains(CompProperties_WaterNetInput.InputType.WaterNet)) continue;
 
                 // 貯水機能を持っているが満タンである場合は無効
                 if (t.TankComp != null && t.TankComp.AmountCanAccept <= 0f) continue;

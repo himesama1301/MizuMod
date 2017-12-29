@@ -23,11 +23,18 @@ namespace MizuMod
                 return this.Props.maxInputWaterFlow;
             }
         }
-        public virtual CompProperties_WaterNetInput.InputType InputType
+        //public virtual CompProperties_WaterNetInput.InputType InputType
+        //{
+        //    get
+        //    {
+        //        return this.Props.inputType;
+        //    }
+        //}
+        public virtual List<CompProperties_WaterNetInput.InputType> InputTypes
         {
             get
             {
-                return this.Props.inputType;
+                return this.Props.inputTypes;
             }
         }
         public virtual CompProperties_WaterNetInput.InputWaterFlowType InputWaterFlowType
@@ -62,7 +69,7 @@ namespace MizuMod
             get
             {
                 // 水道網から入力するタイプで、現在の入力量が0ではない⇒入力中
-                return this.InputType == CompProperties_WaterNetInput.InputType.WaterNet && this.InputWaterFlow > 0f;
+                return this.InputTypes.Contains(CompProperties_WaterNetInput.InputType.WaterNet) && this.InputWaterFlow > 0f;
             }
         }
 

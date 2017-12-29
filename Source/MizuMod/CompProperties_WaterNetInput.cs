@@ -24,7 +24,12 @@ namespace MizuMod
         }
 
         public float maxInputWaterFlow = float.MaxValue;
-        public InputType inputType = InputType.WaterNet;
+        //public InputType inputType = InputType.WaterNet;
+        public List<InputType> inputTypes = new List<InputType>
+        {
+            InputType.WaterNet,
+        };
+
         public InputWaterFlowType inputWaterFlowType = InputWaterFlowType.Any;
 
         public List<WaterType> acceptWaterTypes = new List<WaterType>

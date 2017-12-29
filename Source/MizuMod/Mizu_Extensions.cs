@@ -323,5 +323,10 @@ namespace MizuMod
                     return WaterPreferability.Undefined;
             }
         }
+
+        public static WaterType GetMinType(this WaterType me, WaterType other)
+        {
+            return (WaterType)Mathf.Min((int)me, (int)other);
+        }
     }
 }
