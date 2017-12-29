@@ -63,4 +63,12 @@
   <Mizu_DesalinateSeaWaterMulti.description>海水を5個淡水化し、普通の水にします。</Mizu_DesalinateSeaWaterMulti.description>
   <Mizu_DesalinateSeaWaterMulti.jobString>海水を淡水化している</Mizu_DesalinateSeaWaterMulti.jobString>
   
+  <Mizu_PourWater.label>水を5個注ぐ</Mizu_PourWater.label>
+  <Mizu_PourWater.description>容器に水を5個注ぎます。</Mizu_PourWater.description>
+  <Mizu_PourWater.jobString>水を5個注いでいる</Mizu_PourWater.jobString>
+  
+  <Mizu_PourWaterMulti.label>水を25個注ぐ</Mizu_PourWaterMulti.label>
+  <Mizu_PourWaterMulti.description>容器に水を25個注ぎます。</Mizu_PourWaterMulti.description>
+  <Mizu_PourWaterMulti.jobString>水を25個注いでいる</Mizu_PourWaterMulti.jobString>
+  
 </LanguageData>

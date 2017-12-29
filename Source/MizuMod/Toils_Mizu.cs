@@ -165,6 +165,91 @@ namespace MizuMod
             return toil;
         }
 
+        public static Toil AddPlacedThing()
+        {
+            Toil toil = new Toil();
+            toil.initAction = () =>
+            {
+                var actor = toil.actor;
+                if (actor.CurJob.placedThings == null)
+                {
+                    actor.CurJob.placedThings = new List<ThingStackPartClass>();
+                }
+                actor.CurJob.placedThings.Add(new ThingStackPartClass(actor.carryTracker.CarriedThing, actor.carryTracker.CarriedThing.stackCount));
+            };
+            toil.defaultCompleteMode = ToilCompleteMode.Instant;
+            return toil;
+        }
+        public static Toil FinishPourRecipe(TargetIndex billGiverIndex, TargetIndex ingListIndex)
+        {
+            Toil toil = new Toil();
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+                Job curJob = actor.jobs.curJob;
+                JobDriver_DoBill jobDriver_DoBill = (JobDriver_DoBill)actor.jobs.curDriver;
+
+                // 経験値取得
+                if (curJob.RecipeDef.workSkill != null)
+                {
+                    float xp = (float)jobDriver_DoBill.ticksSpentDoingRecipeWork * 0.11f * curJob.RecipeDef.workSkillLearnFactor;
+                    actor.skills.GetSkill(curJob.RecipeDef.workSkill).Learn(xp, false);
+                }
+
+                // 注ぎ込んだ水の総量と水質を求める
+                float totalWaterVolume = 0f;
+                var totalWaterType = WaterType.NoWater;
+                foreach (var tspc in curJob.placedThings)
+                {
+                    var thingDef = tspc.thing.def;
+                    var compprop = thingDef.GetCompProperties<CompProperties_WaterSource>();
+                    if (compprop == null)
+                    {
+                        Log.Error("compprop is null");
+                        actor.jobs.EndCurrentJob(JobCondition.Incompletable);
+                        return;
+                    }
+
+                    totalWaterVolume += compprop.waterVolume * tspc.Count;
+                    totalWaterType = totalWaterType.GetMinType(compprop.waterType);
+                }
+                
+                var billGiver = curJob.GetTarget(billGiverIndex).Thing as Building_WaterNetWorkTable;
+                if (billGiver == null)
+                {
+                    Log.Error("billGiver is null");
+                    actor.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    return;
+                }
+                // 水の増加
+                billGiver.AddWaterVolume(totalWaterVolume);
+                // 水質変更
+                billGiver.TankComp.StoredWaterType = billGiver.TankComp.StoredWaterType.GetMinType(totalWaterType);
+
+                // 水アイテムの消費
+                foreach (var tspc in curJob.placedThings)
+                {
+                    Thing thing;
+                    if (tspc.Count < tspc.thing.stackCount)
+                    {
+                        thing = tspc.thing.SplitOff(tspc.Count);
+                    }
+                    else
+                    {
+                        thing = tspc.thing;
+                    }
+                    curJob.RecipeDef.Worker.ConsumeIngredient(thing, curJob.RecipeDef, actor.Map);
+                }
+
+                curJob.bill.Notify_IterationCompleted(actor, null);
+                RecordsUtility.Notify_BillDone(actor, new List<Thing>());
+
+                actor.jobs.EndCurrentJob(JobCondition.Succeeded, true);
+            };
+            toil.defaultCompleteMode = ToilCompleteMode.Instant;
+            return toil;
+        }
+
         public static Toil StartCarryFromInventory(TargetIndex thingIndex)
         {
             // 水(食事)を持ち物から取り出す

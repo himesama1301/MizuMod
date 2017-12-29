@@ -332,4 +332,66 @@
     <workSkill>Cooking</workSkill>
   </RecipeDef>
   
+  <RecipeDef>
+    <defName>Mizu_PourWater</defName>
+    <label>pour water x5</label>
+    <description>pour water x5 to water storing building.</description>
+    <jobString>Pouring water.</jobString>
+    <workAmount>100</workAmount>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Mizu_Waters</li>
+          </categories>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Mizu_Waters</li>
+      </categories>
+    </fixedIngredientFilter>
+    <products>
+      <Mizu_NormalWater>1</Mizu_NormalWater>
+    </products>
+    <workSkill>Cooking</workSkill>
+  </RecipeDef>
+  
+  <RecipeDef>
+    <defName>Mizu_PourWaterMulti</defName>
+    <label>pour water x25</label>
+    <description>pour water x25 to water storing building.</description>
+    <jobString>Pouring water.</jobString>
+    <workAmount>500</workAmount>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Mizu_Waters</li>
+          </categories>
+        </filter>
+        <count>25</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Mizu_Waters</li>
+      </categories>
+    </fixedIngredientFilter>
+    <products>
+      <Mizu_NormalWater>1</Mizu_NormalWater>
+    </products>
+    <workSkill>Cooking</workSkill>
+  </RecipeDef>
+  
 </Defs>

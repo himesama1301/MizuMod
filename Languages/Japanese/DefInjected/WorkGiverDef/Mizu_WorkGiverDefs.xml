@@ -33,4 +33,8 @@
   <Mizu_CleanWater.verb>で水を浄化する</Mizu_CleanWater.verb>
   <Mizu_CleanWater.gerund>で水を浄化する</Mizu_CleanWater.gerund>
 
+  <Mizu_PourWater.label>水を注ぐ</Mizu_PourWater.label>
+  <Mizu_PourWater.verb>に水を注ぐ</Mizu_PourWater.verb>
+  <Mizu_PourWater.gerund>に水を注ぐ</Mizu_PourWater.gerund>
+
 </LanguageData>

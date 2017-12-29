@@ -94,6 +94,7 @@
     <Compile Include="JobDriver_DrawWater.cs" />
     <Compile Include="JobDriver_DrinkWater.cs" />
     <Compile Include="JobDriver_DrinkWaterFromBuilding.cs" />
+    <Compile Include="JobDriver_PourWater.cs" />
     <Compile Include="JobDriver_WaterDeliver.cs" />
     <Compile Include="JobDriver_WaterFeedPatient.cs" />
     <Compile Include="JobGiver_GetWater.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="WorkGiver_DrawFromWaterPool.cs" />
     <Compile Include="WorkGiver_DrawWater.cs" />
     <Compile Include="WorkGiver_FeedWaterPatient.cs" />
+    <Compile Include="WorkGiver_PourWater.cs" />
     <Compile Include="WorkGiver_Warden_DeliverWater.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

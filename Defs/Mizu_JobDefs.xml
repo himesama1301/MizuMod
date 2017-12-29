@@ -43,4 +43,10 @@
     <reportString>doing bill at TargetA.</reportString>
   </JobDef>
   
+  <JobDef>
+    <defName>Mizu_PourWater</defName>
+    <driverClass>MizuMod.JobDriver_PourWater</driverClass>
+    <reportString>doing bill at TargetA.</reportString>
+  </JobDef>
+  
 </Defs>

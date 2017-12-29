@@ -658,6 +658,8 @@
       <Beauty>-6</Beauty>
     </statBases>
     <neverMultiSelect>true</neverMultiSelect>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <comps>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Building</sourceType>
@@ -666,7 +668,7 @@
         <needManipulate>false</needManipulate>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetTank">
-        <maxWaterVolume>10</maxWaterVolume>
+        <maxWaterVolume>15</maxWaterVolume>
         <flatID>1</flatID>
         <showBar>false</showBar>
       </li>
@@ -688,6 +690,8 @@
     <recipes>
       <li>Mizu_DrawWaterFromWaterNet</li>
       <li>Mizu_DrawWaterFromWaterNetMulti</li>
+      <li>Mizu_PourWater</li>
+      <li>Mizu_PourWaterMulti</li>
     </recipes>
     <designationHotKey>Misc12</designationHotKey>
   </ThingDef>

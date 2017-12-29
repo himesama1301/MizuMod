@@ -322,6 +322,14 @@ namespace MizuMod
             }
         }
 
+        public void AddWaterVolume(float amount)
+        {
+            if (this.tankComp != null)
+            {
+                this.tankComp.AddWaterVolume(amount);
+            }
+        }
+
         public void DrawWaterVolume(float amount)
         {
             if (this.inputComp != null && this.inputComp.InputTypes.Contains(CompProperties_WaterNetInput.InputType.WaterNet))
