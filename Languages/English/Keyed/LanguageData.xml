@@ -45,4 +45,6 @@
   <MizuWaterTypeMud>MudWater</MizuWaterTypeMud>
   <MizuWaterTypeSea>SeaWater</MizuWaterTypeSea>
   
+  <MizuMissingWater>need water</MizuMissingWater>
+  <MizuFullWater>sufficiently</MizuFullWater>
 </LanguageData>

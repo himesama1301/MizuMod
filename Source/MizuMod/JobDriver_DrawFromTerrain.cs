@@ -27,7 +27,7 @@ namespace MizuMod
             if (createThing == null) return null;
 
             // 個数設定
-            createThing.stackCount = recipe.getItemCount;
+            createThing.stackCount = ext.getItemCount;
             return createThing;
         }
     }

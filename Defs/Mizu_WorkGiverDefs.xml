@@ -2,64 +2,17 @@
 <Defs>
 
   <WorkGiverDef>
-    <defName>Mizu_DrawFromTerrain</defName>
+    <defName>Mizu_DoBillWater</defName>
     <label>drawing water at spot</label>
-    <giverClass>MizuMod.WorkGiver_DrawFromTerrain</giverClass>
+    <giverClass>MizuMod.WorkGiver_DoBillWater</giverClass>
     <workType>Mizu_Drawing</workType>
-    <priorityInType>90</priorityInType>
+    <priorityInType>100</priorityInType>
     <fixedBillGiverDefs>
       <li>Mizu_DrawingWaterSpot</li>
-    </fixedBillGiverDefs>
-    <verb>draw</verb>
-    <gerund>drawing at</gerund>
-    <requiredCapacities>
-      <li>Manipulation</li>
-    </requiredCapacities>
-    <prioritizeSustains>true</prioritizeSustains>
-  </WorkGiverDef>
-
-  <WorkGiverDef>
-    <defName>Mizu_DrawFromWaterPool</defName>
-    <label>drawing water from underground</label>
-    <giverClass>MizuMod.WorkGiver_DrawFromWaterPool</giverClass>
-    <workType>Mizu_Drawing</workType>
-    <priorityInType>101</priorityInType>
-    <fixedBillGiverDefs>
       <li>Mizu_Well</li>
-    </fixedBillGiverDefs>
-    <verb>draw</verb>
-    <gerund>drawing at</gerund>
-    <requiredCapacities>
-      <li>Manipulation</li>
-    </requiredCapacities>
-    <prioritizeSustains>true</prioritizeSustains>
-  </WorkGiverDef>
-
-  <WorkGiverDef>
-    <defName>Mizu_DrawFromFaucet</defName>
-    <label>drawing water from faucet</label>
-    <giverClass>MizuMod.WorkGiver_DrawFromWaterNet</giverClass>
-    <workType>Mizu_Drawing</workType>
-    <priorityInType>103</priorityInType>
-    <fixedBillGiverDefs>
       <li>Mizu_WaterFaucet</li>
-    </fixedBillGiverDefs>
-    <verb>draw</verb>
-    <gerund>drawing at</gerund>
-    <requiredCapacities>
-      <li>Manipulation</li>
-    </requiredCapacities>
-    <prioritizeSustains>true</prioritizeSustains>
-  </WorkGiverDef>
-
-  <WorkGiverDef>
-    <defName>Mizu_DrawFromRainTank</defName>
-    <label>drawing water from rain tank</label>
-    <giverClass>MizuMod.WorkGiver_DrawFromWaterNet</giverClass>
-    <workType>Mizu_Drawing</workType>
-    <priorityInType>102</priorityInType>
-    <fixedBillGiverDefs>
       <li>Mizu_RainTank</li>
+      <li>Mizu_WaterBox</li>
     </fixedBillGiverDefs>
     <verb>draw</verb>
     <gerund>drawing at</gerund>
@@ -127,23 +80,6 @@
     </fixedBillGiverDefs>
     <verb>clean</verb>
     <gerund>cleaning at</gerund>
-    <requiredCapacities>
-      <li>Manipulation</li>
-    </requiredCapacities>
-    <prioritizeSustains>true</prioritizeSustains>
-  </WorkGiverDef>
-
-  <WorkGiverDef>
-    <defName>Mizu_PourWater</defName>
-    <label>pour water</label>
-    <giverClass>MizuMod.WorkGiver_PourWater</giverClass>
-    <workType>Mizu_Drawing</workType>
-    <priorityInType>80</priorityInType>
-    <fixedBillGiverDefs>
-      <li>Mizu_WaterBox</li>
-    </fixedBillGiverDefs>
-    <verb>pour</verb>
-    <gerund>pouring at</gerund>
     <requiredCapacities>
       <li>Manipulation</li>
     </requiredCapacities>

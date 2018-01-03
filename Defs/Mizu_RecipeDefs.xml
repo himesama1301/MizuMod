@@ -9,138 +9,236 @@
     <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_CookMeal</soundWorking>
-    <workAmount>350</workAmount>
-    <getItemCount>1</getItemCount>
+    <products>
+      <Mizu_NormalWater>1</Mizu_NormalWater>
+    </products>
   </MizuMod.GetWaterRecipeDef>
   
   
   
   <!-- Draw Water Single From Terrain -->
   
-  <MizuMod.GetWaterRecipeDef ParentName="Mizu_DrawWaterBase">
+  <RecipeDef ParentName="Mizu_DrawWaterBase">
     <defName>Mizu_DrawWater</defName>
     <label>draw water at this spot</label>
     <description>Draws water for drinking. the type of water depends on terrain.</description>
     <jobString>Drawing water.</jobString>
-    <needWaterTerrainTypes>
-      <li>RawWater</li>
-      <li>MudWater</li>
-      <li>SeaWater</li>
-    </needWaterTerrainTypes>
-  </MizuMod.GetWaterRecipeDef>
+    <workAmount>350</workAmount>
+    <modExtensions>
+      <li Class="MizuMod.DefExtension_WaterRecipe">
+        <recipeType>DrawFromTerrain</recipeType>
+        <needWaterTerrainTypes>
+          <li>RawWater</li>
+          <li>MudWater</li>
+          <li>SeaWater</li>
+        </needWaterTerrainTypes>
+        <getItemCount>1</getItemCount>
+      </li>
+    </modExtensions>
+  </RecipeDef>
   
   
   
   <!-- Draw Water Multi From Terrain -->
   
-  <MizuMod.GetWaterRecipeDef Name="Mizu_DrawWaterMultiBase" ParentName="Mizu_DrawWaterBase" Abstract="True">
-    <workAmount>1750</workAmount>
-    <getItemCount>5</getItemCount>
-  </MizuMod.GetWaterRecipeDef>
-  
-  <MizuMod.GetWaterRecipeDef ParentName="Mizu_DrawWaterMultiBase">
+  <RecipeDef ParentName="Mizu_DrawWaterBase">
     <defName>Mizu_DrawWaterMulti</defName>
     <label>draw water x5 at this spot</label>
     <description>Draws water x5 for drinking. the type of water depends on terrain.</description>
     <jobString>Drawing water.</jobString>
-    <needWaterTerrainTypes>
-      <li>RawWater</li>
-      <li>MudWater</li>
-      <li>SeaWater</li>
-    </needWaterTerrainTypes>
-  </MizuMod.GetWaterRecipeDef>
+    <workAmount>1750</workAmount>
+    <modExtensions>
+      <li Class="MizuMod.DefExtension_WaterRecipe">
+        <recipeType>DrawFromTerrain</recipeType>
+        <needWaterTerrainTypes>
+          <li>RawWater</li>
+          <li>MudWater</li>
+          <li>SeaWater</li>
+        </needWaterTerrainTypes>
+        <getItemCount>5</getItemCount>
+      </li>
+    </modExtensions>
+  </RecipeDef>
   
   
   
   <!-- Draw Water Single From Water Pool -->
   
-  <MizuMod.GetWaterRecipeDef Name="Mizu_DrawWaterFromWaterPoolBase" ParentName="Mizu_DrawWaterBase" Abstract="True">
-    <workAmount>200</workAmount>
-    <getItemCount>1</getItemCount>
-  </MizuMod.GetWaterRecipeDef>
-  
-  <MizuMod.GetWaterRecipeDef ParentName="Mizu_DrawWaterFromWaterPoolBase">
+  <RecipeDef ParentName="Mizu_DrawWaterBase">
     <defName>Mizu_DrawWaterFromWaterPool</defName>
     <label>draw raw water from underground</label>
     <description>Draws water from underground for drinking</description>
     <jobString>Drawing water from underground.</jobString>
-    <needWaterTypes>
-      <li>ClearWater</li>
-      <li>NormalWater</li>
-      <li>RawWater</li>
-      <li>MudWater</li>
-      <li>SeaWater</li>
-    </needWaterTypes>
-  </MizuMod.GetWaterRecipeDef>
+    <workAmount>200</workAmount>
+    <modExtensions>
+      <li Class="MizuMod.DefExtension_WaterRecipe">
+        <recipeType>DrawFromWaterPool</recipeType>
+        <needWaterTypes>
+          <li>ClearWater</li>
+          <li>NormalWater</li>
+          <li>RawWater</li>
+          <li>MudWater</li>
+          <li>SeaWater</li>
+        </needWaterTypes>
+        <getItemCount>1</getItemCount>
+      </li>
+    </modExtensions>
+  </RecipeDef>
   
   
   
   <!-- Draw Water Multi From Water Pool -->
   
-  <MizuMod.GetWaterRecipeDef Name="Mizu_DrawWaterFromWaterPoolMultiBase" ParentName="Mizu_DrawWaterFromWaterPoolBase" Abstract="True">
-    <workAmount>1000</workAmount>
-    <getItemCount>5</getItemCount>
-  </MizuMod.GetWaterRecipeDef>
-  
-  <MizuMod.GetWaterRecipeDef ParentName="Mizu_DrawWaterFromWaterPoolMultiBase">
+  <RecipeDef ParentName="Mizu_DrawWaterBase">
     <defName>Mizu_DrawWaterFromWaterPoolMulti</defName>
     <label>draw water x5 from underground</label>
     <description>Draws water x5 from underground for drinking</description>
     <jobString>Drawing water from underground.</jobString>
-    <needWaterTypes>
-      <li>ClearWater</li>
-      <li>NormalWater</li>
-      <li>RawWater</li>
-      <li>MudWater</li>
-      <li>SeaWater</li>
-    </needWaterTypes>
-  </MizuMod.GetWaterRecipeDef>
+    <workAmount>1000</workAmount>
+    <modExtensions>
+      <li Class="MizuMod.DefExtension_WaterRecipe">
+        <recipeType>DrawFromWaterPool</recipeType>
+        <needWaterTypes>
+          <li>ClearWater</li>
+          <li>NormalWater</li>
+          <li>RawWater</li>
+          <li>MudWater</li>
+          <li>SeaWater</li>
+        </needWaterTypes>
+        <getItemCount>5</getItemCount>
+      </li>
+    </modExtensions>
+  </RecipeDef>
   
   
   
   <!-- Draw Water Single From Water Net -->
   
-  <MizuMod.GetWaterRecipeDef Name="Mizu_DrawWaterFromWaterNetBase" ParentName="Mizu_DrawWaterBase" Abstract="True">
-    <workAmount>70</workAmount>
-    <getItemCount>1</getItemCount>
-  </MizuMod.GetWaterRecipeDef>
-  
-  <MizuMod.GetWaterRecipeDef ParentName="Mizu_DrawWaterFromWaterNetBase">
+  <RecipeDef ParentName="Mizu_DrawWaterBase">
     <defName>Mizu_DrawWaterFromWaterNet</defName>
     <label>draw water from waterworks</label>
     <description>Draws water from waterworks for drinking</description>
     <jobString>Drawing water from waterworks.</jobString>
-    <needWaterTypes>
-      <li>ClearWater</li>
-      <li>NormalWater</li>
-      <li>RawWater</li>
-      <li>MudWater</li>
-      <li>SeaWater</li>
-    </needWaterTypes>
-  </MizuMod.GetWaterRecipeDef>
+    <workAmount>70</workAmount>
+    <modExtensions>
+      <li Class="MizuMod.DefExtension_WaterRecipe">
+        <recipeType>DrawFromWaterNet</recipeType>
+        <needWaterTypes>
+          <li>ClearWater</li>
+          <li>NormalWater</li>
+          <li>RawWater</li>
+          <li>MudWater</li>
+          <li>SeaWater</li>
+        </needWaterTypes>
+        <getItemCount>1</getItemCount>
+      </li>
+    </modExtensions>
+  </RecipeDef>
   
   
   
   <!-- Draw Water Multi From Water Net -->
   
-  <MizuMod.GetWaterRecipeDef Name="Mizu_DrawWaterFromWaterNetMultiBase" ParentName="Mizu_DrawWaterFromWaterNetBase" Abstract="True">
-    <workAmount>350</workAmount>
-    <getItemCount>5</getItemCount>
-  </MizuMod.GetWaterRecipeDef>
-  
-  <MizuMod.GetWaterRecipeDef ParentName="Mizu_DrawWaterFromWaterNetMultiBase">
+  <RecipeDef ParentName="Mizu_DrawWaterBase">
     <defName>Mizu_DrawWaterFromWaterNetMulti</defName>
     <label>draw water x5 from waterworks</label>
     <description>Draws water x5 from waterworks for drinking</description>
     <jobString>Drawing water from waterworks.</jobString>
-    <needWaterTypes>
-      <li>ClearWater</li>
-      <li>NormalWater</li>
-      <li>RawWater</li>
-      <li>MudWater</li>
-      <li>SeaWater</li>
-    </needWaterTypes>
-  </MizuMod.GetWaterRecipeDef>
+    <workAmount>350</workAmount>
+    <modExtensions>
+      <li Class="MizuMod.DefExtension_WaterRecipe">
+        <recipeType>DrawFromWaterNet</recipeType>
+        <needWaterTypes>
+          <li>ClearWater</li>
+          <li>NormalWater</li>
+          <li>RawWater</li>
+          <li>MudWater</li>
+          <li>SeaWater</li>
+        </needWaterTypes>
+        <getItemCount>5</getItemCount>
+      </li>
+    </modExtensions>
+  </RecipeDef>
+  
+  
+  
+  <!-- Pour Water -->
+  
+  <RecipeDef>
+    <defName>Mizu_PourWater</defName>
+    <label>pour water x5</label>
+    <description>pour water x5 to water storing building.</description>
+    <jobString>Pouring water.</jobString>
+    <workAmount>100</workAmount>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Mizu_Waters</li>
+          </categories>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Mizu_Waters</li>
+      </categories>
+    </fixedIngredientFilter>
+    <products>
+      <Mizu_NormalWater>1</Mizu_NormalWater>
+    </products>
+    <workSkill>Cooking</workSkill>
+    <modExtensions>
+      <li Class="MizuMod.DefExtension_WaterRecipe">
+        <recipeType>PourWater</recipeType>
+      </li>
+    </modExtensions>
+  </RecipeDef>
+  
+  
+  
+  <!-- Pour Water Multi -->
+  
+  <RecipeDef>
+    <defName>Mizu_PourWaterMulti</defName>
+    <label>pour water x25</label>
+    <description>pour water x25 to water storing building.</description>
+    <jobString>Pouring water.</jobString>
+    <workAmount>500</workAmount>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Mizu_Waters</li>
+          </categories>
+        </filter>
+        <count>25</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Mizu_Waters</li>
+      </categories>
+    </fixedIngredientFilter>
+    <products>
+      <Mizu_NormalWater>1</Mizu_NormalWater>
+    </products>
+    <workSkill>Cooking</workSkill>
+    <modExtensions>
+      <li Class="MizuMod.DefExtension_WaterRecipe">
+        <recipeType>PourWater</recipeType>
+      </li>
+    </modExtensions>
+  </RecipeDef>
   
   
   
@@ -328,68 +426,6 @@
     </fixedIngredientFilter>
     <products>
       <Mizu_NormalWater>5</Mizu_NormalWater>
-    </products>
-    <workSkill>Cooking</workSkill>
-  </RecipeDef>
-  
-  <RecipeDef>
-    <defName>Mizu_PourWater</defName>
-    <label>pour water x5</label>
-    <description>pour water x5 to water storing building.</description>
-    <jobString>Pouring water.</jobString>
-    <workAmount>100</workAmount>
-    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
-    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
-    <effectWorking>Cook</effectWorking>
-    <soundWorking>Recipe_CookMeal</soundWorking>
-    <ingredients>
-      <li>
-        <filter>
-          <categories>
-            <li>Mizu_Waters</li>
-          </categories>
-        </filter>
-        <count>5</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <categories>
-        <li>Mizu_Waters</li>
-      </categories>
-    </fixedIngredientFilter>
-    <products>
-      <Mizu_NormalWater>1</Mizu_NormalWater>
-    </products>
-    <workSkill>Cooking</workSkill>
-  </RecipeDef>
-  
-  <RecipeDef>
-    <defName>Mizu_PourWaterMulti</defName>
-    <label>pour water x25</label>
-    <description>pour water x25 to water storing building.</description>
-    <jobString>Pouring water.</jobString>
-    <workAmount>500</workAmount>
-    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
-    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
-    <effectWorking>Cook</effectWorking>
-    <soundWorking>Recipe_CookMeal</soundWorking>
-    <ingredients>
-      <li>
-        <filter>
-          <categories>
-            <li>Mizu_Waters</li>
-          </categories>
-        </filter>
-        <count>25</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <categories>
-        <li>Mizu_Waters</li>
-      </categories>
-    </fixedIngredientFilter>
-    <products>
-      <Mizu_NormalWater>1</Mizu_NormalWater>
     </products>
     <workSkill>Cooking</workSkill>
   </RecipeDef>

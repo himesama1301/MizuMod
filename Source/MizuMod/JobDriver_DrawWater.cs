@@ -11,7 +11,7 @@ namespace MizuMod
 {
     public abstract class JobDriver_DrawWater : JobDriver_DoBill
     {
-        protected GetWaterRecipeDef recipe;
+        protected DefExtension_WaterRecipe ext;
 
         private Action finishAction = () => { };
 
@@ -19,8 +19,8 @@ namespace MizuMod
         {
             if (!this.pawn.Reserve(this.job.GetTarget(BillGiverInd), this.job)) return false;
 
-            this.recipe = this.job.bill.recipe as GetWaterRecipeDef;
-            if (this.recipe == null) return false;
+            this.ext = this.job.bill.recipe.GetModExtension<DefExtension_WaterRecipe>();
+            if (this.ext == null) return false;
 
             return true;
         }

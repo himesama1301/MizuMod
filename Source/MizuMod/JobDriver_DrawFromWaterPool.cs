@@ -41,14 +41,14 @@ namespace MizuMod
             if (compprop == null) return null;
 
             // 地下水脈から水を減らす
-            this.pool.CurrentWaterVolume = Mathf.Max(0, pool.CurrentWaterVolume - compprop.waterVolume * recipe.getItemCount);
+            this.pool.CurrentWaterVolume = Mathf.Max(0, pool.CurrentWaterVolume - compprop.waterVolume * ext.getItemCount);
 
             // 水を生成
             var createThing = ThingMaker.MakeThing(waterThingDef);
             if (createThing == null) return null;
 
             // 個数設定
-            createThing.stackCount = recipe.getItemCount;
+            createThing.stackCount = ext.getItemCount;
             return createThing;
         }
 

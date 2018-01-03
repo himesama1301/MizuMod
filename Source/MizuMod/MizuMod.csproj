@@ -79,6 +79,7 @@
     <Compile Include="CompWaterSource.cs" />
     <Compile Include="DaysWorthOfWaterCalculator.cs" />
     <Compile Include="DefExtension_NeedWater.cs" />
+    <Compile Include="DefExtension_WaterRecipe.cs" />
     <Compile Include="GenStep_UndergroundDeepWater.cs" />
     <Compile Include="GenStep_UndergroundShallowWater.cs" />
     <Compile Include="GenStep_UndergroundWater.cs" />
@@ -130,12 +131,8 @@
     <Compile Include="WaterTerrainType.cs" />
     <Compile Include="WaterType.cs" />
     <Compile Include="WaterTypeDef.cs" />
-    <Compile Include="WorkGiver_DrawFromTerrain.cs" />
-    <Compile Include="WorkGiver_DrawFromWaterNet.cs" />
-    <Compile Include="WorkGiver_DrawFromWaterPool.cs" />
-    <Compile Include="WorkGiver_DrawWater.cs" />
+    <Compile Include="WorkGiver_DoBillWater.cs" />
     <Compile Include="WorkGiver_FeedWaterPatient.cs" />
-    <Compile Include="WorkGiver_PourWater.cs" />
     <Compile Include="WorkGiver_Warden_DeliverWater.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

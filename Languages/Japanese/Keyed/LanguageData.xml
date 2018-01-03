@@ -45,4 +45,6 @@
   <MizuWaterTypeMud>泥水</MizuWaterTypeMud>
   <MizuWaterTypeSea>海水</MizuWaterTypeSea>
   
+  <MizuMissingWater>水がない</MizuMissingWater>
+  <MizuFullWater>十分にある</MizuFullWater>
 </LanguageData>

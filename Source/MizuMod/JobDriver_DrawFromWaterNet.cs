@@ -42,14 +42,14 @@ namespace MizuMod
             if (compprop == null) return null;
 
             // 水道網から水を減らす
-            this.waterNet.DrawWaterVolume(compprop.waterVolume * recipe.getItemCount);
+            this.waterNet.DrawWaterVolume(compprop.waterVolume * ext.getItemCount);
 
             // 水を生成
             var createThing = ThingMaker.MakeThing(waterThingDef);
             if (createThing == null) return null;
 
             // 個数設定
-            createThing.stackCount = recipe.getItemCount;
+            createThing.stackCount = ext.getItemCount;
             return createThing;
         }
     }
