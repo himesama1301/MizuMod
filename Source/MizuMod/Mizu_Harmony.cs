@@ -148,6 +148,10 @@ namespace MizuMod
             // 水として飲めないアイテムなら終了
             if (!thing.CanGetWater() || !thing.CanDrinkWaterNow()) return;
 
+            // 水アイテムでなかったり、水分量が規定量以下の場合は能動的に飲むことはできない
+            var comp = thing.TryGetComp<CompWaterSource>();
+            if (comp == null || comp.SourceType != CompProperties_WaterSource.SourceType.Item || comp.WaterAmount < Need_Water.MinWaterAmountPerOneItem) return;
+
             // ツールチップとボタンを追加
             Rect dbRect = new Rect(dbRight - dbWidth, dbTop, dbWidth, dbHeight);
             TooltipHandler.TipRegion(dbRect, string.Format(MizuStrings.FloatMenuGetWater, thing.LabelNoCount));
