@@ -80,6 +80,7 @@
     <Compile Include="DaysWorthOfWaterCalculator.cs" />
     <Compile Include="DefExtension_NeedWater.cs" />
     <Compile Include="DefExtension_WaterRecipe.cs" />
+    <Compile Include="GenStep_HiddenWaterSpot.cs" />
     <Compile Include="GenStep_UndergroundDeepWater.cs" />
     <Compile Include="GenStep_UndergroundShallowWater.cs" />
     <Compile Include="GenStep_UndergroundWater.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="JobGiver_GetWater.cs" />
     <Compile Include="JobGiver_PackWater.cs" />
     <Compile Include="MapComponent_DeepWaterGrid.cs" />
+    <Compile Include="MapComponent_HiddenWaterSpot.cs" />
     <Compile Include="MapComponent_ShallowWaterGrid.cs" />
     <Compile Include="MapComponent_WaterGrid.cs" />
     <Compile Include="MapComponent_WaterNetManager.cs" />

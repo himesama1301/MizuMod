@@ -24,5 +24,9 @@ namespace MizuMod
         public FloatRange resetBaseRegenRateRangeForDeep = new FloatRange(40.0f, 80.0f);
         public float resetRainRegenRatePerCellForShallow = 10.0f;
         public float resetRainRegenRatePerCellForDeep = 5.0f;
+        public bool enableResetHiddenWaterSpot = false;
+        public int resetHiddenWaterSpotBlockSizeX = 30;
+        public int resetHiddenWaterSpotBlockSizeZ = 30;
+        public int resetHiddenWaterSpotAllSpotNum = 100;
     }
 }

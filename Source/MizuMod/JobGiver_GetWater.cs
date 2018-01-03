@@ -79,12 +79,23 @@ namespace MizuMod
             //    }
             //}
 
+            // 何も見つからなかった場合は隠し水飲み場を探す
+            // 人間、家畜、野生の動物全て
+            IntVec3 hiddenWaterSpot;
+            if (MizuUtility.TryFindHiddenWaterSpot(pawn, out hiddenWaterSpot))
+            {
+                return new Job(MizuDef.Job_DrinkWater, hiddenWaterSpot)
+                {
+                    count = 1
+                };
+            }
+
             // 地形利用処理が重いので削除、動物はどんなマップでも水が欲しい時には地形から摂取可能(家畜はダメ)
             //   ただしアイテムを見つけた時は先にアイテムから飲む
-            if (pawn.RaceProps.Animal && pawn.Faction != Faction.OfPlayer)
-            {
-                need_water.CurLevel = 1.0f;
-            }
+            //if (pawn.RaceProps.Animal && pawn.Faction != Faction.OfPlayer)
+            //{
+            //    need_water.CurLevel = 1.0f;
+            //}
 
             // どの水地形を利用するか決める
             //Predicate<IntVec3> validator = (vec) =>

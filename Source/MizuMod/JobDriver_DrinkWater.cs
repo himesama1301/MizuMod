@@ -11,6 +11,8 @@ namespace MizuMod
 {
     public class JobDriver_DrinkWater : JobDriver
     {
+        private static int BaseDrinkTicksFromTerrain = 2000;
+
         private const TargetIndex WaterIndex = TargetIndex.A;
 
         private bool drinkingFromInventory;
@@ -84,17 +86,17 @@ namespace MizuMod
                 // 選んだ水地形が使用不可能or到達不可能になったらFail
                 ToilFailConditions.FailOn<JobDriver_DrinkWater>(this, () =>
                 {
-                    return this.job.targetA.Cell.IsForbidden(pawn) || !pawn.CanReach(this.job.targetA.Cell, PathEndMode.OnCell, Danger.Deadly);
+                    return this.job.targetA.Cell.IsForbidden(pawn) || !pawn.CanReach(this.job.targetA.Cell, PathEndMode.ClosestTouch, Danger.Deadly);
                 });
 
                 // 水地形まで移動
                 yield return Toils_Goto.GotoCell(WaterIndex, PathEndMode.OnCell);
 
                 // 水地形から水分を摂取
-                yield return Toils_Mizu.DrinkTerrain(WaterIndex);
+                yield return Toils_Mizu.DrinkTerrain(WaterIndex, BaseDrinkTicksFromTerrain);
 
                 // 終了
-                yield return Toils_Mizu.FinishDrinkTerrain(WaterIndex);
+                //yield return Toils_Mizu.FinishDrinkTerrain(WaterIndex);
             }
         }
     }

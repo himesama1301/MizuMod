@@ -482,6 +482,72 @@ namespace MizuMod
             return (distScore + thoughtScore + foodPoisoningScore + rotScore);
         }
 
+        public static float GetWaterTerrainScore(Pawn eater, IntVec3 c, float dist, bool priorQuality)
+        {
+            TerrainDef terrain = c.GetTerrain(eater.Map);
+
+            // 水源ではない or 水源として使えない
+            if (!terrain.IsWater()) return float.MinValue;
+
+            var waterTypeDef = MizuDef.Dic_WaterTypeDef[terrain.ToWaterType()];
+
+            // 基本点計算
+
+            // 距離
+            float distScore = -dist;
+
+            // 心情変化量(水質)
+            // メモ
+            //   きれい= +10
+            //   普通  =   0
+            //   生水  =   0
+            //   泥水  =  -6
+            //   海水  =  -6
+            float thoughtScore = 0f;
+
+            // 禁欲の影響も含まれている
+            List<ThoughtDef> thoughtList = new List<ThoughtDef>();
+            MizuUtility.ThoughtsFromWaterTypeDef(eater, waterTypeDef, true, thoughtList);
+            foreach (var thought in thoughtList)
+            {
+                thoughtScore += thought.stages[0].baseMoodEffect;
+            }
+
+            // 食中毒
+            // メモ
+            //   きれい= 0    =>   0
+            //   普通  = 0    =>   0
+            //   生水  = 0.01 => -10
+            //   泥水  = 0.03 => -30
+            //   海水  = 0.03 => -30
+            float foodPoisoningScore = -(waterTypeDef.foodPoisonChance * 1000f);
+
+            // 健康悪化
+            float hediffScore = 0f;
+            if (waterTypeDef.hediffs != null)
+            {
+                foreach (var hediff in waterTypeDef.hediffs)
+                {
+                    hediffScore -= 100f;
+                }
+            }
+
+            // 基本点合計メモ
+            //          心情,食中毒,健康,合計(禁欲)
+            //   きれい= +10,     0,   0, +10(   0)
+            //   普通  =   0,     0,   0,   0(   0)
+            //   生水  =   0,   -10,   0, -10( -10)
+            //   泥水  =  -6,   -30,   0, -36( -30)
+            //   海水  =  -6,   -30,-100,-136(-130)
+
+            // 各種状態によるスコアの変化
+
+            // 水質優先モードか否か
+            if (priorQuality) distScore /= 10f;
+
+            return (distScore + thoughtScore + foodPoisoningScore);
+        }
+
         public static float GetWater(Pawn getter, Thing thing, float waterWanted)
         {
             // 摂取しようとしているものが既に消滅している(エラー)
@@ -583,29 +649,34 @@ namespace MizuMod
 
             var waterTypeDef = MizuDef.Dic_WaterTypeDef[comp.WaterType];
 
-            // 禁欲主義ではない
-            if (!getter.story.traits.HasTrait(TraitDefOf.Ascetic))
-            {
-                // 水ごとの飲んだ時の心情が設定されていたら、それを与える
-                if (waterTypeDef.thoughts != null) thoughtList.AddRange(waterTypeDef.thoughts);
-
-                if (comp.SourceType == CompProperties_WaterSource.SourceType.Building)
-                {
-                    // 飲み方
-                    if (getter.CanManipulate())
-                    {
-                        // 手ですくって飲む
-                        thoughtList.Add(MizuDef.Thought_DrankScoopedWater);
-                    }
-                    else
-                    {
-                        // 直接口をつけて飲む
-                        thoughtList.Add(MizuDef.Thought_SippedWaterLikeBeast);
-                    }
-                }
-            }
+            bool isDirect = comp.SourceType == CompProperties_WaterSource.SourceType.Building;
+            ThoughtsFromWaterTypeDef(getter, waterTypeDef, isDirect, thoughtList);
 
             return thoughtList;
+        }
+
+        public static void ThoughtsFromWaterTypeDef(Pawn getter, WaterTypeDef waterTypeDef, bool isDirect, List<ThoughtDef> thoughtList)
+        {
+            // 禁欲主義は心情の変化を無視する
+            if (getter.story != null && getter.story.traits != null && getter.story.traits.HasTrait(TraitDefOf.Ascetic)) return;
+
+            // 水ごとの飲んだ時の心情が設定されていたら、それを与える
+            if (waterTypeDef.thoughts != null) thoughtList.AddRange(waterTypeDef.thoughts);
+
+            // 飲み方による心情の変化
+            if (isDirect)
+            {
+                if (getter.CanManipulate())
+                {
+                    // 手ですくって飲む
+                    thoughtList.Add(MizuDef.Thought_DrankScoopedWater);
+                }
+                else
+                {
+                    // 直接口をつけて飲む
+                    thoughtList.Add(MizuDef.Thought_SippedWaterLikeBeast);
+                }
+            }
         }
 
         public static int WillGetStackCountOf(Pawn getter, Thing thing)
@@ -709,6 +780,37 @@ namespace MizuMod
                 default:
                     return null;
             }
+        }
+
+        public static bool TryFindHiddenWaterSpot(Pawn pawn, out IntVec3 result)
+        {
+            var hiddenWaterSpot = pawn.Map.GetComponent<MapComponent_HiddenWaterSpot>();
+            if (hiddenWaterSpot == null)
+            {
+                Log.Error("hiddenWaterSpot is null");
+                result = IntVec3.Invalid;
+                return false;
+            }
+
+            bool isFound = false;
+            float maxScore = float.MinValue;
+            result = IntVec3.Invalid;
+            foreach (var c in hiddenWaterSpot.SpotCells)
+            {
+                float curDist = (pawn.Position - c).LengthManhattan;
+                if (pawn.CanReach(c, PathEndMode.ClosestTouch, Danger.Deadly))
+                {
+                    float curScore = MizuUtility.GetWaterTerrainScore(pawn, c, curDist, false);
+                    if (maxScore < curScore)
+                    {
+                        isFound = true;
+                        maxScore = curScore;
+                        result = c;
+                    }
+                }
+            }
+
+            return isFound;
         }
     }
 }

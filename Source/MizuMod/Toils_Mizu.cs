@@ -459,25 +459,91 @@ namespace MizuMod
             });
         }
 
-        public static Toil DrinkTerrain(TargetIndex thingIndex)
+        public static Toil DrinkTerrain(TargetIndex cellIndex, int baseDrinkTicksFromTerrain)
         {
             // 地形から水を飲む
-            // いずれ削除予定
+            int initialTicks = 1;
 
             Toil toil = new Toil();
             toil.initAction = delegate
             {
-                Pawn actor = toil.actor;
+                var actor = toil.actor;
+                var cell = actor.CurJob.GetTarget(cellIndex).Cell;
+                var need_water = actor.needs.water();
+                if (need_water == null)
+                {
+                    actor.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    return;
+                }
+
+                var waterType = cell.GetTerrain(actor.Map).ToWaterType();
+                if (waterType == WaterType.NoWater || waterType == WaterType.Undefined)
+                {
+                    actor.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    return;
+                }
+
+                var waterTypeDef = MizuDef.Dic_WaterTypeDef[waterType];
+
+                // 向き変更
                 actor.rotationTracker.FaceCell(actor.Position);
-                actor.jobs.curDriver.ticksLeftThisToil = 100;
+
+                // 作業量
+                actor.jobs.curDriver.ticksLeftThisToil = (int)(baseDrinkTicksFromTerrain * need_water.WaterWanted);
+                initialTicks = actor.jobs.curDriver.ticksLeftThisToil;
+
+                if (actor.needs.mood != null)
+                {
+                    // 水分摂取による心情変化
+                    List<ThoughtDef> thoughtList = new List<ThoughtDef>();
+                    MizuUtility.ThoughtsFromWaterTypeDef(actor, waterTypeDef, true, thoughtList);
+                    foreach (var thoughtDef in thoughtList)
+                    {
+                        actor.needs.mood.thoughts.memories.TryGainMemory(thoughtDef);
+                    }
+                }
+
+                // 指定された健康状態になる
+                if (waterTypeDef.hediffs != null)
+                {
+                    foreach (var hediff in waterTypeDef.hediffs)
+                    {
+                        actor.health.AddHediff(HediffMaker.MakeHediff(hediff, actor));
+                    }
+                }
+                // 確率で食中毒
+                if (Rand.Value < waterTypeDef.foodPoisonChance)
+                {
+                    actor.health.AddHediff(HediffMaker.MakeHediff(HediffDefOf.FoodPoisoning, actor));
+                    if (PawnUtility.ShouldSendNotificationAbout(actor))
+                    {
+                        Messages.Message("MessageFoodPoisoning".Translate(new object[]
+                        {
+                            actor.LabelShort,
+                            "AreaLower".Translate()
+                        }).CapitalizeFirst(), actor, MessageTypeDefOf.NegativeEvent);
+                    }
+                }
+
             };
             toil.tickAction = delegate
             {
                 toil.actor.GainComfortFromCellIfPossible();
+                var need_water = toil.actor.needs.water();
+                var cell = toil.actor.CurJob.GetTarget(cellIndex).Cell;
+                if (need_water == null)
+                {
+                    toil.actor.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    return;
+                }
+
+                // 徐々に飲む
+                float riseNeedWater = 1 / (float)baseDrinkTicksFromTerrain;
+                need_water.CurLevel = Mathf.Min(need_water.CurLevel + riseNeedWater, need_water.MaxLevel);
             };
-            toil.WithProgressBar(thingIndex, delegate
+            toil.WithProgressBar(cellIndex, delegate
             {
-                return 1f - (float)toil.actor.jobs.curDriver.ticksLeftThisToil / 100f;
+                return 1f - (float)toil.actor.jobs.curDriver.ticksLeftThisToil / initialTicks;
             }, false, -0.5f);
             toil.defaultCompleteMode = ToilCompleteMode.Delay;
             toil.FailOn((t) =>

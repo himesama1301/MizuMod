@@ -25,6 +25,11 @@
       <resetRainRegenRatePerCellForShallow>4</resetRainRegenRatePerCellForShallow>
       <resetRainRegenRatePerCellForDeep>2</resetRainRegenRatePerCellForDeep>
       
+      <enableResetHiddenWaterSpot>false</enableResetHiddenWaterSpot>
+      <resetHiddenWaterSpotBlockSizeX>30</resetHiddenWaterSpotBlockSizeX>
+      <resetHiddenWaterSpotBlockSizeZ>30</resetHiddenWaterSpotBlockSizeZ>
+      <resetHiddenWaterSpotAllSpotNum>100</resetHiddenWaterSpotAllSpotNum>
+      
     </forDebug>
     
   </MizuMod.GlobalSettingDef>

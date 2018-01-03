@@ -187,6 +187,15 @@ namespace MizuMod
             return def.defName.Contains("Mud");
         }
 
+        public static bool IsWater(this TerrainDef def)
+        {
+            return def.IsSea() || def.IsRiver() || def.IsLakeOrPond() || def.IsMarsh();
+        }
+
+        public static bool IsWaterStandable(this TerrainDef def)
+        {
+            return def.IsWater() && def.passability == Traversability.Standable;
+        }
         public static WaterType ToWaterType(this TerrainDef def)
         {
             if (def.IsSea())

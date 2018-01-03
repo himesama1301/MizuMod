@@ -45,4 +45,15 @@
     </genStep>
   </GenStepDef>
 
+  <GenStepDef>
+    <defName>HiddenWaterSpot</defName>
+    <linkWithMapGenerator>BasicMap</linkWithMapGenerator>
+    <order>2002</order>
+    <genStep Class="MizuMod.GenStep_HiddenWaterSpot">
+      <blockSizeX>30</blockSizeX>
+      <blockSizeZ>30</blockSizeZ>
+      <allSpotNum>100</allSpotNum>
+    </genStep>
+  </GenStepDef>
+
 </Defs>
