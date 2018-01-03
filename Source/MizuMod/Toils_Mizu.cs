@@ -430,7 +430,7 @@ namespace MizuMod
                 if (getter == null) return;
 
                 float wantedWaterAmount = getter.needs.water().WaterWanted;
-                float gotWaterAmount = MizuUtility.GetWater(getter, thing, wantedWaterAmount);
+                float gotWaterAmount = MizuUtility.GetWater(getter, thing, wantedWaterAmount, false);
                 if (!getter.Dead)
                 {
                     getter.needs.water().CurLevel += gotWaterAmount;

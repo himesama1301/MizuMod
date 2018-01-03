@@ -91,7 +91,7 @@ namespace MizuMod
             if (!MizuCaravanUtility.TryGetBestWater(caravan, pawn, out waterThing, out inventoryPawn)) return;
 
             // アイテムに応じた水分を摂取＆心情編か＆健康変化
-            need_water.CurLevel += MizuUtility.GetWater(pawn, waterThing, need_water.WaterWanted);
+            need_water.CurLevel += MizuUtility.GetWater(pawn, waterThing, need_water.WaterWanted, false);
 
             // 水アイテムが消滅していない場合(スタックの一部だけ消費した場合等)はここで終了
             if (!waterThing.Destroyed) return;

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- バニラの食事アイテムに水分を設定する -->
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>*/ThingDef[defName = "MealSimple"]/comps</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>*/ThingDef[defName = "MealSimple"]</xpath>
+        <value>
+          <comps/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/ThingDef[defName = "MealSimple"]/comps</xpath>
+    <value>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>100</baseDrinkTicks>
+        <waterType>NormalWater</waterType>
+        <needManipulate>true</needManipulate>
+        <waterAmount>0.1</waterAmount>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
+      </li>
+    </value>
+  </Operation>
+
+</Patch>

@@ -13,6 +13,7 @@ namespace MizuMod
     {
         public const float NeedWaterVolumePerDay = 1.5f;
         public const float DrinkFromBuildingMargin = 1.5f;
+        public const float MinWaterAmountPerOneItem = 0.3f;
 
         private DefExtension_NeedWater extInt;
         private DefExtension_NeedWater ext

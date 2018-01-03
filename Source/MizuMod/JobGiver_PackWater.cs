@@ -12,7 +12,6 @@ namespace MizuMod
 {
     public class JobGiver_PackWater : ThinkNode_JobGiver
     {
-        private const float MinWaterAmountPerOneItem = 0.3f;
         private const float NeedTotalWaterAmount = 1.0f;
 
         private const float MinWaterPerColonistToDo = 1.5f;
@@ -37,7 +36,7 @@ namespace MizuMod
                 if (comp == null) continue;
                 if (!comp.IsWaterSource) continue;
                 if (comp.SourceType != CompProperties_WaterSource.SourceType.Item) continue;
-                if (comp.WaterAmount < MinWaterAmountPerOneItem) continue;
+                if (comp.WaterAmount < Need_Water.MinWaterAmountPerOneItem) continue;
                 if (MizuDef.Dic_WaterTypeDef[comp.WaterType].waterPreferability < MinWaterPreferability) continue;
 
                 return null;
@@ -58,7 +57,7 @@ namespace MizuMod
                     var comp = t.TryGetComp<CompWaterSource>();
                     if (comp == null) return false; // 水源でないもの×
                     if (comp.SourceType != CompProperties_WaterSource.SourceType.Item) return false; // 水アイテムではないもの×
-                    if (comp.WaterAmount < MinWaterAmountPerOneItem) return false;  // 最低水分量を満たしていないもの×
+                    if (comp.WaterAmount < Need_Water.MinWaterAmountPerOneItem) return false;  // 最低水分量を満たしていないもの×
                     if (t.IsForbidden(pawn)) return false;  // 禁止されている×
                     if (!pawn.CanReserve(t)) return false;  // 予約不可能×
                     if (!t.IsSociallyProper(pawn)) return false;  // 囚人部屋の物×

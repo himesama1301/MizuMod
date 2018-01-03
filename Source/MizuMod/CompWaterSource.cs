@@ -48,6 +48,21 @@ namespace MizuMod
             }
         }
 
+        public override void PostIngested(Pawn ingester)
+        {
+            base.PostIngested(ingester);
+
+            Need_Water need_water = ingester.needs.water();
+            if (need_water == null) return;
+
+            float gotWaterAmount = MizuUtility.GetWater(ingester, this.parent, need_water.WaterWanted, true);
+            if (!ingester.Dead)
+            {
+                need_water.CurLevel += gotWaterAmount;
+            }
+            ingester.records.AddTo(MizuDef.Record_WaterDrank, gotWaterAmount);
+        }
+
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
             foreach (var floatMenuOption in base.CompFloatMenuOptions(selPawn))
@@ -55,12 +70,12 @@ namespace MizuMod
                 yield return floatMenuOption;
             }
 
-            if (this.SourceType == CompProperties_WaterSource.SourceType.Item)
+            if (this.SourceType == CompProperties_WaterSource.SourceType.Item && this.WaterAmount >= Need_Water.MinWaterAmountPerOneItem)
             {
                 if (selPawn.IsColonistPlayerControlled)
                 {
                     StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.Append(string.Format(MizuStrings.FloatMenuGetWater, this.parent.Label));
+                    stringBuilder.Append(string.Format(MizuStrings.FloatMenuGetWater, this.parent.LabelNoCount));
 
                     if (!this.parent.IsSociallyProper(selPawn))
                     {

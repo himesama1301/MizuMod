@@ -421,6 +421,9 @@ namespace MizuMod
             // 水源ではない or 水源として使えない
             if (comp == null || !comp.IsWaterSource) return float.MinValue;
 
+            // 水アイテムなのに水分量が少ない(食事におまけで付いてる水分など)
+            if (comp.SourceType == CompProperties_WaterSource.SourceType.Item && comp.WaterAmount < Need_Water.MinWaterAmountPerOneItem) return float.MinValue;
+
             var waterTypeDef = MizuDef.Dic_WaterTypeDef[comp.WaterType];
 
             // 基本点計算
@@ -548,10 +551,11 @@ namespace MizuMod
             return (distScore + thoughtScore + foodPoisoningScore);
         }
 
-        public static float GetWater(Pawn getter, Thing thing, float waterWanted)
+        public static float GetWater(Pawn getter, Thing thing, float waterWanted, bool withIngested)
         {
             // 摂取しようとしているものが既に消滅している(エラー)
-            if (thing.Destroyed)
+            // 食事と同時に水分摂取する場合は既に消滅しているので無視する
+            if (!withIngested && thing.Destroyed)
             {
                 Log.Error(getter + " drank destroyed thing " + thing);
                 return 0f;
@@ -613,7 +617,8 @@ namespace MizuMod
             // 摂取個数と摂取水分量の計算
             thing.GetWaterCalculateAmounts(getter, waterWanted, out drankWaterItemCount, out gotWaterAmount);
 
-            if (drankWaterItemCount > 0)
+            // 食事と同時に水分摂取する場合は既に消滅しているので消滅処理をスキップする
+            if (!withIngested && drankWaterItemCount > 0)
             {
                 if (drankWaterItemCount == thing.stackCount)
                 {
