@@ -16,7 +16,7 @@
   
   
   
-  <!-- Draw Water Single From Terrain -->
+  <!-- Draw Water From Terrain -->
   
   <RecipeDef ParentName="Mizu_DrawWaterBase">
     <defName>Mizu_DrawWater</defName>
@@ -36,10 +36,6 @@
       </li>
     </modExtensions>
   </RecipeDef>
-  
-  
-  
-  <!-- Draw Water Multi From Terrain -->
   
   <RecipeDef ParentName="Mizu_DrawWaterBase">
     <defName>Mizu_DrawWaterMulti</defName>
@@ -62,7 +58,7 @@
   
   
   
-  <!-- Draw Water Single From Water Pool -->
+  <!-- Draw Water From Water Pool -->
   
   <RecipeDef ParentName="Mizu_DrawWaterBase">
     <defName>Mizu_DrawWaterFromWaterPool</defName>
@@ -84,10 +80,6 @@
       </li>
     </modExtensions>
   </RecipeDef>
-  
-  
-  
-  <!-- Draw Water Multi From Water Pool -->
   
   <RecipeDef ParentName="Mizu_DrawWaterBase">
     <defName>Mizu_DrawWaterFromWaterPoolMulti</defName>
@@ -112,7 +104,7 @@
   
   
   
-  <!-- Draw Water Single From Water Net -->
+  <!-- Draw Water From Water Net -->
   
   <RecipeDef ParentName="Mizu_DrawWaterBase">
     <defName>Mizu_DrawWaterFromWaterNet</defName>
@@ -135,16 +127,58 @@
     </modExtensions>
   </RecipeDef>
   
-  
-  
-  <!-- Draw Water Multi From Water Net -->
-  
   <RecipeDef ParentName="Mizu_DrawWaterBase">
     <defName>Mizu_DrawWaterFromWaterNetMulti</defName>
     <label>draw water x5 from waterworks</label>
     <description>Draws water x5 from waterworks for drinking</description>
     <jobString>Drawing water from waterworks.</jobString>
     <workAmount>350</workAmount>
+    <modExtensions>
+      <li Class="MizuMod.DefExtension_WaterRecipe">
+        <recipeType>DrawFromWaterNet</recipeType>
+        <needWaterTypes>
+          <li>ClearWater</li>
+          <li>NormalWater</li>
+          <li>RawWater</li>
+          <li>MudWater</li>
+          <li>SeaWater</li>
+        </needWaterTypes>
+        <getItemCount>5</getItemCount>
+      </li>
+    </modExtensions>
+  </RecipeDef>
+  
+  
+  
+  <!-- Draw Water From WaterBox -->
+  
+  <RecipeDef ParentName="Mizu_DrawWaterBase">
+    <defName>Mizu_DrawWaterFromWaterBox</defName>
+    <label>draw water from water box</label>
+    <description>Draws water from water box for drinking</description>
+    <jobString>Drawing water from water box.</jobString>
+    <workAmount>350</workAmount>
+    <modExtensions>
+      <li Class="MizuMod.DefExtension_WaterRecipe">
+        <recipeType>DrawFromWaterNet</recipeType>
+        <needWaterTypes>
+          <li>ClearWater</li>
+          <li>NormalWater</li>
+          <li>RawWater</li>
+          <li>MudWater</li>
+          <li>SeaWater</li>
+        </needWaterTypes>
+        <getItemCount>1</getItemCount>
+      </li>
+    </modExtensions>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="Mizu_DrawWaterBase">
+    <defName>Mizu_DrawWaterFromWaterBoxMulti</defName>
+    <label>draw water x5 from water box</label>
+    <description>Draws water x5 from water box for drinking</description>
+    <jobString>Drawing water from water box.</jobString>
+    <workAmount>1750</workAmount>
     <modExtensions>
       <li Class="MizuMod.DefExtension_WaterRecipe">
         <recipeType>DrawFromWaterNet</recipeType>

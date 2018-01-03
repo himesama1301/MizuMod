@@ -688,8 +688,8 @@
       <li>ITab_Bills</li>
     </inspectorTabs>
     <recipes>
-      <li>Mizu_DrawWaterFromWaterNet</li>
-      <li>Mizu_DrawWaterFromWaterNetMulti</li>
+      <li>Mizu_DrawWaterFromWaterBox</li>
+      <li>Mizu_DrawWaterFromWaterBoxMulti</li>
       <li>Mizu_PourWater</li>
       <li>Mizu_PourWaterMulti</li>
     </recipes>
