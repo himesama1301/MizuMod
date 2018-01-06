@@ -524,23 +524,7 @@ namespace MizuMod
                         return true;
                     }
                 case DefExtension_WaterRecipe.RecipeType.PourWater:
-                    {
-                        var tankComp = thing.TryGetComp<CompWaterNetTank>();
-                        if (tankComp == null) return false;
-
-                        var totalWaterVolume = 0f;
-                        foreach (var ta in chosen)
-                        {
-                            var sourceComp = ta.thing.TryGetComp<CompWaterSource>();
-                            if (sourceComp != null)
-                            {
-                                totalWaterVolume += sourceComp.WaterVolume * ta.count;
-                            }
-                        }
-                        if (tankComp.AmountCanAccept < totalWaterVolume) return false;
-
-                        return true;
-                    }
+                    return true;
                 default:
                     Log.Error("recipeType is Undefined");
                     return false;
@@ -566,8 +550,8 @@ namespace MizuMod
                     return true;
                 case DefExtension_WaterRecipe.RecipeType.PourWater:
                     {
-                        var tankComp = thing.TryGetComp<CompWaterNetTank>();
-                        if (tankComp == null) return false;
+                        var building = thing as Building_WaterNetWorkTable;
+                        if (building == null) return false;
 
                         var totalWaterVolume = 0f;
                         foreach (var ta in chosen)
@@ -578,7 +562,7 @@ namespace MizuMod
                                 totalWaterVolume += sourceComp.WaterVolume * ta.count;
                             }
                         }
-                        if (tankComp.AmountCanAccept < totalWaterVolume) return false;
+                        if (GetTotalAmountCanAccept(building) < totalWaterVolume) return false;
 
                         return true;
                     }
@@ -586,6 +570,26 @@ namespace MizuMod
                     Log.Error("recipeType is Undefined");
                     return false;
             }
+        }
+
+        protected static float GetTotalAmountCanAccept(Building_WaterNetWorkTable workTable)
+        {
+            if (workTable.TankComp == null) return 0f;
+
+            float totalAmountCanAccept = workTable.TankComp.AmountCanAccept;
+            if (workTable.InputWaterNet != null && workTable.InputWaterNet.FlatTankList != null)
+            {
+                var flatTanks = workTable.InputWaterNet.FlatTankList.First((flatTankElement) => flatTankElement.Contains(workTable));
+                if (flatTanks != null)
+                {
+                    totalAmountCanAccept = 0f;
+                    foreach (var tank in flatTanks)
+                    {
+                        totalAmountCanAccept += tank.TankComp.AmountCanAccept;
+                    }
+                }
+            }
+            return totalAmountCanAccept;
         }
 
         protected static Job CreateNewJob(DefExtension_WaterRecipe ext)

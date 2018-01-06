@@ -31,7 +31,15 @@ namespace MizuMod
         private Dictionary<CompProperties_WaterNetInput.InputType, HashSet<IBuilding_WaterNet>> inputterTypeDic = new Dictionary<CompProperties_WaterNetInput.InputType, HashSet<IBuilding_WaterNet>>();
         private HashSet<IBuilding_WaterNet> outputters = new HashSet<IBuilding_WaterNet>();
         private HashSet<IBuilding_WaterNet> tanks = new HashSet<IBuilding_WaterNet>();
+
         private IEnumerable<HashSet<IBuilding_WaterNet>> flatTankList;
+        public IEnumerable<HashSet<IBuilding_WaterNet>> FlatTankList
+        {
+            get
+            {
+                return this.flatTankList;
+            }
+        }
 
         private WaterType waterType = WaterType.NoWater;
         public WaterType WaterType
