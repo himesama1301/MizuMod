@@ -39,12 +39,12 @@
   
   <!-- Draw Water From WaterBox -->
   
-  <Mizu_DrawWaterFromWaterBox.label>水道から水を汲む</Mizu_DrawWaterFromWaterBox.label>
-  <Mizu_DrawWaterFromWaterBox.description>水道から水をひとつ汲みます。</Mizu_DrawWaterFromWaterBox.description>
+  <Mizu_DrawWaterFromWaterBox.label>水箱から水を汲む</Mizu_DrawWaterFromWaterBox.label>
+  <Mizu_DrawWaterFromWaterBox.description>水箱から水をひとつ汲みます。</Mizu_DrawWaterFromWaterBox.description>
   <Mizu_DrawWaterFromWaterBox.jobString>水を汲んでいる</Mizu_DrawWaterFromWaterBox.jobString>
   
-  <Mizu_DrawWaterFromWaterBoxMulti.label>水道から水を5個汲む</Mizu_DrawWaterFromWaterBoxMulti.label>
-  <Mizu_DrawWaterFromWaterBoxMulti.description>水道から水を5個汲みます。</Mizu_DrawWaterFromWaterBoxMulti.description>
+  <Mizu_DrawWaterFromWaterBoxMulti.label>水箱から水を5個汲む</Mizu_DrawWaterFromWaterBoxMulti.label>
+  <Mizu_DrawWaterFromWaterBoxMulti.description>水箱から水を5個汲みます。</Mizu_DrawWaterFromWaterBoxMulti.description>
   <Mizu_DrawWaterFromWaterBoxMulti.jobString>水を汲んでいる</Mizu_DrawWaterFromWaterBoxMulti.jobString>
   
   
