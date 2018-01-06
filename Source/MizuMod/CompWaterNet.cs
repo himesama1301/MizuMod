@@ -98,6 +98,11 @@ namespace MizuMod
             }
         }
 
+        public CompWaterNet() : base()
+        {
+
+        }
+
         public override void PostExposeData()
         {
             base.PostExposeData();

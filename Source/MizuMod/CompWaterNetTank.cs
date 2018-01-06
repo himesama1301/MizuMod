@@ -122,6 +122,12 @@ namespace MizuMod
 
         private CompFlickable compFlickable = null;
 
+        public CompWaterNetTank() : base()
+        {
+            this.storedWaterVolume = 0.0f;
+            this.storedWaterType = WaterType.NoWater;
+        }
+
         public override void PostExposeData()
         {
             base.PostExposeData();
@@ -138,9 +144,6 @@ namespace MizuMod
         {
             base.PostSpawnSetup(respawningAfterLoad);
             compFlickable = this.parent.GetComp<CompFlickable>();
-
-            this.storedWaterVolume = 0.0f;
-            this.storedWaterType = WaterType.NoWater;
         }
 
         public float AddWaterVolume(float amount)

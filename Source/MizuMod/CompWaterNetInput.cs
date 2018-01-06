@@ -108,10 +108,8 @@ namespace MizuMod
             }
         }
 
-        public override void PostSpawnSetup(bool respawningAfterLoad)
+        public CompWaterNetInput() : base()
         {
-            base.PostSpawnSetup(respawningAfterLoad);
-
             this.InputWaterType = WaterType.NoWater;
         }
 

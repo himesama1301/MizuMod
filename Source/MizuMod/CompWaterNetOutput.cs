@@ -65,10 +65,8 @@ namespace MizuMod
             }
         }
 
-        public override void PostSpawnSetup(bool respawningAfterLoad)
+        public CompWaterNetOutput() : base()
         {
-            base.PostSpawnSetup(respawningAfterLoad);
-
             this.OutputWaterType = WaterType.NoWater;
         }
 
