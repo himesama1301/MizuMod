@@ -33,7 +33,7 @@ namespace MizuMod
             var consumeThingList = new List<Thing>();
             var ingList = this.job.GetTargetQueue(IngredientInd);
             var ingCountList = this.job.countQueue;
-            this.job.SetTarget(IngredientPlaceCellInd, this.TargetA.Thing.InteractionCell);
+            //this.job.SetTarget(IngredientPlaceCellInd, this.TargetA.Thing.InteractionCell);
 
             var startToil = Toils_General.Do(() =>
             {

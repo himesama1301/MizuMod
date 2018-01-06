@@ -657,9 +657,8 @@
       <Flammability>1.0</Flammability>
       <Beauty>-6</Beauty>
     </statBases>
+    <rotatable>false</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
-    <hasInteractionCell>True</hasInteractionCell>
-    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <comps>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Building</sourceType>

@@ -304,10 +304,22 @@ namespace MizuMod
             // 建造物で作業場所を持っている場合
             if (building.def.hasInteractionCell) return building.InteractionCell;
 
-            // 建造物だけど作業場所が無い場合はエラー
-            Log.Error("Tried to find bill ingredients for " + billGiver + " which has no interaction cell.");
+            // 建造物だけど作業場所が無い場合
 
-            return forPawn.Position;
+            // 周囲8方向で立つことが出来るセルを探す
+            var standableAdjacentCells = building.OccupiedRect().ExpandedBy(1).EdgeCells.Where((c) =>
+            {
+                foreach (var t in building.Map.thingGrid.ThingsListAt(c))
+                {
+                    // そのセルに、「立つことが出来る」以外の物がある⇒立てないセルはfalse
+                    if (t.def.passability != Traversability.Standable) return false;
+                }
+                // 立てるセルの場合true
+                return true;
+            });
+
+            // 1マスをランダムで選ぶ
+            return standableAdjacentCells.RandomElement();
         }
 
         private static void MakeIngredientsListInProcessingOrder(List<IngredientCount> ingredientsOrdered, Bill bill)
@@ -447,6 +459,7 @@ namespace MizuMod
                 job2.targetQueueB.Add(this.chosenIngThings[i].thing);
                 job2.countQueue.Add(this.chosenIngThings[i].count);
             }
+            job2.targetC = GetBillGiverRootCell(giver as Thing, pawn);
             job2.haulMode = HaulMode.ToCellNonStorage;
             job2.bill = bill;
             return job2;
