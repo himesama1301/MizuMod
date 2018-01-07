@@ -118,7 +118,10 @@ namespace MizuMod
                 }
                 
                 curJob.bill.Notify_IterationCompleted(actor, null);
-                RecordsUtility.Notify_BillDone(actor, new List<Thing>() { thing });
+
+                // 水汲み記録追加
+                actor.records.AddTo(MizuDef.Record_WaterDrew, thing.stackCount);
+                //RecordsUtility.Notify_BillDone(actor, new List<Thing>() { thing });
 
                 // 床置き指定
                 if (curJob.bill.GetStoreMode() == BillStoreModeDefOf.DropOnFloor)

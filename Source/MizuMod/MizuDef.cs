@@ -31,6 +31,7 @@ namespace MizuMod
         public static HediffDef Hediff_DrankSeaWater = DefDatabase<HediffDef>.GetNamed("Mizu_DrankSeaWater");
 
         public static RecordDef Record_WaterDrank = DefDatabase<RecordDef>.GetNamed("Mizu_WaterDrank");
+        public static RecordDef Record_WaterDrew = DefDatabase<RecordDef>.GetNamed("Mizu_WaterDrew");
 
         public static ThoughtDef Thought_DrankClearWater = DefDatabase<ThoughtDef>.GetNamed("Mizu_DrankClearWater");
         public static ThoughtDef Thought_DrankMudWater = DefDatabase<ThoughtDef>.GetNamed("Mizu_DrankMudWater");
