@@ -80,6 +80,7 @@ namespace MizuMod
         {
             if (p.needs == null || p.needs.water() == null) return false;
             if (this.pool == null) return false;
+            if (this.pool.WaterType == WaterType.Undefined || this.pool.WaterType == WaterType.NoWater) return false;
 
             // 手が使用可能で、地下水の水量が十分にある
             return p.CanManipulate() && this.pool.CurrentWaterVolume >= p.needs.water().WaterWanted * Need_Water.DrinkFromBuildingMargin;
@@ -87,6 +88,9 @@ namespace MizuMod
 
         public bool CanDrawFor(Pawn p)
         {
+            if (this.pool == null) return false;
+            if (this.pool.WaterType == WaterType.Undefined || this.pool.WaterType == WaterType.NoWater) return false;
+
             var waterItemDef = MizuDef.List_WaterItem.First((def) => def.GetCompProperties<CompProperties_WaterSource>().waterType == this.pool.WaterType);
             var compprop = waterItemDef.GetCompProperties<CompProperties_WaterSource>();
 
