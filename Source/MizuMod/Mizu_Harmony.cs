@@ -150,9 +150,9 @@ namespace MizuMod
             // 水として飲めないアイテムなら終了
             if (!thing.CanGetWater() || !thing.CanDrinkWaterNow()) return;
 
-            // 水アイテムでなかったり、水分量が規定量以下の場合は能動的に飲むことはできない
+            // 水アイテムでなかったり、食べられるものは能動的に飲むことはできない
             var comp = thing.TryGetComp<CompWaterSource>();
-            if (comp == null || comp.SourceType != CompProperties_WaterSource.SourceType.Item || comp.WaterAmount < Need_Water.MinWaterAmountPerOneItem) return;
+            if (comp == null || comp.SourceType != CompProperties_WaterSource.SourceType.Item || thing.IsIngestibleFor(selPawn)) return;
 
             // ツールチップとボタンを追加
             Rect dbRect = new Rect(dbRight - dbWidth, dbTop, dbWidth, dbHeight);
@@ -419,6 +419,45 @@ namespace MizuMod
                 __result = false;
                 return;
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(Thing))]
+    [HarmonyPatch("Ingested")]
+    class Thing_Ingested
+    {
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            // 水アイテム不足で出発しようとしたとき、警告ダイアログを出す
+            // 実際の処理は、食料不足の警告ダイアログに便乗する形
+            int insert_index = -1;
+            var codes = new List<CodeInstruction>(instructions);
+
+            // 処理を挿入すべき場所の近くにあった文字列のnullチェック処理を手掛かりにする(かなり強引なやり方)
+            for (int i = 0; i < codes.Count; i++)
+            {
+                if (codes[i].opcode == OpCodes.Callvirt && codes[i].operand.ToString().Contains("PostIngested"))
+                {
+                    insert_index = i - 1;
+                    break;
+                }
+            }
+
+            if (insert_index > -1)
+            {
+                List<CodeInstruction> insert_codes = new List<CodeInstruction>();
+                codes[insert_index - 1].opcode = OpCodes.Nop;
+
+                insert_codes.Add(new CodeInstruction(OpCodes.Ldarg_1));
+                insert_codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
+                insert_codes.Add(new CodeInstruction(OpCodes.Ldloc_S, 3));
+                insert_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuUtility), nameof(MizuUtility.PrePostIngested), new Type[] { typeof(Pawn), typeof(Thing), typeof(int) })));
+
+                insert_codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
+
+                codes.InsertRange(insert_index, insert_codes);
+            }
+            return codes.AsEnumerable();
         }
     }
 

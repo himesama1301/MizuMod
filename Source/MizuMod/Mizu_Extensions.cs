@@ -68,8 +68,17 @@ namespace MizuMod
                 return;
             }
 
+            if (t.def.IsIngestible)
+            {
+                // 食べられるものを飲もうとしている
+                Log.Error("error thing is ingestible.");
+                numTaken = 0;
+                waterGot = 0.0f;
+                return;
+            }
+
             numTaken = (int)Math.Ceiling(waterWanted / waterAmount);  // そのアイテムで必要な水分を満たすのに何個必要か
-            numTaken = Math.Min(Math.Min(numTaken, t.stackCount), t.TryGetComp<CompWaterSource>().MaxNumToGetAtOnce);  // 必要数、スタック数、同時摂取可能数のうち最も低い数字
+            numTaken = Mathf.Min(new int[] { numTaken, t.stackCount, t.TryGetComp<CompWaterSource>().MaxNumToGetAtOnce });  // 必要数、スタック数、同時摂取可能数のうち最も低い数字
             numTaken = Math.Max(numTaken, 1);  // 最低値は1
             waterGot = (float)numTaken * waterAmount;  // 個数と1個当たりの水分の積→摂取水分量
         }
@@ -351,6 +360,11 @@ namespace MizuMod
         public static WaterType GetMinType(this WaterType me, WaterType other)
         {
             return (WaterType)Mathf.Min((int)me, (int)other);
+        }
+
+        public static bool IsIngestibleFor(this Thing thing, Pawn pawn)
+        {
+            return thing.def.IsNutritionGivingIngestible && thing.IngestibleNow && pawn.RaceProps.CanEverEat(thing);
         }
     }
 }

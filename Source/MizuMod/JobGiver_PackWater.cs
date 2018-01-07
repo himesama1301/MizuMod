@@ -29,15 +29,25 @@ namespace MizuMod
             Need_Water need_water = pawn.needs.water();
             if (need_water == null) return null;
 
+            Predicate<Thing> validator = (t) =>
+            {
+                // 食べられるものは携帯飲料としては選ばれない
+                if (t.def.IsIngestible) return false;
+
+                var comp = t.TryGetComp<CompWaterSource>();
+                if (comp == null) return false; // 水源でないもの×
+                if (!comp.IsWaterSource) return false; // 水源でないもの×
+                if (comp.SourceType != CompProperties_WaterSource.SourceType.Item) return false; // 水アイテムではないもの×
+                if (comp.WaterAmount * comp.MaxNumToGetAtOnce < Need_Water.MinWaterAmountPerOneDrink) return false;  // 最低水分量を満たしていないもの×
+                if (MizuDef.Dic_WaterTypeDef[comp.WaterType].waterPreferability < MinWaterPreferability) return false; // 最低の水質を満たしていないもの×
+
+                return true;
+            };
+
             // 既に条件を満たしたアイテムを持っているか？
             foreach (var thing in pawn.inventory.innerContainer)
             {
-                var comp = thing.TryGetComp<CompWaterSource>();
-                if (comp == null) continue;
-                if (!comp.IsWaterSource) continue;
-                if (comp.SourceType != CompProperties_WaterSource.SourceType.Item) continue;
-                if (comp.WaterAmount < Need_Water.MinWaterAmountPerOneItem) continue;
-                if (MizuDef.Dic_WaterTypeDef[comp.WaterType].waterPreferability < MinWaterPreferability) continue;
+                if (!validator(thing)) continue;
 
                 return null;
             }
@@ -54,10 +64,8 @@ namespace MizuMod
                 TraverseParms.For(pawn),
                 20f,
                 (t) => {
-                    var comp = t.TryGetComp<CompWaterSource>();
-                    if (comp == null) return false; // 水源でないもの×
-                    if (comp.SourceType != CompProperties_WaterSource.SourceType.Item) return false; // 水アイテムではないもの×
-                    if (comp.WaterAmount < Need_Water.MinWaterAmountPerOneItem) return false;  // 最低水分量を満たしていないもの×
+                    if (!validator(t)) return false; // 所持品チェック時と同じ条件を満たしていない×
+
                     if (t.IsForbidden(pawn)) return false;  // 禁止されている×
                     if (!pawn.CanReserve(t)) return false;  // 予約不可能×
                     if (!t.IsSociallyProper(pawn)) return false;  // 囚人部屋の物×

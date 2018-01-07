@@ -156,7 +156,7 @@
         <baseDrinkTicks>100</baseDrinkTicks>
         <waterType>RawWater</waterType>
         <needManipulate>true</needManipulate>
-        <waterAmount>0.35</waterAmount>
+        <waterAmount>0.05</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
         <waterVolume>0.5</waterVolume>
       </li>

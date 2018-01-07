@@ -105,6 +105,7 @@ namespace MizuMod
 
                 if (thing.CanGetWater() // 飲み物として飲めるもの
                     && thing.CanDrinkWaterNow() // 現在飲める状態にある
+                    && !thing.def.IsIngestible // 食べ物ではない
                     && waterPreferability >= minWaterPref && waterPreferability <= maxWaterPref // 品質が指定範囲内
                     && (allowDrug || !thing.def.IsDrug) // ドラッグ許可か、そもそもドラッグでない
                     && (waterAmount * thing.stackCount >= minStackWaterAmount)) // 水の量の最低値指定を満たしている
@@ -151,6 +152,9 @@ namespace MizuMod
 
                 // 水源として使用できない
                 if (comp == null || !comp.IsWaterSource) return false;
+
+                // 食べられるものは飲み物としては選ばれない
+                if (t.def.IsIngestible) return false;
 
                 // 操作が必要なのに操作できない
                 if (comp.NeedManipulate && !getter.CanManipulate()) return false;
@@ -424,8 +428,12 @@ namespace MizuMod
             // 水源ではない or 水源として使えない
             if (comp == null || !comp.IsWaterSource) return float.MinValue;
 
+            // 食べられるものは飲み物としては選ばない方針
+            if (t.def.IsIngestible) return float.MinValue;
+
             // 水アイテムなのに水分量が少ない(食事におまけで付いてる水分など)
-            if (comp.SourceType == CompProperties_WaterSource.SourceType.Item && comp.WaterAmount < Need_Water.MinWaterAmountPerOneItem) return float.MinValue;
+            //   1個あたりが少なくても、一度に摂取できる量が多い場合は水分摂取アイテムとして有効
+            if (comp.SourceType == CompProperties_WaterSource.SourceType.Item && comp.WaterAmount * comp.MaxNumToGetAtOnce < Need_Water.MinWaterAmountPerOneDrink) return float.MinValue;
 
             var waterTypeDef = MizuDef.Dic_WaterTypeDef[comp.WaterType];
 
@@ -643,6 +651,22 @@ namespace MizuMod
             return gotWaterAmount;
         }
 
+        public static void PrePostIngested(Pawn ingester, Thing t, int num)
+        {
+            Need_Water need_water = ingester.needs.water();
+            if (need_water == null) return;
+
+            var comp = t.TryGetComp<CompWaterSource>();
+            if (comp == null) return;
+            
+            float gotWaterAmount = comp.WaterAmount * num;
+            if (!ingester.Dead)
+            {
+                need_water.CurLevel += gotWaterAmount;
+            }
+            ingester.records.AddTo(MizuDef.Record_WaterDrank, gotWaterAmount);
+        }
+
         public static List<ThoughtDef> ThoughtsFromGettingWater(Pawn getter, Thing t)
         {
             // 空のリスト
@@ -698,7 +722,7 @@ namespace MizuMod
             if (comp.SourceType != CompProperties_WaterSource.SourceType.Item) return 0;
 
             // それを一度に摂取できる数と、何個摂取すれば水分が100%になるのか、の小さい方
-            int wantedWaterItemCount = Math.Min(comp.MaxNumToGetAtOnce, MizuUtility.StackCountForWater(thing, getter.needs.water().WaterWanted));
+            int wantedWaterItemCount = Math.Min(thing.TryGetComp<CompWaterSource>().MaxNumToGetAtOnce, MizuUtility.StackCountForWater(thing, getter.needs.water().WaterWanted));
 
             // 1個未満なら1個にする
             if (wantedWaterItemCount < 1) return 1;

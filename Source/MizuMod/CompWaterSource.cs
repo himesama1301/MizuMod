@@ -48,20 +48,20 @@ namespace MizuMod
             }
         }
 
-        public override void PostIngested(Pawn ingester)
-        {
-            base.PostIngested(ingester);
+        //public override void PostIngested(Pawn ingester)
+        //{
+        //    base.PostIngested(ingester);
 
-            Need_Water need_water = ingester.needs.water();
-            if (need_water == null) return;
+        //    Need_Water need_water = ingester.needs.water();
+        //    if (need_water == null) return;
 
-            float gotWaterAmount = MizuUtility.GetWater(ingester, this.parent, need_water.WaterWanted, true);
-            if (!ingester.Dead)
-            {
-                need_water.CurLevel += gotWaterAmount;
-            }
-            ingester.records.AddTo(MizuDef.Record_WaterDrank, gotWaterAmount);
-        }
+        //    float gotWaterAmount = MizuUtility.GetWater(ingester, this.parent, need_water.WaterWanted, true);
+        //    if (!ingester.Dead)
+        //    {
+        //        need_water.CurLevel += gotWaterAmount;
+        //    }
+        //    ingester.records.AddTo(MizuDef.Record_WaterDrank, gotWaterAmount);
+        //}
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
@@ -70,8 +70,10 @@ namespace MizuMod
                 yield return floatMenuOption;
             }
 
-            if (this.SourceType == CompProperties_WaterSource.SourceType.Item && this.WaterAmount >= Need_Water.MinWaterAmountPerOneItem)
+            if (this.SourceType == CompProperties_WaterSource.SourceType.Item && !this.parent.def.IsIngestible)
             {
+                // 水アイテムで、食べることが出来ないものは飲める
+
                 if (selPawn.IsColonistPlayerControlled)
                 {
                     StringBuilder stringBuilder = new StringBuilder();
