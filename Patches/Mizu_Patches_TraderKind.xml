@@ -12,8 +12,8 @@
           <max>3</max>
         </thingDefCountRange>
         <totalPriceRange>
-          <min>50</min>
-          <max>100</max>
+          <min>5</min>
+          <max>10</max>
         </totalPriceRange>
       </li>
     </value>

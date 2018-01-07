@@ -96,7 +96,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.1</MarketValue>
+      <MarketValue>0.2</MarketValue>
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
@@ -126,7 +126,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.05</MarketValue>
+      <MarketValue>0.15</MarketValue>
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
@@ -156,7 +156,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.02</MarketValue>
+      <MarketValue>0.1</MarketValue>
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
