@@ -9,5 +9,6 @@
   <Mizu_DrawFromWaterPool.reportString>TargetAで 作業している</Mizu_DrawFromWaterPool.reportString>
   <Mizu_DrawFromWaterNet.reportString>TargetAで 作業している</Mizu_DrawFromWaterNet.reportString>
   <Mizu_PourWater.reportString>TargetAで 作業している</Mizu_PourWater.reportString>
+  <Mizu_DrawWaterByPrisoner.reportString>TargetAから水を汲んでいる</Mizu_DrawWaterByPrisoner.reportString>
 
 </LanguageData>

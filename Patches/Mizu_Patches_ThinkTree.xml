@@ -9,7 +9,7 @@
     </value>
   </Operation>
 
-  <!-- 思考ツリーに「食事を所持品に加える」の下に「水を所持品に加える」を追加する -->
+  <!-- 思考ツリーの「食事を所持品に加える」の下に「水を所持品に加える」を追加する -->
   <Operation Class="PatchOperationInsert">
     <xpath>*/ThinkTreeDef//li[@Class = "ThinkNode_ConditionalNeedPercentageAbove" and need = "Food"]</xpath>
     <value>
@@ -20,6 +20,19 @@
           <li Class="MizuMod.JobGiver_PackWater">
             <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
           </li>
+        </subNodes>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- 囚人思考ツリーのほぼ最後に「部屋の囚人の数だけ水をストックする」を追加する -->
+  <Operation Class="PatchOperationInsert">
+    <xpath>*/ThinkTreeDef[defName = "Humanlike"]//li[@Class = "ThinkNode_ConditionalPrisoner"]/subNodes/li[position()=last()-2]</xpath>
+    <value>
+      <li Class="MizuMod.ThinkNode_ConditionalStockWaterForPrisoner">
+        <invert>true</invert>
+        <subNodes>
+          <li Class="MizuMod.JobGiver_DrawWaterByPrisoner"/>
         </subNodes>
       </li>
     </value>

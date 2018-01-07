@@ -14,6 +14,7 @@ namespace MizuMod
         bool IsEmpty { get; }
 
         bool CanDrinkFor(Pawn p);
+        bool CanDrawFor(Pawn p);
         void DrawWater(float amount);
     }
 }

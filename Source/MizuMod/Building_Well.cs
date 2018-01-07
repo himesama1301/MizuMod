@@ -85,6 +85,15 @@ namespace MizuMod
             return p.CanManipulate() && this.pool.CurrentWaterVolume >= p.needs.water().WaterWanted * Need_Water.DrinkFromBuildingMargin;
         }
 
+        public bool CanDrawFor(Pawn p)
+        {
+            var waterItemDef = MizuDef.List_WaterItem.First((def) => def.GetCompProperties<CompProperties_WaterSource>().waterType == this.pool.WaterType);
+            var compprop = waterItemDef.GetCompProperties<CompProperties_WaterSource>();
+
+            // 汲める予定の水アイテムの水の量より多い
+            return p.CanManipulate() && this.pool.CurrentWaterVolume >= compprop.waterVolume;
+        }
+
         public void DrawWater(float amount)
         {
             if (this.pool == null) return;

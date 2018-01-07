@@ -49,4 +49,10 @@
     <reportString>doing bill at TargetA.</reportString>
   </JobDef>
   
+  <JobDef>
+    <defName>Mizu_DrawWaterByPrisoner</defName>
+    <driverClass>MizuMod.JobDriver_DrawWaterByPrisoner</driverClass>
+    <reportString>drawing water from TargetA.</reportString>
+  </JobDef>
+  
 </Defs>

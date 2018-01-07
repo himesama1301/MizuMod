@@ -783,5 +783,114 @@ namespace MizuMod
             });
             return toil;
         }
+
+        public static Toil DrawWater(TargetIndex drawerIndex, int drawTicks)
+        {
+            Toil toil = new Toil();
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+                Thing thing = actor.CurJob.GetTarget(drawerIndex).Thing;
+                var building = thing as IBuilding_DrinkWater;
+                if (building == null
+                    || building.WaterType == WaterType.Undefined
+                    || building.WaterType == WaterType.NoWater
+                    || !building.CanDrawFor(actor))
+                {
+                    actor.jobs.EndCurrentJob(JobCondition.Incompletable, true);
+                    return;
+                }
+                
+                actor.rotationTracker.FaceCell(actor.Position);
+                actor.jobs.curDriver.ticksLeftThisToil = drawTicks;
+            };
+            toil.tickAction = delegate
+            {
+                toil.actor.GainComfortFromCellIfPossible();
+            };
+            toil.defaultCompleteMode = ToilCompleteMode.Delay;
+            toil.FailOnDestroyedOrNull(drawerIndex);
+
+            // エフェクト追加
+            toil.WithEffect(DefDatabase<EffecterDef>.GetNamed("Cook"), drawerIndex);
+            toil.PlaySustainerOrSound(DefDatabase<SoundDef>.GetNamed("Recipe_CookMeal"));
+            return toil;
+        }
+
+        public static Toil FinishDrawWater(TargetIndex drawerIndex)
+        {
+            Toil toil = new Toil();
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+                Job curJob = actor.jobs.curJob;
+                Thing thing = curJob.GetTarget(drawerIndex).Thing;
+                if (thing == null)
+                {
+                    actor.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    return;
+                }
+
+                var building = thing as IBuilding_DrinkWater;
+                if (building == null)
+                {
+                    actor.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    return;
+                }
+
+                // 生産物の生成
+                // 地下水脈の水の種類から水アイテムの種類を決定
+                var waterThingDef = MizuUtility.GetWaterThingDefFromWaterType(building.WaterType);
+                if (waterThingDef == null)
+                {
+                    actor.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    return;
+                }
+
+                // 水アイテムの水源情報を得る
+                var compprop = waterThingDef.GetCompProperties<CompProperties_WaterSource>();
+                if (compprop == null)
+                {
+                    actor.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    return;
+                }
+
+                // 地下水脈から水を減らす
+                building.DrawWater(compprop.waterVolume);
+
+                // 水を生成
+                var createThing = ThingMaker.MakeThing(waterThingDef);
+                if (createThing == null)
+                {
+                    actor.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    return;
+                }
+
+                // 個数設定
+                createThing.stackCount = 1;
+
+                // 水汲み記録追加
+                actor.records.AddTo(MizuDef.Record_WaterDrew, 1);
+
+                // 床置き指定
+                if (!GenPlace.TryPlaceThing(createThing, actor.Position, actor.Map, ThingPlaceMode.Near, null))
+                {
+                    Log.Error(string.Concat(new object[]
+                    {
+                        actor,
+                        " could not drop recipe product ",
+                        thing,
+                        " near ",
+                        actor.Position
+                    }));
+                }
+
+                actor.jobs.EndCurrentJob(JobCondition.Succeeded, true);
+                return;
+            };
+            toil.defaultCompleteMode = ToilCompleteMode.Instant;
+            return toil;
+        }
+
     }
 }

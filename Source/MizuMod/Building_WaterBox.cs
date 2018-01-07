@@ -58,6 +58,17 @@ namespace MizuMod
             return this.TankComp.StoredWaterVolume >= p.needs.water().WaterWanted * Need_Water.DrinkFromBuildingMargin;
         }
 
+        public bool CanDrawFor(Pawn p)
+        {
+            if (this.TankComp == null) return false;
+
+            var waterItemDef = MizuDef.List_WaterItem.First((def) => def.GetCompProperties<CompProperties_WaterSource>().waterType == this.TankComp.StoredWaterType);
+            var compprop = waterItemDef.GetCompProperties<CompProperties_WaterSource>();
+
+            // 汲める予定の水アイテムの水の量より多い
+            return p.CanManipulate() && this.TankComp.StoredWaterVolume >= compprop.waterVolume;
+        }
+
         public void DrawWater(float amount)
         {
             if (this.TankComp == null) return;

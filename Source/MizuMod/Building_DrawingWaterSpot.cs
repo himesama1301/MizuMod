@@ -40,6 +40,12 @@ namespace MizuMod
             return true;
         }
 
+        public bool CanDrawFor(Pawn p)
+        {
+            // 手が使えればいつでも水汲み可能
+            return p.CanManipulate();
+        }
+
         public void DrawWater(float amount)
         {
             // 何もしない

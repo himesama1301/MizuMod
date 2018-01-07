@@ -25,7 +25,7 @@ namespace MizuMod
             {
                 if (this.InputWaterNet == null) return WaterType.Undefined;
 
-                return this.InputWaterNet.WaterType;
+                return this.InputWaterNet.StoredWaterType;
             }
         }
 
@@ -46,6 +46,17 @@ namespace MizuMod
 
             // 手が使用可能で、入力水道網の水量が十分にある
             return p.CanManipulate() && this.InputWaterNet.StoredWaterVolume >= p.needs.water().WaterWanted * Need_Water.DrinkFromBuildingMargin;
+        }
+
+        public bool CanDrawFor(Pawn p)
+        {
+            if (this.InputWaterNet == null) return false;
+
+            var waterItemDef = MizuDef.List_WaterItem.First((def) => def.GetCompProperties<CompProperties_WaterSource>().waterType == this.InputWaterNet.StoredWaterType);
+            var compprop = waterItemDef.GetCompProperties<CompProperties_WaterSource>();
+
+            // 汲める予定の水アイテムの水の量より多い
+            return p.CanManipulate() && this.InputWaterNet.StoredWaterVolume >= compprop.waterVolume;
         }
 
         public void DrawWater(float amount)

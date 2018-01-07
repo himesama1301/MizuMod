@@ -94,11 +94,13 @@
     <Compile Include="JobDriver_DrawFromWaterNet.cs" />
     <Compile Include="JobDriver_DrawFromWaterPool.cs" />
     <Compile Include="JobDriver_DrawWater.cs" />
+    <Compile Include="JobDriver_DrawWaterByPrisoner.cs" />
     <Compile Include="JobDriver_DrinkWater.cs" />
     <Compile Include="JobDriver_DrinkWaterFromBuilding.cs" />
     <Compile Include="JobDriver_PourWater.cs" />
     <Compile Include="JobDriver_WaterDeliver.cs" />
     <Compile Include="JobDriver_WaterFeedPatient.cs" />
+    <Compile Include="JobGiver_DrawWaterByPrisoner.cs" />
     <Compile Include="JobGiver_GetWater.cs" />
     <Compile Include="JobGiver_PackWater.cs" />
     <Compile Include="MapComponent_DeepWaterGrid.cs" />
@@ -124,6 +126,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeWorkerCounter_DrawWater.cs" />
     <Compile Include="SectionLayer_WaterNet.cs" />
+    <Compile Include="ThinkNode_ConditionalStockWaterForPrisoner.cs" />
     <Compile Include="ThirstCategory.cs" />
     <Compile Include="ThoughtWorker_NeedWater.cs" />
     <Compile Include="Toils_Mizu.cs" />
