@@ -30,16 +30,16 @@ namespace MizuMod
             // キャラバンの全所持品をチェック
             foreach (var thing in inventoryThings)
             {
-                if (MizuCaravanUtility.CanNowGetWater(thing, forPawn))
-                {
-                    float foodScore = MizuCaravanUtility.GetWaterScore(thing, forPawn);
-                    if (foundThing == null || foodScore > bestScore)
-                    {
-                        foundThing = thing;
-                        bestScore = foodScore;
-                    }
-                }
+                // それが飲めるものかどうか
+                if (!MizuCaravanUtility.CanNowGetWater(thing, forPawn)) continue;
 
+                float waterScore = MizuCaravanUtility.GetWaterScore(thing, forPawn);
+
+                // 今まで見つけたベストスコアを超えたか
+                if (bestScore >= waterScore) continue;
+
+                foundThing = thing;
+                bestScore = waterScore;
             }
 
             if (foundThing != null)
