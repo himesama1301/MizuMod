@@ -82,6 +82,9 @@ namespace MizuMod
             float scoreMapThing = MizuUtility.GetWaterItemScore(eater, mapThing, (float)(getter.Position - mapThing.Position).LengthManhattan, priorQuality);
             float scoreInventoryThing = MizuUtility.GetWaterItemScore(eater, inventoryThing, 0f, priorQuality);
 
+            // 所持品のほうを優先しやすくする
+            scoreInventoryThing += 30f;
+
             // マップの水のほうが高スコア
             if (scoreMapThing > scoreInventoryThing) return mapThing;
 
