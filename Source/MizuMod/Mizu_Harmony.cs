@@ -131,7 +131,10 @@ namespace MizuMod
             const float dbWidth = 24f;
             const float dbHeight = 24f;
 
-            float dbRight = width - 72f;
+            // 1アイコンにつき幅24f
+            // 情報アイコン、ドロップアイコン、食べるアイコンを考慮すれば3個
+            // 食べると飲むを分離できたはずなので2で良い
+            float dbRight = width - 24f * 2;
             float dbTop = y - 28f;
 
             Pawn selPawn = Find.Selector.SingleSelectedThing as Pawn;
