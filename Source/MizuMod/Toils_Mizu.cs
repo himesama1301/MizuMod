@@ -245,7 +245,7 @@ namespace MizuMod
                 }
 
                 curJob.bill.Notify_IterationCompleted(actor, null);
-                RecordsUtility.Notify_BillDone(actor, new List<Thing>());
+                //RecordsUtility.Notify_BillDone(actor, new List<Thing>());
 
                 actor.jobs.EndCurrentJob(JobCondition.Succeeded, true);
             };
