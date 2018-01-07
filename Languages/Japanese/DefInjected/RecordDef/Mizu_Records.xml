@@ -7,9 +7,6 @@
   <Mizu_WaterDrew.label>汲んだ水の数</Mizu_WaterDrew.label>
   <Mizu_WaterDrew.description>汲んだ水の数</Mizu_WaterDrew.description>
 
-  <Mizu_WaterCleaned.label>浄化した水の数</Mizu_WaterCleaned.label>
-  <Mizu_WaterCleaned.description>浄化した水の数</Mizu_WaterCleaned.description>
-
   <Mizu_TimeDrinkingWater.label>水飲み (総時間)</Mizu_TimeDrinkingWater.label>
   <Mizu_TimeDrinkingWater.description>水飲み (総時間)</Mizu_TimeDrinkingWater.description>
 
