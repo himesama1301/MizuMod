@@ -75,7 +75,7 @@
     <graphicData>
       <texPath>Things/Building/Production/Mizu_Well</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(2.33,2.33)</drawSize>
+      <drawSize>(1,1)</drawSize>
     </graphicData>
     <stuffCategories>
       <li>Metallic</li>
@@ -89,7 +89,7 @@
       <Flammability>1.0</Flammability>
     </statBases>
     <scatterableOnMapGen>false</scatterableOnMapGen>
-    <size>(2,2)</size>
+    <size>(1,1)</size>
     <pathCost>70</pathCost>
     <hasInteractionCell>True</hasInteractionCell>
     <surfaceType>Item</surfaceType>
