@@ -30,7 +30,7 @@ namespace MizuMod
 
             int waterPoolNum = Mathf.RoundToInt(basePoolNum * rainRate * areaRate * plantRate);
 
-            Log.Message(string.Format("rain={0},area={1},plant={2},num={3}", rainRate.ToString("F3"), areaRate.ToString("F3"), plantRate.ToString("F3"), waterPoolNum));
+            //Log.Message(string.Format("rain={0},area={1},plant={2},num={3}", rainRate.ToString("F3"), areaRate.ToString("F3"), plantRate.ToString("F3"), waterPoolNum));
             if (plantRate > 0.0f)
             {
                 waterPoolNum = Mathf.Max(waterPoolNum, minWaterPoolNum);
