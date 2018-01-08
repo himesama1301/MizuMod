@@ -9,7 +9,8 @@
     <listPriority>700</listPriority>
     <major>true</major>
     <showForCaravanMembers>true</showForCaravanMembers>
-    
+    <scaleBar>true</scaleBar>
+
     <modExtensions>
       <li Class="MizuMod.DefExtension_NeedWater">
         <fallPerTickBase>1.5E-05</fallPerTickBase>

@@ -34,19 +34,19 @@ namespace MizuMod
         {
             get
             {
-                if (this.CurLevel <= 0f)
+                if (this.CurLevelPercentage <= 0f)
                 {
                     return ThirstCategory.Dehydration;
                 }
-                if (this.CurLevel < this.PercentageThreshUrgentlyThirsty)
+                if (this.CurLevelPercentage < this.PercentageThreshUrgentlyThirsty)
                 {
                     return ThirstCategory.UrgentlyThirsty;
                 }
-                if (this.CurLevel < this.PercentageThreshThirsty)
+                if (this.CurLevelPercentage < this.PercentageThreshThirsty)
                 {
                     return ThirstCategory.Thirsty;
                 }
-                if (this.CurLevel < this.PercentageThreshSlightlyThirsty)
+                if (this.CurLevelPercentage < this.PercentageThreshSlightlyThirsty)
                 {
                     return ThirstCategory.SlightlyThirsty;
                 }
@@ -126,6 +126,14 @@ namespace MizuMod
             }
         }
 
+        public override float MaxLevel
+        {
+            get
+            {
+                return this.pawn.BodySize * this.pawn.ageTracker.CurLifeStage.foodMaxFactor;
+            }
+        }
+
         public Need_Water(Pawn pawn) : base(pawn)
         {
             this.lastSearchWaterTick = Find.TickManager.TicksGame;
@@ -133,7 +141,12 @@ namespace MizuMod
 
         private float WaterFallPerTickAssumingCategory(ThirstCategory cat)
         {
+            // 基本低下量(基本値＋温度補正)
             float fallPerTickBase = this.ext.fallPerTickBase + this.ext.fallPerTickFromTempCurve.Evaluate(this.pawn.AmbientTemperature - this.pawn.ComfortableTemperatureRange().max);
+
+            // 食事と同じ値を利用
+            fallPerTickBase *= this.pawn.ageTracker.CurLifeStage.hungerRateFactor * this.pawn.RaceProps.baseHungerRate * this.pawn.health.hediffSet.GetThirstRateFactor();
+
             switch (cat)
             {
                 case ThirstCategory.Healthy:

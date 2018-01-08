@@ -62,6 +62,17 @@
         </capMods>
       </li>
     </stages>
+    <modExtensions>
+      <li Class="MizuMod.DefExtension_ThirstRate">
+        <thirstRateFactors>
+          <li>0.5</li>
+          <li>0.6</li>
+          <li>0.6</li>
+          <li>0.6</li>
+          <li>0.6</li>
+        </thirstRateFactors>
+      </li>
+    </modExtensions>
   </HediffDef>
 
   <HediffDef>
