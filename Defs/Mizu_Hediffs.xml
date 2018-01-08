@@ -64,13 +64,13 @@
     </stages>
     <modExtensions>
       <li Class="MizuMod.DefExtension_ThirstRate">
-        <thirstRateFactors>
+        <thirstRateFactorOffsets>
           <li>0.5</li>
           <li>0.6</li>
           <li>0.6</li>
           <li>0.6</li>
           <li>0.6</li>
-        </thirstRateFactors>
+        </thirstRateFactorOffsets>
       </li>
     </modExtensions>
   </HediffDef>

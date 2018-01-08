@@ -374,11 +374,25 @@ namespace MizuMod
             {
                 var hediffStageIndex = hediff.CurStageIndex;
                 var ext = hediff.def.GetModExtension<DefExtension_ThirstRate>();
-                if (ext == null || ext.thirstRateFactors == null || ext.thirstRateFactors.Count <= hediffStageIndex) continue;
+                if (ext == null || ext.thirstRateFactors == null) continue;
 
-                rate *= ext.thirstRateFactors[hediffStageIndex];
+                if (hediffStageIndex < ext.thirstRateFactors.Count)
+                {
+                    rate *= ext.thirstRateFactors[hediffStageIndex];
+                }
             }
 
+            foreach (var hediff in hediffSet.hediffs)
+            {
+                var hediffStageIndex = hediff.CurStageIndex;
+                var ext = hediff.def.GetModExtension<DefExtension_ThirstRate>();
+                if (ext == null || ext.thirstRateFactorOffsets == null) continue;
+
+                if (hediffStageIndex < ext.thirstRateFactorOffsets.Count)
+                {
+                    rate += ext.thirstRateFactorOffsets[hediffStageIndex];
+                }
+            }
             return rate;
         }
     }

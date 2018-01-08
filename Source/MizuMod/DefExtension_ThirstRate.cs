@@ -10,5 +10,6 @@ namespace MizuMod
     public class DefExtension_ThirstRate : DefModExtension
     {
         public List<float> thirstRateFactors;
+        public List<float> thirstRateFactorOffsets;
     }
 }
