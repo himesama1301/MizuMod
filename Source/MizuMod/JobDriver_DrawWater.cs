@@ -30,8 +30,18 @@ namespace MizuMod
             // その他の失敗条件設定
             this.SetFailCondition();
 
+            PathEndMode peMode;
+            if (this.job.GetTarget(BillGiverInd).Thing.def.hasInteractionCell)
+            {
+                peMode = PathEndMode.InteractionCell;
+            }
+            else
+            {
+                peMode = PathEndMode.ClosestTouch;
+            }
+
             // 設備まで行く
-            yield return Toils_Goto.GotoCell(this.job.GetTarget(BillGiverInd).Thing.InteractionCell, PathEndMode.OnCell);
+            yield return Toils_Goto.GotoThing(BillGiverInd, peMode);
 
             // レシピ実行
             yield return Toils_Mizu.DoRecipeWorkDrawing(BillGiverInd);
