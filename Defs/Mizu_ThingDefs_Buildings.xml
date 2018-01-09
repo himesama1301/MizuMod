@@ -133,7 +133,7 @@
       <Flammability>1.0</Flammability>
       <SellPriceFactor>0.70</SellPriceFactor>
     </statBases>
-    <size>(3,1)</size>
+    <size>(2,1)</size>
     <pathCost>70</pathCost>
     <hasInteractionCell>True</hasInteractionCell>
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
@@ -175,9 +175,9 @@
     <thingClass>Building_WorkTable_HeatPush</thingClass>
     <description>A simple wood-fueled water cleaner.</description>
     <graphicData>
-      <texPath>Things/Building/Production/TableStoveFueled</texPath>
+      <texPath>Things/Building/Production/Mizu_WaterCleaner</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(3.5,1.5)</drawSize>
+      <drawSize>(2,1)</drawSize>
       <damageData>
         <cornerTL>Damage/Corner</cornerTL>
         <cornerTR>Damage/Corner</cornerTR>
@@ -213,9 +213,9 @@
     <thingClass>Building_WorkTable_HeatPush</thingClass>
     <description>An electrically-powered water cleaner.</description>
     <graphicData>
-      <texPath>Things/Building/Production/TableStoveElectric</texPath>
+      <texPath>Things/Building/Production/Mizu_WaterCleaner</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(3.5,1.5)</drawSize>
+      <drawSize>(2,1)</drawSize>
       <damageData>
         <cornerTL>Damage/Corner</cornerTL>
         <cornerTR>Damage/Corner</cornerTR>
