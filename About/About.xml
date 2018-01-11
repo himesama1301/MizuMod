@@ -7,7 +7,15 @@
   <description>
     version 0.4.3
     
-    水Mod
-    開発中。
+    Add "Need Water" to the pawn needs and add various means to get water.
+    Wells, pumps, water pipes, faucets, water cleaners etc. are added.
+    
+    It is not recommended to apply this mod to saved games.
+    
+    ポーンの要求に水分を追加し、水を得るための様々な手段を追加します。
+    井戸、ポンプ、水道管、蛇口、浄水器などが追加されます。
+    
+    このMODを途中から導入することは推奨しません。
+    
   </description>
 </ModMetaData>
