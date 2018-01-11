@@ -16,7 +16,7 @@ namespace MizuMod
 
         public override void Generate(Map map)
         {
-            map.GetComponent<MapComponent_HiddenWaterSpot>().CreateWaterSpot(this.blockSizeX, this.blockSizeZ, this.allSpotNum);
+            map.GetComponent<MapComponent_HiddenWaterSpot>().CreateWaterSpot(this.blockSizeX, this.blockSizeZ, this.allSpotNum * map.Area / (250 * 250));
         }
     }
 }
