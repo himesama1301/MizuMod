@@ -370,9 +370,9 @@
     <description>A building for pumping water for river, lake, pond, sea and marsh. Need electrical power.</description>
     <thingClass>MizuMod.Building_GroundWaterPump</thingClass>
     <graphicData>
-      <texPath>Things/Building/Production/DeepDrill</texPath>
+      <texPath>Things/Building/Production/Mizu_GroundPump</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(2,2)</drawSize>
+      <drawSize>(1,1)</drawSize>
     </graphicData>
     <blockWind>false</blockWind>
     <castEdgeShadows>true</castEdgeShadows>
@@ -420,12 +420,6 @@
   </ThingDef>
   
   <ThingDef Name="Mizu_UndergroundWaterPumpBase" ParentName="Mizu_BuildingBase" Abstract="True">
-    <graphicData>
-      <texPath>Things/Building/Production/DeepDrill</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(2,2)</drawSize>
-      <drawRotated>false</drawRotated>
-    </graphicData>
     <blockWind>false</blockWind>
     <castEdgeShadows>true</castEdgeShadows>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
@@ -468,6 +462,12 @@
     <label>Underground water pump (shallow)</label>
     <description>A building for pumping water for underground shallow layer. Need electrical power.</description>
     <thingClass>MizuMod.Building_UndergroundShallowWaterPump</thingClass>
+    <graphicData>
+      <texPath>Things/Building/Production/Mizu_ShallowPump</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+      <drawRotated>false</drawRotated>
+    </graphicData>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_UndergroundShallowWater</li>
     </placeWorkers>
@@ -482,6 +482,12 @@
     <label>Underground water pump (deep)</label>
     <description>A building for pumping water for underground deep layer. Need electrical power.</description>
     <thingClass>MizuMod.Building_UndergroundDeepWaterPump</thingClass>
+    <graphicData>
+      <texPath>Things/Building/Production/Mizu_DeepPump</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+      <drawRotated>false</drawRotated>
+    </graphicData>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_UndergroundDeepWater</li>
     </placeWorkers>
