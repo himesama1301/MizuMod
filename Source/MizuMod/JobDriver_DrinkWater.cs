@@ -31,23 +31,21 @@ namespace MizuMod
 
         public override bool TryMakePreToilReservations()
         {
+            if (this.job.targetA.HasThing)
+            {
+                return this.pawn.Reserve(this.job.targetA, this.job, 1, this.job.count);
+            }
             return true;
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
+            Log.Message("===");
             if (this.job.targetA.HasThing)
             {
                 // ターゲットがThing=水アイテムを摂取する場合
-
                 // 水が使用不可能になったらFail
                 ToilFailConditions.FailOnDestroyedNullOrForbidden<JobDriver_DrinkWater>(this, WaterIndex);
-
-                // 水を予約
-                if (!this.pawn.Map.reservationManager.ReservedBy(this.TargetA.Thing, pawn))
-                {
-                    yield return Toils_Reserve.Reserve(WaterIndex, 1, this.job.count);
-                }
 
                 // 水を取得
                 if (this.drinkingFromInventory)
