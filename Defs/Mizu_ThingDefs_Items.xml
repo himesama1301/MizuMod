@@ -33,7 +33,7 @@
     <description>Water for drinking. It will taste good.</description>
     <graphicData>
       <texPath>Things/Item/Mizu_ClearWater</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>1</MarketValue>
@@ -63,7 +63,7 @@
     <description>Water for drinking. It has no special effects.</description>
     <graphicData>
       <texPath>Things/Item/Mizu_NormalWater</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>0.3</MarketValue>
@@ -93,7 +93,7 @@
     <description>Water for drinking. It will taste bad slightly.</description>
     <graphicData>
       <texPath>Things/Item/Mizu_RawWater</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>0.2</MarketValue>
@@ -123,7 +123,7 @@
     <description>Water for drinking. It will taste terrible.</description>
     <graphicData>
       <texPath>Things/Item/Mizu_MudWater</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>0.15</MarketValue>
@@ -153,7 +153,7 @@
     <description>Water for drinking. It will taste terrible and salty.</description>
     <graphicData>
       <texPath>Things/Item/Mizu_SeaWater</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>0.1</MarketValue>
