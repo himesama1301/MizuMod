@@ -40,7 +40,6 @@ namespace MizuMod
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            Log.Message("===");
             if (this.job.targetA.HasThing)
             {
                 // ターゲットがThing=水アイテムを摂取する場合
