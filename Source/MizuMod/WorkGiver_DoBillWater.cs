@@ -38,7 +38,7 @@ namespace MizuMod
         private Job StartBillJob(Pawn pawn, IBillGiver giver)
         {
             foreach (var bill in giver.BillStack)
-            { 
+            {
                 // レシピが要求する仕事の種類と、WorkGiver側の仕事の種類があっているかチェック
                 if (bill.recipe.requiredGiverWorkType != null && bill.recipe.requiredGiverWorkType != this.def.workType) continue;
 
@@ -577,7 +577,7 @@ namespace MizuMod
             if (workTable.TankComp == null) return 0f;
 
             float totalAmountCanAccept = workTable.TankComp.AmountCanAccept;
-            if (workTable.InputWaterNet != null && workTable.InputWaterNet.FlatTankList != null)
+            if (workTable.InputWaterNet != null && workTable.InputWaterNet.FlatTankList != null && workTable.InputWaterNet.FlatTankList.Count() > 0)
             {
                 var flatTanks = workTable.InputWaterNet.FlatTankList.First((flatTankElement) => flatTankElement.Contains(workTable));
                 if (flatTanks != null)
