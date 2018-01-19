@@ -16,10 +16,27 @@ namespace MizuMod
 
         public override float GetPriority(Pawn pawn)
         {
-            Need_Water need_water = pawn.needs.water();
-
+            var need_water = pawn.needs.water();
+            
             if (need_water == null) return 0.0f;
+
+            // 喉が渇いていないなら0
             if (need_water.CurCategory <= ThirstCategory.Healthy) return 0.0f;
+
+            // 人間＆プレイヤー派閥でない場合は、マップ内に敵がいるかどうかで条件を変更
+            if (pawn.RaceProps.Humanlike && pawn.Faction != Faction.OfPlayer)
+            {
+                foreach (var faction in Find.FactionManager.AllFactionsListForReading)
+                {
+                    var pawnList = pawn.Map.mapPawns.SpawnedPawnsInFaction(faction);
+
+                    // 敵対派閥のポーンがマップ内に居る場合は脱水症状が出るまで我慢
+                    if (pawn.HostileTo(faction) && pawnList != null && pawnList.Count > 0)
+                    {
+                        if (need_water.CurCategory <= ThirstCategory.UrgentlyThirsty) return 0.0f;
+                    }
+                }
+            }
 
             return 9.4f;
         }
