@@ -26,8 +26,8 @@ namespace MizuMod
             if (canUseInventory && getter.CanManipulate())
             {
                 // 所持品から探すフラグON、取得者は操作が可能
-                //   →所持品からベストな飲み物を探す(まともな水の範囲で)
-                inventoryThing = MizuUtility.BestWaterInInventory(getter, WaterPreferability.NormalWater, WaterPreferability.ClearWater, 0f, allowDrug);
+                //   →所持品からベストな飲み物を探す
+                inventoryThing = MizuUtility.BestWaterInInventory(getter, WaterPreferability.SeaWater, WaterPreferability.ClearWater, 0f, allowDrug);
             }
 
             if (inventoryThing != null)
