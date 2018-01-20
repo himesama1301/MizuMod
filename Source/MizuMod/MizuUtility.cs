@@ -185,6 +185,9 @@ namespace MizuMod
                 }
                 else if (comp.SourceType == CompProperties_WaterSource.SourceType.Building)
                 {
+                    // 取得者と摂取者が異なる(自分で飲みに行く必要がある)
+                    if (getter != eater) return false;
+
                     var drinkWaterBuilding = t as IBuilding_DrinkWater;
 
                     // 水汲みに使えない
