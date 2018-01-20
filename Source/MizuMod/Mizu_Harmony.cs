@@ -25,6 +25,7 @@ namespace MizuMod
         }
     }
 
+    // キャラバン移動中に水分要求を補充する行動を追加
     [HarmonyPatch(typeof(CaravanPawnsNeedsUtility))]
     [HarmonyPatch("TrySatisfyPawnNeeds")]
     [HarmonyPatch(new Type[] { typeof(Pawn), typeof(Caravan) })]
@@ -118,6 +119,7 @@ namespace MizuMod
         }
     }
 
+    // 所持品欄の水アイテムに「水を飲む」ボタンを追加
     [HarmonyPatch(typeof(ITab_Pawn_Gear))]
     [HarmonyPatch("DrawThingRow")]
     class ITab_Pawn_Gear_DrawThingRow
@@ -172,14 +174,13 @@ namespace MizuMod
         }
     }
 
+    // キャラバンの荷物選択時、右上に現在の水分総量を表示させる処理を追加
     [HarmonyPatch(typeof(Dialog_FormCaravan))]
     [HarmonyPatch("DoWindowContents")]
     class Dialog_FormCaravan_DoWindowContents
     {
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            // キャラバンの荷物選択時、右上に現在の水分総量を表示させる処理を追加
-
             int insert_index = -1;
             var codes = new List<CodeInstruction>(instructions);
             for (int i = 0; i < codes.Count; i++)
@@ -233,14 +234,14 @@ namespace MizuMod
         }
     }
 
+    // 水アイテム不足で出発しようとしたとき、警告ダイアログを出す
+    // 実際の処理は、食料不足の警告ダイアログに便乗する形
     [HarmonyPatch(typeof(Dialog_FormCaravan))]
     [HarmonyPatch("DoBottomButtons")]
     class Dialog_FormCaravan_DoBottomButtons
     {
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            // 水アイテム不足で出発しようとしたとき、警告ダイアログを出す
-            // 実際の処理は、食料不足の警告ダイアログに便乗する形
             int key_index = -1;
             int insert_index = -1;
             var codes = new List<CodeInstruction>(instructions);
@@ -306,6 +307,7 @@ namespace MizuMod
         }
     }
 
+    // キャラバン編成画面で積荷の内容が変化したときに、水の総量再計算フラグを立てる処理を追加
     [HarmonyPatch(typeof(Dialog_FormCaravan))]
     [HarmonyPatch("CountToTransferChanged")]
     class Dialog_FormCaravan_CountToTransferChanged
@@ -316,6 +318,7 @@ namespace MizuMod
         }
     }
 
+    // 惑星画面でキャラバンを選んだ時に左下に出てくる情報ウィンドウに積荷の水分量表示を追加
     [HarmonyPatch(typeof(Caravan))]
     [HarmonyPatch("GetInspectString")]
     class Caravan_GetInspectString
@@ -363,6 +366,7 @@ namespace MizuMod
         }
     }
 
+    // ポーンの所持品生成処理(トレーダーがやってくるとき等)に水アイテムを持たせる処理を追加
     [HarmonyPatch(typeof(PawnInventoryGenerator))]
     [HarmonyPatch("GiveRandomFood")]
     class PawnInventoryGenerator_GiveRandomFood
@@ -374,7 +378,7 @@ namespace MizuMod
             ThingDef thingDef = null;
             if (p.kindDef.itemQuality > QualityCategory.Normal)
             {
-                thingDef = MizuDef.Thing_ClearWater;    
+                thingDef = MizuDef.Thing_ClearWater;
             }
             else if (p.kindDef.itemQuality == QualityCategory.Normal)
             {
@@ -410,6 +414,7 @@ namespace MizuMod
         }
     }
 
+    // 水アイテムが囚人部屋に置いてあるとき、囚人用として扱う処理を追加
     [HarmonyPatch(typeof(HaulAIUtility))]
     [HarmonyPatch("PawnCanAutomaticallyHaulBasicChecks")]
     class HaulAIUtility_PawnCanAutomaticallyHaulBasicChecks
@@ -425,18 +430,16 @@ namespace MizuMod
         }
     }
 
+    // 食べ物に水分設定がある場合、食べた後に水分も回復する処理を追加
     [HarmonyPatch(typeof(Thing))]
     [HarmonyPatch("Ingested")]
     class Thing_Ingested
     {
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            // 水アイテム不足で出発しようとしたとき、警告ダイアログを出す
-            // 実際の処理は、食料不足の警告ダイアログに便乗する形
             int insert_index = -1;
             var codes = new List<CodeInstruction>(instructions);
 
-            // 処理を挿入すべき場所の近くにあった文字列のnullチェック処理を手掛かりにする(かなり強引なやり方)
             for (int i = 0; i < codes.Count; i++)
             {
                 if (codes[i].opcode == OpCodes.Callvirt && codes[i].operand.ToString().Contains("PostIngested"))
@@ -464,4 +467,36 @@ namespace MizuMod
         }
     }
 
+    // 包囲攻撃の仕送りで食料を送るときに一緒に水も送るようにする
+    [HarmonyPatch(typeof(LordToil_Siege))]
+    [HarmonyPatch("LordToilTick")]
+    class LordToil_Siege_LordToilTick
+    {
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            int insert_index = -1;
+            var codes = new List<CodeInstruction>(instructions);
+
+            for (int i = 0; i < codes.Count; i++)
+            {
+                if (codes[i].opcode == OpCodes.Call && codes[i].operand.ToString().Contains("DropSupplies"))
+                {
+                    insert_index = i + 1;
+                }
+            }
+
+            if (insert_index > -1)
+            {
+                List<CodeInstruction> insert_codes = new List<CodeInstruction>();
+
+                insert_codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
+                insert_codes.Add(new CodeInstruction(OpCodes.Ldsfld, AccessTools.Field(typeof(MizuDef), nameof(MizuDef.Thing_ClearWater))));
+                insert_codes.Add(new CodeInstruction(OpCodes.Ldc_I4_S, 20));
+                insert_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(LordToil_Siege), "DropSupplies", new Type[] { typeof(ThingDef), typeof(int) })));
+
+                codes.InsertRange(insert_index, insert_codes);
+            }
+            return codes.AsEnumerable();
+        }
+    }
 }
