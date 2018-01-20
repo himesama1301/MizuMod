@@ -23,6 +23,9 @@ namespace MizuMod
             // 喉が渇いていないなら0
             if (need_water.CurCategory <= ThirstCategory.Healthy) return 0.0f;
 
+            // 何らかの精神崩壊状態の場合、脱水症状が起こるまで水を飲もうとしない
+            if (pawn.MentalState != null && need_water.CurCategory <= ThirstCategory.UrgentlyThirsty) return 0.0f;
+
             // 人間＆プレイヤー派閥でない場合は、マップ内に敵がいるかどうかで条件を変更
             if (pawn.RaceProps.Humanlike && pawn.Faction != Faction.OfPlayer)
             {
