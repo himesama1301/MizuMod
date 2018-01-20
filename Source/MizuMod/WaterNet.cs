@@ -357,10 +357,21 @@ namespace MizuMod
                         remainOutputWaterFlow -= actualInputWaterFlow;
                     }
                 }
+                
+                // 無限ループ防止用
+                int tryCount = 100;
 
                 // 出力可能な相手のうち、任意入力で良いタイプに残量を割り振る
-                while (remainOutputWaterFlow > 0.0f)
+                // 無限ループ対策に、出力に多少余力があっても処理を打ち切るようにした
+                while (remainOutputWaterFlow > 1.0f)
                 {
+                    tryCount--;
+                    if (tryCount == 0)
+                    {
+                        Log.Warning("UpdateInputWaterFlow() loop 100 break");
+                        break;
+                    }
+
                     var anyInputters = effectiveInputters.Where((t) =>
                     {
                         // 入力が任意で良いもの以外は除外
