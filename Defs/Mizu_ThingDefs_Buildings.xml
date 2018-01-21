@@ -543,9 +543,6 @@
       <li Class="MizuMod.CompProperties_WaterNetInput">
         <inputWaterFlowType>Any</inputWaterFlowType>
       </li>
-      <li Class="MizuMod.CompProperties_WaterNetOutput">
-        <maxOutputWaterFlow>150</maxOutputWaterFlow>
-      </li>
     </comps>
     <researchPrerequisites>
       <li>Mizu_Waterworks</li>
@@ -611,9 +608,6 @@
         <baseRainFlow>70</baseRainFlow>
         <roofEfficiency>0.25</roofEfficiency>
         <roofDistance>1</roofDistance>
-      </li>
-      <li Class="MizuMod.CompProperties_WaterNetOutput">
-        <maxOutputWaterFlow>150</maxOutputWaterFlow>
       </li>
     </comps>
     <inspectorTabs>
