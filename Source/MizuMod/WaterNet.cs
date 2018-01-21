@@ -366,6 +366,12 @@ namespace MizuMod
             {
                 if (!t.InputComp.IsActivated) continue;
 
+                // 自身に貯水機能がない＆出力機能があるが有効な出力先がない場合は入力しない
+                if (t.TankComp == null && t.OutputComp != null && !t.OutputComp.FoundEffectiveInputter) continue;
+
+                // 自身に貯水機能がある＆貯水量が満タンの場合は入力しない
+                if (t.TankComp != null && t.TankComp.AmountCanAccept <= 0f) continue;
+
                 if (t.WaterPool != null && t.WaterPool.CurrentWaterVolume > 0f)
                 {
                     // 地下水があれば入力あり
@@ -437,6 +443,7 @@ namespace MizuMod
                     {
                         // 残量がまだ足りているなら入力する
                         inputter.InputComp.InputWaterFlow += actualInputWaterFlow;
+                        inputter.InputComp.InputWaterType = inputter.InputComp.InputWaterType.GetMinType(outputter.OutputComp.OutputWaterType);
                         remainOutputWaterFlow -= actualInputWaterFlow;
                     }
                 }
@@ -466,6 +473,7 @@ namespace MizuMod
                         // 最大を超えない量を計算して入力量を増加
                         float actualInputWaterFlow = Mathf.Min(aveOutputWaterFlow, inputter.InputComp.MaxInputWaterFlow - inputter.InputComp.InputWaterFlow);
                         inputter.InputComp.InputWaterFlow += actualInputWaterFlow;
+                        inputter.InputComp.InputWaterType = inputter.InputComp.InputWaterType.GetMinType(outputter.OutputComp.OutputWaterType);
                         remainOutputWaterFlow -= actualInputWaterFlow;
                     }
                 }
@@ -474,14 +482,14 @@ namespace MizuMod
             // 水道網を流れる水の水質更新(水道網のタンクの水質とは別)
             this.waterType = outputWaterType;
 
-            // 水道網入力タイプの現在の入力水質更新
-            foreach (var inputter in inputterTypeDic[CompProperties_WaterNetInput.InputType.WaterNet])
-            {
-                if (inputter.InputComp.InputWaterFlow > 0f)
-                {
-                    inputter.InputComp.InputWaterType = this.waterType;
-                }
-            }
+            //// 水道網入力タイプの現在の入力水質更新
+            //foreach (var inputter in inputterTypeDic[CompProperties_WaterNetInput.InputType.WaterNet])
+            //{
+            //    if (inputter.InputComp.InputWaterFlow > 0f)
+            //    {
+            //        inputter.InputComp.InputWaterType = this.waterType;
+            //    }
+            //}
         }
 
         public void UpdateWaterTank()
@@ -525,72 +533,101 @@ namespace MizuMod
             }
 
             // タンク内の水質更新
-
-            // 雨入力のタンク
-            foreach (var tank in allTanks.Intersect(inputterTypeDic[CompProperties_WaterNetInput.InputType.Rain]))
+            foreach (var tank in this.allTanks)
             {
                 if (tank.TankComp.StoredWaterVolume <= 0f)
                 {
                     // 空っぽになったらクリア
                     tank.TankComp.StoredWaterType = WaterType.NoWater;
                 }
-                else if (this.Manager.map.weatherManager.curWeather.rainRate > 0f)
+                else
                 {
-                    // 空ではなく、入力を受けている場合
-                    //   ⇒現在の水質と生水のうち低い方になる
-                    tank.TankComp.StoredWaterType = (WaterType)Mathf.Min((int)tank.TankComp.StoredWaterType, (int)WaterType.RawWater);
+                    // 空っぽでなければ現在のタンク水質と入力水質の低い方を選ぶ
+                    tank.TankComp.StoredWaterType = (WaterType)Mathf.Min((int)tank.TankComp.StoredWaterType, (int)tank.InputComp.InputWaterType);
                 }
             }
 
-            // 地下水入力のタンク
-            foreach (var tank in allTanks.Intersect(inputterTypeDic[CompProperties_WaterNetInput.InputType.WaterPool]))
-            {
-                if (tank.TankComp.StoredWaterVolume <= 0f)
-                {
-                    // 空っぽになったらクリア
-                    tank.TankComp.StoredWaterType = WaterType.NoWater;
-                }
-                else if (tank.InputComp.InputWaterFlow > 0f)  // 現在地下水入力のタンクは存在しないので発覚していないが、おそらくこの書き方はバグを生む
-                {
-                    // 空ではなく、入力を受けている場合
-                    //   ⇒現在の水質と地下水の水質のうち低い方になる
-                    tank.TankComp.StoredWaterType = (WaterType)Mathf.Min((int)tank.TankComp.StoredWaterType, (int)tank.WaterPool.WaterType);
-                }
-            }
+            //// 雨入力のタンク
+            //foreach (var tank in allTanks.Intersect(inputterTypeDic[CompProperties_WaterNetInput.InputType.Rain]))
+            //{
+            //    if (tank.TankComp.StoredWaterVolume <= 0f)
+            //    {
+            //        // 空っぽになったらクリア
+            //        tank.TankComp.StoredWaterType = WaterType.NoWater;
+            //    }
+            //    else
+            //    {
+            //        tank.TankComp.StoredWaterType = (WaterType)Mathf.Min((int)tank.TankComp.StoredWaterType, (int)tank.InputComp.InputWaterType);
+            //    }
+            //    //else if (this.Manager.map.weatherManager.curWeather.rainRate > 0f)
+            //    //{
+            //    //    // 空ではなく、入力を受けている場合
+            //    //    //   ⇒現在の水質と生水のうち低い方になる
+            //    //    tank.TankComp.StoredWaterType = (WaterType)Mathf.Min((int)tank.TankComp.StoredWaterType, (int)WaterType.RawWater);
+            //    //}
+            //}
 
-            // 地形入力のタンク
-            foreach (var tank in allTanks.Intersect(inputterTypeDic[CompProperties_WaterNetInput.InputType.Terrain]))
-            {
-                if (tank.TankComp.StoredWaterVolume <= 0f)
-                {
-                    // 空っぽになったらクリア
-                    tank.TankComp.StoredWaterType = WaterType.NoWater;
-                }
-                else if (tank.InputComp.InputWaterFlow > 0f)  // 現在地形入力のタンクは存在しないので発覚していないが、おそらくこの書き方はバグを生む
-                {
-                    // 空ではなく、入力を受けている場合
-                    //   ⇒現在の水質と地形の水質のうち低い方になる
-                    var building = tank as Building;
-                    var terrainWaterType = this.Manager.map.terrainGrid.TerrainAt(building.Position).ToWaterType();
-                    tank.TankComp.StoredWaterType = (WaterType)Mathf.Min((int)tank.TankComp.StoredWaterType, (int)terrainWaterType);
-                }
-            }
+            //// 地下水入力のタンク
+            //foreach (var tank in allTanks.Intersect(inputterTypeDic[CompProperties_WaterNetInput.InputType.WaterPool]))
+            //{
+            //    if (tank.TankComp.StoredWaterVolume <= 0f)
+            //    {
+            //        // 空っぽになったらクリア
+            //        tank.TankComp.StoredWaterType = WaterType.NoWater;
+            //    }
+            //    else
+            //    {
+            //        tank.TankComp.StoredWaterType = (WaterType)Mathf.Min((int)tank.TankComp.StoredWaterType, (int)tank.InputComp.InputWaterType);
+            //    }
+            //    //else if (tank.InputComp.InputWaterFlow > 0f)  // 現在地下水入力のタンクは存在しないので発覚していないが、おそらくこの書き方はバグを生む
+            //    //{
+            //    //    // 空ではなく、入力を受けている場合
+            //    //    //   ⇒現在の水質と地下水の水質のうち低い方になる
+            //    //    tank.TankComp.StoredWaterType = (WaterType)Mathf.Min((int)tank.TankComp.StoredWaterType, (int)tank.WaterPool.WaterType);
+            //    //}
+            //}
 
-            // 水道網入力のタンク
-            foreach (var tank in allTanks.Intersect(inputterTypeDic[CompProperties_WaterNetInput.InputType.WaterNet]))
-            {
-                if (tank.TankComp.StoredWaterVolume <= 0f)
-                {
-                    // 空っぽになったらクリア
-                    tank.TankComp.StoredWaterType = WaterType.NoWater;
-                }
-                else if (tank.InputComp.InputWaterFlow > 0f)
-                {
-                    // 空ではなく、入力を受けている場合
-                    //   ⇒現在の水質と水道網の水質のうち低い方になる
-                    tank.TankComp.StoredWaterType = (WaterType)Mathf.Min((int)tank.TankComp.StoredWaterType, (int)this.WaterType);
-                }
-            }
+            //// 地形入力のタンク
+            //foreach (var tank in allTanks.Intersect(inputterTypeDic[CompProperties_WaterNetInput.InputType.Terrain]))
+            //{
+            //    if (tank.TankComp.StoredWaterVolume <= 0f)
+            //    {
+            //        // 空っぽになったらクリア
+            //        tank.TankComp.StoredWaterType = WaterType.NoWater;
+            //    }
+            //    else
+            //    {
+            //        tank.TankComp.StoredWaterType = (WaterType)Mathf.Min((int)tank.TankComp.StoredWaterType, (int)tank.InputComp.InputWaterType);
+            //    }
+            //    //else if (tank.InputComp.InputWaterFlow > 0f)  // 現在地形入力のタンクは存在しないので発覚していないが、おそらくこの書き方はバグを生む
+            //    //{
+            //    //    // 空ではなく、入力を受けている場合
+            //    //    //   ⇒現在の水質と地形の水質のうち低い方になる
+            //    //    var building = tank as Building;
+            //    //    var terrainWaterType = this.Manager.map.terrainGrid.TerrainAt(building.Position).ToWaterType();
+            //    //    tank.TankComp.StoredWaterType = (WaterType)Mathf.Min((int)tank.TankComp.StoredWaterType, (int)terrainWaterType);
+            //    //}
+            //}
+
+            //// 水道網入力のタンク
+            //foreach (var tank in allTanks.Intersect(inputterTypeDic[CompProperties_WaterNetInput.InputType.WaterNet]))
+            //{
+            //    if (tank.TankComp.StoredWaterVolume <= 0f)
+            //    {
+            //        // 空っぽになったらクリア
+            //        tank.TankComp.StoredWaterType = WaterType.NoWater;
+            //    }
+            //    else
+            //    {
+            //        tank.TankComp.StoredWaterType = (WaterType)Mathf.Min((int)tank.TankComp.StoredWaterType, (int)tank.InputComp.InputWaterType);
+            //    }
+            //    //else if (tank.InputComp.InputWaterFlow > 0f)
+            //    //{
+            //    //    // 空ではなく、入力を受けている場合
+            //    //    //   ⇒現在の水質と水道網の水質のうち低い方になる
+            //    //    tank.TankComp.StoredWaterType = (WaterType)Mathf.Min((int)tank.TankComp.StoredWaterType, (int)this.WaterType);
+            //    //}
+            //}
 
             // 水道網全体のタンク水質(蛇口をひねったときに出てくる水の種類)を決める
             this.storedWaterType = WaterType.NoWater;

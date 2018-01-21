@@ -65,6 +65,15 @@ namespace MizuMod
             }
         }
 
+        private bool foundEffectiveInputter;
+        public bool FoundEffectiveInputter
+        {
+            get
+            {
+                return this.foundEffectiveInputter;
+            }
+        }
+
         public CompWaterNetOutput() : base()
         {
             this.OutputWaterType = WaterType.NoWater;
@@ -104,7 +113,7 @@ namespace MizuMod
             }
 
             // 有効な出力先が1個でもあれば出力する
-            bool foundEffectiveInputter = false;
+            this.foundEffectiveInputter = false;
             foreach (var t in this.WaterNetBuilding.OutputWaterNet.AllThings)
             {
                 // 自分自身は除外
@@ -120,11 +129,11 @@ namespace MizuMod
                 if (t.TankComp != null && t.TankComp.AmountCanAccept <= 0f) continue;
 
                 // 有効な出力先が見つかった
-                foundEffectiveInputter = true;
+                this.foundEffectiveInputter = true;
                 break;
             }
 
-            if (!foundEffectiveInputter)
+            if (!this.foundEffectiveInputter)
             {
                 // 有効な出力先なし
                 this.OutputWaterType = WaterType.NoWater;

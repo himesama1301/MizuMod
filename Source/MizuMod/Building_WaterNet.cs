@@ -246,7 +246,7 @@ namespace MizuMod
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(base.GetInspectString());
 
-            if (this.IsDraining)
+            if (this.HasDrainCapability && this.IsDraining)
             {
                 stringBuilder.Append(string.Concat(new string[]
                 {
