@@ -57,7 +57,7 @@
       <li>
         <label>drank clear water</label>
         <description>I drank clear water. It's tasty good.</description>
-        <baseMoodEffect>10</baseMoodEffect>
+        <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
