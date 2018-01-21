@@ -291,6 +291,9 @@ namespace MizuMod
                     // 地下水があれば入力あり
                     t.InputComp.InputWaterFlow = t.InputComp.MaxInputWaterFlow;
                     t.InputComp.InputWaterType = t.InputComp.InputWaterType.GetMinType(t.WaterPool.WaterType);
+
+                    // 地下水の出力量(地下水を減らす)を設定
+                    t.WaterPool.OutputWaterFlow += t.InputComp.InputWaterFlow;
                 }
             }
             // 地形入力タイプの入力量を決定
@@ -359,19 +362,20 @@ namespace MizuMod
                 }
                 
                 // 無限ループ防止用
-                int tryCount = 100;
+                // 暫定で1にしてみる
+                int tryCount = 1;
                 int lastCount = 0;
 
                 // 出力可能な相手のうち、任意入力で良いタイプに残量を割り振る
                 // 無限ループ対策に、出力に多少余力があっても処理を打ち切るようにした
                 while (remainOutputWaterFlow > Mathf.Max(0.1f * lastCount, 1.0f))
                 {
-                    tryCount--;
                     if (tryCount == 0)
                     {
-                        Log.Warning("UpdateInputWaterFlow() loop 100 break");
+                        Log.Warning("UpdateInputWaterFlow() escape infinite loop");
                         break;
                     }
+                    tryCount--;
 
                     var anyInputters = effectiveInputters.Where((t) =>
                     {

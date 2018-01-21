@@ -206,7 +206,7 @@ namespace MizuMod
 
             foreach (var pool in this.pools)
             {
-                pool.RegenPool();
+                pool.Update();
             }
         }
     }

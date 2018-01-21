@@ -40,7 +40,7 @@ namespace MizuMod
             }
             set
             {
-                currentWaterVolume = value;
+                currentWaterVolume = Mathf.Max(0, Mathf.Min(this.maxWaterVolume, value));
                 var curMaterialIndex = Mathf.RoundToInt(this.CurrentWaterVolumePercent * UndergroundWaterMaterials.MaterialCount);
                 if (lastMaterialIndex != curMaterialIndex)
                 {
@@ -63,6 +63,18 @@ namespace MizuMod
             get
             {
                 return this.rainRegenRatePerCell;
+            }
+        }
+        private float outputWaterFlow;
+        public float OutputWaterFlow
+        {
+            get
+            {
+                return this.outputWaterFlow;
+            }
+            set
+            {
+                this.outputWaterFlow = Mathf.Max(value, 0f);
             }
         }
         private int lastTick;
@@ -105,6 +117,7 @@ namespace MizuMod
             Scribe_Values.Look<float>(ref this.baseRegenRate, "baseRegenRate");
             Scribe_Values.Look<float>(ref this.rainRegenRatePerCell, "rainRegenRatePerCell");
             Scribe_Values.Look<int>(ref this.lastTick, "lastTick");
+            Scribe_Values.Look<float>(ref this.outputWaterFlow, "outputWaterFlow");
 
             if (this.debugFlag)
             {
@@ -152,7 +165,7 @@ namespace MizuMod
             }
         }
 
-        public void RegenPool()
+        public void Update()
         {
             if (this.poolCells == null)
             {
@@ -177,15 +190,18 @@ namespace MizuMod
             // 雨による回復量
             float addWaterVolumeRain = this.rainRegenRatePerCell * unroofedCells / 60000.0f * this.waterGrid.map.weatherManager.RainRate * (curTick - lastTick);
 
+            // 合計回復量
             float addWaterVolumeTotal = addWaterVolumeBase + addWaterVolumeRain;
-            if (addWaterVolumeTotal < 0.0f)
-            {
-                addWaterVolumeTotal = 0.0f;
-            }
-            if (addWaterVolumeTotal > 0.0f)
-            {
-                this.CurrentWaterVolume = Math.Min(this.CurrentWaterVolume + addWaterVolumeTotal, this.MaxWaterVolume);
-            }
+            if (addWaterVolumeTotal < 0.0f) addWaterVolumeTotal = 0.0f;
+
+            // 出力量(吸い上げられる量)との差分
+            float deltaWaterVolume = addWaterVolumeTotal - this.outputWaterFlow / 60000.0f;
+
+            // 差分を加算
+            this.CurrentWaterVolume = Math.Min(this.CurrentWaterVolume + deltaWaterVolume, this.MaxWaterVolume);
+
+            // 設定された量を減らしたのでクリア
+            this.outputWaterFlow = 0f;
 
             lastTick = curTick;
         }
