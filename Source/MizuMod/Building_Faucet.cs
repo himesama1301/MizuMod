@@ -43,28 +43,30 @@ namespace MizuMod
         {
             if (p.needs == null || p.needs.water() == null) return false;
             if (this.InputWaterNet == null) return false;
-            if (this.InputWaterNet.StoredWaterType == WaterType.Undefined || this.InputWaterNet.StoredWaterType == WaterType.NoWater) return false;
+            if (this.InputWaterNet.StoredWaterTypeForFaucet == WaterType.Undefined || this.InputWaterNet.StoredWaterTypeForFaucet == WaterType.NoWater) return false;
 
             // 手が使用可能で、入力水道網の水量が十分にある
-            return p.CanManipulate() && this.InputWaterNet.StoredWaterVolume >= p.needs.water().WaterWanted * Need_Water.DrinkFromBuildingMargin;
+            return p.CanManipulate() && this.InputWaterNet.StoredWaterVolumeForFaucet >= p.needs.water().WaterWanted * Need_Water.DrinkFromBuildingMargin;
         }
 
         public bool CanDrawFor(Pawn p)
         {
             if (this.InputWaterNet == null) return false;
-            if (this.InputWaterNet.StoredWaterType == WaterType.Undefined || this.InputWaterNet.StoredWaterType == WaterType.NoWater) return false;
 
-            var waterItemDef = MizuDef.List_WaterItem.First((def) => def.GetCompProperties<CompProperties_WaterSource>().waterType == this.InputWaterNet.StoredWaterType);
+            var targetWaterType = this.InputWaterNet.StoredWaterTypeForFaucet;
+            if (targetWaterType == WaterType.Undefined || targetWaterType == WaterType.NoWater) return false;
+
+            var waterItemDef = MizuDef.List_WaterItem.First((def) => def.GetCompProperties<CompProperties_WaterSource>().waterType == targetWaterType);
             var compprop = waterItemDef.GetCompProperties<CompProperties_WaterSource>();
 
             // 汲める予定の水アイテムの水の量より多い
-            return p.CanManipulate() && this.InputWaterNet.StoredWaterVolume >= compprop.waterVolume;
+            return p.CanManipulate() && this.InputWaterNet.StoredWaterVolumeForFaucet >= compprop.waterVolume;
         }
 
         public void DrawWater(float amount)
         {
             if (this.InputWaterNet == null) return;
-            this.InputWaterNet.DrawWaterVolume(amount);
+            this.InputWaterNet.DrawWaterVolumeForFaucet(amount);
         }
     }
 }

@@ -507,11 +507,27 @@ namespace MizuMod
                         var workTable = giver as Building_WaterNetWorkTable;
                         if (workTable == null || workTable.InputWaterNet == null) return false;
 
+                        var targetWaterType = WaterType.NoWater;
+                        var targetWaterVolume = 0.0f;
+
+                        if (ext.canDrawFromFaucet)
+                        {
+                            // 蛇口から汲むレシピ
+                            targetWaterType = workTable.InputWaterNet.StoredWaterTypeForFaucet;
+                            targetWaterVolume = workTable.InputWaterNet.StoredWaterVolumeForFaucet;
+                        }
+                        else
+                        {
+                            // 自身から汲むレシピ(水箱など)
+                            targetWaterType = workTable.TankComp.StoredWaterType;
+                            targetWaterVolume = workTable.TankComp.StoredWaterVolume;
+                        }
+
                         // 水質チェック
-                        if (!ext.needWaterTypes.Contains(workTable.InputWaterNet.StoredWaterType)) return false;
+                        if (!ext.needWaterTypes.Contains(targetWaterType)) return false;
 
                         // 入力水道網の水の種類から水アイテムの種類を決定
-                        var waterThingDef = MizuUtility.GetWaterThingDefFromWaterType(workTable.InputWaterNet.StoredWaterType);
+                        var waterThingDef = MizuUtility.GetWaterThingDefFromWaterType(targetWaterType);
                         if (waterThingDef == null) return false;
 
                         // 水アイテムの水源情報を得る
@@ -519,7 +535,7 @@ namespace MizuMod
                         if (compprop == null) return false;
 
                         // 水量チェック
-                        if (workTable.InputWaterNet.StoredWaterVolume < compprop.waterVolume * ext.getItemCount) return false;
+                        if (targetWaterVolume < compprop.waterVolume * ext.getItemCount) return false;
 
                         return true;
                     }

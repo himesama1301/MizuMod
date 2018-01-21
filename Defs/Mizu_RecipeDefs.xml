@@ -123,6 +123,7 @@
           <li>SeaWater</li>
         </needWaterTypes>
         <getItemCount>1</getItemCount>
+        <canDrawFromFaucet>true</canDrawFromFaucet>
       </li>
     </modExtensions>
   </RecipeDef>
@@ -144,6 +145,7 @@
           <li>SeaWater</li>
         </needWaterTypes>
         <getItemCount>5</getItemCount>
+        <canDrawFromFaucet>true</canDrawFromFaucet>
       </li>
     </modExtensions>
   </RecipeDef>

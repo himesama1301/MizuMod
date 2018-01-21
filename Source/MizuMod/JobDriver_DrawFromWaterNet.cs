@@ -33,8 +33,21 @@ namespace MizuMod
 
         protected override Thing FinishAction()
         {
+            var targetWaterType = WaterType.NoWater;
+
+            if (ext.canDrawFromFaucet)
+            {
+                // 蛇口の場合
+                targetWaterType = this.waterNet.StoredWaterTypeForFaucet;
+            }
+            else
+            {
+                // 自分自身の場合
+                targetWaterType = this.workTable.TankComp.StoredWaterType;
+            }
+
             // 水道網の水の種類から水アイテムの種類を決定
-            var waterThingDef = MizuUtility.GetWaterThingDefFromWaterType(this.waterNet.StoredWaterType);
+            var waterThingDef = MizuUtility.GetWaterThingDefFromWaterType(targetWaterType);
             if (waterThingDef == null) return null;
 
             // 水アイテムの水源情報を得る
@@ -42,7 +55,16 @@ namespace MizuMod
             if (compprop == null) return null;
 
             // 水道網から水を減らす
-            this.waterNet.DrawWaterVolume(compprop.waterVolume * ext.getItemCount);
+            if (ext.canDrawFromFaucet)
+            {
+                // 蛇口の場合
+                this.waterNet.DrawWaterVolumeForFaucet(compprop.waterVolume * ext.getItemCount);
+            }
+            else
+            {
+                // 自分自身の場合
+                this.workTable.TankComp.DrawWaterVolume(compprop.waterVolume * ext.getItemCount);
+            }
 
             // 水を生成
             var createThing = ThingMaker.MakeThing(waterThingDef);

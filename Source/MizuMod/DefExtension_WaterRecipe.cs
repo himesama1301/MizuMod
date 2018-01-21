@@ -22,5 +22,6 @@ namespace MizuMod
         public List<WaterTerrainType> needWaterTerrainTypes = null;
         public List<WaterType> needWaterTypes = null;
         public int getItemCount = 1;
+        public bool canDrawFromFaucet = false;
     }
 }

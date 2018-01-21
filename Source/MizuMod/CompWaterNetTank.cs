@@ -65,6 +65,13 @@ namespace MizuMod
                 return this.Props.flatID;
             }
         }
+        public List<CompProperties_WaterNetTank.DrawType> DrawTypes
+        {
+            get
+            {
+                return this.Props.drawTypes;
+            }
+        }
 
         private float storedWaterVolume = 0;
         public float StoredWaterVolume

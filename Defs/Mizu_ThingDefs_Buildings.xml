@@ -676,6 +676,9 @@
         <maxWaterVolume>15</maxWaterVolume>
         <flatID>1</flatID>
         <showBar>false</showBar>
+        <drawTypes>
+          <li>Self</li>
+        </drawTypes>
       </li>
       <li Class="MizuMod.CompProperties_WaterNetInput">
         <inputTypes>
