@@ -534,7 +534,7 @@ namespace MizuMod
                     // 空っぽになったらクリア
                     tank.TankComp.StoredWaterType = WaterType.NoWater;
                 }
-                else if (tank.InputComp.InputWaterFlow > 0f)
+                else if (this.Manager.map.weatherManager.curWeather.rainRate > 0f)
                 {
                     // 空ではなく、入力を受けている場合
                     //   ⇒現在の水質と生水のうち低い方になる
@@ -550,7 +550,7 @@ namespace MizuMod
                     // 空っぽになったらクリア
                     tank.TankComp.StoredWaterType = WaterType.NoWater;
                 }
-                else if (tank.InputComp.InputWaterFlow > 0f)
+                else if (tank.InputComp.InputWaterFlow > 0f)  // 現在地下水入力のタンクは存在しないので発覚していないが、おそらくこの書き方はバグを生む
                 {
                     // 空ではなく、入力を受けている場合
                     //   ⇒現在の水質と地下水の水質のうち低い方になる
@@ -566,7 +566,7 @@ namespace MizuMod
                     // 空っぽになったらクリア
                     tank.TankComp.StoredWaterType = WaterType.NoWater;
                 }
-                else if (tank.InputComp.InputWaterFlow > 0f)
+                else if (tank.InputComp.InputWaterFlow > 0f)  // 現在地形入力のタンクは存在しないので発覚していないが、おそらくこの書き方はバグを生む
                 {
                     // 空ではなく、入力を受けている場合
                     //   ⇒現在の水質と地形の水質のうち低い方になる
