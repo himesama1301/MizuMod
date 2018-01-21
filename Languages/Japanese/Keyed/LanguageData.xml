@@ -35,8 +35,8 @@
   
   <MizuDraining>水抜き中</MizuDraining>
   
-  <MizuCommandDesignateDrainTankLabel>開/閉を指示</MizuCommandDesignateDrainTankLabel>
-  <MizuCommandDesignateDrainTankDesc>水抜きバルブの開閉を指示します。入植者は直ぐに作業に掛かります。</MizuCommandDesignateDrainTankDesc>
+  <MizuCommandDesignateDrainTankLabel>水抜き開始/終了</MizuCommandDesignateDrainTankLabel>
+  <MizuCommandDesignateDrainTankDesc>水抜きの開始と終了を切り替えます。入植者は直ぐに作業に掛かります。</MizuCommandDesignateDrainTankDesc>
   
   <MizuWaterTypeNo>なし</MizuWaterTypeNo>
   <MizuWaterTypeClear>きれいな水</MizuWaterTypeClear>
