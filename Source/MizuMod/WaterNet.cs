@@ -428,41 +428,25 @@ namespace MizuMod
                         remainOutputWaterFlow -= actualInputWaterFlow;
                     }
                 }
-                
-                // 無限ループ防止用
-                // 暫定で1にしてみる
-                int tryCount = 1;
-                int lastCount = 0;
 
-                // 出力可能な相手のうち、任意入力で良いタイプに残量を割り振る
-                // 無限ループ対策に、出力に多少余力があっても処理を打ち切るようにした
-                while (remainOutputWaterFlow > Mathf.Max(0.1f * lastCount, 1.0f))
+                // 処理高速化のため、残り出力を可能な限り無駄にせず割り振るループは削除
+
+                // 出力可能な相手のうち、任意入力で良い物
+                var anyInputters = effectiveInputters.Where((t) =>
                 {
-                    if (tryCount == 0)
-                    {
-                        Log.Warning("UpdateInputWaterFlow() escape infinite loop");
-                        break;
-                    }
-                    tryCount--;
+                    // 入力が任意で良いもの以外は除外
+                    if (t.InputComp.InputWaterFlowType != CompProperties_WaterNetInput.InputWaterFlowType.Any) return false;
 
-                    var anyInputters = effectiveInputters.Where((t) =>
-                    {
-                        // 入力が任意で良いもの以外は除外
-                        if (t.InputComp.InputWaterFlowType != CompProperties_WaterNetInput.InputWaterFlowType.Any) return false;
+                    // タンクがあり満タンになったものは除外
+                    if (t.TankComp != null && t.TankComp.AmountCanAccept <= 0.0f) return false;
 
-                        // タンクがあり満タンになったものは除外
-                        if (t.TankComp != null && t.TankComp.AmountCanAccept <= 0.0f) return false;
+                    // 入力量が最大まで達している物は除外
+                    if (t.InputComp.InputWaterFlow >= t.InputComp.MaxInputWaterFlow) return false;
 
-                        // 入力量が最大まで達している物は除外
-                        if (t.InputComp.InputWaterFlow >= t.InputComp.MaxInputWaterFlow) return false;
-
-                        return true;
-                    });
-
-                    // 有効な入力装置がなくなったら出力が余っていても終了
-                    if (anyInputters.Count() == 0) break;
-                    lastCount = anyInputters.Count();
-
+                    return true;
+                });
+                if (anyInputters.Count() > 0)
+                {
                     // 均等割り
                     float aveOutputWaterFlow = remainOutputWaterFlow / anyInputters.Count();
                     foreach (var inputter in anyInputters)
