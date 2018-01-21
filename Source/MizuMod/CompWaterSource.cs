@@ -48,6 +48,22 @@ namespace MizuMod
             }
         }
 
+        public float DrainWaterFlow
+        {
+            get
+            {
+                return this.Props.drainWaterFlow;
+            }
+        }
+
+        private CompFlickable compFlickable = null;
+
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+
+            this.compFlickable = this.parent.GetComp<CompFlickable>();
+        }
         //public override void PostIngested(Pawn ingester)
         //{
         //    base.PostIngested(ingester);

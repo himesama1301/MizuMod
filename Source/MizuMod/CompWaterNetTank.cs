@@ -51,13 +51,6 @@ namespace MizuMod
                 return this.Props.showBar;
             }
         }
-        public float DrainWaterFlow
-        {
-            get
-            {
-                return this.Props.drainWaterFlow;
-            }
-        }
         public int FlatID
         {
             get
@@ -116,14 +109,6 @@ namespace MizuMod
             set
             {
                 this.storedWaterType = value;
-            }
-        }
-
-        public bool IsDraining
-        {
-            get
-            {
-                return (this.compFlickable != null && !this.compFlickable.SwitchIsOn);
             }
         }
 
@@ -202,15 +187,6 @@ namespace MizuMod
                 MizuStrings.GetInspectWaterTypeString(this.StoredWaterType),
                 ")",
             }));
-            if (this.IsDraining)
-            {
-                stringBuilder.Append(string.Concat(new string[]
-                {
-                    "(",
-                    MizuStrings.InspectWaterTankDraining,
-                    ")",
-                }));
-            }
 
             return stringBuilder.ToString();
         }

@@ -28,7 +28,10 @@ namespace MizuMod
             }
         }
 
+        private HashSet<IBuilding_WaterNet> drainers = new HashSet<IBuilding_WaterNet>();
+
         private Dictionary<CompProperties_WaterNetInput.InputType, HashSet<IBuilding_WaterNet>> inputterTypeDic = new Dictionary<CompProperties_WaterNetInput.InputType, HashSet<IBuilding_WaterNet>>();
+
         private HashSet<IBuilding_WaterNet> outputters = new HashSet<IBuilding_WaterNet>();
 
         private HashSet<IBuilding_WaterNet> allTanks = new HashSet<IBuilding_WaterNet>();
@@ -114,6 +117,12 @@ namespace MizuMod
             // 全ての物を追加
             allThings.Add(thing);
 
+            // 水抜き機能を持つ設備を追加
+            if (thing.HasDrainCapability)
+            {
+                this.drainers.Add(thing);
+            }
+
             // 入力系を仕分けして追加
             if (thing.InputComp != null)
             {
@@ -159,6 +168,9 @@ namespace MizuMod
         {
             // 全リストから削除
             this.allThings.Remove(thing);
+
+            // 水抜きリストから削除
+            this.drainers.Remove(thing);
 
             // 入力辞書から削除
             foreach (var item in this.inputterTypeDic)
@@ -474,6 +486,22 @@ namespace MizuMod
 
         public void UpdateWaterTank()
         {
+            // 水抜き量の決定
+            float sumDrainWaterFlow = 0f;
+            foreach (var drainer in drainers)
+            {
+                if (drainer.IsDraining)
+                {
+                    sumDrainWaterFlow += drainer.SourceComp.DrainWaterFlow;
+                }
+            }
+
+            float averageDrainWaterFlow = 0f;
+            if (allTanks.Count > 0)
+            {
+                averageDrainWaterFlow = sumDrainWaterFlow / allTanks.Count;
+            }
+
             // タンクの貯水量変更
             foreach (var tank in allTanks)
             {
@@ -484,7 +512,8 @@ namespace MizuMod
                 float outputWaterFlow = 0.0f;
                 if (tank.OutputComp != null) outputWaterFlow = tank.OutputComp.OutputWaterFlow;
 
-                float deltaWaterFlow = inputWaterFlow - outputWaterFlow;
+                // 水抜き量も考慮
+                float deltaWaterFlow = inputWaterFlow - outputWaterFlow - averageDrainWaterFlow;
                 if (deltaWaterFlow > 0.0f)
                 {
                     tank.TankComp.AddWaterVolume(deltaWaterFlow / 60000.0f);
@@ -492,12 +521,6 @@ namespace MizuMod
                 else if (deltaWaterFlow < 0.0f)
                 {
                     tank.TankComp.DrawWaterVolume(-deltaWaterFlow / 60000.0f);
-                }
-
-                // 水抜き
-                if (tank.TankComp.IsDraining)
-                {
-                    tank.TankComp.DrawWaterVolume(tank.TankComp.DrainWaterFlow / 60000);
                 }
             }
 

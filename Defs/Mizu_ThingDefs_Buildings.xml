@@ -532,11 +532,6 @@
     <rotatable>false</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
     <comps>
-      <li Class="CompProperties_Flickable">
-        <commandTexture>Things/Building/Production/Mizu_WaterTank</commandTexture>
-        <commandLabelKey>MizuCommandDesignateDrainTankLabel</commandLabelKey>
-        <commandDescKey>MizuCommandDesignateDrainTankDesc</commandDescKey>
-      </li>
       <li Class="MizuMod.CompProperties_WaterNetTank">
         <maxWaterVolume>100</maxWaterVolume>
       </li>
@@ -590,11 +585,6 @@
     <rotatable>false</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
     <comps>
-      <li Class="CompProperties_Flickable">
-        <commandTexture>Things/Building/Production/Mizu_WaterBox</commandTexture>
-        <commandLabelKey>MizuCommandDesignateDrainTankLabel</commandLabelKey>
-        <commandDescKey>MizuCommandDesignateDrainTankDesc</commandDescKey>
-      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Building</sourceType>
         <getSound>Ingest_Beer</getSound>
@@ -670,6 +660,11 @@
     <rotatable>true</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
     <comps>
+      <li Class="CompProperties_Flickable">
+        <commandTexture>Things/Building/Production/Mizu_WaterFaucet</commandTexture>
+        <commandLabelKey>MizuCommandDesignateDrainTankLabel</commandLabelKey>
+        <commandDescKey>MizuCommandDesignateDrainTankDesc</commandDescKey>
+      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Building</sourceType>
         <getSound>Ingest_Beer</getSound>

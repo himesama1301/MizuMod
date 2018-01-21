@@ -17,6 +17,9 @@ namespace MizuMod
         bool IsActivatedForWaterNet { get; }
         bool PowerOn { get; }
         bool SwitchIsOn { get; }
+        bool HasDrainCapability { get; }
+        bool IsDraining { get; }
+        CompWaterSource SourceComp { get; }
         CompWaterNetInput InputComp { get; }
         CompWaterNetOutput OutputComp { get; }
         CompWaterNetTank TankComp { get; }

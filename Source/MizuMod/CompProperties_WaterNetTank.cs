@@ -16,7 +16,6 @@ namespace MizuMod
 
         public float maxWaterVolume = 0f;
         public bool showBar = true;
-        public float drainWaterFlow = 1000.0f;
         public int flatID = -1;
         public List<DrawType> drawTypes = new List<DrawType>()
         {

@@ -34,6 +34,9 @@ namespace MizuMod
         // 水を飲むのに手を必要とするかどうか
         public bool needManipulate = false;
 
+        // 水設備用 水抜き速度
+        public float drainWaterFlow = 1000.0f;
+
         // 水アイテム用 水質
         public WaterType waterType = WaterType.Undefined;
 

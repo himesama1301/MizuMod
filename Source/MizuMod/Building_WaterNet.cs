@@ -110,6 +110,23 @@ namespace MizuMod
             }
         }
 
+        public bool HasDrainCapability
+        {
+            get
+            {
+                return this.flickableComp != null && this.sourceComp != null && this.sourceComp.SourceType == CompProperties_WaterSource.SourceType.Building;
+            }
+        }
+
+        // 水抜き中か
+        public bool IsDraining
+        {
+            get
+            {
+                return (this.flickableComp != null && !this.flickableComp.SwitchIsOn);
+            }
+        }
+
         public WaterNet InputWaterNet { get; set; }
         public WaterNet OutputWaterNet { get; set; }
 
@@ -119,6 +136,15 @@ namespace MizuMod
         private CompPowerTrader powerTraderComp;
         protected CompFlickable flickableComp;
 
+        private CompWaterSource sourceComp;
+        public CompWaterSource SourceComp
+        {
+            get
+            {
+                if (this.sourceComp == null) this.sourceComp = this.GetComp<CompWaterSource>();
+                return this.sourceComp;
+            }
+        }
         private CompWaterNetInput inputComp;
         public CompWaterNetInput InputComp
         {
@@ -219,6 +245,14 @@ namespace MizuMod
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(base.GetInspectString());
+
+            if (this.IsDraining)
+            {
+                stringBuilder.Append(string.Concat(new string[]
+                {
+                    MizuStrings.InspectWaterTankDraining,
+                }));
+            }
 
             if (DebugSettings.godMode)
             {
