@@ -590,6 +590,11 @@
     <rotatable>false</rotatable>
     <neverMultiSelect>true</neverMultiSelect>
     <comps>
+      <li Class="CompProperties_Flickable">
+        <commandTexture>Things/Building/Production/Mizu_WaterBox</commandTexture>
+        <commandLabelKey>MizuCommandDesignateDrainTankLabel</commandLabelKey>
+        <commandDescKey>MizuCommandDesignateDrainTankDesc</commandDescKey>
+      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Building</sourceType>
         <getSound>Ingest_Beer</getSound>
