@@ -9,6 +9,7 @@
     <specialDesignatorClasses>
       <li>Designator_Cancel</li>
       <li>Designator_Deconstruct</li>
+      <li>MizuMod.Designator_DeconstructPipe</li>
     </specialDesignatorClasses>
   </DesignationCategoryDef>
 

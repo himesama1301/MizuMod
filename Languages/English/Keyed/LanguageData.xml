@@ -47,4 +47,8 @@
   
   <MizuMissingWater>need water</MizuMissingWater>
   <MizuFullWater>sufficiently</MizuFullWater>
+  
+  <MizuDesignatorDeconstructPipe>Deconstruct water pipes</MizuDesignatorDeconstructPipe>
+  <MizuDesignatorDeconstructPipeDesc>Deconstruct water pipes.</MizuDesignatorDeconstructPipeDesc>
+  
 </LanguageData>

@@ -45,6 +45,11 @@ namespace MizuMod
         public static readonly string InspectWaterTypeMud = "MizuWaterTypeMud".Translate();
         public static readonly string InspectWaterTypeSea = "MizuWaterTypeSea".Translate();
 
+        // 水道管解体
+        public static readonly string DesignatorDeconstructPipe = "MizuDesignatorDeconstructPipe".Translate();
+        public static readonly string DesignatorDeconstructPipeDescription = "MizuDesignatorDeconstructPipeDesc".Translate();
+
+
         public static string GetInspectWaterTypeString(WaterType waterType)
         {
             switch (waterType)

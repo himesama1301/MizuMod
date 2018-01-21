@@ -47,4 +47,8 @@
   
   <MizuMissingWater>水がない</MizuMissingWater>
   <MizuFullWater>十分にある</MizuFullWater>
+  
+  <MizuDesignatorDeconstructPipe>水道管解体</MizuDesignatorDeconstructPipe>
+  <MizuDesignatorDeconstructPipeDesc>水道管を解体します。</MizuDesignatorDeconstructPipeDesc>
+  
 </LanguageData>

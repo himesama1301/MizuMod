@@ -81,6 +81,7 @@
     <Compile Include="DefExtension_NeedWater.cs" />
     <Compile Include="DefExtension_ThirstRate.cs" />
     <Compile Include="DefExtension_WaterRecipe.cs" />
+    <Compile Include="Designator_DeconstructPipe.cs" />
     <Compile Include="GenStep_HiddenWaterSpot.cs" />
     <Compile Include="GenStep_UndergroundDeepWater.cs" />
     <Compile Include="GenStep_UndergroundShallowWater.cs" />
