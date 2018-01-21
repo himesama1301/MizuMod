@@ -49,12 +49,6 @@
   <Mizu_WaterTank_Frame.label>貯水タンク(施行)</Mizu_WaterTank_Frame.label>
   <Mizu_WaterTank_Frame.description>ポンプで汲み上げた水を貯える設備です。</Mizu_WaterTank_Frame.description>
 
-  <Mizu_RainTank.label>雨水タンク</Mizu_RainTank.label>
-  <Mizu_RainTank.description>雨水を貯える設備です。水道網につなぐことも、直接雨水を汲みだすことも出来ます。</Mizu_RainTank.description>
-  <Mizu_RainTank_Blueprint.label>雨水タンク(設計)</Mizu_RainTank_Blueprint.label>
-  <Mizu_RainTank_Frame.label>雨水タンク(施行)</Mizu_RainTank_Frame.label>
-  <Mizu_RainTank_Frame.description>雨水を貯える設備です。水道網につなぐことも、直接雨水を汲みだすことも出来ます。</Mizu_RainTank_Frame.description>
-
   <Mizu_WaterBox.label>水箱</Mizu_WaterBox.label>
   <Mizu_WaterBox.description>少量の水をためることができる、蓋のない箱です。動物はここから水を飲むことができます。</Mizu_WaterBox.description>
   <Mizu_WaterBox_Blueprint.label>水箱(設計)</Mizu_WaterBox_Blueprint.label>
