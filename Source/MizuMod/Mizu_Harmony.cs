@@ -229,6 +229,7 @@ namespace MizuMod
                 new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DrawDaysWorthOfWaterInfo))));
 
                 codes.InsertRange(insert_index + 1, new_codes);
+
             }
             return codes.AsEnumerable();
         }
@@ -499,4 +500,85 @@ namespace MizuMod
             return codes.AsEnumerable();
         }
     }
+
+    // 輸送ポッド積荷選択時、右上に現在の水分総量を表示させる処理を追加
+    [HarmonyPatch(typeof(Dialog_LoadTransporters))]
+    [HarmonyPatch("DoWindowContents")]
+    class Dialog_LoadTransporters_DoWindowContents
+    {
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            int insert_index = -1;
+            var codes = new List<CodeInstruction>(instructions);
+            for (int i = 0; i < codes.Count; i++)
+            {
+                //if (codes[i].operand != null)
+                //{
+                //    Log.Message(string.Format("{0}, {1}, {2}", codes[i].opcode.ToString(), codes[i].operand.GetType().ToString(), codes[i].operand.ToString()));
+                //}
+                //else
+                //{
+                //    Log.Message(string.Format("{0}", codes[i].opcode.ToString()));
+                //}
+
+                // 食料表示処理のコード位置を頼りに挿入すべき場所を探す
+                if (codes[i].opcode == OpCodes.Call && codes[i].operand.ToString().Contains("DrawDaysWorthOfFoodInfo"))
+                {
+                    insert_index = i;
+                    //Log.Message("type  = " + codes[i].operand.GetType().ToString());
+                    //Log.Message("val   = " + codes[i].operand.ToString());
+                    //Log.Message("count = " + codes[i].labels.Count.ToString());
+                    //for (int j = 0; j < codes[i].labels.Count; j++)
+                    //{
+                    //    Log.Message(string.Format("label[{0}] = {1}", j, codes[i].labels[j].ToString()));
+                    //}
+                }
+            }
+
+            if (insert_index > -1)
+            {
+                List<CodeInstruction> new_codes = new List<CodeInstruction>();
+                new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 2));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_x")));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 2));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_y")));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldc_R4, 38.0f));
+                new_codes.Add(new CodeInstruction(OpCodes.Add));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 2));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_width")));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 2));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_height")));
+                new_codes.Add(new CodeInstruction(OpCodes.Newobj, AccessTools.Constructor(typeof(Rect), new Type[] { typeof(float), typeof(float), typeof(float), typeof(float) })));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Dialog_LoadTransporters), "transferables")));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DaysWorthOfWater2))));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldc_I4_1));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldc_R4, float.MaxValue));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DrawDaysWorthOfWaterInfo))));
+
+                codes.InsertRange(insert_index + 1, new_codes);
+
+                //List<CodeInstruction> new_codes2 = new List<CodeInstruction>();
+                //new_codes2.Add(new CodeInstruction(OpCodes.Ldarg_0));
+                //new_codes2.Add(new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Dialog_LoadTransporters), "daysWorthOfFoodDirty")));
+                //new_codes2.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.LogBool))));
+                //codes.InsertRange(0, new_codes2);
+
+            }
+            return codes.AsEnumerable();
+        }
+    }
+
+    // よくわからないけどなぜか追加できないのでコメントアウト
+
+    //// 輸送ポッド積荷選択画面で積荷の内容が変化したときに、水の総量再計算フラグを立てる処理を追加
+    //[HarmonyPatch(typeof(Dialog_LoadTransporters))]
+    //[HarmonyPatch("CountToTransferChanged")]
+    //class Dialog_LoadTransporters_CountToTransferChanged
+    //{
+    //    static void Postfix()
+    //    {
+    //        MizuCaravanUtility.daysWorthOfWaterDirty = true;
+    //    }
+    //}
 }

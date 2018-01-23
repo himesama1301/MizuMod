@@ -99,6 +99,15 @@ namespace MizuMod
             }
             return MizuCaravanUtility.cachedDaysWorthOfWater;
         }
+        public static float DaysWorthOfWater2(List<TransferableOneWay> transferables)
+        {
+            //if (MizuCaravanUtility.daysWorthOfWaterDirty)
+            //{
+                MizuCaravanUtility.daysWorthOfWaterDirty = false;
+                MizuCaravanUtility.cachedDaysWorthOfWater = DaysWorthOfWaterCalculator.ApproxDaysWorthOfWater(transferables, IgnorePawnsInventoryMode.IgnoreIfAssignedToUnload);
+            //}
+            return MizuCaravanUtility.cachedDaysWorthOfWater;
+        }
 
         public static void DrawDaysWorthOfWaterInfo(Rect rect, float daysWorthOfWater, bool alignRight = false, float truncToWidth = float.MaxValue)
         {
@@ -263,5 +272,10 @@ namespace MizuMod
                 }
             }
         }
+
+        //public static void LogBool(bool b)
+        //{
+        //    Log.Message(string.Format("{0}, {1}", b.ToString(), MizuCaravanUtility.daysWorthOfWaterDirty.ToString()));
+        //}
     }
 }
