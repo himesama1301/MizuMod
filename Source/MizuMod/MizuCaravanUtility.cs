@@ -58,7 +58,7 @@ namespace MizuMod
 
         public static bool CanNowGetWater(Thing water, Pawn pawn)
         {
-            return water.CanDrinkWaterNow() && MizuCaravanUtility.CanEverGetWater(water, pawn) && (pawn.needs.water().CurCategory >= ThirstCategory.Dehydration || water.GetWaterPreferability() > WaterPreferability.NeverDrink);
+            return !water.IngestibleNow && water.CanDrinkWaterNow() && MizuCaravanUtility.CanEverGetWater(water, pawn) && (pawn.needs.water().CurCategory >= ThirstCategory.Dehydration || water.GetWaterPreferability() > WaterPreferability.NeverDrink);
         }
 
         public static bool CanEverGetWater(Thing water, Pawn pawn)

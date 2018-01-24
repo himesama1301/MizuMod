@@ -83,7 +83,6 @@ namespace MizuMod
                 return;
             }
 
-
             // 水アイテムを探す
             Thing waterThing;
             Pawn inventoryPawn;

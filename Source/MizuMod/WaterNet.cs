@@ -481,15 +481,6 @@ namespace MizuMod
 
             // 水道網を流れる水の水質更新(水道網のタンクの水質とは別)
             this.waterType = outputWaterType;
-
-            //// 水道網入力タイプの現在の入力水質更新
-            //foreach (var inputter in inputterTypeDic[CompProperties_WaterNetInput.InputType.WaterNet])
-            //{
-            //    if (inputter.InputComp.InputWaterFlow > 0f)
-            //    {
-            //        inputter.InputComp.InputWaterType = this.waterType;
-            //    }
-            //}
         }
 
         public void UpdateWaterTank()
