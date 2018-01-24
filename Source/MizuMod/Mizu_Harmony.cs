@@ -580,4 +580,21 @@ namespace MizuMod
     //        MizuCaravanUtility.daysWorthOfWaterDirty = true;
     //    }
     //}
+
+    // 輸送ポッド積荷選択時、右上に現在の水分総量を表示させる処理を追加
+    [HarmonyPatch(typeof(Pawn_NeedsTracker))]
+    [HarmonyPatch("ShouldHaveNeed")]
+    class Pawn_NeedsTracker_ShouldHaveNeed
+    {
+        static void Postfix(Pawn_NeedsTracker __instance, NeedDef nd, ref bool __result)
+        {
+            if (nd == MizuDef.Need_Water)
+            {
+                if (__instance.food == null)
+                {
+                    __result = false;
+                }
+            }
+        }
+    }
 }

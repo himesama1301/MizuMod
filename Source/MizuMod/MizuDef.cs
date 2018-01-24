@@ -14,6 +14,8 @@ namespace MizuMod
     {
         public static GlobalSettingDef GlobalSettings = DefDatabase<MizuMod.GlobalSettingDef>.GetNamed("Mizu_GlobalSettings");
 
+        public static NeedDef Need_Water = DefDatabase<NeedDef>.GetNamed("Mizu_Water");
+
         public static JobDef Job_DrinkWater = DefDatabase<JobDef>.GetNamed("Mizu_DrinkWater");
         public static JobDef Job_DrinkWaterFromBuilding = DefDatabase<JobDef>.GetNamed("Mizu_DrinkWaterFromBuilding");
         public static JobDef Job_FeedWaterPatient = DefDatabase<JobDef>.GetNamed("Mizu_FeedWaterPatient");
