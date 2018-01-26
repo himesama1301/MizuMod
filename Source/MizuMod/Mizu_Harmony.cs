@@ -581,7 +581,7 @@ namespace MizuMod
     //    }
     //}
 
-    // 輸送ポッド積荷選択時、右上に現在の水分総量を表示させる処理を追加
+    // 食事要求がないポーンの水分要求を非表示にする
     [HarmonyPatch(typeof(Pawn_NeedsTracker))]
     [HarmonyPatch("ShouldHaveNeed")]
     class Pawn_NeedsTracker_ShouldHaveNeed
