@@ -114,7 +114,6 @@ namespace MizuMod
 
             // 有効な出力先が1個でもあれば出力する
             this.foundEffectiveInputter = false;
-            float needOutputWaterFlow = 0.0f;
             foreach (var t in this.WaterNetBuilding.OutputWaterNet.AllThings)
             {
                 // 自分自身は除外
