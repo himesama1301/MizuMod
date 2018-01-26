@@ -360,7 +360,7 @@ namespace MizuMod
                 new_codes.Add(new CodeInstruction(OpCodes.Ldloc_0));
                 new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.AppendWaterWorthToCaravanInspectString))));
 
-                codes.InsertRange(insert_index, new_codes);
+                codes.InsertRange(insert_index + 1, new_codes);
             }
             return codes.AsEnumerable();
         }
