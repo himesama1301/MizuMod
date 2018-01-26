@@ -214,7 +214,7 @@ namespace MizuMod
                 new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_x")));
                 new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 2));
                 new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_y")));
-                new_codes.Add(new CodeInstruction(OpCodes.Ldc_R4, 38.0f));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldc_R4, 28f));
                 new_codes.Add(new CodeInstruction(OpCodes.Add));
                 new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 2));
                 new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_width")));
@@ -229,6 +229,13 @@ namespace MizuMod
 
                 codes.InsertRange(insert_index + 1, new_codes);
 
+            }
+            foreach (var code in codes)
+            {
+                if (code.opcode == OpCodes.Ldc_R4 && code.operand.ToString().Contains("19"))
+                {
+                    code.operand = 14f;
+                }
             }
             return codes.AsEnumerable();
         }
@@ -541,7 +548,7 @@ namespace MizuMod
                 new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_x")));
                 new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 2));
                 new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_y")));
-                new_codes.Add(new CodeInstruction(OpCodes.Ldc_R4, 38.0f));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldc_R4, 28f));
                 new_codes.Add(new CodeInstruction(OpCodes.Add));
                 new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 2));
                 new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_width")));
@@ -563,6 +570,14 @@ namespace MizuMod
                 //new_codes2.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.LogBool))));
                 //codes.InsertRange(0, new_codes2);
 
+            }
+
+            foreach (var code in codes)
+            {
+                if (code.opcode == OpCodes.Ldc_R4 && code.operand.ToString().Contains("19"))
+                {
+                    code.operand = 14f;
+                }
             }
             return codes.AsEnumerable();
         }
