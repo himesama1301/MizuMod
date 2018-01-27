@@ -612,4 +612,74 @@ namespace MizuMod
             }
         }
     }
+
+    // キャラバンのトレード時、上に現在の水分総量を表示させる処理を追加
+    [HarmonyPatch(typeof(Dialog_Trade))]
+    [HarmonyPatch("DoWindowContents")]
+    class Dialog_Trade_DoWindowContents
+    {
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            int insert_index = -1;
+            var codes = new List<CodeInstruction>(instructions);
+            for (int i = 0; i < codes.Count; i++)
+            {
+                //if (codes[i].operand != null)
+                //{
+                //    Log.Message(string.Format("{0}, {1}, {2}", codes[i].opcode.ToString(), codes[i].operand.GetType().ToString(), codes[i].operand.ToString()));
+                //}
+                //else
+                //{
+                //    Log.Message(string.Format("{0}", codes[i].opcode.ToString()));
+                //}
+
+                // 食料表示処理のコード位置を頼りに挿入すべき場所を探す
+                if (codes[i].opcode == OpCodes.Call && codes[i].operand.ToString().Contains("DrawDaysWorthOfFoodInfo"))
+                {
+                    insert_index = i + 1;
+                    //Log.Message("type  = " + codes[i].operand.GetType().ToString());
+                    //Log.Message("val   = " + codes[i].operand.ToString());
+                    //Log.Message("count = " + codes[i].labels.Count.ToString());
+                    //for (int j = 0; j < codes[i].labels.Count; j++)
+                    //{
+                    //    Log.Message(string.Format("label[{0}] = {1}", j, codes[i].labels[j].ToString()));
+                    //}
+                }
+            }
+
+            if (insert_index > -1)
+            {
+                List<CodeInstruction> new_codes = new List<CodeInstruction>();
+                new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 11));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_x")));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldc_R4, 100f));
+                new_codes.Add(new CodeInstruction(OpCodes.Add));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 11));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_y")));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldc_R4, 19f));
+                new_codes.Add(new CodeInstruction(OpCodes.Add));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 11));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_width")));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 11));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_height")));
+                new_codes.Add(new CodeInstruction(OpCodes.Newobj, AccessTools.Constructor(typeof(Rect), new Type[] { typeof(float), typeof(float), typeof(float), typeof(float) })));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DaysWorthOfWater))));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldc_I4_0));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldc_R4, 200f));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DrawDaysWorthOfWaterInfo))));
+
+                codes.InsertRange(insert_index, new_codes);
+
+            }
+            //foreach (var code in codes)
+            //{
+            //    if (code.opcode == OpCodes.Ldc_R4 && code.operand.ToString().Contains("19"))
+            //    {
+            //        code.operand = 14f;
+            //    }
+            //}
+            return codes.AsEnumerable();
+        }
+    }
 }
