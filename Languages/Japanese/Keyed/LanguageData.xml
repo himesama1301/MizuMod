@@ -51,4 +51,10 @@
   <MizuDesignatorDeconstructPipe>水道管解体</MizuDesignatorDeconstructPipe>
   <MizuDesignatorDeconstructPipeDesc>水道管を解体します。</MizuDesignatorDeconstructPipeDesc>
   
+  <MizuThirstLevel_Healthy>充分な水分</MizuThirstLevel_Healthy>
+  <MizuThirstLevel_SlightlyThirsty>喉の渇き(小)</MizuThirstLevel_SlightlyThirsty>
+  <MizuThirstLevel_Thirsty>喉の渇き</MizuThirstLevel_Thirsty>
+  <MizuThirstLevel_UrgentThirsty>喉の酷い渇き</MizuThirstLevel_UrgentThirsty>
+  <MizuThirstLevel_Dehydration>脱水症状</MizuThirstLevel_Dehydration>
+  
 </LanguageData>

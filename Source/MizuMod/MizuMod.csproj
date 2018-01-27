@@ -128,6 +128,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeWorkerCounter_DrawWater.cs" />
     <Compile Include="SectionLayer_WaterNet.cs" />
+    <Compile Include="StatPart_Water.cs" />
     <Compile Include="ThinkNode_ConditionalStockWaterForPrisoner.cs" />
     <Compile Include="ThirstCategory.cs" />
     <Compile Include="ThoughtWorker_NeedWater.cs" />

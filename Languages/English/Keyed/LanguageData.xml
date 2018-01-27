@@ -51,4 +51,10 @@
   <MizuDesignatorDeconstructPipe>Deconstruct water pipes</MizuDesignatorDeconstructPipe>
   <MizuDesignatorDeconstructPipeDesc>Deconstruct water pipes.</MizuDesignatorDeconstructPipeDesc>
   
+  <MizuThirstLevel_Healthy>Water(Satisfied)</MizuThirstLevel_Healthy>
+  <MizuThirstLevel_SlightlyThirsty>Slightly thirsty</MizuThirstLevel_SlightlyThirsty>
+  <MizuThirstLevel_Thirsty>Thirsty</MizuThirstLevel_Thirsty>
+  <MizuThirstLevel_UrgentThirsty>Urgent thirsty</MizuThirstLevel_UrgentThirsty>
+  <MizuThirstLevel_Dehydration>Dehydration</MizuThirstLevel_Dehydration>
+  
 </LanguageData>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- ステータスのにある摂食状態のパーツの下に水分状態のパーツを追加する -->
+  <Operation Class="PatchOperationInsert">
+    <xpath>*/StatDef//li[@Class = "StatPart_Food"]</xpath>
+    <order>Append</order>
+    <value>
+      <li Class="MizuMod.StatPart_Water">
+        <factorUrgentThirsty>0.95</factorUrgentThirsty>
+        <factorDehydration>0.9</factorDehydration>
+      </li>
+    </value>
+  </Operation>
+
+</Patch>
