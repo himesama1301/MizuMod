@@ -173,7 +173,18 @@ namespace MizuMod
 
         public override void SetInitialLevel()
         {
-            this.CurLevel = Rand.Range(0.5f, 0.8f);
+            if (this.pawn.RaceProps.Humanlike)
+            {
+                this.CurLevelPercentage = 0.8f;
+            }
+            else
+            {
+                this.CurLevelPercentage = Rand.Range(0.5f, 0.8f);
+            }
+            if (Current.ProgramState == ProgramState.Playing)
+            {
+                this.lastSearchWaterTick = Find.TickManager.TicksGame;
+            }
         }
 
         public override void DrawOnGUI(Rect rect, int maxThresholdMarkers = int.MaxValue, float customMargin = -1F, bool drawArrows = true, bool doTooltip = true)
