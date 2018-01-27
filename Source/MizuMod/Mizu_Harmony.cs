@@ -222,7 +222,7 @@ namespace MizuMod
                 new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_height")));
                 new_codes.Add(new CodeInstruction(OpCodes.Newobj, AccessTools.Constructor(typeof(Rect), new Type[] { typeof(float), typeof(float), typeof(float), typeof(float) })));
                 new_codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
-                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DaysWorthOfWater))));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DaysWorthOfWater_FormCaravan))));
                 new_codes.Add(new CodeInstruction(OpCodes.Ldc_I4_1));
                 new_codes.Add(new CodeInstruction(OpCodes.Ldc_R4, float.MaxValue));
                 new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DrawDaysWorthOfWaterInfo))));
@@ -557,7 +557,7 @@ namespace MizuMod
                 new_codes.Add(new CodeInstruction(OpCodes.Newobj, AccessTools.Constructor(typeof(Rect), new Type[] { typeof(float), typeof(float), typeof(float), typeof(float) })));
                 new_codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
                 new_codes.Add(new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Dialog_LoadTransporters), "transferables")));
-                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DaysWorthOfWater2))));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DaysWorthOfWater_LoadTransporters))));
                 new_codes.Add(new CodeInstruction(OpCodes.Ldc_I4_1));
                 new_codes.Add(new CodeInstruction(OpCodes.Ldc_R4, float.MaxValue));
                 new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DrawDaysWorthOfWaterInfo))));
@@ -663,8 +663,13 @@ namespace MizuMod
                 new_codes.Add(new CodeInstruction(OpCodes.Ldloca_S, 11));
                 new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Rect), "get_height")));
                 new_codes.Add(new CodeInstruction(OpCodes.Newobj, AccessTools.Constructor(typeof(Rect), new Type[] { typeof(float), typeof(float), typeof(float), typeof(float) })));
+
                 new_codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
-                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DaysWorthOfWater))));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Dialog_Trade), "playerCaravanAllPawnsAndItems")));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
+                new_codes.Add(new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Dialog_Trade), "cachedTradeables")));
+                new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DaysWorthOfWater_Trade))));
+
                 new_codes.Add(new CodeInstruction(OpCodes.Ldc_I4_0));
                 new_codes.Add(new CodeInstruction(OpCodes.Ldc_R4, 200f));
                 new_codes.Add(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MizuCaravanUtility), nameof(MizuCaravanUtility.DrawDaysWorthOfWaterInfo))));
@@ -680,6 +685,17 @@ namespace MizuMod
             //    }
             //}
             return codes.AsEnumerable();
+        }
+    }
+
+    // キャラバントレード画面で荷物の内容が変化したときに、水の総量再計算フラグを立てる処理を追加
+    [HarmonyPatch(typeof(Dialog_Trade))]
+    [HarmonyPatch("CountToTransferChanged")]
+    class Dialog_Trade_CountToTransferChanged
+    {
+        static void Postfix()
+        {
+            MizuCaravanUtility.daysWorthOfWaterDirty = true;
         }
     }
 }

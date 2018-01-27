@@ -90,7 +90,7 @@ namespace MizuMod
 
         public static bool daysWorthOfWaterDirty = true;
         private static float cachedDaysWorthOfWater;
-        public static float DaysWorthOfWater(Dialog_FormCaravan dialog)
+        public static float DaysWorthOfWater_FormCaravan(Dialog_FormCaravan dialog)
         {
             if (MizuCaravanUtility.daysWorthOfWaterDirty)
             {
@@ -99,13 +99,22 @@ namespace MizuMod
             }
             return MizuCaravanUtility.cachedDaysWorthOfWater;
         }
-        public static float DaysWorthOfWater2(List<TransferableOneWay> transferables)
+        public static float DaysWorthOfWater_LoadTransporters(List<TransferableOneWay> transferables)
         {
             //if (MizuCaravanUtility.daysWorthOfWaterDirty)
             //{
                 MizuCaravanUtility.daysWorthOfWaterDirty = false;
                 MizuCaravanUtility.cachedDaysWorthOfWater = DaysWorthOfWaterCalculator.ApproxDaysWorthOfWater(transferables, IgnorePawnsInventoryMode.IgnoreIfAssignedToUnload);
             //}
+            return MizuCaravanUtility.cachedDaysWorthOfWater;
+        }
+        public static float DaysWorthOfWater_Trade(List<Thing> playerCaravanAllPawnsAndItems, List<Tradeable> tradeables)
+        {
+            if (MizuCaravanUtility.daysWorthOfWaterDirty)
+            {
+                MizuCaravanUtility.daysWorthOfWaterDirty = false;
+                MizuCaravanUtility.cachedDaysWorthOfWater = DaysWorthOfWaterCalculator.ApproxDaysWorthOfWaterLeftAfterTradeableTransfer(playerCaravanAllPawnsAndItems, tradeables, IgnorePawnsInventoryMode.Ignore);
+            }
             return MizuCaravanUtility.cachedDaysWorthOfWater;
         }
 
@@ -254,7 +263,7 @@ namespace MizuMod
 
         public static void AddWaterWarningString(Dialog_FormCaravan dialog, List<string> strList)
         {
-            float daysWorthOfWater = DaysWorthOfWater(dialog);
+            float daysWorthOfWater = DaysWorthOfWater_FormCaravan(dialog);
 
             if (daysWorthOfWater < DaysWorthOfWaterWarningBeforeLeavingThreshold)
             {
