@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- 任務ツリー(?)の「食事を摂る」の下に「水を飲む」を追加する -->
+  <Operation Class="PatchOperationInsert">
+    <xpath>*/DutyDef//li[@Class = "JobGiver_GetFood"]</xpath>
+    <order>Append</order>
+    <value>
+      <li Class="MizuMod.JobGiver_GetWater"/>
+    </value>
+  </Operation>
+
+</Patch>
