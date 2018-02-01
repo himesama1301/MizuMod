@@ -124,6 +124,7 @@
     <Compile Include="PlaceWorker_UndergroundShallowWater.cs" />
     <Compile Include="PlaceWorker_UndergroundWater.cs" />
     <Compile Include="PlaceWorker_Valve.cs" />
+    <Compile Include="PlaceWorker_WaterNet.cs" />
     <Compile Include="PlaceWorker_WaterWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeWorkerCounter_DrawWater.cs" />

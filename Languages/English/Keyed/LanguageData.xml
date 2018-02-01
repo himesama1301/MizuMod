@@ -57,4 +57,5 @@
   <MizuThirstLevel_UrgentThirsty>Urgent thirsty</MizuThirstLevel_UrgentThirsty>
   <MizuThirstLevel_Dehydration>Dehydration</MizuThirstLevel_Dehydration>
   
+  <MizuCannotBuildMultiWaterworksBuilding>Cannot build multi waterworks building at same cell.</MizuCannotBuildMultiWaterworksBuilding>
 </LanguageData>
