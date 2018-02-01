@@ -21,7 +21,7 @@ namespace MizuMod
                     var pos = loc + unitX * x + unitZ * z;
                     foreach (var t in map.thingGrid.ThingsAt(pos))
                     {
-                        if (t is IBuilding_WaterNet) return false;
+                        if (t is IBuilding_WaterNet) return new AcceptanceReport(MizuStrings.AcceptanceReportCannotBuildMulti);
                     }
                 }
             }
