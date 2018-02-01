@@ -3,7 +3,7 @@
 
   <ResearchTabDef>
     <defName>Mizu_ResearchTab</defName>
-    <label>Need Water</label>
+    <label>No Water, No Life.</label>
   </ResearchTabDef>
 
 </Defs>
