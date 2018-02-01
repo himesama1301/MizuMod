@@ -171,9 +171,9 @@
 
   <ThingDef ParentName="Mizu_WaterCleanerBase">
     <defName>Mizu_FueledWaterCleaner</defName>
-    <label>Fueled water cleaner</label>
+    <label>Fueled water purifier</label>
     <thingClass>Building_WorkTable_HeatPush</thingClass>
-    <description>A simple wood-fueled water cleaner.</description>
+    <description>A simple wood-fueled water purifier.</description>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterCleaner</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -209,9 +209,9 @@
 
   <ThingDef ParentName="Mizu_WaterCleanerBase">
     <defName>Mizu_ElectricWaterCleaner</defName>
-    <label>Electric water cleaner</label>
+    <label>Electric water purifier</label>
     <thingClass>Building_WorkTable_HeatPush</thingClass>
-    <description>An electrically-powered water cleaner.</description>
+    <description>An electrically-powered water purifier.</description>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterCleaner</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
