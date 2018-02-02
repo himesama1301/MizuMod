@@ -57,4 +57,6 @@
   <MizuThirstLevel_UrgentThirsty>喉の酷い渇き</MizuThirstLevel_UrgentThirsty>
   <MizuThirstLevel_Dehydration>脱水症状</MizuThirstLevel_Dehydration>
   
+  <MizuCannotBuildMultiWaterworksBuilding>同じ場所に複数の水道設備を作ることはできません。</MizuCannotBuildMultiWaterworksBuilding>
+  
 </LanguageData>

@@ -5,17 +5,25 @@
   <targetVersion>0.18.1722</targetVersion>
   <url>https://github.com/himesama1301/MizuMod</url>
   <description>
-    version 1.0.0
-    
-    Add "Need Water" to the pawn needs and add various means to get water.
-    Wells, pumps, water pipes, faucets, water cleaners etc. are added.
-    
-    It is not recommended to apply this mod to saved games.
-    
-    ポーンの要求に水分を追加し、水を得るための様々な手段を追加します。
-    井戸、ポンプ、水道管、蛇口、浄水器などが追加されます。
-    
-    このMODを途中から導入することは推奨しません。
-    
+
+for RimWorld B18
+mod version 1.0.0
+
+This mod adds "Need Water" to pawns. There are various means to get and transport water, such as: wells, pumps, water pipes, faucets, water cleaners, and more.
+This mod should NOT be applied to saved games.
+
+ポーンの要求に水分を追加し、水を得るための様々な手段を追加します。
+井戸、ポンプ、水道管、蛇口、浄水器などが追加されます。
+
+このMODを途中から導入することは推奨しません。
+
+FAQ
+
+Q1:Is this mod compatible with "Dub's Bad Hygiene"?
+このMODは"Dub's Bad Hygiene"と互換性がありますか？
+
+A1: In the current version, this mod can run alongside "Dub's Bad Hygiene;" however, the two mod do NOT interact with each other.
+現在のバージョンでは、両方のMODを同時に使えますが、互いに影響し合うことはありません。
+
   </description>
 </ModMetaData>
