@@ -33,7 +33,7 @@
   <ResearchProjectDef>
     <defName>Mizu_CleanWater</defName>
     <label>Clearing water</label>
-    <description>Allows you to build water cleaner.</description>
+    <description>Allows you to build water purifier.</description>
     <tab>Mizu_ResearchTab</tab>
     <baseCost>300</baseCost>
     <techLevel>Medieval</techLevel>
