@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alert_DehydrationAnimals.cs" />
     <Compile Include="Alert_DehydrationColonists.cs" />
     <Compile Include="Alert_LowWater.cs" />
     <Compile Include="Building_DrawingWaterSpot.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="RecipeWorkerCounter_DrawWater.cs" />
     <Compile Include="SectionLayer_WaterNet.cs" />
     <Compile Include="StatPart_Water.cs" />
+    <Compile Include="ThinkNode_ConditionalDehydration.cs" />
     <Compile Include="ThinkNode_ConditionalStockWaterForPrisoner.cs" />
     <Compile Include="ThirstCategory.cs" />
     <Compile Include="ThoughtWorker_NeedWater.cs" />
