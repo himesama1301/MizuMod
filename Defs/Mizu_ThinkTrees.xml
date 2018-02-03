@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThinkTreeDef>
+    <defName>Mizu_LeaveIfDehydration</defName>
+    <thinkRoot Class="MizuMod.ThinkNode_ConditionalDehydration">
+      <subNodes>
+        <li Class="ThinkNode_Tagger">
+          <tagToGive>SatisfyingNeeds</tagToGive>
+          <subNodes>
+            <li Class="MizuMod.JobGiver_GetWater" />
+          </subNodes>
+        </li>
+        
+        <li Class="ThinkNode_Tagger">
+          <tagToGive>Misc</tagToGive>
+          <subNodes>
+            <li Class="JobGiver_ExitMapRandom">
+              <defaultLocomotion>Walk</defaultLocomotion>
+            </li>
+          </subNodes>
+        </li>
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef> 
+
+</Defs>

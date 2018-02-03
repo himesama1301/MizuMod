@@ -42,6 +42,17 @@
     </value>
   </Operation>
   
+  <!-- 動物の「飢餓状態でマップ離脱」の下に「脱水状態でマップ離脱」を加える -->
+  <Operation Class="PatchOperationInsert">
+    <xpath>*/ThinkTreeDef//li[@Class = "ThinkNode_Subtree" and treeDef = "LeaveIfStarving"]</xpath>
+    <order>Append</order>
+    <value>
+      <li Class="ThinkNode_Subtree">
+        <treeDef>Mizu_LeaveIfDehydration</treeDef>
+      </li>
+    </value>
+  </Operation>
+  
   <!-- 思考ツリーの「食事を所持品に加える」の下に「水を所持品に加える」を追加する -->
   <Operation Class="PatchOperationInsert">
     <xpath>*/ThinkTreeDef//li[@Class = "ThinkNode_ConditionalNeedPercentageAbove" and need = "Food"]</xpath>
