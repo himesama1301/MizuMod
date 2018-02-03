@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alert_DehydrationAnimals.cs" />
     <Compile Include="Alert_DehydrationColonists.cs" />
     <Compile Include="Alert_LowWater.cs" />
     <Compile Include="Building_DrawingWaterSpot.cs" />
