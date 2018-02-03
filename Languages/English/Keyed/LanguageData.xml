@@ -59,4 +59,7 @@
   
   <MizuCannotBuildMultiWaterworksBuilding>You can't build more than one kind of waterworks building at the same cell</MizuCannotBuildMultiWaterworksBuilding>
   
+  <MizuDehydrationAnimals>Animal dehydration</MizuDehydrationAnimals>
+  <MizuDehydrationAnimalsDesc>These colony animals are dehydrating:\n\n{0}\nGet them some water.</MizuDehydrationAnimalsDesc>
+  
 </LanguageData>
