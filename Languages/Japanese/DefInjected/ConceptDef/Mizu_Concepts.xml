@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  
+  <Mizu_DrawWater.label>NWNL: 水を汲む</Mizu_DrawWater.label>
+  <Mizu_DrawWater.helpText>すべての人間は水を飲まなければ生きていけません。あなたは入植者のために水を集める必要があります。入植者は水汲み場や井戸から水を汲むことができます。</Mizu_DrawWater.helpText>
+  
+  <Mizu_DrinkWater.label>NWNL: 水を飲む</Mizu_DrinkWater.label>
+  <Mizu_DrinkWater.helpText>入植者はボトルの水を飲むことが出来ますが、動物は出来ません。水箱や水汲み場を作れば動物はそこで水を飲むことが出来ます。仮にあなたがそれらを作らなくても、動物は勝手に川や池から水を飲みます。</Mizu_DrinkWater.helpText>
+  
+  <Mizu_PurifyWater.label>NWNL: 水をきれいにする</Mizu_PurifyWater.label>
+  <Mizu_PurifyWater.helpText>浄水器を使うことでボトルの水の水質を上げることが出来ます。浄水フィルターは水道水の水質を改善するのに使えます。浄水フィルターには入出力の向きがあります。向きを間違えると浄水フィルターは機能しません。</Mizu_PurifyWater.helpText>
+  
+  <Mizu_UndergroundWater.label>NWNL: 地下水</Mizu_UndergroundWater.label>
+  <Mizu_UndergroundWater.helpText>井戸や地下水ポンプは、地下水の上に建設することが出来ます。アーキテクトタブからそれらの建造物を選べば、地下水のマップが画面に表示されます。\n\nたとえ砂漠であってもごく少量の地下水を見つけることが出来ますが、極寒の地域では見つからないかもしれません。</Mizu_UndergroundWater.helpText>
+  
+  <Mizu_Waterworks.label>NWNL: 水道網</Mizu_Waterworks.label>
+  <Mizu_Waterworks.helpText>水道を使えば、良質の水を得るための作業の多くを自動化できます。水道網には最低でもポンプ、タンク、蛇口が必要です。それらを水道管でつなぎましょう。浄水フィルターの両側に接続された二つの水道網は別々の水道網として機能します。</Mizu_Waterworks.helpText>
+  
+</LanguageData>
