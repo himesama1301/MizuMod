@@ -2,14 +2,42 @@
 <Patch>
 
   <!-- 思考ツリーの「食事を摂る」の下に「水を飲む」を追加する -->
+  <!-- 食事条件なし -->
   <Operation Class="PatchOperationInsert">
-    <xpath>*/ThinkTreeDef//li[@Class = "JobGiver_GetFood"]</xpath>
+    <xpath>*/ThinkTreeDef//li[@Class = "ThinkNode_PrioritySorter"]/subNodes/li[@Class = "JobGiver_GetFood" and not(minCategory)]</xpath>
     <order>Append</order>
     <value>
       <li Class="MizuMod.JobGiver_GetWater"/>
     </value>
   </Operation>
-
+  
+  <!-- 食事条件が栄養失調 ⇒ 脱水症状を条件にする -->
+  <Operation Class="PatchOperationInsert">
+    <xpath>*/ThinkTreeDef//li[@Class = "ThinkNode_PrioritySorter"]/subNodes/li[@Class = "JobGiver_GetFood" and minCategory="Starving"]</xpath>
+    <order>Append</order>
+    <value>
+      <li Class="MizuMod.JobGiver_GetWater">
+        <minCategory>Dehydration</minCategory>
+      </li>
+    </value>
+  </Operation>
+  
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>*/TerrainDef[contains(defName, "Water")]/affordances</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>*/TerrainDef[contains(defName, "Water")]</xpath>
+        <value>
+          <affordances/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+  
   <!-- 思考ツリーの「食事を所持品に加える」の下に「水を所持品に加える」を追加する -->
   <Operation Class="PatchOperationInsert">
     <xpath>*/ThinkTreeDef//li[@Class = "ThinkNode_ConditionalNeedPercentageAbove" and need = "Food"]</xpath>
