@@ -59,4 +59,7 @@
   
   <MizuCannotBuildMultiWaterworksBuilding>同じ場所に複数の水道設備を作ることはできません。</MizuCannotBuildMultiWaterworksBuilding>
   
+  <MizuDehydrationAnimals>動物用の水がない</MizuDehydrationAnimals>
+  <MizuDehydrationAnimalsDesc>コロニーの家畜が喉の渇きを訴えています：\n\n{0}\n水を 用意してください。</MizuDehydrationAnimalsDesc>
+  
 </LanguageData>
