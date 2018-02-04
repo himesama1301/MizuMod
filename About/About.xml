@@ -7,23 +7,35 @@
   <description>
 
 for RimWorld B18
-mod version 1.0.2
+mod version 1.0.3
+
+Description
 
 This mod adds "Need Water" to pawns. There are various means to get and transport water, such as: wells, pumps, water pipes, faucets, water cleaners, and more.
 This mod should NOT be applied to saved games.
 
-ポーンの要求に水分を追加し、水を得るための様々な手段を追加します。
-井戸、ポンプ、水道管、蛇口、浄水器などが追加されます。
-
-このMODを途中から導入することは推奨しません。
-
 FAQ
 
 Q1:Is this mod compatible with "Dub's Bad Hygiene"?
-このMODは"Dub's Bad Hygiene"と互換性がありますか？
 
-A1: In the current version, this mod can run alongside "Dub's Bad Hygiene;" however, the two mod do NOT interact with each other.
-現在のバージョンでは、両方のMODを同時に使えますが、互いに影響し合うことはありません。
+A1: In the current version, this mod can run alongside "Dub's Bad Hygiene" however, the two mod do NOT interact with each other.
+After a while, I will consider whether I can add compatibility for "Dubs Bad Hygiene".
+
+
+(Japanese)
+
+概要
+
+ポーンの要求に水分を追加し、水を得るための様々な手段を追加します。
+井戸、ポンプ、水道管、蛇口、浄水器などが追加されます。
+このMODを途中から導入することは推奨しません。
+
+よくある質問と回答
+
+Q1:このMODは"Dub's Bad Hygiene"と互換性がありますか？
+
+A1:現在のバージョンでは、両方のMODを同時に使えますが、互いに影響し合うことはありません。
+しばらく後に、私はDubs Bad Hygieneに対する互換性を追加できないか検討するつもりです。
 
   </description>
 </ModMetaData>
