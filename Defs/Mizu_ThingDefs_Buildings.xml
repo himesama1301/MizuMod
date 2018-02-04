@@ -139,9 +139,11 @@
     <interactionCellOffset>(0,0,-1)</interactionCellOffset>
     <surfaceType>Item</surfaceType>
     <recipes>
+      <li>Mizu_PurifyWater</li>
       <li>Mizu_BoilRawWater</li>
       <li>Mizu_PercolateMudWater</li>
       <li>Mizu_DesalinateSeaWater</li>
+      <li>Mizu_PurifyWaterMulti</li>
       <li>Mizu_BoilRawWaterMulti</li>
       <li>Mizu_PercolateMudWaterMulti</li>
       <li>Mizu_DesalinateSeaWaterMulti</li>

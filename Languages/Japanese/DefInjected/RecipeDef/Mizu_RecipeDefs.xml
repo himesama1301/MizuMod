@@ -63,6 +63,10 @@
   
   <!-- others -->
   
+  <Mizu_PurifyWater.label>水を浄化する</Mizu_PurifyWater.label>
+  <Mizu_PurifyWater.description>水を木炭で浄化し、きれいな水にします。</Mizu_PurifyWater.description>
+  <Mizu_PurifyWater.jobString>水を浄化している</Mizu_PurifyWater.jobString>
+  
   <Mizu_BoilRawWater.label>生水を煮沸する</Mizu_BoilRawWater.label>
   <Mizu_BoilRawWater.description>生水を煮沸し、普通の水にします。</Mizu_BoilRawWater.description>
   <Mizu_BoilRawWater.jobString>生水を煮沸している</Mizu_BoilRawWater.jobString>
@@ -74,6 +78,10 @@
   <Mizu_DesalinateSeaWater.label>海水を淡水化する</Mizu_DesalinateSeaWater.label>
   <Mizu_DesalinateSeaWater.description>海水を淡水化し、普通の水にします。</Mizu_DesalinateSeaWater.description>
   <Mizu_DesalinateSeaWater.jobString>海水を淡水化している</Mizu_DesalinateSeaWater.jobString>
+  
+  <Mizu_PurifyWaterMulti.label>水を5個浄化する</Mizu_PurifyWaterMulti.label>
+  <Mizu_PurifyWaterMulti.description>水5個を木炭で浄化し、きれいな水にします。</Mizu_PurifyWaterMulti.description>
+  <Mizu_PurifyWaterMulti.jobString>水を浄化している</Mizu_PurifyWaterMulti.jobString>
   
   <Mizu_BoilRawWaterMulti.label>生水を5個煮沸する</Mizu_BoilRawWaterMulti.label>
   <Mizu_BoilRawWaterMulti.description>生水を5個煮沸し、普通の水にします。</Mizu_BoilRawWaterMulti.description>
