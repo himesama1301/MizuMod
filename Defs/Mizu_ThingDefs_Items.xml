@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+  <!-- 水 Water -->
   <ThingDef Name="Mizu_WaterItemBase" Abstract="True">
     <thingClass>ThingWithComps</thingClass>
     <category>Item</category>
@@ -164,6 +165,183 @@
         <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
         <baseDrinkTicks>100</baseDrinkTicks>
+        <waterType>SeaWater</waterType>
+        <needManipulate>true</needManipulate>
+        <waterAmount>0.35</waterAmount>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
+      </li>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>4</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- 氷 Ice -->
+  <ThingDef Name="Mizu_IceItemBase" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Beauty>-1</Beauty>
+      <Mass>0.5</Mass>
+    </statBases>
+    <altitudeLayer>Item</altitudeLayer>
+    <stackLimit>25</stackLimit>
+    <tickerType>Rare</tickerType>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <thingCategories>
+      <li>Mizu_Waters</li>
+    </thingCategories>
+    <alwaysHaulable>true</alwaysHaulable>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+    </comps>
+    <pathCost>15</pathCost>
+    <resourceReadoutPriority>Last</resourceReadoutPriority>
+    <drawGUIOverlay>true</drawGUIOverlay>
+  </ThingDef>
+  
+  <ThingDef ParentName="Mizu_IceItemBase">
+    <defName>Mizu_ClearIce</defName>
+    <label>Ice (Clear water)</label>
+    <description>Frozen clear water. Allows get water by licking it for a long time.</description>
+    <graphicData>
+      <texPath>Things/Item/Mizu_ClearWater</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1</MarketValue>
+      <WorkToMake>100</WorkToMake>
+    </statBases>
+    <comps>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>1000</baseDrinkTicks>
+        <waterType>ClearWater</waterType>
+        <needManipulate>true</needManipulate>
+        <waterAmount>0.35</waterAmount>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
+      </li>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>60</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="Mizu_IceItemBase">
+    <defName>Mizu_NormalIce</defName>
+    <label>Ice (Water)</label>
+    <description>Frozen water. Allows get water by licking it for a long time.</description>
+    <graphicData>
+      <texPath>Things/Item/Mizu_NormalWater</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.3</MarketValue>
+      <WorkToMake>100</WorkToMake>
+    </statBases>
+    <comps>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>1000</baseDrinkTicks>
+        <waterType>NormalWater</waterType>
+        <needManipulate>true</needManipulate>
+        <waterAmount>0.35</waterAmount>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
+      </li>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>30</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Mizu_IceItemBase">
+    <defName>Mizu_RawIce</defName>
+    <label>Ice (Raw water)</label>
+    <description>Frozen raw water. Allows get water by licking it for a long time.</description>
+    <graphicData>
+      <texPath>Things/Item/Mizu_RawWater</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.2</MarketValue>
+      <WorkToMake>100</WorkToMake>
+    </statBases>
+    <comps>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>1000</baseDrinkTicks>
+        <waterType>RawWater</waterType>
+        <needManipulate>true</needManipulate>
+        <waterAmount>0.35</waterAmount>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
+      </li>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>4</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Mizu_IceItemBase">
+    <defName>Mizu_MudIce</defName>
+    <label>Ice (Mud water)</label>
+    <description>Frozen mud water. Allows get water by licking it for a long time.</description>
+    <graphicData>
+      <texPath>Things/Item/Mizu_MudWater</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.15</MarketValue>
+      <WorkToMake>100</WorkToMake>
+    </statBases>
+    <comps>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>1000</baseDrinkTicks>
+        <waterType>MudWater</waterType>
+        <needManipulate>true</needManipulate>
+        <waterAmount>0.35</waterAmount>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
+      </li>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>4</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Mizu_IceItemBase">
+    <defName>Mizu_SeaIce</defName>
+    <label>Ice (Seawater)</label>
+    <description>Frozen seawater. Allows get water by licking it for a long time.</description>
+    <graphicData>
+      <texPath>Things/Item/Mizu_SeaWater</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.1</MarketValue>
+      <WorkToMake>100</WorkToMake>
+    </statBases>
+    <comps>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>1000</baseDrinkTicks>
         <waterType>SeaWater</waterType>
         <needManipulate>true</needManipulate>
         <waterAmount>0.35</waterAmount>
