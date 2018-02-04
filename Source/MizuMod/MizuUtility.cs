@@ -203,7 +203,8 @@ namespace MizuMod
                     if (eater.IsWildMan()) return false;
 
                     // 自陣営or自陣営のホストの設備でなければダメ
-                    if (t.Faction != eater.Faction && t.Faction != eater.HostFaction) return false;
+                    // 動物でない場合は、という条件を追加
+                    if (!eater.RaceProps.Animal && t.Faction != eater.Faction && t.Faction != eater.HostFaction) return false;
 
                     // 使えない状態はダメ
                     if (!drinkWaterBuilding.IsActivated) return false;
