@@ -484,6 +484,17 @@ namespace MizuMod
             float rotScore = 0f;
             if (t.IsRotSoonForWater()) rotScore += 10f;
 
+            // 飲むのにかかる時間
+            float drinkTickScore = 0f;
+            if (comp.SourceType == CompProperties_WaterSource.SourceType.Item)
+            {
+                drinkTickScore = -comp.BaseDrinkTicks / 100f / comp.WaterAmount;
+            }
+            else if (comp.SourceType == CompProperties_WaterSource.SourceType.Building)
+            {
+                drinkTickScore = -comp.BaseDrinkTicks / 100f / 0.35f;
+            }
+
             // 基本点合計メモ
             //          心情,食中毒,健康,合計(禁欲)
             //   きれい= +10,     0,   0, +10(   0)
@@ -497,7 +508,7 @@ namespace MizuMod
             // 水質優先モードか否か
             if (priorQuality) distScore /= 10f;
 
-            return (distScore + thoughtScore + foodPoisoningScore + rotScore);
+            return (distScore + thoughtScore + foodPoisoningScore + rotScore + drinkTickScore);
         }
 
         public static float GetWaterTerrainScore(Pawn eater, IntVec3 c, float dist, bool priorQuality)
