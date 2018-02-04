@@ -16,4 +16,19 @@
   <Mizu_SeaWater.label>海水</Mizu_SeaWater.label>
   <Mizu_SeaWater.description>飲用水です。味もひどい上にしょっぱいです。</Mizu_SeaWater.description>
 
+  <Mizu_ClearIce.label>氷 (きれいな水)</Mizu_ClearIce.label>
+  <Mizu_ClearIce.description>きれいな水が凍ったものです。舐めることで水分を取ることが出来ますが時間がかかります。</Mizu_ClearIce.description>
+  
+  <Mizu_NormalIce.label>氷 (水)</Mizu_NormalIce.label>
+  <Mizu_NormalIce.description>水が凍ったものです。舐めることで水分を取ることが出来ますが時間がかかります。</Mizu_NormalIce.description>
+  
+  <Mizu_RawIce.label>氷 (生水)</Mizu_RawIce.label>
+  <Mizu_RawIce.description>生水が凍ったものです。舐めることで水分を取ることが出来ますが時間がかかります。</Mizu_RawIce.description>
+  
+  <Mizu_MudIce.label>氷 (泥水)</Mizu_MudIce.label>
+  <Mizu_MudIce.description>泥水が凍ったものです。舐めることで水分を取ることが出来ますが時間がかかります。</Mizu_MudIce.description>
+  
+  <Mizu_SeaIce.label>氷 (海水)</Mizu_SeaIce.label>
+  <Mizu_SeaIce.description>海水が凍ったものです。舐めることで水分を取ることが出来ますが時間がかかります。</Mizu_SeaIce.description>
+  
 </LanguageData>
