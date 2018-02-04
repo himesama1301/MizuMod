@@ -281,6 +281,46 @@
   <!-- others -->
   
   <RecipeDef>
+    <defName>Mizu_PurifyWater</defName>
+    <label>purify water</label>
+    <description>purify water to product clear water.</description>
+    <jobString>Purifying water.</jobString>
+    <workAmount>1000</workAmount>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Mizu_NormalWater</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Mizu_NormalWater</li>
+        <li>WoodLog</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Mizu_ClearWater>1</Mizu_ClearWater>
+    </products>
+    <workSkill>Cooking</workSkill>
+  </RecipeDef>
+  
+  <RecipeDef>
     <defName>Mizu_BoilRawWater</defName>
     <label>boil raw water</label>
     <description>boil raw water for converting to water.</description>
@@ -369,6 +409,46 @@
     </fixedIngredientFilter>
     <products>
       <Mizu_NormalWater>1</Mizu_NormalWater>
+    </products>
+    <workSkill>Cooking</workSkill>
+  </RecipeDef>
+  
+  <RecipeDef>
+    <defName>Mizu_PurifyWaterMulti</defName>
+    <label>purify water x5</label>
+    <description>purify water x5 to product clear water.</description>
+    <jobString>Purifying water.</jobString>
+    <workAmount>5000</workAmount>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Mizu_NormalWater</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Mizu_NormalWater</li>
+        <li>WoodLog</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Mizu_ClearWater>5</Mizu_ClearWater>
     </products>
     <workSkill>Cooking</workSkill>
   </RecipeDef>
