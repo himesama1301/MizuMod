@@ -194,7 +194,7 @@
     <tickerType>Rare</tickerType>
     <socialPropernessMatters>true</socialPropernessMatters>
     <thingCategories>
-      <li>Mizu_Waters</li>
+      <li>Mizu_Ices</li>
     </thingCategories>
     <alwaysHaulable>true</alwaysHaulable>
     <comps>
