@@ -23,11 +23,11 @@
 
   <WorkGiverDef>
     <defName>Mizu_DoctorFeedWaterHumanlikes</defName>
-    <label>feed patients</label>
+    <label>feed patients to water</label>
     <giverClass>MizuMod.WorkGiver_FeedWaterPatient</giverClass>
     <workType>Doctor</workType>
-    <verb>feed</verb>
-    <gerund>feeding</gerund>
+    <verb>feed (water)</verb>
+    <gerund>feeding (water)</gerund>
     <priorityInType>59</priorityInType>
     <requiredCapacities>
       <li>Manipulation</li>
@@ -38,11 +38,11 @@
   
   <WorkGiverDef>
     <defName>Mizu_DoctorFeedWaterAnimals</defName>
-    <label>feed animals</label>
+    <label>feed animals to water</label>
     <giverClass>MizuMod.WorkGiver_FeedWaterPatient</giverClass>
     <workType>Doctor</workType>
-    <verb>feed</verb>
-    <gerund>feeding</gerund>
+    <verb>feed (water)</verb>
+    <gerund>feeding (water)</gerund>
     <priorityInType>29</priorityInType>
     <requiredCapacities>
       <li>Manipulation</li>
