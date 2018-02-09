@@ -35,6 +35,8 @@ namespace MizuMod
             var building = bill.billStack.billGiver as IBuilding_DrinkWater;
 
             var waterDef = MizuUtility.GetWaterThingDefFromWaterType(building.WaterType);
+            if (waterDef == null) return 0;
+
             int numOfWater = bill.Map.resourceCounter.GetCount(waterDef);
 
             return numOfWater;
