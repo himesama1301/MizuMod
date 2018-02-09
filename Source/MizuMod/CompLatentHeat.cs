@@ -17,6 +17,14 @@ namespace MizuMod
             }
         }
 
+        public ThingDef ChangedThingDef
+        {
+            get
+            {
+                return this.Props.changedThingDef;
+            }
+        }
+
         private float latentHeatAmount;
 
         public override void PostExposeData()
@@ -24,6 +32,38 @@ namespace MizuMod
             base.PostExposeData();
 
             Scribe_Values.Look<float>(ref this.latentHeatAmount, "latentHeatAmount");
+        }
+
+        public override void CompTickRare()
+        {
+            base.CompTick();
+
+            this.latentHeatAmount += 1f;
+
+            if (this.latentHeatAmount >= 4f)
+            {
+                var changedThing = ThingMaker.MakeThing(this.ChangedThingDef);
+                changedThing.stackCount = this.parent.stackCount;
+
+                var map = this.parent.Map;
+                if (map != null)
+                {
+                    GenSpawn.Spawn(changedThing, parent.Position, map);
+                    this.parent.Destroy(DestroyMode.Vanish);
+                    return;
+                }
+
+                var owner = this.parent.holdingOwner;
+                if (owner != null)
+                {
+                    owner.Remove(this.parent);
+                    this.parent.Destroy(DestroyMode.Vanish);
+                    if (owner.TryAdd(changedThing) == false)
+                    {
+                        Log.Error("failed TryAdd");
+                    }
+                }
+            }
         }
 
         public override string CompInspectStringExtra()

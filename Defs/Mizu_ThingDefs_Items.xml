@@ -72,6 +72,7 @@
     </statBases>
     <comps>
       <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_NormalIce</changedThingDef>
       </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
@@ -251,6 +252,7 @@
     </statBases>
     <comps>
       <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_NormalWater</changedThingDef>
       </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
