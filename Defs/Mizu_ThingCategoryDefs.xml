@@ -2,10 +2,26 @@
 <Defs>
 
   <ThingCategoryDef>
-    <defName>Mizu_Waters</defName>
-    <label>Waters</label>
+    <defName>Mizu_H2O</defName>
+    <label>H2O</label>
     <parent>Foods</parent>
     <resourceReadoutRoot>true</resourceReadoutRoot>
+    <iconPath>UI/Icons/ThingCategories/Mizu_WaterCategory_Icon</iconPath>
+  </ThingCategoryDef>
+
+  <ThingCategoryDef>
+    <defName>Mizu_Waters</defName>
+    <label>Waters</label>
+    <parent>Mizu_H2O</parent>
+    <resourceReadoutRoot>false</resourceReadoutRoot>
+    <iconPath>UI/Icons/ThingCategories/Mizu_WaterCategory_Icon</iconPath>
+  </ThingCategoryDef>
+
+  <ThingCategoryDef>
+    <defName>Mizu_Ices</defName>
+    <label>Icess</label>
+    <parent>Mizu_H2O</parent>
+    <resourceReadoutRoot>false</resourceReadoutRoot>
     <iconPath>UI/Icons/ThingCategories/Mizu_WaterCategory_Icon</iconPath>
   </ThingCategoryDef>
 
