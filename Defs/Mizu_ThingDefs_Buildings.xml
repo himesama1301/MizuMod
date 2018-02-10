@@ -104,6 +104,10 @@
     <placeWorkers>
       <li>MizuMod.PlaceWorker_IceWorker</li>
     </placeWorkers>
+    <recipes>
+      <li>Mizu_HarvestIce</li>
+      <li>Mizu_HarvestIceMulti</li>
+    </recipes>
   </ThingDef>
 
   <ThingDef ParentName="Mizu_BuildingBase">
