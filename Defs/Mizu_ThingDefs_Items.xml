@@ -210,8 +210,8 @@
     <label>Ice (Clear water)</label>
     <description>Frozen clear water. Allows get water by licking it for a long time.</description>
     <graphicData>
-      <texPath>Things/Item/Mizu_ClearWater</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
+      <texPath>Things/Item/Mizu_ClearIce</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>1</MarketValue>
@@ -240,8 +240,8 @@
     <label>Ice (Water)</label>
     <description>Frozen water. Allows get water by licking it for a long time.</description>
     <graphicData>
-      <texPath>Things/Item/Mizu_NormalWater</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
+      <texPath>Things/Item/Mizu_NormalIce</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>0.3</MarketValue>
@@ -270,8 +270,8 @@
     <label>Ice (Raw water)</label>
     <description>Frozen raw water. Allows get water by licking it for a long time.</description>
     <graphicData>
-      <texPath>Things/Item/Mizu_RawWater</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
+      <texPath>Things/Item/Mizu_RawIce</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>0.2</MarketValue>
@@ -300,8 +300,8 @@
     <label>Ice (Mud water)</label>
     <description>Frozen mud water. Allows get water by licking it for a long time.</description>
     <graphicData>
-      <texPath>Things/Item/Mizu_MudWater</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
+      <texPath>Things/Item/Mizu_MudIce</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>0.15</MarketValue>
@@ -330,8 +330,8 @@
     <label>Ice (Seawater)</label>
     <description>Frozen seawater. Allows get water by licking it for a long time.</description>
     <graphicData>
-      <texPath>Things/Item/Mizu_SeaWater</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
+      <texPath>Things/Item/Mizu_SeaIce</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>0.1</MarketValue>
