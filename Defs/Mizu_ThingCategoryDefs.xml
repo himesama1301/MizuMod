@@ -14,7 +14,7 @@
     <label>Waters</label>
     <parent>Mizu_H2O</parent>
     <resourceReadoutRoot>false</resourceReadoutRoot>
-    <iconPath>UI/Icons/ThingCategories/Mizu_WaterCategory_Icon</iconPath>
+    <iconPath>Things/Item/Mizu_NormalWater/Mizu_NormalWater_b</iconPath>
   </ThingCategoryDef>
 
   <ThingCategoryDef>
@@ -22,7 +22,7 @@
     <label>Icess</label>
     <parent>Mizu_H2O</parent>
     <resourceReadoutRoot>false</resourceReadoutRoot>
-    <iconPath>UI/Icons/ThingCategories/Mizu_WaterCategory_Icon</iconPath>
+    <iconPath>Things/Item/Mizu_NormalIce</iconPath>
   </ThingCategoryDef>
 
 </Defs>
