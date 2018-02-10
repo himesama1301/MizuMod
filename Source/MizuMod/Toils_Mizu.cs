@@ -892,5 +892,20 @@ namespace MizuMod
             return toil;
         }
 
+        public static Toil UpdateResourceCounts()
+        {
+            var toil = new Toil();
+            toil.initAction = () =>
+            {
+                var billProduction = toil.actor.jobs.curJob.bill as Bill_Production;
+                if (billProduction != null && billProduction.repeatMode == BillRepeatModeDefOf.TargetCount)
+                {
+                    toil.actor.Map.resourceCounter.UpdateResourceCounts();
+                }
+            };
+
+            return toil;
+        }
+
     }
 }
