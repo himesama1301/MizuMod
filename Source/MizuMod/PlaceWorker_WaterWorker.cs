@@ -35,27 +35,18 @@ namespace MizuMod
             ThingDef def = checkingDef as ThingDef;
             if (def == null)
             {
+                Log.Error("invalid ThingDef");
                 return false;
             }
 
-            bool cond_building = false;
             TerrainDef terrainLoc = map.terrainGrid.TerrainAt(loc);
-            if (terrainLoc.IsSea() || terrainLoc.IsRiver() || terrainLoc.IsLakeOrPond() || terrainLoc.IsMarsh())
+            if (!(terrainLoc.IsSea() || terrainLoc.IsRiver() || terrainLoc.IsLakeOrPond() || terrainLoc.IsMarsh()))
             {
-                cond_building = true;
+                // 水でないなら
+                return new AcceptanceReport(MizuStrings.AcceptanceReportCantBuildExceptOverWater);
             }
 
-            bool cond_interaction = true;
-            if (def.hasInteractionCell)
-            {
-                TerrainDef terrainInteraction = map.terrainGrid.TerrainAt(ThingUtility.InteractionCellWhenAt(def, loc, rot, map));
-                if (terrainInteraction.passability != Traversability.Standable)
-                {
-                    cond_interaction = false;
-                }
-            }
-
-            return (cond_building && cond_interaction);
+            return true;
         }
     }
 }

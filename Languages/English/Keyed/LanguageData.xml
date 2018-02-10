@@ -62,4 +62,6 @@
   <MizuDehydrationAnimals>Animal dehydration</MizuDehydrationAnimals>
   <MizuDehydrationAnimalsDesc>These colony animals are dehydrating:\n\n{0}\nGet them some water.</MizuDehydrationAnimalsDesc>
   
+  <MizuCantBuildExceptOverWater>You can't build except over water</MizuCantBuildExceptOverWater>
+  
 </LanguageData>
