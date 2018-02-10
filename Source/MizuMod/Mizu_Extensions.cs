@@ -201,6 +201,11 @@ namespace MizuMod
             return def.IsSea() || def.IsRiver() || def.IsLakeOrPond() || def.IsMarsh();
         }
 
+        public static bool IsIce(this TerrainDef def)
+        {
+            return def.defName == "Ice";
+        }
+
         public static bool IsWaterStandable(this TerrainDef def)
         {
             return def.IsWater() && def.passability == Traversability.Standable;

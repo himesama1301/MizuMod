@@ -101,6 +101,9 @@
     <comps>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
+    <placeWorkers>
+      <li>MizuMod.PlaceWorker_IceWorker</li>
+    </placeWorkers>
   </ThingDef>
 
   <ThingDef ParentName="Mizu_BuildingBase">
