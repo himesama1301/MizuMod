@@ -62,4 +62,6 @@
   <MizuDehydrationAnimals>動物用の水がない</MizuDehydrationAnimals>
   <MizuDehydrationAnimalsDesc>コロニーの家畜が喉の渇きを訴えています：\n\n{0}\n水を 用意してください。</MizuDehydrationAnimalsDesc>
   
+  <MizuCantBuildExceptOverWater>水上以外に建設することはできません。</MizuCantBuildExceptOverWater>
+  
 </LanguageData>
