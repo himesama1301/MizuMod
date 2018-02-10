@@ -41,6 +41,12 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_ClearIce</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Below</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
@@ -107,6 +113,12 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_RawIce</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Below</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
@@ -137,6 +149,12 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_MudIce</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Below</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
@@ -167,6 +185,12 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_SeaIce</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Below</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
@@ -224,6 +248,12 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_ClearWater</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Above</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
@@ -286,6 +316,12 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_RawWater</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Above</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
@@ -316,6 +352,12 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_MudWater</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Above</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
@@ -346,6 +388,12 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_SeaWater</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Above</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
