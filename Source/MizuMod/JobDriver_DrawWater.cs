@@ -56,6 +56,9 @@ namespace MizuMod
 
             // 置く
             yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.A, null, false);
+
+            // 備蓄量更新(X個になるまで作成、の場合)
+            yield return Toils_Mizu.UpdateResourceCounts();
         }
 
         protected abstract void SetFailCondition();
