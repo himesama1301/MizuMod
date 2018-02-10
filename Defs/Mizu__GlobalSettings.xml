@@ -6,6 +6,7 @@
     
     <forDebug>
       <needWaterReduceRate>1</needWaterReduceRate>
+      <latentHeatRate>1</latentHeatRate>
       
       <enableChangeWaterPoolType>false</enableChangeWaterPoolType>
       <changeWaterPoolType>RawWater</changeWaterPoolType>
