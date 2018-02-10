@@ -132,6 +132,29 @@ namespace MizuMod
             }
         }
 
+        public override void PreAbsorbStack(Thing otherStack, int count)
+        {
+            base.PreAbsorbStack(otherStack, count);
+
+            // 全体に対するother側の割合
+            float otherRatio = (float)count / (float)(this.parent.stackCount + count);
+
+            var otherComp = otherStack.TryGetComp<CompLatentHeat>();
+            if (otherComp == null) return;
+
+            // otherの潜熱値
+            float otherLatentHeatAmount = otherStack.TryGetComp<CompLatentHeat>().LatentHeatAmount;
+
+            // otherの割合の分だけother側に加重平均
+            this.LatentHeatAmount = Mathf.Lerp(this.LatentHeatAmount, otherLatentHeatAmount, otherRatio);
+        }
+
+        // 分離した時、潜熱値は特に変更しない
+        //public override void PostSplitOff(Thing piece)
+        //{
+        //    base.PostSplitOff(piece);
+        //}
+
         public override string CompInspectStringExtra()
         {
             StringBuilder stringBuilder = new StringBuilder();
