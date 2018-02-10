@@ -61,6 +61,18 @@
   
   
   
+  <!-- Harvest Ice -->
+  
+  <Mizu_HarvestIce.label>採氷する</Mizu_HarvestIce.label>
+  <Mizu_HarvestIce.description>氷面から氷を集めます。</Mizu_HarvestIce.description>
+  <Mizu_HarvestIce.jobString>採氷している</Mizu_HarvestIce.jobString>
+  
+  <Mizu_HarvestIceMulti.label>採氷する(5個)</Mizu_HarvestIceMulti.label>
+  <Mizu_HarvestIceMulti.description>氷面から氷を集めます(5個)。</Mizu_HarvestIceMulti.description>
+  <Mizu_HarvestIceMulti.jobString>採氷している</Mizu_HarvestIceMulti.jobString>
+  
+  
+  
   <!-- others -->
   
   <Mizu_PurifyWater.label>水を浄化する</Mizu_PurifyWater.label>

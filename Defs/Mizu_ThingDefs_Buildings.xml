@@ -68,6 +68,49 @@
   </ThingDef>
 
   <ThingDef ParentName="Mizu_BuildingBase">
+    <defName>Mizu_IceHarvestingSpot</defName>
+    <label>Ice harvesting spot</label>
+    <description>A place for harvesting ice. This can be built on ice.</description>
+    <thingClass>Building_WorkTable</thingClass>
+    <graphicData>
+      <texPath>Things/Building/Production/CraftingSpot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+    </graphicData>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <statBases>
+      <WorkToBuild>0</WorkToBuild>
+    </statBases>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <useHitPoints>False</useHitPoints>
+    <size>(1,1)</size>
+    <passability>Standable</passability>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <surfaceType>Item</surfaceType>
+    <filthLeaving></filthLeaving>
+    <inspectorTabs>
+      <li>ITab_Bills</li>
+    </inspectorTabs>
+    <building>
+      <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+      <sowTag>SupportPlantsOnly</sowTag>
+      <canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+    </comps>
+    <placeWorkers>
+      <li>MizuMod.PlaceWorker_IceWorker</li>
+    </placeWorkers>
+    <recipes>
+      <li>Mizu_HarvestIce</li>
+      <li>Mizu_HarvestIceMulti</li>
+    </recipes>
+  </ThingDef>
+
+  <ThingDef ParentName="Mizu_BuildingBase">
     <defName>Mizu_Well</defName>
     <label>Well</label>
     <description>A building for drawing underground water.</description>

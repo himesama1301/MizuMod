@@ -236,10 +236,6 @@
     </modExtensions>
   </RecipeDef>
   
-  
-  
-  <!-- Pour Water Multi -->
-  
   <RecipeDef>
     <defName>Mizu_PourWaterMulti</defName>
     <label>pour water x25</label>
@@ -277,6 +273,39 @@
   </RecipeDef>
   
   
+  
+  <!-- Harvest Ice Base -->
+  
+  <RecipeDef Name="Mizu_HarvestIceBase" Abstract="True">
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+  </RecipeDef>
+  
+  <!-- Harvest Ice -->
+  
+  <RecipeDef ParentName="Mizu_HarvestIceBase">
+    <defName>Mizu_HarvestIce</defName>
+    <label>harvest ice at this spot</label>
+    <description>Harvests ice.</description>
+    <jobString>Harvesting ice.</jobString>
+    <workAmount>700</workAmount>
+    <products>
+      <Mizu_RawIce>1</Mizu_RawIce>
+    </products>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="Mizu_HarvestIceBase">
+    <defName>Mizu_HarvestIceMulti</defName>
+    <label>harvest ice x5 at this spot</label>
+    <description>Harvests ice x5.</description>
+    <jobString>Harvesting ice.</jobString>
+    <workAmount>3500</workAmount>
+    <products>
+      <Mizu_RawIce>5</Mizu_RawIce>
+    </products>
+  </RecipeDef>
   
   <!-- others -->
   
