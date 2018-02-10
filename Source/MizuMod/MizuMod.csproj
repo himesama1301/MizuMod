@@ -123,6 +123,7 @@
     <Compile Include="Mizu_Harmony.cs" />
     <Compile Include="Need_Water.cs" />
     <Compile Include="PlaceWorker_Faucet.cs" />
+    <Compile Include="PlaceWorker_IceWorker.cs" />
     <Compile Include="PlaceWorker_UndergroundDeepWater.cs" />
     <Compile Include="PlaceWorker_UndergroundShallowWater.cs" />
     <Compile Include="PlaceWorker_UndergroundWater.cs" />

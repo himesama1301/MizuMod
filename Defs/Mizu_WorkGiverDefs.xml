@@ -3,7 +3,7 @@
 
   <WorkGiverDef>
     <defName>Mizu_DoBillWater</defName>
-    <label>drawing water at spot</label>
+    <label>doing bill about drawing water</label>
     <giverClass>MizuMod.WorkGiver_DoBillWater</giverClass>
     <workType>Mizu_Drawing</workType>
     <priorityInType>100</priorityInType>
@@ -15,6 +15,23 @@
     </fixedBillGiverDefs>
     <verb>draw</verb>
     <gerund>drawing at</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>Mizu_DoBillIce</defName>
+    <label>doint bill about harvesting ice</label>
+    <giverClass>WorkGiver_DoBill</giverClass>
+    <workType>Mizu_Drawing</workType>
+    <priorityInType>100</priorityInType>
+    <fixedBillGiverDefs>
+      <li>Mizu_IceHarvestingSpot</li>
+    </fixedBillGiverDefs>
+    <verb>harvest</verb>
+    <gerund>harvesting at</gerund>
     <requiredCapacities>
       <li>Manipulation</li>
     </requiredCapacities>
