@@ -73,6 +73,9 @@
     <comps>
       <li Class="MizuMod.CompProperties_LatentHeat">
         <changedThingDef>Mizu_NormalIce</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Below</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
       </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
@@ -253,6 +256,9 @@
     <comps>
       <li Class="MizuMod.CompProperties_LatentHeat">
         <changedThingDef>Mizu_NormalWater</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Above</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
       </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
