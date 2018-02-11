@@ -642,7 +642,14 @@ namespace MizuMod
             float gotWaterAmount;
 
             // 摂取個数と摂取水分量の計算
-            thing.GetWaterCalculateAmounts(getter, waterWanted, out drankWaterItemCount, out gotWaterAmount);
+            thing.GetWaterCalculateAmounts(getter, waterWanted, withIngested, out drankWaterItemCount, out gotWaterAmount);
+
+            if (withIngested)
+            {
+                // 食事の場合は後で個数を計算するのでここでは1個にする
+                gotWaterAmount = comp.WaterAmount;
+                drankWaterItemCount = 1;
+            }
 
             // 食事と同時に水分摂取する場合は既に消滅しているので消滅処理をスキップする
             if (!withIngested && drankWaterItemCount > 0)
@@ -651,10 +658,6 @@ namespace MizuMod
                 {
                     // アイテム消費数とスタック数が同じ
                     //   →完全消滅
-                    //if (getter.Map.reservationManager.ReservedBy(thing, getter, getter.CurJob))
-                    //{
-                    //    getter.Map.reservationManager.Release(thing, getter, getter.CurJob);
-                    //}
                     thing.Destroy(DestroyMode.Vanish);
                 }
                 else
@@ -674,8 +677,13 @@ namespace MizuMod
 
             var comp = t.TryGetComp<CompWaterSource>();
             if (comp == null) return;
-            
-            float gotWaterAmount = comp.WaterAmount * num;
+
+            // 食事のついでの水分摂取の場合、帰ってくる水分量は常に1個分
+            float gotWaterAmount = MizuUtility.GetWater(ingester, t, need_water.WaterWanted, true);
+
+            // 後で個数を掛け算する
+            gotWaterAmount *= num;
+
             if (!ingester.Dead)
             {
                 need_water.CurLevel += gotWaterAmount;
