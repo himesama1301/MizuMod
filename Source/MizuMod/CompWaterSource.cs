@@ -40,6 +40,14 @@ namespace MizuMod
             }
         }
 
+        public bool DependIngredients
+        {
+            get
+            {
+                return this.Props.dependIngredients;
+            }
+        }
+
         public bool IsWaterSource
         {
             get

@@ -621,7 +621,8 @@ namespace MizuMod
                 return 0.0f;
             }
 
-            var waterTypeDef = MizuDef.Dic_WaterTypeDef[comp.WaterType];
+            var waterType = MizuUtility.GetWaterType(thing);
+            var waterTypeDef = MizuDef.Dic_WaterTypeDef[waterType];
 
             // 指定された健康状態になる
             if (waterTypeDef.hediffs != null)
@@ -694,7 +695,8 @@ namespace MizuMod
             if (comp == null) return thoughtList;
             if (!comp.IsWaterSource) return thoughtList;
 
-            var waterTypeDef = MizuDef.Dic_WaterTypeDef[comp.WaterType];
+            var waterType = MizuUtility.GetWaterType(t);
+            var waterTypeDef = MizuDef.Dic_WaterTypeDef[waterType];
 
             bool isDirect = comp.SourceType == CompProperties_WaterSource.SourceType.Building;
             ThoughtsFromWaterTypeDef(getter, waterTypeDef, isDirect, thoughtList);
@@ -858,6 +860,35 @@ namespace MizuMod
             }
 
             return isFound;
+        }
+
+        public static WaterType GetWaterType(Thing t)
+        {
+            var compSource = t.TryGetComp<CompWaterSource>();
+
+            // 水源ではない
+            if (compSource == null) return WaterType.NoWater;
+
+            // 建物、もしくはアイテムでも設定された水質を直接使用する場合
+            if (compSource.SourceType == CompProperties_WaterSource.SourceType.Building || compSource.DependIngredients == false) return compSource.WaterType;
+
+            // 材料データ取得
+            var compIngredients = t.TryGetComp<CompIngredients>();
+
+            // 無ければ直接水質参照
+            if (compIngredients == null) return compSource.WaterType;
+
+            // 材料の中から最低の水質を取得
+            var waterType = WaterType.NoWater;
+            foreach (var ingredient in compIngredients.ingredients)
+            {
+                var comp = ingredient.GetCompProperties<CompProperties_WaterSource>();
+                if (comp == null) continue;
+
+                waterType = waterType.GetMinType(comp.waterType);
+            }
+
+            return waterType;
         }
     }
 }
