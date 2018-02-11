@@ -449,21 +449,12 @@
       <joyKind>Gluttonous</joyKind>
       <maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
       <ingestSound>Meal_Eat</ingestSound>
-      
-<!--
       <outcomeDoers>
         <li Class="IngestionOutcomeDoer_GiveHediff">
-          <hediffDef>AlcoholHigh</hediffDef>
-          <severity>0.15</severity>
-          <toleranceChemical>Alcohol</toleranceChemical>
-        </li>
-        <li Class="IngestionOutcomeDoer_GiveHediff">
-          <hediffDef>AlcoholTolerance</hediffDef>
-          <severity>0.032</severity>
-          <divideByBodySize>true</divideByBodySize>
+          <hediffDef>Mizu_IcecreamHeadache</hediffDef>
+          <chance>0.1</chance>
         </li>
       </outcomeDoers>
--->
     </ingestible>
     <comps>
       <li Class="CompProperties_Forbiddable" />
