@@ -107,4 +107,12 @@
   <Mizu_DesalinateSeaWaterMulti.description>海水を5個淡水化し、普通の水にします。</Mizu_DesalinateSeaWaterMulti.description>
   <Mizu_DesalinateSeaWaterMulti.jobString>海水を淡水化している</Mizu_DesalinateSeaWaterMulti.jobString>
   
+  
+  
+  <!-- 通常のアイテム作成 -->
+  
+  <Mizu_MakeShavedIce.label>かき氷を作る</Mizu_MakeShavedIce.label>
+  <Mizu_MakeShavedIce.description>かき氷を作ります。</Mizu_MakeShavedIce.description>
+  <Mizu_MakeShavedIce.jobString>かき氷を作っている</Mizu_MakeShavedIce.jobString>
+  
 </LanguageData>

@@ -25,4 +25,8 @@
   <Mizu_CleanWater.verb>で水を浄化する</Mizu_CleanWater.verb>
   <Mizu_CleanWater.gerund>で水を浄化する</Mizu_CleanWater.gerund>
 
+  <Mizu_DoBillsUseCraftingSpotForCooking.label>作業をする</Mizu_DoBillsUseCraftingSpotForCooking.label>
+  <Mizu_DoBillsUseCraftingSpotForCooking.verb>で作業をする</Mizu_DoBillsUseCraftingSpotForCooking.verb>
+  <Mizu_DoBillsUseCraftingSpotForCooking.gerund>で作業をする</Mizu_DoBillsUseCraftingSpotForCooking.gerund>
+
 </LanguageData>

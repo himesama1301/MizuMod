@@ -200,14 +200,17 @@ namespace MizuMod
             {
                 // マップに落ちている場合
                 GenSpawn.Spawn(thing, this.parent.Position, map);
+                return;
             }
-            else if (owner != null)
+
+            if (owner != null)
             {
                 // 何らかの物の中に入っている場合
                 if (owner.TryAdd(thing) == false)
                 {
                     Log.Error("failed TryAdd");
                 }
+                return;
             }
         }
 
@@ -217,12 +220,15 @@ namespace MizuMod
             {
                 // マップに落ちている場合
                 this.parent.Destroy(DestroyMode.Vanish);
+                return;
             }
+
             if (owner != null)
             {
                 // 何らかの物の中に入っている場合
                 owner.Remove(this.parent);
                 this.parent.Destroy(DestroyMode.Vanish);
+                return;
             }
         }
 

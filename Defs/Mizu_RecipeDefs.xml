@@ -575,4 +575,47 @@
     <workSkill>Cooking</workSkill>
   </RecipeDef>
   
+  
+  
+  <!-- 普通のアイテム作成レシピ  Make Item -->
+
+  <RecipeDef>
+    <defName>Mizu_MakeShavedIce</defName>
+    <label>make shaved ice</label>
+    <description>make shaved ice</description>
+    <jobString>Making shaved ice.</jobString>
+    <workAmount>500</workAmount>
+    <workSpeedStat>CookSpeed</workSpeedStat>
+    <requiredGiverWorkType>Cooking</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Mizu_ClearIce</li>
+            <li>Mizu_NormalIce</li>
+            <li>Mizu_RawIce</li>
+            <li>Mizu_MudIce</li>
+            <li>Mizu_SeaIce</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Mizu_ClearIce</li>
+        <li>Mizu_NormalIce</li>
+        <li>Mizu_RawIce</li>
+        <li>Mizu_MudIce</li>
+        <li>Mizu_SeaIce</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Mizu_ShavedIce>1</Mizu_ShavedIce>
+    </products>
+    <workSkill>Cooking</workSkill>
+  </RecipeDef>
+
 </Defs>
