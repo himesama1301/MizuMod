@@ -228,7 +228,6 @@
     <products>
       <Mizu_NormalWater>1</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
     <modExtensions>
       <li Class="MizuMod.DefExtension_WaterRecipe">
         <recipeType>PourWater</recipeType>
@@ -268,7 +267,6 @@
     <products>
       <Mizu_NormalWater>1</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
     <modExtensions>
       <li Class="MizuMod.DefExtension_WaterRecipe">
         <recipeType>PourWater</recipeType>
@@ -317,7 +315,6 @@
     <products>
       <Mizu_ClearWater>1</Mizu_ClearWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
   <RecipeDef>
@@ -348,7 +345,6 @@
     <products>
       <Mizu_NormalWater>1</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
   <RecipeDef>
@@ -379,7 +375,6 @@
     <products>
       <Mizu_NormalWater>1</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
   <RecipeDef>
@@ -410,7 +405,6 @@
     <products>
       <Mizu_NormalWater>1</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
   <RecipeDef>
@@ -450,7 +444,6 @@
     <products>
       <Mizu_ClearWater>5</Mizu_ClearWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
   <RecipeDef>
@@ -481,7 +474,6 @@
     <products>
       <Mizu_NormalWater>5</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
   <RecipeDef>
@@ -512,7 +504,6 @@
     <products>
       <Mizu_NormalWater>5</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
   <RecipeDef>
@@ -543,7 +534,6 @@
     <products>
       <Mizu_NormalWater>5</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
 </Defs>
