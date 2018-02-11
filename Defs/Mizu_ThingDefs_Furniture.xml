@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="ArtableFurnitureBase">
+    <defName>Mizu_ShavedIceFlag</defName>
+    <label>shaved ice flag</label>
+    <description>An accesory for shaved ice shop.</description>
+    <graphicData>
+      <texPath>Things/Building/Furniture/Mizu_ShavedIceFlag</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shadowData>
+        <volume>(0.3, 0.6, 0.3)</volume>
+      </shadowData>
+      <drawSize>(3,3)</drawSize>
+      <shaderType>CutoutComplex</shaderType>
+    </graphicData>
+    <uiIconPath>UI/Icons/Buildings/Mizu_ShavedIceFlag_Icon</uiIconPath>
+    <altitudeLayer>Building</altitudeLayer>
+    <statBases>
+      <MaxHitPoints>75</MaxHitPoints>
+      <WorkToBuild>750</WorkToBuild>
+      <Mass>3</Mass>
+      <Flammability>1.0</Flammability>
+      <Beauty>0</Beauty>
+    </statBases>
+    <costList>
+      <Cloth>5</Cloth>
+    </costList>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+    </stuffCategories>
+    <costStuffCount>5</costStuffCount>
+    <pathCost>30</pathCost>
+    <fillPercent>0.05</fillPercent>
+    <rotatable>false</rotatable>
+    <designationCategory>Mizu</designationCategory>
+  </ThingDef>
+
+</Defs>
