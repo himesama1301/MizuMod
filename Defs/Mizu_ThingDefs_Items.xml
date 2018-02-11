@@ -435,7 +435,7 @@
     <tickerType>Rare</tickerType>
     <socialPropernessMatters>true</socialPropernessMatters>
     <thingCategories>
-      <li>Mizu_Ices</li>
+      <li>Foods</li>
     </thingCategories>
     <alwaysHaulable>true</alwaysHaulable>
     <pathCost>15</pathCost>
