@@ -280,9 +280,9 @@
   
   <RecipeDef>
     <defName>Mizu_PurifyWater</defName>
-    <label>purify water</label>
-    <description>purify water by using charcoal to product clear water.</description>
-    <jobString>Purifying water.</jobString>
+    <label>filter water</label>
+    <description>filter water by using charcoal to product clear water.</description>
+    <jobString>Filtering water.</jobString>
     <workAmount>1000</workAmount>
     <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
     <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
@@ -409,9 +409,9 @@
   
   <RecipeDef>
     <defName>Mizu_PurifyWaterMulti</defName>
-    <label>purify water x5</label>
-    <description>purify water x5 by using charcoal to product clear water.</description>
-    <jobString>Purifying water.</jobString>
+    <label>filter water x5</label>
+    <description>filter water x5 by using charcoal to product clear water.</description>
+    <jobString>Filtering water.</jobString>
     <workAmount>5000</workAmount>
     <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
     <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
