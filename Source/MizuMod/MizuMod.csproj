@@ -134,6 +134,7 @@
     <Compile Include="RecipeWorkerCounter_DrawWater.cs" />
     <Compile Include="SectionLayer_WaterNet.cs" />
     <Compile Include="StatPart_Water.cs" />
+    <Compile Include="Thing_IcyFood.cs" />
     <Compile Include="ThinkNode_ConditionalDehydration.cs" />
     <Compile Include="ThinkNode_ConditionalStockWaterForPrisoner.cs" />
     <Compile Include="ThirstCategory.cs" />

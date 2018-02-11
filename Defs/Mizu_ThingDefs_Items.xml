@@ -413,7 +413,7 @@
 
   <ThingDef Name="Mizu_ShavedIce">
     <defName>Mizu_ShavedIce</defName>
-    <thingClass>ThingWithComps</thingClass>
+    <thingClass>MizuMod.Thing_IcyFood</thingClass>
     <label>Shaved ice</label>
     <description>A dessert made by shaving the block of ice. Pay attention to headaches.</description>
     <graphicData>
