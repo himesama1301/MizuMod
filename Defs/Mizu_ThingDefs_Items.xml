@@ -467,10 +467,11 @@
     </ingestible>
     <comps>
       <li Class="CompProperties_Forbiddable" />
+      <li Class="CompProperties_Ingredients" />
       <li Class="MizuMod.CompProperties_LatentHeat">
         <temperatureThreshold>0</temperatureThreshold>
         <addLatentHeatCondition>Above</addLatentHeatCondition>
-        <latentHeatThreshold>800</latentHeatThreshold>
+        <latentHeatThreshold>400</latentHeatThreshold>
       </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
