@@ -83,7 +83,7 @@
   
   <WorkGiverDef>
     <defName>Mizu_CleanWater</defName>
-    <label>cleaning water</label>
+    <label>purifying water</label>
     <giverClass>WorkGiver_DoBill</giverClass>
     <workType>Mizu_Drawing</workType>
     <priorityInType>99</priorityInType>
@@ -94,8 +94,8 @@
       <li>FueledStove</li>
       <li>Campfire</li>
     </fixedBillGiverDefs>
-    <verb>clean</verb>
-    <gerund>cleaning at</gerund>
+    <verb>purify</verb>
+    <gerund>purifying at</gerund>
     <requiredCapacities>
       <li>Manipulation</li>
     </requiredCapacities>
