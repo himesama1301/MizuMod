@@ -610,7 +610,7 @@ namespace MizuMod
                 Log.Error("comp is null");
                 return 0.0f;
             }
-            if (!comp.IsWaterSource)
+            if (!comp.IsWaterSource && comp.DependIngredients == false)
             {
                 Log.Error("not watersource");
                 return 0.0f;
