@@ -411,4 +411,71 @@
     </comps>
   </ThingDef>
 
+  <ThingDef Name="Mizu_ShavedIce">
+    <defName>Mizu_ShavedIce</defName>
+    <thingClass>MizuMod.Thing_IcyFood</thingClass>
+    <label>Shaved ice</label>
+    <description>A dessert made by shaving the block of ice. Pay attention to headaches.</description>
+    <graphicData>
+      <texPath>Things/Item/Mizu_ShavedIce</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1</MarketValue>
+      <WorkToMake>100</WorkToMake>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Beauty>-1</Beauty>
+      <Mass>0.5</Mass>
+    </statBases>
+    <category>Item</category>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <stackLimit>25</stackLimit>
+    <tickerType>Rare</tickerType>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <thingCategories>
+      <li>Foods</li>
+    </thingCategories>
+    <alwaysHaulable>true</alwaysHaulable>
+    <pathCost>15</pathCost>
+    <resourceReadoutPriority>Last</resourceReadoutPriority>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <ingestible>
+      <preferability>DesperateOnly</preferability>
+      <foodType>Processed</foodType>
+      <nutrition>0.03</nutrition>
+      <joy>0.10</joy>
+      <joyKind>Gluttonous</joyKind>
+      <maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
+      <ingestSound>Meal_Eat</ingestSound>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>Mizu_IcecreamHeadache</hediffDef>
+          <chance>0.1</chance>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+      <li Class="CompProperties_Ingredients" />
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Above</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>100</baseDrinkTicks>
+        <waterType>NoWater</waterType>
+        <dependIngredients>true</dependIngredients>
+        <needManipulate>true</needManipulate>
+        <waterAmount>0.35</waterAmount>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
+      </li>
+    </comps>
+  </ThingDef>
+  
 </Defs>

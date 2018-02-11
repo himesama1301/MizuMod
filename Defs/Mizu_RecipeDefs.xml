@@ -575,4 +575,67 @@
     <workSkill>Cooking</workSkill>
   </RecipeDef>
   
+  
+  
+  <!-- 普通のアイテム作成レシピ  Make Item -->
+
+  <RecipeDef>
+    <defName>Mizu_MakeShavedIce</defName>
+    <label>make shaved ice</label>
+    <description>make shaved ice</description>
+    <jobString>Making shaved ice.</jobString>
+    <workAmount>500</workAmount>
+    <workSpeedStat>CookSpeed</workSpeedStat>
+    <requiredGiverWorkType>Cooking</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Mizu_Waters</li>
+          </categories>
+        </filter>
+        <count>1</count>
+      </li>
+      <li>
+        <filter>
+          <categories>
+            <li>Mizu_Ices</li>
+          </categories>
+        </filter>
+        <count>1</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>RawBerries</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Mizu_H2O</li>
+      </categories>
+    </fixedIngredientFilter>
+    <defaultIngredientFilter>
+      <categories>
+        <li>Mizu_H2O</li>
+      </categories>
+      <exceptedThingDefs>
+        <li>Mizu_RawWater</li>
+        <li>Mizu_MudWater</li>
+        <li>Mizu_SeaWater</li>
+        <li>Mizu_RawIce</li>
+        <li>Mizu_MudIce</li>
+        <li>Mizu_SeaIce</li>
+      </exceptedThingDefs>
+    </defaultIngredientFilter>
+    <products>
+      <Mizu_ShavedIce>1</Mizu_ShavedIce>
+    </products>
+  </RecipeDef>
+
 </Defs>

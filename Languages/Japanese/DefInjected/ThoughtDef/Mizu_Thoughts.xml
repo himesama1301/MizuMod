@@ -30,4 +30,7 @@
   <Mizu_SippedWaterLikeBeast.stages.0.label>獣のように水を飲んだ</Mizu_SippedWaterLikeBeast.stages.0.label>
   <Mizu_SippedWaterLikeBeast.stages.0.description>獣のように水をすする以外に選択肢がなかった。</Mizu_SippedWaterLikeBeast.stages.0.description>
   
+  <Mizu_AteIcyFoodInHotSeason.stages.0.label>暑い季節に氷菓を食べた</Mizu_AteIcyFoodInHotSeason.stages.0.label>
+  <Mizu_AteIcyFoodInHotSeason.stages.0.description>暑い季節に氷菓を食べた。ひんやりして最高！</Mizu_AteIcyFoodInHotSeason.stages.0.description>
+  
 </LanguageData>

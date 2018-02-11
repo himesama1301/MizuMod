@@ -17,7 +17,8 @@ namespace MizuMod
         }
 
         // 潜熱が溜まると何に変化するのか
-        public ThingDef changedThingDef;
+        // (nullは消滅)
+        public ThingDef changedThingDef = null;
 
         // 温度閾値
         public float temperatureThreshold = 0f;

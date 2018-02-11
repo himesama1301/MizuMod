@@ -31,4 +31,7 @@
   <Mizu_SeaIce.label>氷 (海水)</Mizu_SeaIce.label>
   <Mizu_SeaIce.description>海水が凍ったものです。舐めることで水分を取ることが出来ますが時間がかかります。</Mizu_SeaIce.description>
   
+  <Mizu_ShavedIce.label>かき氷</Mizu_ShavedIce.label>
+  <Mizu_ShavedIce.description>氷塊を削って作られたデザートです。頭痛にご注意を。</Mizu_ShavedIce.description>
+
 </LanguageData>

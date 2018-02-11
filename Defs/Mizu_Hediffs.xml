@@ -106,4 +106,31 @@
     </stages>
   </HediffDef>
 
+  <HediffDef>
+    <defName>Mizu_IcecreamHeadache</defName>
+    <label>Icecream headache</label>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
+    <initialSeverity>0.001</initialSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>
+          <min>2500</min>
+          <max>2500</max>
+        </disappearsAfterTicks>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <postFactor>0.95</postFactor>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
 </Defs>

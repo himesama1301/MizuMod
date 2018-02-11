@@ -40,6 +40,7 @@ namespace MizuMod
         public static ThoughtDef Thought_DrankSeaWater = DefDatabase<ThoughtDef>.GetNamed("Mizu_DrankSeaWater");
         public static ThoughtDef Thought_DrankScoopedWater = DefDatabase<ThoughtDef>.GetNamed("Mizu_DrankScoopedWater");
         public static ThoughtDef Thought_SippedWaterLikeBeast = DefDatabase<ThoughtDef>.GetNamed("Mizu_SippedWaterLikeBeast");
+        public static ThoughtDef Thought_AteIcyFoodInHotSeason = DefDatabase<ThoughtDef>.GetNamed("Mizu_AteIcyFoodInHotSeason");
 
         public static ThingDef Thing_ClearWater = DefDatabase<ThingDef>.GetNamed("Mizu_ClearWater");
         public static ThingDef Thing_NormalWater = DefDatabase<ThingDef>.GetNamed("Mizu_NormalWater");
