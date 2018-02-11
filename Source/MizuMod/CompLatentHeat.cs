@@ -118,62 +118,26 @@ namespace MizuMod
             if (this.latentHeatAmount >= this.LatentHeatThreshold)
             {
                 // 潜熱値が閾値を超えた時の処理
+                var map = this.parent.Map;
+                var owner = this.parent.holdingOwner;
+
+                if (this.ChangedThingDef == null)
+                {
+                    // 変化後アイテムの設定が無い場合は消滅
+                    this.DestroyParent(map, owner);
+                    return;
+                }
 
                 // 変化後のアイテムを生成
                 var changedThing = ThingMaker.MakeThing(this.ChangedThingDef);
                 changedThing.stackCount = this.parent.stackCount;
 
                 // 腐敗度の処理
-                // 腐敗しないアイテムなら隠し腐敗度、腐敗するアイテムなら現在の腐敗度を取得
+                this.SetRotProgress(changedThing, this.GetRotProgress());
 
-                // 変化前のアイテムの腐敗度
-                var compRotThis = this.parent.TryGetComp<CompRottable>();
-                float rotProgressThis = (compRotThis == null) ? this.hiddenRotProgress : compRotThis.RotProgress;
-
-                // 変化後のアイテムの腐敗度
-                var compRotChanged = changedThing.TryGetComp<CompRottable>();
-                if (compRotChanged != null)
-                {
-                    // 腐敗度を持つ
-                    //   →腐敗度をそこに設定(氷→水の変化時はここに入るはず
-                    compRotChanged.RotProgress = rotProgressThis;
-                }
-                else
-                {
-                    // 腐敗度を持たない
-                    //   →潜熱を持つかチェック
-                    var compLatentHeatChanged = changedThing.TryGetComp<CompLatentHeat>();
-                    if (compLatentHeatChanged != null)
-                    {
-                        // 潜熱を持っている
-                        //   →腐敗度を隠し腐敗度として設定(水→氷の変化時はここに入るはず)
-                        compLatentHeatChanged.HiddenRotProgress = rotProgressThis;
-                    }
-                }
-
-                var map = this.parent.Map;
-                if (map != null)
-                {
-                    // マップに置いてある場合
-                    GenSpawn.Spawn(changedThing, parent.Position, map);
-                    this.parent.Destroy(DestroyMode.Vanish);
-                    return;
-                }
-
-                var owner = this.parent.holdingOwner;
-                if (owner != null)
-                {
-                    // 何らかの物の中に入っている場合
-                    owner.Remove(this.parent);
-                    this.parent.Destroy(DestroyMode.Vanish);
-                    if (owner.TryAdd(changedThing) == false)
-                    {
-                        Log.Error("failed TryAdd");
-                    }
-                    return;
-                }
-
-                Log.Error("予期しない到達(デバッグ用)");
+                // 消滅と生成
+                this.DestroyParent(map, owner);
+                this.CreateNewThing(changedThing, map, owner);
             }
         }
 
@@ -228,6 +192,85 @@ namespace MizuMod
             //}));
 
             return stringBuilder.ToString();
+        }
+
+        private void CreateNewThing(Thing thing, Map map, ThingOwner owner)
+        {
+            if (map != null)
+            {
+                // マップに落ちている場合
+                GenSpawn.Spawn(thing, this.parent.Position, map);
+                return;
+            }
+
+            if (owner != null)
+            {
+                // 何らかの物の中に入っている場合
+                if (owner.TryAdd(thing) == false)
+                {
+                    Log.Error("failed TryAdd");
+                }
+                return;
+            }
+        }
+
+        private void DestroyParent(Map map, ThingOwner owner)
+        {
+            if (map != null)
+            {
+                // マップに落ちている場合
+                this.parent.Destroy(DestroyMode.Vanish);
+                return;
+            }
+
+            if (owner != null)
+            {
+                // 何らかの物の中に入っている場合
+                owner.Remove(this.parent);
+                this.parent.Destroy(DestroyMode.Vanish);
+                return;
+            }
+        }
+
+        private float GetRotProgress()
+        {
+            var compRotThis = this.parent.TryGetComp<CompRottable>();
+
+            if (compRotThis == null)
+            {
+                // 腐敗度がないなら隠し腐敗度を返す
+                return this.hiddenRotProgress;
+            }
+            else
+            {
+                // 腐敗度があるならその値を返す
+                return compRotThis.RotProgress;
+            }
+        }
+
+        private void SetRotProgress(Thing thing, float rotProgress)
+        {
+            var compRotChanged = thing.TryGetComp<CompRottable>();
+            if (compRotChanged != null)
+            {
+                // 腐敗度を持つ
+                //   →腐敗度をそこに設定(氷→水の変化時はここに入るはず)
+                compRotChanged.RotProgress = rotProgress;
+            }
+            else
+            {
+                // 腐敗度を持たない
+                //   →潜熱を持つかチェック
+                var compLatentHeatChanged = thing.TryGetComp<CompLatentHeat>();
+                if (compLatentHeatChanged != null)
+                {
+                    // 潜熱を持っている
+                    //   →腐敗度を隠し腐敗度として設定(水→氷の変化時はここに入るはず)
+                    compLatentHeatChanged.HiddenRotProgress = rotProgress;
+                }
+            }
+
+            // 腐敗度も潜熱も持っていないなら、設定したかった腐敗進行値は捨てる
         }
     }
 }

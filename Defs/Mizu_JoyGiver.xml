@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <JoyGiverDef>
+    <defName>EatShavedIce</defName>
+    <giverClass>JoyGiver_Ingest</giverClass>
+    <baseChance>2.5</baseChance>
+    <thingDefs>
+      <li>Mizu_ShavedIce</li>
+    </thingDefs>
+    <joyKind>Gluttonous</joyKind>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+  
+</Defs>

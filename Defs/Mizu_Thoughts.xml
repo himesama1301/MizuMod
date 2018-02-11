@@ -107,9 +107,22 @@
     <stackLimit>1</stackLimit>
     <stages>
       <li>
-        <label>sipped water fron nature</label>
+        <label>sipped water from nature</label>
         <description>I have no choice but to sip water like beasts.</description>
         <baseMoodEffect>-8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef>
+    <defName>Mizu_AteIcyFoodInHotSeason</defName>
+    <durationDays>0.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>ate icy food in hot season</label>
+        <description>I ate icy food in hot seadon. It's so cool!</description>
+        <baseMoodEffect>2</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
