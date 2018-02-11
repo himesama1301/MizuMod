@@ -11,17 +11,39 @@ namespace MizuMod
 {
     public class JobDriver_DrawFromWaterPool : JobDriver_DrawWater
     {
-        private UndergroundWaterPool pool;
+        private MapComponent_ShallowWaterGrid waterGridInt;
+        private MapComponent_ShallowWaterGrid WaterGrid
+        {
+            get
+            {
+                if (this.waterGridInt == null)
+                {
+                    this.waterGridInt = this.TargetThingA.Map.GetComponent<MapComponent_ShallowWaterGrid>();
+                }
+                return this.waterGridInt;
+            }
+        }
+
+        private UndergroundWaterPool poolInt;
+        private UndergroundWaterPool Pool
+        {
+            get
+            {
+                if (this.poolInt == null)
+                {
+                    this.poolInt = this.WaterGrid.GetPool(this.TargetThingA.Map.cellIndices.CellToIndex(this.job.GetTarget(BillGiverInd).Thing.Position));
+                }
+                return this.poolInt;
+            }
+        }
 
         public override bool TryMakePreToilReservations()
         {
             if (!base.TryMakePreToilReservations()) return false;
 
-            var waterGrid = this.TargetThingA.Map.GetComponent<MapComponent_ShallowWaterGrid>();
-            if (waterGrid == null) return false;
+            if (this.WaterGrid == null) return false;
 
-            this.pool = waterGrid.GetPool(this.TargetThingA.Map.cellIndices.CellToIndex(this.job.GetTarget(BillGiverInd).Thing.Position));
-            if (this.pool == null) return false;
+            if (this.Pool == null) return false;
 
             return true;
         }
@@ -33,7 +55,7 @@ namespace MizuMod
         protected override Thing FinishAction()
         {
             // 地下水脈の水の種類から水アイテムの種類を決定
-            var waterThingDef = MizuUtility.GetWaterThingDefFromWaterType(this.pool.WaterType);
+            var waterThingDef = MizuUtility.GetWaterThingDefFromWaterType(this.Pool.WaterType);
             if (waterThingDef == null) return null;
 
             // 水アイテムの水源情報を得る
@@ -41,14 +63,14 @@ namespace MizuMod
             if (compprop == null) return null;
 
             // 地下水脈から水を減らす
-            this.pool.CurrentWaterVolume = Mathf.Max(0, pool.CurrentWaterVolume - compprop.waterVolume * ext.getItemCount);
+            this.Pool.CurrentWaterVolume = Mathf.Max(0, this.Pool.CurrentWaterVolume - compprop.waterVolume * this.Ext.getItemCount);
 
             // 水を生成
             var createThing = ThingMaker.MakeThing(waterThingDef);
             if (createThing == null) return null;
 
             // 個数設定
-            createThing.stackCount = ext.getItemCount;
+            createThing.stackCount = this.Ext.getItemCount;
             return createThing;
         }
 
