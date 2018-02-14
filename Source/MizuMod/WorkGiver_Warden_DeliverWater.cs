@@ -73,7 +73,7 @@ namespace MizuMod
                 // 囚人の部屋の中の全水アイテムの水分量を計算
                 foreach (var thing in region.ListerThings.ThingsInGroup(ThingRequestGroup.HaulableEver))
                 {
-                    if (!thing.CanDrinkWater() || thing.GetWaterPreferability() > WaterPreferability.NeverDrink)
+                    if (!thing.IsIngestibleFor(prisoner) && (!thing.CanDrinkWater() || thing.GetWaterPreferability() > WaterPreferability.NeverDrink))
                     {
                         allThingWaterAmount += WorkGiver_Warden_DeliverWater.WaterAmountAvailableForFrom(prisoner, thing);
                     }
