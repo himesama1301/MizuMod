@@ -70,4 +70,6 @@
   <MizuDesignatorAreaSnowGetClear>集雪ゾーン 取消</MizuDesignatorAreaSnowGetClear>
   <MizuDesignatorAreaSnowGetClearDesc>雪を取得する場所の指定を取り消します。もうそこから入植者は雪を集めようとしません。</MizuDesignatorAreaSnowGetClearDesc>
   
+  <MizuDeconstructSnowmanMessage>さよならなのだ</MizuDeconstructSnowmanMessage>
+  
 </LanguageData>

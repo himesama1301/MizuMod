@@ -24,4 +24,32 @@
     </value>
   </Operation>
   
+  <!-- 雪だるまに破壊メッセージをセットする -->
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>*/ThingDef[defName = "Snowman"]/comps</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>*/ThingDef[defName = "Snowman"]</xpath>
+        <value>
+          <comps/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/ThingDef[defName = "Snowman"]/comps</xpath>
+    <value>
+      <li Class="MizuMod.CompProperties_DestroyMessage">
+        <messageKey>MizuDeconstructSnowmanMessage</messageKey>
+        <destroyModes>
+          <li>Deconstruct</li>
+        </destroyModes>
+      </li>
+    </value>
+  </Operation>
+  
 </Patch>
