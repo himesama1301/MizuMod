@@ -54,6 +54,13 @@ namespace MizuMod
         public static readonly string DesignatorDeconstructPipe = "MizuDesignatorDeconstructPipe".Translate();
         public static readonly string DesignatorDeconstructPipeDescription = "MizuDesignatorDeconstructPipeDesc".Translate();
 
+        // 雪
+        public static readonly string AreaSnowGet = "MizuSnowGet";
+        public static readonly string DesignatorAreaSnowGetExpand = "MizuDesignatorAreaSnowGetExpand";
+        public static readonly string DesignatorAreaSnowGetExpandDescription = "MizuDesignatorAreaSnowGetExpandDesc";
+        public static readonly string DesignatorAreaSnowGetClear = "MizuDesignatorAreaSnowGetClear";
+        public static readonly string DesignatorAreaSnowGetClearDescription = "MizuDesignatorAreaSnowGetClearDesc";
+
 
         public static string GetInspectWaterTypeString(WaterType waterType)
         {
