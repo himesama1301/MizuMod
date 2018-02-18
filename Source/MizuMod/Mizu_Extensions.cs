@@ -400,5 +400,15 @@ namespace MizuMod
             }
             return rate;
         }
+
+        public static Area_SnowGet SnowGet(this AreaManager areaManager)
+        {
+            var area = areaManager.Get<Area_SnowGet>();
+            if (area != null) return area;
+
+            var newArea = new Area_SnowGet(areaManager);
+            areaManager.AllAreas.Add(newArea);
+            return newArea;
+        }
     }
 }
