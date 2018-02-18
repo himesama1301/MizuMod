@@ -264,10 +264,6 @@
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
         <waterVolume>0.5</waterVolume>
       </li>
-      <li Class="CompProperties_Rottable">
-        <daysToRotStart>60</daysToRotStart>
-        <rotDestroys>true</rotDestroys>
-      </li>
     </comps>
   </ThingDef>
   
@@ -332,10 +328,6 @@
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
         <waterVolume>0.5</waterVolume>
       </li>
-      <li Class="CompProperties_Rottable">
-        <daysToRotStart>4</daysToRotStart>
-        <rotDestroys>true</rotDestroys>
-      </li>
     </comps>
   </ThingDef>
 
@@ -368,10 +360,6 @@
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
         <waterVolume>0.5</waterVolume>
       </li>
-      <li Class="CompProperties_Rottable">
-        <daysToRotStart>4</daysToRotStart>
-        <rotDestroys>true</rotDestroys>
-      </li>
     </comps>
   </ThingDef>
 
@@ -403,10 +391,6 @@
         <waterAmount>0.35</waterAmount>
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
         <waterVolume>0.5</waterVolume>
-      </li>
-      <li Class="CompProperties_Rottable">
-        <daysToRotStart>4</daysToRotStart>
-        <rotDestroys>true</rotDestroys>
       </li>
     </comps>
   </ThingDef>
