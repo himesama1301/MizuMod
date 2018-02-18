@@ -29,4 +29,8 @@
   <Mizu_DoBillsUseCraftingSpotForCooking.verb>で作業をする</Mizu_DoBillsUseCraftingSpotForCooking.verb>
   <Mizu_DoBillsUseCraftingSpotForCooking.gerund>で作業をする</Mizu_DoBillsUseCraftingSpotForCooking.gerund>
 
+  <Mizu_GetSnow.label>雪を集める</Mizu_GetSnow.label>
+  <Mizu_GetSnow.verb>で雪を集める</Mizu_GetSnow.verb>
+  <Mizu_GetSnow.gerund>で雪を集める</Mizu_GetSnow.gerund>
+
 </LanguageData>
