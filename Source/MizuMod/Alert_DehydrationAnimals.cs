@@ -23,7 +23,7 @@ namespace MizuMod
 
         public Alert_DehydrationAnimals()
         {
-            this.defaultLabel = MizuStrings.AlertDehydrationAnimal;
+            this.defaultLabel = MizuStrings.AlertDehydrationAnimal.Translate();
         }
 
         public override string GetExplanation()
@@ -40,7 +40,7 @@ namespace MizuMod
                 }
                 stringBuilder.AppendLine();
             }
-            return string.Format(MizuStrings.AlertDehydrationAnimalDesc, stringBuilder.ToString());
+            return string.Format(MizuStrings.AlertDehydrationAnimalDesc.Translate(), stringBuilder.ToString());
         }
 
         public override AlertReport GetReport()

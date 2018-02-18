@@ -93,7 +93,7 @@ namespace MizuMod
                 if (selPawn.IsColonistPlayerControlled)
                 {
                     StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.Append(string.Format(MizuStrings.FloatMenuGetWater, this.parent.LabelNoCount));
+                    stringBuilder.Append(string.Format(MizuStrings.FloatMenuGetWater.Translate(), this.parent.LabelNoCount));
 
                     if (!this.parent.IsSociallyProper(selPawn))
                     {

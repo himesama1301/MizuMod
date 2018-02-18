@@ -113,7 +113,7 @@ namespace MizuMod
             if (!MizuCaravanUtility.TryGetBestWater(caravan, pawn, out waterThing, out inventoryPawn))
             {
                 // 飲んだことにより水がなくなったら警告を出す
-                Messages.Message(string.Format(MizuStrings.MessageCaravanRunOutOfWater, caravan.LabelCap, pawn.Label), caravan, MessageTypeDefOf.ThreatBig);
+                Messages.Message(string.Format(MizuStrings.MessageCaravanRunOutOfWater.Translate(), caravan.LabelCap, pawn.Label), caravan, MessageTypeDefOf.ThreatBig);
             }
         }
     }
@@ -160,7 +160,7 @@ namespace MizuMod
 
             // ツールチップとボタンを追加
             Rect dbRect = new Rect(dbRight - dbWidth, dbTop, dbWidth, dbHeight);
-            TooltipHandler.TipRegion(dbRect, string.Format(MizuStrings.FloatMenuGetWater, thing.LabelNoCount));
+            TooltipHandler.TipRegion(dbRect, string.Format(MizuStrings.FloatMenuGetWater.Translate(), thing.LabelNoCount));
             if (Widgets.ButtonImage(dbRect, MizuGraphics.Texture_ButtonIngest))
             {
                 SoundDefOf.TickHigh.PlayOneShotOnCamera(null);
