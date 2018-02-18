@@ -19,10 +19,18 @@
 
   <ThingCategoryDef>
     <defName>Mizu_Ices</defName>
-    <label>Icess</label>
+    <label>Ices</label>
     <parent>Mizu_H2O</parent>
     <resourceReadoutRoot>false</resourceReadoutRoot>
     <iconPath>Things/Item/Mizu_NormalIce</iconPath>
+  </ThingCategoryDef>
+
+  <ThingCategoryDef>
+    <defName>Mizu_Snows</defName>
+    <label>Snows</label>
+    <parent>Mizu_H2O</parent>
+    <resourceReadoutRoot>false</resourceReadoutRoot>
+    <iconPath>Things/Item/Mizu_Snowball</iconPath>
   </ThingCategoryDef>
 
 </Defs>

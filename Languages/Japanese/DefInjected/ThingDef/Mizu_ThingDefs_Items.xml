@@ -33,5 +33,11 @@
   
   <Mizu_ShavedIce.label>かき氷</Mizu_ShavedIce.label>
   <Mizu_ShavedIce.description>氷塊を削って作られたデザートです。頭痛にご注意を。</Mizu_ShavedIce.description>
-
+  
+  <Mizu_RawSnow.label>雪 (生水)</Mizu_RawSnow.label>
+  <Mizu_RawSnow.description>雪を容器に詰めたものです。舐めることで水分を取ることが出来ますが時間がかかります。</Mizu_RawSnow.description>
+  
+  <Mizu_Snowball.label>雪玉</Mizu_Snowball.label>
+  <Mizu_Snowball.description>積もった雪から作られた雪玉です。舐めることで水分を取ることが出来ますが時間がかかります。またダメージの無い遠距離武器として使用することができます。</Mizu_Snowball.description>
+  
 </LanguageData>
