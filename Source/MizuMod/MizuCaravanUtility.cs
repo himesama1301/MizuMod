@@ -126,12 +126,12 @@ namespace MizuMod
             if (daysWorthOfWater >= InfiniteDaysWorthOfWaterThreshold)
             {
                 // 大量にある
-                originalText = MizuStrings.LabelInfiniteDaysWorthOfWaterInfo;
+                originalText = MizuStrings.LabelInfiniteDaysWorthOfWaterInfo.Translate();
             }
             else
             {
                 // 大量には無い
-                originalText = string.Format(MizuStrings.LabelDaysWorthOfWaterInfo, daysWorthOfWater.ToString("0.#"));
+                originalText = string.Format(MizuStrings.LabelDaysWorthOfWaterInfo.Translate(), daysWorthOfWater.ToString("0.#"));
             }
 
             string truncText = originalText;
@@ -167,7 +167,7 @@ namespace MizuMod
             }
 
             // ツールチップのテキストを追加
-            toolTipText = toolTipText + MizuStrings.LabelDaysWorthOfWaterTooltip + "\n\n";
+            toolTipText = toolTipText + MizuStrings.LabelDaysWorthOfWaterTooltip.Translate() + "\n\n";
 
             // ラベルの領域にツールチップを設定
             TooltipHandler.TipRegion(truncTextRect, toolTipText);
@@ -183,7 +183,7 @@ namespace MizuMod
             {
                 // 水不足のポーンがいる
                 stringBuilder.AppendLine();
-                stringBuilder.Append(MizuStrings.InspectCaravanOutOfWater);
+                stringBuilder.Append(MizuStrings.InspectCaravanOutOfWater.Translate());
 
                 if (!worstDehydrationText.NullOrEmpty())
                 {
@@ -201,7 +201,7 @@ namespace MizuMod
                 {
                     // 水は大量というわけでないなら、水残量を表示
                     stringBuilder.AppendLine();
-                    stringBuilder.Append(string.Format(MizuStrings.InspectCaravanDaysOfWater, daysWorthOfWater.ToString("0.#")));
+                    stringBuilder.Append(string.Format(MizuStrings.InspectCaravanDaysOfWater.Translate(), daysWorthOfWater.ToString("0.#")));
                 }
             }
         }
@@ -272,12 +272,12 @@ namespace MizuMod
                 if (daysWorthOfWater >= DaysWorthOfNoWaterThreshold)
                 {
                     // 少しはある
-                    strList.Add(string.Format(MizuStrings.LabelDaysWorthOfWaterWarningDialog, daysWorthOfWater.ToString("0.#")));
+                    strList.Add(string.Format(MizuStrings.LabelDaysWorthOfWaterWarningDialog.Translate(), daysWorthOfWater.ToString("0.#")));
                 }
                 else
                 {
                     // 全く水を持っていない
-                    strList.Add(MizuStrings.LabelDaysWorthOfWaterWarningDialog_NoWater);
+                    strList.Add(MizuStrings.LabelDaysWorthOfWaterWarningDialog_NoWater.Translate());
                 }
             }
         }
