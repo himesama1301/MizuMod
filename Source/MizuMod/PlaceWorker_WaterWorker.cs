@@ -43,7 +43,7 @@ namespace MizuMod
             if (!(terrainLoc.IsSea() || terrainLoc.IsRiver() || terrainLoc.IsLakeOrPond() || terrainLoc.IsMarsh()))
             {
                 // 水でないなら
-                return new AcceptanceReport(MizuStrings.AcceptanceReportCantBuildExceptOverWater);
+                return new AcceptanceReport(MizuStrings.AcceptanceReportCantBuildExceptOverWater.Translate());
             }
 
             return true;

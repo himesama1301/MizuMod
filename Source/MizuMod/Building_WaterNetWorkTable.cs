@@ -283,7 +283,7 @@ namespace MizuMod
             {
                 stringBuilder.Append(string.Concat(new string[]
                 {
-                    MizuStrings.InspectWaterTankDraining,
+                    MizuStrings.InspectWaterTankDraining.Translate(),
                 }));
             }
 

@@ -174,7 +174,7 @@ namespace MizuMod
 
             stringBuilder.Append(string.Concat(new string[]
             {
-                MizuStrings.InspectWaterTankStored,
+                MizuStrings.InspectWaterTankStored.Translate(),
                 ": ",
                 this.StoredWaterVolume.ToString("F2"),
                 " / ",

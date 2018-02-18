@@ -195,7 +195,7 @@ namespace MizuMod
             {
                 stringBuilder.AppendLine();
             }
-            stringBuilder.Append(MizuStrings.InspectWaterFlowOutput + ": " + this.OutputWaterFlow.ToString("F2") + " L/day");
+            stringBuilder.Append(MizuStrings.InspectWaterFlowOutput.Translate() + ": " + this.OutputWaterFlow.ToString("F2") + " L/day");
             stringBuilder.Append(string.Concat(new string[]
             {
                 "(",

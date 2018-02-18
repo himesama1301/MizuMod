@@ -13,8 +13,8 @@ namespace MizuMod
     {
         public Designator_DeconstructPipe()
         {
-            this.defaultLabel = MizuStrings.DesignatorDeconstructPipe;
-            this.defaultDesc = MizuStrings.DesignatorDeconstructPipeDescription;
+            this.defaultLabel = MizuStrings.DesignatorDeconstructPipe.Translate();
+            this.defaultDesc = MizuStrings.DesignatorDeconstructPipeDescription.Translate();
             this.icon = ContentFinder<Texture2D>.Get("UI/Designators/Deconstruct", true);
             this.soundDragSustain = SoundDefOf.DesignateDragStandard;
             this.soundDragChanged = SoundDefOf.DesignateDragStandardChanged;
