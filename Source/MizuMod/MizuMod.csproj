@@ -69,7 +69,9 @@
     <Compile Include="Building_WaterNet.cs" />
     <Compile Include="Building_WaterNetWorkTable.cs" />
     <Compile Include="Building_Well.cs" />
+    <Compile Include="CompDestroyMessage.cs" />
     <Compile Include="CompLatentHeat.cs" />
+    <Compile Include="CompProperties_DestroyMessage.cs" />
     <Compile Include="CompProperties_LatentHeat.cs" />
     <Compile Include="CompProperties_WaterNetInput.cs" />
     <Compile Include="CompProperties_WaterNetOutput.cs" />
