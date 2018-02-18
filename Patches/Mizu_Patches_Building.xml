@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  
+  <!-- 雪だるまに作成素材をセットする -->
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>*/ThingDef[defName = "Snowman"]/costList</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>*/ThingDef[defName = "Snowman"]</xpath>
+        <value>
+          <costList/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/ThingDef[defName = "Snowman"]/costList</xpath>
+    <value>
+      <Mizu_Snowball>10</Mizu_Snowball>
+    </value>
+  </Operation>
+  
+  <!-- 雪だるまに破壊メッセージをセットする -->
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>*/ThingDef[defName = "Snowman"]/comps</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>*/ThingDef[defName = "Snowman"]</xpath>
+        <value>
+          <comps/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/ThingDef[defName = "Snowman"]/comps</xpath>
+    <value>
+      <li Class="MizuMod.CompProperties_DestroyMessage">
+        <messageKey>MizuDeconstructSnowmanMessage</messageKey>
+        <destroyModes>
+          <li>Deconstruct</li>
+        </destroyModes>
+      </li>
+    </value>
+  </Operation>
+  
+</Patch>

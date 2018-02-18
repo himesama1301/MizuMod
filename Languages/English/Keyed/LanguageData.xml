@@ -70,4 +70,6 @@
   <MizuDesignatorAreaSnowGetClear>Clear snow get area</MizuDesignatorAreaSnowGetClear>
   <MizuDesignatorAreaSnowGetClearDesc>Removes a snow getting area. Colonists will no longer try to get snow from this area.</MizuDesignatorAreaSnowGetClearDesc>
   
+  <MizuDeconstructSnowmanMessage>good bye...</MizuDeconstructSnowmanMessage>
+  
 </LanguageData>
