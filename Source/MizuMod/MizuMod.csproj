@@ -54,6 +54,7 @@
     <Compile Include="Alert_DehydrationAnimals.cs" />
     <Compile Include="Alert_DehydrationColonists.cs" />
     <Compile Include="Alert_LowWater.cs" />
+    <Compile Include="Area_SnowGet.cs" />
     <Compile Include="Building_DrawingWaterSpot.cs" />
     <Compile Include="Building_Faucet.cs" />
     <Compile Include="Building_GroundWaterPump.cs" />
@@ -84,6 +85,9 @@
     <Compile Include="DefExtension_NeedWater.cs" />
     <Compile Include="DefExtension_ThirstRate.cs" />
     <Compile Include="DefExtension_WaterRecipe.cs" />
+    <Compile Include="Designator_AreaSnowGet.cs" />
+    <Compile Include="Designator_AreaSnowGetClear.cs" />
+    <Compile Include="Designator_AreaSnowGetExpand.cs" />
     <Compile Include="Designator_DeconstructPipe.cs" />
     <Compile Include="GenStep_HiddenWaterSpot.cs" />
     <Compile Include="GenStep_UndergroundDeepWater.cs" />
