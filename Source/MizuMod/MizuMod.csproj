@@ -106,6 +106,7 @@
     <Compile Include="JobDriver_DrawWaterByPrisoner.cs" />
     <Compile Include="JobDriver_DrinkWater.cs" />
     <Compile Include="JobDriver_DrinkWaterFromBuilding.cs" />
+    <Compile Include="JobDriver_GetSnow.cs" />
     <Compile Include="JobDriver_PourWater.cs" />
     <Compile Include="JobDriver_WaterDeliver.cs" />
     <Compile Include="JobDriver_WaterFeedPatient.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="WaterTypeDef.cs" />
     <Compile Include="WorkGiver_DoBillWater.cs" />
     <Compile Include="WorkGiver_FeedWaterPatient.cs" />
+    <Compile Include="WorkGiver_GetSnow.cs" />
     <Compile Include="WorkGiver_Warden_DeliverWater.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
