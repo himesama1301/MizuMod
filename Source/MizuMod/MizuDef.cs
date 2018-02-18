@@ -27,6 +27,8 @@ namespace MizuMod
         public static JobDef Job_PourWater = DefDatabase<JobDef>.GetNamed("Mizu_PourWater");
         public static JobDef Job_DrawWaterByPrisoner = DefDatabase<JobDef>.GetNamed("Mizu_DrawWaterByPrisoner");
 
+        public static JobDef Job_GetSnow = DefDatabase<JobDef>.GetNamed("Mizu_GetSnow");
+
         public static StatCategoryDef StatCategory_Water = DefDatabase<StatCategoryDef>.GetNamed("Mizu_WaterCategory");
 
         public static HediffDef Hediff_Dehydration = DefDatabase<HediffDef>.GetNamed("Mizu_Dehydration");
@@ -47,6 +49,8 @@ namespace MizuMod
         public static ThingDef Thing_RawWater = DefDatabase<ThingDef>.GetNamed("Mizu_RawWater");
         public static ThingDef Thing_MudWater = DefDatabase<ThingDef>.GetNamed("Mizu_MudWater");
         public static ThingDef Thing_SeaWater = DefDatabase<ThingDef>.GetNamed("Mizu_SeaWater");
+
+        public static ThingDef Thing_Snowball = DefDatabase<ThingDef>.GetNamed("Mizu_Snowball");
 
         public static ThingDef Thing_WaterPipe = DefDatabase<ThingDef>.GetNamed("Mizu_WaterPipe");
         public static ThingDef Thing_WaterPipeInWater = DefDatabase<ThingDef>.GetNamed("Mizu_WaterPipeInWater");

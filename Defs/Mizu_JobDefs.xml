@@ -55,4 +55,10 @@
     <reportString>drawing water from TargetA.</reportString>
   </JobDef>
   
+  <JobDef>
+    <defName>Mizu_GetSnow</defName>
+    <driverClass>MizuMod.JobDriver_GetSnow</driverClass>
+    <reportString>getting snow.</reportString>
+  </JobDef>
+  
 </Defs>

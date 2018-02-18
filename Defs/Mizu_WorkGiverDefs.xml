@@ -118,4 +118,20 @@
     </requiredCapacities>
     <prioritizeSustains>true</prioritizeSustains>
   </WorkGiverDef>
+  
+  <WorkGiverDef>
+    <defName>Mizu_GetSnow</defName>
+    <label>get snow</label>
+    <giverClass>MizuMod.WorkGiver_GetSnow</giverClass>
+    <workType>Mizu_Drawing</workType>
+    <verb>get snow</verb>
+    <gerund>getting snow</gerund>
+    <priorityInType>10</priorityInType>
+    <scanThings>false</scanThings>
+    <scanCells>true</scanCells>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+  
 </Defs>
