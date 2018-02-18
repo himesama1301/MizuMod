@@ -23,7 +23,7 @@ namespace MizuMod
 
         public Alert_DehydrationColonists()
         {
-            this.defaultLabel = MizuStrings.AlertDehydration;
+            this.defaultLabel = MizuStrings.AlertDehydration.Translate();
             this.defaultPriority = AlertPriority.High;
         }
 
@@ -34,7 +34,7 @@ namespace MizuMod
             {
                 stringBuilder.AppendLine("    " + current.NameStringShort);
             }
-            return string.Format(MizuStrings.AlertDehydrationDesc, stringBuilder.ToString());
+            return string.Format(MizuStrings.AlertDehydrationDesc.Translate(), stringBuilder.ToString());
         }
 
         public override AlertReport GetReport()

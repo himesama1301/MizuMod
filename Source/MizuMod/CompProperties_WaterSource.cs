@@ -67,7 +67,7 @@ namespace MizuMod
             if (this.sourceType == SourceType.Item)
             {
                 // アイテム1個から得られる水分量
-                yield return new StatDrawEntry(MizuDef.StatCategory_Water, MizuStrings.CompWaterAmount, waterAmount.ToString("0.##"), 11);
+                yield return new StatDrawEntry(MizuDef.StatCategory_Water, MizuStrings.CompWaterAmount.Translate(), waterAmount.ToString("0.##"), 11);
             }
         }
 
