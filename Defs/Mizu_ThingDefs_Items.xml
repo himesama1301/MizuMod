@@ -532,6 +532,12 @@
     <statBases>
       <MarketValue>0.2</MarketValue>
       <WorkToMake>100</WorkToMake>
+      <AccuracyTouch>0.91</AccuracyTouch>
+      <AccuracyShort>0.71</AccuracyShort>
+      <AccuracyMedium>0.50</AccuracyMedium>
+      <AccuracyLong>0.32</AccuracyLong>
+      <RangedWeapon_Cooldown>1.38</RangedWeapon_Cooldown>
+      <Weapon_Bulk>0.5</Weapon_Bulk>
     </statBases>
     <comps>
       <li Class="MizuMod.CompProperties_LatentHeat">
@@ -549,6 +555,44 @@
         <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
         <waterVolume>0.5</waterVolume>
       </li>
+      <li>
+        <compClass>CompEquippable</compClass>
+      </li>
     </comps>
+    <equipmentType>Primary</equipmentType>
+    <weaponTags>
+      <li>Mizu_JokeWeapon</li>
+    </weaponTags>
+    <techLevel>Neolithic</techLevel>
+    <verbs>
+      <li>
+        <label>throw snowball</label>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Mizu_Bullet_Snowball</defaultProjectile>
+        <warmupTime>1.5</warmupTime>
+        <range>12.9</range>
+        <burstShotCount>1</burstShotCount>
+        <soundCast>ThrowGrenade</soundCast>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+      </li>
+    </verbs>
   </ThingDef>
+  
+  <ThingDef ParentName="BaseBullet">
+    <defName>Mizu_Bullet_Snowball</defName>
+    <label>snowball</label>
+    <graphicData>
+      <texPath>Things/Item/Mizu_Snowball</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>0</damageAmountBase>
+      <speed>20</speed>
+    </projectile>
+  </ThingDef>
+  
 </Defs>
