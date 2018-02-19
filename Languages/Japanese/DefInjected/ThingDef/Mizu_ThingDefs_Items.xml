@@ -40,4 +40,6 @@
   <Mizu_Snowball.label>雪玉</Mizu_Snowball.label>
   <Mizu_Snowball.description>積もった雪から作られた雪玉です。舐めることで水分を取ることが出来ますが時間がかかります。またダメージの無い遠距離武器として使用することができます。</Mizu_Snowball.description>
   
+  <Mizu_Bullet_Snowball.label>雪玉</Mizu_Bullet_Snowball.label>
+  
 </LanguageData>
