@@ -318,8 +318,16 @@ namespace MizuMod
                 return true;
             });
 
-            // 1マスをランダムで選ぶ
-            return standableAdjacentCells.RandomElement();
+            if (standableAdjacentCells.Count() == 0)
+            {
+                // 候補がない場合、設備の真上を指定
+                return building.Position;
+            }
+            else
+            {
+                // 候補がある場合→1マスをランダムで選ぶ
+                return standableAdjacentCells.RandomElement();
+            }
         }
 
         private static void MakeIngredientsListInProcessingOrder(List<IngredientCount> ingredientsOrdered, Bill bill)
