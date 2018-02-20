@@ -47,7 +47,7 @@ namespace MizuMod
             }
             else
             {
-                peMode = PathEndMode.ClosestTouch;
+                peMode = PathEndMode.Touch;
             }
 
             // 設備まで行く
