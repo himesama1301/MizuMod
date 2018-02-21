@@ -46,11 +46,14 @@
       </li>
     </operations>
   </Operation>
-
+  
+  <!-- 作業場にレシピを追加する -->
   <Operation Class="PatchOperationAdd">
     <xpath>*/ThingDef[defName = "CraftingSpot"]/recipes</xpath>
     <value>
       <li>Mizu_MakeShavedIce</li>
+      <li>Mizu_BottleSnow</li>
+      <li>Mizu_BottleSnowMulti</li>
     </value>
   </Operation>
   

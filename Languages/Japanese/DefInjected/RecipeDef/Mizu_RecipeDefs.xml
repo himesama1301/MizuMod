@@ -91,6 +91,10 @@
   <Mizu_DesalinateSeaWater.description>海水を淡水化し、普通の水にします。</Mizu_DesalinateSeaWater.description>
   <Mizu_DesalinateSeaWater.jobString>海水を淡水化している</Mizu_DesalinateSeaWater.jobString>
   
+  <Mizu_BottleSnow.label>雪をビンに詰める</Mizu_BottleSnow.label>
+  <Mizu_BottleSnow.description>保存のため、雪をビンに詰めます。</Mizu_BottleSnow.description>
+  <Mizu_BottleSnow.jobString>雪をビンに詰めている</Mizu_BottleSnow.jobString>
+  
   <Mizu_PurifyWaterMulti.label>水を5個浄化する</Mizu_PurifyWaterMulti.label>
   <Mizu_PurifyWaterMulti.description>水5個を木炭で浄化し、きれいな水にします。</Mizu_PurifyWaterMulti.description>
   <Mizu_PurifyWaterMulti.jobString>水を浄化している</Mizu_PurifyWaterMulti.jobString>
@@ -106,6 +110,10 @@
   <Mizu_DesalinateSeaWaterMulti.label>海水を5個淡水化する</Mizu_DesalinateSeaWaterMulti.label>
   <Mizu_DesalinateSeaWaterMulti.description>海水を5個淡水化し、普通の水にします。</Mizu_DesalinateSeaWaterMulti.description>
   <Mizu_DesalinateSeaWaterMulti.jobString>海水を淡水化している</Mizu_DesalinateSeaWaterMulti.jobString>
+  
+  <Mizu_BottleSnowMulti.label>雪を5個ビンに詰める</Mizu_BottleSnowMulti.label>
+  <Mizu_BottleSnowMulti.description>保存のため、雪を5個ビンに詰めます。</Mizu_BottleSnowMulti.description>
+  <Mizu_BottleSnowMulti.jobString>雪をビンに詰めている</Mizu_BottleSnowMulti.jobString>
   
   
   

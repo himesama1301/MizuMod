@@ -447,6 +447,36 @@
   </RecipeDef>
   
   <RecipeDef>
+    <defName>Mizu_BottleSnow</defName>
+    <label>bottle snow</label>
+    <description>bottle snow for preservation.</description>
+    <jobString>Bottling snow.</jobString>
+    <workAmount>200</workAmount>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Mizu_Snowball</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Mizu_Snowball</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Mizu_RawSnow>1</Mizu_RawSnow>
+    </products>
+  </RecipeDef>
+  
+  <RecipeDef>
     <defName>Mizu_PurifyWaterMulti</defName>
     <label>filter water x5</label>
     <description>filter water x5 by using charcoal to product clear water.</description>
@@ -585,6 +615,36 @@
     </products>
   </RecipeDef>
   
+  <RecipeDef>
+    <defName>Mizu_BottleSnowMulti</defName>
+    <label>bottle snow x5</label>
+    <description>bottle snow x5 for preservation.</description>
+    <jobString>Bottling snow.</jobString>
+    <workAmount>1000</workAmount>
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Mizu_Snowball</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Mizu_Snowball</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Mizu_RawSnow>5</Mizu_RawSnow>
+    </products>
+  </RecipeDef>
+  
   
   
   <!-- 普通のアイテム作成レシピ  Make Item -->
@@ -632,7 +692,8 @@
     </fixedIngredientFilter>
     <defaultIngredientFilter>
       <categories>
-        <li>Mizu_H2O</li>
+        <li>Mizu_Waters</li>
+        <li>Mizu_Ices</li>
       </categories>
       <exceptedThingDefs>
         <li>Mizu_RawWater</li>
