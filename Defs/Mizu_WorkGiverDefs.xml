@@ -120,6 +120,23 @@
   </WorkGiverDef>
   
   <WorkGiverDef>
+    <defName>Mizu_DoBillsUseCraftingSpotForDrawing</defName>
+    <label>do bills at crafting spot</label>
+    <giverClass>WorkGiver_DoBill</giverClass>
+    <workType>Mizu_Drawing</workType>
+    <priorityInType>100</priorityInType>
+    <fixedBillGiverDefs>
+      <li>CraftingSpot</li>
+    </fixedBillGiverDefs>
+    <verb>craft</verb>
+    <gerund>crafting at</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+  
+  <WorkGiverDef>
     <defName>Mizu_GetSnow</defName>
     <label>get snow</label>
     <giverClass>MizuMod.WorkGiver_GetSnow</giverClass>
