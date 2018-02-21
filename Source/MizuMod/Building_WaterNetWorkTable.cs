@@ -299,6 +299,7 @@ namespace MizuMod
                         string.Format("InNetID({0})", this.InputWaterNet.ID),
                         string.Format("Stored({0},{1})", this.InputWaterNet.StoredWaterVolume.ToString("F2"), this.InputWaterNet.StoredWaterType.ToString()),
                         string.Format("Flow({0})", this.InputWaterNet.WaterType),
+                        string.Format("Temp({0})", this.InputWaterNet.CurrentTemperature),
                     }));
                 }
                 else
@@ -312,6 +313,7 @@ namespace MizuMod
                         string.Format("OutNetID({0})", this.OutputWaterNet.ID),
                         string.Format("Stored({0},{1})", this.OutputWaterNet.StoredWaterVolume.ToString("F2"), this.OutputWaterNet.StoredWaterType.ToString()),
                         string.Format("Flow({0})", this.OutputWaterNet.WaterType),
+                        string.Format("Temp({0})", this.OutputWaterNet.CurrentTemperature),
                     }));
                 }
                 else
