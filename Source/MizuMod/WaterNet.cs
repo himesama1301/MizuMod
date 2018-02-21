@@ -63,6 +63,15 @@ namespace MizuMod
             }
         }
 
+        private float currentTemperature = 12.3f;
+        public float CurrentTemperature
+        {
+            get
+            {
+                return this.currentTemperature;
+            }
+        }
+
         public MapComponent_WaterNetManager Manager { get; set; }
 
         public WaterNet()
