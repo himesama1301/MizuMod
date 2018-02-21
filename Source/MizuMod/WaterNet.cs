@@ -63,7 +63,7 @@ namespace MizuMod
             }
         }
 
-        private float currentTemperature = 12.3f;
+        private float currentTemperature;
         public float CurrentTemperature
         {
             get
@@ -343,6 +343,19 @@ namespace MizuMod
 
         public void UpdateInputWaterFlow()
         {
+            // 外気温による水道網全体の温度を設定
+            float totalTemperature = 0f;
+            float totalCellCount = 0;
+            foreach (var t in allThings)
+            {
+                foreach (var c in t.OccupiedRect())
+                {
+                    totalTemperature += GenTemperature.GetTemperatureForCell(c, this.Manager.map);
+                    totalCellCount++;
+                }
+            }
+            this.currentTemperature = totalTemperature / totalCellCount;
+
             // 入力値をクリア
             foreach (var item in inputterTypeDic)
             {
