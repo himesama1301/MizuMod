@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ツール Tools -->
+  <ThingDef Name="Mizu_ToolBase" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Beauty>-1</Beauty>
+    </statBases>
+    <altitudeLayer>Item</altitudeLayer>
+    <stackLimit>1</stackLimit>
+    <thingCategories>
+      <li>Mizu_Tools</li>
+    </thingCategories>
+    <alwaysHaulable>true</alwaysHaulable>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+    </comps>
+    <pathCost>15</pathCost>
+    <resourceReadoutPriority>Last</resourceReadoutPriority>
+    <drawGUIOverlay>true</drawGUIOverlay>
+  </ThingDef>
+  
+  <ThingDef ParentName="Mizu_ToolBase">
+    <defName>Mizu_Mop</defName>
+    <label>Mop</label>
+    <description>A tool for cleaning. Allows to clean more cleanly on the artifical floors.</description>
+    <graphicData>
+      <texPath>Things/Item/Mizu_ClearWater</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>10</MarketValue>
+      <WorkToMake>2500</WorkToMake>
+      <Mass>0.5</Mass>
+    </statBases>
+    <costList>
+      <Cloth>15</Cloth>
+    </costList>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>5</costStuffCount>
+<!--
+    <comps>
+    </comps>
+-->
+  </ThingDef>
+  
+</Defs>
