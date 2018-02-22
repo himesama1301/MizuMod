@@ -33,4 +33,10 @@
     <iconPath>Things/Item/Mizu_Snowball</iconPath>
   </ThingCategoryDef>
 
+  <ThingCategoryDef>
+    <defName>Mizu_Tools</defName>
+    <label>Tools</label>
+    <parent>Items</parent>
+  </ThingCategoryDef>
+
 </Defs>
