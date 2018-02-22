@@ -494,8 +494,8 @@
     <label>Snow (Raw water)</label>
     <description>A bottled snow. Allows get water by licking it for a long time.</description>
     <graphicData>
-      <texPath>Things/Item/Mizu_Snowball</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Item/Mizu_RawSnow</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>0.2</MarketValue>
