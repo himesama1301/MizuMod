@@ -101,7 +101,7 @@
     </requiredCapacities>
     <prioritizeSustains>true</prioritizeSustains>
   </WorkGiverDef>
-
+<!--
   <WorkGiverDef>
     <defName>Mizu_DoBillsUseCraftingSpotForCooking</defName>
     <label>do bills at crafting spot</label>
@@ -135,7 +135,7 @@
     </requiredCapacities>
     <prioritizeSustains>true</prioritizeSustains>
   </WorkGiverDef>
-  
+-->
   <WorkGiverDef>
     <defName>Mizu_GetSnow</defName>
     <label>get snow</label>
