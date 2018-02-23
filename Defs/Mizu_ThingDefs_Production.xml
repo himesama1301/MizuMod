@@ -190,6 +190,8 @@
       <li>Mizu_BoilRawWaterMulti</li>
       <li>Mizu_PercolateMudWaterMulti</li>
       <li>Mizu_DesalinateSeaWaterMulti</li>
+      <li>Mizu_BottleSnow</li>
+      <li>Mizu_BottleSnowMulti</li>
     </recipes>
     <inspectorTabs>
       <li>ITab_Bills</li>
