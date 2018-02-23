@@ -2,6 +2,20 @@
 <Defs>
 
   <!-- ツール Tools -->
+  <ThingDef ParentName="UnfinishedBase">
+    <defName>Mizu_UnfinishedTool</defName>
+    <label>unfinished tool</label>
+    <graphicData>
+      <texPath>Things/Item/Unfinished/UnfinishedWeapon</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+  </ThingDef>
+  
   <ThingDef Name="Mizu_ToolBase" Abstract="True">
     <thingClass>ThingWithComps</thingClass>
     <category>Item</category>
@@ -44,9 +58,30 @@
     <stuffCategories>
       <li>Metallic</li>
       <li>Woody</li>
-      <li>Stony</li>
     </stuffCategories>
     <costStuffCount>5</costStuffCount>
+    <recipeMaker>
+      <defaultIngredientFilter>
+        <categories>
+          <li>Root</li>
+        </categories>
+        <exceptedThingDefs>
+          <li>Uranium</li>
+          <li>Gold</li>
+          <li>Silver</li>
+          <li>Steel</li>
+          <li>Plasteel</li>
+        </exceptedThingDefs>
+      </defaultIngredientFilter>
+      <recipeUsers>
+        <li>ElectricSmithy</li>
+        <li>FueledSmithy</li>
+        <li>CraftingSpot</li>
+      </recipeUsers>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <unfinishedThingDef>Mizu_UnfinishedTool</unfinishedThingDef>
+    </recipeMaker>
 <!--
     <comps>
     </comps>
