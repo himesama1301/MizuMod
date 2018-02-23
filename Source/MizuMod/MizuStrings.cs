@@ -61,6 +61,13 @@ namespace MizuMod
         public static readonly string DesignatorAreaSnowGetClear = "MizuDesignatorAreaSnowGetClear";
         public static readonly string DesignatorAreaSnowGetClearDescription = "MizuDesignatorAreaSnowGetClearDesc";
 
+        // モップ
+        public static readonly string AreaMop = "MizuMop";
+        public static readonly string DesignatorAreaMopExpand = "MizuDesignatorAreaMopExpand";
+        public static readonly string DesignatorAreaMopExpandDescription = "MizuDesignatorAreaMopExpandDesc";
+        public static readonly string DesignatorAreaMopClear = "MizuDesignatorAreaMopClear";
+        public static readonly string DesignatorAreaMopClearDescription = "MizuDesignatorAreaMopClearDesc";
+
 
         public static string GetInspectWaterTypeString(WaterType waterType)
         {

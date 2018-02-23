@@ -410,5 +410,15 @@ namespace MizuMod
             areaManager.AllAreas.Add(newArea);
             return newArea;
         }
+
+        public static Area_Mop Mop(this AreaManager areaManager)
+        {
+            var area = areaManager.Get<Area_Mop>();
+            if (area != null) return area;
+
+            var newArea = new Area_Mop(areaManager);
+            areaManager.AllAreas.Add(newArea);
+            return newArea;
+        }
     }
 }
