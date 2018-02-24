@@ -8,7 +8,7 @@
     <useHitPoints>false</useHitPoints>
     <drawerType>MapMeshOnly</drawerType>
     <graphicData>
-      <graphicClass>Graphic_Cluster</graphicClass>
+      <graphicClass>Graphic_Single</graphicClass>
       <shaderType>Transparent</shaderType>
     </graphicData>
   </ThingDef>
@@ -17,8 +17,8 @@
     <defName>Mizu_MoppedThing</defName>
     <label>mopped</label>
     <graphicData>
-      <texPath>Things/Filth/PoolSoft</texPath>
-      <color>(179, 185, 73, 180)</color>
+      <texPath>Things/Mizu_White</texPath>
+      <color>(255, 255, 255, 25)</color>
     </graphicData>
     <statBases>
       <Beauty>1</Beauty>
