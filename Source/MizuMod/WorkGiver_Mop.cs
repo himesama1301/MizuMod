@@ -53,6 +53,13 @@ namespace MizuMod
             // その場所を予約できないならやらない
             if (!pawn.CanReserve(c)) return false;
 
+            // モップアイテムのチェック
+            // とりあえずモップ固定
+            // あとでモップ能力のあるアイテム全てに変更する
+            var mopList = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).Where((t) => t.def == MizuDef.Thing_Mop);
+            if (mopList.Count() == 0) return false;
+            if (mopList.Where((t) => pawn.CanReserve(t)).Count() == 0) return false;
+
             return true;
         }
 
@@ -88,6 +95,34 @@ namespace MizuMod
                 // 掃除対象が5個以上あるならポーンからの距離が近い順に掃除させる
                 job.targetQueueA.SortBy((LocalTargetInfo targ) => targ.Cell.DistanceToSquared(pawn.Position));
             }
+
+            // 一番近いモップを探す
+            Thing candidateMop = null;
+            int minDist = int.MaxValue;
+            var mopList = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).Where((t) => t.def == MizuDef.Thing_Mop);
+
+            foreach (var mop in mopList)
+            {
+                // 予約できないモップはパス
+                if (!pawn.CanReserve(mop)) continue;
+
+                int mopDist = (mop.Position - pawn.Position).LengthHorizontalSquared;
+                if (minDist > mopDist)
+                {
+                    minDist = mopDist;
+                    candidateMop = mop;
+                }
+            }
+
+            if (candidateMop == null)
+            {
+                Log.Error("candidateMop is null");
+                return null;
+            }
+
+            // モップをTargetBにセット
+            job.targetB = candidateMop;
+            job.count = 1;
 
             return job;
         }
