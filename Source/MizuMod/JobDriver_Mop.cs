@@ -14,7 +14,7 @@ namespace MizuMod
         private const TargetIndex MoppingInd = TargetIndex.A;
         private const TargetIndex MopInd = TargetIndex.B;
         private const TargetIndex MopPlaceInd = TargetIndex.C;
-        private const int MoppingTicks = 200;
+        private const int MoppingTicks = 60;
 
         private IntVec3 MoppingPos
         {
@@ -35,8 +35,6 @@ namespace MizuMod
         {
             this.pawn.ReserveAsManyAsPossible(this.job.GetTargetQueue(MoppingInd), this.job);
             this.pawn.Reserve(this.Mop, this.job);
-
-            Log.Message("JobDriver_Mop.TargetB => " + this.Mop.ToString());
             return true;
         }
 
