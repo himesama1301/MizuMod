@@ -72,4 +72,10 @@
   
   <MizuDeconstructSnowmanMessage>good bye...</MizuDeconstructSnowmanMessage>
   
+  <MizuMop>Mop area</MizuMop>
+  <MizuDesignatorAreaMopExpand>Expand mop area</MizuDesignatorAreaMopExpand>
+  <MizuDesignatorAreaMopExpandDesc>Create a area which colonists clean with mop.</MizuDesignatorAreaMopExpandDesc>
+  <MizuDesignatorAreaMopClear>Clear mop area</MizuDesignatorAreaMopClear>
+  <MizuDesignatorAreaMopClearDesc>Removes a cleaning area with mop. Colonists will no longer clean at the place with mop.</MizuDesignatorAreaMopClearDesc>
+  
 </LanguageData>

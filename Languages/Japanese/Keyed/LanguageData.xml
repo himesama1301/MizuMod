@@ -72,4 +72,10 @@
   
   <MizuDeconstructSnowmanMessage>さよならなのだ</MizuDeconstructSnowmanMessage>
   
+  <MizuMop>モップエリア</MizuMop>
+  <MizuDesignatorAreaMopExpand>モップゾーン</MizuDesignatorAreaMopExpand>
+  <MizuDesignatorAreaMopExpandDesc>入植者がモップで清掃する場所を指定します。</MizuDesignatorAreaMopExpandDesc>
+  <MizuDesignatorAreaMopClear>モップゾーン 取消</MizuDesignatorAreaMopClear>
+  <MizuDesignatorAreaMopClearDesc>モップで清掃する場所の指定を取り消します。もうそこを入植者はモップで清掃しようとしません。</MizuDesignatorAreaMopClearDesc>
+  
 </LanguageData>
