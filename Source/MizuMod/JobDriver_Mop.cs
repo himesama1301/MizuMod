@@ -11,99 +11,123 @@ namespace MizuMod
 {
     public class JobDriver_Mop : JobDriver
     {
-        private float cleaningWorkDone;
+        private const TargetIndex MoppingInd = TargetIndex.A;
+        private const TargetIndex MopInd = TargetIndex.B;
+        private const TargetIndex MopPlaceInd = TargetIndex.C;
+        private const int MoppingTicks = 200;
 
-        private float totalCleaningWorkDone;
-
-        private float totalCleaningWorkRequired;
-
-        private const TargetIndex FilthInd = TargetIndex.A;
-
-        private Filth Filth
+        private IntVec3 MoppingPos
         {
             get
             {
-                return (Filth)this.job.GetTarget(FilthInd).Thing;
+                return this.job.GetTarget(MoppingInd).Cell;
+            }
+        }
+        private ThingWithComps Mop
+        {
+            get
+            {
+                return (ThingWithComps)this.job.GetTarget(MopInd).Thing;
             }
         }
 
         public override bool TryMakePreToilReservations()
         {
-            this.pawn.ReserveAsManyAsPossible(this.job.GetTargetQueue(FilthInd), this.job, 1, -1, null);
+            this.pawn.ReserveAsManyAsPossible(this.job.GetTargetQueue(MoppingInd), this.job);
+            this.pawn.Reserve(this.Mop, this.job);
+
+            Log.Message("JobDriver_Mop.TargetB => " + this.Mop.ToString());
             return true;
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
+            // モップまで移動
+            yield return Toils_Goto.GotoThing(MopInd, PathEndMode.Touch);
+
+            // モップを手に取る
+            yield return Toils_Haul.StartCarryThing(MopInd);
+
             // ターゲットが掃除対象として不適になっていたらリストから外す
-            Toil initExtractTargetFromQueue = Toils_JobTransforms.ClearDespawnedNullOrForbiddenQueuedTargets(FilthInd);
+            //Thing系にしか使えない
+            Toil initExtractTargetFromQueue = Toils_Mizu.ClearCondifionSatisfiedTargets(MoppingInd, (lti) =>
+            {
+                return lti.Cell.GetFirstThing(this.pawn.Map, MizuDef.Thing_MoppedThing) != null;
+            });
             yield return initExtractTargetFromQueue;
 
-            // ターゲットが空になっていたら成功扱いで終了
-            yield return Toils_JobTransforms.SucceedOnNoTargetInQueue(FilthInd);
+            yield return Toils_JobTransforms.SucceedOnNoTargetInQueue(MoppingInd);
 
             // ターゲットキューから次のターゲットを取り出す
-            yield return Toils_JobTransforms.ExtractNextTargetFromQueue(FilthInd, true);
+            yield return Toils_JobTransforms.ExtractNextTargetFromQueue(MoppingInd, true);
 
             // ターゲットの元へ移動
-            yield return Toils_Goto.GotoThing(FilthInd, PathEndMode.Touch)
-                .JumpIfDespawnedOrNullOrForbidden(FilthInd, initExtractTargetFromQueue)
-                .JumpIfOutsideMopArea(FilthInd, initExtractTargetFromQueue);
+            yield return Toils_Goto.GotoCell(MoppingInd, PathEndMode.Touch)
+                .JumpIf(() =>
+                {
+                    var target = this.pawn.jobs.curJob.GetTarget(MoppingInd);
+                    if (target.HasThing) return true;
 
-            // 掃除行動
-            Toil clean = new Toil();
-            clean.initAction = delegate
+                    return target.Cell.GetFirstThing(this.pawn.Map, MizuDef.Thing_MoppedThing) != null;
+                }, initExtractTargetFromQueue)
+                .JumpIfOutsideMopArea(MoppingInd, initExtractTargetFromQueue);
+
+            // ピカピカ追加
+            Toil mopToil = new Toil();
+            mopToil.initAction = delegate
             {
                 // 必要工数の計算
-                this.cleaningWorkDone = 0f;
-                this.totalCleaningWorkDone = 0f;
-                this.totalCleaningWorkRequired = this.Filth.def.filth.cleaningWorkToReduceThickness * (float)this.Filth.thickness;
+                this.ticksLeftThisToil = MoppingTicks;
             };
-            clean.tickAction = delegate
+            mopToil.AddFinishAction(() =>
             {
-                Filth filth = this.Filth;
-
-                // 進捗更新
-                this.cleaningWorkDone += 1f;
-                this.totalCleaningWorkDone += 1f;
-
-                if (this.cleaningWorkDone > filth.def.filth.cleaningWorkToReduceThickness)
-				{
-                    // 汚れ1枚分の掃除完了
-
-                    // 汚れを1枚減らす
-                    filth.ThinFilth();
-                    this.cleaningWorkDone = 0f;
-
-                    if (filth.Destroyed)
-                    {
-                        // ターゲットの汚れが完全になくなった
-                        clean.actor.records.Increment(RecordDefOf.MessesCleaned);
-                        this.ReadyForNextToil();
-                        return;
-                    }
-                }
-            };
+                // モップオブジェクト生成
+                var moppedThing = ThingMaker.MakeThing(MizuDef.Thing_MoppedThing);
+                GenSpawn.Spawn(moppedThing, this.MoppingPos, mopToil.actor.Map);
+            });
             // 細々とした設定
-            clean.defaultCompleteMode = ToilCompleteMode.Never;
-            clean.WithEffect(EffecterDefOf.Clean, FilthInd);
-            clean.WithProgressBar(FilthInd, () => this.totalCleaningWorkDone / this.totalCleaningWorkRequired, true, -0.5f);
-            clean.PlaySustainerOrSound(() => SoundDefOf.Interact_CleanFilth);
+            mopToil.defaultCompleteMode = ToilCompleteMode.Delay;
+            mopToil.WithProgressBar(MoppingInd, () => 1f - (float)this.ticksLeftThisToil / MoppingTicks, true, -0.5f);
+            mopToil.PlaySustainerOrSound(() => SoundDefOf.Interact_CleanFilth);
             // 掃除中に条件が変更されたら最初に戻る
-            clean.JumpIfDespawnedOrNullOrForbidden(FilthInd, initExtractTargetFromQueue);
-            clean.JumpIfOutsideMopArea(FilthInd, initExtractTargetFromQueue);
-            yield return clean;
+            mopToil.JumpIf(() =>
+            {
+                var target = this.pawn.jobs.curJob.GetTarget(MoppingInd);
+                if (target.HasThing) return true;
+
+                return target.Cell.GetFirstThing(this.pawn.Map, MizuDef.Thing_MoppedThing) != null;
+            }, initExtractTargetFromQueue);
+            mopToil.JumpIfOutsideMopArea(MoppingInd, initExtractTargetFromQueue);
+            yield return mopToil;
 
             // 最初に戻る
-            yield return Toils_Jump.Jump(initExtractTargetFromQueue);
-        }
+            yield return Toils_Jump.JumpIf(initExtractTargetFromQueue, () =>
+            {
+                return this.pawn.jobs.curJob.GetTargetQueue(MoppingInd).Count > 0;
+            });
 
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Values.Look<float>(ref this.cleaningWorkDone, "cleaningWorkDone", 0f, false);
-            Scribe_Values.Look<float>(ref this.totalCleaningWorkDone, "totalCleaningWorkDone", 0f, false);
-            Scribe_Values.Look<float>(ref this.totalCleaningWorkRequired, "totalCleaningWorkRequired", 0f, false);
+            // モップを片付ける場所を決める
+            Toil startCarryToil = new Toil();
+            startCarryToil.initAction = () =>
+            {
+                var actor = startCarryToil.actor;
+                var curJob = actor.jobs.curJob;
+                IntVec3 c;
+                if (StoreUtility.TryFindBestBetterStoreCellFor(Mop, actor, actor.Map, StoragePriority.Unstored, actor.Faction, out c))
+                {
+                    curJob.targetC = c;
+                    curJob.count = 99999;
+                    return;
+                }
+            };
+            startCarryToil.defaultCompleteMode = ToilCompleteMode.Instant;
+            yield return startCarryToil;
+
+            // 倉庫まで移動
+            yield return Toils_Goto.GotoCell(MopPlaceInd, PathEndMode.Touch);
+
+            // 倉庫に置く
+            yield return Toils_Haul.PlaceCarriedThingInCellFacing(MopPlaceInd);
         }
     }
 }

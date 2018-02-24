@@ -56,6 +56,9 @@ namespace MizuMod
         public static ThingDef Thing_WaterPipe = DefDatabase<ThingDef>.GetNamed("Mizu_WaterPipe");
         public static ThingDef Thing_WaterPipeInWater = DefDatabase<ThingDef>.GetNamed("Mizu_WaterPipeInWater");
 
+        public static ThingDef Thing_Mop = DefDatabase<ThingDef>.GetNamed("Mizu_Mop");
+        public static ThingDef Thing_MoppedThing = DefDatabase<ThingDef>.GetNamed("Mizu_MoppedThing");
+
         public static ThingCategoryDef ThingCategory_Waters = DefDatabase<ThingCategoryDef>.GetNamed("Mizu_Waters");
 
         public static WaterTypeDef WaterType_Clear = DefDatabase<WaterTypeDef>.GetNamed("Mizu_WaterTypeClear");
