@@ -24,6 +24,12 @@
       <Beauty>1</Beauty>
       <Cleanliness>1</Cleanliness>
     </statBases>
+    <tickerType>Rare</tickerType>
+    <comps>
+      <li Class="MizuMod.CompProperties_DestroyByTime">
+        <destroyTicks>60000</destroyTicks>
+      </li>
+    </comps>
   </ThingDef>
   
 </Defs>
