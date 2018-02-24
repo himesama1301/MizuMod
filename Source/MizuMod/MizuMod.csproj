@@ -160,6 +160,7 @@
     <Compile Include="WorkGiver_DoBillWater.cs" />
     <Compile Include="WorkGiver_FeedWaterPatient.cs" />
     <Compile Include="WorkGiver_GetSnow.cs" />
+    <Compile Include="WorkGiver_Mop.cs" />
     <Compile Include="WorkGiver_Warden_DeliverWater.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

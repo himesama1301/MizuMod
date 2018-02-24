@@ -117,4 +117,17 @@
     </requiredCapacities>
   </WorkGiverDef>
   
+  <WorkGiverDef>
+    <defName>Mizu_Mop</defName>
+    <label>mop</label>
+    <giverClass>MizuMod.WorkGiver_Mop</giverClass>
+    <workType>Cleaning</workType>
+    <verb>mop</verb>
+    <gerund>mopping</gerund>
+    <priorityInType>1</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+  
 </Defs>

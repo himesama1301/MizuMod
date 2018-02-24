@@ -61,4 +61,10 @@
     <reportString>getting snow.</reportString>
   </JobDef>
   
+  <JobDef>
+    <defName>Mizu_Mop</defName>
+    <driverClass>JobDriver_CleanFilth</driverClass>
+    <reportString>mopping TargetA.</reportString>
+  </JobDef>
+  
 </Defs>
