@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef Name="Mizu_BaseFilthLike" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <category>Filth</category>
+    <altitudeLayer>Filth</altitudeLayer>
+    <useHitPoints>false</useHitPoints>
+    <drawerType>MapMeshOnly</drawerType>
+    <graphicData>
+      <graphicClass>Graphic_Cluster</graphicClass>
+      <shaderType>Transparent</shaderType>
+    </graphicData>
+  </ThingDef>
+  
+  <ThingDef ParentName="Mizu_BaseFilthLike">
+    <defName>Mizu_MoppedThing</defName>
+    <label>mopped</label>
+    <graphicData>
+      <texPath>Things/Filth/PoolSoft</texPath>
+      <color>(179, 185, 73, 180)</color>
+    </graphicData>
+    <statBases>
+      <Beauty>1</Beauty>
+      <Cleanliness>1</Cleanliness>
+    </statBases>
+  </ThingDef>
+  
+</Defs>

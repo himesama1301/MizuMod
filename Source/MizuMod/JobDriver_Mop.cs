@@ -50,49 +50,72 @@ namespace MizuMod
                 .JumpIfDespawnedOrNullOrForbidden(FilthInd, initExtractTargetFromQueue)
                 .JumpIfOutsideMopArea(FilthInd, initExtractTargetFromQueue);
 
-            // 掃除行動
-            Toil clean = new Toil();
-            clean.initAction = delegate
+            // ピカピカ追加
+            Toil mopToil = new Toil();
+            mopToil.initAction = () =>
             {
-                // 必要工数の計算
-                this.cleaningWorkDone = 0f;
-                this.totalCleaningWorkDone = 0f;
-                this.totalCleaningWorkRequired = this.Filth.def.filth.cleaningWorkToReduceThickness * (float)this.Filth.thickness;
-            };
-            clean.tickAction = delegate
-            {
-                Filth filth = this.Filth;
+                var filth = this.Filth;
 
-                // 進捗更新
-                this.cleaningWorkDone += 1f;
-                this.totalCleaningWorkDone += 1f;
+                // モップオブジェクト生成
+                var moppedThing = ThingMaker.MakeThing(MizuDef.Thing_MoppedThing);
+                GenSpawn.Spawn(moppedThing, filth.Position, mopToil.actor.Map);
 
-                if (this.cleaningWorkDone > filth.def.filth.cleaningWorkToReduceThickness)
-				{
-                    // 汚れ1枚分の掃除完了
-
-                    // 汚れを1枚減らす
-                    filth.ThinFilth();
-                    this.cleaningWorkDone = 0f;
-
-                    if (filth.Destroyed)
-                    {
-                        // ターゲットの汚れが完全になくなった
-                        clean.actor.records.Increment(RecordDefOf.MessesCleaned);
-                        this.ReadyForNextToil();
-                        return;
-                    }
-                }
+                // 暫定的に汚れを削除
+                filth.Destroy(DestroyMode.Vanish);
             };
             // 細々とした設定
-            clean.defaultCompleteMode = ToilCompleteMode.Never;
-            clean.WithEffect(EffecterDefOf.Clean, FilthInd);
-            clean.WithProgressBar(FilthInd, () => this.totalCleaningWorkDone / this.totalCleaningWorkRequired, true, -0.5f);
-            clean.PlaySustainerOrSound(() => SoundDefOf.Interact_CleanFilth);
-            // 掃除中に条件が変更されたら最初に戻る
-            clean.JumpIfDespawnedOrNullOrForbidden(FilthInd, initExtractTargetFromQueue);
-            clean.JumpIfOutsideMopArea(FilthInd, initExtractTargetFromQueue);
-            yield return clean;
+            mopToil.defaultCompleteMode = ToilCompleteMode.Instant;
+            //mopToil.WithEffect(EffecterDefOf.Clean, FilthInd);
+            //mopToil.WithProgressBar(FilthInd, () => this.totalCleaningWorkDone / this.totalCleaningWorkRequired, true, -0.5f);
+            //mopToil.PlaySustainerOrSound(() => SoundDefOf.Interact_CleanFilth);
+            //// 掃除中に条件が変更されたら最初に戻る
+            //mopToil.JumpIfDespawnedOrNullOrForbidden(FilthInd, initExtractTargetFromQueue);
+            //mopToil.JumpIfOutsideMopArea(FilthInd, initExtractTargetFromQueue);
+            yield return mopToil;
+
+    //        // 掃除行動
+    //        Toil clean = new Toil();
+    //        clean.initAction = delegate
+    //        {
+    //            // 必要工数の計算
+    //            this.cleaningWorkDone = 0f;
+    //            this.totalCleaningWorkDone = 0f;
+    //            this.totalCleaningWorkRequired = this.Filth.def.filth.cleaningWorkToReduceThickness * (float)this.Filth.thickness;
+    //        };
+    //        clean.tickAction = delegate
+    //        {
+    //            Filth filth = this.Filth;
+
+    //            // 進捗更新
+    //            this.cleaningWorkDone += 1f;
+    //            this.totalCleaningWorkDone += 1f;
+
+    //            if (this.cleaningWorkDone > filth.def.filth.cleaningWorkToReduceThickness)
+				//{
+    //                // 汚れ1枚分の掃除完了
+
+    //                // 汚れを1枚減らす
+    //                filth.ThinFilth();
+    //                this.cleaningWorkDone = 0f;
+
+    //                if (filth.Destroyed)
+    //                {
+    //                    // ターゲットの汚れが完全になくなった
+    //                    clean.actor.records.Increment(RecordDefOf.MessesCleaned);
+    //                    this.ReadyForNextToil();
+    //                    return;
+    //                }
+    //            }
+    //        };
+    //        // 細々とした設定
+    //        clean.defaultCompleteMode = ToilCompleteMode.Never;
+    //        clean.WithEffect(EffecterDefOf.Clean, FilthInd);
+    //        clean.WithProgressBar(FilthInd, () => this.totalCleaningWorkDone / this.totalCleaningWorkRequired, true, -0.5f);
+    //        clean.PlaySustainerOrSound(() => SoundDefOf.Interact_CleanFilth);
+    //        // 掃除中に条件が変更されたら最初に戻る
+    //        clean.JumpIfDespawnedOrNullOrForbidden(FilthInd, initExtractTargetFromQueue);
+    //        clean.JumpIfOutsideMopArea(FilthInd, initExtractTargetFromQueue);
+    //        yield return clean;
 
             // 最初に戻る
             yield return Toils_Jump.Jump(initExtractTargetFromQueue);
