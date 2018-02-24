@@ -7,6 +7,7 @@ using UnityEngine;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
+using Verse.AI;
 
 namespace MizuMod
 {
@@ -419,6 +420,15 @@ namespace MizuMod
             var newArea = new Area_Mop(areaManager);
             areaManager.AllAreas.Add(newArea);
             return newArea;
+        }
+
+        public static Toil JumpIfOutsideMopArea(this Toil toil, TargetIndex ind, Toil jumpToil)
+        {
+            return toil.JumpIf(delegate
+            {
+                Thing thing = toil.actor.jobs.curJob.GetTarget(ind).Thing;
+                return !toil.actor.Map.areaManager.Mop()[thing.Position];
+            }, jumpToil);
         }
     }
 }

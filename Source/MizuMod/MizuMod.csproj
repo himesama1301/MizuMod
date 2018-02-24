@@ -113,6 +113,7 @@
     <Compile Include="JobDriver_DrinkWater.cs" />
     <Compile Include="JobDriver_DrinkWaterFromBuilding.cs" />
     <Compile Include="JobDriver_GetSnow.cs" />
+    <Compile Include="JobDriver_Mop.cs" />
     <Compile Include="JobDriver_PourWater.cs" />
     <Compile Include="JobDriver_WaterDeliver.cs" />
     <Compile Include="JobDriver_WaterFeedPatient.cs" />
