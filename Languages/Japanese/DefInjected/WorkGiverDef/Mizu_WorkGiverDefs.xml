@@ -29,4 +29,8 @@
   <Mizu_GetSnow.verb>で雪を集める</Mizu_GetSnow.verb>
   <Mizu_GetSnow.gerund>で雪を集める</Mizu_GetSnow.gerund>
 
+  <Mizu_Mop.label>モップ掛けする</Mizu_Mop.label>
+  <Mizu_Mop.verb>をモップ掛けする</Mizu_Mop.verb>
+  <Mizu_Mop.gerund>をモップ掛けする</Mizu_Mop.gerund>
+
 </LanguageData>
