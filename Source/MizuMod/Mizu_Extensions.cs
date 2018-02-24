@@ -426,9 +426,23 @@ namespace MizuMod
         {
             return toil.JumpIf(delegate
             {
-                Thing thing = toil.actor.jobs.curJob.GetTarget(ind).Thing;
-                return !toil.actor.Map.areaManager.Mop()[thing.Position];
+                var target = toil.actor.jobs.curJob.GetTarget(ind);
+                IntVec3 pos = (target.HasThing) ? target.Thing.Position : target.Cell;
+
+                return !toil.actor.Map.areaManager.Mop()[pos];
             }, jumpToil);
+        }
+
+        public static Toil ClearCondifionSatisfiedTargets(this Toil toil, TargetIndex ind, Predicate<LocalTargetInfo> cond)
+        {
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+                Job curJob = actor.jobs.curJob;
+                List<LocalTargetInfo> targetQueue = curJob.GetTargetQueue(ind);
+                targetQueue.RemoveAll(cond);
+            };
+            return toil;
         }
     }
 }

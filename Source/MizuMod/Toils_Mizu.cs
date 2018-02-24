@@ -907,5 +907,17 @@ namespace MizuMod
             return toil;
         }
 
+        public static Toil ClearCondifionSatisfiedTargets(TargetIndex ind, Predicate<LocalTargetInfo> cond)
+        {
+            Toil toil = new Toil();
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+                Job curJob = actor.jobs.curJob;
+                List<LocalTargetInfo> targetQueue = curJob.GetTargetQueue(ind);
+                targetQueue.RemoveAll(cond);
+            };
+            return toil;
+        }
     }
 }
