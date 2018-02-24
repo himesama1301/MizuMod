@@ -25,14 +25,6 @@
   <Mizu_CleanWater.verb>で水を浄化する</Mizu_CleanWater.verb>
   <Mizu_CleanWater.gerund>で水を浄化する</Mizu_CleanWater.gerund>
 
-  <Mizu_DoBillsUseCraftingSpotForCooking.label>作業をする</Mizu_DoBillsUseCraftingSpotForCooking.label>
-  <Mizu_DoBillsUseCraftingSpotForCooking.verb>で作業をする</Mizu_DoBillsUseCraftingSpotForCooking.verb>
-  <Mizu_DoBillsUseCraftingSpotForCooking.gerund>で作業をする</Mizu_DoBillsUseCraftingSpotForCooking.gerund>
-
-  <Mizu_DoBillsUseCraftingSpotForDrawing.label>作業をする</Mizu_DoBillsUseCraftingSpotForDrawing.label>
-  <Mizu_DoBillsUseCraftingSpotForDrawing.verb>で作業をする</Mizu_DoBillsUseCraftingSpotForDrawing.verb>
-  <Mizu_DoBillsUseCraftingSpotForDrawing.gerund>で作業をする</Mizu_DoBillsUseCraftingSpotForDrawing.gerund>
-
   <Mizu_GetSnow.label>雪を集める</Mizu_GetSnow.label>
   <Mizu_GetSnow.verb>で雪を集める</Mizu_GetSnow.verb>
   <Mizu_GetSnow.gerund>で雪を集める</Mizu_GetSnow.gerund>
