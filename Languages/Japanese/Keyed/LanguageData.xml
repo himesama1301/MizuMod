@@ -78,4 +78,6 @@
   <MizuDesignatorAreaMopClear>モップゾーン 取消</MizuDesignatorAreaMopClear>
   <MizuDesignatorAreaMopClearDesc>モップで清掃する場所の指定を取り消します。もうそこを入植者はモップで清掃しようとしません。</MizuDesignatorAreaMopClearDesc>
   
+  <MizuWaterToolStored>保有水量</MizuWaterToolStored>
+  
 </LanguageData>

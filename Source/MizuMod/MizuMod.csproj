@@ -80,12 +80,14 @@
     <Compile Include="CompProperties_WaterNetOutput.cs" />
     <Compile Include="CompProperties_WaterNetTank.cs" />
     <Compile Include="CompProperties_WaterSource.cs" />
+    <Compile Include="CompProperties_WaterTool.cs" />
     <Compile Include="CompWaterNetInput.cs" />
     <Compile Include="CompWaterNetOutput.cs" />
     <Compile Include="CompProperties_WaterNet.cs" />
     <Compile Include="CompWaterNet.cs" />
     <Compile Include="CompWaterNetTank.cs" />
     <Compile Include="CompWaterSource.cs" />
+    <Compile Include="CompWaterTool.cs" />
     <Compile Include="DaysWorthOfWaterCalculator.cs" />
     <Compile Include="DefExtension_NeedWater.cs" />
     <Compile Include="DefExtension_ThirstRate.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="JobDriver_GetSnow.cs" />
     <Compile Include="JobDriver_Mop.cs" />
     <Compile Include="JobDriver_PourWater.cs" />
+    <Compile Include="JobDriver_SupplyWaterToTool.cs" />
     <Compile Include="JobDriver_WaterDeliver.cs" />
     <Compile Include="JobDriver_WaterFeedPatient.cs" />
     <Compile Include="JobGiver_DrawWaterByPrisoner.cs" />
@@ -164,6 +167,7 @@
     <Compile Include="WorkGiver_FeedWaterPatient.cs" />
     <Compile Include="WorkGiver_GetSnow.cs" />
     <Compile Include="WorkGiver_Mop.cs" />
+    <Compile Include="WorkGiver_SupplyWaterToTool.cs" />
     <Compile Include="WorkGiver_Warden_DeliverWater.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -130,4 +130,42 @@
     </requiredCapacities>
   </WorkGiverDef>
   
+  <WorkGiverDef>
+    <defName>Mizu_SupplyWaterToToolDrawing</defName>
+    <label>supply water</label>
+    <giverClass>MizuMod.WorkGiver_SupplyWaterToTool</giverClass>
+    <workType>Mizu_Drawing</workType>
+    <verb>supply</verb>
+    <gerund>supplying</gerund>
+    <priorityInType>1</priorityInType>
+    <fixedBillGiverDefs>
+      <li>Mizu_DrawingWaterSpot</li>
+      <li>Mizu_Well</li>
+      <li>Mizu_WaterFaucet</li>
+      <li>Mizu_WaterBox</li>
+    </fixedBillGiverDefs>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+  
+  <WorkGiverDef>
+    <defName>Mizu_SupplyWaterToToolCleaning</defName>
+    <label>supply water</label>
+    <giverClass>MizuMod.WorkGiver_SupplyWaterToTool</giverClass>
+    <workType>Cleaning</workType>
+    <verb>supply</verb>
+    <gerund>supplying</gerund>
+    <priorityInType>1</priorityInType>
+    <fixedBillGiverDefs>
+      <li>Mizu_DrawingWaterSpot</li>
+      <li>Mizu_Well</li>
+      <li>Mizu_WaterFaucet</li>
+      <li>Mizu_WaterBox</li>
+    </fixedBillGiverDefs>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+  
 </Defs>

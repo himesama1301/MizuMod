@@ -82,10 +82,18 @@
       <effectWorking>Smith</effectWorking>
       <unfinishedThingDef>Mizu_UnfinishedTool</unfinishedThingDef>
     </recipeMaker>
-<!--
     <comps>
+      <li Class="MizuMod.CompProperties_WaterTool">
+        <useWorkType>
+          <li>Mop</li>
+        </useWorkType>
+        <supplyWorkType>
+          <li>Mizu_Drawing</li>
+          <li>Cleaning</li>
+        </supplyWorkType>
+        <maxWaterVolume>10</maxWaterVolume>
+      </li>
     </comps>
--->
   </ThingDef>
   
 </Defs>

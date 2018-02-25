@@ -54,9 +54,14 @@ namespace MizuMod
             if (!pawn.CanReserve(c)) return false;
 
             // モップアイテムのチェック
-            // とりあえずモップ固定
-            // あとでモップ能力のあるアイテム全てに変更する
-            var mopList = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).Where((t) => t.def == MizuDef.Thing_Mop);
+            var mopList = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).Where((t) =>
+            {
+                var comp = t.TryGetComp<CompWaterTool>();
+                if (comp == null) return false;
+                if (!comp.UseWorkType.Contains(CompProperties_WaterTool.UseWorkType.Mop)) return false;
+           
+                return true;
+            });
             if (mopList.Count() == 0) return false;
             if (mopList.Where((t) => pawn.CanReserve(t)).Count() == 0) return false;
 
