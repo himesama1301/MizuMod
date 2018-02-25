@@ -44,8 +44,9 @@
     <label>Mop</label>
     <description>A tool for cleaning. Allows to clean more cleanly on the artifical floors.</description>
     <graphicData>
-      <texPath>Things/Item/Mizu_ClearWater</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
+      <texPath>Things/Item/Mizu_Mop</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
     </graphicData>
     <statBases>
       <MarketValue>10</MarketValue>
