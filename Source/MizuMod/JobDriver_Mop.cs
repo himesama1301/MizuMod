@@ -110,21 +110,22 @@ namespace MizuMod
             });
 
             // モップを片付ける場所を決める
-            Toil startCarryToil = new Toil();
-            startCarryToil.initAction = () =>
-            {
-                var actor = startCarryToil.actor;
-                var curJob = actor.jobs.curJob;
-                IntVec3 c;
-                if (StoreUtility.TryFindBestBetterStoreCellFor(Mop, actor, actor.Map, StoragePriority.Unstored, actor.Faction, out c))
-                {
-                    curJob.targetC = c;
-                    curJob.count = 99999;
-                    return;
-                }
-            };
-            startCarryToil.defaultCompleteMode = ToilCompleteMode.Instant;
-            yield return startCarryToil;
+            yield return Toils_Mizu.TryFindStoreCell(MopInd, MopPlaceInd);
+            //Toil startCarryToil = new Toil();
+            //startCarryToil.initAction = () =>
+            //{
+            //    var actor = startCarryToil.actor;
+            //    var curJob = actor.jobs.curJob;
+            //    IntVec3 c;
+            //    if (StoreUtility.TryFindBestBetterStoreCellFor(Mop, actor, actor.Map, StoragePriority.Unstored, actor.Faction, out c))
+            //    {
+            //        curJob.targetC = c;
+            //        curJob.count = 99999;
+            //        return;
+            //    }
+            //};
+            //startCarryToil.defaultCompleteMode = ToilCompleteMode.Instant;
+            //yield return startCarryToil;
 
             // 倉庫まで移動
             yield return Toils_Goto.GotoCell(MopPlaceInd, PathEndMode.Touch);
