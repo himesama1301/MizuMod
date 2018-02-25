@@ -100,7 +100,7 @@ namespace MizuMod
             // 水ツールを戻す
             yield return Toils_Mizu.TryFindStoreCell(ToolInd, StoreToolPosInd);
             yield return Toils_Goto.GotoCell(StoreToolPosInd, PathEndMode.OnCell);
-            yield return Toils_Haul.PlaceCarriedThingInCellFacing(StoreToolPosInd);
+            yield return Toils_Haul.PlaceHauledThingInCell(StoreToolPosInd, null, true);
         }
 
         public override void ExposeData()
