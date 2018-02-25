@@ -7,12 +7,18 @@
   <description>
 
 for RimWorld B18
-mod version 1.0.5s
+mod version 1.0.6s
 
 Description
 
 This mod adds "Need Water" to pawns. There are various means to get and transport water, such as: wells, pumps, water pipes, faucets, water cleaners, and more.
 This mod should NOT be applied to saved games.
+
+License
+
+This mod includes a compiled version of the Harmony library which is licensed under the MIT License.
+The other files are licensed under the Unlicense. 
+https://github.com/himesama1301/MizuMod/blob/master/LICENSE_Unlicense
 
 FAQ
 
@@ -20,6 +26,15 @@ Q1:Is this mod compatible with "Dub's Bad Hygiene"?
 
 A1: In the current version, this mod can run alongside "Dub's Bad Hygiene" however, the two mod do NOT interact with each other.
 After a while, I will consider whether I can add compatibility for "Dubs Bad Hygiene".
+
+Q2. Can pawns get water from items added by RimWorld Core and other mods?
+
+A2. It is possible only for the four types of meals (simple, fine, lavish, survival), beer, milk and psychite pekoe included in the RimWorld Core. pawns cannot get water from items added with other mods.
+
+Q3. I'd like to add compatibility for mod named XXX.
+
+A3. In the development schedule of this mod, the priority of adding compatibility to other mods is low (except for Dubs Bad Hygiene). The number of mods for B18 already exceeds 2000 only in Steam Workshop, so it takes a lot of time to just list the mods that need work. Since it takes more time to add compatibility, It is not realistic to do it alone.
+Instead, I am prioritizing adding new features and fixing bugs. New features are included in the unstable version. It will not be released to Steam for a while.
 
 
 (Japanese)
@@ -37,5 +52,13 @@ Q1:このMODは"Dub's Bad Hygiene"と互換性がありますか？
 A1:現在のバージョンでは、両方のMODを同時に使えますが、互いに影響し合うことはありません。
 しばらく後に、私はDubs Bad Hygieneに対する互換性を追加できないか検討するつもりです。
 
+Q2. RimWorld Coreや他modが追加するアイテムからポーンが水分を得ることは出来ますか？
+
+A2. RimWorld Coreに含まれる4種類の食事(簡単、手の込んだ、豪華、非常食)、ビール、牛乳、サイコイドペコーに限りそれは可能です。他modで追加されるアイテムによって水分を得ることは出来ません。
+
+Q3. XXXというmodに対して互換性を追加してほしいのですが。
+
+A3. このmodの開発スケジュールの中で、他modへの互換性追加作業の優先度は低いです(Dubs Bad Hygieneを除く)。B18用のmodの数はSteamワークショップだけで2000を超えていて、対応が必要なmodを洗い出すだけで大変な時間がかかります。互換性を追加するにはさらに多くの時間が必要となり、私一人でそれを行うのは現実的ではありません。
+代わりに、私は新要素追加とバグ修正を優先して行っています。新要素は不安定版に含まれています。しばらくの間、Steamにはリリースされません。
   </description>
 </ModMetaData>
