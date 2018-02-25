@@ -131,7 +131,7 @@ namespace MizuMod
             yield return Toils_Goto.GotoCell(MopPlaceInd, PathEndMode.Touch);
 
             // 倉庫に置く
-            yield return Toils_Haul.PlaceCarriedThingInCellFacing(MopPlaceInd);
+            yield return Toils_Haul.PlaceHauledThingInCell(MopPlaceInd, null, true);
         }
     }
 }

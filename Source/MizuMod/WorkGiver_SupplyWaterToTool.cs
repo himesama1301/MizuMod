@@ -56,6 +56,7 @@ namespace MizuMod
             // 水ツールチェック
             var toolList = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).FindAll((thing) => thing.TryGetComp<CompWaterTool>() != null);
 
+            // 一番近いツールを使う
             Thing minTool = null;
             float minDist = float.MaxValue;
             foreach (var tool in toolList)
@@ -70,13 +71,10 @@ namespace MizuMod
                 if (compTool.StoredWaterVolumePercent > 0.8f) continue;
 
                 // 許可不許可チェック
-                if (t.IsForbidden(pawn)) continue;
-
-                // 派閥チェック
-                if (t.Faction != pawn.Faction) continue;
+                if (tool.IsForbidden(pawn)) continue;
 
                 // 予約チェック
-                if (!pawn.CanReserve(t, 1, -1, null, forced)) continue;
+                if (!pawn.CanReserve(tool, 1, -1, null, forced)) continue;
 
                 // 距離チェック
                 float dist = (tool.Position - pawn.Position).LengthHorizontalSquared;

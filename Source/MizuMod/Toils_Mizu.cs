@@ -929,7 +929,7 @@ namespace MizuMod
                 var thing = actor.jobs.curJob.GetTarget(thingInd).Thing;
 
                 IntVec3 storeCell;
-                if (!StoreUtility.TryFindBestBetterStoreCellFor(thing, actor, actor.Map, StoragePriority.Unstored, actor.Faction, out storeCell))
+                if (!StoreUtility.TryFindBestBetterStoreCellFor(thing, actor, actor.Map, StoragePriority.Unstored, actor.Faction, out storeCell, true))
                 {
                     // 最適な倉庫が見つからなかった→そこで終了
                     actor.jobs.EndCurrentJob(JobCondition.Succeeded);
