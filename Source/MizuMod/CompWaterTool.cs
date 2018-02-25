@@ -51,6 +51,10 @@ namespace MizuMod
             set
             {
                 this.storedWaterVolume = Mathf.Min(this.MaxWaterVolume, Mathf.Max(0f, value));
+                if (this.storedWaterVolume <= 0f)
+                {
+                    this.StoredWaterType = WaterType.NoWater;
+                }
             }
         }
 
