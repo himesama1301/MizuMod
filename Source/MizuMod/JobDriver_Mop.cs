@@ -15,6 +15,7 @@ namespace MizuMod
         private const TargetIndex MopInd = TargetIndex.B;
         private const TargetIndex MopPlaceInd = TargetIndex.C;
         private const int MoppingTicks = 60;
+        public const float ConsumeWaterVolume = 0.05f;
 
         private IntVec3 MoppingPos
         {
@@ -82,6 +83,10 @@ namespace MizuMod
                 // モップオブジェクト生成
                 var moppedThing = ThingMaker.MakeThing(MizuDef.Thing_MoppedThing);
                 GenSpawn.Spawn(moppedThing, this.MoppingPos, mopToil.actor.Map);
+
+                // モップから水を減らす
+                var compTool = Mop.GetComp<CompWaterTool>();
+                compTool.StoredWaterVolume -= ConsumeWaterVolume;
             });
             // 細々とした設定
             mopToil.defaultCompleteMode = ToilCompleteMode.Delay;
@@ -105,21 +110,22 @@ namespace MizuMod
             });
 
             // モップを片付ける場所を決める
-            Toil startCarryToil = new Toil();
-            startCarryToil.initAction = () =>
-            {
-                var actor = startCarryToil.actor;
-                var curJob = actor.jobs.curJob;
-                IntVec3 c;
-                if (StoreUtility.TryFindBestBetterStoreCellFor(Mop, actor, actor.Map, StoragePriority.Unstored, actor.Faction, out c))
-                {
-                    curJob.targetC = c;
-                    curJob.count = 99999;
-                    return;
-                }
-            };
-            startCarryToil.defaultCompleteMode = ToilCompleteMode.Instant;
-            yield return startCarryToil;
+            yield return Toils_Mizu.TryFindStoreCell(MopInd, MopPlaceInd);
+            //Toil startCarryToil = new Toil();
+            //startCarryToil.initAction = () =>
+            //{
+            //    var actor = startCarryToil.actor;
+            //    var curJob = actor.jobs.curJob;
+            //    IntVec3 c;
+            //    if (StoreUtility.TryFindBestBetterStoreCellFor(Mop, actor, actor.Map, StoragePriority.Unstored, actor.Faction, out c))
+            //    {
+            //        curJob.targetC = c;
+            //        curJob.count = 99999;
+            //        return;
+            //    }
+            //};
+            //startCarryToil.defaultCompleteMode = ToilCompleteMode.Instant;
+            //yield return startCarryToil;
 
             // 倉庫まで移動
             yield return Toils_Goto.GotoCell(MopPlaceInd, PathEndMode.Touch);

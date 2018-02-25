@@ -91,7 +91,7 @@
           <li>Mizu_Drawing</li>
           <li>Cleaning</li>
         </supplyWorkType>
-        <maxWaterVolume>10</maxWaterVolume>
+        <maxWaterVolume>1</maxWaterVolume>
       </li>
     </comps>
   </ThingDef>
