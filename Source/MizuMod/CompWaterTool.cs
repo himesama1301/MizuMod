@@ -92,7 +92,13 @@ namespace MizuMod
             {
                 stringBuilder.AppendLine();
             }
-            stringBuilder.Append("StoredWaterVolumePercent:" + (StoredWaterVolumePercent * 100).ToString("F0") + "%");
+            stringBuilder.Append(string.Concat(new string[]
+            {
+                MizuStrings.InspectWaterToolStored.Translate(),
+                ":",
+                (StoredWaterVolumePercent * 100).ToString("F0"),
+                "%",
+            }));
 
             if (DebugSettings.godMode)
             {

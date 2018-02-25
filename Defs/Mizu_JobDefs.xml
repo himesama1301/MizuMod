@@ -67,4 +67,10 @@
     <reportString>mopping TargetA.</reportString>
   </JobDef>
   
+  <JobDef>
+    <defName>Mizu_SupplyWaterToTool</defName>
+    <driverClass>MizuMod.JobDriver_SupplyWaterToTool</driverClass>
+    <reportString>supplying water to TargetB.</reportString>
+  </JobDef>
+  
 </Defs>
