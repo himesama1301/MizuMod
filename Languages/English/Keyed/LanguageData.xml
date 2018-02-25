@@ -78,4 +78,6 @@
   <MizuDesignatorAreaMopClear>Clear mop area</MizuDesignatorAreaMopClear>
   <MizuDesignatorAreaMopClearDesc>Removes a cleaning area with mop. Colonists will no longer clean at the place with mop.</MizuDesignatorAreaMopClearDesc>
   
+  <MizuWaterToolStored>Stored Water Volume</MizuWaterToolStored>
+  
 </LanguageData>

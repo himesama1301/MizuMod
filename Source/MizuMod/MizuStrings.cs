@@ -68,6 +68,8 @@ namespace MizuMod
         public static readonly string DesignatorAreaMopClear = "MizuDesignatorAreaMopClear";
         public static readonly string DesignatorAreaMopClearDescription = "MizuDesignatorAreaMopClearDesc";
 
+        // 水ツール
+        public static readonly string InspectWaterToolStored = "MizuWaterToolStored";
 
         public static string GetInspectWaterTypeString(WaterType waterType)
         {

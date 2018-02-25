@@ -33,4 +33,12 @@
   <Mizu_Mop.verb>をモップ掛けする</Mizu_Mop.verb>
   <Mizu_Mop.gerund>をモップ掛けする</Mizu_Mop.gerund>
 
+  <Mizu_SupplyWaterToToolDrawing.label>水を補充する</Mizu_SupplyWaterToToolDrawing.label>
+  <Mizu_SupplyWaterToToolDrawing.verb>から水を補充する</Mizu_SupplyWaterToToolDrawing.verb>
+  <Mizu_SupplyWaterToToolDrawing.gerund>から水を補充する</Mizu_SupplyWaterToToolDrawing.gerund>
+
+  <Mizu_SupplyWaterToToolCleaning.label>水を補充する</Mizu_SupplyWaterToToolCleaning.label>
+  <Mizu_SupplyWaterToToolCleaning.verb>から水を補充する</Mizu_SupplyWaterToToolCleaning.verb>
+  <Mizu_SupplyWaterToToolCleaning.gerund>から水を補充する</Mizu_SupplyWaterToToolCleaning.gerund>
+
 </LanguageData>

@@ -919,5 +919,28 @@ namespace MizuMod
             };
             return toil;
         }
+
+        public static Toil TryFindStoreCell(TargetIndex thingInd, TargetIndex storeInd)
+        {
+            Toil toil = new Toil();
+            toil.initAction = () =>
+            {
+                var actor = toil.actor;
+                var thing = actor.jobs.curJob.GetTarget(thingInd).Thing;
+
+                IntVec3 storeCell;
+                if (!StoreUtility.TryFindBestBetterStoreCellFor(thing, actor, actor.Map, StoragePriority.Unstored, actor.Faction, out storeCell))
+                {
+                    // 最適な倉庫が見つからなかった→そこで終了
+                    actor.jobs.EndCurrentJob(JobCondition.Succeeded);
+                    return;
+                }
+
+                // 見つけた場所をセット
+                actor.jobs.curJob.SetTarget(storeInd, storeCell);
+            };
+            toil.defaultCompleteMode = ToilCompleteMode.Instant;
+            return toil;
+        }
     }
 }

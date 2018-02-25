@@ -233,9 +233,10 @@ namespace MizuMod
         public void DrawWaterVolumeForFaucet(float amount)
         {
             float totalAmount = amount;
-
-            while (totalAmount > 0.1f)
+            int count = 0;
+            while (totalAmount > 0.0f && (totalAmount > 0.1f || count < 5))
             {
+                count++;
                 var tanks = tankTypeDic[CompProperties_WaterNetTank.DrawType.Faucet].Where((t) =>
                 {
                     return t.TankComp.StoredWaterVolume > 0.0f;
