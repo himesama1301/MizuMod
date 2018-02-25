@@ -15,6 +15,7 @@ namespace MizuMod
         private const TargetIndex MopInd = TargetIndex.B;
         private const TargetIndex MopPlaceInd = TargetIndex.C;
         private const int MoppingTicks = 60;
+        public const float ConsumeWaterVolume = 0.05f;
 
         private IntVec3 MoppingPos
         {
@@ -82,6 +83,10 @@ namespace MizuMod
                 // モップオブジェクト生成
                 var moppedThing = ThingMaker.MakeThing(MizuDef.Thing_MoppedThing);
                 GenSpawn.Spawn(moppedThing, this.MoppingPos, mopToil.actor.Map);
+
+                // モップから水を減らす
+                var compTool = Mop.GetComp<CompWaterTool>();
+                compTool.StoredWaterVolume -= ConsumeWaterVolume;
             });
             // 細々とした設定
             mopToil.defaultCompleteMode = ToilCompleteMode.Delay;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using UnityEngine;
 using Verse;
 using Verse.AI;
 using RimWorld;
@@ -59,7 +60,10 @@ namespace MizuMod
                 var comp = t.TryGetComp<CompWaterTool>();
                 if (comp == null) return false;
                 if (!comp.UseWorkType.Contains(CompProperties_WaterTool.UseWorkType.Mop)) return false;
-           
+
+                int maxQueueLength = (int)Mathf.Floor(comp.StoredWaterVolume / JobDriver_Mop.ConsumeWaterVolume);
+                if (maxQueueLength <= 0) return false;
+
                 return true;
             });
             if (mopList.Count() == 0) return false;
@@ -73,33 +77,6 @@ namespace MizuMod
             // モップジョブ作成
             Job job = new Job(MizuDef.Job_Mop);
             job.AddQueuedTarget(TargetIndex.A, cell);
-
-            int maxQueueLength = 15;
-            Map map = pawn.Map;
-            Room room = cell.GetRoom(map);
-            for (int i = 0; i < 100; i++)
-            {
-                // 対象の汚れの周囲100マスをサーチ
-                IntVec3 intVec = cell + GenRadial.RadialPattern[i];
-                if (intVec.InBounds(map) && intVec.GetRoom(map, RegionType.Set_Passable) == room)
-                {
-                    // そこが同じ部屋の中
-                    if (this.HasJobOnCell(pawn, intVec) && intVec != cell)
-                    {
-                        // 同じジョブが作成可能(汚れがある等)あるならこのジョブの処理対象に追加
-                        job.AddQueuedTarget(TargetIndex.A, intVec);
-                    }
-
-                    // 掃除最大個数チェック(15個)
-                    if (job.GetTargetQueue(TargetIndex.A).Count >= maxQueueLength) break;
-                }
-            }
-
-            if (job.targetQueueA != null && job.targetQueueA.Count >= 5)
-            {
-                // 掃除対象が5個以上あるならポーンからの距離が近い順に掃除させる
-                job.targetQueueA.SortBy((LocalTargetInfo targ) => targ.Cell.DistanceToSquared(pawn.Position));
-            }
 
             // 一番近いモップを探す
             Thing candidateMop = null;
@@ -128,6 +105,34 @@ namespace MizuMod
             // モップをTargetBにセット
             job.targetB = candidateMop;
             job.count = 1;
+
+            var compTool = candidateMop.TryGetComp<CompWaterTool>();
+            int maxQueueLength = Mathf.RoundToInt(compTool.StoredWaterVolume / JobDriver_Mop.ConsumeWaterVolume);
+            Map map = pawn.Map;
+            Room room = cell.GetRoom(map);
+            for (int i = 0; i < 100; i++)
+            {
+                // 対象の汚れの周囲100マスをサーチ
+                IntVec3 intVec = cell + GenRadial.RadialPattern[i];
+                if (intVec.InBounds(map) && intVec.GetRoom(map, RegionType.Set_Passable) == room)
+                {
+                    // そこが同じ部屋の中
+                    if (this.HasJobOnCell(pawn, intVec) && intVec != cell)
+                    {
+                        // 同じジョブが作成可能(汚れがある等)あるならこのジョブの処理対象に追加
+                        job.AddQueuedTarget(TargetIndex.A, intVec);
+                    }
+
+                    // 掃除最大個数チェック
+                    if (job.GetTargetQueue(TargetIndex.A).Count >= maxQueueLength) break;
+                }
+            }
+
+            if (job.targetQueueA != null && job.targetQueueA.Count >= 5)
+            {
+                // 掃除対象が5個以上あるならポーンからの距離が近い順に掃除させる
+                job.targetQueueA.SortBy((LocalTargetInfo targ) => targ.Cell.DistanceToSquared(pawn.Position));
+            }
 
             return job;
         }

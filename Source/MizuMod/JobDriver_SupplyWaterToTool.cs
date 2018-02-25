@@ -67,7 +67,7 @@ namespace MizuMod
 
                 var compTool = Tool.GetComp<CompWaterTool>();
                 var totalTicks = (int)(ticksPerLiter * (compTool.MaxWaterVolume - compTool.StoredWaterVolume));
-                if (needManipulate)
+                if (!needManipulate)
                 {
                     // 手が必要ない→水にドボンですぐに補給できる
                     totalTicks /= 10;
@@ -83,17 +83,15 @@ namespace MizuMod
                 var building = SourceThing as IBuilding_DrinkWater;
 
                 var supplyWaterVolume = 1f / compSource.BaseDrinkTicks;
-
+                if (!needManipulate)
+                {
+                    supplyWaterVolume *= 10;
+                }
                 compTool.StoredWaterVolume += supplyWaterVolume;
                 compTool.StoredWaterType = building.WaterType;
 
                 building.DrawWater(supplyWaterVolume);
             };
-            supplyToil.AddFinishAction(() =>
-            {
-                var compTool = Tool.GetComp<CompWaterTool>();
-                compTool.StoredWaterVolume = compTool.MaxWaterVolume;
-            });
             supplyToil.defaultCompleteMode = ToilCompleteMode.Delay;
             supplyToil.WithProgressBar(SourceInd, () => 1f - (float)this.ticksLeftThisToil / this.maxTick, true, -0.5f);
             supplyToil.EndOnDespawnedOrNull(SourceInd);
