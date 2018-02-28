@@ -56,7 +56,7 @@ namespace MizuMod
             return needs.TryGetNeed<Need_Water>();
         }
 
-        public static void GetWaterCalculateAmounts(this Thing t, Pawn getter, float waterWanted, out int numTaken, out float waterGot)
+        public static void GetWaterCalculateAmounts(this Thing t, Pawn getter, float waterWanted, bool withIngested, out int numTaken, out float waterGot)
         {
             float waterAmount = t.GetWaterAmount();
             if (waterAmount == 0.0f)
@@ -68,7 +68,7 @@ namespace MizuMod
                 return;
             }
 
-            if (t.def.IsIngestible)
+            if (!withIngested && t.def.IsIngestible)
             {
                 // 食べられるものを飲もうとしている
                 Log.Error("error thing is ingestible.");
