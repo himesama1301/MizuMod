@@ -53,7 +53,7 @@ namespace MizuMod
             if (MizuUtility.TryFindBestWaterSourceFor(taker, giver, true, false) == null)
             {
                 // 与えられる水があるか探したが見つからなかった
-                JobFailReason.Is(MizuStrings.JobFailReasonNoWater);
+                JobFailReason.Is(MizuStrings.JobFailReasonNoWater.Translate());
                 return false;
             }
 

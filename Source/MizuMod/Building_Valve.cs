@@ -75,7 +75,7 @@ namespace MizuMod
                 {
                     stringBuilder.AppendLine();
                 }
-                stringBuilder.Append(MizuStrings.InspectValveClosed);
+                stringBuilder.Append(MizuStrings.InspectValveClosed.Translate());
             }
             return stringBuilder.ToString();
         }

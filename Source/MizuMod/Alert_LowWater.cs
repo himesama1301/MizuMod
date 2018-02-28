@@ -15,7 +15,7 @@ namespace MizuMod
 
         public Alert_LowWater()
         {
-            this.defaultLabel = MizuStrings.AlertLowWater;
+            this.defaultLabel = MizuStrings.AlertLowWater.Translate();
             this.defaultPriority = AlertPriority.High;
         }
 
@@ -31,7 +31,7 @@ namespace MizuMod
                                                                 where pr.guest.GetsFood
                                                                 select pr).Count<Pawn>();
             int num2 = Mathf.FloorToInt(totalWater / (float)num);
-            return string.Format(MizuStrings.AlertLowWaterDesc, totalWater.ToString("F0"), num.ToStringCached(), num2.ToStringCached());
+            return string.Format(MizuStrings.AlertLowWaterDesc.Translate(), totalWater.ToString("F0"), num.ToStringCached(), num2.ToStringCached());
         }
 
         public override AlertReport GetReport()
