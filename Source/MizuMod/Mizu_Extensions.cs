@@ -7,6 +7,7 @@ using UnityEngine;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
+using Verse.AI;
 
 namespace MizuMod
 {
@@ -399,6 +400,49 @@ namespace MizuMod
                 }
             }
             return rate;
+        }
+
+        public static Area_SnowGet SnowGet(this AreaManager areaManager)
+        {
+            var area = areaManager.Get<Area_SnowGet>();
+            if (area != null) return area;
+
+            var newArea = new Area_SnowGet(areaManager);
+            areaManager.AllAreas.Add(newArea);
+            return newArea;
+        }
+
+        public static Area_Mop Mop(this AreaManager areaManager)
+        {
+            var area = areaManager.Get<Area_Mop>();
+            if (area != null) return area;
+
+            var newArea = new Area_Mop(areaManager);
+            areaManager.AllAreas.Add(newArea);
+            return newArea;
+        }
+
+        public static Toil JumpIfOutsideMopArea(this Toil toil, TargetIndex ind, Toil jumpToil)
+        {
+            return toil.JumpIf(delegate
+            {
+                var target = toil.actor.jobs.curJob.GetTarget(ind);
+                IntVec3 pos = (target.HasThing) ? target.Thing.Position : target.Cell;
+
+                return !toil.actor.Map.areaManager.Mop()[pos];
+            }, jumpToil);
+        }
+
+        public static Toil ClearCondifionSatisfiedTargets(this Toil toil, TargetIndex ind, Predicate<LocalTargetInfo> cond)
+        {
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+                Job curJob = actor.jobs.curJob;
+                List<LocalTargetInfo> targetQueue = curJob.GetTargetQueue(ind);
+                targetQueue.RemoveAll(cond);
+            };
+            return toil;
         }
     }
 }

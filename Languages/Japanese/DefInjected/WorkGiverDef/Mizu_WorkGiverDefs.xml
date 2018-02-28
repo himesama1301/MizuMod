@@ -25,8 +25,20 @@
   <Mizu_CleanWater.verb>で水を浄化する</Mizu_CleanWater.verb>
   <Mizu_CleanWater.gerund>で水を浄化する</Mizu_CleanWater.gerund>
 
-  <Mizu_DoBillsUseCraftingSpotForCooking.label>作業をする</Mizu_DoBillsUseCraftingSpotForCooking.label>
-  <Mizu_DoBillsUseCraftingSpotForCooking.verb>で作業をする</Mizu_DoBillsUseCraftingSpotForCooking.verb>
-  <Mizu_DoBillsUseCraftingSpotForCooking.gerund>で作業をする</Mizu_DoBillsUseCraftingSpotForCooking.gerund>
+  <Mizu_GetSnow.label>雪を集める</Mizu_GetSnow.label>
+  <Mizu_GetSnow.verb>で雪を集める</Mizu_GetSnow.verb>
+  <Mizu_GetSnow.gerund>で雪を集める</Mizu_GetSnow.gerund>
+
+  <Mizu_Mop.label>モップ掛けする</Mizu_Mop.label>
+  <Mizu_Mop.verb>をモップ掛けする</Mizu_Mop.verb>
+  <Mizu_Mop.gerund>をモップ掛けする</Mizu_Mop.gerund>
+
+  <Mizu_SupplyWaterToToolDrawing.label>水を補充する</Mizu_SupplyWaterToToolDrawing.label>
+  <Mizu_SupplyWaterToToolDrawing.verb>から水を補充する</Mizu_SupplyWaterToToolDrawing.verb>
+  <Mizu_SupplyWaterToToolDrawing.gerund>から水を補充する</Mizu_SupplyWaterToToolDrawing.gerund>
+
+  <Mizu_SupplyWaterToToolCleaning.label>水を補充する</Mizu_SupplyWaterToToolCleaning.label>
+  <Mizu_SupplyWaterToToolCleaning.verb>から水を補充する</Mizu_SupplyWaterToToolCleaning.verb>
+  <Mizu_SupplyWaterToToolCleaning.gerund>から水を補充する</Mizu_SupplyWaterToToolCleaning.gerund>
 
 </LanguageData>

@@ -10,6 +10,10 @@
       <li>Designator_Cancel</li>
       <li>Designator_Deconstruct</li>
       <li>MizuMod.Designator_DeconstructPipe</li>
+      <li>MizuMod.Designator_AreaSnowGetExpand</li>
+      <li>MizuMod.Designator_AreaSnowGetClear</li>
+      <li>MizuMod.Designator_AreaMopExpand</li>
+      <li>MizuMod.Designator_AreaMopClear</li>
     </specialDesignatorClasses>
   </DesignationCategoryDef>
 

@@ -64,4 +64,20 @@
   
   <MizuCantBuildExceptOverWater>水上以外に建設することはできません。</MizuCantBuildExceptOverWater>
   
+  <MizuSnowGet>集雪済み</MizuSnowGet>
+  <MizuDesignatorAreaSnowGetExpand>集雪ゾーン</MizuDesignatorAreaSnowGetExpand>
+  <MizuDesignatorAreaSnowGetExpandDesc>入植者が雪を取得する場所を指定します。</MizuDesignatorAreaSnowGetExpandDesc>
+  <MizuDesignatorAreaSnowGetClear>集雪ゾーン 取消</MizuDesignatorAreaSnowGetClear>
+  <MizuDesignatorAreaSnowGetClearDesc>雪を取得する場所の指定を取り消します。もうそこから入植者は雪を集めようとしません。</MizuDesignatorAreaSnowGetClearDesc>
+  
+  <MizuDeconstructSnowmanMessage>さよならなのだ</MizuDeconstructSnowmanMessage>
+  
+  <MizuMop>モップエリア</MizuMop>
+  <MizuDesignatorAreaMopExpand>モップゾーン</MizuDesignatorAreaMopExpand>
+  <MizuDesignatorAreaMopExpandDesc>入植者がモップで清掃する場所を指定します。</MizuDesignatorAreaMopExpandDesc>
+  <MizuDesignatorAreaMopClear>モップゾーン 取消</MizuDesignatorAreaMopClear>
+  <MizuDesignatorAreaMopClearDesc>モップで清掃する場所の指定を取り消します。もうそこを入植者はモップで清掃しようとしません。</MizuDesignatorAreaMopClearDesc>
+  
+  <MizuWaterToolStored>保有水量</MizuWaterToolStored>
+  
 </LanguageData>

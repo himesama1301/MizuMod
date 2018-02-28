@@ -64,4 +64,20 @@
   
   <MizuCantBuildExceptOverWater>You can't build except over water</MizuCantBuildExceptOverWater>
   
+  <MizuSnowGet>Snow get</MizuSnowGet>
+  <MizuDesignatorAreaSnowGetExpand>Expand snow get area</MizuDesignatorAreaSnowGetExpand>
+  <MizuDesignatorAreaSnowGetExpandDesc>Create a area which colonists will try to get snow.</MizuDesignatorAreaSnowGetExpandDesc>
+  <MizuDesignatorAreaSnowGetClear>Clear snow get area</MizuDesignatorAreaSnowGetClear>
+  <MizuDesignatorAreaSnowGetClearDesc>Removes a snow getting area. Colonists will no longer try to get snow from this area.</MizuDesignatorAreaSnowGetClearDesc>
+  
+  <MizuDeconstructSnowmanMessage>good bye...</MizuDeconstructSnowmanMessage>
+  
+  <MizuMop>Mop area</MizuMop>
+  <MizuDesignatorAreaMopExpand>Expand mop area</MizuDesignatorAreaMopExpand>
+  <MizuDesignatorAreaMopExpandDesc>Create a area which colonists clean with mop.</MizuDesignatorAreaMopExpandDesc>
+  <MizuDesignatorAreaMopClear>Clear mop area</MizuDesignatorAreaMopClear>
+  <MizuDesignatorAreaMopClearDesc>Removes a cleaning area with mop. Colonists will no longer clean at the place with mop.</MizuDesignatorAreaMopClearDesc>
+  
+  <MizuWaterToolStored>Stored Water Volume</MizuWaterToolStored>
+  
 </LanguageData>

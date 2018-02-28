@@ -46,7 +46,7 @@ namespace MizuMod
             yield return startToil;
 
             // 材料の置き場所へ移動
-            var gotoToil = Toils_Goto.GotoThing(IngredientInd, PathEndMode.OnCell);
+            var gotoToil = Toils_Goto.GotoThing(IngredientInd, PathEndMode.Touch);
             yield return gotoToil;
 
             // 材料を運ぶ

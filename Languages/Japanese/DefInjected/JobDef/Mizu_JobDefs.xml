@@ -10,5 +10,8 @@
   <Mizu_DrawFromWaterNet.reportString>TargetAで 作業している</Mizu_DrawFromWaterNet.reportString>
   <Mizu_PourWater.reportString>TargetAで 作業している</Mizu_PourWater.reportString>
   <Mizu_DrawWaterByPrisoner.reportString>TargetAから水を汲んでいる</Mizu_DrawWaterByPrisoner.reportString>
+  <Mizu_GetSnow.reportString>雪を集めている</Mizu_GetSnow.reportString>
+  <Mizu_Mop.reportString>TargetAをモップ掛けしている</Mizu_Mop.reportString>
+  <Mizu_SupplyWaterToTool.reportString>TargetBに水を補充している</Mizu_SupplyWaterToTool.reportString>
 
 </LanguageData>
