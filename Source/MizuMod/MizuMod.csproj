@@ -68,6 +68,8 @@
     <Compile Include="Building_WaterNet.cs" />
     <Compile Include="Building_WaterNetWorkTable.cs" />
     <Compile Include="Building_Well.cs" />
+    <Compile Include="CompLatentHeat.cs" />
+    <Compile Include="CompProperties_LatentHeat.cs" />
     <Compile Include="CompProperties_WaterNetInput.cs" />
     <Compile Include="CompProperties_WaterNetOutput.cs" />
     <Compile Include="CompProperties_WaterNetTank.cs" />
@@ -121,6 +123,7 @@
     <Compile Include="Mizu_Harmony.cs" />
     <Compile Include="Need_Water.cs" />
     <Compile Include="PlaceWorker_Faucet.cs" />
+    <Compile Include="PlaceWorker_IceWorker.cs" />
     <Compile Include="PlaceWorker_UndergroundDeepWater.cs" />
     <Compile Include="PlaceWorker_UndergroundShallowWater.cs" />
     <Compile Include="PlaceWorker_UndergroundWater.cs" />
@@ -131,6 +134,7 @@
     <Compile Include="RecipeWorkerCounter_DrawWater.cs" />
     <Compile Include="SectionLayer_WaterNet.cs" />
     <Compile Include="StatPart_Water.cs" />
+    <Compile Include="Thing_IcyFood.cs" />
     <Compile Include="ThinkNode_ConditionalDehydration.cs" />
     <Compile Include="ThinkNode_ConditionalStockWaterForPrisoner.cs" />
     <Compile Include="ThirstCategory.cs" />

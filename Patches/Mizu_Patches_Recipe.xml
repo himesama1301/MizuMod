@@ -30,4 +30,28 @@
     </value>
   </Operation>
 
+  <!-- 作業場にreciepsが無いなら追加する -->
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>*/ThingDef[defName = "CraftingSpot"]/recipes</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>*/ThingDef[defName = "CraftingSpot"]</xpath>
+        <value>
+          <recipes/>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>*/ThingDef[defName = "CraftingSpot"]/recipes</xpath>
+    <value>
+      <li>Mizu_MakeShavedIce</li>
+    </value>
+  </Operation>
+  
 </Patch>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <Mizu_ShavedIceFlag.label>かき氷の旗</Mizu_ShavedIceFlag.label>
+  <Mizu_ShavedIceFlag.description>かき氷屋のための装飾品です。</Mizu_ShavedIceFlag.description>
+  <Mizu_ShavedIceFlag_Blueprint.label>かき氷の旗(設計)</Mizu_ShavedIceFlag_Blueprint.label>
+  <Mizu_ShavedIceFlag_Frame.label>かき氷の旗(施行)</Mizu_ShavedIceFlag_Frame.label>
+  <Mizu_ShavedIceFlag_Frame.description>かき氷屋のための装飾品です。</Mizu_ShavedIceFlag_Frame.description>
+  
+</LanguageData>

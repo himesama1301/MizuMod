@@ -11,18 +11,30 @@ namespace MizuMod
 {
     public class JobDriver_DrawFromWaterNet : JobDriver_DrawWater
     {
-        private Building_WaterNetWorkTable workTable;
-        private WaterNet waterNet;
+        private Building_WaterNetWorkTable WorkTable
+        {
+            get
+            {
+                return this.job.GetTarget(BillGiverInd).Thing as Building_WaterNetWorkTable;
+            }
+        }
+        private WaterNet WaterNet
+        {
+            get
+            {
+                if (this.WorkTable == null) return null;
+
+                return this.WorkTable.InputWaterNet;
+            }
+        }
 
         public override bool TryMakePreToilReservations()
         {
             if (!base.TryMakePreToilReservations()) return false;
 
-            this.workTable = this.job.GetTarget(BillGiverInd).Thing as Building_WaterNetWorkTable;
-            if (this.workTable == null) return false;
+            if (this.WorkTable == null) return false;
 
-            this.waterNet = workTable.InputWaterNet;
-            if (this.waterNet == null) return false;
+            if (this.WaterNet == null) return false;
 
             return true;
         }
@@ -35,15 +47,15 @@ namespace MizuMod
         {
             var targetWaterType = WaterType.NoWater;
 
-            if (ext.canDrawFromFaucet)
+            if (this.Ext.canDrawFromFaucet)
             {
                 // 蛇口の場合
-                targetWaterType = this.waterNet.StoredWaterTypeForFaucet;
+                targetWaterType = this.WaterNet.StoredWaterTypeForFaucet;
             }
             else
             {
                 // 自分自身の場合
-                targetWaterType = this.workTable.TankComp.StoredWaterType;
+                targetWaterType = this.WorkTable.TankComp.StoredWaterType;
             }
 
             // 水道網の水の種類から水アイテムの種類を決定
@@ -55,15 +67,15 @@ namespace MizuMod
             if (compprop == null) return null;
 
             // 水道網から水を減らす
-            if (ext.canDrawFromFaucet)
+            if (this.Ext.canDrawFromFaucet)
             {
                 // 蛇口の場合
-                this.waterNet.DrawWaterVolumeForFaucet(compprop.waterVolume * ext.getItemCount);
+                this.WaterNet.DrawWaterVolumeForFaucet(compprop.waterVolume * this.Ext.getItemCount);
             }
             else
             {
                 // 自分自身の場合
-                this.workTable.TankComp.DrawWaterVolume(compprop.waterVolume * ext.getItemCount);
+                this.WorkTable.TankComp.DrawWaterVolume(compprop.waterVolume * this.Ext.getItemCount);
             }
 
             // 水を生成
@@ -71,7 +83,7 @@ namespace MizuMod
             if (createThing == null) return null;
 
             // 個数設定
-            createThing.stackCount = ext.getItemCount;
+            createThing.stackCount = this.Ext.getItemCount;
             return createThing;
         }
     }

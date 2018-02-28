@@ -7,6 +7,12 @@
   <Mizu_DrawingWaterSpot_Frame.label>水汲み場(施行)</Mizu_DrawingWaterSpot_Frame.label>
   <Mizu_DrawingWaterSpot_Frame.description>飲用水を汲む場所です。水か沼に設置できます。</Mizu_DrawingWaterSpot_Frame.description>
 
+  <Mizu_IceHarvestingSpot.label>採氷場</Mizu_IceHarvestingSpot.label>
+  <Mizu_IceHarvestingSpot.description>氷を採取する場所です。氷面に設置できます。</Mizu_IceHarvestingSpot.description>
+  <Mizu_IceHarvestingSpot_Blueprint.label>採氷場(設計)</Mizu_IceHarvestingSpot_Blueprint.label>
+  <Mizu_IceHarvestingSpot_Frame.label>採氷場(施行)</Mizu_IceHarvestingSpot_Frame.label>
+  <Mizu_IceHarvestingSpot_Frame.description>氷を採取する場所です。氷面に設置できます。</Mizu_IceHarvestingSpot_Frame.description>
+
   <Mizu_Well.label>井戸</Mizu_Well.label>
   <Mizu_Well.description>水を汲むことができる設備です。</Mizu_Well.description>
   <Mizu_Well_Blueprint.label>井戸(設計)</Mizu_Well_Blueprint.label>

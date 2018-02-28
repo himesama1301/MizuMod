@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+  <!-- 水 Water -->
   <ThingDef Name="Mizu_WaterItemBase" Abstract="True">
     <thingClass>ThingWithComps</thingClass>
     <category>Item</category>
@@ -40,6 +41,12 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_ClearIce</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Below</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
@@ -70,6 +77,12 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_NormalIce</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Below</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
@@ -100,6 +113,12 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_RawIce</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Below</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
@@ -130,6 +149,12 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_MudIce</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Below</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
@@ -160,6 +185,12 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_SeaIce</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Below</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
       <li Class="MizuMod.CompProperties_WaterSource">
         <sourceType>Item</sourceType>
         <getSound>Ingest_Beer</getSound>
@@ -177,4 +208,274 @@
     </comps>
   </ThingDef>
 
+  <!-- 氷 Ice -->
+  <ThingDef Name="Mizu_IceItemBase" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Beauty>-1</Beauty>
+      <Mass>0.5</Mass>
+    </statBases>
+    <altitudeLayer>Item</altitudeLayer>
+    <stackLimit>25</stackLimit>
+    <tickerType>Rare</tickerType>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <thingCategories>
+      <li>Mizu_Ices</li>
+    </thingCategories>
+    <alwaysHaulable>true</alwaysHaulable>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+    </comps>
+    <pathCost>15</pathCost>
+    <resourceReadoutPriority>Last</resourceReadoutPriority>
+    <drawGUIOverlay>true</drawGUIOverlay>
+  </ThingDef>
+  
+  <ThingDef ParentName="Mizu_IceItemBase">
+    <defName>Mizu_ClearIce</defName>
+    <label>Ice (Clear water)</label>
+    <description>Frozen clear water. Allows get water by licking it for a long time.</description>
+    <graphicData>
+      <texPath>Things/Item/Mizu_ClearIce</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1</MarketValue>
+      <WorkToMake>100</WorkToMake>
+    </statBases>
+    <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_ClearWater</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Above</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>1000</baseDrinkTicks>
+        <waterType>ClearWater</waterType>
+        <needManipulate>true</needManipulate>
+        <waterAmount>0.35</waterAmount>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
+      </li>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>60</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="Mizu_IceItemBase">
+    <defName>Mizu_NormalIce</defName>
+    <label>Ice (Water)</label>
+    <description>Frozen water. Allows get water by licking it for a long time.</description>
+    <graphicData>
+      <texPath>Things/Item/Mizu_NormalIce</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.3</MarketValue>
+      <WorkToMake>100</WorkToMake>
+    </statBases>
+    <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_NormalWater</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Above</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>1000</baseDrinkTicks>
+        <waterType>NormalWater</waterType>
+        <needManipulate>true</needManipulate>
+        <waterAmount>0.35</waterAmount>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Mizu_IceItemBase">
+    <defName>Mizu_RawIce</defName>
+    <label>Ice (Raw water)</label>
+    <description>Frozen raw water. Allows get water by licking it for a long time.</description>
+    <graphicData>
+      <texPath>Things/Item/Mizu_RawIce</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.2</MarketValue>
+      <WorkToMake>100</WorkToMake>
+    </statBases>
+    <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_RawWater</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Above</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>1000</baseDrinkTicks>
+        <waterType>RawWater</waterType>
+        <needManipulate>true</needManipulate>
+        <waterAmount>0.35</waterAmount>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
+      </li>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>4</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Mizu_IceItemBase">
+    <defName>Mizu_MudIce</defName>
+    <label>Ice (Mud water)</label>
+    <description>Frozen mud water. Allows get water by licking it for a long time.</description>
+    <graphicData>
+      <texPath>Things/Item/Mizu_MudIce</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.15</MarketValue>
+      <WorkToMake>100</WorkToMake>
+    </statBases>
+    <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_MudWater</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Above</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>1000</baseDrinkTicks>
+        <waterType>MudWater</waterType>
+        <needManipulate>true</needManipulate>
+        <waterAmount>0.35</waterAmount>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
+      </li>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>4</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Mizu_IceItemBase">
+    <defName>Mizu_SeaIce</defName>
+    <label>Ice (Seawater)</label>
+    <description>Frozen seawater. Allows get water by licking it for a long time.</description>
+    <graphicData>
+      <texPath>Things/Item/Mizu_SeaIce</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.1</MarketValue>
+      <WorkToMake>100</WorkToMake>
+    </statBases>
+    <comps>
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <changedThingDef>Mizu_SeaWater</changedThingDef>
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Above</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>1000</baseDrinkTicks>
+        <waterType>SeaWater</waterType>
+        <needManipulate>true</needManipulate>
+        <waterAmount>0.35</waterAmount>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
+      </li>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>4</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef Name="Mizu_ShavedIce">
+    <defName>Mizu_ShavedIce</defName>
+    <thingClass>MizuMod.Thing_IcyFood</thingClass>
+    <label>Shaved ice</label>
+    <description>A dessert made by shaving the block of ice. Pay attention to headaches.</description>
+    <graphicData>
+      <texPath>Things/Item/Mizu_ShavedIce</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1</MarketValue>
+      <WorkToMake>100</WorkToMake>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Beauty>-1</Beauty>
+      <Mass>0.5</Mass>
+    </statBases>
+    <category>Item</category>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <stackLimit>25</stackLimit>
+    <tickerType>Rare</tickerType>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <thingCategories>
+      <li>Foods</li>
+    </thingCategories>
+    <alwaysHaulable>true</alwaysHaulable>
+    <pathCost>15</pathCost>
+    <resourceReadoutPriority>Last</resourceReadoutPriority>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <ingestible>
+      <preferability>DesperateOnly</preferability>
+      <foodType>Processed</foodType>
+      <nutrition>0.03</nutrition>
+      <joy>0.10</joy>
+      <joyKind>Gluttonous</joyKind>
+      <maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
+      <ingestSound>Meal_Eat</ingestSound>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>Mizu_IcecreamHeadache</hediffDef>
+          <chance>0.1</chance>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+      <li Class="CompProperties_Ingredients" />
+      <li Class="MizuMod.CompProperties_LatentHeat">
+        <temperatureThreshold>0</temperatureThreshold>
+        <addLatentHeatCondition>Above</addLatentHeatCondition>
+        <latentHeatThreshold>400</latentHeatThreshold>
+      </li>
+      <li Class="MizuMod.CompProperties_WaterSource">
+        <sourceType>Item</sourceType>
+        <getSound>Ingest_Beer</getSound>
+        <baseDrinkTicks>100</baseDrinkTicks>
+        <waterType>NoWater</waterType>
+        <dependIngredients>true</dependIngredients>
+        <needManipulate>true</needManipulate>
+        <waterAmount>0.35</waterAmount>
+        <maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+        <waterVolume>0.5</waterVolume>
+      </li>
+    </comps>
+  </ThingDef>
+  
 </Defs>

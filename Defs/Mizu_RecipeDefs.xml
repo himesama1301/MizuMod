@@ -228,17 +228,12 @@
     <products>
       <Mizu_NormalWater>1</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
     <modExtensions>
       <li Class="MizuMod.DefExtension_WaterRecipe">
         <recipeType>PourWater</recipeType>
       </li>
     </modExtensions>
   </RecipeDef>
-  
-  
-  
-  <!-- Pour Water Multi -->
   
   <RecipeDef>
     <defName>Mizu_PourWaterMulti</defName>
@@ -268,7 +263,6 @@
     <products>
       <Mizu_NormalWater>1</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
     <modExtensions>
       <li Class="MizuMod.DefExtension_WaterRecipe">
         <recipeType>PourWater</recipeType>
@@ -278,13 +272,46 @@
   
   
   
+  <!-- Harvest Ice Base -->
+  
+  <RecipeDef Name="Mizu_HarvestIceBase" Abstract="True">
+    <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
+    <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+  </RecipeDef>
+  
+  <!-- Harvest Ice -->
+  
+  <RecipeDef ParentName="Mizu_HarvestIceBase">
+    <defName>Mizu_HarvestIce</defName>
+    <label>harvest ice at this spot</label>
+    <description>Harvests ice.</description>
+    <jobString>Harvesting ice.</jobString>
+    <workAmount>700</workAmount>
+    <products>
+      <Mizu_RawIce>1</Mizu_RawIce>
+    </products>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="Mizu_HarvestIceBase">
+    <defName>Mizu_HarvestIceMulti</defName>
+    <label>harvest ice x5 at this spot</label>
+    <description>Harvests ice x5.</description>
+    <jobString>Harvesting ice.</jobString>
+    <workAmount>3500</workAmount>
+    <products>
+      <Mizu_RawIce>5</Mizu_RawIce>
+    </products>
+  </RecipeDef>
+  
   <!-- others -->
   
   <RecipeDef>
     <defName>Mizu_PurifyWater</defName>
-    <label>purify water</label>
-    <description>purify water by using charcoal to product clear water.</description>
-    <jobString>Purifying water.</jobString>
+    <label>filter water</label>
+    <description>filter water by using charcoal to product clear water.</description>
+    <jobString>Filtering water.</jobString>
     <workAmount>1000</workAmount>
     <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
     <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
@@ -317,7 +344,6 @@
     <products>
       <Mizu_ClearWater>1</Mizu_ClearWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
   <RecipeDef>
@@ -348,7 +374,6 @@
     <products>
       <Mizu_NormalWater>1</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
   <RecipeDef>
@@ -379,7 +404,6 @@
     <products>
       <Mizu_NormalWater>1</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
   <RecipeDef>
@@ -410,14 +434,13 @@
     <products>
       <Mizu_NormalWater>1</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
   <RecipeDef>
     <defName>Mizu_PurifyWaterMulti</defName>
-    <label>purify water x5</label>
-    <description>purify water x5 by using charcoal to product clear water.</description>
-    <jobString>Purifying water.</jobString>
+    <label>filter water x5</label>
+    <description>filter water x5 by using charcoal to product clear water.</description>
+    <jobString>Filtering water.</jobString>
     <workAmount>5000</workAmount>
     <workSpeedStat>Mizu_DrawingSpeed</workSpeedStat>
     <requiredGiverWorkType>Mizu_Drawing</requiredGiverWorkType>
@@ -450,7 +473,6 @@
     <products>
       <Mizu_ClearWater>5</Mizu_ClearWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
   <RecipeDef>
@@ -481,7 +503,6 @@
     <products>
       <Mizu_NormalWater>5</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
   <RecipeDef>
@@ -512,7 +533,6 @@
     <products>
       <Mizu_NormalWater>5</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
   <RecipeDef>
@@ -543,7 +563,69 @@
     <products>
       <Mizu_NormalWater>5</Mizu_NormalWater>
     </products>
-    <workSkill>Cooking</workSkill>
   </RecipeDef>
   
+  
+  
+  <!-- 普通のアイテム作成レシピ  Make Item -->
+
+  <RecipeDef>
+    <defName>Mizu_MakeShavedIce</defName>
+    <label>make shaved ice</label>
+    <description>make shaved ice</description>
+    <jobString>Making shaved ice.</jobString>
+    <workAmount>500</workAmount>
+    <workSpeedStat>CookSpeed</workSpeedStat>
+    <requiredGiverWorkType>Cooking</requiredGiverWorkType>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Mizu_Waters</li>
+          </categories>
+        </filter>
+        <count>1</count>
+      </li>
+      <li>
+        <filter>
+          <categories>
+            <li>Mizu_Ices</li>
+          </categories>
+        </filter>
+        <count>1</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>RawBerries</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Mizu_H2O</li>
+      </categories>
+    </fixedIngredientFilter>
+    <defaultIngredientFilter>
+      <categories>
+        <li>Mizu_H2O</li>
+      </categories>
+      <exceptedThingDefs>
+        <li>Mizu_RawWater</li>
+        <li>Mizu_MudWater</li>
+        <li>Mizu_SeaWater</li>
+        <li>Mizu_RawIce</li>
+        <li>Mizu_MudIce</li>
+        <li>Mizu_SeaIce</li>
+      </exceptedThingDefs>
+    </defaultIngredientFilter>
+    <products>
+      <Mizu_ShavedIce>1</Mizu_ShavedIce>
+    </products>
+  </RecipeDef>
+
 </Defs>

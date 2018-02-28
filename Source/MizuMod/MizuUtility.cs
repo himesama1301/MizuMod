@@ -484,6 +484,17 @@ namespace MizuMod
             float rotScore = 0f;
             if (t.IsRotSoonForWater()) rotScore += 10f;
 
+            // 飲むのにかかる時間
+            float drinkTickScore = 0f;
+            if (comp.SourceType == CompProperties_WaterSource.SourceType.Item)
+            {
+                drinkTickScore = -comp.BaseDrinkTicks / 100f / comp.WaterAmount;
+            }
+            else if (comp.SourceType == CompProperties_WaterSource.SourceType.Building)
+            {
+                drinkTickScore = -comp.BaseDrinkTicks / 100f / 0.35f;
+            }
+
             // 基本点合計メモ
             //          心情,食中毒,健康,合計(禁欲)
             //   きれい= +10,     0,   0, +10(   0)
@@ -497,7 +508,7 @@ namespace MizuMod
             // 水質優先モードか否か
             if (priorQuality) distScore /= 10f;
 
-            return (distScore + thoughtScore + foodPoisoningScore + rotScore);
+            return (distScore + thoughtScore + foodPoisoningScore + rotScore + drinkTickScore);
         }
 
         public static float GetWaterTerrainScore(Pawn eater, IntVec3 c, float dist, bool priorQuality)
@@ -599,7 +610,7 @@ namespace MizuMod
                 Log.Error("comp is null");
                 return 0.0f;
             }
-            if (!comp.IsWaterSource)
+            if (!comp.IsWaterSource && comp.DependIngredients == false)
             {
                 Log.Error("not watersource");
                 return 0.0f;
@@ -610,7 +621,8 @@ namespace MizuMod
                 return 0.0f;
             }
 
-            var waterTypeDef = MizuDef.Dic_WaterTypeDef[comp.WaterType];
+            var waterType = MizuUtility.GetWaterType(thing);
+            var waterTypeDef = MizuDef.Dic_WaterTypeDef[waterType];
 
             // 指定された健康状態になる
             if (waterTypeDef.hediffs != null)
@@ -630,7 +642,14 @@ namespace MizuMod
             float gotWaterAmount;
 
             // 摂取個数と摂取水分量の計算
-            thing.GetWaterCalculateAmounts(getter, waterWanted, out drankWaterItemCount, out gotWaterAmount);
+            thing.GetWaterCalculateAmounts(getter, waterWanted, withIngested, out drankWaterItemCount, out gotWaterAmount);
+
+            if (withIngested)
+            {
+                // 食事の場合は後で個数を計算するのでここでは1個にする
+                gotWaterAmount = comp.WaterAmount;
+                drankWaterItemCount = 1;
+            }
 
             // 食事と同時に水分摂取する場合は既に消滅しているので消滅処理をスキップする
             if (!withIngested && drankWaterItemCount > 0)
@@ -639,10 +658,6 @@ namespace MizuMod
                 {
                     // アイテム消費数とスタック数が同じ
                     //   →完全消滅
-                    //if (getter.Map.reservationManager.ReservedBy(thing, getter, getter.CurJob))
-                    //{
-                    //    getter.Map.reservationManager.Release(thing, getter, getter.CurJob);
-                    //}
                     thing.Destroy(DestroyMode.Vanish);
                 }
                 else
@@ -662,8 +677,13 @@ namespace MizuMod
 
             var comp = t.TryGetComp<CompWaterSource>();
             if (comp == null) return;
-            
-            float gotWaterAmount = comp.WaterAmount * num;
+
+            // 食事のついでの水分摂取の場合、帰ってくる水分量は常に1個分
+            float gotWaterAmount = MizuUtility.GetWater(ingester, t, need_water.WaterWanted, true);
+
+            // 後で個数を掛け算する
+            gotWaterAmount *= num;
+
             if (!ingester.Dead)
             {
                 need_water.CurLevel += gotWaterAmount;
@@ -683,7 +703,8 @@ namespace MizuMod
             if (comp == null) return thoughtList;
             if (!comp.IsWaterSource) return thoughtList;
 
-            var waterTypeDef = MizuDef.Dic_WaterTypeDef[comp.WaterType];
+            var waterType = MizuUtility.GetWaterType(t);
+            var waterTypeDef = MizuDef.Dic_WaterTypeDef[waterType];
 
             bool isDirect = comp.SourceType == CompProperties_WaterSource.SourceType.Building;
             ThoughtsFromWaterTypeDef(getter, waterTypeDef, isDirect, thoughtList);
@@ -847,6 +868,35 @@ namespace MizuMod
             }
 
             return isFound;
+        }
+
+        public static WaterType GetWaterType(Thing t)
+        {
+            var compSource = t.TryGetComp<CompWaterSource>();
+
+            // 水源ではない
+            if (compSource == null) return WaterType.NoWater;
+
+            // 建物、もしくはアイテムでも設定された水質を直接使用する場合
+            if (compSource.SourceType == CompProperties_WaterSource.SourceType.Building || compSource.DependIngredients == false) return compSource.WaterType;
+
+            // 材料データ取得
+            var compIngredients = t.TryGetComp<CompIngredients>();
+
+            // 無ければ直接水質参照
+            if (compIngredients == null) return compSource.WaterType;
+
+            // 材料の中から最低の水質を取得
+            var waterType = WaterType.NoWater;
+            foreach (var ingredient in compIngredients.ingredients)
+            {
+                var comp = ingredient.GetCompProperties<CompProperties_WaterSource>();
+                if (comp == null) continue;
+
+                waterType = waterType.GetMinType(comp.waterType);
+            }
+
+            return waterType;
         }
     }
 }

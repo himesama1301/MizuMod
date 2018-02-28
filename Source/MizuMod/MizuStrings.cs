@@ -48,6 +48,7 @@ namespace MizuMod
         public static readonly string InspectWaterTypeSea = "MizuWaterTypeSea".Translate();
 
         public static readonly string AcceptanceReportCannotBuildMulti = "MizuCannotBuildMultiWaterworksBuilding".Translate();
+        public static readonly string AcceptanceReportCantBuildExceptOverWater = "MizuCantBuildExceptOverWater".Translate();
 
         // 水道管解体
         public static readonly string DesignatorDeconstructPipe = "MizuDesignatorDeconstructPipe".Translate();
