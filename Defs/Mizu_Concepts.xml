@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ConceptDef>
+    <defName>Mizu_DrawWater</defName>
+    <label>NWNL: Draw water</label>
+    <priority>5</priority>
+    <helpText>All humanlikes can't live without water. The colonists can draw water from the drawing water spots and wells.</helpText>
+  </ConceptDef>
+  
+  <ConceptDef>
+    <defName>Mizu_DrinkWater</defName>
+    <label>NWNL: Drink water</label>
+    <priority>4</priority>
+    <helpText>The cololists can drink bottled water, but animals can't drink it. Animals can drink water in water boxes or from drawing water spots, but even if you do not do anything for animals, they drink water spontaneously in rivers and ponds.</helpText>
+  </ConceptDef>
+  
+  <ConceptDef>
+    <defName>Mizu_PurifyWater</defName>
+    <label>NWNL: Purify water</label>
+    <priority>3</priority>
+    <helpText>In the case of bottled water, water quality can be improved by using a water purifier. The water filter can improve the quality of tap water. The water filter has input and output connectors, and they will not work in the wrong direction.</helpText>
+  </ConceptDef>
+  
+  <ConceptDef>
+    <defName>Mizu_UndergroundWater</defName>
+    <label>NWNL: Groundwater</label>
+    <priority>2</priority>
+    <helpText>Wells and Underground water pumps can be built on groundwater. If you choose those buildings from the Architect tab, a map of the groundwater will be displayed on the screen. \n\nEven in the desert a very small amount of groundwater can be found, but they may not be found in extremely cold biomes.</helpText>
+  </ConceptDef>
+  
+  <ConceptDef>
+    <defName>Mizu_Waterworks</defName>
+    <label>NWNL: Waterworks</label>
+    <priority>1</priority>
+    <helpText>With waterworks, you can automate many tasks to get good water. At least 1 pump, 1 tank, 1 faucet are necessary for the water network. Let's pipe them. The two water networks connected to a water filter are treated as separate water networks.</helpText>
+  </ConceptDef>
+  
+</Defs>

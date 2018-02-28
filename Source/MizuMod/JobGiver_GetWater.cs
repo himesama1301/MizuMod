@@ -14,6 +14,15 @@ namespace MizuMod
         //private const int MaxDistanceOfSearchWaterTerrain = 300;
         private const int SearchWaterIntervalTick = 180;
 
+        private ThirstCategory minCategory = ThirstCategory.SlightlyThirsty;
+
+        public override ThinkNode DeepCopy(bool resolve = true)
+        {
+            var jobGiver_GetWater = base.DeepCopy(resolve) as JobGiver_GetWater;
+            jobGiver_GetWater.minCategory = this.minCategory;
+            return jobGiver_GetWater;
+        }
+
         public override float GetPriority(Pawn pawn)
         {
             var need_water = pawn.needs.water();
@@ -21,12 +30,15 @@ namespace MizuMod
             if (need_water == null) return 0.0f;
 
             // 喉が渇いていないなら0
-            if (need_water.CurCategory <= ThirstCategory.Healthy) return 0.0f;
+            if (need_water.CurCategory < minCategory) return 0.0f;
 
             // 何らかの精神崩壊状態の場合、脱水症状が起こるまで水を飲もうとしない
+            // →ThinkTreeDefのほうで制御できそう
             if (pawn.MentalState != null && need_water.CurCategory <= ThirstCategory.UrgentlyThirsty) return 0.0f;
 
             // 人間＆プレイヤー派閥でない場合は、マップ内に敵がいるかどうかで条件を変更
+            // →ポーンの所持品に水が無い場合は1段階先まで我慢させるか？
+            // →段階的に対応してバグ対処したい。これは後回し。
             if (pawn.RaceProps.Humanlike && pawn.Faction != Faction.OfPlayer)
             {
                 foreach (var faction in Find.FactionManager.AllFactionsListForReading)
