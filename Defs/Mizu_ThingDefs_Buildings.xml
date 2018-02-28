@@ -171,9 +171,9 @@
 
   <ThingDef ParentName="Mizu_WaterCleanerBase">
     <defName>Mizu_FueledWaterCleaner</defName>
-    <label>Fueled water cleaner</label>
+    <label>Fueled water purifier</label>
     <thingClass>Building_WorkTable_HeatPush</thingClass>
-    <description>A simple wood-fueled water cleaner.</description>
+    <description>A simple wood-fueled water purifier.</description>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterCleaner</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -209,9 +209,9 @@
 
   <ThingDef ParentName="Mizu_WaterCleanerBase">
     <defName>Mizu_ElectricWaterCleaner</defName>
-    <label>Electric water cleaner</label>
+    <label>Electric water purifier</label>
     <thingClass>Building_WorkTable_HeatPush</thingClass>
-    <description>An electrically-powered water cleaner.</description>
+    <description>An electrically-powered water purifier.</description>
     <graphicData>
       <texPath>Things/Building/Production/Mizu_WaterCleaner</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
@@ -278,6 +278,9 @@
     <researchPrerequisites>
       <li>Mizu_Waterworks</li>
     </researchPrerequisites>
+    <placeWorkers>
+      <li>MizuMod.PlaceWorker_WaterNet</li>
+    </placeWorkers>
   </ThingDef>
 
   <ThingDef ParentName="Mizu_WaterPipeBase">
@@ -345,6 +348,7 @@
     </comps>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_Valve</li>
+      <li>MizuMod.PlaceWorker_WaterNet</li>
     </placeWorkers>
     <researchPrerequisites>
       <li>Mizu_Waterworks</li>
@@ -412,6 +416,7 @@
     </comps>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_WaterWorker</li>
+      <li>MizuMod.PlaceWorker_WaterNet</li>
     </placeWorkers>
     <researchPrerequisites>
       <li>Mizu_Waterworks</li>
@@ -455,6 +460,9 @@
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_Breakdownable"/>
     </comps>
+    <placeWorkers>
+      <li>MizuMod.PlaceWorker_WaterNet</li>
+    </placeWorkers>
   </ThingDef>
 
   <ThingDef ParentName="Mizu_UndergroundWaterPumpBase">
@@ -543,6 +551,9 @@
       <li>Mizu_Waterworks</li>
     </researchPrerequisites>
     <designationHotKey>Misc11</designationHotKey>
+    <placeWorkers>
+      <li>MizuMod.PlaceWorker_WaterNet</li>
+    </placeWorkers>
   </ThingDef>
   
   <ThingDef ParentName="Mizu_BuildingBase">
@@ -621,6 +632,9 @@
       <li>Mizu_PourWaterMulti</li>
     </recipes>
     <designationHotKey>Misc12</designationHotKey>
+    <placeWorkers>
+      <li>MizuMod.PlaceWorker_WaterNet</li>
+    </placeWorkers>
   </ThingDef>
   
   <ThingDef ParentName="Mizu_BuildingBase">
@@ -679,6 +693,7 @@
     </recipes>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_Faucet</li>
+      <li>MizuMod.PlaceWorker_WaterNet</li>
     </placeWorkers>
     <researchPrerequisites>
       <li>Mizu_Waterworks</li>
@@ -705,6 +720,7 @@
     <neverMultiSelect>true</neverMultiSelect>
     <placeWorkers>
       <li>MizuMod.PlaceWorker_Valve</li>
+      <li>MizuMod.PlaceWorker_WaterNet</li>
     </placeWorkers>
     <researchPrerequisites>
       <li>Mizu_WaterFilter</li>
