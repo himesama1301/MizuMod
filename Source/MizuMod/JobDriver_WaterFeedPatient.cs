@@ -16,7 +16,14 @@ namespace MizuMod
 
         private bool getItemFromInventory;
 
-        private Pawn patient
+        private ThingWithComps WaterThing
+        {
+            get
+            {
+                return this.TargetA.Thing as ThingWithComps;
+            }
+        }
+        private Pawn Patient
         {
             get
             {
@@ -37,6 +44,8 @@ namespace MizuMod
 
         public override bool TryMakePreToilReservations()
         {
+            this.pawn.Reserve(WaterThing, this.job);
+            this.pawn.Reserve(Patient, this.job);
             return true;
         }
 
@@ -48,13 +57,13 @@ namespace MizuMod
             ToilFailConditions.FailOnDestroyedNullOrForbidden(this, WaterIndex);
             ToilFailConditions.FailOn(this, () =>
             {
-                if (this.patient == null) return true;
+                if (this.Patient == null) return true;
 
                 // 患者がベッドに入ってなかったらFail
-                if (!this.patient.InBed()) return true;
+                if (!this.Patient.InBed()) return true;
 
                 // 到達不能になっていたらFail
-                if (!this.pawn.CanReach(this.patient, PathEndMode.ClosestTouch, Danger.Deadly)) return true;
+                if (!this.pawn.CanReach(this.Patient, PathEndMode.ClosestTouch, Danger.Deadly)) return true;
 
                 return false;
             });
