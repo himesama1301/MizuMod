@@ -52,4 +52,21 @@
     </value>
   </Operation>
   
+  <!-- 雪だるまを水カテゴリで建造可能にする -->
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>*/ThingDef[defName = "Snowman"]/designationCategory</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>*/ThingDef[defName = "Snowman"]</xpath>
+        <value>
+          <designationCategory>Mizu</designationCategory>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+
 </Patch>
