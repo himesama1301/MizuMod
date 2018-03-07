@@ -48,8 +48,13 @@ namespace MizuMod
             if (terrain.acceptTerrainSourceFilth == false || (terrain.researchPrerequisites != null && terrain.researchPrerequisites.Contains(ResearchProjectDefOf.CarpetMaking))) return false;
 
             // その場所に汚れがあったらやらない
-            var filthList = c.GetThingList(pawn.Map).Where((t) => { return t is Filth; });
+            var thingList = c.GetThingList(pawn.Map);
+            var filthList = thingList.Where((t) => { return t is Filth; });
             if (filthList != null && filthList.Count() > 0) return false;
+
+            // 既にモップ掛けされている場所にはやらない
+            var moppedThingList = thingList.Where((t) => { return t.def == MizuDef.Thing_MoppedThing; });
+            if (moppedThingList != null && moppedThingList.Count() > 0) return false;
 
             // その場所を予約できないならやらない
             if (!pawn.CanReserve(c)) return false;

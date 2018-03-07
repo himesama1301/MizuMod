@@ -90,7 +90,7 @@
         </useWorkType>
         <supplyWorkType>
           <li>Mizu_Drawing</li>
-          <li>Cleaning</li>
+          <li>Mizu_Cleaning</li>
         </supplyWorkType>
         <maxWaterVolume>1</maxWaterVolume>
       </li>

@@ -11,8 +11,6 @@ namespace MizuMod
 {
     public class WorkGiver_SupplyWaterToTool : WorkGiver_Scanner
     {
-        private int MinTicksSinceThickened = 600;
-
         public override PathEndMode PathEndMode
         {
             get

@@ -14,5 +14,21 @@
       <li>ManualDumb</li>
     </workTags>
   </WorkTypeDef>
-
+  
+  <WorkTypeDef>
+    <defName>Mizu_Cleaning</defName>
+    <labelShort>Clean</labelShort>
+    <pawnLabel>Cleaner</pawnLabel>
+    <gerundLabel>cleaning</gerundLabel>
+    <description>Clean the floor with tools.</description>
+    <verb>Clean</verb>
+    <naturalPriority>190</naturalPriority>
+    <alwaysStartActive>true</alwaysStartActive>
+    <requireCapableColonist>true</requireCapableColonist>
+    <workTags>
+      <li>ManualDumb</li>
+      <li>Cleaning</li>
+    </workTags>
+  </WorkTypeDef>
+  
 </Defs>
