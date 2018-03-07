@@ -121,10 +121,12 @@
     <defName>Mizu_Mop</defName>
     <label>mop</label>
     <giverClass>MizuMod.WorkGiver_Mop</giverClass>
-    <workType>Cleaning</workType>
+    <workType>Mizu_Cleaning</workType>
     <verb>mop</verb>
     <gerund>mopping</gerund>
-    <priorityInType>1</priorityInType>
+    <priorityInType>100</priorityInType>
+    <scanThings>false</scanThings>
+    <scanCells>true</scanCells>
     <requiredCapacities>
       <li>Manipulation</li>
     </requiredCapacities>
@@ -153,10 +155,10 @@
     <defName>Mizu_SupplyWaterToToolCleaning</defName>
     <label>supply water</label>
     <giverClass>MizuMod.WorkGiver_SupplyWaterToTool</giverClass>
-    <workType>Cleaning</workType>
+    <workType>Mizu_Cleaning</workType>
     <verb>supply</verb>
     <gerund>supplying</gerund>
-    <priorityInType>1</priorityInType>
+    <priorityInType>100</priorityInType>
     <fixedBillGiverDefs>
       <li>Mizu_DrawingWaterSpot</li>
       <li>Mizu_Well</li>
