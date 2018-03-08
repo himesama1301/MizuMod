@@ -7,4 +7,10 @@
   <Mizu_Drawing.description>飲むための水を得ます。</Mizu_Drawing.description>
   <Mizu_Drawing.verb>水汲み</Mizu_Drawing.verb>
 
+  <Mizu_Cleaning.labelShort>掃除(水)</Mizu_Cleaning.labelShort>
+  <Mizu_Cleaning.pawnLabel>掃除</Mizu_Cleaning.pawnLabel>
+  <Mizu_Cleaning.gerundLabel>掃除</Mizu_Cleaning.gerundLabel>
+  <Mizu_Cleaning.description>道具を使ってフロアを掃除します。</Mizu_Cleaning.description>
+  <Mizu_Cleaning.verb>掃除</Mizu_Cleaning.verb>
+
 </LanguageData>
