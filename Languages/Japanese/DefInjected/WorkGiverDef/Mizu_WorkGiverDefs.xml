@@ -1,26 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-  <Mizu_DoBillWater.label>作業をする</Mizu_DoBillWater.label>
-  <Mizu_DoBillWater.verb>で作業をする</Mizu_DoBillWater.verb>
-  <Mizu_DoBillWater.gerund>で作業をする</Mizu_DoBillWater.gerund>
-<!--
-  <Mizu_DrawFromWaterPool.label>水を汲む</Mizu_DrawFromWaterPool.label>
-  <Mizu_DrawFromWaterPool.verb>を汲む</Mizu_DrawFromWaterPool.verb>
-  <Mizu_DrawFromWaterPool.gerund>を汲む</Mizu_DrawFromWaterPool.gerund>
+  <Mizu_DoBillWater.label>水仕事をする</Mizu_DoBillWater.label>
+  <Mizu_DoBillWater.verb>で水仕事をする</Mizu_DoBillWater.verb>
+  <Mizu_DoBillWater.gerund>で水仕事をする</Mizu_DoBillWater.gerund>
 
-  <Mizu_DrawFromFaucet.label>水を汲む</Mizu_DrawFromFaucet.label>
-  <Mizu_DrawFromFaucet.verb>を汲む</Mizu_DrawFromFaucet.verb>
-  <Mizu_DrawFromFaucet.gerund>を汲む</Mizu_DrawFromFaucet.gerund>
-
-  <Mizu_DrawFromRainTank.label>水を汲む</Mizu_DrawFromRainTank.label>
-  <Mizu_DrawFromRainTank.verb>を汲む</Mizu_DrawFromRainTank.verb>
-  <Mizu_DrawFromRainTank.gerund>を汲む</Mizu_DrawFromRainTank.gerund>
-
-  <Mizu_PourWater.label>水を注ぐ</Mizu_PourWater.label>
-  <Mizu_PourWater.verb>に水を注ぐ</Mizu_PourWater.verb>
-  <Mizu_PourWater.gerund>に水を注ぐ</Mizu_PourWater.gerund>
--->
   <Mizu_DoctorFeedWaterHumanlikes.label>水を与える</Mizu_DoctorFeedWaterHumanlikes.label>
   <Mizu_DoctorFeedWaterHumanlikes.verb>に水を与える</Mizu_DoctorFeedWaterHumanlikes.verb>
   <Mizu_DoctorFeedWaterHumanlikes.gerund>に水を与える</Mizu_DoctorFeedWaterHumanlikes.gerund>
