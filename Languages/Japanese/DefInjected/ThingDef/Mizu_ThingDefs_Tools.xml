@@ -4,4 +4,7 @@
   <Mizu_Mop.label>モップ</Mizu_Mop.label>
   <Mizu_Mop.description>掃除用具です。人工のフロアをよりきれいに掃除することが出来ます。</Mizu_Mop.description>
   
+  <Mizu_Towel.label>タオル</Mizu_Towel.label>
+  <Mizu_Towel.description>看病に使う道具です。病人を看病して病気からの回復を助けることが出来ます。</Mizu_Towel.description>
+  
 </LanguageData>
