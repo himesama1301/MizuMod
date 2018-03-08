@@ -3,7 +3,7 @@
 
   <WorkGiverDef>
     <defName>Mizu_DoBillWater</defName>
-    <label>doing bill about drawing water</label>
+    <label>do wet work</label>
     <giverClass>MizuMod.WorkGiver_DoBillWater</giverClass>
     <workType>Mizu_Drawing</workType>
     <priorityInType>100</priorityInType>
@@ -13,8 +13,8 @@
       <li>Mizu_WaterFaucet</li>
       <li>Mizu_WaterBox</li>
     </fixedBillGiverDefs>
-    <verb>draw</verb>
-    <gerund>drawing at</gerund>
+    <verb>do wet work</verb>
+    <gerund>doing wet work at</gerund>
     <requiredCapacities>
       <li>Manipulation</li>
     </requiredCapacities>

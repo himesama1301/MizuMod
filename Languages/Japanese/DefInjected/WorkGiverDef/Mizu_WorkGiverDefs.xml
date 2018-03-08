@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-  <Mizu_DoBillWater.label>作業をする</Mizu_DoBillWater.label>
-  <Mizu_DoBillWater.verb>で作業をする</Mizu_DoBillWater.verb>
-  <Mizu_DoBillWater.gerund>で作業をする</Mizu_DoBillWater.gerund>
-
+  <Mizu_DoBillWater.label>水仕事をする</Mizu_DoBillWater.label>
+  <Mizu_DoBillWater.verb>で水仕事をする</Mizu_DoBillWater.verb>
+  <Mizu_DoBillWater.gerund>で水仕事をする</Mizu_DoBillWater.gerund>
+  
   <Mizu_DoBillIce.label>採氷する</Mizu_DoBillIce.label>
   <Mizu_DoBillIce.verb>で採氷する</Mizu_DoBillIce.verb>
   <Mizu_DoBillIce.gerund>で採氷する</Mizu_DoBillIce.gerund>
