@@ -136,20 +136,20 @@
         </exceptedThingDefs>
       </defaultIngredientFilter>
     </recipeMaker>
-<!--
     <comps>
       <li Class="MizuMod.CompProperties_WaterTool">
+<!--
         <useWorkType>
           <li>Mop</li>
         </useWorkType>
+-->
         <supplyWorkType>
           <li>Mizu_Drawing</li>
-          <li>Mizu_Cleaning</li>
+          <li>Doctor</li>
         </supplyWorkType>
-        <maxWaterVolume>1</maxWaterVolume>
+        <maxWaterVolume>0.5</maxWaterVolume>
       </li>
     </comps>
--->
   </ThingDef>
   
 </Defs>
