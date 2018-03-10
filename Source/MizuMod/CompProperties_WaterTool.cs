@@ -14,6 +14,7 @@ namespace MizuMod
         {
             Undefined = 0,
             Mop,
+            Nurse,
         }
 
         public List<UseWorkType> useWorkType = new List<UseWorkType>();

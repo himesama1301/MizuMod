@@ -41,8 +41,8 @@
   <Mizu_SupplyWaterToToolCleaning.verb>から水を補充する</Mizu_SupplyWaterToToolCleaning.verb>
   <Mizu_SupplyWaterToToolCleaning.gerund>から水を補充する</Mizu_SupplyWaterToToolCleaning.gerund>
 
-  <Mizu_Nurse.label>看病する</Mizu_Nurse.label>
-  <Mizu_Nurse.verb>を看病する</Mizu_Nurse.verb>
-  <Mizu_Nurse.gerund>を看病する</Mizu_Nurse.gerund>
+  <Mizu_NurseToHumanlikes.label>看病する</Mizu_NurseToHumanlikes.label>
+  <Mizu_NurseToHumanlikes.verb>を看病する</Mizu_NurseToHumanlikes.verb>
+  <Mizu_NurseToHumanlikes.gerund>を看病する</Mizu_NurseToHumanlikes.gerund>
 
 </LanguageData>

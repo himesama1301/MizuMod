@@ -190,7 +190,7 @@
   </WorkGiverDef>
   
   <WorkGiverDef>
-    <defName>NurseToHumanlikes</defName>
+    <defName>Mizu_NurseToHumanlikes</defName>
     <label>nurse patients</label>
     <giverClass>MizuMod.WorkGiver_Nurse</giverClass>
     <workType>Doctor</workType>

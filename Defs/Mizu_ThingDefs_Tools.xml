@@ -138,11 +138,9 @@
     </recipeMaker>
     <comps>
       <li Class="MizuMod.CompProperties_WaterTool">
-<!--
         <useWorkType>
-          <li>Mop</li>
+          <li>Nurse</li>
         </useWorkType>
--->
         <supplyWorkType>
           <li>Mizu_Drawing</li>
           <li>Doctor</li>
