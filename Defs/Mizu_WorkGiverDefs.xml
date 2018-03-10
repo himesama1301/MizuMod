@@ -177,7 +177,7 @@
     <workType>Doctor</workType>
     <verb>supply</verb>
     <gerund>supplying</gerund>
-    <priorityInType>100</priorityInType>
+    <priorityInType>3</priorityInType>
     <fixedBillGiverDefs>
       <li>Mizu_DrawingWaterSpot</li>
       <li>Mizu_Well</li>
@@ -187,6 +187,21 @@
     <requiredCapacities>
       <li>Manipulation</li>
     </requiredCapacities>
+  </WorkGiverDef>
+  
+  <WorkGiverDef>
+    <defName>NurseToHumanlikes</defName>
+    <label>nurse patients</label>
+    <giverClass>MizuMod.WorkGiver_Nurse</giverClass>
+    <workType>Doctor</workType>
+    <verb>nurse</verb>
+    <gerund>nursing</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>4</priorityInType>
+    <prioritizeSustains>true</prioritizeSustains>
+    <tendToHumanlikesOnly>true</tendToHumanlikesOnly>
   </WorkGiverDef>
   
 </Defs>

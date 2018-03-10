@@ -167,6 +167,7 @@
     <Compile Include="WorkGiver_FeedWaterPatient.cs" />
     <Compile Include="WorkGiver_GetSnow.cs" />
     <Compile Include="WorkGiver_Mop.cs" />
+    <Compile Include="WorkGiver_Nurse.cs" />
     <Compile Include="WorkGiver_SupplyWaterToTool.cs" />
     <Compile Include="WorkGiver_Warden_DeliverWater.cs" />
   </ItemGroup>
