@@ -41,6 +41,9 @@ namespace MizuMod
             // 看病アイテムのチェック
             var mopList = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).Where((thing) =>
             {
+                // 使用禁止チェック
+                if (thing.IsForbidden(pawn)) return false;
+
                 var comp = thing.TryGetComp<CompWaterTool>();
                 if (comp == null) return false;
                 if (!comp.UseWorkType.Contains(CompProperties_WaterTool.UseWorkType.Nurse)) return false;
@@ -67,6 +70,9 @@ namespace MizuMod
             int minDist = int.MaxValue;
             var toolList = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).Where((thing) =>
             {
+                // 使用禁止チェック
+                if (thing.IsForbidden(pawn)) return false;
+
                 var comp = thing.TryGetComp<CompWaterTool>();
                 if (comp == null) return false;
                 if (!comp.UseWorkType.Contains(CompProperties_WaterTool.UseWorkType.Nurse)) return false;

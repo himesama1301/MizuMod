@@ -42,7 +42,7 @@ namespace MizuMod
         protected override IEnumerable<Toil> MakeNewToils()
         {
             // モップまで移動
-            yield return Toils_Goto.GotoThing(MopInd, PathEndMode.Touch);
+            yield return Toils_Goto.GotoThing(MopInd, PathEndMode.Touch).FailOnDespawnedNullOrForbidden(MopInd);
 
             // モップを手に取る
             yield return Toils_Haul.StartCarryThing(MopInd);
