@@ -102,9 +102,8 @@
     <label>Towel</label>
     <description>A tool for nursing. Allows pawn to nurse patients and help them recover from disease.</description>
     <graphicData>
-      <texPath>Things/Item/Mizu_Mop</texPath>
+      <texPath>Things/Item/Mizu_Towel</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
     </graphicData>
     <statBases>
       <MarketValue>10</MarketValue>
