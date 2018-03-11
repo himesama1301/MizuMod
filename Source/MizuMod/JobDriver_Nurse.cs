@@ -87,10 +87,21 @@ namespace MizuMod
             yield return workToil;
 
             // 看病完了時の処理
-            // Hediff追加
-            // 水減少
-            //   水は時間経過ではなく終了時に決めた量が一気に減ることにする
-            // yield return null;
+            var finishToil = new Toil();
+            finishToil.initAction = () =>
+            {
+                // 看病状態追加
+                if (Patient.health.hediffSet.GetFirstHediffOfDef(MizuDef.Hediff_Nursed) == null)
+                {
+                    Patient.health.AddHediff(HediffMaker.MakeHediff(MizuDef.Hediff_Nursed, Patient));
+                }
+
+                // 水減少
+                var comp = Tool.GetComp<CompWaterTool>();
+                comp.StoredWaterVolume -= ConsumeWaterVolume;
+            };
+            finishToil.defaultCompleteMode = ToilCompleteMode.Instant;
+            yield return finishToil;
 
             // ツールを片付ける場所を決める
             yield return Toils_Mizu.TryFindStoreCell(ToolInd, ToolPlaceInd);

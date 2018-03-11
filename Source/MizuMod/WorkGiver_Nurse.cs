@@ -35,6 +35,9 @@ namespace MizuMod
             // (治療状態は問わない)
             if (!giver.health.hediffSet.hediffs.Any((hediff) => hediff.def.PossibleToDevelopImmunityNaturally())) return false;
 
+            // 看病された効果が残っている
+            if (giver.health.hediffSet.GetFirstHediffOfDef(MizuDef.Hediff_Nursed) != null) return false;
+
             // 看病アイテムのチェック
             var mopList = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).Where((thing) =>
             {
@@ -74,16 +77,16 @@ namespace MizuMod
 
                 return true;
             });
-            foreach (var mop in toolList)
+            foreach (var tool in toolList)
             {
                 // 予約できないツールはパス
-                if (!pawn.CanReserve(mop)) continue;
+                if (!pawn.CanReserve(tool)) continue;
 
-                int toolDist = (mop.Position - pawn.Position).LengthHorizontalSquared;
+                int toolDist = (tool.Position - pawn.Position).LengthHorizontalSquared;
                 if (minDist > toolDist)
                 {
                     minDist = toolDist;
-                    candidateTool = mop;
+                    candidateTool = tool;
                 }
             }
 

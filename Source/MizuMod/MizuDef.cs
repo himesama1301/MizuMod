@@ -36,6 +36,7 @@ namespace MizuMod
 
         public static HediffDef Hediff_Dehydration = DefDatabase<HediffDef>.GetNamed("Mizu_Dehydration");
         public static HediffDef Hediff_DrankSeaWater = DefDatabase<HediffDef>.GetNamed("Mizu_DrankSeaWater");
+        public static HediffDef Hediff_Nursed = DefDatabase<HediffDef>.GetNamed("Mizu_Nursed");
 
         public static RecordDef Record_WaterDrank = DefDatabase<RecordDef>.GetNamed("Mizu_WaterDrank");
         public static RecordDef Record_WaterDrew = DefDatabase<RecordDef>.GetNamed("Mizu_WaterDrew");
