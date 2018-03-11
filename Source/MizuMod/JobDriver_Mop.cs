@@ -71,23 +71,13 @@ namespace MizuMod
                 }, initExtractTargetFromQueue)
                 .JumpIfOutsideMopArea(MoppingInd, initExtractTargetFromQueue);
 
-            // ピカピカ追加
+            // モップ掛け作業中
             Toil mopToil = new Toil();
             mopToil.initAction = delegate
             {
                 // 必要工数の計算
                 this.ticksLeftThisToil = MoppingTicks;
             };
-            mopToil.AddFinishAction(() =>
-            {
-                // モップオブジェクト生成
-                var moppedThing = ThingMaker.MakeThing(MizuDef.Thing_MoppedThing);
-                GenSpawn.Spawn(moppedThing, this.MoppingPos, mopToil.actor.Map);
-
-                // モップから水を減らす
-                var compTool = Mop.GetComp<CompWaterTool>();
-                compTool.StoredWaterVolume -= ConsumeWaterVolume;
-            });
             // 細々とした設定
             mopToil.defaultCompleteMode = ToilCompleteMode.Delay;
             mopToil.WithProgressBar(MoppingInd, () => 1f - (float)this.ticksLeftThisToil / MoppingTicks, true, -0.5f);
@@ -102,6 +92,21 @@ namespace MizuMod
             }, initExtractTargetFromQueue);
             mopToil.JumpIfOutsideMopArea(MoppingInd, initExtractTargetFromQueue);
             yield return mopToil;
+
+            // モップ掛け終了
+            var finishToil = new Toil();
+            finishToil.initAction = () =>
+            {
+                // モップオブジェクト生成
+                var moppedThing = ThingMaker.MakeThing(MizuDef.Thing_MoppedThing);
+                GenSpawn.Spawn(moppedThing, this.MoppingPos, mopToil.actor.Map);
+
+                // モップから水を減らす
+                var compTool = Mop.GetComp<CompWaterTool>();
+                compTool.StoredWaterVolume -= ConsumeWaterVolume;
+            };
+            finishToil.defaultCompleteMode = ToilCompleteMode.Instant;
+            yield return finishToil;
 
             // 最初に戻る
             yield return Toils_Jump.JumpIf(initExtractTargetFromQueue, () =>
