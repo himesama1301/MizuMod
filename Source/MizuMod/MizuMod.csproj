@@ -118,6 +118,7 @@
     <Compile Include="JobDriver_DrinkWaterFromBuilding.cs" />
     <Compile Include="JobDriver_GetSnow.cs" />
     <Compile Include="JobDriver_Mop.cs" />
+    <Compile Include="JobDriver_Nurse.cs" />
     <Compile Include="JobDriver_PourWater.cs" />
     <Compile Include="JobDriver_SupplyWaterToTool.cs" />
     <Compile Include="JobDriver_WaterDeliver.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="WorkGiver_FeedWaterPatient.cs" />
     <Compile Include="WorkGiver_GetSnow.cs" />
     <Compile Include="WorkGiver_Mop.cs" />
+    <Compile Include="WorkGiver_Nurse.cs" />
     <Compile Include="WorkGiver_SupplyWaterToTool.cs" />
     <Compile Include="WorkGiver_Warden_DeliverWater.cs" />
   </ItemGroup>

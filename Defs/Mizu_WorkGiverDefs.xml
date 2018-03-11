@@ -170,4 +170,38 @@
     </requiredCapacities>
   </WorkGiverDef>
   
+  <WorkGiverDef>
+    <defName>Mizu_SupplyWaterToToolDoctor</defName>
+    <label>supply water</label>
+    <giverClass>MizuMod.WorkGiver_SupplyWaterToTool</giverClass>
+    <workType>Doctor</workType>
+    <verb>supply</verb>
+    <gerund>supplying</gerund>
+    <priorityInType>3</priorityInType>
+    <fixedBillGiverDefs>
+      <li>Mizu_DrawingWaterSpot</li>
+      <li>Mizu_Well</li>
+      <li>Mizu_WaterFaucet</li>
+      <li>Mizu_WaterBox</li>
+    </fixedBillGiverDefs>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+  
+  <WorkGiverDef>
+    <defName>Mizu_NurseToHumanlikes</defName>
+    <label>nurse patients</label>
+    <giverClass>MizuMod.WorkGiver_Nurse</giverClass>
+    <workType>Doctor</workType>
+    <verb>nurse</verb>
+    <gerund>nursing</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>4</priorityInType>
+    <prioritizeSustains>true</prioritizeSustains>
+    <tendToHumanlikesOnly>true</tendToHumanlikesOnly>
+  </WorkGiverDef>
+  
 </Defs>

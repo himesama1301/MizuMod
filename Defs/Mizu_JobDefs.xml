@@ -73,4 +73,10 @@
     <reportString>supplying water to TargetB.</reportString>
   </JobDef>
   
+  <JobDef>
+    <defName>Mizu_Nurse</defName>
+    <driverClass>MizuMod.JobDriver_Nurse</driverClass>
+    <reportString>nursing TargetA.</reportString>
+  </JobDef>
+  
 </Defs>

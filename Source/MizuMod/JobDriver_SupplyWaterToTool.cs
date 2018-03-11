@@ -72,6 +72,8 @@ namespace MizuMod
                     // 手が必要ない→水にドボンですぐに補給できる
                     totalTicks /= 10;
                 }
+                // 小数の誤差を考慮して1Tick余分に多く実行する
+                totalTicks += 1;
 
                 this.maxTick = totalTicks;
                 this.ticksLeftThisToil = totalTicks;

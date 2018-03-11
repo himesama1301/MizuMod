@@ -86,7 +86,17 @@ namespace MizuMod
             // 一番近いモップを探す
             Thing candidateMop = null;
             int minDist = int.MaxValue;
-            var mopList = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).Where((t) => t.def == MizuDef.Thing_Mop);
+            var mopList = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).Where((t) =>
+            {
+                var comp = t.TryGetComp<CompWaterTool>();
+                if (comp == null) return false;
+                if (!comp.UseWorkType.Contains(CompProperties_WaterTool.UseWorkType.Mop)) return false;
+
+                int maxQueueLengthForCheck = (int)Mathf.Floor(comp.StoredWaterVolume / JobDriver_Mop.ConsumeWaterVolume);
+                if (maxQueueLengthForCheck <= 0) return false;
+
+                return true;
+            });
 
             foreach (var mop in mopList)
             {

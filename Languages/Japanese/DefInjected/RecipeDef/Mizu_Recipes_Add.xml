@@ -5,4 +5,8 @@
   <Make_Mizu_Mop.description>モップを作る。</Make_Mizu_Mop.description>
   <Make_Mizu_Mop.jobString>モップを製作中</Make_Mizu_Mop.jobString>
   
+  <Make_Mizu_Towel.label>タオルを縫う</Make_Mizu_Towel.label>
+  <Make_Mizu_Towel.description>タオルを縫う。</Make_Mizu_Towel.description>
+  <Make_Mizu_Towel.jobString>タオルを縫製中</Make_Mizu_Towel.jobString>
+  
 </LanguageData>
