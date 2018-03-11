@@ -62,6 +62,9 @@ namespace MizuMod
             // モップアイテムのチェック
             var mopList = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).Where((t) =>
             {
+                // 使用禁止チェック
+                if (t.IsForbidden(pawn)) return false;
+
                 var comp = t.TryGetComp<CompWaterTool>();
                 if (comp == null) return false;
                 if (!comp.UseWorkType.Contains(CompProperties_WaterTool.UseWorkType.Mop)) return false;
@@ -88,6 +91,9 @@ namespace MizuMod
             int minDist = int.MaxValue;
             var mopList = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).Where((t) =>
             {
+                // 使用禁止チェック
+                if (t.IsForbidden(pawn)) return false;
+
                 var comp = t.TryGetComp<CompWaterTool>();
                 if (comp == null) return false;
                 if (!comp.UseWorkType.Contains(CompProperties_WaterTool.UseWorkType.Mop)) return false;

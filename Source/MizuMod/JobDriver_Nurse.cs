@@ -41,7 +41,10 @@ namespace MizuMod
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
+            // 患者の状態による失敗条件
+
+            // 死んだりいなくなったりしたら失敗
+            this.FailOnDespawnedNullOrForbidden(PatientInd);
             this.FailOn(() =>
             {
                 // 寝ていない状態になったら失敗
@@ -50,22 +53,20 @@ namespace MizuMod
                 // 看護師と患者が同一人物だったら失敗
                 return this.pawn == this.Patient;
             });
-
-            //base.AddEndCondition(delegate
-            //{
-            //    // 看病が必要な状況なら続ける
-            //    // 免疫を得る系の病気を持っている＆看病Hediffが無い
-            //	  if (HealthAIUtility.ShouldBeTendedNow(this.Patient)) return JobCondition.Ongoing;
-            //
-            //    // 既に看病されていたら終了
-            //    return JobCondition.Succeeded;
-            //});
-
             // 精神崩壊状態次第で失敗とする
-            this.FailOnAggroMentalState(TargetIndex.A);
+            this.FailOnAggroMentalState(PatientInd);
+            base.AddEndCondition(delegate
+            {
+                // 看病が必要な状況なら続ける
+                // 免疫を得る系の病気を持っている＆看病Hediffが無い
+                if (Patient.health.hediffSet.GetFirstHediffOfDef(MizuDef.Hediff_Nursed) == null) return JobCondition.Ongoing;
+
+                // 既に看病されていたら終了
+                return JobCondition.Succeeded;
+            });
 
             // ツールまで移動
-            yield return Toils_Goto.GotoThing(ToolInd, PathEndMode.Touch);
+            yield return Toils_Goto.GotoThing(ToolInd, PathEndMode.Touch).FailOnDespawnedNullOrForbidden(ToolInd);
 
             // ツールを手に取る
             yield return Toils_Haul.StartCarryThing(ToolInd);
