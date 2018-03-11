@@ -9,4 +9,8 @@
   <Make_Mizu_Towel.description>タオルを縫う。</Make_Mizu_Towel.description>
   <Make_Mizu_Towel.jobString>タオルを縫製中</Make_Mizu_Towel.jobString>
   
+  <Make_Mizu_WateringPot.label>じょうろを作る</Make_Mizu_WateringPot.label>
+  <Make_Mizu_WateringPot.description>じょうろを作る。</Make_Mizu_WateringPot.description>
+  <Make_Mizu_WateringPot.jobString>じょうろを製作中</Make_Mizu_WateringPot.jobString>
+  
 </LanguageData>

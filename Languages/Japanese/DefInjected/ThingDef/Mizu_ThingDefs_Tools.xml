@@ -7,4 +7,7 @@
   <Mizu_Towel.label>タオル</Mizu_Towel.label>
   <Mizu_Towel.description>看病に使う道具です。病人を看病して病気からの回復を助けることが出来ます。</Mizu_Towel.description>
   
+  <Mizu_WateringPot.label>じょうろ</Mizu_WateringPot.label>
+  <Mizu_WateringPot.description>栽培に使う道具です。農地に水やりをして肥沃度を上昇させることが出来ます。</Mizu_WateringPot.description>
+  
 </LanguageData>
