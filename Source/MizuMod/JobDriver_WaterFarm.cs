@@ -17,14 +17,14 @@ namespace MizuMod
         private const int WorkingTicks = 60;
         public const float ConsumeWaterVolume = 0.05f;
 
-        private IntVec3 MoppingPos
+        private IntVec3 WateringPos
         {
             get
             {
                 return this.job.GetTarget(WateringInd).Cell;
             }
         }
-        private ThingWithComps Mop
+        private ThingWithComps Tool
         {
             get
             {
@@ -35,7 +35,7 @@ namespace MizuMod
         public override bool TryMakePreToilReservations()
         {
             this.pawn.ReserveAsManyAsPossible(this.job.GetTargetQueue(WateringInd), this.job);
-            this.pawn.Reserve(this.Mop, this.job);
+            this.pawn.Reserve(this.Tool, this.job);
             return true;
         }
 
@@ -47,17 +47,11 @@ namespace MizuMod
             // ツールを手に取る
             yield return Toils_Haul.StartCarryThing(ToolInd);
 
-            //// ターゲットが水やり対象として不適になっていたらリストから外す
-            ////Thing系にしか使えない
-            //Toil initExtractTargetFromQueue = Toils_Mizu.ClearCondifionSatisfiedTargets(WateringInd, (lti) =>
-            //{
-            //    return lti.Cell.GetFirstThing(this.pawn.Map, MizuDef.Thing_MoppedThing) != null;
-            //});
-            //yield return initExtractTargetFromQueue;
+            // ターゲットが水やり対象として不適になっていたらリストから外す
             Toil initExtractTargetFromQueue = Toils_Mizu.ClearConditionSatisfiedTargets(WateringInd, (lti) =>
             {
-                // ダミー
-                return false;
+                var mapComp = this.Map.GetComponent<MapComponent_Watering>();
+                return mapComp.wateringGrid[this.Map.cellIndices.CellToIndex(lti.Cell)] > 0;
             });
             yield return initExtractTargetFromQueue;
 
@@ -68,14 +62,6 @@ namespace MizuMod
 
             // ターゲットの元へ移動
             yield return Toils_Goto.GotoCell(WateringInd, PathEndMode.Touch);
-                //.JumpIf(() =>
-                //{
-                //    var target = this.pawn.jobs.curJob.GetTarget(WateringInd);
-                //    if (target.HasThing) return true;
-
-                //    return target.Cell.GetFirstThing(this.pawn.Map, MizuDef.Thing_MoppedThing) != null;
-                //}, initExtractTargetFromQueue)
-                //.JumpIfOutsideMopArea(WateringInd, initExtractTargetFromQueue);
 
             // 作業中
             Toil workToil = new Toil();
@@ -88,27 +74,18 @@ namespace MizuMod
             workToil.defaultCompleteMode = ToilCompleteMode.Delay;
             workToil.WithProgressBar(WateringInd, () => 1f - (float)this.ticksLeftThisToil / WorkingTicks, true, -0.5f);
             workToil.PlaySustainerOrSound(() => SoundDefOf.Interact_CleanFilth);
-            // 掃除中に条件が変更されたら最初に戻る
-            //workToil.JumpIf(() =>
-            //{
-            //    var target = this.pawn.jobs.curJob.GetTarget(WateringInd);
-            //    if (target.HasThing) return true;
-
-            //    return target.Cell.GetFirstThing(this.pawn.Map, MizuDef.Thing_MoppedThing) != null;
-            //}, initExtractTargetFromQueue);
-            //workToil.JumpIfOutsideMopArea(WateringInd, initExtractTargetFromQueue);
             yield return workToil;
 
             // 作業終了
             var finishToil = new Toil();
             finishToil.initAction = () =>
             {
-                // モップオブジェクト生成(ダミー)
-                var moppedThing = ThingMaker.MakeThing(MizuDef.Thing_MoppedThing);
-                GenSpawn.Spawn(moppedThing, this.MoppingPos, workToil.actor.Map);
+                // 水やり更新
+                var mapComp = this.Map.GetComponent<MapComponent_Watering>();
+                mapComp.wateringGrid[this.Map.cellIndices.CellToIndex(WateringPos)] = 10;
 
                 // ツールから水を減らす
-                var compTool = Mop.GetComp<CompWaterTool>();
+                var compTool = Tool.GetComp<CompWaterTool>();
                 compTool.StoredWaterVolume -= ConsumeWaterVolume;
             };
             finishToil.defaultCompleteMode = ToilCompleteMode.Instant;

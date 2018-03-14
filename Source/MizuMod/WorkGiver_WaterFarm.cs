@@ -74,9 +74,10 @@ namespace MizuMod
             }
             if (!needWatering) return false;
 
-            //// 既にモップ掛けされている場所にはやらない
-            //var moppedThingList = thingList.Where((t) => { return t.def == MizuDef.Thing_MoppedThing; });
-            //if (moppedThingList != null && moppedThingList.Count() > 0) return false;
+            // 既に水やりされている場所にはやらない
+            var mapComp = pawn.Map.GetComponent<MapComponent_Watering>();
+            if (mapComp == null) return false;
+            if (mapComp.wateringGrid[pawn.Map.cellIndices.CellToIndex(c)] != 0) return false;
 
             // その場所を予約できないならやらない
             if (!pawn.CanReserve(c)) return false;
@@ -104,7 +105,7 @@ namespace MizuMod
 
         public override Job JobOnCell(Pawn pawn, IntVec3 cell)
         {
-            // モップジョブ作成
+            // ジョブ作成
             Job job = new Job(MizuDef.Job_WaterFarm);
             job.AddQueuedTarget(TargetIndex.A, cell);
 
@@ -162,7 +163,7 @@ namespace MizuMod
                     // そこが同じ部屋の中
                     if (this.HasJobOnCell(pawn, intVec) && intVec != cell)
                     {
-                        // 同じジョブが作成可能あるならこのジョブの処理対象に追加
+                        // 同じジョブが作成可能であるならこのジョブの処理対象に追加
                         job.AddQueuedTarget(TargetIndex.A, intVec);
                     }
 

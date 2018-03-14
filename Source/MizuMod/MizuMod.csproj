@@ -128,6 +128,7 @@
     <Compile Include="JobGiver_GetWater.cs" />
     <Compile Include="JobGiver_PackWater.cs" />
     <Compile Include="MapComponent_DeepWaterGrid.cs" />
+    <Compile Include="MapComponent_Watering.cs" />
     <Compile Include="MapComponent_HiddenWaterSpot.cs" />
     <Compile Include="MapComponent_ShallowWaterGrid.cs" />
     <Compile Include="MapComponent_WaterGrid.cs" />
