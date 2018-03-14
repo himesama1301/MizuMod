@@ -50,7 +50,7 @@ namespace MizuMod
                 for (int i = 0; i < numCells; i++)
                 {
                     var c = this.map.cellsInRandomOrder.Get(this.randomIndex);
-                    if (this.map.weatherManager.RainRate > 0.5f)
+                    if (this.map.weatherManager.RainRate > 0.5f && !this.map.roofGrid.Roofed(c))
                     {
                         // 雨が降れば水やり効果
                         this.wateringGrid[this.map.cellIndices.CellToIndex(c)] = 10;
