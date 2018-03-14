@@ -49,7 +49,7 @@ namespace MizuMod
 
             // ターゲットが掃除対象として不適になっていたらリストから外す
             //Thing系にしか使えない
-            Toil initExtractTargetFromQueue = Toils_Mizu.ClearCondifionSatisfiedTargets(MoppingInd, (lti) =>
+            Toil initExtractTargetFromQueue = Toils_Mizu.ClearConditionSatisfiedTargets(MoppingInd, (lti) =>
             {
                 return lti.Cell.GetFirstThing(this.pawn.Map, MizuDef.Thing_MoppedThing) != null;
             });

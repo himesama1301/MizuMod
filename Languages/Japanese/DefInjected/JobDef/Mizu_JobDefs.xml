@@ -14,5 +14,6 @@
   <Mizu_Mop.reportString>TargetAをモップ掛けしている</Mizu_Mop.reportString>
   <Mizu_SupplyWaterToTool.reportString>TargetBに水を補充している</Mizu_SupplyWaterToTool.reportString>
   <Mizu_Nurse.reportString>TargetAを看病している</Mizu_Nurse.reportString>
+  <Mizu_WaterFarm.reportString>TargetAに水やりをしている</Mizu_WaterFarm.reportString>
 
 </LanguageData>

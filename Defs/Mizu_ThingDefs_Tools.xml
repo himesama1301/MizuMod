@@ -192,16 +192,14 @@
     </recipeMaker>
     <comps>
       <li Class="MizuMod.CompProperties_WaterTool">
-<!--
         <useWorkType>
-          <li>Mop</li>
+          <li>WaterFarm</li>
         </useWorkType>
--->
         <supplyWorkType>
           <li>Mizu_Drawing</li>
           <li>Growing</li>
         </supplyWorkType>
-        <maxWaterVolume>10</maxWaterVolume>
+        <maxWaterVolume>1</maxWaterVolume>
       </li>
     </comps>
   </ThingDef>

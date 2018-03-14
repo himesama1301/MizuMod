@@ -907,7 +907,7 @@ namespace MizuMod
             return toil;
         }
 
-        public static Toil ClearCondifionSatisfiedTargets(TargetIndex ind, Predicate<LocalTargetInfo> cond)
+        public static Toil ClearConditionSatisfiedTargets(TargetIndex ind, Predicate<LocalTargetInfo> cond)
         {
             Toil toil = new Toil();
             toil.initAction = delegate
