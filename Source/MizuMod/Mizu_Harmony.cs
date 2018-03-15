@@ -710,7 +710,7 @@ namespace MizuMod
             int wateringRemainTicks = map.GetComponent<MapComponent_Watering>().wateringGrid[map.cellIndices.CellToIndex(loc)];
             if (wateringRemainTicks > 0)
             {
-                __result *= 1.1f;
+                __result *= 1.2f;
             }
         }
     }

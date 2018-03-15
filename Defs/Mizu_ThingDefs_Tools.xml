@@ -154,9 +154,8 @@
     <label>Watering pot</label>
     <description>A tool for growing. Allows pawn to water growing zone for increasing fertility.</description>
     <graphicData>
-      <texPath>Things/Item/Mizu_Mop</texPath>
+      <texPath>Things/Item/Mizu_WateringPot</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
     </graphicData>
     <statBases>
       <MarketValue>10</MarketValue>
@@ -199,7 +198,7 @@
           <li>Mizu_Drawing</li>
           <li>Growing</li>
         </supplyWorkType>
-        <maxWaterVolume>1</maxWaterVolume>
+        <maxWaterVolume>10</maxWaterVolume>
       </li>
     </comps>
   </ThingDef>

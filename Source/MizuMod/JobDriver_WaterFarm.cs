@@ -15,7 +15,7 @@ namespace MizuMod
         private const TargetIndex ToolInd = TargetIndex.B;
         private const TargetIndex ToolPlaceInd = TargetIndex.C;
         private const int WorkingTicks = 60;
-        public const float ConsumeWaterVolume = 0.05f;
+        public const float ConsumeWaterVolume = 1f;
 
         private IntVec3 WateringPos
         {
