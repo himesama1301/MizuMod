@@ -10,6 +10,7 @@ namespace MizuMod
     public interface IBuilding_DrinkWater
     {
         WaterType WaterType { get; }
+        float WaterVolume { get; }
         bool IsActivated { get; }
         bool IsEmpty { get; }
 

@@ -39,6 +39,15 @@ namespace MizuMod
             }
         }
 
+        public float WaterVolume
+        {
+            get
+            {
+                if (this.TankComp == null) return 0f;
+                return this.TankComp.StoredWaterVolume;
+            }
+        }
+
         public bool IsEmpty
         {
             get

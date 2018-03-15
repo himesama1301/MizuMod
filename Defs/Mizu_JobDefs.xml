@@ -79,4 +79,10 @@
     <reportString>nursing TargetA.</reportString>
   </JobDef>
   
+  <JobDef>
+    <defName>Mizu_WaterFarm</defName>
+    <driverClass>MizuMod.JobDriver_WaterFarm</driverClass>
+    <reportString>watering TargetA.</reportString>
+  </JobDef>
+  
 </Defs>

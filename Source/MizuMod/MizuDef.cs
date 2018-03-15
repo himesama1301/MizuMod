@@ -31,6 +31,7 @@ namespace MizuMod
         public static JobDef Job_SupplyWaterToTool = DefDatabase<JobDef>.GetNamed("Mizu_SupplyWaterToTool");
         public static JobDef Job_Mop = DefDatabase<JobDef>.GetNamed("Mizu_Mop");
         public static JobDef Job_Nurse = DefDatabase<JobDef>.GetNamed("Mizu_Nurse");
+        public static JobDef Job_WaterFarm = DefDatabase<JobDef>.GetNamed("Mizu_WaterFarm");
 
         public static StatCategoryDef StatCategory_Water = DefDatabase<StatCategoryDef>.GetNamed("Mizu_WaterCategory");
 

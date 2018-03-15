@@ -204,4 +204,19 @@
     <tendToHumanlikesOnly>true</tendToHumanlikesOnly>
   </WorkGiverDef>
   
+  <WorkGiverDef>
+    <defName>Mizu_WaterFarm</defName>
+    <label>water farm</label>
+    <giverClass>MizuMod.WorkGiver_WaterFarm</giverClass>
+    <workType>Growing</workType>
+    <verb>water</verb>
+    <gerund>watering</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>10</priorityInType>
+    <scanThings>false</scanThings>
+    <scanCells>true</scanCells>
+  </WorkGiverDef>
+  
 </Defs>

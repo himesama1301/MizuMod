@@ -45,4 +45,8 @@
   <Mizu_NurseToHumanlikes.verb>を看病する</Mizu_NurseToHumanlikes.verb>
   <Mizu_NurseToHumanlikes.gerund>を看病する</Mizu_NurseToHumanlikes.gerund>
 
+  <Mizu_WaterFarm.label>水やりをする</Mizu_WaterFarm.label>
+  <Mizu_WaterFarm.verb>に水やりをする</Mizu_WaterFarm.verb>
+  <Mizu_WaterFarm.gerund>に水やりをする</Mizu_WaterFarm.gerund>
+
 </LanguageData>

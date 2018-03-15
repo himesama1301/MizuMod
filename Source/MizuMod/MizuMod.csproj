@@ -60,7 +60,6 @@
     <Compile Include="Building_Faucet.cs" />
     <Compile Include="Building_GroundWaterPump.cs" />
     <Compile Include="Building_Pipe.cs" />
-    <Compile Include="Building_RainTank.cs" />
     <Compile Include="Building_UndergroundDeepWaterPump.cs" />
     <Compile Include="Building_UndergroundShallowWaterPump.cs" />
     <Compile Include="Building_UndergroundWaterPump.cs" />
@@ -122,11 +121,13 @@
     <Compile Include="JobDriver_PourWater.cs" />
     <Compile Include="JobDriver_SupplyWaterToTool.cs" />
     <Compile Include="JobDriver_WaterDeliver.cs" />
+    <Compile Include="JobDriver_WaterFarm.cs" />
     <Compile Include="JobDriver_WaterFeedPatient.cs" />
     <Compile Include="JobGiver_DrawWaterByPrisoner.cs" />
     <Compile Include="JobGiver_GetWater.cs" />
     <Compile Include="JobGiver_PackWater.cs" />
     <Compile Include="MapComponent_DeepWaterGrid.cs" />
+    <Compile Include="MapComponent_Watering.cs" />
     <Compile Include="MapComponent_HiddenWaterSpot.cs" />
     <Compile Include="MapComponent_ShallowWaterGrid.cs" />
     <Compile Include="MapComponent_WaterGrid.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="WorkGiver_Nurse.cs" />
     <Compile Include="WorkGiver_SupplyWaterToTool.cs" />
     <Compile Include="WorkGiver_Warden_DeliverWater.cs" />
+    <Compile Include="WorkGiver_WaterFarm.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -66,6 +66,15 @@ namespace MizuMod
             }
         }
 
+        public float WaterVolume
+        {
+            get
+            {
+                if (this.pool == null) return 0f;
+                return this.pool.CurrentWaterVolume;
+            }
+        }
+
         public bool IsEmpty
         {
             get

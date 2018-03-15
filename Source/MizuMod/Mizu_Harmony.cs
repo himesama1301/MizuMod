@@ -698,4 +698,21 @@ namespace MizuMod
             MizuCaravanUtility.daysWorthOfWaterDirty = true;
         }
     }
+
+    // 水やり状態を肥沃度に反映させる
+    [HarmonyPatch(typeof(FertilityGrid))]
+    [HarmonyPatch("CalculateFertilityAt")]
+    class FertilityGrid_CalculateFertilityAt
+    {
+        static void Postfix(FertilityGrid __instance, ref IntVec3 loc, ref float __result)
+        {
+            var map = Traverse.Create(__instance).Field("map").GetValue<Map>();
+            int wateringRemainTicks = map.GetComponent<MapComponent_Watering>().wateringGrid[map.cellIndices.CellToIndex(loc)];
+            if (wateringRemainTicks > 0)
+            {
+                __result *= 1.2f;
+            }
+        }
+    }
+
 }
