@@ -20,17 +20,17 @@ namespace MizuMod
             }
         }
 
-        public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
-        {
-            return null;
-            //return base.PotentialWorkThingsGlobal(pawn);
-        }
+        //public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
+        //{
+        //    return pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial).Where((t) => t is IPlantToGrowSettable);
+        //}
 
         public override IEnumerable<IntVec3> PotentialWorkCellsGlobal(Pawn pawn)
         {
-            var growingZoneList = pawn.Map.zoneManager.AllZones.Where((zone) => zone is Zone_Growing);
-
             IEnumerable<IntVec3> potentialCells = null;
+
+            // 農地チェック
+            var growingZoneList = pawn.Map.zoneManager.AllZones.Where((zone) => zone is Zone_Growing);
             foreach (var zone in growingZoneList)
             {
                 if (potentialCells == null)
@@ -43,6 +43,25 @@ namespace MizuMod
                 }
             }
 
+            // 植木鉢チェック
+            foreach (var building in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial).Where((t) => t is Building_PlantGrower))
+            {
+                if (building.def.building == null || building.def.building.sowTag == null || building.def.building.sowTag == "Hydroponic") continue;
+
+                if (potentialCells == null)
+                {
+                    potentialCells = building.OccupiedRect().Cells;
+                }
+                else
+                {
+                    potentialCells = potentialCells.Concat(building.OccupiedRect().Cells);
+                }
+            }
+
+            if (potentialCells == null)
+            {
+                potentialCells = new List<IntVec3>();
+            }
             return potentialCells;
         }
 
@@ -58,19 +77,40 @@ namespace MizuMod
             foreach (var thing in thingList)
             {
                 var plant = thing as Plant;
+                var building = thing as Building_PlantGrower;
+                if (plant != null)
+                {
+                    // 植物
 
-                // 植物でない
-                if (plant == null) continue;
+                    // 種植え情報を持っていない(植えられない)
+                    if (plant.def.plant.sowTags == null || plant.def.plant.sowTags.Count <= 0) continue;
 
-                // 種植え情報を持っていない(植えられない)
-                if (plant.def.plant.sowTags == null || plant.def.plant.sowTags.Count <= 0) continue;
+                    // 既に育ち切っている
+                    if (plant.Growth >= 1.0f) continue;
 
-                // 既に育ち切っている
-                if (plant.Growth >= 1.0f) continue;
+                    // そのセルには水やりが必要
+                    needWatering = true;
+                    break;
+                }
+                else if (building != null)
+                {
+                    // 植物を植えられる建造物
 
-                // 水やりが必要
-                needWatering = true;
-                break;
+                    // 建造物上の植物チェック
+                    foreach (var p in building.PlantsOnMe)
+                    {
+                        // 現在注目しているセルではない
+                        if (p.Position != c) continue;
+
+                        // 既に育ち切っている
+                        if (p.Growth >= 1.0f) continue;
+
+                        // そのセルには水やりが必要
+                        needWatering = true;
+                        break;
+                    }
+                }
+
             }
             if (!needWatering) return false;
 
