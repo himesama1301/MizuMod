@@ -62,7 +62,6 @@ namespace MizuMod
                 this.needManipulate = compSource.NeedManipulate;
 
                 // 水汲み速度関連はリファクタリングしたい
-                // とりあえず、飲む速度＝1Lを補充する速度とする
                 var ticksForFull = compSource.BaseDrinkTicks;
 
                 var compTool = Tool.GetComp<CompWaterTool>();
@@ -93,6 +92,11 @@ namespace MizuMod
                 compTool.StoredWaterType = building.WaterType;
 
                 building.DrawWater(supplyWaterVolume);
+
+                if (building.IsEmpty)
+                {
+                    this.ReadyForNextToil();
+                }
             };
             supplyToil.defaultCompleteMode = ToilCompleteMode.Delay;
             supplyToil.WithProgressBar(SourceInd, () => 1f - (float)this.ticksLeftThisToil / this.maxTick, true, -0.5f);
