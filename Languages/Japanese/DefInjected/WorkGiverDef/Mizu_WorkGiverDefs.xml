@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-  <Mizu_DoBillWater.label>作業をする</Mizu_DoBillWater.label>
-  <Mizu_DoBillWater.verb>で作業をする</Mizu_DoBillWater.verb>
-  <Mizu_DoBillWater.gerund>で作業をする</Mizu_DoBillWater.gerund>
-
+  <Mizu_DoBillWater.label>水仕事をする</Mizu_DoBillWater.label>
+  <Mizu_DoBillWater.verb>で水仕事をする</Mizu_DoBillWater.verb>
+  <Mizu_DoBillWater.gerund>で水仕事をする</Mizu_DoBillWater.gerund>
+  
   <Mizu_DoBillIce.label>採氷する</Mizu_DoBillIce.label>
   <Mizu_DoBillIce.verb>で採氷する</Mizu_DoBillIce.verb>
   <Mizu_DoBillIce.gerund>で採氷する</Mizu_DoBillIce.gerund>
@@ -40,5 +40,13 @@
   <Mizu_SupplyWaterToToolCleaning.label>水を補充する</Mizu_SupplyWaterToToolCleaning.label>
   <Mizu_SupplyWaterToToolCleaning.verb>から水を補充する</Mizu_SupplyWaterToToolCleaning.verb>
   <Mizu_SupplyWaterToToolCleaning.gerund>から水を補充する</Mizu_SupplyWaterToToolCleaning.gerund>
+
+  <Mizu_NurseToHumanlikes.label>看病する</Mizu_NurseToHumanlikes.label>
+  <Mizu_NurseToHumanlikes.verb>を看病する</Mizu_NurseToHumanlikes.verb>
+  <Mizu_NurseToHumanlikes.gerund>を看病する</Mizu_NurseToHumanlikes.gerund>
+
+  <Mizu_WaterFarm.label>水やりをする</Mizu_WaterFarm.label>
+  <Mizu_WaterFarm.verb>に水やりをする</Mizu_WaterFarm.verb>
+  <Mizu_WaterFarm.gerund>に水やりをする</Mizu_WaterFarm.gerund>
 
 </LanguageData>

@@ -90,9 +90,115 @@
         </useWorkType>
         <supplyWorkType>
           <li>Mizu_Drawing</li>
-          <li>Cleaning</li>
+          <li>Mizu_Cleaning</li>
         </supplyWorkType>
         <maxWaterVolume>1</maxWaterVolume>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="Mizu_ToolBase">
+    <defName>Mizu_Towel</defName>
+    <label>Towel</label>
+    <description>A tool for nursing. Allows pawn to nurse patients and help them recover from disease.</description>
+    <graphicData>
+      <texPath>Things/Item/Mizu_Towel</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>10</MarketValue>
+      <WorkToMake>2500</WorkToMake>
+      <Mass>0.5</Mass>
+    </statBases>
+    <stuffCategories>
+      <li>Fabric</li>
+    </stuffCategories>
+    <costStuffCount>15</costStuffCount>
+    <recipeMaker>
+      <workSpeedStat>TailoringSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Tailor</effectWorking>
+      <soundWorking>Recipe_Tailor</soundWorking>
+      <recipeUsers>
+        <li>ElectricTailoringBench</li>
+        <li>HandTailoringBench</li>
+      </recipeUsers>
+      <unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
+      <defaultIngredientFilter>
+        <categories>
+          <li>Root</li>
+        </categories>
+        <exceptedThingDefs>
+          <li>DevilstrandCloth</li>
+          <li>Hyperweave</li>
+          <li>Synthread</li>
+        </exceptedThingDefs>
+      </defaultIngredientFilter>
+    </recipeMaker>
+    <comps>
+      <li Class="MizuMod.CompProperties_WaterTool">
+        <useWorkType>
+          <li>Nurse</li>
+        </useWorkType>
+        <supplyWorkType>
+          <li>Mizu_Drawing</li>
+          <li>Doctor</li>
+        </supplyWorkType>
+        <maxWaterVolume>0.5</maxWaterVolume>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="Mizu_ToolBase">
+    <defName>Mizu_WateringPot</defName>
+    <label>Watering pot</label>
+    <description>A tool for growing. Allows pawn to water growing zone for increasing fertility.</description>
+    <graphicData>
+      <texPath>Things/Item/Mizu_WateringPot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>10</MarketValue>
+      <WorkToMake>2500</WorkToMake>
+      <Mass>0.5</Mass>
+    </statBases>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+    </stuffCategories>
+    <costStuffCount>15</costStuffCount>
+    <recipeMaker>
+      <defaultIngredientFilter>
+        <categories>
+          <li>Root</li>
+        </categories>
+        <exceptedThingDefs>
+          <li>Uranium</li>
+          <li>Gold</li>
+          <li>Silver</li>
+          <li>Steel</li>
+          <li>Plasteel</li>
+        </exceptedThingDefs>
+      </defaultIngredientFilter>
+      <recipeUsers>
+        <li>ElectricSmithy</li>
+        <li>FueledSmithy</li>
+        <li>CraftingSpot</li>
+      </recipeUsers>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <unfinishedThingDef>Mizu_UnfinishedTool</unfinishedThingDef>
+    </recipeMaker>
+    <comps>
+      <li Class="MizuMod.CompProperties_WaterTool">
+        <useWorkType>
+          <li>WaterFarm</li>
+        </useWorkType>
+        <supplyWorkType>
+          <li>Mizu_Drawing</li>
+          <li>Growing</li>
+        </supplyWorkType>
+        <maxWaterVolume>10</maxWaterVolume>
       </li>
     </comps>
   </ThingDef>

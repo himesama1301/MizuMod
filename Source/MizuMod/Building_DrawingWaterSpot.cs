@@ -26,6 +26,14 @@ namespace MizuMod
             }
         }
 
+        public float WaterVolume
+        {
+            get
+            {
+                return 100000f;
+            }
+        }
+
         public bool IsEmpty
         {
             get

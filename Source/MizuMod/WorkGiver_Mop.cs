@@ -48,8 +48,13 @@ namespace MizuMod
             if (terrain.acceptTerrainSourceFilth == false || (terrain.researchPrerequisites != null && terrain.researchPrerequisites.Contains(ResearchProjectDefOf.CarpetMaking))) return false;
 
             // その場所に汚れがあったらやらない
-            var filthList = c.GetThingList(pawn.Map).Where((t) => { return t is Filth; });
+            var thingList = c.GetThingList(pawn.Map);
+            var filthList = thingList.Where((t) => { return t is Filth; });
             if (filthList != null && filthList.Count() > 0) return false;
+
+            // 既にモップ掛けされている場所にはやらない
+            var moppedThingList = thingList.Where((t) => { return t.def == MizuDef.Thing_MoppedThing; });
+            if (moppedThingList != null && moppedThingList.Count() > 0) return false;
 
             // その場所を予約できないならやらない
             if (!pawn.CanReserve(c)) return false;
@@ -57,6 +62,9 @@ namespace MizuMod
             // モップアイテムのチェック
             var mopList = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).Where((t) =>
             {
+                // 使用禁止チェック
+                if (t.IsForbidden(pawn)) return false;
+
                 var comp = t.TryGetComp<CompWaterTool>();
                 if (comp == null) return false;
                 if (!comp.UseWorkType.Contains(CompProperties_WaterTool.UseWorkType.Mop)) return false;
@@ -81,7 +89,20 @@ namespace MizuMod
             // 一番近いモップを探す
             Thing candidateMop = null;
             int minDist = int.MaxValue;
-            var mopList = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).Where((t) => t.def == MizuDef.Thing_Mop);
+            var mopList = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).Where((t) =>
+            {
+                // 使用禁止チェック
+                if (t.IsForbidden(pawn)) return false;
+
+                var comp = t.TryGetComp<CompWaterTool>();
+                if (comp == null) return false;
+                if (!comp.UseWorkType.Contains(CompProperties_WaterTool.UseWorkType.Mop)) return false;
+
+                int maxQueueLengthForCheck = (int)Mathf.Floor(comp.StoredWaterVolume / JobDriver_Mop.ConsumeWaterVolume);
+                if (maxQueueLengthForCheck <= 0) return false;
+
+                return true;
+            });
 
             foreach (var mop in mopList)
             {

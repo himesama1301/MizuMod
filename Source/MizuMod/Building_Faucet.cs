@@ -29,6 +29,15 @@ namespace MizuMod
             }
         }
 
+        public float WaterVolume
+        {
+            get
+            {
+                if (this.InputWaterNet == null) return 0f;
+                return this.InputWaterNet.StoredWaterVolume;
+            }
+        }
+
         public bool IsEmpty
         {
             get

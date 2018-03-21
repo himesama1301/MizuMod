@@ -11,8 +11,6 @@ namespace MizuMod
 {
     public class WorkGiver_SupplyWaterToTool : WorkGiver_Scanner
     {
-        private int MinTicksSinceThickened = 600;
-
         public override PathEndMode PathEndMode
         {
             get
@@ -69,6 +67,9 @@ namespace MizuMod
 
                 // 80%を切るまでは補充行動はしない
                 if (compTool.StoredWaterVolumePercent > 0.8f) continue;
+
+                // 設備の水が足りない
+                if ((compTool.MaxWaterVolume - compTool.StoredWaterVolume) > sourceBuilding.WaterVolume) continue;
 
                 // 許可不許可チェック
                 if (tool.IsForbidden(pawn)) continue;

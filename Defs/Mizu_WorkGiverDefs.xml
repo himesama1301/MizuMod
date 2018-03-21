@@ -3,7 +3,7 @@
 
   <WorkGiverDef>
     <defName>Mizu_DoBillWater</defName>
-    <label>doing bill about drawing water</label>
+    <label>do wet work</label>
     <giverClass>MizuMod.WorkGiver_DoBillWater</giverClass>
     <workType>Mizu_Drawing</workType>
     <priorityInType>100</priorityInType>
@@ -13,8 +13,8 @@
       <li>Mizu_WaterFaucet</li>
       <li>Mizu_WaterBox</li>
     </fixedBillGiverDefs>
-    <verb>draw</verb>
-    <gerund>drawing at</gerund>
+    <verb>do wet work</verb>
+    <gerund>doing wet work at</gerund>
     <requiredCapacities>
       <li>Manipulation</li>
     </requiredCapacities>
@@ -121,10 +121,12 @@
     <defName>Mizu_Mop</defName>
     <label>mop</label>
     <giverClass>MizuMod.WorkGiver_Mop</giverClass>
-    <workType>Cleaning</workType>
+    <workType>Mizu_Cleaning</workType>
     <verb>mop</verb>
     <gerund>mopping</gerund>
-    <priorityInType>1</priorityInType>
+    <priorityInType>100</priorityInType>
+    <scanThings>false</scanThings>
+    <scanCells>true</scanCells>
     <requiredCapacities>
       <li>Manipulation</li>
     </requiredCapacities>
@@ -153,10 +155,10 @@
     <defName>Mizu_SupplyWaterToToolCleaning</defName>
     <label>supply water</label>
     <giverClass>MizuMod.WorkGiver_SupplyWaterToTool</giverClass>
-    <workType>Cleaning</workType>
+    <workType>Mizu_Cleaning</workType>
     <verb>supply</verb>
     <gerund>supplying</gerund>
-    <priorityInType>1</priorityInType>
+    <priorityInType>100</priorityInType>
     <fixedBillGiverDefs>
       <li>Mizu_DrawingWaterSpot</li>
       <li>Mizu_Well</li>
@@ -166,6 +168,55 @@
     <requiredCapacities>
       <li>Manipulation</li>
     </requiredCapacities>
+  </WorkGiverDef>
+  
+  <WorkGiverDef>
+    <defName>Mizu_SupplyWaterToToolDoctor</defName>
+    <label>supply water</label>
+    <giverClass>MizuMod.WorkGiver_SupplyWaterToTool</giverClass>
+    <workType>Doctor</workType>
+    <verb>supply</verb>
+    <gerund>supplying</gerund>
+    <priorityInType>3</priorityInType>
+    <fixedBillGiverDefs>
+      <li>Mizu_DrawingWaterSpot</li>
+      <li>Mizu_Well</li>
+      <li>Mizu_WaterFaucet</li>
+      <li>Mizu_WaterBox</li>
+    </fixedBillGiverDefs>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+  
+  <WorkGiverDef>
+    <defName>Mizu_NurseToHumanlikes</defName>
+    <label>nurse patients</label>
+    <giverClass>MizuMod.WorkGiver_Nurse</giverClass>
+    <workType>Doctor</workType>
+    <verb>nurse</verb>
+    <gerund>nursing</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>4</priorityInType>
+    <prioritizeSustains>true</prioritizeSustains>
+    <tendToHumanlikesOnly>true</tendToHumanlikesOnly>
+  </WorkGiverDef>
+  
+  <WorkGiverDef>
+    <defName>Mizu_WaterFarm</defName>
+    <label>water farm</label>
+    <giverClass>MizuMod.WorkGiver_WaterFarm</giverClass>
+    <workType>Growing</workType>
+    <verb>water</verb>
+    <gerund>watering</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>10</priorityInType>
+    <scanThings>false</scanThings>
+    <scanCells>true</scanCells>
   </WorkGiverDef>
   
 </Defs>
