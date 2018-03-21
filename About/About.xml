@@ -7,18 +7,32 @@
   <description>
 
 for RimWorld B18
-mod version 1.2.0
+mod version 1.3.0
 
 Description
 
 This mod adds "Need Water" to pawns. There are various means to get and transport water, such as: wells, pumps, water pipes, faucets, water cleaners, and more.
 This mod should NOT be applied to saved games.
 
+Direct download from github
+
+https://github.com/himesama1301/MizuMod/releases
+
+Please click "Source code (zip)" of the version what you want.
+The downloaded zip file contains all the data as well as the source code.
+
 License
 
-This mod includes a compiled version of the Harmony library which is licensed under the MIT License.
+This mod includes the following
+- Harmony (MIT License)
+- ModCheck (LGPL v3.0)
+
 The other files are licensed under the Unlicense. 
 https://github.com/himesama1301/MizuMod/blob/master/LICENSE_Unlicense
+
+Contributor
+
+KAS (VGP_Core and VGP_Gourmet patch)
 
 FAQ
 
@@ -44,6 +58,26 @@ Instead, I am prioritizing adding new features and fixing bugs. New features are
 ポーンの要求に水分を追加し、水を得るための様々な手段を追加します。
 井戸、ポンプ、水道管、蛇口、浄水器などが追加されます。
 このMODを途中から導入することは推奨しません。
+
+githubからダウンロード
+
+https://github.com/himesama1301/MizuMod/releases
+
+欲しいバージョンの"Source code (zip)"をクリックしてください。
+ダウンロードしたzipファイルにはソースコードだけでなく全てのデータが含まれています。
+
+ライセンス
+
+このMODには以下のものが含まれています。
+- Harmony (MITライセンス)
+- ModCheck (LGPL v3.0)
+
+その他のファイルはUnlicenseの下にリリースされています。
+https://github.com/himesama1301/MizuMod/blob/master/LICENSE_Unlicense
+
+ご協力
+
+KAS (VGP_Core and VGP_Gourmet パッチ)
 
 よくある質問と回答
 
