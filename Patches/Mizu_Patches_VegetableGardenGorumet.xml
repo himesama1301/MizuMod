@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- BlueberryPie -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "BlueberryPie"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "BlueberryPie"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "BlueberryPie"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- Bread -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "Bread"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "Bread"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "Bread"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- sweetbun -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "sweetbun"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "sweetbun"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "sweetbun"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- sweetbun -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "grilledcheese"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "grilledcheese"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "grilledcheese"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- grilledmeat -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "grilledmeat"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "grilledmeat"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "grilledmeat"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- pizza -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "pizza"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "pizza"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "pizza"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- Porridge -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "Porridge"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "Porridge"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "Porridge"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- yogurt -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "yogurt"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "yogurt"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "yogurt"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>RawWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.05</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0.5</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- icecream -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "icecream"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "icecream"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "icecream"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>RawWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.05</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0.5</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- smoothie -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "smoothie"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "smoothie"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "smoothie"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>RawWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.05</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0.5</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- Tacos -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "Tacos"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "Tacos"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "Tacos"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- Grilledsteak -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "Grilledsteak"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "Grilledsteak"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "Grilledsteak"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- Grilledveg -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "Grilledveg"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "Grilledveg"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "Grilledveg"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- Kabob -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "Kabob"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "Kabob"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "Kabob"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- grilledpolenta -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "grilledpolenta"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "grilledpolenta"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "grilledpolenta"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- bakedpolenta -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "bakedpolenta"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "bakedpolenta"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "bakedpolenta"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- Cornbread -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "Cornbread"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "Cornbread"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "Cornbread"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- muffin -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "muffin"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "muffin"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "muffin"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- meatpie -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "meatpie"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "meatpie"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "meatpie"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>NormalWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.1</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<!-- Chocomilk -->
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[defName = "Chocomilk"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[defName = "Chocomilk"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="ModCheck.isModLoaded">
+				<modName>VGP Garden Gourmet</modName>
+				<yourMod>No Water, No Life.</yourMod>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>*/ThingDef[defName = "Chocomilk"]/comps</xpath>
+				<value>
+				<li Class="MizuMod.CompProperties_WaterSource">
+					<sourceType>Item</sourceType>
+					<getSound>Ingest_Beer</getSound>
+					<baseDrinkTicks>100</baseDrinkTicks>
+					<waterType>ClearWater</waterType>
+					<needManipulate>true</needManipulate>
+					<waterAmount>0.35</waterAmount>
+					<maxNumToGetAtOnce>1</maxNumToGetAtOnce>
+					<waterVolume>0.5</waterVolume>
+				</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+
+</Patch>
