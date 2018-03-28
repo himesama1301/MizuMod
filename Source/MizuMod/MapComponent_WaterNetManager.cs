@@ -274,8 +274,18 @@ namespace MizuMod
         public void RemoveThing(IBuilding_WaterNet thing)
         {
             // 対象の物を除去
-            thing.InputWaterNet.RemoveThing(thing);
-            thing.OutputWaterNet.RemoveThing(thing);
+            if (thing.InputWaterNet != null)
+            {
+                thing.InputWaterNet.RemoveThing(thing);
+            }
+            if (thing.OutputWaterNet != null)
+            {
+                thing.OutputWaterNet.RemoveThing(thing);
+            }
+            if (this.unNetThings.Contains(thing))
+            {
+                this.unNetThings.Remove(thing);
+            }
 
             this.UpdateWaterNets();
         }
