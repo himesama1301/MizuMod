@@ -28,6 +28,22 @@ namespace MizuMod
             }
         }
 
+        private bool isSetRaceThirstRate = false;
+        private float raceThirstRate = 1f;
+        private float RaceThirstRate
+        {
+            get
+            {
+                if (this.isSetRaceThirstRate == false)
+                {
+                    this.isSetRaceThirstRate = true;
+                    var raceThirstExt = this.pawn.def.GetModExtension<DefExtension_RaceThirstRate>();
+                    this.raceThirstRate = (raceThirstExt == null) ? this.pawn.RaceProps.baseHungerRate : raceThirstExt.baseThirstRate;
+                }
+                return this.raceThirstRate;
+            }
+        }
+
         public int lastSearchWaterTick;
 
         public ThirstCategory CurCategory
@@ -145,7 +161,7 @@ namespace MizuMod
             float fallPerTickBase = this.ext.fallPerTickBase + this.ext.fallPerTickFromTempCurve.Evaluate(this.pawn.AmbientTemperature - this.pawn.ComfortableTemperatureRange().max);
 
             // 食事と同じ値を利用
-            fallPerTickBase *= this.pawn.ageTracker.CurLifeStage.hungerRateFactor * this.pawn.RaceProps.baseHungerRate * this.pawn.health.hediffSet.GetThirstRateFactor();
+            fallPerTickBase *= this.pawn.ageTracker.CurLifeStage.hungerRateFactor * this.RaceThirstRate * this.pawn.health.hediffSet.GetThirstRateFactor();
 
             switch (cat)
             {
