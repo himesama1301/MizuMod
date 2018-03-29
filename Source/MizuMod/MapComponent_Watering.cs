@@ -39,7 +39,7 @@ namespace MizuMod
         public override void MapComponentTick()
         {
             base.MapComponentTick();
-
+            
             this.elapsedTicks++;
             if (this.elapsedTicks >= IntervalTicks)
             {
@@ -50,15 +50,21 @@ namespace MizuMod
                 for (int i = 0; i < numCells; i++)
                 {
                     var c = this.map.cellsInRandomOrder.Get(this.randomIndex);
-                    if (this.map.weatherManager.RainRate > 0.5f && !this.map.roofGrid.Roofed(c))
+                    var terrain = this.map.terrainGrid.TerrainAt(c);
+                    if (this.map.weatherManager.RainRate > 0.5f && !this.map.roofGrid.Roofed(c) && terrain.fertility >= 0.01f)
                     {
                         // 雨が降れば水やり効果
                         this.wateringGrid[this.map.cellIndices.CellToIndex(c)] = 10;
+                        this.map.mapDrawer.SectionAt(c).dirtyFlags = MapMeshFlag.Terrain;
                     }
                     else if (this.wateringGrid[this.map.cellIndices.CellToIndex(c)] > 0)
                     {
                         // 水が渇く
                         this.wateringGrid[this.map.cellIndices.CellToIndex(c)]--;
+                        if (this.wateringGrid[this.map.cellIndices.CellToIndex(c)] == 0)
+                        {
+                            this.map.mapDrawer.SectionAt(c).dirtyFlags = MapMeshFlag.Terrain;
+                        }
                     }
 
                     this.randomIndex++;
