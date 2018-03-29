@@ -152,6 +152,7 @@
     <Compile Include="PlaceWorker_WaterWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeWorkerCounter_DrawWater.cs" />
+    <Compile Include="SectionLayer_WateringFarm.cs" />
     <Compile Include="SectionLayer_WaterNet.cs" />
     <Compile Include="StatPart_Water.cs" />
     <Compile Include="Thing_IcyFood.cs" />
