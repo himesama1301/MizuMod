@@ -136,6 +136,7 @@
     <Compile Include="MizuCaravanUtility.cs" />
     <Compile Include="MizuDef.cs" />
     <Compile Include="MizuGraphics.cs" />
+    <Compile Include="MizuModBody.cs" />
     <Compile Include="MizuPreferability.cs" />
     <Compile Include="MizuStrings.cs" />
     <Compile Include="MizuUtility.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="RecipeWorkerCounter_DrawWater.cs" />
     <Compile Include="SectionLayer_WateringFarm.cs" />
     <Compile Include="SectionLayer_WaterNet.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="StatPart_Water.cs" />
     <Compile Include="Thing_IcyFood.cs" />
     <Compile Include="ThinkNode_ConditionalDehydration.cs" />
