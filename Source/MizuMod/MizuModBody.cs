@@ -9,19 +9,21 @@ namespace MizuMod
 {
     public class MizuModBody : Mod
     {
+        public static Settings Settings;
+
         public MizuModBody(ModContentPack content) : base(content)
         {
-
+            MizuModBody.Settings = base.GetSettings<Settings>();
         }
 
         public override string SettingsCategory()
         {
-            return "No Water, No Life.";
+            return MizuStrings.ModTitle;
         }
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
-            base.DoSettingsWindowContents(inRect);
+            MizuModBody.Settings.DoSettingsWindowContents(inRect);
         }
     }
 }

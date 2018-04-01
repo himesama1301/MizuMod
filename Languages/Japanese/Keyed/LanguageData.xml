@@ -80,4 +80,8 @@
   
   <MizuWaterToolStored>保有水量</MizuWaterToolStored>
   
+  <MizuSetDefault>初期値に戻す</MizuSetDefault>
+  <MizuFertilityFactorInNotWatering>水やりしていない時の肥沃度係数</MizuFertilityFactorInNotWatering>
+  <MizuFertilityFactorInWatering>水やり状態の肥沃度係数</MizuFertilityFactorInWatering>
+  
 </LanguageData>
