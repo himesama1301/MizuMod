@@ -9,6 +9,8 @@ namespace MizuMod
 {
     public static class MizuStrings
     {
+        public static readonly string ModTitle = "No Water, No Life.";
+
         // 水アイテムやポーンのジョブ関連
         public static readonly string CompWaterAmount = "MizuWaterAmount";
         public static readonly string FloatMenuGetWater = "MizuConsumeWater";
@@ -70,6 +72,11 @@ namespace MizuMod
 
         // 水ツール
         public static readonly string InspectWaterToolStored = "MizuWaterToolStored";
+
+        // オプション
+        public static readonly string OptionSetDefault = "MizuSetDefault";
+        public static readonly string OptionFertilityFactorInNotWatering = "MizuFertilityFactorInNotWatering";
+        public static readonly string OptionFertilityFactorInWatering = "MizuFertilityFactorInWatering";
 
         public static string GetInspectWaterTypeString(WaterType waterType)
         {

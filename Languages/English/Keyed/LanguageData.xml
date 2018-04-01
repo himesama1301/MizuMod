@@ -80,4 +80,8 @@
   
   <MizuWaterToolStored>Stored Water Volume</MizuWaterToolStored>
   
+  <MizuSetDefault>Set Default</MizuSetDefault>
+  <MizuFertilityFactorInNotWatering>Fertility factor in NOT watering</MizuFertilityFactorInNotWatering>
+  <MizuFertilityFactorInWatering>Fertility factor in watering</MizuFertilityFactorInWatering>
+  
 </LanguageData>
