@@ -856,7 +856,7 @@
     <defName>Mizu_SprinklerGrowing</defName>
     <label>Sprinkler (growing)</label>
     <description>Water farm every morning. Need electrical power.</description>
-    <thingClass>Building</thingClass>
+    <thingClass>MizuMod.Building_SprinklerGrowing</thingClass>
     <graphicData>
       <texPath>Things/Building/Misc/MoisturePump</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -900,6 +900,11 @@
       </li>
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Schedule">
+        <startTime>0.2</startTime>
+        <endTime>0.25</endTime>
+        <offMessage>Off</offMessage>
+      </li>
     </comps>
     <researchPrerequisites>
       <li>Mizu_WaterFacility</li>

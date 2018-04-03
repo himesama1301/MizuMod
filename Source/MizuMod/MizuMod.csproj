@@ -60,6 +60,7 @@
     <Compile Include="Building_Faucet.cs" />
     <Compile Include="Building_GroundWaterPump.cs" />
     <Compile Include="Building_Pipe.cs" />
+    <Compile Include="Building_SprinklerGrowing.cs" />
     <Compile Include="Building_UndergroundDeepWaterPump.cs" />
     <Compile Include="Building_UndergroundShallowWaterPump.cs" />
     <Compile Include="Building_UndergroundWaterPump.cs" />
