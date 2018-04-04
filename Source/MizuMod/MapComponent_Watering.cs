@@ -10,10 +10,11 @@ namespace MizuMod
 {
     public class MapComponent_Watering : MapComponent, IExposable
     {
+        public const ushort MaxWateringValue = 10;
         public const int IntervalTicks = 250;
 
         // 水やり効果がなくなるまでの残りTick
-        public ushort[] wateringGrid;
+        private ushort[] wateringGrid;
 
         private int elapsedTicks;
         private int randomIndex;
@@ -34,6 +35,16 @@ namespace MizuMod
             {
                 this.wateringGrid[this.map.cellIndices.CellToIndex(c)] = val;
             }, "wateringGrid");
+        }
+
+        public ushort GetWateringValue(int index)
+        {
+            return this.wateringGrid[index];
+        }
+
+        public void SetWateringValue(int index, ushort val)
+        {
+            this.wateringGrid[index] = (val < MaxWateringValue) ? val : MaxWateringValue;
         }
 
         public override void MapComponentTick()
