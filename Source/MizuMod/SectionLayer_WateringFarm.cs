@@ -27,7 +27,7 @@ namespace MizuMod
             base.ClearSubMeshes(MeshParts.All);
             foreach (IntVec3 current in this.section.CellRect)
             {
-                if (wateringComp.GetWateringValue(base.Map.cellIndices.CellToIndex(current)) > 0)
+                if (wateringComp.Get(base.Map.cellIndices.CellToIndex(current)) > 0)
                 {
                     Printer_Plane.PrintPlane(this, current.ToVector3Shifted(), Vector2.one, this.material);
                 }

@@ -37,14 +37,19 @@ namespace MizuMod
             }, "wateringGrid");
         }
 
-        public ushort GetWateringValue(int index)
+        public ushort Get(int index)
         {
             return this.wateringGrid[index];
         }
 
-        public void SetWateringValue(int index, ushort val)
+        public void Set(int index, ushort val)
         {
             this.wateringGrid[index] = (val < MaxWateringValue) ? val : MaxWateringValue;
+        }
+
+        public void Add(int index, ushort val)
+        {
+            this.Set(index, (ushort)(this.Get(index) + val));
         }
 
         public override void MapComponentTick()
