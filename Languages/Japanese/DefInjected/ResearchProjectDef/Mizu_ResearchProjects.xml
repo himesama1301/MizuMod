@@ -16,4 +16,7 @@
   <Mizu_WaterFilter.label>浄水フィルター</Mizu_WaterFilter.label>
   <Mizu_WaterFilter.description>水道網の水を浄化するためのフィルターが作れるようになります。</Mizu_WaterFilter.description>
 
+  <Mizu_WaterFacility.label>水道設備</Mizu_WaterFacility.label>
+  <Mizu_WaterFacility.description>水を使用する様々な設備が作れるようになります。</Mizu_WaterFacility.description>
+
 </LanguageData>

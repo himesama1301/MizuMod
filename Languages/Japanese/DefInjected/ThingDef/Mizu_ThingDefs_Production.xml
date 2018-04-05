@@ -97,4 +97,11 @@
   <Mizu_ElectricWaterCleaner_Frame.label>電動式浄水器(施行)</Mizu_ElectricWaterCleaner_Frame.label>
   <Mizu_ElectricWaterCleaner_Frame.description>海水、泥水、生水を水に変換する手動式の浄水器です。電力を必要とします。</Mizu_ElectricWaterCleaner_Frame.description>
   
+  <Mizu_SprinklerGrowing.label>スプリンクラー(栽培用)</Mizu_SprinklerGrowing.label>
+  <Mizu_SprinklerGrowing.description>毎朝農地に水やりをします。電力を必要とします。</Mizu_SprinklerGrowing.description>
+  <Mizu_SprinklerGrowing_Blueprint.label>スプリンクラー(栽培用)(設計)</Mizu_SprinklerGrowing_Blueprint.label>
+  <Mizu_SprinklerGrowing_Frame.label>スプリンクラー(栽培用)(施行)</Mizu_SprinklerGrowing_Frame.label>
+  <Mizu_SprinklerGrowing_Frame.description>毎朝農地に水やりをします。電力を必要とします。</Mizu_SprinklerGrowing_Frame.description>
+  <Mizu_SprinklerGrowing.comps.3.offMessage>停止中(稼働時間 5～6時)</Mizu_SprinklerGrowing.comps.3.offMessage>
+  
 </LanguageData>

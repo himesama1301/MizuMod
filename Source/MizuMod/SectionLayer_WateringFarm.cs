@@ -22,12 +22,12 @@ namespace MizuMod
 
         public override void Regenerate()
         {
-            ushort[] grid = base.Map.GetComponent<MapComponent_Watering>().wateringGrid;
+            var wateringComp = base.Map.GetComponent<MapComponent_Watering>();
 
             base.ClearSubMeshes(MeshParts.All);
             foreach (IntVec3 current in this.section.CellRect)
             {
-                if (grid[base.Map.cellIndices.CellToIndex(current)] > 0)
+                if (wateringComp.Get(base.Map.cellIndices.CellToIndex(current)) > 0)
                 {
                     Printer_Plane.PrintPlane(this, current.ToVector3Shifted(), Vector2.one, this.material);
                 }

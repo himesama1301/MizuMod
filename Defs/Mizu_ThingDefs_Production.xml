@@ -851,5 +851,67 @@
       <li Class="CompProperties_Breakdownable"/>
     </comps>
   </ThingDef>
+  
+  <ThingDef ParentName="Mizu_BuildingBase">
+    <defName>Mizu_SprinklerGrowing</defName>
+    <label>Sprinkler (growing)</label>
+    <description>Water farm every morning. Need electrical power.</description>
+    <thingClass>MizuMod.Building_SprinklerGrowing</thingClass>
+    <graphicData>
+      <texPath>Things/Building/Misc/MoisturePump</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shadowData>
+        <volume>(0.25, 0.5, 0.25)</volume>
+        <offset>(0,0,-0.1)</offset>
+      </shadowData>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+    </graphicData>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>50</costStuffCount>
+    <costList>
+      <Component>2</Component>
+    </costList>
+    <building>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
+    <tickerType>Rare</tickerType>
+    <altitudeLayer>Building</altitudeLayer>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <WorkToBuild>1500</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>-8</Beauty>
+    </statBases>
+    <fillPercent>0.15</fillPercent>
+    <rotatable>false</rotatable>
+    <specialDisplayRadius>4.9</specialDisplayRadius>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <pathCost>25</pathCost>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <startElectricalFires>true</startElectricalFires>
+        <basePowerConsumption>150</basePowerConsumption>
+        <shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Schedule">
+        <startTime>0.205</startTime>
+        <endTime>0.25</endTime>
+        <offMessage>Off(Active time 5-6am)</offMessage>
+      </li>
+    </comps>
+    <researchPrerequisites>
+      <li>Mizu_WaterFacility</li>
+    </researchPrerequisites>
+    <placeWorkers>
+      <li>MizuMod.PlaceWorker_WaterNet</li>
+    </placeWorkers>
+  </ThingDef>
 
 </Defs>
