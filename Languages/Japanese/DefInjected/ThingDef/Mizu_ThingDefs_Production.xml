@@ -102,5 +102,6 @@
   <Mizu_SprinklerGrowing_Blueprint.label>スプリンクラー(栽培用)(設計)</Mizu_SprinklerGrowing_Blueprint.label>
   <Mizu_SprinklerGrowing_Frame.label>スプリンクラー(栽培用)(施行)</Mizu_SprinklerGrowing_Frame.label>
   <Mizu_SprinklerGrowing_Frame.description>毎朝農地に水やりをします。電力を必要とします。</Mizu_SprinklerGrowing_Frame.description>
+  <Mizu_SprinklerGrowing.comps.3.offMessage>停止中(稼働時間 5～6時)</Mizu_SprinklerGrowing.comps.3.offMessage>
   
 </LanguageData>

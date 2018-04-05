@@ -903,7 +903,7 @@
       <li Class="CompProperties_Schedule">
         <startTime>0.205</startTime>
         <endTime>0.25</endTime>
-        <offMessage>Off</offMessage>
+        <offMessage>Off(Active time 5-6am)</offMessage>
       </li>
     </comps>
     <researchPrerequisites>
