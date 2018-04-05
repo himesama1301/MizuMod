@@ -53,6 +53,13 @@ namespace MizuMod
                         {
                             wateringComp.Add(this.Map.cellIndices.CellToIndex(c), 1);
                             this.Map.mapDrawer.SectionAt(c).dirtyFlags = MapMeshFlag.Terrain;
+
+                            // 水やりエフェクト(仮)
+                            var mote = (MoteThrown)ThingMaker.MakeThing(MizuDef.Mote_SprinklerWater);
+                            //mote.Scale = 1f;
+                            //mote.rotationRate = (float)(Rand.Chance(0.5f) ? -30 : 30);
+                            mote.exactPosition = c.ToVector3Shifted();
+                            GenSpawn.Spawn(mote, c, base.Map);
                         }
                     }
                 }
