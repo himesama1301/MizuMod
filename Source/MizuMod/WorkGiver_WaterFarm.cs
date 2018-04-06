@@ -117,7 +117,7 @@ namespace MizuMod
             // 既に水やりされている場所にはやらない
             var mapComp = pawn.Map.GetComponent<MapComponent_Watering>();
             if (mapComp == null) return false;
-            if (mapComp.wateringGrid[pawn.Map.cellIndices.CellToIndex(c)] != 0) return false;
+            if (mapComp.Get(pawn.Map.cellIndices.CellToIndex(c)) > 0) return false;
 
             // その場所を予約できないならやらない
             if (!pawn.CanReserve(c)) return false;

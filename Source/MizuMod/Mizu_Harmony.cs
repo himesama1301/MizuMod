@@ -707,10 +707,16 @@ namespace MizuMod
         static void Postfix(FertilityGrid __instance, ref IntVec3 loc, ref float __result)
         {
             var map = Traverse.Create(__instance).Field("map").GetValue<Map>();
-            int wateringRemainTicks = map.GetComponent<MapComponent_Watering>().wateringGrid[map.cellIndices.CellToIndex(loc)];
+            int wateringRemainTicks = map.GetComponent<MapComponent_Watering>().Get(map.cellIndices.CellToIndex(loc));
             if (wateringRemainTicks > 0)
             {
-                __result *= 1.2f;
+                // 水やりされている
+                __result *= MizuModBody.Settings.FertilityFactorInWatering;
+            }
+            else
+            {
+                // 水やりされていない
+                __result *= MizuModBody.Settings.FertilityFactorInNotWatering;
             }
         }
     }

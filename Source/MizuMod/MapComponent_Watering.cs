@@ -10,10 +10,11 @@ namespace MizuMod
 {
     public class MapComponent_Watering : MapComponent, IExposable
     {
+        public const ushort MaxWateringValue = 10;
         public const int IntervalTicks = 250;
 
         // 水やり効果がなくなるまでの残りTick
-        public ushort[] wateringGrid;
+        private ushort[] wateringGrid;
 
         private int elapsedTicks;
         private int randomIndex;
@@ -36,10 +37,25 @@ namespace MizuMod
             }, "wateringGrid");
         }
 
+        public ushort Get(int index)
+        {
+            return this.wateringGrid[index];
+        }
+
+        public void Set(int index, ushort val)
+        {
+            this.wateringGrid[index] = (val < MaxWateringValue) ? val : MaxWateringValue;
+        }
+
+        public void Add(int index, ushort val)
+        {
+            this.Set(index, (ushort)(this.Get(index) + val));
+        }
+
         public override void MapComponentTick()
         {
             base.MapComponentTick();
-
+            
             this.elapsedTicks++;
             if (this.elapsedTicks >= IntervalTicks)
             {
@@ -50,15 +66,21 @@ namespace MizuMod
                 for (int i = 0; i < numCells; i++)
                 {
                     var c = this.map.cellsInRandomOrder.Get(this.randomIndex);
-                    if (this.map.weatherManager.RainRate > 0.5f && !this.map.roofGrid.Roofed(c))
+                    var terrain = this.map.terrainGrid.TerrainAt(c);
+                    if (this.map.weatherManager.RainRate > 0.5f && !this.map.roofGrid.Roofed(c) && terrain.fertility >= 0.01f)
                     {
                         // 雨が降れば水やり効果
                         this.wateringGrid[this.map.cellIndices.CellToIndex(c)] = 10;
+                        this.map.mapDrawer.SectionAt(c).dirtyFlags = MapMeshFlag.Terrain;
                     }
                     else if (this.wateringGrid[this.map.cellIndices.CellToIndex(c)] > 0)
                     {
                         // 水が渇く
                         this.wateringGrid[this.map.cellIndices.CellToIndex(c)]--;
+                        if (this.wateringGrid[this.map.cellIndices.CellToIndex(c)] == 0)
+                        {
+                            this.map.mapDrawer.SectionAt(c).dirtyFlags = MapMeshFlag.Terrain;
+                        }
                     }
 
                     this.randomIndex++;

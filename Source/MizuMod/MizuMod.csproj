@@ -60,6 +60,7 @@
     <Compile Include="Building_Faucet.cs" />
     <Compile Include="Building_GroundWaterPump.cs" />
     <Compile Include="Building_Pipe.cs" />
+    <Compile Include="Building_SprinklerGrowing.cs" />
     <Compile Include="Building_UndergroundDeepWaterPump.cs" />
     <Compile Include="Building_UndergroundShallowWaterPump.cs" />
     <Compile Include="Building_UndergroundWaterPump.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="CompWaterTool.cs" />
     <Compile Include="DaysWorthOfWaterCalculator.cs" />
     <Compile Include="DefExtension_NeedWater.cs" />
+    <Compile Include="DefExtension_RaceThirstRate.cs" />
     <Compile Include="DefExtension_ThirstRate.cs" />
     <Compile Include="DefExtension_WaterRecipe.cs" />
     <Compile Include="Designator_AreaMop.cs" />
@@ -135,6 +137,7 @@
     <Compile Include="MizuCaravanUtility.cs" />
     <Compile Include="MizuDef.cs" />
     <Compile Include="MizuGraphics.cs" />
+    <Compile Include="MizuModBody.cs" />
     <Compile Include="MizuPreferability.cs" />
     <Compile Include="MizuStrings.cs" />
     <Compile Include="MizuUtility.cs" />
@@ -151,7 +154,9 @@
     <Compile Include="PlaceWorker_WaterWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeWorkerCounter_DrawWater.cs" />
+    <Compile Include="SectionLayer_WateringFarm.cs" />
     <Compile Include="SectionLayer_WaterNet.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="StatPart_Water.cs" />
     <Compile Include="Thing_IcyFood.cs" />
     <Compile Include="ThinkNode_ConditionalDehydration.cs" />

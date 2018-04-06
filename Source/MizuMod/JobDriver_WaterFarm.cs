@@ -51,7 +51,7 @@ namespace MizuMod
             Toil initExtractTargetFromQueue = Toils_Mizu.ClearConditionSatisfiedTargets(WateringInd, (lti) =>
             {
                 var mapComp = this.Map.GetComponent<MapComponent_Watering>();
-                return mapComp.wateringGrid[this.Map.cellIndices.CellToIndex(lti.Cell)] > 0;
+                return mapComp.Get(this.Map.cellIndices.CellToIndex(lti.Cell)) > 0;
             });
             yield return initExtractTargetFromQueue;
 
@@ -82,7 +82,8 @@ namespace MizuMod
             {
                 // 水やり更新
                 var mapComp = this.Map.GetComponent<MapComponent_Watering>();
-                mapComp.wateringGrid[this.Map.cellIndices.CellToIndex(WateringPos)] = 10;
+                mapComp.Set(this.Map.cellIndices.CellToIndex(WateringPos), MapComponent_Watering.MaxWateringValue);
+                this.Map.mapDrawer.SectionAt(WateringPos).dirtyFlags = MapMeshFlag.Terrain;
 
                 // ツールから水を減らす
                 var compTool = Tool.GetComp<CompWaterTool>();

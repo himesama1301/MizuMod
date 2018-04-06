@@ -71,6 +71,8 @@ namespace MizuMod
         public static WaterTypeDef WaterType_Mud = DefDatabase<WaterTypeDef>.GetNamed("Mizu_WaterTypeMud");
         public static WaterTypeDef WaterType_Sea = DefDatabase<WaterTypeDef>.GetNamed("Mizu_WaterTypeSea");
 
+        public static ThingDef Mote_SprinklerWater = ThingDef.Named("Mizu_MoteSprinklerWater");
+
         public static List<ThingDef> List_WaterItem;
         public static Dictionary<WaterType, WaterTypeDef> Dic_WaterTypeDef;
 
