@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_Water.label>饮水值</Mizu_Water.label>
+  <Mizu_Water.description>饮水值是一个生物最近消耗的水量。如果饮水值为零，一个生物将逐渐脱水，最终死亡。</Mizu_Water.description>
+
+
+</LanguageData>
