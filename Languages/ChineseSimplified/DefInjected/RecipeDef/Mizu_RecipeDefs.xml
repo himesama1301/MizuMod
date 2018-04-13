@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Draw Water From Terrain -->
+
+  <Mizu_DrawWater.label>在取水点取水。</Mizu_DrawWater.label>
+  <Mizu_DrawWater.description>获取饮用水。水的类型取决于地形。</Mizu_DrawWater.description>
+  <Mizu_DrawWater.jobString>在取水点取水。</Mizu_DrawWater.jobString>
+
+  <Mizu_DrawWaterMulti.label>在取水点取水(x5)</Mizu_DrawWaterMulti.label>
+  <Mizu_DrawWaterMulti.description>取得饮用水。水的类型取决于地形。</Mizu_DrawWaterMulti.description>
+  <Mizu_DrawWaterMulti.jobString>正在取水点取水。</Mizu_DrawWaterMulti.jobString>
+
+
+  <!-- Draw Water From Water Pool -->
+
+  <Mizu_DrawWaterFromWaterPool.label>获取地下水</Mizu_DrawWaterFromWaterPool.label>
+  <Mizu_DrawWaterFromWaterPool.description>获取来自地下的饮用水</Mizu_DrawWaterFromWaterPool.description>
+  <Mizu_DrawWaterFromWaterPool.jobString>正在获取地下水。</Mizu_DrawWaterFromWaterPool.jobString>
+
+  <Mizu_DrawWaterFromWaterPoolMulti.label>获取地下水(x5)</Mizu_DrawWaterFromWaterPoolMulti.label>
+  <Mizu_DrawWaterFromWaterPoolMulti.description>获取来自地下的饮用水</Mizu_DrawWaterFromWaterPoolMulti.description>
+  <Mizu_DrawWaterFromWaterPoolMulti.jobString>正在获取地下水。</Mizu_DrawWaterFromWaterPoolMulti.jobString>
+
+
+  <!-- Draw Water From Water Net -->
+
+  <Mizu_DrawWaterFromWaterNet.label>从供水系统中获取水</Mizu_DrawWaterFromWaterNet.label>
+  <Mizu_DrawWaterFromWaterNet.description>从供水系统中获取饮用水</Mizu_DrawWaterFromWaterNet.description>
+  <Mizu_DrawWaterFromWaterNet.jobString>正在从供水系统中获取饮用水。</Mizu_DrawWaterFromWaterNet.jobString>
+
+  <Mizu_DrawWaterFromWaterNetMulti.label>从供水系统中获取水(x5)</Mizu_DrawWaterFromWaterNetMulti.label>
+  <Mizu_DrawWaterFromWaterNetMulti.description>从供水系统中获取水</Mizu_DrawWaterFromWaterNetMulti.description>
+  <Mizu_DrawWaterFromWaterNetMulti.jobString>正在从供水系统中获取饮用水。</Mizu_DrawWaterFromWaterNetMulti.jobString>
+
+
+  <!-- Draw Water From WaterBox -->
+
+  <Mizu_DrawWaterFromWaterBox.label>从水箱中获取水</Mizu_DrawWaterFromWaterBox.label>
+  <Mizu_DrawWaterFromWaterBox.description>从水箱中获取饮用水</Mizu_DrawWaterFromWaterBox.description>
+  <Mizu_DrawWaterFromWaterBox.jobString>正在从水箱中获取饮用水。</Mizu_DrawWaterFromWaterBox.jobString>
+
+  <Mizu_DrawWaterFromWaterBoxMulti.label>从水箱中获取水 x5</Mizu_DrawWaterFromWaterBoxMulti.label>
+  <Mizu_DrawWaterFromWaterBoxMulti.description>从水箱中获取饮用水</Mizu_DrawWaterFromWaterBoxMulti.description>
+  <Mizu_DrawWaterFromWaterBoxMulti.jobString>正在从水箱中获取饮用水。</Mizu_DrawWaterFromWaterBoxMulti.jobString>
+
+
+  <!-- Pour Water -->
+
+  <Mizu_PourWater.label>倒入水(x5)</Mizu_PourWater.label>
+  <Mizu_PourWater.description>将水倒入蓄水建筑。</Mizu_PourWater.description>
+  <Mizu_PourWater.jobString>正在倒入水。</Mizu_PourWater.jobString>
+
+
+  <!-- Pour Water Multi -->
+
+  <Mizu_PourWaterMulti.label>倒入水(x25)</Mizu_PourWaterMulti.label>
+  <Mizu_PourWaterMulti.description>将水倒入蓄水建筑。</Mizu_PourWaterMulti.description>
+  <Mizu_PourWaterMulti.jobString>正在倒入水。</Mizu_PourWaterMulti.jobString>
+
+
+  <!-- others -->
+
+  <Mizu_PurifyWater.label>过滤水</Mizu_PurifyWater.label>
+  <Mizu_PurifyWater.description>用木炭过滤出纯净水。</Mizu_PurifyWater.description>
+  <Mizu_PurifyWater.jobString>正在过滤水。</Mizu_PurifyWater.jobString>
+
+  <Mizu_BoilRawWater.label>煮沸生水</Mizu_BoilRawWater.label>
+  <Mizu_BoilRawWater.description>将生水变成普通水。</Mizu_BoilRawWater.description>
+  <Mizu_BoilRawWater.jobString>正在煮沸生水。</Mizu_BoilRawWater.jobString>
+
+  <Mizu_PercolateMudWater.label>过滤泥水</Mizu_PercolateMudWater.label>
+  <Mizu_PercolateMudWater.description>将泥水过滤和煮沸，变成普通水。</Mizu_PercolateMudWater.description>
+  <Mizu_PercolateMudWater.jobString>正在过滤泥水。</Mizu_PercolateMudWater.jobString>
+
+  <Mizu_DesalinateSeaWater.label>淡化海水</Mizu_DesalinateSeaWater.label>
+  <Mizu_DesalinateSeaWater.description>将海水淡化为普通水。</Mizu_DesalinateSeaWater.description>
+  <Mizu_DesalinateSeaWater.jobString>正在淡化海水。</Mizu_DesalinateSeaWater.jobString>
+
+  <Mizu_PurifyWaterMulti.label>过滤水（X5）</Mizu_PurifyWaterMulti.label>
+  <Mizu_PurifyWaterMulti.description>用木炭过滤出纯净水（X5）。</Mizu_PurifyWaterMulti.description>
+  <Mizu_PurifyWaterMulti.jobString>正在过滤水。</Mizu_PurifyWaterMulti.jobString>
+
+  <Mizu_BoilRawWaterMulti.label>煮沸生水(x5)</Mizu_BoilRawWaterMulti.label>
+  <Mizu_BoilRawWaterMulti.description>将生水变成普通水。</Mizu_BoilRawWaterMulti.description>
+  <Mizu_BoilRawWaterMulti.jobString>正在煮沸生水。</Mizu_BoilRawWaterMulti.jobString>
+
+  <Mizu_PercolateMudWaterMulti.label>过滤泥水(x5)</Mizu_PercolateMudWaterMulti.label>
+  <Mizu_PercolateMudWaterMulti.description>将泥水过滤和煮沸，变成普通水。</Mizu_PercolateMudWaterMulti.description>
+  <Mizu_PercolateMudWaterMulti.jobString>正在过滤泥水。</Mizu_PercolateMudWaterMulti.jobString>
+
+  <Mizu_DesalinateSeaWaterMulti.label>淡化海水(x5)</Mizu_DesalinateSeaWaterMulti.label>
+  <Mizu_DesalinateSeaWaterMulti.description>将海水淡化为普通水。</Mizu_DesalinateSeaWaterMulti.description>
+  <Mizu_DesalinateSeaWaterMulti.jobString>正在淡化海水。</Mizu_DesalinateSeaWaterMulti.jobString>
+
+
+</LanguageData>
