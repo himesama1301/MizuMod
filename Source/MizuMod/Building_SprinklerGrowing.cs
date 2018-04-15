@@ -26,7 +26,8 @@ namespace MizuMod
         {
             base.TickRare();
 
-            if (this.compPowerTrader.PowerOn)
+            // デバッグオプションがONなら時間設定や電力状態を無視
+            if (this.compPowerTrader.PowerOn || MizuDef.GlobalSettings.forDebug.enableAlwaysActivateSprinklerGrowing)
             {
                 // 電源ON、故障無し、稼働時間範囲内の時
                 if (this.InputWaterNet != null)
@@ -45,10 +46,18 @@ namespace MizuMod
 
                     // 10の水やり効果で1L→1の水やり効果で0.1L
                     // 水が足りているかチェック
-                    if (this.InputWaterNet.StoredWaterVolumeForFaucet >= 0.1f * sameRoomCells.Count())
+                    float useWaterVolume = 0.1f * sameRoomCells.Count();
+
+                    // デバッグオプションがONなら消費貯水量を0.1Lにする
+                    if (MizuDef.GlobalSettings.forDebug.enableAlwaysActivateSprinklerGrowing)
+                    {
+                        useWaterVolume = 0.1f;
+                    }
+
+                    if (this.InputWaterNet.StoredWaterVolumeForFaucet >= useWaterVolume)
                     {
                         // 水を減らしてからセルに水やり効果
-                        this.InputWaterNet.DrawWaterVolumeForFaucet(0.1f * sameRoomCells.Count());
+                        this.InputWaterNet.DrawWaterVolumeForFaucet(useWaterVolume);
                         foreach (var c in sameRoomCells)
                         {
                             wateringComp.Add(this.Map.cellIndices.CellToIndex(c), 1);
