@@ -13,6 +13,8 @@ namespace MizuMod
         private CompPowerTrader compPowerTrader;
         private CompSchedule compSchedule;
 
+        private const int ExtinguishPower = 50;
+
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
@@ -69,6 +71,14 @@ namespace MizuMod
                             //mote.rotationRate = (float)(Rand.Chance(0.5f) ? -30 : 30);
                             mote.exactPosition = c.ToVector3Shifted();
                             GenSpawn.Spawn(mote, c, base.Map);
+
+                            // 消火効果(仮)
+                            // 複製しないとダメージを受けて消えた時点で元のリストから除外されてエラーになる
+                            var fireList = new List<Fire>(this.Map.thingGrid.ThingsListAt(c).Where((t) => t is Fire).Select((t) => t as Fire));
+                            foreach (var fire in fireList)
+                            {
+                                fire.TakeDamage(new DamageInfo(DamageDefOf.Extinguish, ExtinguishPower));
+                            }
                         }
                     }
                 }
