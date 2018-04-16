@@ -918,7 +918,7 @@
     <defName>Mizu_SprinklerExtinguishing</defName>
     <label>Sprinkler (extinguishing)</label>
     <description>Automatically extinguish fire within range. Need electrical power.</description>
-    <thingClass>ThingWithComps</thingClass>
+    <thingClass>MizuMod.Building_SprinklerExtinguishing</thingClass>
     <graphicData>
       <texPath>Things/Building/Misc/MoisturePump</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -954,7 +954,6 @@
     <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
     <pathCost>25</pathCost>
     <comps>
-<!--
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
         <startElectricalFires>true</startElectricalFires>
@@ -963,12 +962,6 @@
       </li>
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_Breakdownable"/>
-      <li Class="CompProperties_Schedule">
-        <startTime>0.205</startTime>
-        <endTime>0.25</endTime>
-        <offMessage>Off(Active time 5-6am)</offMessage>
-      </li>
--->
     </comps>
     <researchPrerequisites>
       <li>Mizu_WaterFacility</li>
