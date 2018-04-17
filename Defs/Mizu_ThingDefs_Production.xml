@@ -969,6 +969,7 @@
     <placeWorkers>
       <li>MizuMod.PlaceWorker_WaterNet</li>
     </placeWorkers>
+    <minifiedDef>MinifiedFurniture</minifiedDef>
   </ThingDef>
 
 </Defs>
