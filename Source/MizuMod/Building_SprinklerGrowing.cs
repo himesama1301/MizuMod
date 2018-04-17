@@ -13,6 +13,7 @@ namespace MizuMod
         private CompPowerTrader compPowerTrader;
         private CompSchedule compSchedule;
 
+        private const float UseWaterVolumePerOne = 0.1f;
         private const int ExtinguishPower = 50;
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
@@ -48,7 +49,7 @@ namespace MizuMod
 
                     // 10の水やり効果で1L→1の水やり効果で0.1L
                     // 水が足りているかチェック
-                    float useWaterVolume = 0.1f * sameRoomCells.Count();
+                    float useWaterVolume = UseWaterVolumePerOne * sameRoomCells.Count();
 
                     // デバッグオプションがONなら消費貯水量を0.1Lにする
                     if (MizuDef.GlobalSettings.forDebug.enableAlwaysActivateSprinklerGrowing)
