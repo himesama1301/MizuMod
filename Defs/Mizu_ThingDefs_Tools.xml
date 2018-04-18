@@ -215,6 +215,8 @@
       <MarketValue>10</MarketValue>
       <WorkToMake>2500</WorkToMake>
       <Mass>0.5</Mass>
+      <RangedWeapon_Cooldown>2.66</RangedWeapon_Cooldown>
+      <Weapon_Bulk>0.2</Weapon_Bulk>
     </statBases>
     <stuffCategories>
       <li>Metallic</li>
@@ -254,7 +256,44 @@
         </supplyWorkType>
         <maxWaterVolume>10</maxWaterVolume>
       </li>
+      <li>
+        <compClass>CompEquippable</compClass>
+      </li>
     </comps>
+    <equipmentType>Primary</equipmentType>
+    <verbs>
+      <li>
+        <label>throw EMP grenade</label>
+        <verbClass>Verb_LaunchProjectile</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <range>12.9</range>
+        <forcedMissRadius>1.0</forcedMissRadius>
+        <warmupTime>1.5</warmupTime>
+        <noiseRadius>4</noiseRadius>
+        <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+        <soundCast>ThrowGrenade</soundCast>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+        <defaultProjectile>Proj_BucketWater</defaultProjectile>
+      </li>
+    </verbs>
+  </ThingDef>
+  
+  <ThingDef ParentName="BaseGrenadeProjectile">
+    <defName>Proj_BucketWater</defName>
+    <label>EMP grenade</label>
+    <thingClass>Projectile_Explosive</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/GrenadeEMP</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <explosionRadius>1.9</explosionRadius>
+      <damageDef>Extinguish</damageDef>
+      <damageAmountBase>80</damageAmountBase>
+      <explosionDelay>100</explosionDelay>
+    </projectile>
   </ThingDef>
   
 </Defs>
