@@ -264,12 +264,12 @@
     <verbs>
       <li>
         <label>throw EMP grenade</label>
-        <verbClass>Verb_LaunchProjectile</verbClass>
+        <verbClass>MizuMod.Verb_LaunchBucketWater</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <range>12.9</range>
-        <forcedMissRadius>1.0</forcedMissRadius>
-        <warmupTime>1.5</warmupTime>
-        <noiseRadius>4</noiseRadius>
+        <range>3.9</range>
+        <forcedMissRadius>0</forcedMissRadius>
+        <warmupTime>0.5</warmupTime>
+        <noiseRadius>2</noiseRadius>
         <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
         <soundCast>ThrowGrenade</soundCast>
         <targetParams>
@@ -286,7 +286,7 @@
   
   <ThingDef ParentName="BaseGrenadeProjectile">
     <defName>Proj_BucketWater</defName>
-    <label>EMP grenade</label>
+    <label>Water from bucket</label>
     <thingClass>Projectile_Explosive</thingClass>
     <graphicData>
       <texPath>Things/Projectile/GrenadeEMP</texPath>
@@ -295,8 +295,8 @@
     <projectile>
       <explosionRadius>1.9</explosionRadius>
       <damageDef>Mizu_Extinguish</damageDef>
-      <damageAmountBase>80</damageAmountBase>
-      <explosionDelay>100</explosionDelay>
+      <damageAmountBase>100</damageAmountBase>
+      <explosionDelay>0</explosionDelay>
     </projectile>
   </ThingDef>
   

@@ -167,6 +167,7 @@
     <Compile Include="Toils_Mizu.cs" />
     <Compile Include="UndergroundWaterMaterials.cs" />
     <Compile Include="UndergroundWaterPool.cs" />
+    <Compile Include="Verb_LaunchBucketWater.cs" />
     <Compile Include="WaterNet.cs" />
     <Compile Include="WaterTerrainType.cs" />
     <Compile Include="WaterType.cs" />
