@@ -278,6 +278,10 @@
         <defaultProjectile>Proj_BucketWater</defaultProjectile>
       </li>
     </verbs>
+    <weaponTags>
+      <li>Mizu_Tool</li>
+    </weaponTags>
+    <techLevel>Neolithic</techLevel>
   </ThingDef>
   
   <ThingDef ParentName="BaseGrenadeProjectile">
@@ -290,7 +294,7 @@
     </graphicData>
     <projectile>
       <explosionRadius>1.9</explosionRadius>
-      <damageDef>Extinguish</damageDef>
+      <damageDef>Mizu_Extinguish</damageDef>
       <damageAmountBase>80</damageAmountBase>
       <explosionDelay>100</explosionDelay>
     </projectile>
