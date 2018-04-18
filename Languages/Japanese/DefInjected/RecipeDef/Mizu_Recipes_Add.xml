@@ -13,4 +13,8 @@
   <Make_Mizu_WateringPot.description>じょうろを作る。</Make_Mizu_WateringPot.description>
   <Make_Mizu_WateringPot.jobString>じょうろを製作中</Make_Mizu_WateringPot.jobString>
   
+  <Make_Mizu_Bucket.label>バケツを作る</Make_Mizu_Bucket.label>
+  <Make_Mizu_Bucket.description>バケツを作る。</Make_Mizu_Bucket.description>
+  <Make_Mizu_Bucket.jobString>バケツを製作中</Make_Mizu_Bucket.jobString>
+  
 </LanguageData>

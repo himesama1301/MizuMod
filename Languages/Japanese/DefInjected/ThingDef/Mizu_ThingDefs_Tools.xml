@@ -10,7 +10,7 @@
   <Mizu_WateringPot.label>じょうろ</Mizu_WateringPot.label>
   <Mizu_WateringPot.description>栽培に使う道具です。農地に水やりをして肥沃度を上昇させることが出来ます。</Mizu_WateringPot.description>
   
-  <Mizu_Bucket.label>じょうろ</Mizu_Bucket.label>
+  <Mizu_Bucket.label>バケツ</Mizu_Bucket.label>
   <Mizu_Bucket.description>消火に使う道具です。これを使えば効率的に消火することが出来ます。</Mizu_Bucket.description>
   
 </LanguageData>
