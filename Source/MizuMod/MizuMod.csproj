@@ -159,6 +159,7 @@
     <Compile Include="SectionLayer_WaterNet.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StatPart_Water.cs" />
+    <Compile Include="Thing_Bucket.cs" />
     <Compile Include="Thing_IcyFood.cs" />
     <Compile Include="ThinkNode_ConditionalDehydration.cs" />
     <Compile Include="ThinkNode_ConditionalStockWaterForPrisoner.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="Toils_Mizu.cs" />
     <Compile Include="UndergroundWaterMaterials.cs" />
     <Compile Include="UndergroundWaterPool.cs" />
+    <Compile Include="Verb_LaunchBucketWater.cs" />
     <Compile Include="WaterNet.cs" />
     <Compile Include="WaterTerrainType.cs" />
     <Compile Include="WaterType.cs" />
