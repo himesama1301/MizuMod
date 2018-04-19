@@ -140,7 +140,7 @@ namespace MizuMod
                 if (comp == null) return false;
                 if (!comp.UseWorkType.Contains(CompProperties_WaterTool.UseWorkType.WaterFarm)) return false;
 
-                int maxQueueLength = (int)Mathf.Floor(comp.StoredWaterVolume / JobDriver_Mop.ConsumeWaterVolume);
+                int maxQueueLength = (int)Mathf.Floor(comp.StoredWaterVolume / JobDriver_WaterFarm.ConsumeWaterVolume);
                 if (maxQueueLength <= 0) return false;
 
                 return true;
