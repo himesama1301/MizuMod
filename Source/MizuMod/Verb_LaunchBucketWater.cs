@@ -22,6 +22,10 @@ namespace MizuMod
 
             // 投擲できた場合は水を減らす
             comp.StoredWaterVolume = 0f;
+
+            // グラフィック更新
+            this.ownerEquipment.Tick();
+
             return true;
         }
     }

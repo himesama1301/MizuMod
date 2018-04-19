@@ -207,8 +207,9 @@
     <defName>Mizu_Bucket</defName>
     <label>Bucket</label>
     <description>A tool for firefighting. Pawns can extinguish fires more efficiently by using this.</description>
+    <thingClass>MizuMod.Thing_Bucket</thingClass>
     <graphicData>
-      <texPath>Things/Item/Mizu_WateringPot</texPath>
+      <texPath>Things/Item/Mizu_Bucket0</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
@@ -282,6 +283,7 @@
       <li>Mizu_Tool</li>
     </weaponTags>
     <techLevel>Neolithic</techLevel>
+    <tickerType>Normal</tickerType>
   </ThingDef>
   
   <ThingDef ParentName="BaseGrenadeProjectile">

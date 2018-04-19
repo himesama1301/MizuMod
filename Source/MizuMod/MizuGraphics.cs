@@ -26,6 +26,9 @@ namespace MizuMod
         public static List<Graphic> WaterBoxes;
         public static List<Graphic_Linked> LinkedWaterBoxes;
 
+        // バケツ
+        public static List<Graphic> Buckets;
+
         static MizuGraphics()
         {
             WaterBoxes = new List<Graphic>()
@@ -44,6 +47,12 @@ namespace MizuMod
                 new Graphic_Linked(WaterBoxes[2]),
                 new Graphic_Linked(WaterBoxes[3]),
                 new Graphic_Linked(WaterBoxes[4]),
+            };
+
+            Buckets = new List<Graphic>()
+            {
+                GraphicDatabase.Get<Graphic_Single>("Things/Item/Mizu_Bucket0", ShaderDatabase.Transparent),
+                GraphicDatabase.Get<Graphic_Single>("Things/Item/Mizu_Bucket1", ShaderDatabase.CutoutComplex),
             };
         }
     }

@@ -159,6 +159,7 @@
     <Compile Include="SectionLayer_WaterNet.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StatPart_Water.cs" />
+    <Compile Include="Thing_Bucket.cs" />
     <Compile Include="Thing_IcyFood.cs" />
     <Compile Include="ThinkNode_ConditionalDehydration.cs" />
     <Compile Include="ThinkNode_ConditionalStockWaterForPrisoner.cs" />
