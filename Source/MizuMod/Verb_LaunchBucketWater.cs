@@ -9,16 +9,20 @@ namespace MizuMod
 {
     public class Verb_LaunchBucketWater : Verb_LaunchProjectile
     {
-        public override void WarmupComplete()
-        {
-            Log.Message("WarmupComplete");
-            base.WarmupComplete();
-        }
+        private const float NeedWaterPercentage = 0.9f;
 
         protected override bool TryCastShot()
         {
-            Log.Message("TryCastShot");
-            return base.TryCastShot();
+            // 水チェック
+            var comp = this.ownerEquipment.GetComp<CompWaterTool>();
+            if (comp.StoredWaterVolumePercent < NeedWaterPercentage) return false;
+
+            // 通常の投擲チェック
+            if (base.TryCastShot() == false) return false;
+
+            // 投擲できた場合は水を減らす
+            comp.StoredWaterVolume = 0f;
+            return true;
         }
     }
 }
