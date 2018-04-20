@@ -16,6 +16,7 @@ namespace MizuMod
             Mop,
             Nurse,
             WaterFarm,
+            FightFire,
         }
 
         public List<UseWorkType> useWorkType = new List<UseWorkType>();

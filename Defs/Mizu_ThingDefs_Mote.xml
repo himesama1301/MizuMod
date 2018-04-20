@@ -29,4 +29,16 @@
     </mote>
   </ThingDef>
   
+  <ThingDef ParentName="MoteBase">
+    <defName>Mizu_MoteBucketWater</defName>
+    <graphicData>
+      <texPath>Things/Mizu_SprinklerWater</texPath>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <solidTime>0.25</solidTime>
+      <fadeOutTime>0.25</fadeOutTime>
+    </mote>
+  </ThingDef>
+  
 </Defs>
