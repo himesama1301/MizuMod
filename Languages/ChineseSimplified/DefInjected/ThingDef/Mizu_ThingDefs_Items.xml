@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_ClearWater.label>纯净水</Mizu_ClearWater.label>
+  <Mizu_ClearWater.description>饮用水，口感不错。</Mizu_ClearWater.description>
+
+  <Mizu_NormalWater.label>水</Mizu_NormalWater.label>
+  <Mizu_NormalWater.description>饮用水，它没有特殊效果。</Mizu_NormalWater.description>
+
+  <Mizu_RawWater.label>生水
+</Mizu_RawWater.label>
+  <Mizu_RawWater.description>饮用水，口感不佳。</Mizu_RawWater.description>
+
+  <Mizu_MudWater.label>泥水</Mizu_MudWater.label>
+  <Mizu_MudWater.description>饮用水，口感糟糕。</Mizu_MudWater.description>
+
+  <Mizu_SeaWater.label>海水</Mizu_SeaWater.label>
+  <Mizu_SeaWater.description>饮用水，又咸又苦。</Mizu_SeaWater.description>
+
+
+</LanguageData>
