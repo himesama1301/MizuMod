@@ -81,7 +81,7 @@
   <MizuWaterToolStored>Stored Water Volume</MizuWaterToolStored>
   
   <MizuSetDefault>Set Default</MizuSetDefault>
-  <MizuFertilityFactorInNotWatering>Fertility factor in NOT watering</MizuFertilityFactorInNotWatering>
-  <MizuFertilityFactorInWatering>Fertility factor in watering</MizuFertilityFactorInWatering>
+  <MizuGrowthRateFactorInNotWatering>Growth rate factor in NOT watering</MizuGrowthRateFactorInNotWatering>
+  <MizuGrowthRateFactorInWatering>Growth rate factor in watering</MizuGrowthRateFactorInWatering>
   
 </LanguageData>

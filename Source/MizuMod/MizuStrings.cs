@@ -75,8 +75,8 @@ namespace MizuMod
 
         // オプション
         public static readonly string OptionSetDefault = "MizuSetDefault";
-        public static readonly string OptionFertilityFactorInNotWatering = "MizuFertilityFactorInNotWatering";
-        public static readonly string OptionFertilityFactorInWatering = "MizuFertilityFactorInWatering";
+        public static readonly string OptionGrowthRateFactorInNotWatering = "MizuGrowthRateFactorInNotWatering";
+        public static readonly string OptionGrowthRateFactorInWatering = "MizuGrowthRateFactorInWatering";
 
         public static string GetInspectWaterTypeString(WaterType waterType)
         {
