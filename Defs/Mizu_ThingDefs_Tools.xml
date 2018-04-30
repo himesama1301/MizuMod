@@ -264,7 +264,7 @@
     <equipmentType>Primary</equipmentType>
     <verbs>
       <li>
-        <label>throw EMP grenade</label>
+        <label>throw water</label>
         <verbClass>MizuMod.Verb_LaunchBucketWater</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <range>3.9</range>
