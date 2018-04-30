@@ -57,7 +57,7 @@ namespace MizuMod
 
             // 水やりしていない時の肥沃度係数
             listing_standard.Label(string.Concat(new string[] {
-                MizuStrings.OptionFertilityFactorInNotWatering.Translate(),
+                MizuStrings.OptionGrowthRateFactorInNotWatering.Translate(),
                 " (",
                 MinFertilityFactorInNotWatering.ToString("F2"),
                 " - ",
@@ -72,7 +72,7 @@ namespace MizuMod
 
             // 水やりした時の肥沃度係数
             listing_standard.Label(string.Concat(new string[] {
-                MizuStrings.OptionFertilityFactorInWatering.Translate(),
+                MizuStrings.OptionGrowthRateFactorInWatering.Translate(),
                 " (",
                 MinFertilityFactorInWatering.ToString("F2"),
                 " - ",
