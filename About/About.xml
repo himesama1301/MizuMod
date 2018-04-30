@@ -32,7 +32,8 @@ https://github.com/himesama1301/MizuMod/blob/master/LICENSE_Unlicense
 
 Contributor
 
-KAS (VGP_Core and VGP_Gourmet patch)
+Valerate (VGP_Core and VGP_Gourmet patch)
+Dango998 (ChineseSimplified translation)
 
 FAQ
 
@@ -77,7 +78,8 @@ https://github.com/himesama1301/MizuMod/blob/master/LICENSE_Unlicense
 
 ご協力
 
-KAS (VGP_Core and VGP_Gourmet パッチ)
+Valerate (VGP_Core and VGP_Gourmet パッチ)
+Dango998 (簡体字中国語 翻訳データ)
 
 よくある質問と回答
 
@@ -94,5 +96,6 @@ Q3. XXXというmodに対して互換性を追加してほしいのですが。
 
 A3. このmodの開発スケジュールの中で、他modへの互換性追加作業の優先度は低いです(Dubs Bad Hygieneを除く)。B18用のmodの数はSteamワークショップだけで2000を超えていて、対応が必要なmodを洗い出すだけで大変な時間がかかります。互換性を追加するにはさらに多くの時間が必要となり、私一人でそれを行うのは現実的ではありません。
 代わりに、私は新要素追加とバグ修正を優先して行っています。新要素は不安定版に含まれています。しばらくの間、Steamにはリリースされません。
+
   </description>
 </ModMetaData>
