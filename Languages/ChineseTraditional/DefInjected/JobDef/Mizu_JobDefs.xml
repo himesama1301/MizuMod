@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_DrinkWater.reportString>喝 TargetA。</Mizu_DrinkWater.reportString>
+  <Mizu_DrinkWaterFromBuilding.reportString>從 TargetA 喝。</Mizu_DrinkWaterFromBuilding.reportString>
+  <Mizu_FeedWaterPatient.reportString>喂 TargetA 喝 TargetB。</Mizu_FeedWaterPatient.reportString>
+  <Mizu_DeliverWater.reportString>喂 TargetA 喝 TargetB。</Mizu_DeliverWater.reportString>
+  <Mizu_DrawFromTerrain.reportString>正在完成 TargetA 清單。</Mizu_DrawFromTerrain.reportString>
+  <Mizu_DrawFromWaterPool.reportString>正在完成 TargetA 清單。</Mizu_DrawFromWaterPool.reportString>
+  <Mizu_DrawFromWaterNet.reportString>正在完成 TargetA 清單。</Mizu_DrawFromWaterNet.reportString>
+  <Mizu_PourWater.reportString>正在完成 TargetA 清單。</Mizu_PourWater.reportString>
+  <Mizu_DrawWaterByPrisoner.reportString>正在從 TargetA 取水。</Mizu_DrawWaterByPrisoner.reportString>
+
+
+</LanguageData>

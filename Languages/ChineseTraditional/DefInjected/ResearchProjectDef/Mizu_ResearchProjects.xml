@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_UndergroundWater.label>地下水</Mizu_UndergroundWater.label>
+  <Mizu_UndergroundWater.description>建造水井，用於獲取淺層地下水的原始建築。</Mizu_UndergroundWater.description>
+
+  <Mizu_Waterworks.label>供水系統</Mizu_Waterworks.label>
+  <Mizu_Waterworks.description>允許你建造建造水管，水龍頭，蓄水罐和某些類型的水泵。</Mizu_Waterworks.description>
+
+  <Mizu_CleanWater.label>淨化水</Mizu_CleanWater.label>
+  <Mizu_CleanWater.description>運行你建造淨水器。</Mizu_CleanWater.description>
+
+  <Mizu_DeepUndergroundWater.label>深層水</Mizu_DeepUndergroundWater.label>
+  <Mizu_DeepUndergroundWater.description>允許你建造深井泵（深層）。</Mizu_DeepUndergroundWater.description>
+
+  <Mizu_WaterFilter.label>過濾器</Mizu_WaterFilter.label>
+  <Mizu_WaterFilter.description>允許你為供水系統建造過濾器。</Mizu_WaterFilter.description>
+
+
+</LanguageData>
