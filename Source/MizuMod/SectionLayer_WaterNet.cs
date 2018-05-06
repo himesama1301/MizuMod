@@ -18,14 +18,21 @@ namespace MizuMod
 
         public override void DrawLayer()
         {
-            Designator_Build designator = Find.DesignatorManager.SelectedDesignator as Designator_Build;
-            if (designator != null)
+            ThingDef thingDef = null;
+            Designator_Build designator_build = Find.DesignatorManager.SelectedDesignator as Designator_Build;
+            if (designator_build != null)
             {
-                ThingDef thingDef = designator.PlacingDef as ThingDef;
-                if (thingDef != null && typeof(IBuilding_WaterNet).IsAssignableFrom(thingDef.thingClass))
-                {
-                    base.DrawLayer();
-                }
+                thingDef = designator_build.PlacingDef as ThingDef;
+            }
+            Designator_Install designator_install = Find.DesignatorManager.SelectedDesignator as Designator_Install;
+            if (designator_install != null)
+            {
+                thingDef = designator_install.PlacingDef as ThingDef;
+            }
+
+            if (thingDef != null && typeof(IBuilding_WaterNet).IsAssignableFrom(thingDef.thingClass))
+            {
+                base.DrawLayer();
             }
         }
 

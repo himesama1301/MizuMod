@@ -30,7 +30,15 @@ namespace MizuMod
             IEnumerable<IntVec3> potentialCells = null;
 
             // 農地チェック
-            var growingZoneList = pawn.Map.zoneManager.AllZones.Where((zone) => zone is Zone_Growing);
+            var growingZoneList = pawn.Map.zoneManager.AllZones.Where((zone) =>
+            {
+                var z = zone as Zone_Growing;
+
+                // 種まきを許可された農地ゾーンのみ手動水やりOK
+                if (z != null && z.allowSow) return true;
+
+                return false;
+            });
             foreach (var zone in growingZoneList)
             {
                 if (potentialCells == null)
@@ -132,7 +140,7 @@ namespace MizuMod
                 if (comp == null) return false;
                 if (!comp.UseWorkType.Contains(CompProperties_WaterTool.UseWorkType.WaterFarm)) return false;
 
-                int maxQueueLength = (int)Mathf.Floor(comp.StoredWaterVolume / JobDriver_Mop.ConsumeWaterVolume);
+                int maxQueueLength = (int)Mathf.Floor(comp.StoredWaterVolume / JobDriver_WaterFarm.ConsumeWaterVolume);
                 if (maxQueueLength <= 0) return false;
 
                 return true;

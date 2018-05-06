@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <DamageDef>
+    <defName>Mizu_Extinguish</defName>
+    <label>extinguish</label>
+    <workerClass>DamageWorker_Extinguish</workerClass>
+    <canInterruptJobs>false</canInterruptJobs>
+    <makesBlood>false</makesBlood>
+    <explosionDamage>999999</explosionDamage>
+    <explosionCellMote>Mizu_MoteBucketWater</explosionCellMote>
+    <explosionColorEdge>(1, 1, 1, 0.05)</explosionColorEdge>
+    <soundExplosion>Mizu_ExplosionWater</soundExplosion>
+    <harmsHealth>false</harmsHealth>
+    <combatLogRules>Damage_Extinguish</combatLogRules>
+  </DamageDef>
+  
+  <SoundDef>
+    <defName>Mizu_ExplosionWater</defName>
+    <context>MapOnly</context> 
+    <eventNames />
+    <maxSimultaneous>1</maxSimultaneous>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Tool/Mizu_ExplosionWater</clipPath>
+          </li>
+        </grains>
+        <volumeRange>
+          <min>70</min>
+          <max>70</max>
+        </volumeRange>
+        <pitchRange>
+          <min>1.6516304</min>
+          <max>1.954348</max>
+        </pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  
+</Defs>

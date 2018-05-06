@@ -203,4 +203,103 @@
     </comps>
   </ThingDef>
   
+  <ThingDef ParentName="Mizu_ToolBase">
+    <defName>Mizu_Bucket</defName>
+    <label>Bucket</label>
+    <description>A tool for firefighting. Pawns can extinguish fires more efficiently by using this.</description>
+    <thingClass>MizuMod.Thing_Bucket</thingClass>
+    <graphicData>
+      <texPath>Things/Item/Mizu_Bucket0</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>10</MarketValue>
+      <WorkToMake>2500</WorkToMake>
+      <Mass>0.5</Mass>
+      <RangedWeapon_Cooldown>2.66</RangedWeapon_Cooldown>
+      <Weapon_Bulk>0.2</Weapon_Bulk>
+    </statBases>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+    </stuffCategories>
+    <costStuffCount>25</costStuffCount>
+    <recipeMaker>
+      <defaultIngredientFilter>
+        <categories>
+          <li>Root</li>
+        </categories>
+        <exceptedThingDefs>
+          <li>Uranium</li>
+          <li>Gold</li>
+          <li>Silver</li>
+          <li>Steel</li>
+          <li>Plasteel</li>
+        </exceptedThingDefs>
+      </defaultIngredientFilter>
+      <recipeUsers>
+        <li>ElectricSmithy</li>
+        <li>FueledSmithy</li>
+        <li>CraftingSpot</li>
+      </recipeUsers>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <unfinishedThingDef>Mizu_UnfinishedTool</unfinishedThingDef>
+    </recipeMaker>
+    <comps>
+      <li Class="MizuMod.CompProperties_WaterTool">
+        <useWorkType>
+          <li>FightFire</li>
+        </useWorkType>
+        <supplyWorkType>
+          <li>Mizu_Drawing</li>
+          <li>Firefighter</li>
+        </supplyWorkType>
+        <maxWaterVolume>10</maxWaterVolume>
+      </li>
+      <li>
+        <compClass>CompEquippable</compClass>
+      </li>
+    </comps>
+    <equipmentType>Primary</equipmentType>
+    <verbs>
+      <li>
+        <label>throw water</label>
+        <verbClass>MizuMod.Verb_LaunchBucketWater</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <range>3.9</range>
+        <forcedMissRadius>0</forcedMissRadius>
+        <warmupTime>0.5</warmupTime>
+        <noiseRadius>2</noiseRadius>
+        <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+        <soundCast>ThrowGrenade</soundCast>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+        <defaultProjectile>Proj_BucketWater</defaultProjectile>
+      </li>
+    </verbs>
+    <weaponTags>
+      <li>Mizu_Tool</li>
+    </weaponTags>
+    <techLevel>Neolithic</techLevel>
+    <tickerType>Normal</tickerType>
+  </ThingDef>
+  
+  <ThingDef ParentName="BaseGrenadeProjectile">
+    <defName>Proj_BucketWater</defName>
+    <label>Water from bucket</label>
+    <thingClass>Projectile_Explosive</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/Mizu_BucketWater</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <explosionRadius>1.9</explosionRadius>
+      <damageDef>Mizu_Extinguish</damageDef>
+      <damageAmountBase>100</damageAmountBase>
+      <explosionDelay>0</explosionDelay>
+    </projectile>
+  </ThingDef>
+  
 </Defs>

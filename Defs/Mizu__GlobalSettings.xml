@@ -31,6 +31,8 @@
       <resetHiddenWaterSpotBlockSizeZ>30</resetHiddenWaterSpotBlockSizeZ>
       <resetHiddenWaterSpotAllSpotNum>100</resetHiddenWaterSpotAllSpotNum>
       
+      <enableAlwaysActivateSprinklerGrowing>false</enableAlwaysActivateSprinklerGrowing>
+      
     </forDebug>
     
   </MizuMod.GlobalSettingDef>

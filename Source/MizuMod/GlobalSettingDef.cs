@@ -30,5 +30,6 @@ namespace MizuMod
         public int resetHiddenWaterSpotBlockSizeX = 30;
         public int resetHiddenWaterSpotBlockSizeZ = 30;
         public int resetHiddenWaterSpotAllSpotNum = 100;
+        public bool enableAlwaysActivateSprinklerGrowing = false;
     }
 }

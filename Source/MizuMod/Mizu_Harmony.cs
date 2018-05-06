@@ -700,14 +700,36 @@ namespace MizuMod
     }
 
     // 水やり状態を肥沃度に反映させる
-    [HarmonyPatch(typeof(FertilityGrid))]
-    [HarmonyPatch("CalculateFertilityAt")]
-    class FertilityGrid_CalculateFertilityAt
+    //[HarmonyPatch(typeof(FertilityGrid))]
+    //[HarmonyPatch("CalculateFertilityAt")]
+    //class FertilityGrid_CalculateFertilityAt
+    //{
+    //    static void Postfix(FertilityGrid __instance, ref IntVec3 loc, ref float __result)
+    //    {
+    //        var map = Traverse.Create(__instance).Field("map").GetValue<Map>();
+    //        int wateringRemainTicks = map.GetComponent<MapComponent_Watering>().Get(map.cellIndices.CellToIndex(loc));
+    //        if (wateringRemainTicks > 0)
+    //        {
+    //            // 水やりされている
+    //            __result *= MizuModBody.Settings.FertilityFactorInWatering;
+    //        }
+    //        else
+    //        {
+    //            // 水やりされていない
+    //            __result *= MizuModBody.Settings.FertilityFactorInNotWatering;
+    //        }
+    //    }
+    //}
+
+    // 水やり状態を成長速度に反映させる
+    [HarmonyPatch(typeof(Plant))]
+    [HarmonyPatch("get_GrowthRate")]
+    class Plant_getGrowthRate
     {
-        static void Postfix(FertilityGrid __instance, ref IntVec3 loc, ref float __result)
+        static void Postfix(Plant __instance, ref float __result)
         {
-            var map = Traverse.Create(__instance).Field("map").GetValue<Map>();
-            int wateringRemainTicks = map.GetComponent<MapComponent_Watering>().Get(map.cellIndices.CellToIndex(loc));
+            var map = __instance.Map;
+            int wateringRemainTicks = map.GetComponent<MapComponent_Watering>().Get(map.cellIndices.CellToIndex(__instance.Position));
             if (wateringRemainTicks > 0)
             {
                 // 水やりされている
@@ -720,5 +742,4 @@ namespace MizuMod
             }
         }
     }
-
 }
