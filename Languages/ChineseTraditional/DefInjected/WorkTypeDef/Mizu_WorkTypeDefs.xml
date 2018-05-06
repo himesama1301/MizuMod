@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_Drawing.label>取水</Mizu_Drawing.label>
+  <Mizu_Drawing.description>取水用於飲用</Mizu_Drawing.description>
+  <Mizu_Drawing.labelShort>取水</Mizu_Drawing.labelShort>
+  <Mizu_Drawing.pawnLabel>取水者</Mizu_Drawing.pawnLabel>
+  <Mizu_Drawing.gerundLabel>取水</Mizu_Drawing.gerundLabel>
+  <Mizu_Drawing.verb>取水</Mizu_Drawing.verb>
+
+
+</LanguageData>

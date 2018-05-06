@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_DrawWater.label>水，生命之源: 取水</Mizu_DrawWater.label>
+  <Mizu_DrawWater.helpText>所有生命都離不開水，殖民者可以從取水點或水井獲得水資源。</Mizu_DrawWater.helpText>
+
+  <Mizu_DrinkWater.label>水，生命之源: 喝水</Mizu_DrinkWater.label>
+  <Mizu_DrinkWater.helpText>殖民者可以飲用瓶裝的水，但動物不行。</Mizu_DrinkWater.helpText>
+
+  <Mizu_PurifyWater.label>水，生命之源:  淨化水</Mizu_PurifyWater.label>
+  <Mizu_PurifyWater.helpText>瓶裝水可以使用淨水器改善水質。（水）過濾器可以提高管道中自來水的水質，過濾器有輸入和輸出兩個接口，方向錯誤將無法正常工作。</Mizu_PurifyWater.helpText>
+
+  <Mizu_UndergroundWater.label>水，生命之源: 地下水</Mizu_UndergroundWater.label>
+  <Mizu_UndergroundWater.helpText>水井和深井泵可以建立在地下水資源上。如果你在建築規劃選項中選擇這些建築，地下水資源就會顯示在地圖上。在沙漠中可以找到少量地下水，但在極寒地帶可能沒有地下水資源。</Mizu_UndergroundWater.helpText>
+
+  <Mizu_Waterworks.label>水，生命之源: 供水系統</Mizu_Waterworks.label>
+  <Mizu_Waterworks.helpText>通過自動化的供水系統，你可以獲得大量的優質水。供水網絡至少需要一個水泵，一個蓄水罐和一個水龍頭。讓我們管理它們，連接過濾器的兩個供水網絡被視為分別獨立的供水網絡。</Mizu_Waterworks.helpText>
+
+
+</LanguageData>
