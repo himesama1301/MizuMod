@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_DoBillWater.label>取水於取水點</Mizu_DoBillWater.label>
+  <Mizu_DoBillWater.verb>取水</Mizu_DoBillWater.verb>
+  <Mizu_DoBillWater.gerund>取水</Mizu_DoBillWater.gerund>
+
+  <Mizu_DoctorFeedWaterHumanlikes.label>給病人餵水</Mizu_DoctorFeedWaterHumanlikes.label>
+  <Mizu_DoctorFeedWaterHumanlikes.verb>餵水</Mizu_DoctorFeedWaterHumanlikes.verb>
+  <Mizu_DoctorFeedWaterHumanlikes.gerund>餵水</Mizu_DoctorFeedWaterHumanlikes.gerund>
+
+  <Mizu_DoctorFeedWaterAnimals.label>給動物餵水</Mizu_DoctorFeedWaterAnimals.label>
+  <Mizu_DoctorFeedWaterAnimals.verb>餵水</Mizu_DoctorFeedWaterAnimals.verb>
+  <Mizu_DoctorFeedWaterAnimals.gerund>餵水</Mizu_DoctorFeedWaterAnimals.gerund>
+
+  <Mizu_DeliverWaterToPrisoner.label>給囚犯送水</Mizu_DeliverWaterToPrisoner.label>
+  <Mizu_DeliverWaterToPrisoner.verb>送水</Mizu_DeliverWaterToPrisoner.verb>
+  <Mizu_DeliverWaterToPrisoner.gerund>送水</Mizu_DeliverWaterToPrisoner.gerund>
+
+  <Mizu_CleanWater.label>淨化水</Mizu_CleanWater.label>
+  <Mizu_CleanWater.verb>淨化</Mizu_CleanWater.verb>
+  <Mizu_CleanWater.gerund>淨化</Mizu_CleanWater.gerund>
+
+
+</LanguageData>

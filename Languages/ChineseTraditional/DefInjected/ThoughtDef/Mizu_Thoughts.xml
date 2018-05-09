@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_NeedWater.stages.0.label>有點口渴</Mizu_NeedWater.stages.0.label>
+  <Mizu_NeedWater.stages.0.description>我有點口渴。</Mizu_NeedWater.stages.0.description>
+  <Mizu_NeedWater.stages.1.label>口渴了</Mizu_NeedWater.stages.1.label>
+  <Mizu_NeedWater.stages.1.description>我真的口渴了。</Mizu_NeedWater.stages.1.description>
+  <Mizu_NeedWater.stages.2.label>渴得厲害</Mizu_NeedWater.stages.2.label>
+  <Mizu_NeedWater.stages.2.description>口渴得不得了。</Mizu_NeedWater.stages.2.description>
+  <Mizu_NeedWater.stages.3.label>脫水（輕微）</Mizu_NeedWater.stages.3.label>
+  <Mizu_NeedWater.stages.3.description>我已經很長時間沒有喝過水了。</Mizu_NeedWater.stages.3.description>
+  <Mizu_NeedWater.stages.4.label>脫水(較輕)</Mizu_NeedWater.stages.4.label>
+  <Mizu_NeedWater.stages.4.description>我感覺我的身體在變得虛弱。</Mizu_NeedWater.stages.4.description>
+  <Mizu_NeedWater.stages.5.label>脫水（中等）</Mizu_NeedWater.stages.5.label>
+  <Mizu_NeedWater.stages.5.description>我現在只想要水。</Mizu_NeedWater.stages.5.description>
+  <Mizu_NeedWater.stages.6.label>脫水（嚴重）</Mizu_NeedWater.stages.6.label>
+  <Mizu_NeedWater.stages.6.description>我不想移動和思考任何事情，除了水。</Mizu_NeedWater.stages.6.description>
+  <Mizu_NeedWater.stages.7.label>脫水（極重）</Mizu_NeedWater.stages.7.label>
+  <Mizu_NeedWater.stages.7.description>水...水...請給我一口水...無論如何...拜託了...</Mizu_NeedWater.stages.7.description>
+
+  <Mizu_DrankClearWater.stages.0.label>飲用純淨水</Mizu_DrankClearWater.stages.0.label>
+  <Mizu_DrankClearWater.stages.0.description>我喝了純淨水。口感不錯。</Mizu_DrankClearWater.stages.0.description>
+
+  <Mizu_DrankMudWater.stages.0.label>飲用泥水</Mizu_DrankMudWater.stages.0.label>
+  <Mizu_DrankMudWater.stages.0.description>我喝了未經過濾的泥水。口感糟糕。</Mizu_DrankMudWater.stages.0.description>
+
+  <Mizu_DrankSeaWater.stages.0.label>飲用海水</Mizu_DrankSeaWater.stages.0.label>
+  <Mizu_DrankSeaWater.stages.0.description>我喝了未經過濾的海水。又鹹又苦。</Mizu_DrankSeaWater.stages.0.description>
+
+  <Mizu_DrankScoopedWater.stages.0.label>用手喝水</Mizu_DrankScoopedWater.stages.0.label>
+  <Mizu_DrankScoopedWater.stages.0.description>我用手捧著喝水。我想要個杯子。</Mizu_DrankScoopedWater.stages.0.description>
+
+  <Mizu_SippedWaterLikeBeast.stages.0.label>像野獸一樣喝水</Mizu_SippedWaterLikeBeast.stages.0.label>
+  <Mizu_SippedWaterLikeBeast.stages.0.description>我別無選擇，只能像野獸一樣喝水。</Mizu_SippedWaterLikeBeast.stages.0.description>
+
+
+</LanguageData>
