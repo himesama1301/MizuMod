@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_NeedWater.stages.0.label>Um pouco de sede</Mizu_NeedWater.stages.0.label>
+  <Mizu_NeedWater.stages.0.description>Estou com um pouco de sede.</Mizu_NeedWater.stages.0.description>
+  <Mizu_NeedWater.stages.1.label>Sede</Mizu_NeedWater.stages.1.label>
+  <Mizu_NeedWater.stages.1.description>Estou com sede.</Mizu_NeedWater.stages.1.description>
+  <Mizu_NeedWater.stages.2.label>Muita sede</Mizu_NeedWater.stages.2.label>
+  <Mizu_NeedWater.stages.2.description>Estou com muita sede.</Mizu_NeedWater.stages.2.description>
+  <Mizu_NeedWater.stages.3.label>Desidratação (inicial)</Mizu_NeedWater.stages.3.label>
+  <Mizu_NeedWater.stages.3.description>Eu não bebo água há muito tempo.</Mizu_NeedWater.stages.3.description>
+  <Mizu_NeedWater.stages.4.label>Desidratação (leve)</Mizu_NeedWater.stages.4.label>
+  <Mizu_NeedWater.stages.4.description>Sinto que meu corpo está ficando fraco.</Mizu_NeedWater.stages.4.description>
+  <Mizu_NeedWater.stages.5.label>Desidratação (média)</Mizu_NeedWater.stages.5.label>
+  <Mizu_NeedWater.stages.5.description>Eu só penso em água agora.</Mizu_NeedWater.stages.5.description>
+  <Mizu_NeedWater.stages.6.label>Desidratação (grave)</Mizu_NeedWater.stages.6.label>
+  <Mizu_NeedWater.stages.6.description>Eu não quero me mover e pensar em nada, exceto água.</Mizu_NeedWater.stages.6.description>
+  <Mizu_NeedWater.stages.7.label>Desidratação (urgente)</Mizu_NeedWater.stages.7.label>
+  <Mizu_NeedWater.stages.7.description>Água... Água... Por favor me dê um gole... De qualquer maneira... Por favor...</Mizu_NeedWater.stages.7.description>
+
+  <Mizu_DrankClearWater.stages.0.label>Água Pura</Mizu_DrankClearWater.stages.0.label>
+  <Mizu_DrankClearWater.stages.0.description>Eu bebi água purificada. Tinha um ótimo gosto. </Mizu_DrankClearWater.stages.0.description>
+
+  <Mizu_DrankMudWater.stages.0.label>Água com lama</Mizu_DrankMudWater.stages.0.label>
+  <Mizu_DrankMudWater.stages.0.description>Eu bebi água barrenta... Que gosto ruim.</Mizu_DrankMudWater.stages.0.description>
+
+  <Mizu_DrankSeaWater.stages.0.label>Água salgada</Mizu_DrankSeaWater.stages.0.label>
+  <Mizu_DrankSeaWater.stages.0.description>Eu bebi água do mar... É salgado e amargo. </Mizu_DrankSeaWater.stages.0.description>
+
+  <Mizu_DrankScoopedWater.stages.0.label>Água na mão</Mizu_DrankScoopedWater.stages.0.label>
+  <Mizu_DrankScoopedWater.stages.0.description>Eu peguei água com minha mão. Quero um copo. </Mizu_DrankScoopedWater.stages.0.description>
+
+  <Mizu_SippedWaterLikeBeast.stages.0.label>Bebendo como uma fera</Mizu_SippedWaterLikeBeast.stages.0.label>
+  <Mizu_SippedWaterLikeBeast.stages.0.description>Eu não tenho escolha a não ser beber como uma fera.</Mizu_SippedWaterLikeBeast.stages.0.description>
+
+</LanguageData>

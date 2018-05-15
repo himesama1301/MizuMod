@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_DrawingSpeed.label>Velocidade de retirada de água</Mizu_DrawingSpeed.label>
+  <Mizu_DrawingSpeed.description>A taxa em que os colonos buscaram água.</Mizu_DrawingSpeed.description>
+
+</LanguageData>

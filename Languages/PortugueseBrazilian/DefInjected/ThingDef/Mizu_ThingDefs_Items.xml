@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_ClearWater.label>Água Pura</Mizu_ClearWater.label>
+  <Mizu_ClearWater.description>Água potável, ótimo gosto.</Mizu_ClearWater.description>
+
+  <Mizu_NormalWater.label>Água</Mizu_NormalWater.label>
+  <Mizu_NormalWater.description>Uma água normal, não tem nenhum efeito especial.</Mizu_NormalWater.description>
+
+  <Mizu_RawWater.label>Água Impura</Mizu_RawWater.label>
+  <Mizu_RawWater.description>Uma água com impurezas, tem um gosto estranho.</Mizu_RawWater.description>
+
+  <Mizu_MudWater.label>Água com Lama</Mizu_MudWater.label>
+  <Mizu_MudWater.description>Essa água esta cheia de barro, tem um gosto bem ruim. </Mizu_MudWater.description>
+
+  <Mizu_SeaWater.label>Água Salgada</Mizu_SeaWater.label>
+  <Mizu_SeaWater.description>Uma água tirada do mar, salgada e amarga, isso vai dar problemas... </Mizu_SeaWater.description>
+
+</LanguageData>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_DrawingWaterSpot.label>local de coleta de água</Mizu_DrawingWaterSpot.label>
+  <Mizu_DrawingWaterSpot.description>Especifica um local para retirar água. Pode ser colocado em água ou pântanos.</Mizu_DrawingWaterSpot.description>
+
+  <Mizu_Well.label>Poço</Mizu_Well.label>
+  <Mizu_Well.description>Local para se tirar água subterrânea.</Mizu_Well.description>
+
+  <Mizu_FueledWaterCleaner.label>Purificador de água (Combustível)</Mizu_FueledWaterCleaner.label>
+  <Mizu_FueledWaterCleaner.description>Purificador de água movido a lenha.</Mizu_FueledWaterCleaner.description>
+
+  <Mizu_ElectricWaterCleaner.label>Purificador de água (Elétrico)</Mizu_ElectricWaterCleaner.label>
+  <Mizu_ElectricWaterCleaner.description>Purificador de água elétrico.</Mizu_ElectricWaterCleaner.description>
+
+  <Mizu_WaterPipe.label>Cano de água</Mizu_WaterPipe.label>
+  <Mizu_WaterPipe.description>É usado para conectar a rede de abastecimento de água (bomba, tanque, torneira...)</Mizu_WaterPipe.description>
+
+  <Mizu_WaterPipeInWater.label>Cano de água (na água)</Mizu_WaterPipeInWater.label>
+  <Mizu_WaterPipeInWater.description>É usado para conectar a rede de abastecimento de água (bomba, tanque, torneira...)</Mizu_WaterPipeInWater.description>
+
+  <Mizu_WaterValve.label>Registro</Mizu_WaterValve.label>
+  <Mizu_WaterValve.description>Usado para controlar o fluxo de água.</Mizu_WaterValve.description>
+
+  <Mizu_GroundWaterPump.label>Bomba dágua</Mizu_GroundWaterPump.label>
+  <Mizu_GroundWaterPump.description>É usado para bombear água de rios, lagos, oceanos e pântanos. Precisa de eletricidade.</Mizu_GroundWaterPump.description>
+ 
+  <Mizu_UndergroundWaterPumpShallow.label>Bomba subterrânea (Superficial)</Mizu_UndergroundWaterPumpShallow.label>
+  <Mizu_UndergroundWaterPumpShallow.description>Bombeando a água do solo raso. Precisa de eletricidade.</Mizu_UndergroundWaterPumpShallow.description>
+
+  <Mizu_UndergroundWaterPumpDeep.label>Bomba subterrânea (profunda)</Mizu_UndergroundWaterPumpDeep.label>
+  <Mizu_UndergroundWaterPumpDeep.description>Bombeia a água do subsolo. Precisa de eletricidade.</Mizu_UndergroundWaterPumpDeep.description>
+
+  <Mizu_WaterTank.label>Tanque de água</Mizu_WaterTank.label>
+  <Mizu_WaterTank.description>Armazena água.</Mizu_WaterTank.description>
+
+  <Mizu_WaterBox.label>Caixa de água</Mizu_WaterBox.label>
+  <Mizu_WaterBox.description>Uma caixa semi-aberta que pode armazenar uma pequena quantidade de água, permitindo que animais bebam água.</Mizu_WaterBox.description>
+
+  <Mizu_WaterFaucet.label>Torneira</Mizu_WaterFaucet.label>
+  <Mizu_WaterFaucet.description>Com um toque, você pode tirar água de um tanque.</Mizu_WaterFaucet.description>
+
+  <Mizu_DirtyWaterFilter.label>Filtro de água Suja</Mizu_DirtyWaterFilter.label>
+  <Mizu_DirtyWaterFilter.description>Transforma água impura, lama e água do mar em água normal. Precisa de eletricidade.</Mizu_DirtyWaterFilter.description>
+
+  <Mizu_ClearWaterFilter.label>Filtro de água Pura</Mizu_ClearWaterFilter.label>
+  <Mizu_ClearWaterFilter.description>Filtra a água comum em água purificada. Precisa de eletricidade.</Mizu_ClearWaterFilter.description>
+
+</LanguageData>
