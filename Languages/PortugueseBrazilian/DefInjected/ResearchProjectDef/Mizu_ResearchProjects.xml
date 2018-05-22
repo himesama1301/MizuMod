@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_UndergroundWater.label>Lençóis freáticos</Mizu_UndergroundWater.label>
+  <Mizu_UndergroundWater.description>Construção de um poço para retirar águas subterrâneas.</Mizu_UndergroundWater.description>
+
+  <Mizu_Waterworks.label>Abastecimento de Água</Mizu_Waterworks.label>
+  <Mizu_Waterworks.description>permite construir canos , torneiras, tanques de armazenamento e certos tipos de bombas.</Mizu_Waterworks.description>
+
+  <Mizu_CleanWater.label>Purificadores de água</Mizu_CleanWater.label>
+  <Mizu_CleanWater.description>Construa seus purificadores de água.</Mizu_CleanWater.description>
+
+  <Mizu_DeepUndergroundWater.label>Águas Profundas</Mizu_DeepUndergroundWater.label>
+  <Mizu_DeepUndergroundWater.description>permite construir bombas que extraem água do subsolo.</Mizu_DeepUndergroundWater.description>
+
+  <Mizu_WaterFilter.label>Filtragem</Mizu_WaterFilter.label>
+  <Mizu_WaterFilter.description>permite construir filtros para o sistema de água.</Mizu_WaterFilter.description>
+
+</LanguageData>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <MizuWaterAmount>Quantia de Água</MizuWaterAmount>
+  <MizuConsumeWater>beber {0}</MizuConsumeWater>
+  <MizuNoWater>sem água</MizuNoWater>
+  
+  <MizuLowWater>Pouca água</MizuLowWater>
+  <MizuLowWaterDesc>Você esta com pouca água.\n\nQuantia de água no armazenamento: {0}\nColonos e prisioneiros consumindo água: {1}\nDias para acabar a água: {2}\n\nFabrique, compre ou colete água.</MizuLowWaterDesc>
+  <MizuDehydration>Desidratação</MizuDehydration>
+  <MizuDehydrationDesc>Esses colonos estão sofrendo de desidratação:\n\n{0}\nForneça água a eles.</MizuDehydrationDesc>
+
+  <MizuMessageCaravanRunOutOfWater>{0} ficou sem água ({1}).</MizuMessageCaravanRunOutOfWater>
+  
+  <MizuDaysWorthOfWaterInfo>Resta {0} dias de água</MizuDaysWorthOfWaterInfo>
+  <MizuInfiniteDaysWorthOfWaterInfo>Nunca ficará sem água</MizuInfiniteDaysWorthOfWaterInfo>
+  <MizuDaysWorthOfWaterTooltip>Em pouco tempo essa caravana ficará sem água.</MizuDaysWorthOfWaterTooltip>
+
+  <MizuCaravanOutOfWater>Fora da água.</MizuCaravanOutOfWater>
+  <MizuCaravanDaysOfWater>Dias de água: {0}</MizuCaravanDaysOfWater>
+
+  <MizuDaysWorthOfWaterWarningDialog>Sua caravana tem apenas {0} dias de água e ficará com sede muito rapidamente.\n\nTem certeza de que deseja formar esta caravana?</MizuDaysWorthOfWaterWarningDialog>
+  <MizuDaysWorthOfWaterWarningDialog_NoWater>Sua caravana não tem água e ficará com sede muito rapidamente.\n\nTem certeza de que deseja formar esta caravana?</MizuDaysWorthOfWaterWarningDialog_NoWater>
+
+  <MizuWaterFlowOutput>Fluxo de saida de água</MizuWaterFlowOutput>
+  <MizuWaterFlowInput>Fluxo de entrada de água</MizuWaterFlowInput>
+  <MizuWaterTankStored>Quantia de água armazenada</MizuWaterTankStored>
+
+  <MizuCommandDesignateOpenCloseValveLabel>Designar abrir/fechar</MizuCommandDesignateOpenCloseValveLabel>
+  <MizuCommandDesignateOpenCloseValveDesc>Designe esta válvula para ser aberta ou fechada. Um colono virá em breve para realizar a tarefa.</MizuCommandDesignateOpenCloseValveDesc>
+
+  <MizuValveClosed>Fechada</MizuValveClosed>
+
+  <MizuStoredWaterPool>Água subterrânea restante</MizuStoredWaterPool>
+  
+  <MizuDraining>Drenando</MizuDraining>
+  
+  <MizuCommandDesignateDrainTankLabel>Iniciar/para drenagem</MizuCommandDesignateDrainTankLabel>
+  <MizuCommandDesignateDrainTankDesc>Alternar entre iniciar / parar a drenagem da água. Um colono virá em breve para realizar a tarefa.</MizuCommandDesignateDrainTankDesc>
+  
+  <MizuWaterTypeNo>Vazio</MizuWaterTypeNo>
+  <MizuWaterTypeClear>Água pura</MizuWaterTypeClear>
+  <MizuWaterTypeNormal>Água</MizuWaterTypeNormal>
+  <MizuWaterTypeRaw>Água suja</MizuWaterTypeRaw>
+  <MizuWaterTypeMud>Água com lama</MizuWaterTypeMud>
+  <MizuWaterTypeSea>Água salgada</MizuWaterTypeSea>
+  
+  <MizuMissingWater>Precisa de água</MizuMissingWater>
+  <MizuFullWater>Cheio de água</MizuFullWater>
+  
+  <MizuDesignatorDeconstructPipe>Desconstruir canos de água</MizuDesignatorDeconstructPipe>
+  <MizuDesignatorDeconstructPipeDesc>Desconstruir canos de água.</MizuDesignatorDeconstructPipeDesc>
+     
+  <MizuThirstLevel_Healthy>Água(Satisfeito)</MizuThirstLevel_Healthy>
+  <MizuThirstLevel_SlightlyThirsty>Um pouco de sede</MizuThirstLevel_SlightlyThirsty>
+  <MizuThirstLevel_Thirsty>Sede</MizuThirstLevel_Thirsty>
+  <MizuThirstLevel_UrgentThirsty>Sede urgente</MizuThirstLevel_UrgentThirsty>
+  <MizuThirstLevel_Dehydration>Desidratação</MizuThirstLevel_Dehydration>
+  
+  <MizuCannotBuildMultiWaterworksBuilding>Já existe uma construção de água neste lugar</MizuCannotBuildMultiWaterworksBuilding>
+  
+  <MizuDehydrationAnimals>Animal(is) desidratado(s)</MizuDehydrationAnimals>
+  <MizuDehydrationAnimalsDesc>Esses animais estão desidratados:\n\n{0}\nForneça água a eles.</MizuDehydrationAnimalsDesc>
+  
+  <MizuCantBuildExceptOverWater>V</MizuCantBuildExceptOverWater>
+
+</LanguageData>
