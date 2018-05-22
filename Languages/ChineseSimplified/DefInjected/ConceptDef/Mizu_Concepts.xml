@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-  <Mizu_DrawWater.label>NWNL: Draw water</Mizu_DrawWater.label>
-  <Mizu_DrawWater.helpText>All humanlikes can't live without water. The colonists can draw water from the drawing water spots and wells.</Mizu_DrawWater.helpText>
+  <Mizu_DrawWater.label>水，生命之源: 取水</Mizu_DrawWater.label>
+  <Mizu_DrawWater.helpText>所有生命都离不开水，殖民者可以从取水点或水井获得水资源。</Mizu_DrawWater.helpText>
 
-  <Mizu_DrinkWater.label>NWNL: Drink water</Mizu_DrinkWater.label>
-  <Mizu_DrinkWater.helpText>The cololists can drink bottled water, but animals can't drink it. Animals can drink water in water boxes or from drawing water spots, but even if you do not do anything for animals, they drink water spontaneously in rivers and ponds.</Mizu_DrinkWater.helpText>
+  <Mizu_DrinkWater.label>水，生命之源: 喝水</Mizu_DrinkWater.label>
+  <Mizu_DrinkWater.helpText>殖民者可以饮用瓶装的水，但动物不行。</Mizu_DrinkWater.helpText>
 
-  <Mizu_PurifyWater.label>NWNL: Purify water</Mizu_PurifyWater.label>
-  <Mizu_PurifyWater.helpText>In the case of bottled water, water quality can be improved by using a water purifier. The water filter can improve the quality of tap water. The water filter has input and output connectors, and they will not work in the wrong direction.</Mizu_PurifyWater.helpText>
+  <Mizu_PurifyWater.label>水，生命之源:  净化水</Mizu_PurifyWater.label>
+  <Mizu_PurifyWater.helpText>瓶装水可以使用净水器改善水质。（水）过滤器可以提高管道中自来水的水质，过滤器有输入和输出两个接口，方向错误将无法正常工作。</Mizu_PurifyWater.helpText>
 
-  <Mizu_UndergroundWater.label>NWNL: Groundwater</Mizu_UndergroundWater.label>
-  <Mizu_UndergroundWater.helpText>Wells and Underground water pumps can be built on groundwater. If you choose those buildings from the Architect tab, a map of the groundwater will be displayed on the screen. \n\nEven in the desert a very small amount of groundwater can be found, but they may not be found in extremely cold biomes.</Mizu_UndergroundWater.helpText>
+  <Mizu_UndergroundWater.label>水，生命之源: 地下水</Mizu_UndergroundWater.label>
+  <Mizu_UndergroundWater.helpText>水井和深井泵可以建立在地下水资源上。如果你在建筑规划选项中选择这些建筑，地下水资源就会显示在地图上。在沙漠中可以找到少量地下水，但在极寒地带可能没有地下水资源。</Mizu_UndergroundWater.helpText>
 
-  <Mizu_Waterworks.label>NWNL: Waterworks</Mizu_Waterworks.label>
-  <Mizu_Waterworks.helpText>With waterworks, you can automate many tasks to get good water. At least 1 pump, 1 tank, 1 faucet are necessary for the water network. Let's pipe them. The two water networks connected to a water filter are treated as separate water networks.</Mizu_Waterworks.helpText>
+  <Mizu_Waterworks.label>水，生命之源: 供水系统</Mizu_Waterworks.label>
+  <Mizu_Waterworks.helpText>通过自动化的供水系统，你可以获得大量的优质水。供水网络至少需要一个水泵，一个蓄水罐和一个水龙头。让我们管理它们，连接过滤器的两个供水网络被视为分别独立的供水网络。</Mizu_Waterworks.helpText>
 
 
 </LanguageData>

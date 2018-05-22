@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_WaterDrank.label>喝水</Mizu_WaterDrank.label>
+  <Mizu_WaterDrank.description>我喝了多少次水。</Mizu_WaterDrank.description>
+
+  <Mizu_WaterDrew.label>取水</Mizu_WaterDrew.label>
+  <Mizu_WaterDrew.description>我取過多少次水。</Mizu_WaterDrew.description>
+
+  <Mizu_TimeDrinkingWater.label>尋找水和喝水的時間</Mizu_TimeDrinkingWater.label>
+  <Mizu_TimeDrinkingWater.description>尋找水和喝水的總時間。</Mizu_TimeDrinkingWater.description>
+
+
+</LanguageData>
