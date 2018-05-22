@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_DoBillWater.label>Coletar água</Mizu_DoBillWater.label>
+  <Mizu_DoBillWater.verb>Ingestão de água</Mizu_DoBillWater.verb>
+  <Mizu_DoBillWater.gerund>Ingestão de água</Mizu_DoBillWater.gerund>
+
+  <Mizu_DoctorFeedWaterHumanlikes.label>Dar água</Mizu_DoctorFeedWaterHumanlikes.label>
+  <Mizu_DoctorFeedWaterHumanlikes.verb>Dar água</Mizu_DoctorFeedWaterHumanlikes.verb>
+  <Mizu_DoctorFeedWaterHumanlikes.gerund>Dar água</Mizu_DoctorFeedWaterHumanlikes.gerund>
+
+  <Mizu_DoctorFeedWaterAnimals.label>Dar água</Mizu_DoctorFeedWaterAnimals.label>
+  <Mizu_DoctorFeedWaterAnimals.verb>Dar água</Mizu_DoctorFeedWaterAnimals.verb>
+  <Mizu_DoctorFeedWaterAnimals.gerund>Dar água</Mizu_DoctorFeedWaterAnimals.gerund>
+
+  <Mizu_DeliverWaterToPrisoner.label>Dar água</Mizu_DeliverWaterToPrisoner.label>
+  <Mizu_DeliverWaterToPrisoner.verb>Dar água</Mizu_DeliverWaterToPrisoner.verb>
+  <Mizu_DeliverWaterToPrisoner.gerund>Dar água</Mizu_DeliverWaterToPrisoner.gerund>
+
+  <Mizu_CleanWater.label>Água Pura</Mizu_CleanWater.label>
+  <Mizu_CleanWater.verb>Água Pura</Mizu_CleanWater.verb>
+  <Mizu_CleanWater.gerund>Água Pura</Mizu_CleanWater.gerund>
+
+</LanguageData>

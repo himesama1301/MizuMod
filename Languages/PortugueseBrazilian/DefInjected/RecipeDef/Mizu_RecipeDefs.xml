@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Draw Water From Terrain -->
+
+  <Mizu_DrawWater.label>Coletar água.</Mizu_DrawWater.label>
+  <Mizu_DrawWater.description>Obter água potável. O tipo de água depende do local.</Mizu_DrawWater.description>
+  <Mizu_DrawWater.jobString>Coletando água.</Mizu_DrawWater.jobString>
+
+  <Mizu_DrawWaterMulti.label>Coletar água (x5)</Mizu_DrawWaterMulti.label>
+  <Mizu_DrawWaterMulti.description>Obter água potável. O tipo de água depende do local.</Mizu_DrawWaterMulti.description>
+  <Mizu_DrawWaterMulti.jobString>Coletando água.</Mizu_DrawWaterMulti.jobString>
+
+
+  <!-- Extrair água da piscina de água -->
+
+  <Mizu_DrawWaterFromWaterPool.label>Coletar água subterrânea</Mizu_DrawWaterFromWaterPool.label>
+  <Mizu_DrawWaterFromWaterPool.description>Tira água do subsolo</Mizu_DrawWaterFromWaterPool.description>
+  <Mizu_DrawWaterFromWaterPool.jobString>Coletando água subterrânea.</Mizu_DrawWaterFromWaterPool.jobString>
+
+  <Mizu_DrawWaterFromWaterPoolMulti.label>Coletar água subterrânea (x5)</Mizu_DrawWaterFromWaterPoolMulti.label>
+  <Mizu_DrawWaterFromWaterPoolMulti.description>Tira água do subsolo</Mizu_DrawWaterFromWaterPoolMulti.description>
+  <Mizu_DrawWaterFromWaterPoolMulti.jobString>Coletando água subterrânea.</Mizu_DrawWaterFromWaterPoolMulti.jobString>
+
+
+  <!-- Extrair água da rede de água -->
+
+  <Mizu_DrawWaterFromWaterNet.label>Coletando água da torneira</Mizu_DrawWaterFromWaterNet.label>
+  <Mizu_DrawWaterFromWaterNet.description>Coletar água da torneira</Mizu_DrawWaterFromWaterNet.description>
+  <Mizu_DrawWaterFromWaterNet.jobString>Coletando água da torneira.</Mizu_DrawWaterFromWaterNet.jobString>
+
+  <Mizu_DrawWaterFromWaterNetMulti.label>Coletando água da torneira (x5)</Mizu_DrawWaterFromWaterNetMulti.label>
+  <Mizu_DrawWaterFromWaterNetMulti.description>Coletar água da torneira</Mizu_DrawWaterFromWaterNetMulti.description>
+  <Mizu_DrawWaterFromWaterNetMulti.jobString>Coletando água da torneira.</Mizu_DrawWaterFromWaterNetMulti.jobString>
+
+
+  <!-- Desenhe Água Da WaterBox -->
+
+  <Mizu_DrawWaterFromWaterBox.label>Coletar Água do Tanque</Mizu_DrawWaterFromWaterBox.label>
+  <Mizu_DrawWaterFromWaterBox.description>Retirar água de um tanque</Mizu_DrawWaterFromWaterBox.description>
+  <Mizu_DrawWaterFromWaterBox.jobString>Coletando água do tanque.</Mizu_DrawWaterFromWaterBox.jobString>
+
+  <Mizu_DrawWaterFromWaterBoxMulti.label>Coletar Água do Tanque x5</Mizu_DrawWaterFromWaterBoxMulti.label>
+  <Mizu_DrawWaterFromWaterBoxMulti.description>Retirar água de um tanque</Mizu_DrawWaterFromWaterBoxMulti.description>
+  <Mizu_DrawWaterFromWaterBoxMulti.jobString>Coletando água do tanque.</Mizu_DrawWaterFromWaterBoxMulti.jobString>
+
+
+  <!-- Deite água -->
+
+  <Mizu_PourWater.label>Despeje água (x5)</Mizu_PourWater.label>
+  <Mizu_PourWater.description>Despeje a água em um local de armazenamento.</Mizu_PourWater.description>
+  <Mizu_PourWater.jobString>Despejando água.</Mizu_PourWater.jobString>
+
+
+  <!-- Pour Water Multi -->
+
+  <Mizu_PourWaterMulti.label>Despeje Água (x25)</Mizu_PourWaterMulti.label>
+  <Mizu_PourWaterMulti.description>Despeje a água em um local de armazenamento.</Mizu_PourWaterMulti.description>
+  <Mizu_PourWaterMulti.jobString>Despejando água.</Mizu_PourWaterMulti.jobString>
+
+  <!-- others -->
+
+  <Mizu_PurifyWater.label>Filtrar água</Mizu_PurifyWater.label>
+  <Mizu_PurifyWater.description>Uma água pura é filtrada com carvão.</Mizu_PurifyWater.description>
+  <Mizu_PurifyWater.jobString>Filtrando a água.</Mizu_PurifyWater.jobString>
+
+  <Mizu_BoilRawWater.label>Ferver água impura</Mizu_BoilRawWater.label>
+  <Mizu_BoilRawWater.description>Transforme a água impura em água pura.</Mizu_BoilRawWater.description>
+  <Mizu_BoilRawWater.jobString>Fervendo água impura.</Mizu_BoilRawWater.jobString>
+
+  <Mizu_PercolateMudWater.label>Filtrar água com lama</Mizu_PercolateMudWater.label>
+  <Mizu_PercolateMudWater.description>Filtre e ferva a água com lama até virar água normal.</Mizu_PercolateMudWater.description>
+  <Mizu_PercolateMudWater.jobString>Filtrando a lama.</Mizu_PercolateMudWater.jobString>
+
+  <Mizu_DesalinateSeaWater.label>Dessalinizar água salgada</Mizu_DesalinateSeaWater.label>
+  <Mizu_DesalinateSeaWater.description>Dessalinização da água salgada em água comum.</Mizu_DesalinateSeaWater.description>
+  <Mizu_DesalinateSeaWater.jobString>Dessalinizando a água salgada.</Mizu_DesalinateSeaWater.jobString>
+
+  <Mizu_PurifyWaterMulti.label>Filtrar água (X5)</Mizu_PurifyWaterMulti.label>
+  <Mizu_PurifyWaterMulti.description>Uma água pura é filtrada com carvão.</Mizu_PurifyWaterMulti.description>
+  <Mizu_PurifyWaterMulti.jobString>Filtrando a água.</Mizu_PurifyWaterMulti.jobString>
+
+  <Mizu_BoilRawWaterMulti.label>Ferver água impura (x5)</Mizu_BoilRawWaterMulti.label>
+  <Mizu_BoilRawWaterMulti.description>Transforme a água impura em água pura.</Mizu_BoilRawWaterMulti.description>
+  <Mizu_BoilRawWaterMulti.jobString>Fervendo água impura.</Mizu_BoilRawWaterMulti.jobString>
+
+  <Mizu_PercolateMudWaterMulti.label>Filtrar água com lama (x5)</Mizu_PercolateMudWaterMulti.label>
+  <Mizu_PercolateMudWaterMulti.description>Filtre e ferva a água com lama até virar água normal.</Mizu_PercolateMudWaterMulti.description>
+  <Mizu_PercolateMudWaterMulti.jobString>Filtrando a lama.</Mizu_PercolateMudWaterMulti.jobString>
+
+  <Mizu_DesalinateSeaWaterMulti.label>Dessalinizar água salgada (x5)</Mizu_DesalinateSeaWaterMulti.label>
+  <Mizu_DesalinateSeaWaterMulti.description>Dessalinização da água salgada em água comum.</Mizu_DesalinateSeaWaterMulti.description>
+  <Mizu_DesalinateSeaWaterMulti.jobString>Dessalinizando a água salgada.</Mizu_DesalinateSeaWaterMulti.jobString>
+
+</LanguageData>
