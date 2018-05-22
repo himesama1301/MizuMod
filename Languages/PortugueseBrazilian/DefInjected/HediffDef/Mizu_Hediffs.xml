@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_Dehydration.label>Desidratação</Mizu_Dehydration.label>
+  <Mizu_Dehydration.stages.0.label>Ligeira</Mizu_Dehydration.stages.0.label>
+  <Mizu_Dehydration.stages.1.label>leve</Mizu_Dehydration.stages.1.label>
+  <Mizu_Dehydration.stages.2.label>Media</Mizu_Dehydration.stages.2.label>
+  <Mizu_Dehydration.stages.3.label>Crítica</Mizu_Dehydration.stages.3.label>
+  <Mizu_Dehydration.stages.4.label>Urgente</Mizu_Dehydration.stages.4.label>
+
+  <Mizu_DrankSeaWater.label>Bebeu água salgada</Mizu_DrankSeaWater.label>
+
+</LanguageData>

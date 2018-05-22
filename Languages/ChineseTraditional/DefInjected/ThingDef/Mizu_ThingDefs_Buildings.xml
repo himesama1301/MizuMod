@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Mizu_DrawingWaterSpot.label>取水點</Mizu_DrawingWaterSpot.label>
+  <Mizu_DrawingWaterSpot.description>指定一個位置用於取水。可以放置在水或者沼澤上。</Mizu_DrawingWaterSpot.description>
+  <Mizu_DrawingWaterSpot_Blueprint.label>取水點（藍圖）</Mizu_DrawingWaterSpot_Blueprint.label>
+  <Mizu_DrawingWaterSpot_Frame.label>取水點（建造中）</Mizu_DrawingWaterSpot_Frame.label>
+  <Mizu_DrawingWaterSpot_Frame.description>指定一個位置用於取水。可以放置在水或者沼澤上。</Mizu_DrawingWaterSpot_Frame.description>
+
+  <Mizu_Well.label>水井</Mizu_Well.label>
+  <Mizu_Well.description>用於獲取地下水的建築。</Mizu_Well.description>
+  <Mizu_Well_Blueprint.label>水井（藍圖）</Mizu_Well_Blueprint.label>
+  <Mizu_Well_Frame.label>水井（建造中）</Mizu_Well_Frame.label>
+  <Mizu_Well_Frame.description>用於獲取地下水的建築。</Mizu_Well_Frame.description>
+
+  <Mizu_FueledWaterCleaner.label>淨水器（燃料）</Mizu_FueledWaterCleaner.label>
+  <Mizu_FueledWaterCleaner.description>木柴做燃料的簡易淨水器。</Mizu_FueledWaterCleaner.description>
+  <Mizu_FueledWaterCleaner_Blueprint.label>淨水器（燃料）（藍圖）</Mizu_FueledWaterCleaner_Blueprint.label>
+  <Mizu_FueledWaterCleaner_Frame.label>淨水器（燃料）（建造中）</Mizu_FueledWaterCleaner_Frame.label>
+  <Mizu_FueledWaterCleaner_Frame.description>木柴做燃料的簡易淨水器。</Mizu_FueledWaterCleaner_Frame.description>
+
+  <Mizu_ElectricWaterCleaner.label>淨水器（電力）</Mizu_ElectricWaterCleaner.label>
+  <Mizu_ElectricWaterCleaner.description>電力淨水器。</Mizu_ElectricWaterCleaner.description>
+  <Mizu_ElectricWaterCleaner_Blueprint.label>淨水器（電力）（藍圖）</Mizu_ElectricWaterCleaner_Blueprint.label>
+  <Mizu_ElectricWaterCleaner_Frame.label>淨水器（電力）（建造中）</Mizu_ElectricWaterCleaner_Frame.label>
+  <Mizu_ElectricWaterCleaner_Frame.description>電力淨水器。</Mizu_ElectricWaterCleaner_Frame.description>
+
+  <Mizu_WaterPipe.label>水管</Mizu_WaterPipe.label>
+  <Mizu_WaterPipe.description>用於連接供水網絡（水泵，水箱，水龍頭...）</Mizu_WaterPipe.description>
+  <Mizu_WaterPipe_Blueprint.label>水管（藍圖）</Mizu_WaterPipe_Blueprint.label>
+  <Mizu_WaterPipe_Frame.label>水管（建造中）</Mizu_WaterPipe_Frame.label>
+  <Mizu_WaterPipe_Frame.description>用於連接供水網絡（水泵，水箱，水龍頭...）</Mizu_WaterPipe_Frame.description>
+
+  <Mizu_WaterPipeInWater.label>水管（水中）</Mizu_WaterPipeInWater.label>
+  <Mizu_WaterPipeInWater.description>用於連接供水網絡（水泵，水箱，水龍頭...）</Mizu_WaterPipeInWater.description>
+  <Mizu_WaterPipeInWater_Blueprint.label>水管（水中）（藍圖）</Mizu_WaterPipeInWater_Blueprint.label>
+  <Mizu_WaterPipeInWater_Frame.label>水管（水中）（建造中）</Mizu_WaterPipeInWater_Frame.label>
+  <Mizu_WaterPipeInWater_Frame.description>用於連接供水網絡（水泵，水箱，水龍頭...）</Mizu_WaterPipeInWater_Frame.description>
+
+  <Mizu_WaterValve.label>水閥</Mizu_WaterValve.label>
+  <Mizu_WaterValve.description>用於連接供水網絡。可以切換狀態（開啟/關閉）。</Mizu_WaterValve.description>
+  <Mizu_WaterValve_Blueprint.label>水閥（藍圖）</Mizu_WaterValve_Blueprint.label>
+  <Mizu_WaterValve_Frame.label>水閥（建造中）</Mizu_WaterValve_Frame.label>
+  <Mizu_WaterValve_Frame.description>用於連接供水網絡。可以切換狀態（開啟/關閉）。</Mizu_WaterValve_Frame.description>
+
+  <Mizu_GroundWaterPump.label>水泵</Mizu_GroundWaterPump.label>
+  <Mizu_GroundWaterPump.description>用於從河流，湖泊，海洋和沼澤中抽水。需要電力。</Mizu_GroundWaterPump.description>
+  <Mizu_GroundWaterPump_Blueprint.label>水泵（藍圖）</Mizu_GroundWaterPump_Blueprint.label>
+  <Mizu_GroundWaterPump_Frame.label>水泵（建造中）</Mizu_GroundWaterPump_Frame.label>
+  <Mizu_GroundWaterPump_Frame.description>用於從河流，湖泊，海洋和沼澤中抽水。需要電力。</Mizu_GroundWaterPump_Frame.description>
+
+  <Mizu_UndergroundWaterPumpShallow.label>深井泵(淺層）</Mizu_UndergroundWaterPumpShallow.label>
+  <Mizu_UndergroundWaterPumpShallow.description>從地下淺層抽水。需要電力。</Mizu_UndergroundWaterPumpShallow.description>
+  <Mizu_UndergroundWaterPumpShallow_Blueprint.label>深井泵（淺層）（藍圖）</Mizu_UndergroundWaterPumpShallow_Blueprint.label>
+  <Mizu_UndergroundWaterPumpShallow_Frame.label>深井泵（淺層）（建造中）</Mizu_UndergroundWaterPumpShallow_Frame.label>
+  <Mizu_UndergroundWaterPumpShallow_Frame.description>從地下淺層抽水。需要電力。</Mizu_UndergroundWaterPumpShallow_Frame.description>
+
+  <Mizu_UndergroundWaterPumpDeep.label>深井泵（深層）</Mizu_UndergroundWaterPumpDeep.label>
+  <Mizu_UndergroundWaterPumpDeep.description>從地下深層抽水。需要電力。</Mizu_UndergroundWaterPumpDeep.description>
+  <Mizu_UndergroundWaterPumpDeep_Blueprint.label>深井泵（深層）（藍圖）</Mizu_UndergroundWaterPumpDeep_Blueprint.label>
+  <Mizu_UndergroundWaterPumpDeep_Frame.label>深井泵（深層）（建造中）</Mizu_UndergroundWaterPumpDeep_Frame.label>
+  <Mizu_UndergroundWaterPumpDeep_Frame.description>從地下深層抽水。需要電力。</Mizu_UndergroundWaterPumpDeep_Frame.description>
+
+  <Mizu_WaterTank.label>蓄水罐</Mizu_WaterTank.label>
+  <Mizu_WaterTank.description>用於儲存水。</Mizu_WaterTank.description>
+  <Mizu_WaterTank_Blueprint.label>蓄水罐（藍圖）</Mizu_WaterTank_Blueprint.label>
+  <Mizu_WaterTank_Frame.label>蓄水罐（建造中）</Mizu_WaterTank_Frame.label>
+  <Mizu_WaterTank_Frame.description>用於儲存水。</Mizu_WaterTank_Frame.description>
+
+  <Mizu_WaterBox.label>水箱</Mizu_WaterBox.label>
+  <Mizu_WaterBox.description>能夠儲存少量水的半封閉水箱，讓動物能夠喝到水。</Mizu_WaterBox.description>
+  <Mizu_WaterBox_Blueprint.label>水箱（藍圖）</Mizu_WaterBox_Blueprint.label>
+  <Mizu_WaterBox_Frame.label>水箱（建造中）</Mizu_WaterBox_Frame.label>
+  <Mizu_WaterBox_Frame.description>能夠儲存少量水的半封閉水箱，讓動物能夠喝到水。</Mizu_WaterBox_Frame.description>
+
+  <Mizu_WaterFaucet.label>水龍頭</Mizu_WaterFaucet.label>
+  <Mizu_WaterFaucet.description>使用水龍頭，你可以從蓄水罐中取得水。</Mizu_WaterFaucet.description>
+  <Mizu_WaterFaucet_Blueprint.label>水龍頭（藍圖）</Mizu_WaterFaucet_Blueprint.label>
+  <Mizu_WaterFaucet_Frame.label>水龍頭（建造中）</Mizu_WaterFaucet_Frame.label>
+  <Mizu_WaterFaucet_Frame.description>使用水龍頭，你可以從蓄水罐中取得水。</Mizu_WaterFaucet_Frame.description>
+
+  <Mizu_DirtyWaterFilter.label>髒水過濾器</Mizu_DirtyWaterFilter.label>
+  <Mizu_DirtyWaterFilter.description>將生水/泥水/海水過濾成普通水。需要電力。</Mizu_DirtyWaterFilter.description>
+  <Mizu_DirtyWaterFilter_Blueprint.label>髒水過濾器（藍圖）</Mizu_DirtyWaterFilter_Blueprint.label>
+  <Mizu_DirtyWaterFilter_Frame.label>髒水過濾器（建造中）</Mizu_DirtyWaterFilter_Frame.label>
+  <Mizu_DirtyWaterFilter_Frame.description>將生水/泥水/海水過濾成普通水。需要電力。</Mizu_DirtyWaterFilter_Frame.description>
+
+  <Mizu_ClearWaterFilter.label>純淨水過濾器</Mizu_ClearWaterFilter.label>
+  <Mizu_ClearWaterFilter.description>將普通水過濾成純淨水。需要電力。</Mizu_ClearWaterFilter.description>
+  <Mizu_ClearWaterFilter_Blueprint.label>純淨水過濾器（藍圖）</Mizu_ClearWaterFilter_Blueprint.label>
+  <Mizu_ClearWaterFilter_Frame.label>純淨水過濾器（建造中）</Mizu_ClearWaterFilter_Frame.label>
+  <Mizu_ClearWaterFilter_Frame.description>將普通水過濾成純淨水。需要電力。</Mizu_ClearWaterFilter_Frame.description>
+
+
+</LanguageData>

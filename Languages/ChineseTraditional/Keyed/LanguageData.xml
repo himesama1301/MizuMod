@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <MizuWaterAmount>水量</MizuWaterAmount>
+  <MizuConsumeWater>喝 {0}</MizuConsumeWater>
+  <MizuNoWater>沒有水</MizuNoWater>
+
+  <MizuLowWater>低水量</MizuLowWater>
+  <MizuLowWaterDesc>你的儲水量降到危險水平。\n\n    儲水量： {0}\n    殖民者和囚犯的需求 {1}\n    天數: {2}\n\n尋找水源或者購買，趕緊找些水來。</MizuLowWaterDesc>
+  <MizuDehydration>沒有飲用水</MizuDehydration>
+  <MizuDehydrationDesc>殖民者正在脫水\n\n{0}\n給他們一些水。</MizuDehydrationDesc>
+
+  <MizuMessageCaravanRunOutOfWater>{0} 耗盡了飲用水 ({1})。</MizuMessageCaravanRunOutOfWater>
+
+  <MizuDaysWorthOfWaterInfo>{0} 天飲用水量</MizuDaysWorthOfWaterInfo>
+  <MizuInfiniteDaysWorthOfWaterInfo>飲用水永遠不會耗盡</MizuInfiniteDaysWorthOfWaterInfo>
+  <MizuDaysWorthOfWaterTooltip>遠行隊飲用水耗盡的大概天數。</MizuDaysWorthOfWaterTooltip>
+
+  <MizuCaravanOutOfWater>飲用水耗盡。</MizuCaravanOutOfWater>
+  <MizuCaravanDaysOfWater>飲用水天數： {0}</MizuCaravanDaysOfWater>
+
+  <MizuDaysWorthOfWaterWarningDialog>你的遠行隊僅攜帶了 {0} 天的飲用水，很快便會出現缺水的情況。\n\n你確定要創建這個遠行隊嗎？</MizuDaysWorthOfWaterWarningDialog>
+  <MizuDaysWorthOfWaterWarningDialog_NoWater>你的遠行隊沒有攜帶飲用水，很快便會出現缺水的情況。\n\n你確定要創建這個遠行隊嗎？</MizuDaysWorthOfWaterWarningDialog_NoWater>
+
+  <MizuWaterFlowOutput>出水量</MizuWaterFlowOutput>
+  <MizuWaterFlowInput>進水量</MizuWaterFlowInput>
+  <MizuWaterTankStored>蓄水量</MizuWaterTankStored>
+
+  <MizuCommandDesignateOpenCloseValveLabel>指派 開啟/關閉</MizuCommandDesignateOpenCloseValveLabel>
+  <MizuCommandDesignateOpenCloseValveDesc>指定這個閥門的開啟或關閉，殖民者隨後將前往完成。</MizuCommandDesignateOpenCloseValveDesc>
+
+  <MizuValveClosed>關閉的</MizuValveClosed>
+
+  <MizuStoredWaterPool>剩餘的地下水</MizuStoredWaterPool>
+
+  <MizuDraining>排水</MizuDraining>
+
+  <MizuCommandDesignateDrainTankLabel>開始/停止 排水</MizuCommandDesignateDrainTankLabel>
+  <MizuCommandDesignateDrainTankDesc>切換 開始/停止 排水。殖民者隨後將前往完成。</MizuCommandDesignateDrainTankDesc>
+
+  <MizuWaterTypeNo>無</MizuWaterTypeNo>
+  <MizuWaterTypeClear>純淨水</MizuWaterTypeClear>
+  <MizuWaterTypeNormal>水</MizuWaterTypeNormal>
+  <MizuWaterTypeRaw>生水</MizuWaterTypeRaw>
+  <MizuWaterTypeMud>泥水</MizuWaterTypeMud>
+  <MizuWaterTypeSea>海水</MizuWaterTypeSea>
+
+  <MizuMissingWater>需要水</MizuMissingWater>
+  <MizuFullWater>充分</MizuFullWater>
+
+  <MizuDesignatorDeconstructPipe>水管解體</MizuDesignatorDeconstructPipe>
+  <MizuDesignatorDeconstructPipeDesc>水管解體。</MizuDesignatorDeconstructPipeDesc>
+
+  <MizuThirstLevel_Healthy>水（滿意）</MizuThirstLevel_Healthy>
+  <MizuThirstLevel_SlightlyThirsty>有點口渴</MizuThirstLevel_SlightlyThirsty>
+  <MizuThirstLevel_Thirsty>口渴了</MizuThirstLevel_Thirsty>
+  <MizuThirstLevel_UrgentThirsty>渴得厲害</MizuThirstLevel_UrgentThirsty>
+  <MizuThirstLevel_Dehydration>脫水</MizuThirstLevel_Dehydration>
+
+  <MizuCannotBuildMultiWaterworksBuilding>你不能在同一地點建造多個供水設施。</MizuCannotBuildMultiWaterworksBuilding>
+
+  <MizuDehydrationAnimals>動物脫水</MizuDehydrationAnimals>
+  <MizuDehydrationAnimalsDesc>殖民地的這些動物正在脫水：\n\n{0}\n給它們一些水。</MizuDehydrationAnimalsDesc>
+
+  <MizuCantBuildExceptOverWater>你不能建造，除了水。</MizuCantBuildExceptOverWater>
+
+</LanguageData>
