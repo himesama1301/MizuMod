@@ -65,8 +65,8 @@ namespace MizuMod
                 // ワークタイプがその水ツールに設定された水補充ワークタイプの中に含まれているか
                 if (!compTool.SupplyWorkType.Contains(this.def.workType)) continue;
 
-                // 80%を切るまでは補充行動はしない
-                if (compTool.StoredWaterVolumePercent > 0.8f) continue;
+                // 表示が100%の場合は汲まない
+                if (compTool.StoredWaterVolumePercent >= 0.995f) continue;
 
                 // 設備の水が足りない
                 if ((compTool.MaxWaterVolume - compTool.StoredWaterVolume) > sourceBuilding.WaterVolume) continue;
