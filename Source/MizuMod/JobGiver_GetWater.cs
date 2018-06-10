@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Linq;
+using System.Linq;
 //using System.Text;
 
 using RimWorld;
@@ -36,17 +36,17 @@ namespace MizuMod
             // →ThinkTreeDefのほうで制御できそう
             if (pawn.MentalState != null && need_water.CurCategory <= ThirstCategory.UrgentlyThirsty) return 0.0f;
 
-            // 人間＆プレイヤー派閥でない場合は、マップ内に敵がいるかどうかで条件を変更
+            // 人間＆(プレイヤー派閥or囚人)でない場合は、マップ内に敵がいるかどうかで条件を変更
             // →ポーンの所持品に水が無い場合は1段階先まで我慢させるか？
             // →段階的に対応してバグ対処したい。これは後回し。
-            if (pawn.RaceProps.Humanlike && pawn.Faction != Faction.OfPlayer)
+            if (pawn.RaceProps.Humanlike && !(pawn.Faction == Faction.OfPlayer || pawn.IsPrisoner == true))
             {
                 foreach (var faction in Find.FactionManager.AllFactionsListForReading)
                 {
-                    var pawnList = pawn.Map.mapPawns.SpawnedPawnsInFaction(faction);
+                    var pawnList = pawn.Map.mapPawns.SpawnedPawnsInFaction(faction).Where((p) => !p.IsPrisoner);
 
                     // 敵対派閥のポーンがマップ内に居る場合は脱水症状が出るまで我慢
-                    if (pawn.HostileTo(faction) && pawnList != null && pawnList.Count > 0)
+                    if (pawn.HostileTo(faction) && pawnList != null && pawnList.Count() > 0)
                     {
                         if (need_water.CurCategory <= ThirstCategory.UrgentlyThirsty) return 0.0f;
                     }
