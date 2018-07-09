@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>No Water, No Life.</name>
+  <author>himesama</author>
+  <targetVersion>0.18.1722</targetVersion>
+  <url>https://github.com/himesama1301/MizuMod</url>
+  <description>
+
+for RimWorld B18
+mod version 1.5.4
+
+Description
+
+This mod adds "Need Water" to pawns. There are various means to get and transport water, such as: wells, pumps, water pipes, faucets, water cleaners, and more.
+This mod should NOT be applied to saved games.
+
+Direct download from github
+
+https://github.com/himesama1301/MizuMod/releases
+
+Please click "Source code (zip)" of the version what you want.
+The downloaded zip file contains all the data as well as the source code.
+
+License
+
+This mod includes the following
+- Harmony (MIT License)
+- ModCheck (LGPL v3.0)
+
+The other files are licensed under the Unlicense. 
+https://github.com/himesama1301/MizuMod/blob/master/LICENSE_Unlicense
+
+Contributors
+
+Valerate (VGP_Core and VGP_Gourmet patch)
+Dango998 (ChineseSimplified, ChineseTraditional translation)
+Firty (PortugueseBrazilian translation)
+
+
+
+(Japanese)
+
+概要
+
+ポーンの要求に水分を追加し、水を得るための様々な手段を追加します。
+井戸、ポンプ、水道管、蛇口、浄水器などが追加されます。
+このMODを途中から導入することは推奨しません。
+
+githubからダウンロード
+
+https://github.com/himesama1301/MizuMod/releases
+
+欲しいバージョンの"Source code (zip)"をクリックしてください。
+ダウンロードしたzipファイルにはソースコードだけでなく全てのデータが含まれています。
+
+ライセンス
+
+このMODには以下のものが含まれています。
+- Harmony (MITライセンス)
+- ModCheck (LGPL v3.0)
+
+その他のファイルはUnlicenseの下にリリースされています。
+https://github.com/himesama1301/MizuMod/blob/master/LICENSE_Unlicense
+
+ご協力
+
+Valerate (VGP_Core and VGP_Gourmet パッチ)
+Dango998 (簡体字中国語 翻訳データ)
+Firty (ブラジルポルトガル語 翻訳データ)
+
+  </description>
+</ModMetaData>
