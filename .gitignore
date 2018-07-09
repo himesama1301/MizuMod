@@ -1,2 +1,3 @@
 .vs
-/Source/MizuMod/obj
+/Source/*/obj
+/v1/Source/*/obj
