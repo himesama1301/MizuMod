@@ -1,14 +1,17 @@
 # No Water, No Life.
-MOD for RimWorld B18
+MOD for RimWorld 1.0
 
 ## License
+<!--
 This mod includes a compiled version of the Harmony library (0Harmony.dll) made by Andreas Pardeike (MIT license).
 https://github.com/pardeike/Harmony
-
 other files are released under the Unlicense.
+-->
 
-## 概要
+This mod are released under the Unlicense.
 
-RimWorld MOD B18向け  
-ポーンの要求に水分を追加します。食事と似たような扱いになります。  
-開発中のためバグが残っている可能性があります。他MODと競合する可能性があります。  
+## Description
+
+for RimWorld 1.0  
+now in re-developing...  
+please wait
